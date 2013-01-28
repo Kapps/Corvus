@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 
 namespace CorvEngine {
-	public class Entity {
-
+	public class Powerup : Entity {
 	}
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace CorvEngine {
-	public class Entity {
+	public class GameStateManager {
+		public void PushState(GameState State) {
 
+		}
 	}
 }

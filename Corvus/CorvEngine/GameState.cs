@@ -4,6 +4,6 @@ using System.Linq;
 using System.Text;
 
 namespace CorvEngine {
-	class GameState {
+	public class GameState {
 	}
 }

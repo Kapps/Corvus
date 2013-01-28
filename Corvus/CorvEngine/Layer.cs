@@ -4,6 +4,6 @@ using System.Linq;
 using System.Text;
 
 namespace CorvEngine {
-	class Layer {
+	public class Layer {
 	}
 }
