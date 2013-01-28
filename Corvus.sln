@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corvus", "Corvus\Corvus\Cor
 EndProject
 Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "CorvusContent", "Corvus\CorvusContent\CorvusContent.contentproj", "{39005F23-0A25-4E94-81EB-B18A8837D7E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorvEngine", "CorvEngine\CorvEngine.csproj", "{A9A21885-DA52-4B28-B041-D293A4D48AB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorvEngine", "Corvus\CorvEngine\CorvEngine.csproj", "{A9A21885-DA52-4B28-B041-D293A4D48AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
