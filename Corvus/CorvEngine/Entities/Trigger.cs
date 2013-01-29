@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine {
-	public class GameState {
+namespace CorvEngine.Entities {
+	public class Trigger {
 	}
 }
