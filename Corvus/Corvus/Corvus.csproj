@@ -108,8 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CorvusPlayer.cs" />
+    <Compile Include="Game1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="TempPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

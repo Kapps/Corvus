@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 
-namespace CorvEngine {
+namespace CorvEngine.Input {
 
 	/// <summary>
 	/// Implements a tagged union representing a single button press, optionally with modifiers.

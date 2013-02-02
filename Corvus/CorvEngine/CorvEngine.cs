@@ -22,6 +22,7 @@ namespace CorvEngine {
 		private Game _Game;
 		private GraphicsDeviceManager _GraphicsManager;
 		private GraphicsDevice _GraphicsDevice;
+		private SpriteBatch _SpriteBatch;
 		private bool _Paused;
 
 		/// <summary>
@@ -64,6 +65,14 @@ namespace CorvEngine {
 		}
 
 		/// <summary>
+		/// Gets the instance of the Game that CorvEngine is wrapping.
+		/// This is used primarily for creating GameComponents for global components.
+		/// </summary>
+		public Game Game {
+			get { return _Game; }
+		}
+
+		/// <summary>
 		/// Gets or sets a value indicating whether the game is currently paused.
 		/// All global components will continue to run when the game is paused, as well as any StateComponents with RunWhenPaused set to true.
 		/// </summary>
@@ -83,6 +92,7 @@ namespace CorvEngine {
 			this._Game = new Game();
 			this._GraphicsManager = new GraphicsDeviceManager(this._Game);
 			this._GraphicsDevice = this._Game.GraphicsDevice;
+			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 		}
 
 		/// <summary>

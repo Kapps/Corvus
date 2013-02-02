@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine {
+namespace CorvEngine.Input {
 
 	/// <summary>
 	/// Indicates what input method is being used; either a keyboard, or a controller.
@@ -38,5 +38,9 @@ namespace CorvEngine {
 		public InputManager(Player Player) {
 			this.Player = Player;
 		}
+
+		// TODO: There should be something related to GameState here.
+		// It makes no sense that you should keep your binds for attack and such when you're in a different state.
+		// Maybe give Bind an option to trigger only if a specified GameState is not blocked for updates.
 	}
 }
