@@ -27,6 +27,8 @@ namespace Corvus
             Content.RootDirectory = "Content";
 
             this.Components.Add(new AudioManager(this, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
+
+            TargetElapsedTime = new TimeSpan(0, 0, 0, 0, 25); //For the animation speed.
            
         }
 

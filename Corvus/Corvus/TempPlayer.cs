@@ -15,17 +15,21 @@ namespace Corvus
     {
         Game Game;
 
+        //Player texture
         Texture2D texture;
-        int textureWidth = 20;
-        int textureHeight = 30;
+        int textureWidth = 32;
+        int textureHeight = 48;
         private GraphicsDeviceManager graphics;
 
+        //Player hitboxes and position.
         Rectangle playerRect;
         Vector2 position;
 
+        //Controls
         Keys left = Keys.Left;
         Keys right = Keys.Right;
 
+        //Animation
         bool isWalkingLeft = false;
         bool isWalkingRight = false;
         int frameCount=0; //Current frame position.
@@ -59,7 +63,7 @@ namespace Corvus
 
             if (ks.IsKeyDown(left))
             {
-                position.X--;
+                position.X-=4;
                 frameCount++;
 
                 isWalkingLeft = true;
@@ -67,7 +71,7 @@ namespace Corvus
             }
             else if (ks.IsKeyDown(right))
             {
-                position.X++;
+                position.X+=4;
                 frameCount++;
 
                 isWalkingLeft = false;
@@ -78,7 +82,7 @@ namespace Corvus
                 frameCount = 0; //Reset frame count when player stops moving.
             }
 
-            if (frameCount > 3)
+            if (frameCount >= 4)
                 frameCount = 0;
         }
 
