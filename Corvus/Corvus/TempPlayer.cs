@@ -16,15 +16,23 @@ namespace Corvus
         Game Game;
 
         Texture2D texture;
-        int textureWidth;
-        int textureHeight;
+        int textureWidth = 20;
+        int textureHeight = 30;
         private GraphicsDeviceManager graphics;
 
         Rectangle playerRect;
         Vector2 position;
 
-        Keys left;
-        Keys right;
+        Keys left = Keys.Left;
+        Keys right = Keys.Right;
+
+        bool isWalkingLeft = false;
+        bool isWalkingRight = false;
+        int frameCount=0; //Current frame position.
+        Point frameSize = new Point(32, 48);
+        Point frameWalkingLeftStart = new Point(0, 48);
+        Point frameWalkingRightStart = new Point(0, 96);
+        Rectangle spriteArea; //Which area of the sprite to draw.
 
         public TempPlayer(Game Game, GraphicsDeviceManager graphics)
         {
@@ -38,14 +46,9 @@ namespace Corvus
         protected void SetupPlayer()
         {
             texture = Game.Content.Load<Texture2D>("Sprites/Player");
-            textureWidth = 20;
-            textureHeight = 30;
 
-            this.position = new Vector2(graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
+            this.position = new Vector2(0 + (textureWidth), graphics.GraphicsDevice.Viewport.Height);
             playerRect = new Rectangle((int)(this.position.X - textureWidth), (int)(this.position.Y - textureHeight), textureWidth, textureHeight);
-
-            left = Keys.Left;
-            right = Keys.Right;
         }
 
         public void Update(GameTime gameTime)
@@ -54,15 +57,29 @@ namespace Corvus
 
             KeyboardState ks = Keyboard.GetState();
 
-            if (ks.IsKeyDown(right))
-            {
-                position.X++;
-            }
-
             if (ks.IsKeyDown(left))
             {
                 position.X--;
+                frameCount++;
+
+                isWalkingLeft = true;
+                isWalkingRight = false;
             }
+            else if (ks.IsKeyDown(right))
+            {
+                position.X++;
+                frameCount++;
+
+                isWalkingLeft = false;
+                isWalkingRight = true;
+            }
+            else
+            {
+                frameCount = 0; //Reset frame count when player stops moving.
+            }
+
+            if (frameCount > 3)
+                frameCount = 0;
         }
 
         protected void UpdatePlayer()
@@ -72,7 +89,24 @@ namespace Corvus
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, playerRect, Color.White);
+            int x = 0;
+            int y = 96;
+
+            if (isWalkingLeft)
+            {
+                x = frameWalkingLeftStart.X + (frameCount * frameSize.X);
+                y = frameWalkingLeftStart.Y;
+
+            }
+            else if (isWalkingRight)
+            {
+                x = frameWalkingRightStart.X + (frameCount * frameSize.X);
+                y = frameWalkingRightStart.Y;
+            }
+
+            spriteArea = new Rectangle(x, y, frameSize.X, frameSize.Y);
+
+            spriteBatch.Draw(texture, playerRect, spriteArea , Color.White);
         }
     }
 }
