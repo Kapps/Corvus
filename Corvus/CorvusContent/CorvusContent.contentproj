@@ -53,8 +53,34 @@
     <Folder Include="Fonts\" />
     <Folder Include="Levels\" />
     <Folder Include="Overlays\" />
-    <Folder Include="Sounds\" />
     <Folder Include="Tiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\CorvAudio.xap">
+      <Name>CorvAudio</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\Music\TestSong1.wav">
+      <Name>TestSong1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\Music\TestSong2.wav">
+      <Name>TestSong2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\SoundEffects\System\Cancel.wav">
+      <Name>Cancel</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\SoundEffects\System\Select.wav">
+      <Name>Select</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -92,6 +92,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\CorvCue.cs" />
+    <Compile Include="Audio\CorvMusicCue.cs" />
+    <Compile Include="Audio\CorvSoundEffectCue.cs" />
     <Compile Include="Entities\Actor.cs" />
     <Compile Include="AudioManager.cs" />
     <Compile Include="Scenes\AlphaTransition.cs" />
@@ -116,6 +119,9 @@
     <Compile Include="Scenes\GameStateComponent.cs" />
     <Compile Include="Scenes\Tile.cs" />
     <Compile Include="Entities\Trigger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Audio\Microsoft.Xna.Framework.Xact.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
