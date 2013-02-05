@@ -1,4 +1,5 @@
 using System;
+using Corvus.TestGames;
 
 namespace Corvus {
 #if WINDOWS || XBOX
@@ -14,10 +15,13 @@ namespace Corvus {
 				engine.Run();
             }
             */
-            using (Game1 game = new Game1())
-            {
+            //using (Game1 game = new Game1())
+            //{
+            //    game.Run();
+            //}
+
+            using (TestControls game = new TestControls())
                 game.Run();
-            }
         }
     }
 #endif

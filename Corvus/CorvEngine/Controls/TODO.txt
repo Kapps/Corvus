@@ -1,0 +1,24 @@
+﻿TODO LIST:
+	General:
+		-Some way to set Vertical and Horizontal orientation.
+		-
+	Textblock.cs:
+		-find a better way of setting the Spritefont for controls. Right now, you have to manually set them all before using them.
+		-Make the text start a new line when it extends too far.
+	ControlManager.cs:
+		-Make it actually do something.
+
+KNOWN BUGS/ISSUES:
+	StackPanel.cs:
+		-You have to put all the elements into the stack BEFORE setting the scale value. I Stupidly scale all the elements once you set the Scale value.
+		The added items aren't scaled as a result.
+
+
+
+
+
+
+
+
+
+

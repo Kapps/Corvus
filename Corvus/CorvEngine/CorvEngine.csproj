@@ -95,6 +95,14 @@
     <Compile Include="Audio\CorvCue.cs" />
     <Compile Include="Audio\CorvMusicCue.cs" />
     <Compile Include="Audio\CorvSoundEffectCue.cs" />
+    <Compile Include="Controls\ControlManager.cs" />
+    <Compile Include="Controls\Image.cs" />
+    <Compile Include="Controls\LinkButton.cs" />
+    <Compile Include="Controls\Orientation.cs" />
+    <Compile Include="Controls\Panel.cs" />
+    <Compile Include="Controls\StackPanel.cs" />
+    <Compile Include="Controls\TextBlock.cs" />
+    <Compile Include="Controls\UIElement.cs" />
     <Compile Include="Entities\Actor.cs" />
     <Compile Include="AudioManager.cs" />
     <Compile Include="Scenes\AlphaTransition.cs" />
@@ -122,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audio\Microsoft.Xna.Framework.Xact.dll" />
+    <Content Include="Controls\TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
