@@ -7,25 +7,24 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CorvEngine.Controls
 {
-    public class Image : UIElement
-    {
-        private Texture2D _Source = null;
+    public class Label : UIElement
+    { private string _Text = "";
 
-        public Texture2D Source
+        public string Text
         {
-            get { return _Source; }
-            set
+            get { return _Text; }
+            set 
             { 
-                _Source = value;
+                _Text = value;
+
                 MeasureSize();
             }
         }
 
-        public Image()
+        public Label()
             :base()
         {
             this.TabStop = false;
-            this.Foreground = Color.White;
         }
 
         public override void Update(GameTime gameTime)
@@ -35,13 +34,13 @@ namespace CorvEngine.Controls
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_Source, this.Position, this.Source.Bounds, this.Foreground, 0f, new Vector2(), this.Scale, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(this.SpriteFont, _Text, this.Position, this.Foreground, 0f, new Vector2(), this.Scale, SpriteEffects.None, 0f);
         }
-        
+
         protected override void MeasureSize()
         {
-            if (_Source != null)
-                this.Size = new Vector2(this._Source.Width, this._Source.Bounds.Height);
+            if (!string.IsNullOrEmpty(_Text))
+                this.Size = this.SpriteFont.MeasureString(_Text);
             else
                 this.Size = new Vector2();
         }

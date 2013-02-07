@@ -23,11 +23,15 @@ namespace CorvEngine.Controls
         private Color _Foreground;
         private float _Scale = 1f;
         private SpriteFont _SpriteFont;
+        private UIElement _ParentElement = null;
 
+        /// <summary>
+        /// Used to identify this element. Is not case sensitive.
+        /// </summary>
         public virtual string Name
         {
-            get { return _Name; }
-            set { _Name = value; }
+            get { return _Name.ToLower(); }
+            set { _Name = value.ToLower(); }
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace CorvEngine.Controls
         public virtual bool TabStop
         {
             get { return _TabStop; }
-            set { _TabStop = value; }
+            protected set { _TabStop = value; }
         }
 
         public virtual Color Foreground
@@ -85,6 +89,12 @@ namespace CorvEngine.Controls
         {
             get { return _SpriteFont; }
             set { _SpriteFont = value; }
+        }
+
+        public UIElement ParentElement
+        {
+            get { return _ParentElement; }
+            set { _ParentElement = value; }
         }
 
         /// <summary>
@@ -106,6 +116,7 @@ namespace CorvEngine.Controls
 
         public UIElement()
         {
+            this.Name = string.Empty;
             this._Position = new Vector2();
             this._Size = new Vector2();
             this._IsVisible = true;
@@ -114,13 +125,14 @@ namespace CorvEngine.Controls
             this._HasFocus = false;
         }
 
+
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch);
 
         /// <summary>
         /// Determines the unscaled size of the element.
         /// </summary>
-        protected virtual void MeasureSize(){}
+        protected abstract void MeasureSize();
 
     }
 }

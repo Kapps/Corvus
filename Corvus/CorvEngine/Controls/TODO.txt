@@ -1,24 +1,22 @@
-﻿TODO LIST:
-	General:
-		-Some way to set Vertical and Horizontal orientation.
-		-
-	Textblock.cs:
+﻿DO NOW:
+	-ControlManager.cs
+		-when adding controls dynamically, settings focus doesn't work. need to find better way. 
+
+TODO LIST:
+	IMPORTANT:
+		-Controls are currently hardcoded. (Files include: ControlManager, LinkButton);
+    General:
+        -Some way to set Vertical and Horizontal orientation.
 		-find a better way of setting the Spritefont for controls. Right now, you have to manually set them all before using them.
-		-Make the text start a new line when it extends too far.
-	ControlManager.cs:
-		-Make it actually do something.
-
+    Textblock.cs:
+        -
+	Border.cs:
+		-Not sure if i need to modify the IsVisible, IsEnabled, HasFocus, etc properties.
+    ControlManager.cs:
+        -Currently, the Focusable Elements are only added when SetFocus is called. Will need to find a more efficient way to manage this.
+		-Doesn't add/remove elements within stackpanels, etc. Will add if needed.
+		-Possibly combine Add/UpdateElement and Remove/UpdateElement.
 KNOWN BUGS/ISSUES:
-	StackPanel.cs:
-		-You have to put all the elements into the stack BEFORE setting the scale value. I Stupidly scale all the elements once you set the Scale value.
-		The added items aren't scaled as a result.
-
-
-
-
-
-
-
-
-
-
+    StackPanel.cs:
+        -You have to put all the elements into the stack BEFORE setting the scale value. I Stupidly scale all the elements once you set the Scale value.
+        The added items aren't scaled as a result.

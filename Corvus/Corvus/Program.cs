@@ -20,7 +20,7 @@ namespace Corvus {
             //    game.Run();
             //}
 
-            using (TestControls game = new TestControls())
+            using (Game2 game = new Game2())
                 game.Run();
         }
     }

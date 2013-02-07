@@ -17,25 +17,10 @@ namespace CorvEngine.Controls
             set { _Orientation = value; }
         }
 
-        /// <summary>
-        /// Scales all the elements in the StackPanel. NOTE: THERES A BUG. You have to put all the elements into the stack BEFORE setting the scale value.
-        /// </summary>
-        public override float Scale
-        {
-            get { return base.Scale; }
-            set
-            {
-                base.Scale = value;
-                foreach (UIElement element in this.Items)
-                    element.Scale *= base.Scale;
-            }
-        }
-
         public StackPanel()
             : base()
         {
             this.TabStop = false;
-            this.Items = new List<UIElement>();
         }
 
         public override void Update(GameTime gameTime)
@@ -50,7 +35,8 @@ namespace CorvEngine.Controls
             foreach (UIElement element in this.Items)
             {
                 element.Position = newPosition;
-                element.Draw(spriteBatch);
+                if(element.IsVisible)
+                    element.Draw(spriteBatch);
 
                 if (Orientation == Orientation.Vertical)
                     newPosition.Y += element.Size.Y;
@@ -59,14 +45,7 @@ namespace CorvEngine.Controls
             }
         }
 
-        public void Add(UIElement element)
-        {
-            this.Items.Add(element);
-
-            MeasureSize(element);
-        }
-        
-        private void MeasureSize(UIElement element)
+        protected override void MeasureSize(UIElement element)
         {
             if (this.Size != Vector2.Zero)
             {
