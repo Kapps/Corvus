@@ -1,19 +1,17 @@
 using System;
+using CorvEngine;
 
 namespace Corvus {
-#if WINDOWS || XBOX
-    static class Program
-    {
+    static class Program {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main(string[] args)
-        {
-            using (CorvEngine.CorvEngine engine = new CorvEngine.CorvEngine()) {
-				engine.Run();
+        static void Main(string[] args) {
+            using (var game = new CorvusGame()) {
+				// TODO: Make the above in an overridden initialize method so we can actually call it inside Game.Run().
+				game.Run();
             }
         }
     }
-#endif
 }
 

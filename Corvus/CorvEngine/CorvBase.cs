@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
+using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -13,16 +15,15 @@ using Microsoft.Xna.Framework.Media;
 namespace CorvEngine {
 	/// <summary>
 	/// Provides the main engine to run for the Game.
-	/// The CorvEngine class does not derive from Game, as when using CorvEngine the Game class is not used directly.
+	/// The Engine class does not derive from Game, as when using CorvEngine the Game class is not used directly.
 	/// Instead, GameEngine wraps Game class, forwarding methods to it as needed.
 	/// </summary>
-	public class CorvEngine : IDisposable {
+	public abstract class CorvBase : IDisposable {
 		private List<Player> _Players;
-		private static CorvEngine _Instance;
-		private Game _Game;
+		private static CorvBase _Instance;
+		private CorvusInternalGame _Game;
 		private GraphicsDeviceManager _GraphicsManager;
-		private GraphicsDevice _GraphicsDevice;
-		private bool _Paused;
+		private GameStateManager _StateManager;
 
 		/// <summary>
 		/// Gets an event called when a new Player is added to the game.
@@ -37,7 +38,7 @@ namespace CorvEngine {
 		/// <summary>
 		/// Returns the singleton instance of CorvEngine.
 		/// </summary>
-		public static CorvEngine Instance {
+		public static CorvBase Instance {
 			get { return _Instance; }
 		}
 		
@@ -60,29 +61,40 @@ namespace CorvEngine {
 		/// Gets the GraphicsDevice being used for the game.
 		/// </summary>
 		public GraphicsDevice GraphicsDevice {
-			get { return _GraphicsDevice; }
+			get { return Game.GraphicsDevice; }
 		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether the game is currently paused.
-		/// All global components will continue to run when the game is paused, as well as any StateComponents with RunWhenPaused set to true.
+		/// Gets the instance of the Game that CorvEngine is wrapping.
+		/// This is used primarily for creating GameComponents for global components.
 		/// </summary>
-		public bool Paused {
-			get { return _Paused; }
-			set { _Paused = value; }
+		public Game Game {
+			get { return _Game; }
+		}
+
+		/// <summary>
+		/// Gets the GameStateManager used by the engine.
+		/// </summary>
+		public GameStateManager StateManager {
+			get { return _StateManager; }
+		}
+
+		/// <summary>
+		/// Gets a service provider used by the underlying Game.
+		/// </summary>
+		public IServiceProvider Services {
+			get { return _Game.Services; }
 		}
 
 		/// <summary>
 		/// Creates a new instance of the GameEngine.
 		/// Only one instance of the GameEngine may exist at any time.
 		/// </summary>
-		public CorvEngine() {
+		public CorvBase() {
 			if(Interlocked.Exchange(ref _Instance, this) != null)
 				throw new InvalidOperationException("Only one instance of GameEngine may exist at any time.");
 			this._Players = new List<Player>();
-			this._Game = new Game();
-			this._GraphicsManager = new GraphicsDeviceManager(this._Game);
-			this._GraphicsDevice = this._Game.GraphicsDevice;
+			this._Game = new CorvusInternalGame(this);
 		}
 
 		/// <summary>
@@ -98,11 +110,17 @@ namespace CorvEngine {
 		public void Exit() {
 			this._Game.Exit();
 		}
+
+		/// <summary>
+		/// Initializes any logic required for the Game.
+		/// </summary>
+		protected abstract void Initialize();
 		
 		/// <summary>
 		/// Registers the given GameComponent as a global GameComponent.
 		/// </summary>
 		public void RegisterGlobalComponent(IGameComponent Component) {
+			Component.Initialize();
 			_Game.Components.Add(Component);
 		}
 
@@ -142,6 +160,29 @@ namespace CorvEngine {
 		/// </summary>
 		void IDisposable.Dispose() {
 			_Game.Dispose();
+		}
+
+		private void OnInitialize() {
+			this._GraphicsManager = new GraphicsDeviceManager(this._Game);
+			this._GraphicsManager.PreferredBackBufferWidth = 1024;
+			this._GraphicsManager.PreferredBackBufferHeight = 768;
+			this._GraphicsManager.ApplyChanges();
+			this._StateManager = new GameStateManager(_Game);
+			this.RegisterGlobalComponent(this._StateManager);
+			this.Initialize();
+		}
+
+		private class CorvusInternalGame : Game {
+			private CorvBase _Engine;
+
+			public CorvusInternalGame(CorvBase Engine) {
+				this._Engine = Engine;
+			}
+
+			protected override void Initialize() {
+				base.Initialize();
+				_Engine.OnInitialize();
+			}
 		}
 	}
 }

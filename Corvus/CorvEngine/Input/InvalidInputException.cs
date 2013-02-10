@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine {
+namespace CorvEngine.Input {
 	/// <summary>
 	/// Provides an exception thrown when an invalid input is used.
 	/// </summary>

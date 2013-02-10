@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CorvEngine.Input;
 
 namespace CorvEngine {
 	/// <summary>
@@ -30,7 +31,7 @@ namespace CorvEngine {
 				// TODO: What a hacky implementation.
 				// But we want the game itself to create the Player, so they can substitute their own Player class that handles things like what their character is and such.
 				// And we don't want the game to manually manage player indexes.
-				int Result = CorvEngine.Instance.Players.ToList().IndexOf(this);
+				int Result = CorvBase.Instance.Players.ToList().IndexOf(this);
 				return Result >= 0 ? Result + 1 : -1;
 			}
 		}

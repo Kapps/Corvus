@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine {
+namespace CorvEngine.Input {
 
 	/// <summary>
 	/// Provides an EventArgs value for when a bind is pressed, optionally preventing the action from being invoked.

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine {
-	public class Entity {
-
+namespace CorvEngine.Scenes {
+	public class Background {
 	}
 }
