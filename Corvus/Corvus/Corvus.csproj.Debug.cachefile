@@ -1,1 +1,11 @@
 Content\TestTexture.xnb
+Content\Sprites\Player.xnb
+Content\Interface\testbg.xnb
+Content\Audio\Waves\Music\TestSong1.xnb
+Content\Audio\Waves\Music\TestSong2.xnb
+Content\Audio\Waves\SoundEffects\System\Cancel.xnb
+Content\Audio\Waves\SoundEffects\System\Select.xnb
+Content\Fonts\testfont.xnb
+Content\Audio\RPGAudio.xgs
+Content\Audio\Wave Bank.xwb
+Content\Audio\Sound Bank.xsb

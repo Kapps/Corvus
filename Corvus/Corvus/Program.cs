@@ -1,5 +1,5 @@
 using System;
-using CorvEngine;
+using Corvus.TestGames;
 
 namespace Corvus {
     static class Program {
@@ -10,8 +10,8 @@ namespace Corvus {
             using (var game = new CorvusGame()) {
 				// TODO: Make the above in an overridden initialize method so we can actually call it inside Game.Run().
 				game.Run();
-            }
-        }
+			}
+		}
     }
 }
 

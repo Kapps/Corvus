@@ -24,6 +24,9 @@ namespace CorvEngine {
 		private CorvusInternalGame _Game;
 		private GraphicsDeviceManager _GraphicsManager;
 		private GameStateManager _StateManager;
+		private GraphicsDevice _GraphicsDevice;
+		private SpriteBatch _SpriteBatch;
+		private bool _Paused;
 
 		/// <summary>
 		/// Gets an event called when a new Player is added to the game.
@@ -65,8 +68,8 @@ namespace CorvEngine {
 		}
 
 		/// <summary>
-		/// Gets the instance of the Game that CorvEngine is wrapping.
-		/// This is used primarily for creating GameComponents for global components.
+		/// Gets or sets a value indicating whether the game is currently paused.
+		/// All global components will continue to run when the game is paused, as well as any StateComponents with RunWhenPaused set to true.
 		/// </summary>
 		public Game Game {
 			get { return _Game; }
@@ -167,6 +170,8 @@ namespace CorvEngine {
 			this._GraphicsManager.PreferredBackBufferWidth = 1024;
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
 			this._GraphicsManager.ApplyChanges();
+			this._GraphicsDevice = this._Game.GraphicsDevice;
+			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
 			this.RegisterGlobalComponent(this._StateManager);
 			this.Initialize();

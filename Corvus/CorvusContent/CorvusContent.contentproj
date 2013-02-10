@@ -42,8 +42,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestTexture.PNG">
-      <Name>TestTexture</Name>
+		<Compile Include="TestTexture.PNG">
+			<Name>TestTexture</Name>
+			<Importer>TextureImporter</Importer>
+			<Processor>TextureProcessor</Processor>
+		</Compile>
+    <Compile Include="Sprites\Player.png">
+      <Name>Player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backgrounds\" />
+    <Folder Include="Levels\" />
+    <Folder Include="Overlays\" />
+    <Folder Include="Tiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\CorvAudio.xap">
+      <Name>CorvAudio</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\Music\TestSong1.wav">
+      <Name>TestSong1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\Music\TestSong2.wav">
+      <Name>TestSong2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\SoundEffects\System\Cancel.wav">
+      <Name>Cancel</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Waves\SoundEffects\System\Select.wav">
+      <Name>Select</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fonts\testfont.spritefont">
+      <Name>testfont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\testbg.png">
+      <Name>testbg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
