@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace CorvEngine.Controls
 {
+    /// <summary>
+    /// Temp class until Controls are added.
+    /// </summary>
     public class InputHandler : GameComponent
     {
         #region Contructor 

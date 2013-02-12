@@ -7,8 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CorvEngine.Controls
 {
-
-
+    /// <summary>
+    /// The base class for interface elements.
+    /// </summary>
     public abstract class UIElement
     {
         #region Fields/Properties
@@ -43,58 +44,85 @@ namespace CorvEngine.Controls
             protected set { _Size = value ; } 
         }
 
+        /// <summary>
+        /// Gets or sets the position of the element.
+        /// </summary>
         public virtual Vector2 Position
         {
             get { return _Position; }
             set { _Position = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating if this element has focus.
+        /// </summary>
         public virtual bool HasFocus
         {
             get { return _HasFocus; }
             set { _HasFocus = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the visibility of the element.
+        /// </summary>
         public virtual bool IsVisible
         {
             get { return _IsVisible; }
             set { _IsVisible = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating if this element is enabled.
+        /// </summary>
         public virtual bool IsEnabled
         {
             get { return _IsEnabled; }
             set { _IsEnabled = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating that his element is focusable.
+        /// </summary>
         public virtual bool TabStop
         {
             get { return _TabStop; }
             protected set { _TabStop = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the color of the foreground content.
+        /// </summary>
         public virtual Color Foreground
         {
             get { return _Foreground; }
             set { _Foreground = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value to scale the element by.
+        /// </summary>
         public virtual float Scale
         {
             get { return _Scale; }
             set { _Scale = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the spritefont.
+        /// </summary>
         public SpriteFont SpriteFont
         {
             get { return _SpriteFont; }
             set { _SpriteFont = value; }
         }
 
+        /// <summary>
+        /// Gets the parent element, if any.
+        /// </summary>
         public UIElement ParentElement
         {
             get { return _ParentElement; }
-            set { _ParentElement = value; }
+            internal set { _ParentElement = value; }
         }
 
         /// <summary>
@@ -105,8 +133,14 @@ namespace CorvEngine.Controls
         #endregion
 
         #region Events
+        /// <summary>
+        /// Event to handle if this element is selected.
+        /// </summary>
         public event EventHandler Selected;
 
+        /// <summary>
+        /// Calls the selected event if it is not null.
+        /// </summary>
         protected virtual void OnSelected()
         {
             if (Selected != null)
@@ -114,6 +148,9 @@ namespace CorvEngine.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Creates a new instance of UIElement.
+        /// </summary>
         public UIElement()
         {
             this.Name = string.Empty;
@@ -125,8 +162,14 @@ namespace CorvEngine.Controls
             this._HasFocus = false;
         }
 
-
+        /// <summary>
+        /// Updates the element.
+        /// </summary>
         public abstract void Update(GameTime gameTime);
+
+        /// <summary>
+        /// Draws the element
+        /// </summary>
         public abstract void Draw(SpriteBatch spriteBatch);
 
         /// <summary>

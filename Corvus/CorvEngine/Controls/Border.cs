@@ -13,13 +13,19 @@ namespace CorvEngine.Controls
     public class Border: Panel
     {
         private Texture2D _Background;
-       
+     
+        /// <summary>
+        /// The background image.
+        /// </summary>
         public Texture2D Background
         {
             get { return _Background; }
             set { _Background = value; }
         }
         
+        /// <summary>
+        /// The control to wrap the border around.
+        /// </summary>
         public UIElement Content
         {
             get { return this.Items[0]; }
@@ -35,18 +41,27 @@ namespace CorvEngine.Controls
             }
         }
 
+        /// <summary>
+        /// Creates a new instance of border.
+        /// </summary>
         public Border()
             :base()
         {
             this.Items = new List<UIElement>(1);
         }
 
+        /// <summary>
+        /// Updates the border.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             if (Content != null)
                 Content.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draws the border and it's contents.
+        /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (Content != null)
@@ -63,11 +78,18 @@ namespace CorvEngine.Controls
             }
         }
 
+        /// <summary>
+        /// Measures the size of the border.
+        /// </summary>
+        /// <param name="element"></param>
         protected override void MeasureSize(UIElement element)
         {
             this.Size = Content.Size;
         }
 
+        /// <summary>
+        /// Not used in Border.
+        /// </summary>
         public override void Add(UIElement element)
         {
             throw new NotImplementedException("Set directly to Content instead.");

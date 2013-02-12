@@ -50,17 +50,24 @@ namespace CorvEngine.Controls
             this.Size = new Vector2();
         }
 
+        /// <summary>
+        /// Creates a new Textblock with the specified length.
+        /// </summary>
         public TextBlock(int length)
             : this()
         {
             this._Length = length;
         }
 
+        /// <summary>
+        /// Updates the textblock.
+        /// </summary>
         public override void Update(GameTime gameTime)
-        {
-            
-        }
+        { }
 
+        /// <summary>
+        /// Draws the text.
+        /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
             Vector2 pos = this.Position;
@@ -71,6 +78,9 @@ namespace CorvEngine.Controls
             }
         }
 
+        /// <summary>
+        /// Measures the size.
+        /// </summary>
         protected override void MeasureSize()
         {
             Vector2 pos = new Vector2();
@@ -84,6 +94,9 @@ namespace CorvEngine.Controls
             this.Size = pos;
         }
 
+        /// <summary>
+        /// Creates the text block from the text entered.
+        /// </summary>
         private void SetBlock()
         {
             _Block.Clear();

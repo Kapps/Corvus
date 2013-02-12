@@ -7,16 +7,25 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CorvEngine.Controls
 {
+    /// <summary>
+    /// A base class for elements that contain elements.
+    /// </summary>
     public abstract class Panel : UIElement
     {
         private List<UIElement> _Items;
 
+        /// <summary>
+        /// The list of items in this panel.
+        /// </summary>
         public virtual List<UIElement> Items 
         { 
             get { return _Items; }
             protected set { _Items = value; }
         }
 
+        /// <summary>
+        /// Determines if this element has focus.
+        /// </summary>
         public override bool HasFocus
         {
             get { return base.HasFocus; }
@@ -65,11 +74,17 @@ namespace CorvEngine.Controls
             }
         }
 
+        /// <summary>
+        /// Creates a new instance of Panel.
+        /// </summary>
         public Panel()
         {
             _Items = new List<UIElement>();
         }
 
+        /// <summary>
+        /// Adds the element to the panel.
+        /// </summary>
         public virtual void Add(UIElement element)
         {
             element.ParentElement = this;
@@ -78,6 +93,9 @@ namespace CorvEngine.Controls
             MeasureSize(element);
         }
 
+        /// <summary>
+        /// Measures the size of the Panel as elements are being added.
+        /// </summary>
         protected abstract void MeasureSize(UIElement element);
 
         /// <summary>
