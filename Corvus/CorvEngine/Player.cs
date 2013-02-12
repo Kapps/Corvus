@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CorvEngine.Entities;
+using CorvEngine.Graphics;
 using CorvEngine.Input;
 
 namespace CorvEngine {
@@ -16,10 +18,16 @@ namespace CorvEngine {
 		public InputManager InputManager { get; private set; }
 
 		/// <summary>
+		/// Gets the Camera that's currently being used for this Player.
+		/// </summary>
+		public Camera Camera { get; private set; }
+
+		/// <summary>
 		/// Creates a new Player with an InputManager attached to it.
 		/// </summary>
 		public Player() {
 			this.InputManager = new InputManager(this);
+			this.Camera = new Camera();
 		}
 
 		/// <summary>

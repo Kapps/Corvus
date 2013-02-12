@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corvus", "Corvus\Corvus\Corvus.csproj", "{91F884C7-CD59-479E-B34C-5416CAB1139C}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "CorvusContent", "Corvus\CorvusContent\CorvusContent.contentproj", "{39005F23-0A25-4E94-81EB-B18A8837D7E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorvusContent", "Corvus\CorvusContent\CorvusContent.contentproj", "{39005F23-0A25-4E94-81EB-B18A8837D7E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorvEngine", "Corvus\CorvEngine\CorvEngine.csproj", "{A9A21885-DA52-4B28-B041-D293A4D48AB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpritePipeline", "SpritePipeline\SpritePipeline.csproj", "{422FCA0F-2D7E-4440-8954-E373CCE2478D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{A9A21885-DA52-4B28-B041-D293A4D48AB9}.Debug|x86.Build.0 = Debug|x86
 		{A9A21885-DA52-4B28-B041-D293A4D48AB9}.Release|x86.ActiveCfg = Release|x86
 		{A9A21885-DA52-4B28-B041-D293A4D48AB9}.Release|x86.Build.0 = Release|x86
+		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Debug|x86.ActiveCfg = Debug|x86
+		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Debug|x86.Build.0 = Debug|x86
+		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Release|x86.ActiveCfg = Debug|x86
+		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Release|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

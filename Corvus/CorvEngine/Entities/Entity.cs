@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CorvEngine.Entities {
 
@@ -17,6 +19,8 @@ namespace CorvEngine.Entities {
 	public abstract class Entity {
 		private Vector2 _Position;
 		private Vector2 _Size;
+		private Sprite _Sprite;
+		private Color _Color = Color.White;
 
 		/// <summary>
 		/// Gets an event called when the position of this entity changes.
@@ -64,6 +68,22 @@ namespace CorvEngine.Entities {
 		}
 
 		/// <summary>
+		/// Gets or sets the color to apply to the sprite being used for this entity.
+		/// </summary>
+		public Color Color {
+			get { return _Color; }
+			set { _Color = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the sprite being used for this entity.
+		/// </summary>
+		public Sprite Sprite {
+			get { return _Sprite; }
+			set { _Sprite = value; }
+		}
+
+		/// <summary>
 		/// Gets the combined position and size of this entity.
 		/// </summary>
 		public Rectangle Location {
@@ -74,13 +94,20 @@ namespace CorvEngine.Entities {
 		/// Handles any updating of this Entity.
 		/// This is called automatically by the Scene.
 		/// </summary>
-		public abstract void Update(GameTime Time);
+		public virtual void Update(GameTime Time) {
+			
+		}
 
 		/// <summary>
-		/// Draws this Entity.
-		/// This is called automatically by the Scene.
+		/// Draws this Entity. The default implementation draws the Sprite with Color applied as a tint.
+		/// This is called automatically by the Scene if the Entity is visible to the currently active Camera.
 		/// </summary>
-		/// <param name="Time"></param>
-		public abstract void Draw(GameTime Time);
+		public virtual void Draw(GameTime Time) {
+			var SpriteBatch = CorvBase.Instance.SpriteBatch;
+			Vector2 ScreenPosition = Camera.Active.ScreenToWorld(this.Position);
+			var ActiveFrame = Sprite.ActiveAnimation.ActiveFrame.Frame;
+			var SourceRect = ActiveFrame.Source;
+			SpriteBatch.Draw(this.Sprite.Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), SourceRect, Color);
+		}
 	}
 }

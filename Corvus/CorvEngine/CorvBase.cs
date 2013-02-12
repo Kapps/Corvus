@@ -90,6 +90,14 @@ namespace CorvEngine {
 		}
 
 		/// <summary>
+		/// Gets a global SpriteBatch instance that may be used for rendering.
+		/// This SpriteBatch is expected to always remain in the Begin state during a draw phase.
+		/// </summary>
+		public SpriteBatch SpriteBatch {
+			get { return _SpriteBatch; }
+		}
+
+		/// <summary>
 		/// Creates a new instance of the GameEngine.
 		/// Only one instance of the GameEngine may exist at any time.
 		/// </summary>

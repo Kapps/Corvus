@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="System.String[]">
+		<Item>Sprites\cat.tga</Item>
+		<Item>Sprites\glow1.png</Item>
+		<Item>Sprites\glow2.png</Item>
+		<Item>Sprites\glow3.png</Item>
+		<Item>Sprites\glow4.png</Item>
+		<Item>Sprites\glow5.png</Item>
+		<Item>Sprites\glow6.png</Item>
+		<Item>Sprites\glow7.png</Item>
+	</Asset>
+</XnaContent>

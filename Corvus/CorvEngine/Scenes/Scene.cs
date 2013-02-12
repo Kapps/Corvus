@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorvEngine.Entities;
+using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using NodeType = System.Collections.Generic.LinkedListNode<CorvEngine.Entities.Entity>;
 
@@ -12,7 +13,7 @@ namespace CorvEngine.Scenes {
 	/// </summary>
 	public class Scene : GameStateComponent, IDisposable {
 		// Eventually, this should be changed to use a QuadTree or Grid, but for now we don't need the performance.
-		// Support does exist for plugging one in using an EntityNode reference though.
+		// Support does exist for plugging one in efficiently using an EntityNode reference though.
 		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
 
 		public Scene(GameState State)
@@ -48,8 +49,10 @@ namespace CorvEngine.Scenes {
 		}
 
 		protected override void OnDraw(GameTime Time) {
+			// TODO: Call this once for each player after setting Viewport and Camera.
 			foreach(var Entity in _Entities) {
-				Entity.Draw(Time);
+				if(Camera.Active.Contains(Entity))
+					Entity.Draw(Time);
 			}
 		}
 

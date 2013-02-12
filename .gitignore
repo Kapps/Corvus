@@ -3,3 +3,5 @@
 *.suo
 obj
 bin
+*.cachefile
+*.cachefile

@@ -42,11 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-		<Compile Include="TestTexture.PNG">
-			<Name>TestTexture</Name>
-			<Importer>TextureImporter</Importer>
-			<Processor>TextureProcessor</Processor>
-		</Compile>
+    <Compile Include="TestTexture.PNG">
+      <Name>TestTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Sprites\Player.png">
       <Name>Player</Name>
       <Importer>TextureImporter</Importer>
@@ -98,6 +98,19 @@
       <Name>testbg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SpritePipeline\SpritePipeline.csproj">
+      <Project>{422fca0f-2d7e-4440-8954-e373cce2478d}</Project>
+      <Name>SpritePipeline</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\TestSprite.xml">
+      <Name>TestSprite</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

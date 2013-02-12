@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using CorvEngine;
 using CorvEngine.Controls;
 using CorvEngine.Controls.UserControls;
+using CorvEngine.Graphics;
 
 namespace Corvus.TestGames
 {
@@ -22,6 +23,7 @@ namespace Corvus.TestGames
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+		Sprite _TestSprite;
 
 
         public Game2()
@@ -36,7 +38,7 @@ namespace Corvus.TestGames
 
             this.Components.Add(new InputHandler(this));
             this.Components.Add(new AudioManager(this, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
-
+			
         }
 
         protected override void Initialize()
@@ -44,6 +46,7 @@ namespace Corvus.TestGames
             // TODO: Add your initialization logic here
 
             base.Initialize();
+			var SpriteData = Content.LoadSprite("Sprites/TestSprite");
         }
 
         ControlManager controlManager;
