@@ -24,7 +24,6 @@ namespace CorvEngine {
 		private CorvusInternalGame _Game;
 		private GraphicsDeviceManager _GraphicsManager;
 		private GameStateManager _StateManager;
-		private GraphicsDevice _GraphicsDevice;
 		private SpriteBatch _SpriteBatch;
 		private bool _Paused;
 
@@ -86,7 +85,7 @@ namespace CorvEngine {
 		/// Gets a service provider used by the underlying Game.
 		/// </summary>
 		public IServiceProvider Services {
-			get { return _Game.Services; }
+			get { return Game.Services; }
 		}
 
 		/// <summary>
@@ -95,6 +94,13 @@ namespace CorvEngine {
 		/// </summary>
 		public SpriteBatch SpriteBatch {
 			get { return _SpriteBatch; }
+		}
+
+		/// <summary>
+		/// Returns a ContentManager used for loading assets that should not be GameState dependent.
+		/// </summary>
+		public ContentManager GlobalContent {
+			get { return Game.Content; }
 		}
 
 		/// <summary>
@@ -174,11 +180,9 @@ namespace CorvEngine {
 		}
 
 		private void OnInitialize() {
-			this._GraphicsManager = new GraphicsDeviceManager(this._Game);
 			this._GraphicsManager.PreferredBackBufferWidth = 1024;
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
 			this._GraphicsManager.ApplyChanges();
-			this._GraphicsDevice = this._Game.GraphicsDevice;
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
 			this.RegisterGlobalComponent(this._StateManager);
@@ -190,11 +194,21 @@ namespace CorvEngine {
 
 			public CorvusInternalGame(CorvBase Engine) {
 				this._Engine = Engine;
+				Content.RootDirectory = "Content";
+				var GraphicsManager = new GraphicsDeviceManager(this);
+				CorvBase.Instance._GraphicsManager = GraphicsManager;
 			}
 
 			protected override void Initialize() {
 				base.Initialize();
 				_Engine.OnInitialize();
+			}
+
+			protected override void Draw(GameTime gameTime) {
+				GraphicsDevice.Clear(Color.CornflowerBlue);
+				CorvBase.Instance.SpriteBatch.Begin();
+				base.Draw(gameTime);
+				CorvBase.Instance.SpriteBatch.End();
 			}
 		}
 	}

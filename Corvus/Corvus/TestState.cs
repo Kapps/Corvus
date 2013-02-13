@@ -20,7 +20,7 @@ namespace Corvus {
 
 		public TestState() {
 			this.AddComponent(new TestComponent(this));
-
+			
 		}
 
 		private class TestComponent : GameStateComponent {
@@ -29,20 +29,23 @@ namespace Corvus {
 			private static Random rnd = new Random();
 			private Color Color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble());
 			private Texture2D Texture;
+			private TempPlayer player;
 
 			public TestComponent(GameState State) : base(State) {
 				var Loader = new ContentManager(CorvBase.Instance.Services, "Content");
 				this.Texture = Loader.Load<Texture2D>("TestTexture");
+				player = new TempPlayer();
 			}
 
 			protected override void OnDraw(GameTime Time) {
-				Batch.Begin();
-				Batch.Draw(Texture, new Rectangle(0, 0, 800, 600), Color);
-				Batch.End();
+				//Batch.Begin();
+				//Batch.Draw(Texture, new Rectangle(0, 0, 800, 600), Color);
+				//Batch.End();
+				player.Draw();
 			}
 
 			protected override void OnUpdate(GameTime Time) {
-				
+				player.Update(Time);
 			}
 		}
 	}

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="System.String[]">
+		<Item>Sprites/Player.png	{4, 4}</Item>
+		<Item>WalkDown	100	R1	Default	Looped</Item>
+		<Item>WalkLeft	100	R2	Looped</Item>
+		<Item>WalkRight	100	R3	Looped</Item>
+		<Item>WalkUp	100	R4	Looped</Item>
+		<!--<Item>Idle	200	{1, 1}	Default	Looped</Item>-->
+	</Asset>
+</XnaContent>

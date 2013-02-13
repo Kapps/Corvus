@@ -125,6 +125,7 @@ namespace CorvEngine.Scenes {
 			if(States.Count > 0)
 				RenderComponents(States.Last.Value, gameTime);
 			*/
+			//GraphicsDevice.Clear(Color.CornflowerBlue);
 			RenderReversed(States.Last, gameTime);
 			base.Draw(gameTime);
 		}

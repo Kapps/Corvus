@@ -52,7 +52,7 @@ namespace CorvEngine.Scenes {
 			// TODO: Call this once for each player after setting Viewport and Camera.
 			foreach(var Entity in _Entities) {
 				if(Camera.Active.Contains(Entity))
-					Entity.Draw(Time);
+					Entity.Draw();
 			}
 		}
 

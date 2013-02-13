@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CorvEngine;
+using CorvEngine.Entities;
+using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -9,108 +12,96 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Corvus
-{
-    class TempPlayer
-    {
-        Game Game;
+namespace Corvus {
+	class TempPlayer : Player {
 
-        //Player texture
-        Texture2D texture;
-        int textureWidth = 32;
-        int textureHeight = 48;
-        private GraphicsDeviceManager graphics;
+		// Note that this class is just a hackish mess used to test functionality until more is working.
 
-        //Player hitboxes and position.
-        Rectangle playerRect;
-        Vector2 position;
+		Entity entity;
+		Keys left = Keys.Left;
+		Keys right = Keys.Right;
+		enum Direction {
+			None,
+			Down,
+			Left,
+			Right,
+			Up
+		}
+		bool isWalkingLeft = false;
+		bool isWalkingRight = false;
+		private Dictionary<Direction, Keys> DirToKey = new Dictionary<Direction, Keys>() {
+			{ Direction.Left, Keys.Left },
+			{ Direction.Right, Keys.Right },
+			{ Direction.Up, Keys.Up },
+			{ Direction.Down, Keys.Down }
+		};
+		Direction CurrDir = Direction.Down;
+		public TempPlayer() {
+			// TODO: Complete member initialization
+			// TODO: Move this away of course.
+			Camera.Active = this.Camera;
+			Camera.Active.Size = new Vector2(CorvBase.Instance.GraphicsDevice.Viewport.Width, CorvBase.Instance.GraphicsDevice.Viewport.Height);
+			SetupPlayer();
+		}
 
-        //Controls
-        Keys left = Keys.Left;
-        Keys right = Keys.Right;
+		protected void SetupPlayer() {
+			entity = new Entity();
+			// This stuff is obviously things that the ctor should handle.
+			// And things like size should probably be dependent upon the actual animation being played.
+			entity.Size = new Vector2(48, 32);
+			entity.Sprite = CorvusGame.Instance.GlobalContent.LoadSprite("Sprites/TestPlayer");
+			entity.Position = new Vector2(entity.Location.Width, Camera.Active.Viewport.Height);
+		}
 
-        //Animation
-        bool isWalkingLeft = false;
-        bool isWalkingRight = false;
-        int frameCount=0; //Current frame position.
-        Point frameSize = new Point(32, 48);
-        Point frameWalkingLeftStart = new Point(0, 48);
-        Point frameWalkingRightStart = new Point(0, 96);
-        Rectangle spriteArea; //Which area of the sprite to draw.
+		public void Update(GameTime gameTime) {
+			KeyboardState ks = Keyboard.GetState();
+			// These should use binds of course.
+			float Scalar = 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			bool Any = false;
+			foreach(var KVP in DirToKey) {
+				if(ks.IsKeyDown(KVP.Value)) {
+					if(CurrDir != KVP.Key) {
+						entity.Sprite.PlayAnimation("Walk" + KVP.Value);
+						CurrDir = KVP.Key;
+					}
+					Any = true;
+				}
+			}
+			if(!Any && CurrDir != Direction.None) {
+				CurrDir = Direction.None;
+				entity.Sprite.StopAnimation();
+			}
+			switch(CurrDir) {
+				case Direction.Left:
+					entity.X -= Scalar;
+					break;
+				case Direction.Right:
+					entity.X += Scalar;
+					break;
+				case Direction.Up:
+					entity.Y -= Scalar;
+					break;
+				case Direction.Down:
+					entity.Y += Scalar;
+					break;
+			}
+			
+			entity.Update(gameTime);
 
-        public TempPlayer(Game Game, GraphicsDeviceManager graphics)
-        {
-            // TODO: Complete member initialization
-            this.graphics = graphics;
-            this.Game = Game;
+			// Obviously this should just follow the player for the most part.
+			// But for now, that would just make it seem like the player is never moving.
+			if(entity.Location.Left < Camera.Active.Position.X)
+				Camera.Active.Position = new Vector2(Camera.Active.Position.X - 100, Camera.Active.Position.Y);
+			if(entity.Location.Top < Camera.Active.Position.Y)
+				Camera.Active.Position = new Vector2(Camera.Active.Position.X, Camera.Active.Position.Y - 100);
+			if(entity.Location.Bottom > Camera.Active.Position.Y + Camera.Active.Size.Y)
+				Camera.Active.Position = new Vector2(Camera.Active.Position.X, Camera.Active.Position.Y + 100);
+			if(entity.Location.Right > Camera.Active.Position.X + Camera.Active.Size.X)
+				Camera.Active.Position = new Vector2(Camera.Active.Position.X + 100, Camera.Active.Position.Y);
+		}
 
-            SetupPlayer();
-        }
-
-        protected void SetupPlayer()
-        {
-            texture = Game.Content.Load<Texture2D>("Sprites/Player");
-
-            this.position = new Vector2(0 + (textureWidth), graphics.GraphicsDevice.Viewport.Height);
-            playerRect = new Rectangle((int)(this.position.X - textureWidth), (int)(this.position.Y - textureHeight), textureWidth, textureHeight);
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            UpdatePlayer();
-
-            KeyboardState ks = Keyboard.GetState();
-
-            if (ks.IsKeyDown(left))
-            {
-                position.X-=4;
-                frameCount++;
-
-                isWalkingLeft = true;
-                isWalkingRight = false;
-            }
-            else if (ks.IsKeyDown(right))
-            {
-                position.X+=4;
-                frameCount++;
-
-                isWalkingLeft = false;
-                isWalkingRight = true;
-            }
-            else
-            {
-                frameCount = 0; //Reset frame count when player stops moving.
-            }
-
-            if (frameCount >= 4)
-                frameCount = 0;
-        }
-
-        protected void UpdatePlayer()
-        {
-            playerRect = new Rectangle((int)(this.position.X - textureWidth), (int)(this.position.Y - textureHeight), textureWidth, textureHeight);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            int x = 0;
-            int y = 96;
-
-            if (isWalkingLeft)
-            {
-                x = frameWalkingLeftStart.X + (frameCount * frameSize.X);
-                y = frameWalkingLeftStart.Y;
-
-            }
-            else if (isWalkingRight)
-            {
-                x = frameWalkingRightStart.X + (frameCount * frameSize.X);
-                y = frameWalkingRightStart.Y;
-            }
-
-            spriteArea = new Rectangle(x, y, frameSize.X, frameSize.Y);
-
-            spriteBatch.Draw(texture, playerRect, spriteArea , Color.White);
-        }
-    }
+		public void Draw() {
+			entity.Draw();
+		}
+	}
 }

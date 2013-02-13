@@ -93,6 +93,7 @@ namespace CorvEngine.Graphics {
 				if(AnimationComplete != null)
 					AnimationComplete(this, new EventArgs());
 			}
+			_Elapsed = TimeSpan.Zero;
 		}
 
 		public SpriteAnimation(string Name, bool IsLooped, bool IsDefault, IEnumerable<SpriteAnimationFrame> Frames) {

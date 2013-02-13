@@ -23,7 +23,6 @@ namespace Corvus.TestGames
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-		Sprite _TestSprite;
 
 
         public Game2()
@@ -46,7 +45,6 @@ namespace Corvus.TestGames
             // TODO: Add your initialization logic here
 
             base.Initialize();
-			var SpriteData = Content.LoadSprite("Sprites/TestSprite");
         }
 
         ControlManager controlManager;

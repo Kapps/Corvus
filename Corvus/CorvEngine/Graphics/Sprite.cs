@@ -53,6 +53,8 @@ namespace CorvEngine.Graphics {
 		/// </summary>
 		/// <param name="Name">The name of the animation to play.</param>
 		public void PlayAnimation(string Name) {
+			// TODO: Determine what to do if this is the active animation.
+			// Chances are, that if it's loopable we carry on, and if not we reset the animation.
 			var Animation = this.Animations[Name];
 			Animation.Reset();
 			this._ActiveAnimation = Animation;

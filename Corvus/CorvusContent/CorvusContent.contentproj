@@ -107,8 +107,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\TestSprite.xml">
-      <Name>TestSprite</Name>
+    <Compile Include="Sprites\TestPlayer.xml">
+      <Name>TestPlayer</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
     </Compile>

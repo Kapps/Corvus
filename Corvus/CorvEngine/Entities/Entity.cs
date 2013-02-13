@@ -16,7 +16,7 @@ namespace CorvEngine.Entities {
 	/// <summary>
 	/// Represents a single entity in the game. This is the base class for most physical objects.
 	/// </summary>
-	public abstract class Entity {
+	public class Entity {
 		private Vector2 _Position;
 		private Vector2 _Size;
 		private Sprite _Sprite;
@@ -68,6 +68,24 @@ namespace CorvEngine.Entities {
 		}
 
 		/// <summary>
+		/// Gets the X coordinate of this Player.
+		/// This translates calls to the Position property, and is simply short-hand for it.
+		/// </summary>
+		public float X {
+			get { return _Position.X; }
+			set { Position = new Vector2(value, Position.Y); }
+		}
+
+		/// <summary>
+		/// Gets the Y coordinate of this Player.
+		/// This translates calls to the Position property, and is simply short-hand for it.
+		/// </summary>
+		public float Y {
+			get { return _Position.Y; }
+			set { Position = new Vector2(Position.X, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the color to apply to the sprite being used for this entity.
 		/// </summary>
 		public Color Color {
@@ -95,19 +113,22 @@ namespace CorvEngine.Entities {
 		/// This is called automatically by the Scene.
 		/// </summary>
 		public virtual void Update(GameTime Time) {
-			
+			if(Sprite != null)
+				Sprite.ActiveAnimation.AdvanceAnimation(Time.ElapsedGameTime);
 		}
 
 		/// <summary>
 		/// Draws this Entity. The default implementation draws the Sprite with Color applied as a tint.
 		/// This is called automatically by the Scene if the Entity is visible to the currently active Camera.
 		/// </summary>
-		public virtual void Draw(GameTime Time) {
-			var SpriteBatch = CorvBase.Instance.SpriteBatch;
-			Vector2 ScreenPosition = Camera.Active.ScreenToWorld(this.Position);
-			var ActiveFrame = Sprite.ActiveAnimation.ActiveFrame.Frame;
-			var SourceRect = ActiveFrame.Source;
-			SpriteBatch.Draw(this.Sprite.Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), SourceRect, Color);
+		public virtual void Draw() {
+			if(Sprite != null) {
+				var SpriteBatch = CorvBase.Instance.SpriteBatch;
+				Vector2 ScreenPosition = Camera.Active.ScreenToWorld(this.Position);
+				var ActiveFrame = Sprite.ActiveAnimation.ActiveFrame.Frame;
+				var SourceRect = ActiveFrame.Source;
+				SpriteBatch.Draw(this.Sprite.Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), SourceRect, Color);
+			}
 		}
 	}
 }
