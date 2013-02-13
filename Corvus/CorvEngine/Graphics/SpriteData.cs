@@ -27,7 +27,7 @@ namespace CorvEngine.Graphics {
 		/// <summary>
 		/// Indicates how long each frame, indexed by name, lasts for an animation.
 		/// </summary>
-		[ContentSerializerIgnore]
+		[ContentSerializer]
 		public List<SpriteAnimationData> Animations { get; set; }
 	}
 }

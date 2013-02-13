@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
 	<Asset Type="System.String[]">
-		<Item>Sprites\cat.tga</Item>
-		<Item>Sprites\glow1.png</Item>
-		<Item>Sprites\glow2.png</Item>
-		<Item>Sprites\glow3.png</Item>
-		<Item>Sprites\glow4.png</Item>
-		<Item>Sprites\glow5.png</Item>
-		<Item>Sprites\glow6.png</Item>
-		<Item>Sprites\glow7.png</Item>
+		<Item>Sprites/Player.png	{4, 4}</Item>
+		<Item>WalkDown	200	R1	Default	Looped</Item>
+		<Item>WalkLeft	200	R2	Looped</Item>
+		<Item>WalkRight	200	R3	Looped</Item>
+		<Item>WalkUp	200	R4	Looped</Item>
 	</Asset>
 </XnaContent>

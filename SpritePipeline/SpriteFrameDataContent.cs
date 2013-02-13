@@ -11,7 +11,7 @@ namespace SpritePipeline {
 	/// </summary>
 	[ContentSerializerRuntimeType("CorvEngine.Graphics.SpriteFrameData, CorvEngine")]
 	public class SpriteFrameDataContent {
-		public string Name;// { get; set; }
-		public Rectangle Source;// { get; set; }
+		public string Name { get; set; }
+		public Rectangle Source { get; set; }
 	}
 }

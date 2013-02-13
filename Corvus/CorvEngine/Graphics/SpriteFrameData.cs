@@ -16,13 +16,13 @@ namespace CorvEngine.Graphics {
 		/// Gets or sets the name of this frame.
 		/// </summary>
 		[ContentSerializer]
-		public string Name;// { get; set; }
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Gets or sets the source rectangle for this frame.
 		/// </summary>
 		[ContentSerializer]
-		public Rectangle Source;// { get; set; }
+		public Rectangle Source { get; set; }
 
 		private SpriteFrameData() { }
 	}

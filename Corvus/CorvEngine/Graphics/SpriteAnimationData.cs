@@ -33,5 +33,8 @@ namespace CorvEngine.Graphics {
 		/// </summary>
 		[ContentSerializer]
 		public Dictionary<string, TimeSpan> FrameDurations { get; set; }
+
+		// For the serializer.
+		private SpriteAnimationData() { }
 	}
 }

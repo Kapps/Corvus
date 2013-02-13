@@ -53,7 +53,6 @@
     <Compile Include="SpriteAnimationDataContent.cs" />
     <Compile Include="SpriteDataContent.cs" />
     <Compile Include="SpriteFrameDataContent.cs" />
-    <Compile Include="SpritePacker.cs" />
     <Compile Include="SpriteProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
