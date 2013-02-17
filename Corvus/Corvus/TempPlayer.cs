@@ -15,8 +15,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Corvus {
 	class TempPlayer : Player {
+        // Note that this class is just a hackish mess used to test functionality until more is working.
 
-        //Add these to entity eventually.
+        //Add these to entity or something else eventually?
         float maxWalkVelocity = 5f;
         float maxJumpVelocity = 10f;
         float gravity = 0.5f;
@@ -25,8 +26,6 @@ namespace Corvus {
         bool jumpStart = true; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
 
         Keys jump = Keys.Space;
-
-		// Note that this class is just a hackish mess used to test functionality until more is working.
 
 		Entity entity;
 		enum Direction {
