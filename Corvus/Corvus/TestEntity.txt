@@ -1,9 +1,14 @@
-﻿BlueSprite
+﻿# A basic component, just to show-case that we can make a Sprite.
+BlueSprite
 	SpriteComponent (Sprite)
-		Color: Color(SlateBlue, 128)
+		Color: Color(White) # Note that this can use RGBA, RGB, NamedColor + A, or just NamedColor.
 
+# Inherits BlueSprite, simply adding the Sprite itself.
 PlayerSprite : BlueSprite
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestPlayer)
 
+# Inherits both BlueSprite as well as PlayerSprite.
+# Of course, this is the same as just inheriting PlayerSprite since it inherits BlueSprite.
+# Just to show off multiple inheritance/composition though.
 TestEntity : BlueSprite, PlayerSprite

@@ -25,10 +25,11 @@ namespace CorvEngine.Scenes {
 		/// Adds the given Entity to this Scene.
 		/// </summary>
 		public void AddEntity(Entity Entity) {
-			if(Entity.NodeReference != null)
+			if(Entity.Scene != null)
 				throw new ArgumentException("This Entity is already part of a different scene.");
 			var Node = this._Entities.AddLast(Entity);
 			Entity.NodeReference = new EntityNode(Entity, Node);
+			Entity.Initialize(this);
 		}
 
 		/// <summary>
@@ -61,5 +62,7 @@ namespace CorvEngine.Scenes {
 				Entity.Update(Time);
 			}
 		}
+
+		private Background _Background;
 	}	
 }

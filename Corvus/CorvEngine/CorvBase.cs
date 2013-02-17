@@ -197,6 +197,7 @@ namespace CorvEngine {
 				Content.RootDirectory = "Content";
 				var GraphicsManager = new GraphicsDeviceManager(this);
 				CorvBase.Instance._GraphicsManager = GraphicsManager;
+				this.IsFixedTimeStep = false;
 			}
 
 			protected override void Initialize() {
@@ -205,7 +206,7 @@ namespace CorvEngine {
 			}
 
 			protected override void Draw(GameTime gameTime) {
-				GraphicsDevice.Clear(Color.CornflowerBlue);
+				GraphicsDevice.Clear(Color.DarkSlateGray);
 				CorvBase.Instance.SpriteBatch.Begin();
 				base.Draw(gameTime);
 				CorvBase.Instance.SpriteBatch.End();

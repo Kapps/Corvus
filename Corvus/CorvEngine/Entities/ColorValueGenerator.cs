@@ -17,6 +17,8 @@ namespace CorvEngine.Entities {
 			if(Arguments.Length == 1 || Arguments.Length == 2) {
 				string Name = Arguments[0].ToString();
 				System.Drawing.Color SDColor = System.Drawing.Color.FromName(Name);
+				if(SDColor.R == 0 && SDColor.G == 0 && SDColor.B == 0 && SDColor.A == 0)
+					throw new ArgumentException("Did not find a colour named '" + Name + "'.");
 				byte Alpha = SDColor.A;
 				if(Arguments.Length == 2)
 					Alpha = (byte)Convert.ChangeType(Arguments[1], typeof(byte));

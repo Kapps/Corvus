@@ -26,6 +26,7 @@ namespace Corvus {
 			Right,
 			Up
 		}
+		// TODO: Can make a component that does this.
 		private Dictionary<Direction, Keys> DirToKey = new Dictionary<Direction, Keys>() {
 			{ Direction.Left, Keys.Left },
 			{ Direction.Right, Keys.Right },
@@ -64,6 +65,7 @@ namespace Corvus {
 						CurrDir = KVP.Key;
 					}
 					Any = true;
+					break;
 				}
 			}
 			if(!Any && CurrDir != Direction.None) {
