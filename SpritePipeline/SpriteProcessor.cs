@@ -99,7 +99,21 @@ namespace SpritePipeline {
 			}
 			// Then, allow for things like {1, 2}	{1, 4}.
 			// When needed anyways. For now just throw.
-			throw new NotImplementedException();
+			var Start = ReadIndex(FrameData);
+			var End = ReadIndex(FrameData);
+			int StartIndex = CoordsToIndex(Start, Header);
+			int EndIndex = CoordsToIndex(End, Header);
+			for(int i = StartIndex; i <= EndIndex; i++) {
+				yield return IndexToCoords(i, Header);
+			}
+		}
+
+		private int CoordsToIndex(Tuple<int, int> Coords, SpriteHeader Header) {
+			return (Coords.Item2 - 1) * Header.Columns + (Coords.Item1 - 1);
+		}
+
+		private Tuple<int, int> IndexToCoords(int Index, SpriteHeader Header) {
+			return new Tuple<int, int>(Index / Header.Columns + 1, Index % Header.Columns + 1);
 		}
 
 		private SpriteHeader ReadHeader(string Header, ContentProcessorContext Context) {
