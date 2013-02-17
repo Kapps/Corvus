@@ -22,6 +22,7 @@ namespace Corvus {
         float gravity = 0.5f;
         bool isJumping = false;
         bool isGrounded = true;
+        bool jumpStart = true; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
 
         Keys jump = Keys.Space;
 
@@ -109,6 +110,7 @@ namespace Corvus {
                 {
                     isJumping = true;
                     isGrounded = false;
+                    jumpStart = true;
                     entity.VelY = maxJumpVelocity * -1;
                 }
             }
@@ -138,7 +140,7 @@ namespace Corvus {
         {
             entity.VelY += gravity;
 
-            if (entity.Y > 768)
+            if (entity.Y >= (768-1) && jumpStart != true)
             {
                 isGrounded = true;
             }
@@ -151,6 +153,8 @@ namespace Corvus {
                 entity.VelY = 0;
                 entity.Y = 768; //This causes a little hiccup. Gotta make it smoother.
             }
+
+            jumpStart = false;
         }
 
 		public void Draw() {
