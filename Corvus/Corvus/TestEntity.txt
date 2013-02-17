@@ -8,7 +8,12 @@ PlayerSprite : BlueSprite
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestPlayer)
 
+Healthy
+	HealthComponent
+		MaxHealth: Random(450, 500)
+
 # Inherits both BlueSprite as well as PlayerSprite.
 # Of course, this is the same as just inheriting PlayerSprite since it inherits BlueSprite.
 # Just to show off multiple inheritance/composition though.
-TestEntity : BlueSprite, PlayerSprite
+TestEntity : BlueSprite, PlayerSprite, Healthy
+	

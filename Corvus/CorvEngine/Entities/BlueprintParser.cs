@@ -129,8 +129,8 @@ namespace CorvEngine.Entities {
 			var Match = Regex.Match(Line);
 			var Groups = Match.Groups;
 			string Name = Match.Groups[1].Value;
-			string GeneratorName = "Identity";
-			object[] Arguments = new object[0];
+			string GeneratorName;
+			object[] Arguments;
 			if(Groups.Count != 4)
 				throw new InvalidDataException("Expected regex to return 4 groups. This is either a bug in the regex, or invalid input for a property specifier.");
 			if(Groups[3].Success) {
@@ -138,7 +138,10 @@ namespace CorvEngine.Entities {
 				GeneratorName = Groups[2].Value;
 				string ArgumentText = Groups[3].Value;
 				ArgumentText = ArgumentText.Substring(1, ArgumentText.Length - 2);
-				Arguments = ArgumentText.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(c=>(object)c).ToArray();
+				Arguments = ArgumentText.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(c => (object)c).ToArray();
+			} else {
+				GeneratorName = "Identity";
+				Arguments = new object[] { Groups[2].Value };
 			}
 			PropertyValueGenerator Generator = PropertyValueGenerator.GetGenerator(GeneratorName);
 			if(Generator == null)
