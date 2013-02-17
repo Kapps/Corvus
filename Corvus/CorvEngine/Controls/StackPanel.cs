@@ -54,9 +54,9 @@ namespace CorvEngine.Controls
                     element.Draw(spriteBatch);
 
                 if (Orientation == Orientation.Vertical)
-                    newPosition.Y += element.Size.Y;
+                    newPosition.Y += element.ScaledSize.Y;
                 else if (Orientation == Orientation.Horizontal)
-                    newPosition.X += element.Size.X;
+                    newPosition.X += element.ScaledSize.X;
             }
         }
 
@@ -83,7 +83,7 @@ namespace CorvEngine.Controls
                 this.Size = newPos;
             }
             else
-                this.Size = element.Size;
+                this.Size = element.ScaledSize;
         }
     }
 }

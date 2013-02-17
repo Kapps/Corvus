@@ -23,6 +23,7 @@ namespace CorvEngine.Controls
         private bool _TabStop;
         private Color _Foreground;
         private float _Scale = 1f;
+        private Thickness _Margin;
         private SpriteFont _SpriteFont;
         private UIElement _ParentElement = null;
 
@@ -45,11 +46,11 @@ namespace CorvEngine.Controls
         }
 
         /// <summary>
-        /// Gets or sets the position of the element.
+        /// Gets or sets the position of the element, with the margin applied. 
         /// </summary>
         public virtual Vector2 Position
         {
-            get { return _Position; }
+            get { return _Position + new Vector2(Margin.Left, Margin.Top); }
             set { _Position = value; }
         }
 
@@ -108,6 +109,15 @@ namespace CorvEngine.Controls
         }
 
         /// <summary>
+        /// Gets or sets the margin.
+        /// </summary>
+        public virtual Thickness Margin
+        {
+            get { return _Margin; }
+            set { _Margin = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the spritefont.
         /// </summary>
         public SpriteFont SpriteFont
@@ -128,7 +138,7 @@ namespace CorvEngine.Controls
         /// <summary>
         /// Gets the scaled size of this element.
         /// </summary>
-        public Vector2 ScaledSize { get { return _Size * _Scale; } }
+        public Vector2 ScaledSize { get { return (_Size * _Scale) + new Vector2(Margin.GetHorizontalLength, Margin.GetVerticalLength); } }
 
         #endregion
 
@@ -160,6 +170,7 @@ namespace CorvEngine.Controls
             this._IsEnabled = true;
             this._Foreground = Color.Black;
             this._HasFocus = false;
+            this._Margin = new Thickness();
         }
 
         /// <summary>

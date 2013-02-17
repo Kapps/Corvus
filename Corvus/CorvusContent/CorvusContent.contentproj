@@ -84,6 +84,7 @@
       <Name>TestPlayer</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
