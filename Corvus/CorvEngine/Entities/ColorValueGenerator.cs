@@ -14,10 +14,13 @@ namespace CorvEngine.Entities {
 		}
 
 		public override object GetValue(object Instance, object[] Arguments) {
-			if(Arguments.Length == 1) {
+			if(Arguments.Length == 1 || Arguments.Length == 2) {
 				string Name = Arguments[0].ToString();
 				System.Drawing.Color SDColor = System.Drawing.Color.FromName(Name);
-				return new Microsoft.Xna.Framework.Color(SDColor.R, SDColor.G, SDColor.B, SDColor.A);
+				byte Alpha = SDColor.A;
+				if(Arguments.Length == 2)
+					Alpha = (byte)Convert.ChangeType(Arguments[1], typeof(byte));
+				return new Microsoft.Xna.Framework.Color(SDColor.R, SDColor.G, SDColor.B, Alpha);
 			} else if(Arguments.Length == 3 || Arguments.Length == 4) {
 				byte R = (byte)Convert.ChangeType(Arguments[0], typeof(byte));
 				byte G = (byte)Convert.ChangeType(Arguments[1], typeof(byte));
@@ -25,7 +28,7 @@ namespace CorvEngine.Entities {
 				byte A = Arguments.Length == 4 ? (byte)Convert.ChangeType(Arguments[3], typeof(byte)) : (byte)255;
 				return new Microsoft.Xna.Framework.Color(R, G, B, A);
 			} else
-				throw new ArgumentException("Expected argument to be either a named color, such as Blue, an RGB value, or an RGBA value.");
+				throw new ArgumentException("Expected argument to be either a named color (possibly with alpha), such as Blue, an RGB value, or an RGBA value.");
 		}
 	}
 }

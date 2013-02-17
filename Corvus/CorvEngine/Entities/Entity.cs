@@ -185,7 +185,7 @@ namespace CorvEngine.Entities {
 		}
 
 		public override string ToString() {
-			return "Entity (" + this.Components.Count + " Components)";
+			return "Entity (" + this.Components.Count + " Component(s))";
 		}
 	}
 }

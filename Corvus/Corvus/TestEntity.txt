@@ -1,7 +1,9 @@
 ﻿BlueSprite
 	SpriteComponent (Sprite)
-		Color: Color(SlateBlue)
+		Color: Color(SlateBlue, 128)
 
-TestEntity : BlueSprite
+PlayerSprite : BlueSprite
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestPlayer)
+
+TestEntity : BlueSprite, PlayerSprite
