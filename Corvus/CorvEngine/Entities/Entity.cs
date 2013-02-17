@@ -183,5 +183,9 @@ namespace CorvEngine.Entities {
 			// TODO: This will of course break things if it's Scene that's disposing us because we were removed.
 			Scene.RemoveEntity(this);
 		}
+
+		public override string ToString() {
+			return "Entity (" + this.Components.Count + " Components)";
+		}
 	}
 }

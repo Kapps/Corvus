@@ -9,6 +9,9 @@ namespace CorvEngine.Entities {
 	/// <summary>
 	/// Provides information about a single Component used in the Game.
 	/// </summary>
+	/// <remarks>
+	/// All subclasses of Component should have a parameterless constructor for blueprints and serialization.
+	/// </remarks>
 	public class Component : IDisposable {
 
 		/// <summary>
@@ -92,7 +95,6 @@ namespace CorvEngine.Entities {
 
 		/// <summary>
 		/// Gets the name of this Components. Components are accessible by either type or name.
-		/// This value must be immutable.
 		/// </summary>
 		public virtual string Name {
 			get { return _Name; }
@@ -131,6 +133,9 @@ namespace CorvEngine.Entities {
 			return Result;
 		}
 
+		public override string ToString() {
+			return this.Name + " (" + this.GetType().Name + ")";
+		}
 
 		private Entity _Parent;
 		private bool _IsInitialized;

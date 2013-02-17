@@ -63,6 +63,19 @@ namespace CorvEngine.Entities {
 		}
 
 		/// <summary>
+		/// Creates an Entity from this Blueprint.
+		/// The size and position of the Entity will remain zero, as they are not set by EntityBlueprints.
+		/// </summary>
+		public Entity CreateEntity() {
+			Entity Result = new Entity();
+			foreach(var Component in this.Components) {
+				var GeneratedComponent = Component.CreateComponent();
+				Result.Components.Add(GeneratedComponent);
+			}
+			return Result;
+		}
+
+		/// <summary>
 		/// Creates a new EntityBlueprint with the specified name and components, replacing any existing EntityBlueprint with that name.
 		/// </summary>
 		public static EntityBlueprint CreateBlueprint(string Name, IEnumerable<ComponentBlueprint> Components) {
@@ -84,6 +97,10 @@ namespace CorvEngine.Entities {
 			if(!AllBlueprints.TryGetValue(Name, out Result))
 				return null;
 			return Result;
+		}
+
+		public override string ToString() {
+			return this.Name + " (" + this._Components.Count + " Components)";
 		}
 
 		private string _Name;

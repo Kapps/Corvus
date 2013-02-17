@@ -84,13 +84,11 @@ namespace CorvEngine.Entities {
 				throw new InvalidOperationException("Unable to move a Component from one Entity to another."); // We could remove this limitation, but that's not tested. What if something stores Parent?
 			if(item.IsSingleInstance && this[item.GetType()] != null)
 				throw new ArgumentException("Attempted to add a Component to the collection that was SingleInstance, yet there was already a Component of that type in the collection.");
-			if(Entity.IsInitialized)
-				item.Initialize();
 		}
 
 		private void PostItemAssigned(Component item) {
 			item.Parent = this.Entity;
-			if(Entity.IsInitialized)
+			if(Entity.IsInitialized && !item.IsInitialized)
 				item.Initialize();
 			if(this.ComponentAdded != null)
 				this.ComponentAdded(item);
@@ -101,6 +99,10 @@ namespace CorvEngine.Entities {
 				this.ComponentRemoved(item);
 			if(!item.IsDisposed)
 				item.Dispose();
+		}
+
+		public override string ToString() {
+			return "ComponentCollection (" + this.Count + " Items)";
 		}
 
 		private Entity _Entity;

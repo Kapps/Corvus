@@ -37,7 +37,7 @@ namespace CorvEngine.Entities {
 		/// Applies the value resulting from this property onto the given Component instance.
 		/// </summary>
 		public void ApplyValue(Component Component) {
-			PropertyInfo Property = Component.GetType().GetProperty(ComponentName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+			PropertyInfo Property = Component.GetType().GetProperty(PropertyName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
 			if(Property == null)
 				throw new KeyNotFoundException("Unable to find a property named '" + PropertyName + "' on Component of type '" + Component.GetType().Name + "'.");
 			object Value = ValueGenerator.GetValue(Component, _GeneratorArguments);
@@ -50,6 +50,10 @@ namespace CorvEngine.Entities {
 			this._PropertyName = PropertyName;
 			this._GeneratorArguments = GeneratorArguments;
 			this._ValueGenerator = ValueGenerator;
+		}
+
+		public override string ToString() {
+			return "ComponentProperty: " + ComponentName + "." + PropertyName;
 		}
 
 		string _ComponentName;

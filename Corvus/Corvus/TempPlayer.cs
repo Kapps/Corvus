@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CorvEngine;
 using CorvEngine.Entities;
@@ -41,9 +42,9 @@ namespace Corvus {
 		}
 
 		protected void SetupPlayer() {
-			entity = new Entity();
-			var Sprite = CorvusGame.Instance.GlobalContent.LoadSprite("Sprites/TestPlayer");
-			entity.Components.Add(new SpriteComponent(Sprite));
+			BlueprintParser.ParseBlueprint(File.ReadAllText("TestEntity.txt"));
+			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
+			entity = Blueprint.CreateEntity();
 			// This stuff is obviously things that the ctor should handle.
 			// And things like size should probably be dependent upon the actual animation being played.
 			entity.Size = new Vector2(48, 32);

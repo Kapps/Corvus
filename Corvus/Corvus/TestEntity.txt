@@ -1,0 +1,4 @@
+﻿TestEntity
+	SpriteComponent (Sprite)
+		Color: Color(128, 128, 128, 128)
+		Sprite: Sprite(Sprites/TestPlayer)

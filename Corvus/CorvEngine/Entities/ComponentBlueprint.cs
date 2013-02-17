@@ -30,10 +30,27 @@ namespace CorvEngine.Entities {
 			get { return _Properties; } // TODO: Can make this return something else later. Hate returning modifiable collections for most things.
 		}
 
+		/// <summary>
+		/// Creates a Component from this Blueprint.
+		/// Values not specifically assigned will be left default.
+		/// </summary>
+		public Component CreateComponent() {
+			var Result = (Component)Activator.CreateInstance(Type, true);
+			typeof(Component).GetField("_Name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(Result, this.Name);
+			foreach(var Property in Properties) {
+				Property.ApplyValue(Result);
+			}
+			return Result;
+		}
+
 		public ComponentBlueprint(Type Type, string Name, IEnumerable<ComponentProperty> Properties) {
 			this._Properties = Properties.ToList();
 			this._Name = Name;
 			this._Type = Type;
+		}
+
+		public override string ToString() {
+			return this.Name + " (" + this.Type.Name + ")";
 		}
 
 		private List<ComponentProperty> _Properties;
