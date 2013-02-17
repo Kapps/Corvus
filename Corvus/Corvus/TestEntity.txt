@@ -1,4 +1,7 @@
-﻿TestEntity
+﻿BlueSprite
 	SpriteComponent (Sprite)
-		Color: Color(128, 128, 128, 128)
+		Color: Color(SlateBlue)
+
+TestEntity : BlueSprite
+	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestPlayer)

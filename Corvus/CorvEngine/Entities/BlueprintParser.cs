@@ -148,12 +148,15 @@ namespace CorvEngine.Entities {
 
 		private static BlueprintHeader ParseHeader(LineReader Reader) {
 			var Line = Reader.ReadLine();
-			var IndexFirstSpace = Line.IndexOfAny(new char[] { ' ', '\t' });
-			string Name = IndexFirstSpace == -1 ? Line.Trim() : Line.Substring(0, IndexFirstSpace).Trim();
-			string[] Inherits = new string[0];
-			Line = IndexFirstSpace == -1 ? "" : Line.Substring(IndexFirstSpace).Trim();
-			if(Line.Trim().Length > 1 && Line[0] == ':') {
-				Inherits = Line.Split(new char[] { ',', ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Select(c => c.Trim()).ToArray();
+			var IndexDD = Line.IndexOf(':');
+			string Name;
+			string[] Inherits;
+			if(IndexDD == -1) {
+				Name = Line.Trim();
+				Inherits = new string[0];
+			} else {
+				Name = Line.Substring(0, IndexDD).Trim();
+				Inherits = Line.Substring(IndexDD + 1).Trim().Split(new char[] { ',', ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Select(c => c.Trim()).ToArray();
 			}
 			return new BlueprintHeader() {
 				Name = Name,
