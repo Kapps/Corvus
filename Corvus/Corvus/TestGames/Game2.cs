@@ -27,7 +27,6 @@ namespace Corvus.TestGames
 
         public Game2()
         {
-            
             graphics = new GraphicsDeviceManager(this);
             //graphics.PreferredBackBufferHeight = 840;
             //graphics.PreferredBackBufferWidth = 1280;
@@ -73,76 +72,40 @@ namespace Corvus.TestGames
             descriptor.Text = "So this entire interface looks like crap. Gotta work on that. BUT the functionality is awesome! Although, there is bound to be thousands of bugs ;P";
             mainPanel.Add(descriptor);
 
-            //
-            StackPanel subPanel = new StackPanel();
-
-            LinkButton button1 = new LinkButton();
-            button1.SpriteFont = Content.Load<SpriteFont>(FONT_STRING);
-            button1.Foreground = Color.Yellow;
-            button1.Text = "Show MessageBox1";
-            button1.Selected += (sender, e) =>
+            Menu menu = new Menu(Content.Load<SpriteFont>(FONT_STRING), Color.Yellow);
+            menu.Margin = new Thickness(20f, 20f, 0, 0);
+            menu.AddItem("Show MessageBox1", (sender, e) =>
             {
                 box.Show();
                 controlManager.Push(box, ControlManager.QueueCommand.Add);
-                subPanel.IsEnabled = false;
-            };
-            subPanel.Add(button1);
-
-            LinkButton button2 = new LinkButton();
-            button2.SpriteFont = Content.Load<SpriteFont>(FONT_STRING);
-            button2.Foreground = Color.Yellow;
-            button2.Text = "Play Song1";
-            button2.Selected += (sender, e) =>
+                menu.IsEnabled = false;
+            });
+            menu.AddItem("Play Song1", (sender, e) =>
             {
                 AudioManager.PlayMusic("TestSong1", 1f, AudioTransitionStates.CrossFade);
-            };
-            subPanel.Add(button2);
-
-            LinkButton button3 = new LinkButton();
-            button3.SpriteFont = Content.Load<SpriteFont>(FONT_STRING);
-            button3.Foreground = Color.Yellow;
-            button3.Text = "Play Song2";
-            button3.Selected += (sender, e) =>
+            });
+            menu.AddItem("Play Song2", (sender, e) =>
             {
                 AudioManager.PlayMusic("TestSong2", 1f, AudioTransitionStates.CrossFade);
-            };
-            subPanel.Add(button3);
-
-            LinkButton button4 = new LinkButton();
-            button4.SpriteFont = Content.Load<SpriteFont>(FONT_STRING);
-            button4.Foreground = Color.Yellow;
-            button4.Text = "Play sound effect";
-            button4.Selected += (sender, e) =>
+            });
+            menu.AddItem("Play sound effect", (sender, e) =>
             {
                 AudioManager.PlaySoundEffect("Select");
-            };
-            subPanel.Add(button4);
-
-            LinkButton button5 = new LinkButton();
-            button5.SpriteFont = Content.Load<SpriteFont>(FONT_STRING);
-            button5.Foreground = Color.Yellow;
-            button5.Text = "Play sound effect from the right!";
-            button5.Selected += (sender, e) =>
+            });
+            menu.AddItem("Play sound effect from the right!", (sender, e) =>
             {
                 AudioManager.PlaySoundEffect("Select", new Vector2(0), new Vector2(200f, 0f));
-            };
-            subPanel.Add(button5);
-
-            LinkButton button6 = new LinkButton();
-            button6.SpriteFont = Content.Load<SpriteFont>(FONT_STRING);
-            button6.Foreground = Color.Yellow;
-            button6.Text = "Quit";
-            button6.Selected += (sender, e) =>
+            });
+            menu.AddItem("Quit", (sender, e) =>
             {
                 this.Exit();
-            };
-            subPanel.Add(button6);
+            });
 
-            mainPanel.Add(subPanel);
-            //
+            mainPanel.Add(menu);
+
             controlManager.Add(mainPanel);
-            controlManager.SetFocus(button1);
-
+            //controlManager.SetFocus(button1);
+            controlManager.SetFocus();//menu.GetButton(0));
 
             box = new MessageBox("This is a message box. NOTICE HOW YOU CANT FOCUS ON THE OTHER ELEMENTS HAHAHAHAHAHA. NOW to make it actually look nice......",
                                             Content.Load<SpriteFont>(FONT_STRING), Content.Load<Texture2D>(IMAGE_STRING));
@@ -151,7 +114,7 @@ namespace Corvus.TestGames
             {
                 box.Hide();
                 controlManager.Push(box, ControlManager.QueueCommand.Remove);
-                subPanel.IsEnabled = true;
+                menu.IsEnabled = true;
             };
 
 

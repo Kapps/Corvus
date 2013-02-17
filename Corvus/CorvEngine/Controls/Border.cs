@@ -84,7 +84,7 @@ namespace CorvEngine.Controls
         /// <param name="element"></param>
         protected override void MeasureSize(UIElement element)
         {
-            this.Size = Content.Size;
+            this.Size = Content.ScaledSize;
         }
 
         /// <summary>

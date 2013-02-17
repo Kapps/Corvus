@@ -60,33 +60,6 @@
     <Folder Include="Tiles\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\CorvAudio.xap">
-      <Name>CorvAudio</Name>
-      <Importer>XactImporter</Importer>
-      <Processor>XactProcessor</Processor>
-    </Compile>
-    <Compile Include="Audio\Waves\Music\TestSong1.wav">
-      <Name>TestSong1</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Audio\Waves\Music\TestSong2.wav">
-      <Name>TestSong2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Audio\Waves\SoundEffects\System\Cancel.wav">
-      <Name>Cancel</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Audio\Waves\SoundEffects\System\Select.wav">
-      <Name>Select</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Fonts\testfont.spritefont">
       <Name>testfont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -111,7 +84,22 @@
       <Name>TestPlayer</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Audio\RPGAudio.xgs">
+      <Name>RPGAudio</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Sound Bank.xsb">
+      <Name>Sound Bank</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Wave Bank.xwb">
+      <Name>Wave Bank</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

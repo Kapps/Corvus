@@ -30,7 +30,25 @@ namespace CorvEngine.Controls
                 MeasureSize();
             }
         }
-        
+
+        /// <summary>
+        /// Gets or sets the position.
+        /// </summary>
+        public override Vector2 Position
+        {
+            get { return this._Content.Position; }
+            set { this._Content.Position = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the margin.
+        /// </summary>
+        public override Thickness Margin
+        {
+            get { return _Content.Margin; }
+            set { _Content.Margin = value; }
+        }
+
         /// <summary>
         /// Updates the UserControl.
         /// </summary>
@@ -57,7 +75,7 @@ namespace CorvEngine.Controls
             if (_Content == null)
                 this.Size = new Vector2();
 
-            this.Size = _Content.Size;
+            this.Size = _Content.ScaledSize;
         }
 
     }

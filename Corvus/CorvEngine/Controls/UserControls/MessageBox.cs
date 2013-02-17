@@ -66,15 +66,6 @@ namespace CorvEngine.Controls.UserControls
         }
 
         /// <summary>
-        /// Gets or sets the position of the MessageBox.
-        /// </summary>
-        public override Vector2 Position
-        {
-            get { return _Border.Position; }
-            set { _Border.Position = value; }
-        }
-
-        /// <summary>
         /// Creates a new instance of MessageBox.
         /// </summary>
         /// <param name="message">The text to display.</param>
@@ -89,6 +80,7 @@ namespace CorvEngine.Controls.UserControls
             this._Border.Background = _background;
             
             this._StackPanel = new StackPanel();
+            this._StackPanel.Margin = new Thickness(10f, 5f, 10f, 5f);
 
             this._TextBlock = new TextBlock();
             this._TextBlock.Length = MAX_TEXT_LENGTH;
@@ -99,6 +91,7 @@ namespace CorvEngine.Controls.UserControls
 
             this._Button = new LinkButton();
             this._Button.SpriteFont = spriteFont;
+            this._Button.Scale = 0.75f;
             this._Button.Text = "Continue";
             this._Button.Selected += _Button_Selected;
             this._StackPanel.Add(this._Button);

@@ -61,9 +61,9 @@ namespace CorvEngine.Controls
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (this.HasFocus)
-                spriteBatch.DrawString(this.SpriteFont, _Text, this.Position, _SelectedColor);
+                spriteBatch.DrawString(this.SpriteFont, _Text, this.Position, _SelectedColor, 0f, new Vector2(), this.Scale, SpriteEffects.None, 0f);
             else
-                spriteBatch.DrawString(this.SpriteFont, _Text, this.Position, this.Foreground);
+                spriteBatch.DrawString(this.SpriteFont, _Text, this.Position, this.Foreground, 0f, new Vector2(), this.Scale, SpriteEffects.None, 0f);
         }
 
         /// <summary>
