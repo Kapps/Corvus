@@ -18,8 +18,12 @@ namespace Corvus {
 
         //Add these to entity eventually.
         float maxWalkVelocity = 5f;
-        float maxJumpVelocity = 5f;
-        float maxJumpHeight;
+        float maxJumpVelocity = 10f;
+        float gravity = 0.5f;
+        bool isJumping = false;
+        bool isGrounded = true;
+
+        Keys jump = Keys.Space;
 
 		// Note that this class is just a hackish mess used to test functionality until more is working.
 
@@ -36,7 +40,7 @@ namespace Corvus {
 			{ Direction.Left, Keys.Left },
 			{ Direction.Right, Keys.Right },
 			{ Direction.Up, Keys.Up },
-			{ Direction.Down, Keys.Down }
+			{ Direction.Down, Keys.Down },
 		};
 		Direction CurrDir = Direction.Down;
 		public TempPlayer() {
@@ -88,16 +92,30 @@ namespace Corvus {
                     entity.VelX = maxWalkVelocity;
 					break;
 				case Direction.Up:
-                    entity.VelY = maxJumpVelocity * -1;
+                    //entity.VelY = maxJumpVelocity * -1;
 					break;
 				case Direction.Down:
-                    entity.VelY = maxJumpVelocity;
+                    //entity.VelY = maxJumpVelocity;
 					break;
                 case Direction.None:
                     entity.VelX = 0;
-                    entity.VelY = 0;
+                    //entity.VelY = 0;
                     break;
 			}
+
+            if (ks.IsKeyDown(jump))
+            {
+                if (isJumping == false && isGrounded == true)
+                {
+                    isJumping = true;
+                    isGrounded = false;
+                    entity.VelY = maxJumpVelocity * -1;
+                }
+            }
+
+            //Handle jumping.
+            if (isJumping)
+                HandleJump();
             
             entity.X += entity.VelX;
             entity.Y += entity.VelY;
@@ -115,6 +133,25 @@ namespace Corvus {
 			if(entity.Location.Right > Camera.Active.Position.X + Camera.Active.Size.X)
 				Camera.Active.Position = new Vector2(Camera.Active.Position.X + 100, Camera.Active.Position.Y);
 		}
+
+        void HandleJump()
+        {
+            entity.VelY += gravity;
+
+            if (entity.Y > 768)
+            {
+                isGrounded = true;
+            }
+
+            if (isGrounded)
+            {
+                //Reached ground.
+                isGrounded = true;
+                isJumping = false;
+                entity.VelY = 0;
+                entity.Y = 768; //This causes a little hiccup. Gotta make it smoother.
+            }
+        }
 
 		public void Draw() {
 			entity.Draw();
