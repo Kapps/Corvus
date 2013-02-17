@@ -16,6 +16,11 @@ using Microsoft.Xna.Framework.Media;
 namespace Corvus {
 	class TempPlayer : Player {
 
+        //Add these to entity eventually.
+        float maxWalkVelocity = 5f;
+        float maxJumpVelocity = 5f;
+        float maxJumpHeight;
+
 		// Note that this class is just a hackish mess used to test functionality until more is working.
 
 		Entity entity;
@@ -55,6 +60,7 @@ namespace Corvus {
 
 		public void Update(GameTime gameTime) {
 			KeyboardState ks = Keyboard.GetState();
+
 			// These should use binds of course.
 			float Scalar = 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			bool Any = false;
@@ -68,24 +74,33 @@ namespace Corvus {
 					break;
 				}
 			}
+
 			if(!Any && CurrDir != Direction.None) {
 				entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + CurrDir.ToString());
 				CurrDir = Direction.None;
 			}
+
 			switch(CurrDir) {
 				case Direction.Left:
-					entity.X -= Scalar;
+                    entity.VelX = maxWalkVelocity * -1;
 					break;
 				case Direction.Right:
-					entity.X += Scalar;
+                    entity.VelX = maxWalkVelocity;
 					break;
 				case Direction.Up:
-					entity.Y -= Scalar;
+                    entity.VelY = maxJumpVelocity * -1;
 					break;
 				case Direction.Down:
-					entity.Y += Scalar;
+                    entity.VelY = maxJumpVelocity;
 					break;
+                case Direction.None:
+                    entity.VelX = 0;
+                    entity.VelY = 0;
+                    break;
 			}
+            
+            entity.X += entity.VelX;
+            entity.Y += entity.VelY;
 			
 			entity.Update(gameTime);
 

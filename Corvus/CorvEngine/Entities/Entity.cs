@@ -15,6 +15,11 @@ namespace CorvEngine.Entities {
 	/// </summary>
 	public delegate void EntityLocationChangeDelegate(Entity Entity, Vector2 OldValue, Vector2 NewValue);
 
+    /// <summary>
+    /// Called when the velocity of an Entity changes .
+    /// </summary>
+    public delegate void EntityVelocityChangeDelegate(Entity Entity, Vector2 OldValue, Vector2 NewValue);
+
 	/// <summary>
 	/// Represents a single entity in the game.
 	/// This class only provides a basic position within the world, leaving the remainder of game logic to be provided by Components.
@@ -22,6 +27,7 @@ namespace CorvEngine.Entities {
 	public class Entity : IDisposable {
 		private Vector2 _Position;
 		private Vector2 _Size;
+        private Vector2 _Velocity;
 		private ComponentCollection _Components;
 		private bool _IsInitialized;
 		private Scene _Scene;
@@ -35,6 +41,11 @@ namespace CorvEngine.Entities {
 		/// Gets an event called when the size of this entity changes.
 		/// </summary>
 		public event EntityLocationChangeDelegate SizeChanged;
+
+        /// <summary>
+        /// Gets an event called when the velocity of this entity changes.
+        /// </summary>
+        public event EntityVelocityChangeDelegate VelocityChanged;
 
 		/// <summary>
 		/// Provides a reference to the node that contains this Entity.
@@ -116,6 +127,40 @@ namespace CorvEngine.Entities {
 		public Rectangle Location {
 			get { return new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y); }
 		}
+
+        /// <summary>
+        /// Gets the velocity of this entity.
+        /// </summary>
+        public Vector2 Velocity
+        {
+            get { return _Velocity; }
+            set {
+                if (_Velocity == value)
+                    return;
+                Vector2 Old = _Velocity;
+				_Velocity = value;
+				if(VelocityChanged != null)
+					PositionChanged(this, Old, _Velocity);
+                }
+        }
+
+        /// <summary>
+        /// Gets the velocity X of this entity.
+        /// </summary>
+        public float VelX
+        {
+            get { return _Velocity.X; }
+            set { Velocity = new Vector2(value, Velocity.Y); }
+        }
+
+        /// <summary>
+        /// Gets the velocity Y of this entity.
+        /// </summary>
+        public float VelY
+        {
+            get { return _Velocity.Y; }
+            set { Velocity = new Vector2(Velocity.X, value); }
+        }
 
 		/// <summary>
 		/// Creates a new Entity with no Components assigned.
