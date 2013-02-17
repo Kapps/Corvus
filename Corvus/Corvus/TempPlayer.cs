@@ -66,8 +66,8 @@ namespace Corvus {
 				}
 			}
 			if(!Any && CurrDir != Direction.None) {
+				entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + CurrDir.ToString());
 				CurrDir = Direction.None;
-				entity.GetComponent<SpriteComponent>().Sprite.StopAnimation();
 			}
 			switch(CurrDir) {
 				case Direction.Left:
