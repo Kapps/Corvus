@@ -89,9 +89,13 @@ namespace CorvEngine.Graphics {
 		private void AdvanceFrame() {
 			_Index++;
 			if(_Index >= _Frames.Count) {
-				_Index = 0;
-				if(AnimationComplete != null)
-					AnimationComplete(this, new EventArgs());
+				if(_IsLooped) {
+					_Index = 0;
+				} else {
+					_IsComplete = true;
+					if(AnimationComplete != null)
+						AnimationComplete(this, new EventArgs());
+				}
 			}
 			_Elapsed = TimeSpan.Zero;
 		}

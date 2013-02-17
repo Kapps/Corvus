@@ -25,7 +25,7 @@ namespace CorvEngine {
 		private GraphicsDeviceManager _GraphicsManager;
 		private GameStateManager _StateManager;
 		private SpriteBatch _SpriteBatch;
-		private bool _Paused;
+		//private bool _Paused;
 
 		/// <summary>
 		/// Gets an event called when a new Player is added to the game.

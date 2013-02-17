@@ -18,8 +18,6 @@ namespace Corvus {
 		// Note that this class is just a hackish mess used to test functionality until more is working.
 
 		Entity entity;
-		Keys left = Keys.Left;
-		Keys right = Keys.Right;
 		enum Direction {
 			None,
 			Down,
@@ -27,8 +25,6 @@ namespace Corvus {
 			Right,
 			Up
 		}
-		bool isWalkingLeft = false;
-		bool isWalkingRight = false;
 		private Dictionary<Direction, Keys> DirToKey = new Dictionary<Direction, Keys>() {
 			{ Direction.Left, Keys.Left },
 			{ Direction.Right, Keys.Right },
@@ -46,11 +42,13 @@ namespace Corvus {
 
 		protected void SetupPlayer() {
 			entity = new Entity();
+			var Sprite = CorvusGame.Instance.GlobalContent.LoadSprite("Sprites/TestPlayer");
+			entity.Components.Add(new SpriteComponent(Sprite));
 			// This stuff is obviously things that the ctor should handle.
 			// And things like size should probably be dependent upon the actual animation being played.
 			entity.Size = new Vector2(48, 32);
-			entity.Sprite = CorvusGame.Instance.GlobalContent.LoadSprite("Sprites/TestPlayer");
 			entity.Position = new Vector2(entity.Location.Width, Camera.Active.Viewport.Height);
+			entity.Initialize(null);
 		}
 
 		public void Update(GameTime gameTime) {
@@ -61,7 +59,7 @@ namespace Corvus {
 			foreach(var KVP in DirToKey) {
 				if(ks.IsKeyDown(KVP.Value)) {
 					if(CurrDir != KVP.Key) {
-						entity.Sprite.PlayAnimation("Walk" + KVP.Value);
+						entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + KVP.Value);
 						CurrDir = KVP.Key;
 					}
 					Any = true;
@@ -69,7 +67,7 @@ namespace Corvus {
 			}
 			if(!Any && CurrDir != Direction.None) {
 				CurrDir = Direction.None;
-				entity.Sprite.StopAnimation();
+				entity.GetComponent<SpriteComponent>().Sprite.StopAnimation();
 			}
 			switch(CurrDir) {
 				case Direction.Left:

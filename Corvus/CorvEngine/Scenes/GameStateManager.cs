@@ -26,20 +26,20 @@ namespace CorvEngine.Scenes {
 		// Stores the last popped node for the purposes of transition.
 		// To push a state, just render everything up until the new node, then render the new node.
 		// To pop a state, store the node being popped, render everything, then render only the popped node.
-		private RenderTarget2D PoppedStateRender;
-		private RenderTarget2D CurrentRender;
-		private RenderTarget2D TransitionRender;
-		private RenderTarget2D PoppedStateTransitionRender;
+		//private RenderTarget2D PoppedStateRender;
+		//private RenderTarget2D CurrentRender;
+		//private RenderTarget2D TransitionRender;
+		//private RenderTarget2D PoppedStateTransitionRender;
 
 		// So we know when to update CurrentRender's boundaries (or rather, recreate it).
-		private int CachedWidth, CachedHeight;
+		//private int CachedWidth, CachedHeight;
 
 
 		/// <summary>
 		/// Creates a new  GameStateManager. This is done by the engine.
 		/// </summary>
 		public GameStateManager(Game Game) : base(Game) {
-			this.CachedWidth = this.CachedHeight = -1;
+			//this.CachedWidth = this.CachedHeight = -1;
 			this.Transition = new AlphaTransition();
 		}
 
@@ -159,16 +159,16 @@ namespace CorvEngine.Scenes {
 			this.TransitionTimeElapsed = TimeSpan.FromTicks(0);
 			this.TransitionMode = Mode;
 			// Should probably copy to a texture, but we'll just use RenderTarget and prevent dispose instead.
-			this.PoppedStateTransitionRender = PoppedStateRender;
-			RecreateRenderTarget(ref PoppedStateRender, false);
+			//this.PoppedStateTransitionRender = PoppedStateRender;
+			//RecreateRenderTarget(ref PoppedStateRender, false);
 		}
 
 		private void FinishTransition() {
 			this.IsTransitioning = false;
 			this.TransitionTimeElapsed = TimeSpan.FromTicks(0);
 			this.TransitionMode = 0;
-			if(this.PoppedStateTransitionRender != null && !this.PoppedStateTransitionRender.IsDisposed)
-				this.PoppedStateTransitionRender.Dispose();
+			//if(this.PoppedStateTransitionRender != null && !this.PoppedStateTransitionRender.IsDisposed)
+			//	this.PoppedStateTransitionRender.Dispose();
 		}
 
 		private void SetRenderTarget(RenderTarget2D Target) {

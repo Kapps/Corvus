@@ -109,7 +109,6 @@
   <ItemGroup>
     <Compile Include="CorvusGame.cs" />
     <Compile Include="CorvusPlayer.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="TestState.cs" />
