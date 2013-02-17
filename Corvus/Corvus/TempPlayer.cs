@@ -59,6 +59,7 @@ namespace Corvus {
 			// And things like size should probably be dependent upon the actual animation being played.
 			entity.Size = new Vector2(48, 32);
 			entity.Position = new Vector2(entity.Location.Width, Camera.Active.Viewport.Height);
+            entity.Velocity = new Vector2(0, 0);
 			entity.Initialize(null);
 		}
 
