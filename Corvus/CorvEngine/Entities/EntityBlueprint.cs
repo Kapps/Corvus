@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using Microsoft.Xna.Framework.Content;
 
 namespace CorvEngine.Entities {
 	/// <summary>
@@ -33,7 +35,7 @@ namespace CorvEngine.Entities {
 		 *				Speed: 50
 		 *		
 		 *  
-		*		StrongBat : WeakBat
+		 *		StrongBat : WeakBat
 		 *			HealthComponent:
 		 *				MaxHealth: Random(60, 75)
 		 *			SpriteComponent:
@@ -42,7 +44,51 @@ namespace CorvEngine.Entities {
 		 *			StrongBatAIComponent:
 		 *				
 		 *		
-		 */	
-				
+		 */
+
+		
+		/// <summary>
+		/// Gets the name of this EntityBlueprint.
+		/// This value is immutable.
+		/// </summary>
+		public string Name {
+			get { return _Name; }
+		}
+
+		/// <summary>
+		/// Gets the names of the types of the components that should be created for Entities using this blueprint.
+		/// </summary>
+		public IEnumerable<ComponentBlueprint> Components {
+			get { return _Components; }
+		}
+
+		/// <summary>
+		/// Creates a new EntityBlueprint with the specified name and components, replacing any existing EntityBlueprint with that name.
+		/// </summary>
+		public static EntityBlueprint CreateBlueprint(string Name, IEnumerable<ComponentBlueprint> Components) {
+			var Result = new EntityBlueprint() {
+				_Name = Name,
+				_Components = Components.ToList()
+			};
+			lock(AllBlueprints) {
+				AllBlueprints[Result.Name] = Result;
+			}
+			return Result;
+		}
+
+		/// <summary>
+		/// Returns the EntityBlueprint with the specified name, or null if no Blueprint with that name was found.
+		/// </summary>
+		public static EntityBlueprint GetBlueprint(string Name) {
+			EntityBlueprint Result;
+			if(!AllBlueprints.TryGetValue(Name, out Result))
+				return null;
+			return Result;
+		}
+
+		private string _Name;
+		private List<ComponentBlueprint> _Components;
+
+		private static Dictionary<string, EntityBlueprint> AllBlueprints = new Dictionary<string, EntityBlueprint>(StringComparer.InvariantCultureIgnoreCase);
 	}
 }

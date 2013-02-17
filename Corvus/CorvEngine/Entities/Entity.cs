@@ -19,7 +19,7 @@ namespace CorvEngine.Entities {
 	/// Represents a single entity in the game.
 	/// This class only provides a basic position within the world, leaving the remainder of game logic to be provided by Components.
 	/// </summary>
-	public class Entity {
+	public class Entity : IDisposable {
 		private Vector2 _Position;
 		private Vector2 _Size;
 		private ComponentCollection _Components;
@@ -152,6 +152,8 @@ namespace CorvEngine.Entities {
 		/// This is called automatically by the Scene.
 		/// </summary>
 		public virtual void Update(GameTime Time) {
+			if(!IsInitialized)
+				throw new InvalidOperationException("Unable to Update an Entity before it's initialized.");
 			foreach(var Component in this.Components)
 				Component.Update(Time);
 		}
@@ -170,6 +172,16 @@ namespace CorvEngine.Entities {
 		/// </summary>
 		protected virtual void OnInitialize() {
 
+		}
+
+		/// <summary>
+		/// Disposes of this Entity and all of it's Components, removing them from the Scene.
+		/// </summary>
+		public void Dispose() {
+			foreach(var Component in this.Components)
+				Component.Dispose();
+			// TODO: This will of course break things if it's Scene that's disposing us because we were removed.
+			Scene.RemoveEntity(this);
 		}
 	}
 }
