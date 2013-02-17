@@ -23,7 +23,7 @@ namespace Corvus {
         float gravity = 0.5f;
         bool isJumping = false;
         bool isGrounded = true;
-        bool jumpStart = true; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
+        bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
 
         Keys jump = Keys.Space;
 
@@ -106,7 +106,7 @@ namespace Corvus {
 
             if (ks.IsKeyDown(jump))
             {
-                if (isJumping == false && isGrounded == true)
+                if (isJumping == false && isGrounded == true) //Test if able to jump.
                 {
                     isJumping = true;
                     isGrounded = false;
@@ -115,9 +115,21 @@ namespace Corvus {
                 }
             }
 
-            //Handle jumping.
-            if (isJumping)
-                HandleJump();
+            if (entity.Y >= (768 - 1) && jumpStart != true) //Test if object is on ground and not beginning a jump.
+            {
+                isGrounded = true;
+                isJumping = false;
+                jumpStart = false;
+                entity.VelY = 0;
+                entity.Y = 768; //Just in case... Probably not needed.
+            }
+
+            if (!isGrounded)
+            {
+                entity.VelY += gravity;
+            }
+
+            jumpStart = false;
             
             entity.X += entity.VelX;
             entity.Y += entity.VelY;
@@ -135,27 +147,6 @@ namespace Corvus {
 			if(entity.Location.Right > Camera.Active.Position.X + Camera.Active.Size.X)
 				Camera.Active.Position = new Vector2(Camera.Active.Position.X + 100, Camera.Active.Position.Y);
 		}
-
-        void HandleJump()
-        {
-            entity.VelY += gravity;
-
-            if (entity.Y >= (768-1) && jumpStart != true)
-            {
-                isGrounded = true;
-            }
-
-            if (isGrounded)
-            {
-                //Reached ground.
-                isGrounded = true;
-                isJumping = false;
-                entity.VelY = 0;
-                entity.Y = 768; //This causes a little hiccup. Gotta make it smoother.
-            }
-
-            jumpStart = false;
-        }
 
 		public void Draw() {
 			entity.Draw();
