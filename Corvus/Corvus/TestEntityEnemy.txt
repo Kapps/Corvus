@@ -1,0 +1,14 @@
+﻿RedSprite
+	SpriteComponent (Sprite)
+		Color: Color(White)
+
+EnemySprite : RedSprite
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/TestEnemy)
+
+HealthyBig
+	HealthComponent
+		MaxHealth: Random(750, 800)
+
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig
+	

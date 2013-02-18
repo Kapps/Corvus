@@ -5,3 +5,4 @@ obj
 bin
 *.cachefile
 *.cachefile
+Corvus/Corvus/Corvus.csproj.Debug.cachefile

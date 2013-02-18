@@ -30,22 +30,26 @@ namespace Corvus {
 			private Color Color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble());
 			private Texture2D Texture;
 			private TempPlayer player;
+            private TempEnemy enemy;
 
 			public TestComponent(GameState State) : base(State) {
 				var Loader = new ContentManager(CorvBase.Instance.Services, "Content");
 				this.Texture = Loader.Load<Texture2D>("TestTexture");
 				player = new TempPlayer();
+                enemy = new TempEnemy();
 			}
 
 			protected override void OnDraw(GameTime Time) {
 				//Batch.Begin();
 				//Batch.Draw(Texture, new Rectangle(0, 0, 800, 600), Color);
 				//Batch.End();
-				player.Draw();
+                enemy.Draw();
+                player.Draw(); //Player should be drawn last, providing nothing overlaps them.
 			}
 
 			protected override void OnUpdate(GameTime Time) {
 				player.Update(Time);
+                enemy.Update(Time);
 			}
 		}
 	}

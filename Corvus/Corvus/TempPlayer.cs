@@ -15,8 +15,17 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Corvus {
 	class TempPlayer : Player {
+        // Note that this class is just a hackish mess used to test functionality until more is working.
 
-		// Note that this class is just a hackish mess used to test functionality until more is working.
+        //Add these to entity or something else eventually?
+        float maxWalkVelocity = 5f;
+        float maxJumpVelocity = 10f;
+        float gravity = 0.5f;
+        bool isJumping = false;
+        bool isGrounded = true;
+        bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
+
+        Keys jump = Keys.Space;
 
 		Entity entity;
 		enum Direction {
@@ -31,7 +40,7 @@ namespace Corvus {
 			{ Direction.Left, Keys.Left },
 			{ Direction.Right, Keys.Right },
 			{ Direction.Up, Keys.Up },
-			{ Direction.Down, Keys.Down }
+			{ Direction.Down, Keys.Down },
 		};
 		Direction CurrDir = Direction.Down;
 		public TempPlayer() {
@@ -50,11 +59,13 @@ namespace Corvus {
 			// And things like size should probably be dependent upon the actual animation being played.
 			entity.Size = new Vector2(48, 32);
 			entity.Position = new Vector2(entity.Location.Width, Camera.Active.Viewport.Height);
+            entity.Velocity = new Vector2(0, 0);
 			entity.Initialize(null);
 		}
 
 		public void Update(GameTime gameTime) {
 			KeyboardState ks = Keyboard.GetState();
+
 			// These should use binds of course.
 			float Scalar = 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			bool Any = false;
@@ -68,24 +79,60 @@ namespace Corvus {
 					break;
 				}
 			}
+
 			if(!Any && CurrDir != Direction.None) {
 				entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + CurrDir.ToString());
 				CurrDir = Direction.None;
 			}
+
 			switch(CurrDir) {
 				case Direction.Left:
-					entity.X -= Scalar;
+                    entity.VelX = maxWalkVelocity * -1;
 					break;
 				case Direction.Right:
-					entity.X += Scalar;
+                    entity.VelX = maxWalkVelocity;
 					break;
 				case Direction.Up:
-					entity.Y -= Scalar;
+                    //entity.VelY = maxJumpVelocity * -1;
 					break;
 				case Direction.Down:
-					entity.Y += Scalar;
+                    //entity.VelY = maxJumpVelocity;
 					break;
+                case Direction.None:
+                    entity.VelX = 0;
+                    //entity.VelY = 0;
+                    break;
 			}
+
+            if (ks.IsKeyDown(jump))
+            {
+                if (isJumping == false && isGrounded == true) //Test if able to jump.
+                {
+                    isJumping = true;
+                    isGrounded = false;
+                    jumpStart = true;
+                    entity.VelY = maxJumpVelocity * -1;
+                }
+            }
+
+            if (entity.Y >= (768 - 1) && jumpStart != true) //Test if object is on ground and not beginning a jump.
+            {
+                isGrounded = true;
+                isJumping = false;
+                jumpStart = false;
+                entity.VelY = 0;
+                entity.Y = 768; //Just in case... Probably not needed.
+            }
+
+            if (!isGrounded)
+            {
+                entity.VelY += gravity;
+            }
+
+            jumpStart = false;
+            
+            entity.X += entity.VelX;
+            entity.Y += entity.VelY;
 			
 			entity.Update(gameTime);
 
