@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework;
 
@@ -13,7 +14,7 @@ namespace CorvEngine.Entities {
 			get { return "Color"; }
 		}
 
-		public override object GetValue(object Instance, object[] Arguments) {
+		public override object GetValue(object Instance, PropertyInfo Property, object[] Arguments) {
 			if(Arguments.Length == 1 || Arguments.Length == 2) {
 				string Name = Arguments[0].ToString();
 				System.Drawing.Color SDColor = System.Drawing.Color.FromName(Name);

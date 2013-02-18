@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace CorvEngine.Entities {
@@ -12,7 +13,7 @@ namespace CorvEngine.Entities {
 			get { return "Identity"; }
 		}
 
-		public override object GetValue(object Instance, object[] Arguments) {
+		public override object GetValue(object Instance, PropertyInfo Property, object[] Arguments) {
 			if(Arguments.Length != 1)
 				throw new ArgumentException("Expected only a single argument to the Identity generator.");
 			return Arguments[0];

@@ -115,6 +115,7 @@
     <Compile Include="CorvExtensions.cs" />
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Entities\AssemblyManager.cs" />
+    <Compile Include="Entities\CollectionValueGenerator.cs" />
     <Compile Include="Entities\ColorValueGenerator.cs" />
     <Compile Include="Entities\Component.cs" />
     <Compile Include="Entities\ComponentCollection.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Entities\ComponentBlueprint.cs" />
     <Compile Include="Entities\HealthComponent.cs" />
     <Compile Include="Entities\PathComponent.cs" />
+    <Compile Include="Entities\ComponentArgument.cs" />
     <Compile Include="Entities\SpriteValueGenerator.cs" />
     <Compile Include="Entities\EntityBlueprint.cs" />
     <Compile Include="Entities\BlueprintParser.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="Entities\PropertyValueGenerator.cs" />
     <Compile Include="Entities\RandomValueGenerator.cs" />
     <Compile Include="Entities\SpriteComponent.cs" />
+    <Compile Include="Entities\VectorValueGenerator.cs" />
     <Compile Include="Graphics\SpriteAnimationData.cs" />
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Sprite.cs" />

@@ -18,8 +18,10 @@ namespace CorvEngine.Entities {
 
 		/// <summary>
 		/// Applies this generator to get a value from the specified arguments on the specified object.
+		/// The resulting value is then converted into the type expected for the property and assigned.
+		/// This function does not need to handle conversion nor assignment itself.
 		/// </summary>
-		public abstract object GetValue(object Instance, object[] Arguments);
+		public abstract object GetValue(object Instance, PropertyInfo Property, object[] Arguments);
 
 		/// <summary>
 		/// Gets a PropertyValueGenerator with the given name, or null if no generator was found.

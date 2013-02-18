@@ -10,7 +10,7 @@ namespace CorvEngine.Entities
     {
         //Lazy implementation since not sure if permanent yet.
 
-        public List<Vector2> Nodes = new List<Vector2>();
+		public List<Vector2> Nodes { get; private set; }
         public Vector2 CurrentNode;
         public int ArrivedNode = 5;
         int nodeIndex = 0;

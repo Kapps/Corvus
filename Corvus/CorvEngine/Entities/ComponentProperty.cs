@@ -40,12 +40,12 @@ namespace CorvEngine.Entities {
 			PropertyInfo Property = Component.GetType().GetProperty(PropertyName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
 			if(Property == null)
 				throw new KeyNotFoundException("Unable to find a property named '" + PropertyName + "' on Component of type '" + Component.GetType().Name + "'.");
-			object Value = ValueGenerator.GetValue(Component, _GeneratorArguments);
+			object Value = ValueGenerator.GetValue(Component, Property, _GeneratorArguments.Select(c=> c.GetValue()).ToArray());
 			object Converted = Convert.ChangeType(Value, Property.PropertyType);
 			Property.SetValue(Component, Converted, null);
 		}
 
-		public ComponentProperty(string ComponentName, string PropertyName, PropertyValueGenerator ValueGenerator, object[] GeneratorArguments) {
+		public ComponentProperty(string ComponentName, string PropertyName, PropertyValueGenerator ValueGenerator, ComponentArgument[] GeneratorArguments) {
 			this._ComponentName = ComponentName;
 			this._PropertyName = PropertyName;
 			this._GeneratorArguments = GeneratorArguments;
@@ -59,6 +59,6 @@ namespace CorvEngine.Entities {
 		string _ComponentName;
 		string _PropertyName;
 		PropertyValueGenerator _ValueGenerator;
-		object[] _GeneratorArguments;
+		ComponentArgument[] _GeneratorArguments;
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace CorvEngine.Entities {
@@ -15,7 +16,7 @@ namespace CorvEngine.Entities {
 			get { return "Random"; }
 		}
 
-		public override object GetValue(object Instance, object[] Arguments) {
+		public override object GetValue(object Instance, PropertyInfo Property, object[] Arguments) {
 			if(Arguments.Length != 2)
 				throw new ArgumentException("The RandomValueGenerator takes two arguments: a minimum value, and a maximum value.");
 			double Min = (double)Convert.ChangeType(Arguments[0], typeof(double));
