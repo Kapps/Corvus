@@ -101,6 +101,7 @@
     </None>
     <None Include="Levels\testLevel.tmx">
       <Name>testLevel</Name>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

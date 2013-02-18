@@ -104,11 +104,11 @@ namespace Corvus {
                     mc.isJumping = true;
                     mc.isGrounded = false;
                     mc.jumpStart = true;
-                    entity.VelY = mc.maxJumpVelocity * -1;
+                    entity.VelY = mc.maxJumpVelocity * -1 + 50;
                 }
             }
 
-            if (entity.Y >= (768 - 1) && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
+            if (entity.Y >= 767.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
             {
                 mc.isGrounded = true;
                 mc.isJumping = false;
