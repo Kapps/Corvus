@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="test" tilewidth="32" tileheight="32">
+  <image source="TilesSets/Collection2/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1ltOwlAUhtFTBiHOHBUHouBAuI2Dmz7wEyCQ+GIIctqwVvKlb+3O2WnaUoAumjSlTJvaU3TXKGc3Tl83OsN17rOxj6vNcnbztHCGrbDNHr7Tz3Efz72683C9p579tcUgvaTX9JaG6b3qRI9n/y70L96Hj/R5bFxpJs7so11O+xgV+7il/Xd5mf+rVXO4/tUkTdMszf9ptq5ZNr+7p03a3veRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAU70yElVQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1O1Jw1AYhuFkCatY9yg4gIIOUOgAov3fUYxfUzihTxEhlVQ0VE8Srwtu8ivw5rzhVBUATMMsXaTLdJWuy45D3KTbtC49yIht/+vjdNLqNM1LDvXPLdNdq9U33mnSQ3pMT+k5vfzWgDBg7rTh6XOnwdgcVd33z+e2d9FZoRnH5qtz7Orjrm+f7yK91t2d/92nTMK+c/zJ+drH4fTZx6bezT4Op88+mjzv6/dnYx+Dsyg9ADvsAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICpewMr2j8f
+  </data>
+ </layer>
+</map>
