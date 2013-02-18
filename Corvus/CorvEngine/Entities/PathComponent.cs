@@ -45,27 +45,17 @@ namespace CorvEngine.Entities
 			if(Vector2.Distance(entity.Position, CurrentNode) < ArrivedNode) {
 				NextNode();
 			} else {
-				float maxWalkVelocity = 200f;
-
 				if(entity.X < CurrentNode.X) {
-					entity.VelX = maxWalkVelocity;
-
-					if(mc.CurrDir != Direction.Right) {
-						entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("WalkRight");
-						mc.CurrDir = Direction.Right;
-					}
+					mc.Walk(Direction.Right);
+                    mc.ApplyPhysics(Time, entity.Scene);
 				} else {
-					entity.VelX = maxWalkVelocity * -1;
-
-					if(mc.CurrDir != Direction.Left) {
-						entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("WalkLeft");
-						mc.CurrDir = Direction.Left;
-					}
+					mc.Walk(Direction.Left);
+                    mc.ApplyPhysics(Time, entity.Scene);
 				}
 			}
 
-			entity.X += entity.VelX * Time.GetTimeScalar();
-			entity.Y += entity.VelY * Time.GetTimeScalar();
+			//entity.X += entity.VelX * Time.GetTimeScalar();
+			//entity.Y += entity.VelY * Time.GetTimeScalar();
 			base.Update(Time);
 		}
 	}
