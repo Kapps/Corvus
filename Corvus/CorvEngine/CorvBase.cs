@@ -190,10 +190,18 @@ namespace CorvEngine {
 		}
 
 		private void OnInitialize() {
+			this._GraphicsManager.SynchronizeWithVerticalRetrace = false;
+#if !DEBUG
+			this._GraphicsManager.PreferMultiSampling = true;
+			this._GraphicsManager.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+			this._GraphicsManager.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+			this._GraphicsManager.ApplyChanges();
+			//this._GraphicsManager.ToggleFullScreen();
+#else
 			this._GraphicsManager.PreferredBackBufferWidth = 1024;
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
-			this._GraphicsManager.SynchronizeWithVerticalRetrace = false;
 			this._GraphicsManager.ApplyChanges();
+#endif
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
 			this.RegisterGlobalComponent(this._StateManager);

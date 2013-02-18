@@ -16,7 +16,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XOwrCQBSG0WRzvgsfi1BwFy5FW7Fwhf5NQILB+CIxnANfOZdhqjtFAQAAAAAAAABAG8d06voSAADwA6M0TpM0TbM0T4u0TKsHrdOmdrZeNWNImv4F27S7a//CzPrZd2YA7fnfQ/9V+8WhfN4Q941vOOdtri26lF3ftJ+832ea9lv7LsD/uAGM0y7dgD4AAA==
+   H4sIAAAAAAAAC+3XOwrCQBSG0WRzvgvFRSi4C5eirVi4Qv8mIIHB+CIxnANfOZdhqjtVBQAAAAAAAABAF6d07vsSAADwA5M0TbM0T4u0TKu0TptC29bZds2MMSn9C3Zp/9DhhZnts+/MALrzv4fha/aLY/28Me4b33DJ29w6dK37vukweb/PlPZb+y7A/7gDKirlFIA+AAA=
   </data>
  </layer>
  <layer name="Objects" width="80" height="50">
@@ -24,7 +24,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XOw4BYRSG4X9q7AIVVoGGsQmXTmEhtkHhsoxRuG2EPfgSo5wh/sTJifdJ3oju5CsmMyEAAAAAAAAAAAAAAADgndT6AOfm1gc4t7Q+wKmN2qqd2hvf4tFRndRZXdTV9hyXbupufYRTlSSEqqol1pf41dJ2bdVhw68MtVuqRn+yH++6cXhXi8N+cdivXF3P8YZqFjzP2a9cV7v1VP+D/VZq/YujHJlot6maqXG+4SD/XSTPb4XX/0wdLI4EAAAACjwA+TS9M4A+AAA=
+   H4sIAAAAAAAAC+3WOw4BYRSG4X9q7AIVVoGGsQp0CguxDQqXZZjCbSNmDz7JFJoZ4k+cnHif5M1kupOvmEwIAAAAAAAAAAAAAAAAeCe1PsC5hfUBzq2sD3Bqq3Zqrw7Gt3h0Umd1UVd1sz3HpbvKrY9wqpaEUFeNxPoSvzrarqt6bPiVsXZL1eRP9uNfNw7/anHYLw77VWvqO95S7ZLvOftV62u3gRp+sN9abX5xlCNT7TZTc7UsNhwVz+d7/vJ+VJnFkQAAAECJB/dUOy+APgAA
   </data>
  </layer>
  <layer name="Object Extensions" width="80" height="50">
@@ -32,7 +32,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XuwmAQBBF0e1IRRv004hgoU64yYKRg+s5cGHCl04pAAAAAAAAAMAfrNEW7dlDOnBlDwAA4LEhGqOp0RwtaeveV/8FR/KWLzqr218AAAAA9OoGVCn2c4A+AAA=
+   H4sIAAAAAAAAC+3XsRGAMBADwe8IPFAhbtxqwIR8wO7M5UpVBQAAAAAAAAD8xZNm9wgAAPjQkc40Nl3pblvXwy8AAAAA4M0Cm/o+4YA+AAA=
   </data>
  </layer>
 </map>
