@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorvEngine.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
 namespace System {
@@ -19,6 +20,13 @@ namespace System {
 		public static Sprite LoadSprite(this ContentManager Content, string AssetName) {
 			var SpriteData = Content.Load<SpriteData>(AssetName);
 			return new Sprite(SpriteData);
+		}
+
+		/// <summary>
+		/// Gets a scalar to multiply any movements by to make them based per-second.
+		/// </summary>
+		public static float GetTimeScalar(this GameTime Time) {
+			return (float)Time.ElapsedGameTime.TotalSeconds;
 		}
 	}
 }

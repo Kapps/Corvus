@@ -45,7 +45,7 @@ namespace CorvEngine.Entities
 			if(Vector2.Distance(entity.Position, CurrentNode) < ArrivedNode) {
 				NextNode();
 			} else {
-				float maxWalkVelocity = 10f;
+				float maxWalkVelocity = 200f;
 
 				if(entity.X < CurrentNode.X) {
 					entity.VelX = maxWalkVelocity;
@@ -64,8 +64,8 @@ namespace CorvEngine.Entities
 				}
 			}
 
-			entity.X += entity.VelX;
-			entity.Y += entity.VelY;
+			entity.X += entity.VelX * Time.GetTimeScalar();
+			entity.Y += entity.VelY * Time.GetTimeScalar();
 			base.Update(Time);
 		}
 	}

@@ -18,9 +18,9 @@ namespace Corvus {
         // Note that this class is just a hackish mess used to test functionality until more is working.
 
         //Add these to entity or something else eventually?
-        float maxWalkVelocity = 5f;
-        float maxJumpVelocity = 10f;
-        float gravity = 0.5f;
+        float maxWalkVelocity = 500f;
+        float maxJumpVelocity = 1050f;
+        float gravity = 5000.5f;
         bool isJumping = false;
         bool isGrounded = true;
         bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
@@ -89,9 +89,11 @@ namespace Corvus {
                     entity.VelX = maxWalkVelocity;
 					break;
 				case Direction.Up:
+					entity.VelX = 0;
                     //entity.VelY = maxJumpVelocity * -1;
 					break;
 				case Direction.Down:
+					entity.VelX = 0;
                     //entity.VelY = maxJumpVelocity;
 					break;
                 case Direction.None:
@@ -122,13 +124,13 @@ namespace Corvus {
 
             if (!isGrounded)
             {
-                entity.VelY += gravity;
+				entity.VelY += gravity * gameTime.GetTimeScalar();
             }
 
             jumpStart = false;
-            
-            entity.X += entity.VelX;
-            entity.Y += entity.VelY;
+
+			entity.X += entity.VelX * gameTime.GetTimeScalar();
+			entity.Y += entity.VelY * gameTime.GetTimeScalar();
 			
 			entity.Update(gameTime);
 
