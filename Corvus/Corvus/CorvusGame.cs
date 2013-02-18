@@ -16,7 +16,7 @@ namespace Corvus {
 			var TestState = new TestState();
 			this.StateManager.PushState(TestState);
 
-			RegisterGlobalComponent(new FrameRateComponent());
+			RegisterGlobalComponent(new DebugComponent());
 		}		
 	}
 }

@@ -35,4 +35,7 @@
    H4sIAAAAAAAAC+3XsRGAMBADwe8IPFAhbtxqwIR8wO7M5UpVBQAAAAAAAAD8xZNm9wgAAPjQkc40Nl3pblvXwy8AAAAA4M0Cm/o+4YA+AAA=
   </data>
  </layer>
+ <objectgroup name="Enemies" width="80" height="50">
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1028" y="1316" width="28" height="27"/>
+ </objectgroup>
 </map>

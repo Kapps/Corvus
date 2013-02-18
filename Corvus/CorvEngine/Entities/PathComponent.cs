@@ -10,13 +10,13 @@ namespace CorvEngine.Entities
 		//Lazy implementation since not sure if permanent yet.
 
 		public List<Vector2> Nodes { get; private set; }
-		public Vector2 CurrentNode;
+		public Vector2 CurrentNode { get; private set; }
 		public int ArrivedNode = 5;
 		int nodeIndex = 0;
 
         public PathComponent()
         {
-            CurrentNode = new Vector2(250, 768);
+            
         }
 
         public void AddNode(Vector2 node)

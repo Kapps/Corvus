@@ -12,8 +12,8 @@ HealthyBig
 
 Pather
 	PathComponent
-		Nodes: Collection(Vector(250, 768), Vector(750, 768))
-
+		Nodes: Collection(Vector(885, 1313), Vector(1263, 1313))
+		CurrentNode: Read(Nodes, 0)
 MoverEnemy
 	MovementComponent
 

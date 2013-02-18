@@ -22,7 +22,7 @@ namespace Corvus {
 
         Keys jump = Keys.Space;
 
-		Entity entity;
+		public Entity entity;
 
 		// TODO: Can make a component that does this.
 		private Dictionary<Direction, Keys> DirToKey = new Dictionary<Direction, Keys>() {
@@ -32,11 +32,14 @@ namespace Corvus {
 			{ Direction.Down, Keys.Down },
 		};
 
+		public static TempPlayer TempInstance;
+
         MovementComponent mc = new MovementComponent();
 		Scene Scene;
 		public TempPlayer(Scene Scene) {
 			// TODO: Complete member initialization
 			// TODO: Move this away of course.
+			TempInstance = this;
 			this.Scene = Scene;
 			Camera.Active = this.Camera;
 			Camera.Active.Size = new Vector2(CorvBase.Instance.GraphicsDevice.Viewport.Width, CorvBase.Instance.GraphicsDevice.Viewport.Height);
@@ -48,7 +51,7 @@ namespace Corvus {
 			entity = Blueprint.CreateEntity();
 			// This stuff is obviously things that the ctor should handle.
 			// And things like size should probably be dependent upon the actual animation being played.
-			entity.Size = new Vector2(48, 32);
+			entity.Size = new Vector2(40, 32);
 			entity.Position = new Vector2(entity.Location.Width, Camera.Active.Viewport.Height);
             entity.Velocity = new Vector2(0, 0);
 			entity.Initialize(null);

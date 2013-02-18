@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +20,11 @@ namespace CorvEngine.Entities {
 			string ReadPropertyName = Arguments[0].ToString();
 			int? ReadIndex = Arguments.Length == 2 ? (int?)(int)Convert.ChangeType(Arguments[1], typeof(int)) : null;
 			var ReadProperty = Instance.GetType().GetProperty(ReadPropertyName, BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
-			object Value = ReadProperty.GetValue(Instance, ReadIndex == null ? null : new object[1] { ReadIndex });
+			object Value = ReadProperty.GetValue(Instance, null);
+			if(ReadIndex != null) {
+				var IndexerProperty = Value.GetType().GetProperty("Item", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+				Value = IndexerProperty.GetValue(Value, new object[] { ReadIndex.Value });
+			}
 			return Value;
 		}
 	}
