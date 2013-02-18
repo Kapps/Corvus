@@ -80,7 +80,7 @@ namespace CorvEngine.Scenes {
 				string Base64Data = DataNode.InnerXml.Trim();
 				byte[] CompressedData = Convert.FromBase64String(Base64Data);
 				byte[] UncompressedData = new byte[1024]; // NOTE: This must be a multiple of 4.
-				Tile[,] Tiles = new Tile[MapNumTilesWide + 10, MapNumTilesHigh + 10]; // TODO: IMPORTANT: Remove that +1! It's just there as a temporary hack.
+				Tile[,] Tiles = new Tile[MapNumTilesWide, MapNumTilesHigh];
 				int MapIndex = 0;
 				using(var GZipStream = new GZipStream(new MemoryStream(CompressedData), CompressionMode.Decompress, false)) {
 					while(true) {
@@ -88,7 +88,7 @@ namespace CorvEngine.Scenes {
 						if(BytesRead == 0)
 							break;
 						using(BinaryReader Reader = new BinaryReader(new MemoryStream(UncompressedData))) {
-							while(Reader.BaseStream.Position != Reader.BaseStream.Length) {
+							for(int i = 0; i < BytesRead; i += 4) {
 								int GID = Reader.ReadInt32();
 								int MapX = MapIndex % MapNumTilesWide;
 								int MapY = MapIndex / MapNumTilesWide;
