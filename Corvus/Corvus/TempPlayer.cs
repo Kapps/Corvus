@@ -42,7 +42,7 @@ namespace Corvus {
 		}
 
 		protected void SetupPlayer() {
-			BlueprintParser.ParseBlueprint(File.ReadAllText("TestEntity.txt"));
+			BlueprintParser.ParseBlueprint(File.ReadAllText("Entities/TestEntity.txt"));
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			entity = Blueprint.CreateEntity();
 			// This stuff is obviously things that the ctor should handle.

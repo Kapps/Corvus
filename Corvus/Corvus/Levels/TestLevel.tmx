@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../../../Shared/CMPT 306/Assets/TilesSets/Collection2/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VSwrCMBiF0ToUBV97EF/gxIUouk+36B04kFKqYrGhnAPfKBmEP5BUFQAAAAAA8E/jWrM0T4u0TKuGPa/RrbZZfxLdch9leTfvSZq2rNOt+nzXaZO2aZf26ZCODXtPPZx36L55m87p8uyabj2cd+j8H2W5j34LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgBA/u8HXCQJwAAA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ6AIAAEQV6nqPwDE//feyW9BSHOJNtvKQAAAAAAAADAF1va05FqOtOV2sypn+vpHnrm7gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALCYF8oFNsBAnAAA
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="100" height="100">
+  <object name="TestName" type="TestEntityEnemy" x="563" y="614" width="40" height="25">
+   <properties>
+    <property name="PathNode" value="{20, 20}"/>
+    <property name="TestProperty" value="56"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

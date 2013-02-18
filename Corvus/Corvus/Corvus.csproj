@@ -119,12 +119,12 @@
     <Compile Include="TestGames\Game2.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestEntityEnemy.txt">
+    <Content Include="Entities\TestEntityEnemy.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
-    <Content Include="TestEntity.txt">
+    <Content Include="Entities\TestEntity.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -159,6 +159,11 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Levels\TestLevel.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

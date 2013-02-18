@@ -1,13 +1,15 @@
 Content\TestTexture.xnb
 Content\Sprites\Player.xnb
 Content\Interface\testbg.xnb
-Content\Fonts\testfont.xnb
-Content\Sprites\TestPlayer.xnb
 Content\Interface\HealthBar.xnb
 Content\Sprites\Enemy.xnb
+Content\Fonts\testfont.xnb
+Content\Sprites\TestPlayer.xnb
 Content\Sprites\TestEnemy.xnb
+Content\Tiles\generic_platformer_tiles.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
-TestEntityEnemy.txt
-TestEntity.txt
+Entities\TestEntityEnemy.txt
+Entities\TestEntity.txt
+Levels\TestLevel.tmx

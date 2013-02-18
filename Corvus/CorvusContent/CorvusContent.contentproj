@@ -56,7 +56,6 @@
   <ItemGroup>
     <Folder Include="Backgrounds\" />
     <Folder Include="Overlays\" />
-    <Folder Include="Tiles\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\testfont.spritefont">
@@ -101,6 +100,8 @@
     </None>
     <None Include="Levels\testLevel.tmx">
       <Name>testLevel</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +122,13 @@
       <Name>TestEnemy</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tiles\generic_platformer_tiles.png">
+      <Name>generic_platformer_tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
