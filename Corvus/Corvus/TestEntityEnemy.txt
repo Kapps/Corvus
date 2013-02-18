@@ -10,5 +10,7 @@ HealthyBig
 	HealthComponent
 		MaxHealth: Random(750, 800)
 
-TestEntityEnemy : RedSprite, EnemySprite, HealthyBig
+PathComponent
+
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, PathComponent
 	

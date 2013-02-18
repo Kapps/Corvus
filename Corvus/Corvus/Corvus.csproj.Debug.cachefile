@@ -5,6 +5,7 @@ Content\Fonts\testfont.xnb
 Content\Sprites\TestPlayer.xnb
 Content\Sprites\Enemy.xnb
 Content\Sprites\TestEnemy.xnb
+Content\Interface\HealthBar.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
