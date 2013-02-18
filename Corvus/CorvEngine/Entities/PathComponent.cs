@@ -14,12 +14,18 @@ namespace CorvEngine.Entities
 		public int ArrivedNode = 5;
 		int nodeIndex = 0;
 
-		public void AddNode(Vector2 node) {
-			if(Nodes.Count() == 0) {
-				CurrentNode = node;
-				nodeIndex = 0;
-			}
+        public PathComponent()
+        {
+            CurrentNode = new Vector2(250, 768);
+        }
 
+        public void AddNode(Vector2 node)
+        {
+            if (Nodes.Count() == 0)
+            {
+                CurrentNode = node;
+                nodeIndex = 0;
+            }
 			Nodes.Add(node);
 		}
 
@@ -31,7 +37,6 @@ namespace CorvEngine.Entities
 				CurrentNode = Nodes[nodeIndex + 1];
 			}
 		}
-
 
 		public override void Update(GameTime Time) {
 			Entity entity = this.Parent;
