@@ -58,6 +58,8 @@ namespace Corvus {
             mc = entity.GetComponent<MovementComponent>();
 		}
 
+        Direction MoveDir = Direction.Down;
+
 		public void Update(GameTime gameTime) {
 			KeyboardState ks = Keyboard.GetState();
 
@@ -66,9 +68,8 @@ namespace Corvus {
 			bool Any = false;
 			foreach(var KVP in DirToKey) {
 				if(ks.IsKeyDown(KVP.Value)) {
-					if(mc.CurrDir != KVP.Key) {
-						entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + KVP.Value);
-						mc.CurrDir = KVP.Key;
+					if(MoveDir != KVP.Key) {
+						MoveDir = KVP.Key;
 					}
 					Any = true;
 					break;
@@ -76,87 +77,23 @@ namespace Corvus {
 			}
 
 			if(!Any && mc.CurrDir != Direction.None) {
-                entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + mc.CurrDir.ToString());
-                mc.CurrDir = Direction.None;
+                MoveDir = Direction.None;
 			}
 
-			switch(mc.CurrDir) {
-				case Direction.Left:
-                    entity.VelX = mc.maxWalkVelocity * -1;
-					break;
-				case Direction.Right:
-                    entity.VelX = mc.maxWalkVelocity;
-					break;
-				case Direction.Up:
-					entity.VelX = 0;
-                    //entity.VelY = 1000 * -1;
-					break;
-				case Direction.Down:
-					entity.VelX = 0;
-					//entity.VelY = 1000;
-					break;
-                case Direction.None:
-                    entity.VelX = 0;
-                    //entity.VelY = 0;
-                    break;
-			}
+            mc.Walk(MoveDir); 
 
             if (ks.IsKeyDown(jump))
             {
-              //  if (mc.isJumping == false && mc.isGrounded == true) //Test if able to jump.
-                //{
-                    mc.isJumping = true;
-                    mc.isGrounded = false;
-                    mc.jumpStart = true;
-                    entity.VelY = mc.maxJumpVelocity * -1 + 50;
-                //}
+                mc.StartJump(true);
             }
 
-			if(!mc.isGrounded) {
-				entity.VelY += mc.gravity * gameTime.GetTimeScalar();
-			}
+            mc.ApplyPhysics(gameTime, Scene); //Scene I would've thought was in entity already, but it's null. Bug or just me using it wrong?
 
-			Vector2 PositionDelta = entity.Velocity * gameTime.GetTimeScalar();
-			entity.Position += PositionDelta;
-			//entity.X += entity.VelX * gameTime.GetTimeScalar();
-			//entity.Y += entity.VelY * gameTime.GetTimeScalar();
-
-			if(!mc.jumpStart) {
-				bool AnyTileHit = false;
-				bool AnySolidHit = false;
-				foreach(var Layer in Scene.Layers) {
-					Tile Tile = Layer.GetTileAtPosition(entity.Position + new Vector2((entity.Size / 2).X, entity.Size.Y));
-					if(Tile != null && Layer.IsSolid && Math.Abs(entity.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y + 0.1f)) {
-						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
-						if(TileAbove != null)
-							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
-						if(entity.VelY < 0) // Don't 'fall' on to the tile if we're still going up.
-							continue;
-						entity.Y = Tile.Location.Top - Tile.Location.Height; //Just in case... Probably not needed.
-						AnySolidHit = true;
-						AnyTileHit = true;
-					} else if(Tile != null)
-						AnyTileHit = true;
-				}
-				if(AnySolidHit || !AnyTileHit) {
-					mc.isGrounded = false;
-					mc.isJumping = false;
-					mc.jumpStart = false;
-					entity.VelY = 0;
-				}
-			}
-			mc.jumpStart = false;
+            mc.EndStartJump();
 
 			entity.Update(gameTime);
 
-            /*if (entity.Y >= 1599.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
-            {
-                mc.isGrounded = true;
-                mc.isJumping = false;
-                mc.jumpStart = false;
-                entity.VelY = 0;
-                entity.Y = 1600; //Just in case... Probably not needed.
-            }*/
+
 
 			// Obviously this should just follow the player for the most part.
 			// But for now, that would just make it seem like the player is never moving.
@@ -171,6 +108,8 @@ namespace Corvus {
 			if(entity.Location.Right > Camera.Active.Position.X + Camera.Active.Size.X)
 				Camera.Active.Position = new Vector2(Camera.Active.Position.X + 100, Camera.Active.Position.Y);*/
 		}
+
+
 
 		public void Draw() {
 			entity.Draw();
