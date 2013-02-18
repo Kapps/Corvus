@@ -10,6 +10,9 @@ namespace CorvEngine.Entities {
 	/// </summary>
 	public class ComponentArgument {
 
+		// TODO: IMPORTANT: Make this be able to parse itself, so we can adjust instances within tiled by setting object properties.
+		// Example: Name: PathComponent.Nodes Value: Collection(Vector2(50, 50), Vector2(100, 50))
+
 		/// <summary>
 		/// Returns a ComponentArgument that returns the results of the specified arguments transformed by the specified ValueGenerator.
 		/// </summary>

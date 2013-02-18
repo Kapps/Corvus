@@ -12,13 +12,45 @@ namespace CorvEngine.Scenes {
 	/// Provides access to a scene that contains Entities for the game.
 	/// </summary>
 	public class Scene : GameStateComponent, IDisposable {
-		// Eventually, this should be changed to use a QuadTree or Grid, but for now we don't need the performance.
+		// TODO: Should this really be a GameStateComponent?
+
+		// TODO: Eventually, this should be changed to use a QuadTree or Grid, but for now we don't need the performance.
 		// Support does exist for plugging one in efficiently using an EntityNode reference though.
 		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
 
-		public Scene(GameState State)
+		/// <summary>
+		/// Creates a Scene with the given LevelData.
+		/// </summary>
+		public Scene(LevelData Data, GameState State)
 			: base(State) {
 
+			this._Layers = Data.Layers;
+			foreach(var Entity in Data.DynamicObjects)
+				AddEntity(Entity);
+
+			this._MapSize = Data.MapSize;
+			this._TileSize = Data.TileSize;
+		}
+
+		/// <summary>
+		/// Gets the size of this map, in world space coordinates.
+		/// </summary>
+		public Vector2 MapSize {
+			get { return _MapSize; }
+		}
+
+		/// <summary>
+		/// Gets the size of each tile within this map, in world space coordinates.
+		/// </summary>
+		public Vector2 TileSize {
+			get { return _TileSize; }
+		}
+
+		/// <summary>
+		/// Returns the number of tiles present in the map.
+		/// </summary>
+		public Vector2 TilesInMap {
+			get { return MapSize / TileSize; }
 		}
 
 		/// <summary>
@@ -51,6 +83,26 @@ namespace CorvEngine.Scenes {
 
 		protected override void OnDraw(GameTime Time) {
 			// TODO: Call this once for each player after setting Viewport and Camera.
+			// TODO: Would be nice to do some sort of spacial partitioning here, but we don't yet.
+			var StartTile = Camera.Active.Position / TileSize;
+			var EndTile = (Camera.Active.Position + Camera.Active.Size) / TileSize;
+			var SpriteBatch = CorvBase.Instance.SpriteBatch;
+
+			int StartX = Math.Max((int)StartTile.X, 0);
+			int StartY = Math.Max((int)StartTile.Y, 0);
+			int EndX = Math.Min((int)(EndTile.X + 0.5f), (int)TilesInMap.X - 1);
+			int EndY = Math.Min((int)(EndTile.Y + 0.5f), (int)TilesInMap.Y - 1);
+			foreach(var Layer in _Layers) {
+				for(int y = StartY; y <= EndY; y++) {
+					for(int x = StartX; x <= EndX; x++) {
+						Tile Tile = Layer.GetTile(x, y);
+						if(Tile == null)
+							continue;
+						var ScreenCoords = Camera.Active.ScreenToWorld(new Vector2(Tile.Location.X, Tile.Location.Y));
+						SpriteBatch.Draw(Tile.Texture, new Rectangle((int)ScreenCoords.X, (int)ScreenCoords.Y, Tile.Location.Width, Tile.Location.Height), Tile.SourceRect, Color.White);
+					}
+				}
+			}
 			foreach(var Entity in _Entities) {
 				if(Camera.Active.Contains(Entity))
 					Entity.Draw();
@@ -63,6 +115,8 @@ namespace CorvEngine.Scenes {
 			}
 		}
 
-		private Background _Background;
+		private Layer[] _Layers;
+		private Vector2 _MapSize;
+		private Vector2 _TileSize;
 	}	
 }

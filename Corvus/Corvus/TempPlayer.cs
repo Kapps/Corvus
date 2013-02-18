@@ -42,7 +42,7 @@ namespace Corvus {
 		}
 
 		protected void SetupPlayer() {
-			BlueprintParser.ParseBlueprint(File.ReadAllText("Entities/TestEntity.txt"));
+			BlueprintParser.ParseBlueprint(File.ReadAllText("Data/Entities/TestEntity.txt"));
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			entity = Blueprint.CreateEntity();
 			// This stuff is obviously things that the ctor should handle.
@@ -85,11 +85,11 @@ namespace Corvus {
 					break;
 				case Direction.Up:
 					entity.VelX = 0;
-                    //entity.VelY = maxJumpVelocity * -1;
+                    //entity.VelY = 1000 * -1;
 					break;
 				case Direction.Down:
 					entity.VelX = 0;
-                    //entity.VelY = maxJumpVelocity;
+					//entity.VelY = 1000;
 					break;
                 case Direction.None:
                     entity.VelX = 0;
@@ -99,16 +99,16 @@ namespace Corvus {
 
             if (ks.IsKeyDown(jump))
             {
-                if (mc.isJumping == false && mc.isGrounded == true) //Test if able to jump.
-                {
+              //  if (mc.isJumping == false && mc.isGrounded == true) //Test if able to jump.
+                //{
                     mc.isJumping = true;
                     mc.isGrounded = false;
                     mc.jumpStart = true;
-                    entity.VelY = mc.maxJumpVelocity * -1;
-                }
+                    entity.VelY = mc.maxJumpVelocity * -1 + 50;
+                //}
             }
 
-            if (entity.Y >= (768 - 1) && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
+            if (entity.Y >= 767.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
             {
                 mc.isGrounded = true;
                 mc.isJumping = false;

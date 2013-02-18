@@ -10,6 +10,7 @@ Content\Tiles\generic_platformer_tiles.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
-Entities\TestEntityEnemy.txt
-Entities\TestEntity.txt
-Levels\TestLevel.tmx
+Data\Entities\TestEntityEnemy.txt
+Data\Entities\TestEntity.txt
+Data\Levels\TestLevel.tmx
+Data\Levels\SmallLevel.tmx

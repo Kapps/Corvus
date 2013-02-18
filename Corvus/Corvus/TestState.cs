@@ -20,7 +20,8 @@ namespace Corvus {
 
 		public TestState() {
 			this.AddComponent(new TestComponent(this));
-			
+			LevelData TestLevelData = LevelData.LoadTmx("Data/Levels/TestLevel.tmx");
+			this.AddComponent(new Scene(TestLevelData, this));
 		}
 
 		private class TestComponent : GameStateComponent {

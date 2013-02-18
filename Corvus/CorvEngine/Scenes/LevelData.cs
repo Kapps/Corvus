@@ -66,8 +66,8 @@ namespace CorvEngine.Scenes {
 					StartGID = StartGID,
 					TileHeight = TileHeight,
 					TileWidth = TileWidth,
-					NumTilesHigh = MapHeight / TileHeight,
-					NumTilesWide = MapWidth / TileWidth
+					NumTilesHigh = Texture.Height / TileHeight,
+					NumTilesWide = Texture.Width / TileWidth
 				});
 			}
 			Textures = Textures.OrderBy(c => c.StartGID).ToList();
@@ -91,15 +91,15 @@ namespace CorvEngine.Scenes {
 							break;
 						using(BinaryReader Reader = new BinaryReader(new MemoryStream(UncompressedData))) {
 							while(Reader.BaseStream.Position != Reader.BaseStream.Length) {
-								MapIndex++;
 								int GID = Reader.ReadInt32();
+								int MapX = MapIndex % MapNumTilesWide;
+								int MapY = MapIndex / MapNumTilesWide;
+								MapIndex++;
 								if(GID == 0)
 									continue;
 								var Texture = Textures.Last(c => c.StartGID <= GID);
 								int TextureX = (GID - Texture.StartGID) % Texture.NumTilesWide;
 								int TextureY = (GID - Texture.StartGID) / Texture.NumTilesWide;
-								int MapX = MapIndex % MapNumTilesWide;
-								int MapY = MapIndex / MapNumTilesHigh;
 								Rectangle SourceRect = new Rectangle(TextureX * Texture.TileWidth, TextureY * Texture.TileHeight, Texture.TileWidth, Texture.TileHeight);
 								Rectangle Location = new Rectangle(MapX * MapTileWidth, MapY * MapTileHeight, MapTileWidth, MapTileHeight);
 								Tile Tile = new Tile(Texture.Texture, SourceRect, Location);

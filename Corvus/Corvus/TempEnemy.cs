@@ -26,7 +26,7 @@ namespace Corvus
 
         protected void SetupEnemy()
         {
-            BlueprintParser.ParseBlueprint(File.ReadAllText("Entities/TestEntityEnemy.txt"));
+            BlueprintParser.ParseBlueprint(File.ReadAllText("Data/Entities/TestEntityEnemy.txt"));
             var Blueprint = EntityBlueprint.GetBlueprint("TestEntityEnemy");
             entity = Blueprint.CreateEntity();
             // This stuff is obviously things that the ctor should handle.
