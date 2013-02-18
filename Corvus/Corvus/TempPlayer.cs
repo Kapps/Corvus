@@ -56,6 +56,7 @@ namespace Corvus {
             entity.Velocity = new Vector2(0, 0);
 			entity.Initialize(null);
             mc = entity.GetComponent<MovementComponent>();
+            mc.isGrounded = false;
 		}
 
         Direction MoveDir = Direction.Down;
