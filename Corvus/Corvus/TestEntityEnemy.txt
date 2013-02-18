@@ -14,5 +14,8 @@ Pather
 	PathComponent
 		Nodes: Collection(Vector(10, 10), Vector(50, 50), Vector(100, 100))
 
-TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather
+MoverEnemy
+	MovementComponent
+
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy
 	

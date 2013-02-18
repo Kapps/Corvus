@@ -114,6 +114,7 @@
     <Compile Include="Controls\UserControls\MessageBox.cs" />
     <Compile Include="CorvExtensions.cs" />
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Entities\AssemblyManager.cs" />
     <Compile Include="Entities\CollectionValueGenerator.cs" />
     <Compile Include="Entities\ColorValueGenerator.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Entities\ComponentProperty.cs" />
     <Compile Include="Entities\ComponentBlueprint.cs" />
     <Compile Include="Entities\HealthComponent.cs" />
+    <Compile Include="Entities\MovementComponent.cs" />
     <Compile Include="Entities\PathComponent.cs" />
     <Compile Include="Entities\ComponentArgument.cs" />
     <Compile Include="Entities\SpriteValueGenerator.cs" />

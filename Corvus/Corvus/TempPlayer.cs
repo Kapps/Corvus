@@ -24,17 +24,10 @@ namespace Corvus {
         bool isJumping = false;
         bool isGrounded = true;
         bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
-
         Keys jump = Keys.Space;
 
 		Entity entity;
-		enum Direction {
-			None,
-			Down,
-			Left,
-			Right,
-			Up
-		}
+
 		// TODO: Can make a component that does this.
 		private Dictionary<Direction, Keys> DirToKey = new Dictionary<Direction, Keys>() {
 			{ Direction.Left, Keys.Left },
@@ -42,7 +35,9 @@ namespace Corvus {
 			{ Direction.Up, Keys.Up },
 			{ Direction.Down, Keys.Down },
 		};
-		Direction CurrDir = Direction.Down;
+
+        MovementComponent mc = new MovementComponent();
+
 		public TempPlayer() {
 			// TODO: Complete member initialization
 			// TODO: Move this away of course.
@@ -61,6 +56,7 @@ namespace Corvus {
 			entity.Position = new Vector2(entity.Location.Width, Camera.Active.Viewport.Height);
             entity.Velocity = new Vector2(0, 0);
 			entity.Initialize(null);
+            mc = entity.GetComponent<MovementComponent>();
 		}
 
 		public void Update(GameTime gameTime) {
@@ -71,21 +67,21 @@ namespace Corvus {
 			bool Any = false;
 			foreach(var KVP in DirToKey) {
 				if(ks.IsKeyDown(KVP.Value)) {
-					if(CurrDir != KVP.Key) {
+					if(mc.CurrDir != KVP.Key) {
 						entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + KVP.Value);
-						CurrDir = KVP.Key;
+						mc.CurrDir = KVP.Key;
 					}
 					Any = true;
 					break;
 				}
 			}
 
-			if(!Any && CurrDir != Direction.None) {
-				entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + CurrDir.ToString());
-				CurrDir = Direction.None;
+			if(!Any && mc.CurrDir != Direction.None) {
+                entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + mc.CurrDir.ToString());
+                mc.CurrDir = Direction.None;
 			}
 
-			switch(CurrDir) {
+			switch(mc.CurrDir) {
 				case Direction.Left:
                     entity.VelX = maxWalkVelocity * -1;
 					break;

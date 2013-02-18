@@ -38,5 +38,44 @@ namespace CorvEngine.Entities
                 CurrentNode = Nodes[nodeIndex + 1];
             }
         }
+
+        public void Update()
+        {
+            Entity entity = this.Parent;
+            MovementComponent mc = entity.GetComponent<MovementComponent>();
+
+            if (Vector2.Distance(entity.Position, CurrentNode) < ArrivedNode)
+            {
+                NextNode();
+            }
+            else
+            {
+                float maxWalkVelocity = 10f;
+
+                if (entity.X < CurrentNode.X)
+                {
+                    entity.VelX = maxWalkVelocity;
+
+                    if (mc.CurrDir != Direction.Right)
+                    {
+                        entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("WalkRight");
+                        mc.CurrDir = Direction.Right;
+                    }
+                }
+                else
+                {
+                    entity.VelX = maxWalkVelocity * -1;
+
+                    if (mc.CurrDir != Direction.Left)
+                    {
+                        entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("WalkLeft");
+                        mc.CurrDir = Direction.Left;
+                    }
+                }
+            }
+
+            entity.X += entity.VelX;
+            entity.Y += entity.VelY;
+        }
     }
 }

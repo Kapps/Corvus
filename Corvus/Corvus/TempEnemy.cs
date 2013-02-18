@@ -18,23 +18,9 @@ namespace Corvus
     class TempEnemy
     {
         Entity entity;
-        Path path = new Path();
-        float maxWalkVelocity = 5f;
-        enum Direction
-        {
-            None,
-            Down,
-            Left,
-            Right,
-            Up
-        }
-
-        Direction CurrDir = Direction.Down;
 
         public TempEnemy()
         {
-            path.AddNode(new Vector2(250, Camera.Active.Viewport.Height));
-            path.AddNode(new Vector2(750, Camera.Active.Viewport.Height));
             SetupEnemy();
         }
 
@@ -53,37 +39,6 @@ namespace Corvus
 
         public void Update(GameTime gameTime)
         {
-            if (Vector2.Distance(entity.Position, path.CurrentNode) < path.ArrivedNode)
-            {
-                path.NextNode();
-            }
-            else
-            {
-                if (entity.X < path.CurrentNode.X)
-                {
-                    entity.VelX = maxWalkVelocity;
-
-                    if (CurrDir != Direction.Right)
-                    {
-                        entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("WalkRight");
-                        CurrDir = Direction.Right;
-                    }
-                }
-                else
-                {
-                    entity.VelX = maxWalkVelocity * -1;
-
-                    if (CurrDir != Direction.Left)
-                    {
-                        entity.GetComponent<SpriteComponent>().Sprite.PlayAnimation("WalkLeft");
-                        CurrDir = Direction.Left;
-                    }
-                }
-            }
-
-            entity.X += entity.VelX;
-            entity.Y += entity.VelY;
-
             entity.Update(gameTime);
         }
 
