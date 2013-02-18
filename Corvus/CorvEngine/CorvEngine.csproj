@@ -126,6 +126,7 @@
     <Compile Include="Entities\MovementComponent.cs" />
     <Compile Include="Entities\PathComponent.cs" />
     <Compile Include="Entities\ComponentArgument.cs" />
+    <Compile Include="Entities\ReadValueGenerator.cs" />
     <Compile Include="Entities\SpriteValueGenerator.cs" />
     <Compile Include="Entities\EntityBlueprint.cs" />
     <Compile Include="Entities\BlueprintParser.cs" />
