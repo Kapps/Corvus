@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Backgrounds\" />
-    <Folder Include="Levels\" />
     <Folder Include="Overlays\" />
     <Folder Include="Tiles\" />
   </ItemGroup>
@@ -100,14 +99,17 @@
       <Name>Wave Bank</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Levels\testLevel.tmx">
+      <Name>testLevel</Name>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-  <Compile Include="Interface\HealthBar.png">
-		<Name>HealthBar</Name>
-		<Importer>TextureImporter</Importer>
-		<Processor>TextureProcessor</Processor>
-	 </Compile>
-   <Compile Include="Sprites\Enemy.png">
+    <Compile Include="Interface\HealthBar.png">
+      <Name>HealthBar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Enemy.png">
       <Name>Enemy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
