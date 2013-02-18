@@ -33,6 +33,13 @@ namespace CorvEngine.Scenes {
 		}
 
 		/// <summary>
+		/// Gets the layers present in this Scene.
+		/// </summary>
+		public IEnumerable<Layer> Layers {
+			get { return _Layers; }
+		}
+
+		/// <summary>
 		/// Gets the size of this map, in world space coordinates.
 		/// </summary>
 		public Vector2 MapSize {

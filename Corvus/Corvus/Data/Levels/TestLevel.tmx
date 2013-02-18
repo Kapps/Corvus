@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
-  <image source="../../../../../Shared/CMPT 306/Assets/TilesSets/Collection2/generic_platformer_tiles.png" width="1024" height="768"/>
+  <image source="../../../../../../Shared/CMPT 306/Assets/TilesSets/Collection2/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="gzip">
@@ -14,7 +14,7 @@
   </data>
  </layer>
  <objectgroup name="Objects" width="100" height="100">
-  <object name="TestName" type="TestEntityEnemy" x="563" y="614" width="40" height="25">
+  <object name="TestName" type="TestEntityEnemy" x="577" y="771" width="40" height="25">
    <properties>
     <property name="PathNode" value="{20, 20}"/>
     <property name="TestProperty" value="56"/>

@@ -13,4 +13,5 @@ Content\Audio\Wave Bank.xwb
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\TestEntity.txt
 Data\Levels\TestLevel.tmx
+Data\Levels\BasicLevel.tmx
 Data\Levels\SmallLevel.tmx

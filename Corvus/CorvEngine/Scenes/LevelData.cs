@@ -72,9 +72,7 @@ namespace CorvEngine.Scenes {
 			}
 			Textures = Textures.OrderBy(c => c.StartGID).ToList();
 			foreach(XmlNode LayerNode in MapElement.SelectNodes("layer")) {
-				if(LayerNode.ChildNodes.Count != 1)
-					throw new FormatException("Expected a single 'data' child for the children of layer.");
-				var DataNode = LayerNode.ChildNodes[0];
+				var DataNode = LayerNode.SelectNodes("data").Item(0);
 				string CompressionFormat = DataNode.Attributes["compression"].Value;
 				string EncodingFormat = DataNode.Attributes["encoding"].Value;
 				if(!CompressionFormat.Equals("gzip", StringComparison.InvariantCultureIgnoreCase) || !EncodingFormat.Equals("base64", StringComparison.InvariantCultureIgnoreCase))
@@ -82,7 +80,7 @@ namespace CorvEngine.Scenes {
 				string Base64Data = DataNode.InnerXml.Trim();
 				byte[] CompressedData = Convert.FromBase64String(Base64Data);
 				byte[] UncompressedData = new byte[1024]; // NOTE: This must be a multiple of 4.
-				Tile[,] Tiles = new Tile[MapNumTilesWide, MapNumTilesHigh];
+				Tile[,] Tiles = new Tile[MapNumTilesWide + 10, MapNumTilesHigh + 10]; // TODO: IMPORTANT: Remove that +1! It's just there as a temporary hack.
 				int MapIndex = 0;
 				using(var GZipStream = new GZipStream(new MemoryStream(CompressedData), CompressionMode.Decompress, false)) {
 					while(true) {
@@ -108,8 +106,19 @@ namespace CorvEngine.Scenes {
 						}
 					}
 				}
-				
-				Layer Layer = new Layer(Tiles);
+
+				bool IsSolid = true;
+				foreach(XmlNode PropertiesNode in LayerNode.SelectNodes("properties")) {
+					foreach(XmlNode Property in PropertiesNode.SelectNodes("property")) {
+						string Name = Property.Attributes["name"].Value;
+						string Value = Property.Attributes["value"].Value;
+						if(Name.Equals("Solid", StringComparison.InvariantCultureIgnoreCase)) {
+							IsSolid = bool.Parse(Value);
+						}
+					}
+				}
+				Layer Layer = new Layer(new Vector2(MapTileWidth, MapTileHeight), Tiles);
+				Layer.IsSolid = IsSolid;
 				Layers.Add(Layer);
 			}
 

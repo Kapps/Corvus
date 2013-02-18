@@ -5,6 +5,7 @@ using System.Linq;
 using CorvEngine;
 using CorvEngine.Entities;
 using CorvEngine.Graphics;
+using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -32,17 +33,17 @@ namespace Corvus {
 		};
 
         MovementComponent mc = new MovementComponent();
-
-		public TempPlayer() {
+		Scene Scene;
+		public TempPlayer(Scene Scene) {
 			// TODO: Complete member initialization
 			// TODO: Move this away of course.
+			this.Scene = Scene;
 			Camera.Active = this.Camera;
 			Camera.Active.Size = new Vector2(CorvBase.Instance.GraphicsDevice.Viewport.Width, CorvBase.Instance.GraphicsDevice.Viewport.Height);
 			SetupPlayer();
 		}
 
 		protected void SetupPlayer() {
-			BlueprintParser.ParseBlueprint(File.ReadAllText("Data/Entities/TestEntity.txt"));
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			entity = Blueprint.CreateEntity();
 			// This stuff is obviously things that the ctor should handle.
@@ -108,37 +109,53 @@ namespace Corvus {
                 //}
             }
 
-            if (entity.Y >= 767.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
+			if(!mc.isGrounded) {
+				entity.VelY += mc.gravity * gameTime.GetTimeScalar();
+			}
+			entity.X += entity.VelX * gameTime.GetTimeScalar();
+			entity.Y += entity.VelY * gameTime.GetTimeScalar();
+
+			if(!mc.jumpStart) {
+				bool AnyTileHit = false;
+				foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
+					Tile Tile = Layer.GetTileAtPosition(entity.Position + new Vector2((entity.Size / 2).X, entity.Size.Y));
+					if(Tile != null) {
+						mc.isGrounded = true;
+						mc.isJumping = false;
+						mc.jumpStart = false;
+						entity.VelY = 0;
+						entity.Y = Tile.Location.Top - Tile.Location.Height; //Just in case... Probably not needed.
+						AnyTileHit = true;
+					}
+				}
+				if(!AnyTileHit)
+					mc.isGrounded = false;
+			}
+			mc.jumpStart = false;
+
+			entity.Update(gameTime);
+
+            /*if (entity.Y >= 1599.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
             {
                 mc.isGrounded = true;
                 mc.isJumping = false;
                 mc.jumpStart = false;
                 entity.VelY = 0;
-                entity.Y = 768; //Just in case... Probably not needed.
-            }
-
-            if (!mc.isGrounded)
-            {
-                entity.VelY += mc.gravity * gameTime.GetTimeScalar();
-            }
-
-            mc.jumpStart = false;
-
-			entity.X += entity.VelX * gameTime.GetTimeScalar();
-			entity.Y += entity.VelY * gameTime.GetTimeScalar();
-			
-			entity.Update(gameTime);
+                entity.Y = 1600; //Just in case... Probably not needed.
+            }*/
 
 			// Obviously this should just follow the player for the most part.
 			// But for now, that would just make it seem like the player is never moving.
-			if(entity.Location.Left < Camera.Active.Position.X)
+			var EntityMiddle = new Vector2(entity.Location.X + (entity.Location.Width / 2), entity.Location.Y + (entity.Location.Height / 2));
+			Camera.Active.Position = EntityMiddle - (Camera.Active.Size / 2);
+			/*if(entity.Location.Left < Camera.Active.Position.X)
 				Camera.Active.Position = new Vector2(Camera.Active.Position.X - 100, Camera.Active.Position.Y);
 			if(entity.Location.Top < Camera.Active.Position.Y)
 				Camera.Active.Position = new Vector2(Camera.Active.Position.X, Camera.Active.Position.Y - 100);
 			if(entity.Location.Bottom > Camera.Active.Position.Y + Camera.Active.Size.Y)
 				Camera.Active.Position = new Vector2(Camera.Active.Position.X, Camera.Active.Position.Y + 100);
 			if(entity.Location.Right > Camera.Active.Position.X + Camera.Active.Size.X)
-				Camera.Active.Position = new Vector2(Camera.Active.Position.X + 100, Camera.Active.Position.Y);
+				Camera.Active.Position = new Vector2(Camera.Active.Position.X + 100, Camera.Active.Position.Y);*/
 		}
 
 		public void Draw() {
