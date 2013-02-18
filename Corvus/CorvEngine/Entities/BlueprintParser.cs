@@ -126,7 +126,11 @@ namespace CorvEngine.Entities {
 		private static ComponentProperty ParseProperty(ComponentHeader CurrentComponent, LineReader Reader) {
 			string Line = Reader.ReadLine().Trim();
 			int IndexDD = Line.IndexOf(':');
-			string Name = Line.Substring(0, IndexDD).Trim();
+			string PropertyName = Line.Substring(0, IndexDD).Trim();
+			string Arguments = Line.Substring(IndexDD + 1).Trim();
+			var ComponentArgs = ComponentArgument.Parse(Arguments);
+			return new ComponentProperty(CurrentComponent.Name, PropertyName, ComponentArgs.Single());
+			/*string Name = Line.Substring(0, IndexDD).Trim();
 			string Remainder = Line.Substring(IndexDD + 1).Trim();
 			int IndexArguments = Remainder.IndexOf('(');
 			string GeneratorName;
@@ -141,48 +145,7 @@ namespace CorvEngine.Entities {
 				Arguments = ParseArguments(ArgumentText).ToArray();
 			}
 			var Generator = GetGenerator(GeneratorName);
-			return new ComponentProperty(CurrentComponent.Name, Name, Generator, Arguments);
-		}
-
-		private static IEnumerable<ComponentArgument> ParseArguments(string Input) {
-			// TODO: Should really prevent things like Property: Transformed(1, 2, 3) INVALIDINPUT, Blah
-			// Which would be counted as 3 arguments.
-			int LastArgumentStart = 0;
-			for(int i = 0; i < Input.Length; i++) {
-				char c = Input[i];
-				if(c == '(') {
-					// Starting a value argument. Find the last white-space, that's where the name of this argument is.
-					// Parse the arguments of the remaining recursively.
-					int MatchingIndex = GetMatchedBracketIndex(Input, i);
-					string ChildContents = Input.Substring(i + 1, MatchingIndex - i - 1);
-					int LastWhiteSpace = Math.Max(Input.LastIndexOfAny(new char[] { ' ', '\t' }, i), 0);
-					string GeneratorName = Input.Substring(LastWhiteSpace, i - LastWhiteSpace).Trim();
-					var Arguments = ParseArguments(ChildContents).ToArray();
-					var Generator = GetGenerator(GeneratorName);
-					yield return new ComponentArgument(Generator, Arguments);
-					// Skip to end of arguments and indicate remaining text is right after that.
-					i = MatchingIndex;
-					LastArgumentStart = i + 1;
-					continue;
-				} else if(c == ',' || i == Input.Length - 1) {
-					// Remainder of text, if any.
-					// This wasn't being transformed, so it just uses an IdentityValueGenerator.
-					string RemainingText = Input.Substring(LastArgumentStart, i - LastArgumentStart + 1).Trim();
-					if(i != Input.Length - 1) // This is a comma, we don't want to include that; but we do want to include the last character when it's that.
-						RemainingText = RemainingText.Substring(0, RemainingText.Length - 1);
-					if(!String.IsNullOrWhiteSpace(RemainingText)) {
-						yield return new ComponentArgument(RemainingText);
-					}
-					LastArgumentStart = i + 1;
-				}
-			}
-		}
-
-		private static PropertyValueGenerator GetGenerator(string Name) {
-			PropertyValueGenerator Generator = PropertyValueGenerator.GetGenerator(Name);
-			if(Generator == null)
-				throw new KeyNotFoundException("Unable to find a PropertyValueGenerator named '" + Name + "'.");
-			return Generator;
+			return new ComponentProperty(CurrentComponent.Name, Name, Generator, Arguments);*/
 		}
 
 		private static BlueprintHeader ParseHeader(LineReader Reader) {
@@ -202,42 +165,6 @@ namespace CorvEngine.Entities {
 				Inherits = Inherits
 			};
 		}
-
-		private static int GetMatchedBracketIndex(string Input, int Index) {
-			char Initial = Input[Index];
-			char Matched = BracketMatches[Initial];
-			for(int i = Index + 1; i < Input.Length; i++) {
-				char c = Input[i];
-				if(c != Initial && c != Matched)
-					continue;
-				if(IsEscaped(Input, i))
-					continue;
-				if(c == Initial) {
-					int Next = GetMatchedBracketIndex(Input, i);
-					i = Next;
-					continue;
-				} else if(c == Matched)
-					return i;
-			}
-			throw new FormatException("Did not find a '" + Matched + "' to match the value of '" + Initial + "'.");
-		}
-
-		private static bool IsEscaped(string Input, int Index) {
-			bool IsEscaped = false;
-			for(int i = Index - 1; i >= 0; i++) {
-				if(Input[i] == '\\')
-					IsEscaped = !IsEscaped;
-				else
-					break;
-			}
-			return IsEscaped;
-		}
-
-		private static Dictionary<char, char> BracketMatches = new Dictionary<char, char>() {
-			{ '{', '}' },
-			{ '(', ')' },
-			{ '[', ']' }
-		};
 
 		private struct BlueprintHeader {
 			public string Name;

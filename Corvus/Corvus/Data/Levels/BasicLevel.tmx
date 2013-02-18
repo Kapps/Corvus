@@ -36,6 +36,11 @@
   </data>
  </layer>
  <objectgroup name="Enemies" width="80" height="50">
-  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1028" y="1316" width="28" height="27"/>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1028" y="1316" width="28" height="27">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(885, 1313), Vector(1263, 1313))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

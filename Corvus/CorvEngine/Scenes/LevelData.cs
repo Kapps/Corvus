@@ -37,21 +37,124 @@ namespace CorvEngine.Scenes {
 		/// </summary>
 		public static LevelData LoadTmx(string FilePath) {
 			// This is really just a terrible method that should be refactored a lot at some point, at least to split layer / tileset / object loading.
+			// https://github.com/bjorn/tiled/wiki/TMX-Map-Format contains a description of the format.
 			XmlDocument Doc = new XmlDocument();
 			Doc.Load(FilePath);
 			if(Doc.GetElementsByTagName("map").Count != 1)
 				throw new FormatException("Expected a single map to be defined in a .tmx file.");
-			List<TextureDetails> Textures = new List<TextureDetails>();
-			List<Layer> Layers = new List<Layer>();
-			List<Entity> Entities = new List<Entity>();
 			var MapElement = Doc.GetElementsByTagName("map").Item(0);
-			int MapNumTilesWide = int.Parse(MapElement.Attributes["width"].Value);
-			int MapNumTilesHigh = int.Parse(MapElement.Attributes["height"].Value);
-			int MapTileWidth = int.Parse(MapElement.Attributes["tilewidth"].Value);
-			int MapTileHeight = int.Parse(MapElement.Attributes["tileheight"].Value);
-			int MapWidth = MapTileWidth * MapNumTilesWide;
-			int MapHeight = MapTileHeight * MapNumTilesHigh;
-			foreach(XmlNode TilesetNode in MapElement.SelectNodes("tileset")) {
+			var MapDetails = new MapDetails(MapElement);
+			List<TextureDetails> Textures = ParseTilesets(MapDetails);
+			List<Layer> Layers = ParseLayers(MapDetails, Textures);
+			List<Entity> Entities = ParseEntities(MapDetails);
+
+			LevelData Result = new LevelData() {
+				DynamicObjects = Entities.ToArray(),
+				Layers = Layers.ToArray(),
+				MapSize = new Vector2(MapDetails.MapWidth, MapDetails.MapHeight),
+				TileSize = new Vector2(MapDetails.MapTileWidth, MapDetails.MapTileHeight)
+			};
+			return Result;
+		}
+
+		private static List<Entity> ParseEntities(MapDetails Map) {
+			List<Entity> Result = new List<Entity>();
+			foreach(XmlNode ObjectGroupNode in Map.MapElement.SelectNodes("objectgroup")) {
+				foreach(XmlNode ObjectNode in ObjectGroupNode.SelectNodes("object")) {
+					int Width = int.Parse(ObjectNode.Attributes["width"].Value);
+					int Height = int.Parse(ObjectNode.Attributes["height"].Value);
+					int X = int.Parse(ObjectNode.Attributes["x"].Value);
+					int Y = int.Parse(ObjectNode.Attributes["y"].Value);
+					string BlueprintName = ObjectNode.Attributes["type"].Value;
+					EntityBlueprint Blueprint = EntityBlueprint.GetBlueprint(BlueprintName);
+					Entity Entity = Blueprint.CreateEntity();
+					Entity.Position = new Vector2(X, Y);
+					Entity.Size = new Vector2(Width, Height);
+
+					foreach(XmlNode PropertiesNode in ObjectNode.SelectNodes("properties")) {
+						foreach(XmlNode PropertyNode in PropertiesNode.SelectNodes("property")) {
+							string Name = PropertyNode.Attributes["name"].Value.Trim();
+							// So, this is quite a hack.
+							// Tiled doesn't allow us to re-order properties; it's all alphabetical.
+							// So we just support sticking a # in front of the property to make it go to the top of the list, and then ignore that #.
+							while(Name.FirstOrDefault() == '#')
+								Name = Name.Substring(1);
+							string Value = PropertyNode.Attributes["value"].Value.Trim();
+							string[] NamePropertySplit = Name.Split('.');
+							if(NamePropertySplit.Length != 2)
+								throw new FormatException("Expected object property name to be in the format of 'PathComponent.Nodes'.");
+							string ComponentName = NamePropertySplit[0].Trim();
+							string PropertyName = NamePropertySplit[1].Trim();
+							ComponentArgument Argument = ComponentArgument.Parse(Value).Single();
+							ComponentProperty ParsedProperty = new ComponentProperty(ComponentName, PropertyName, Argument);
+							var Component = Entity.Components[ComponentName];
+							ParsedProperty.ApplyValue(Component);
+						}
+					}
+					Result.Add(Entity);
+				}
+			}
+			return Result;
+		}
+
+		private static List<Layer> ParseLayers(MapDetails Map, List<TextureDetails> Textures) {
+			var Result = new List<Layer>();
+			foreach(XmlNode LayerNode in Map.MapElement.SelectNodes("layer")) {
+				var DataNode = LayerNode.SelectNodes("data").Item(0);
+				string CompressionFormat = DataNode.Attributes["compression"].Value;
+				string EncodingFormat = DataNode.Attributes["encoding"].Value;
+				if(!CompressionFormat.Equals("gzip", StringComparison.InvariantCultureIgnoreCase) || !EncodingFormat.Equals("base64", StringComparison.InvariantCultureIgnoreCase))
+					throw new FormatException("Currently the Tmx loader can only handled base-64 zlib tiles.");
+				string Base64Data = DataNode.InnerXml.Trim();
+				byte[] CompressedData = Convert.FromBase64String(Base64Data);
+				byte[] UncompressedData = new byte[1024]; // NOTE: This must be a multiple of 4.
+				Tile[,] Tiles = new Tile[Map.MapNumTilesWide, Map.MapNumTilesHigh];
+				int MapIndex = 0;
+				using(var GZipStream = new GZipStream(new MemoryStream(CompressedData), CompressionMode.Decompress, false)) {
+					while(true) {
+						int BytesRead = GZipStream.Read(UncompressedData, 0, UncompressedData.Length);
+						if(BytesRead == 0)
+							break;
+						using(BinaryReader Reader = new BinaryReader(new MemoryStream(UncompressedData))) {
+							for(int i = 0; i < BytesRead; i += 4) {
+								int GID = Reader.ReadInt32();
+								int MapX = MapIndex % Map.MapNumTilesWide;
+								int MapY = MapIndex / Map.MapNumTilesWide;
+								MapIndex++;
+								if(GID == 0)
+									continue;
+								var Texture = Textures.Last(c => c.StartGID <= GID);
+								int TextureX = (GID - Texture.StartGID) % Texture.NumTilesWide;
+								int TextureY = (GID - Texture.StartGID) / Texture.NumTilesWide;
+								Rectangle SourceRect = new Rectangle(TextureX * Texture.TileWidth, TextureY * Texture.TileHeight, Texture.TileWidth, Texture.TileHeight);
+								Rectangle Location = new Rectangle(MapX * Map.MapTileWidth, MapY * Map.MapTileHeight, Map.MapTileWidth, Map.MapTileHeight);
+								Tile Tile = new Tile(Texture.Texture, SourceRect, Location, new Vector2(MapX, MapY));
+								Tiles[MapX, MapY] = Tile;
+							}
+						}
+					}
+				}
+
+				bool IsSolid = true;
+				foreach(XmlNode PropertiesNode in LayerNode.SelectNodes("properties")) {
+					foreach(XmlNode Property in PropertiesNode.SelectNodes("property")) {
+						string Name = Property.Attributes["name"].Value;
+						string Value = Property.Attributes["value"].Value;
+						if(Name.Equals("Solid", StringComparison.InvariantCultureIgnoreCase)) {
+							IsSolid = bool.Parse(Value);
+						}
+					}
+				}
+				Layer Layer = new Layer(new Vector2(Map.MapTileWidth, Map.MapTileHeight), Tiles);
+				Layer.IsSolid = IsSolid;
+				Result.Add(Layer);
+			}
+			return Result;
+		}
+
+		private static List<TextureDetails> ParseTilesets(MapDetails Details) {
+			var Textures = new List<TextureDetails>();
+			foreach(XmlNode TilesetNode in Details.MapElement.SelectNodes("tileset")) {
 				if(TilesetNode.ChildNodes.Count != 1)
 					throw new FormatException("Expected a single 'image' child for the children of map.");
 				var ImageNode = TilesetNode.ChildNodes[0];
@@ -71,79 +174,27 @@ namespace CorvEngine.Scenes {
 				});
 			}
 			Textures = Textures.OrderBy(c => c.StartGID).ToList();
-			foreach(XmlNode LayerNode in MapElement.SelectNodes("layer")) {
-				var DataNode = LayerNode.SelectNodes("data").Item(0);
-				string CompressionFormat = DataNode.Attributes["compression"].Value;
-				string EncodingFormat = DataNode.Attributes["encoding"].Value;
-				if(!CompressionFormat.Equals("gzip", StringComparison.InvariantCultureIgnoreCase) || !EncodingFormat.Equals("base64", StringComparison.InvariantCultureIgnoreCase))
-					throw new FormatException("Currently the Tmx loader can only handled base-64 zlib tiles.");
-				string Base64Data = DataNode.InnerXml.Trim();
-				byte[] CompressedData = Convert.FromBase64String(Base64Data);
-				byte[] UncompressedData = new byte[1024]; // NOTE: This must be a multiple of 4.
-				Tile[,] Tiles = new Tile[MapNumTilesWide, MapNumTilesHigh];
-				int MapIndex = 0;
-				using(var GZipStream = new GZipStream(new MemoryStream(CompressedData), CompressionMode.Decompress, false)) {
-					while(true) {
-						int BytesRead = GZipStream.Read(UncompressedData, 0, UncompressedData.Length);
-						if(BytesRead == 0)
-							break;
-						using(BinaryReader Reader = new BinaryReader(new MemoryStream(UncompressedData))) {
-							for(int i = 0; i < BytesRead; i += 4) {
-								int GID = Reader.ReadInt32();
-								int MapX = MapIndex % MapNumTilesWide;
-								int MapY = MapIndex / MapNumTilesWide;
-								MapIndex++;
-								if(GID == 0)
-									continue;
-								var Texture = Textures.Last(c => c.StartGID <= GID);
-								int TextureX = (GID - Texture.StartGID) % Texture.NumTilesWide;
-								int TextureY = (GID - Texture.StartGID) / Texture.NumTilesWide;
-								Rectangle SourceRect = new Rectangle(TextureX * Texture.TileWidth, TextureY * Texture.TileHeight, Texture.TileWidth, Texture.TileHeight);
-								Rectangle Location = new Rectangle(MapX * MapTileWidth, MapY * MapTileHeight, MapTileWidth, MapTileHeight);
-								Tile Tile = new Tile(Texture.Texture, SourceRect, Location, new Vector2(MapX, MapY));
-								Tiles[MapX, MapY] = Tile;
-							}
-						}
-					}
-				}
+			return Textures;
+		}
 
-				bool IsSolid = true;
-				foreach(XmlNode PropertiesNode in LayerNode.SelectNodes("properties")) {
-					foreach(XmlNode Property in PropertiesNode.SelectNodes("property")) {
-						string Name = Property.Attributes["name"].Value;
-						string Value = Property.Attributes["value"].Value;
-						if(Name.Equals("Solid", StringComparison.InvariantCultureIgnoreCase)) {
-							IsSolid = bool.Parse(Value);
-						}
-					}
-				}
-				Layer Layer = new Layer(new Vector2(MapTileWidth, MapTileHeight), Tiles);
-				Layer.IsSolid = IsSolid;
-				Layers.Add(Layer);
+		private struct MapDetails {
+			public int MapNumTilesWide;
+			public int MapNumTilesHigh;
+			public int MapTileWidth;
+			public int MapTileHeight;
+			public int MapWidth;
+			public int MapHeight;
+			public XmlNode MapElement;
+
+			public MapDetails(XmlNode MapElement) {
+				this.MapNumTilesWide = int.Parse(MapElement.Attributes["width"].Value);
+				this.MapNumTilesHigh = int.Parse(MapElement.Attributes["height"].Value);
+				this.MapTileWidth = int.Parse(MapElement.Attributes["tilewidth"].Value);
+				this.MapTileHeight = int.Parse(MapElement.Attributes["tileheight"].Value);
+				this.MapWidth = MapTileWidth * MapNumTilesWide;
+				this.MapHeight = MapTileHeight * MapNumTilesHigh;
+				this.MapElement = MapElement;
 			}
-
-			foreach(XmlNode ObjectGroupNode in MapElement.SelectNodes("objectgroup")) {
-				foreach(XmlNode ObjectNode in ObjectGroupNode.SelectNodes("object")) {
-					int Width = int.Parse(ObjectNode.Attributes["width"].Value);
-					int Height = int.Parse(ObjectNode.Attributes["height"].Value);
-					int X = int.Parse(ObjectNode.Attributes["x"].Value);
-					int Y = int.Parse(ObjectNode.Attributes["y"].Value);
-					string BlueprintName = ObjectNode.Attributes["type"].Value;
-					EntityBlueprint Blueprint = EntityBlueprint.GetBlueprint(BlueprintName);
-					Entity Entity = Blueprint.CreateEntity();
-					Entity.Position = new Vector2(X, Y);
-					Entity.Size = new Vector2(Width, Height);
-					Entities.Add(Entity);
-				}
-			}
-
-			LevelData Result = new LevelData() {
-				DynamicObjects = Entities.ToArray(),
-				Layers = Layers.ToArray(),
-				MapSize = new Vector2(MapWidth, MapHeight),
-				TileSize = new Vector2(MapTileWidth, MapTileHeight)
-			};
-			return Result;
 		}
 
 		private struct TextureDetails {

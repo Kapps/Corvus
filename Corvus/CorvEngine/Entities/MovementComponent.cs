@@ -98,7 +98,7 @@ namespace CorvEngine.Entities
                             continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
                         if (Parent.VelY < 0) // Don't 'fall' on to the tile if we're still going up.
                             continue;
-                        Parent.Y = Tile.Location.Top - Tile.Location.Height; //Just in case... Probably not needed.
+                        Parent.Y = Tile.Location.Top - Tile.Location.Height;
                         AnySolidHit = true;
                         AnyTileHit = true;
                     }

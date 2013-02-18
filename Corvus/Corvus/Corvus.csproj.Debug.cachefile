@@ -1,11 +1,11 @@
 Content\TestTexture.xnb
 Content\Sprites\Player.xnb
 Content\Interface\testbg.xnb
+Content\Interface\HealthBar.xnb
+Content\Sprites\Enemy.xnb
 Content\Fonts\testfont.xnb
 Content\Sprites\TestPlayer.xnb
-Content\Sprites\Enemy.xnb
 Content\Sprites\TestEnemy.xnb
-Content\Interface\HealthBar.xnb
 Content\Tiles\generic_platformer_tiles.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
