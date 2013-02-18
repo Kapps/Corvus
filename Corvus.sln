@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorvEngine", "Corvus\CorvEn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpritePipeline", "SpritePipeline\SpritePipeline.csproj", "{422FCA0F-2D7E-4440-8954-E373CCE2478D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TilePipeline", "TilePipeline\TilePipeline.csproj", "{290C9938-EC8F-4C20-8AC1-FFECB8C53ABA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,10 @@ Global
 		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Debug|x86.Build.0 = Debug|x86
 		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Release|x86.ActiveCfg = Debug|x86
 		{422FCA0F-2D7E-4440-8954-E373CCE2478D}.Release|x86.Build.0 = Debug|x86
+		{290C9938-EC8F-4C20-8AC1-FFECB8C53ABA}.Debug|x86.ActiveCfg = Debug|x86
+		{290C9938-EC8F-4C20-8AC1-FFECB8C53ABA}.Debug|x86.Build.0 = Debug|x86
+		{290C9938-EC8F-4C20-8AC1-FFECB8C53ABA}.Release|x86.ActiveCfg = Debug|x86
+		{290C9938-EC8F-4C20-8AC1-FFECB8C53ABA}.Release|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

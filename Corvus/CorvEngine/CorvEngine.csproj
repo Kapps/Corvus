@@ -167,6 +167,7 @@
     <Compile Include="Scenes\GameStateComponent.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Entities\EntityNode.cs" />
+    <Compile Include="Scenes\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audio\Microsoft.Xna.Framework.Xact.dll" />

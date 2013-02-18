@@ -25,6 +25,9 @@ namespace CorvEngine {
 		private GraphicsDeviceManager _GraphicsManager;
 		private GameStateManager _StateManager;
 		private SpriteBatch _SpriteBatch;
+		private float _TimeSinceFPSUpdate = 0;
+		private int _CurrentFrames;
+		private int _FPS;
 		//private bool _Paused;
 
 		/// <summary>
@@ -101,6 +104,13 @@ namespace CorvEngine {
 		/// </summary>
 		public ContentManager GlobalContent {
 			get { return Game.Content; }
+		}
+
+		/// <summary>
+		/// Gets the number of Update calls that occurred in the last second.
+		/// </summary>
+		public int FPS {
+			get { return _FPS; }
 		}
 
 		/// <summary>
@@ -182,6 +192,7 @@ namespace CorvEngine {
 		private void OnInitialize() {
 			this._GraphicsManager.PreferredBackBufferWidth = 1024;
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
+			this._GraphicsManager.SynchronizeWithVerticalRetrace = false;
 			this._GraphicsManager.ApplyChanges();
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
@@ -203,6 +214,18 @@ namespace CorvEngine {
 			protected override void Initialize() {
 				base.Initialize();
 				_Engine.OnInitialize();
+			}
+
+			protected override void Update(GameTime gameTime) {
+				var Instance = CorvBase._Instance;
+				Instance._TimeSinceFPSUpdate += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+				Instance._CurrentFrames++;
+				if(Instance._TimeSinceFPSUpdate > 1000) {
+					Instance._FPS = Instance._CurrentFrames;
+					Instance._TimeSinceFPSUpdate -= 1000;
+					Instance._CurrentFrames = 0;
+				}
+				base.Update(gameTime);
 			}
 
 			protected override void Draw(GameTime gameTime) {

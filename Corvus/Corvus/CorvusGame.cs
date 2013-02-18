@@ -15,6 +15,8 @@ namespace Corvus {
 			this.RegisterGlobalComponent(new AudioManager(this.Game, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
 			var TestState = new TestState();
 			this.StateManager.PushState(TestState);
+
+			RegisterGlobalComponent(new FrameRateComponent());
 		}		
 	}
 }

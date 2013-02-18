@@ -99,9 +99,9 @@
       <Name>Wave Bank</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Compile Include="Levels\testLevel.tmx">
+    <None Include="Levels\testLevel.tmx">
       <Name>testLevel</Name>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\HealthBar.png">
