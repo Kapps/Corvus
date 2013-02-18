@@ -18,12 +18,7 @@ namespace Corvus {
         // Note that this class is just a hackish mess used to test functionality until more is working.
 
         //Add these to entity or something else eventually?
-        float maxWalkVelocity = 500f;
-        float maxJumpVelocity = 1050f;
-        float gravity = 5000.5f;
-        bool isJumping = false;
-        bool isGrounded = true;
-        bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
+
         Keys jump = Keys.Space;
 
 		Entity entity;
@@ -83,10 +78,10 @@ namespace Corvus {
 
 			switch(mc.CurrDir) {
 				case Direction.Left:
-                    entity.VelX = maxWalkVelocity * -1;
+                    entity.VelX = mc.maxWalkVelocity * -1;
 					break;
 				case Direction.Right:
-                    entity.VelX = maxWalkVelocity;
+                    entity.VelX = mc.maxWalkVelocity;
 					break;
 				case Direction.Up:
 					entity.VelX = 0;
@@ -104,30 +99,30 @@ namespace Corvus {
 
             if (ks.IsKeyDown(jump))
             {
-                if (isJumping == false && isGrounded == true) //Test if able to jump.
+                if (mc.isJumping == false && mc.isGrounded == true) //Test if able to jump.
                 {
-                    isJumping = true;
-                    isGrounded = false;
-                    jumpStart = true;
-                    entity.VelY = maxJumpVelocity * -1;
+                    mc.isJumping = true;
+                    mc.isGrounded = false;
+                    mc.jumpStart = true;
+                    entity.VelY = mc.maxJumpVelocity * -1;
                 }
             }
 
-            if (entity.Y >= (768 - 1) && jumpStart != true) //Test if object is on ground and not beginning a jump.
+            if (entity.Y >= (768 - 1) && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
             {
-                isGrounded = true;
-                isJumping = false;
-                jumpStart = false;
+                mc.isGrounded = true;
+                mc.isJumping = false;
+                mc.jumpStart = false;
                 entity.VelY = 0;
                 entity.Y = 768; //Just in case... Probably not needed.
             }
 
-            if (!isGrounded)
+            if (!mc.isGrounded)
             {
-				entity.VelY += gravity * gameTime.GetTimeScalar();
+                entity.VelY += mc.gravity * gameTime.GetTimeScalar();
             }
 
-            jumpStart = false;
+            mc.jumpStart = false;
 
 			entity.X += entity.VelX * gameTime.GetTimeScalar();
 			entity.Y += entity.VelY * gameTime.GetTimeScalar();
