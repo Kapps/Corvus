@@ -26,10 +26,17 @@ namespace CorvEngine.Scenes {
 		/// </summary>
 		public Rectangle Location { get; private set; }
 
-		public Tile(Texture2D Texture, Rectangle SourceRect, Rectangle Location) {
+		/// <summary>
+		/// Gets the coordinates of this tile within the layer.
+		/// For example, the second tile would have coordinates of {0, 1}.
+		/// </summary>
+		public Vector2 TileCoordinates { get; private set; }
+
+		public Tile(Texture2D Texture, Rectangle SourceRect, Rectangle Location, Vector2 TileCoordinates) {
 			this.Texture = Texture;
 			this.SourceRect = SourceRect;
 			this.Location = Location;
+			this.TileCoordinates = TileCoordinates;
 		}
 	}
 }

@@ -100,7 +100,7 @@ namespace CorvEngine.Scenes {
 								int TextureY = (GID - Texture.StartGID) / Texture.NumTilesWide;
 								Rectangle SourceRect = new Rectangle(TextureX * Texture.TileWidth, TextureY * Texture.TileHeight, Texture.TileWidth, Texture.TileHeight);
 								Rectangle Location = new Rectangle(MapX * MapTileWidth, MapY * MapTileHeight, MapTileWidth, MapTileHeight);
-								Tile Tile = new Tile(Texture.Texture, SourceRect, Location);
+								Tile Tile = new Tile(Texture.Texture, SourceRect, Location, new Vector2(MapX, MapY));
 								Tiles[MapX, MapY] = Tile;
 							}
 						}

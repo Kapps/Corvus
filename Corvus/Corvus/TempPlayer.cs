@@ -117,19 +117,27 @@ namespace Corvus {
 
 			if(!mc.jumpStart) {
 				bool AnyTileHit = false;
-				foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
+				bool AnySolidHit = false;
+				foreach(var Layer in Scene.Layers) {
 					Tile Tile = Layer.GetTileAtPosition(entity.Position + new Vector2((entity.Size / 2).X, entity.Size.Y));
-					if(Tile != null) {
-						mc.isGrounded = true;
-						mc.isJumping = false;
-						mc.jumpStart = false;
-						entity.VelY = 0;
+					if(Tile != null && Layer.IsSolid && Math.Abs(entity.Location.Bottom - Tile.Location.Top) < 0.01f) {
+						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
+						if(TileAbove != null)
+							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
+						if(entity.VelY < 0) // Don't 'fall' on to the tile if we're still going up.
+							continue;
 						entity.Y = Tile.Location.Top - Tile.Location.Height; //Just in case... Probably not needed.
+						AnySolidHit = true;
 						AnyTileHit = true;
-					}
+					} else if(Tile != null)
+						AnyTileHit = true;
 				}
-				if(!AnyTileHit)
+				if(AnySolidHit || !AnyTileHit) {
 					mc.isGrounded = false;
+					mc.isJumping = false;
+					mc.jumpStart = false;
+					entity.VelY = 0;
+				}
 			}
 			mc.jumpStart = false;
 
