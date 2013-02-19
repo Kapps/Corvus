@@ -19,6 +19,10 @@ namespace CorvEngine.Entities
             
         }
 
+        /// <summary>
+        /// Add a new node to the list of nodes.
+        /// </summary>
+        /// <param name="node"></param>
         public void AddNode(Vector2 node)
         {
             if (Nodes.Count() == 0)
@@ -29,6 +33,9 @@ namespace CorvEngine.Entities
 			Nodes.Add(node);
 		}
 
+        /// <summary>
+        /// Sets the current node to the next node, and if it's last one, it loops over to the start.
+        /// </summary>
 		public void NextNode() {
 			if(CurrentNode == Nodes.Last()) {
 				CurrentNode = Nodes.First();
@@ -38,6 +45,10 @@ namespace CorvEngine.Entities
 			}
 		}
 
+        /// <summary>
+        /// Decides which direction the AI should walk to follow the path. Simple x value check.
+        /// </summary>
+        /// <param name="Time"></param>
 		public override void Update(GameTime Time) {
 			Entity entity = this.Parent;
 			MovementComponent mc = entity.GetComponent<MovementComponent>();
@@ -47,10 +58,8 @@ namespace CorvEngine.Entities
 			} else {
 				if(entity.X < CurrentNode.X) {
 					mc.Walk(Direction.Right);
-                    mc.ApplyPhysics(Time, entity.Scene);
 				} else {
 					mc.Walk(Direction.Left);
-                    mc.ApplyPhysics(Time, entity.Scene);
 				}
 			}
 
