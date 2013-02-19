@@ -84,8 +84,8 @@ namespace Corvus {
 				return;
 			if(State == BindState.Pressed)
 				MovementComponent.StartJump(true);
-			else
-				MovementComponent.EndStartJump();
+			//else
+				//MovementComponent.EndStartJump();
 		}
 
 

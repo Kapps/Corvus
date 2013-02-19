@@ -52,7 +52,6 @@ namespace Corvus.GameStates {
 				PlayerEntity.Position = new Vector2(PlayerEntity.Location.Width, 10);
 				PlayerEntity.Velocity = new Vector2(0, 0);
 				mc = PlayerEntity.GetComponent<MovementComponent>();
-				mc.isGrounded = false;
 				var Player = new CorvusPlayer(PlayerEntity);
 				PlayerEntity.Components.Add(new ChaseCameraComponent(Player.Camera));
 				CorvusGame.Instance.AddPlayer(Player);

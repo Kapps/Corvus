@@ -9,14 +9,18 @@ namespace CorvEngine.Entities
 {
     public class MovementComponent : Component
     {
-        public float maxWalkVelocity = 500f;
-        public float maxJumpVelocity = 1050f;
-        public float gravity = 5000.5f;
-        public bool isJumping = false;
-        public bool isGrounded = true;
-        public bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
-        public Direction CurrDir = Direction.Down;
+        float maxWalkVelocity = 500f;
+        float maxJumpVelocity = 1050f;
+        float gravity = 5000.5f;
+        bool isJumping = false;
+        bool isGrounded = false;
+        bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
+        Direction CurrDir = Direction.Down;
 
+        /// <summary>
+        /// Walk in a certain direction. Handles animation. Needs to be called each update.
+        /// </summary>
+        /// <param name="dir"></param>
         public void Walk(Direction dir)
         {
             switch (dir)
@@ -56,6 +60,10 @@ namespace CorvEngine.Entities
             CurrDir = dir;
         }
 
+        /// <summary>
+        /// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
+        /// </summary>
+        /// <param name="allowMulti"></param>
         public void StartJump(bool allowMulti)
         {
             if ((isJumping == false && isGrounded == true) || allowMulti) //Test if able to jump.
@@ -67,11 +75,18 @@ namespace CorvEngine.Entities
             }
         }
 
-        public void EndStartJump()
+        /// <summary>
+        /// Just sets a flag to keep track of whether or not we're starting a jump in this update.
+        /// </summary>
+        private void EndStartJump()
         {
             jumpStart = false;
         }
 
+        /// <summary>
+        /// Handles walking and jumping, depending on flags and values.
+        /// </summary>
+        /// <param name="gameTime"></param>
 		private void ApplyPhysics(GameTime gameTime) {
 
 			Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
@@ -106,23 +121,14 @@ namespace CorvEngine.Entities
 			if(!isGrounded) {
 				Parent.VelY += gravity * gameTime.GetTimeScalar();
 			}
+
+            EndStartJump();
 		}
 
         public override void Update(GameTime Time)
         {
             ApplyPhysics(Time);
-
             base.Update(Time);
         }
-
-        /*Old Physics
-        if (entity.Y >= 1599.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
-        {
-            mc.isGrounded = true;
-            mc.isJumping = false;
-            mc.jumpStart = false;
-            entity.VelY = 0;
-            entity.Y = 1600; //Just in case... Probably not needed.
-        }*/
     }
 }
