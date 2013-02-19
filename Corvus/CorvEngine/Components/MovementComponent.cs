@@ -13,7 +13,7 @@ namespace CorvEngine.Entities
         float maxJumpVelocity = 1050f;
         float gravity = 5000.5f;
         bool isJumping = false;
-        bool isGrounded = false;
+        bool isGrounded = true;
         bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
         Direction CurrDir = Direction.Down;
 
@@ -111,6 +111,7 @@ namespace CorvEngine.Entities
 					} else if(Tile != null)
 						AnyTileHit = true;
 				}
+
 				if(AnySolidHit || !AnyTileHit) {
 					isGrounded = false;
 					jumpStart = false;
@@ -118,6 +119,7 @@ namespace CorvEngine.Entities
 					Parent.VelY = 0;
 				}
 			}
+
 			if(!isGrounded) {
 				Parent.VelY += gravity * gameTime.GetTimeScalar();
 			}
