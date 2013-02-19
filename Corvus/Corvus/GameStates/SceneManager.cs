@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CorvEngine.Components;
 using CorvEngine.Entities.Blueprints;
 using CorvEngine.Scenes;
 
@@ -57,6 +58,7 @@ namespace Corvus.GameStates {
 			if(Scene == null) {
 				Scene = CorvusScene.Load(LevelName);
 				ActiveScenes.Add(Scene);
+				Scene.AddSystem(new PhysicsSystem(Scene));
 				this.AddComponent(Scene);
 			}
 			var OldScene = _ActiveScene;

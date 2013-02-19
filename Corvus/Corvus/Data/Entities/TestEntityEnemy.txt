@@ -17,4 +17,4 @@ MoverEnemy
 	MovementComponent
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy
-	
+	PhysicsComponent

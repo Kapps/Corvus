@@ -17,4 +17,5 @@ Mover
 
 # Show off multiple inheritance / composition.
 TestEntity : PlayerSprite, Healthy, Mover
+	PhysicsComponent
 	

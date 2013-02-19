@@ -127,6 +127,7 @@ namespace CorvEngine.Entities {
 		/// In the future, this may be used to allow providing dependency graph information between Components, but that's not the case yet.
 		/// </summary>
 		protected Component GetDependency(Type ComponentType) {
+			// TODO: We should consider caching dependencies, since getting a component by a type is not exactly very efficient at the moment.
 			var Result = Parent.Components[ComponentType];
 			if(Result == null)
 				throw new MissingDependencyException(this, ComponentType);
