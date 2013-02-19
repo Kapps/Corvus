@@ -75,7 +75,7 @@ namespace Corvus.GameStates {
 				if(Player.Character != null) {
 					OldScene.RemoveEntity(Player.Character);
 					ActiveScene.AddEntity(Player.Character);
-					Player.Character.Position = new Microsoft.Xna.Framework.Vector2(Player.Character.Location.Width + 10, Player.Character.Location.Height + 10);
+					Player.Character.Position = new Microsoft.Xna.Framework.Vector2(Player.Character.Location.Width + 10, Player.Character.Location.Height + 100);
 				}
 			}
 			return _ActiveScene;

@@ -82,11 +82,10 @@ namespace CorvEngine.Entities {
 		/// </summary>
 		/// <param name="gameTime"></param>
 		private void ApplyPhysics(GameTime gameTime) {
-
-			Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
-			Parent.Position += PositionDelta;
 			//entity.X += entity.VelX * gameTime.GetTimeScalar();
 			//entity.Y += entity.VelY * gameTime.GetTimeScalar();
+
+			Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
 
 			if(!jumpStart) {
 				bool AnyTileHit = false;
@@ -111,8 +110,11 @@ namespace CorvEngine.Entities {
 					jumpStart = false;
 					isJumping = false;
 					Parent.VelY = 0;
+					PositionDelta.Y = 0;
 				}
 			}
+
+			Parent.Position += PositionDelta;
 
 			if(!isGrounded) {
 				Parent.VelY += gravity * gameTime.GetTimeScalar();
