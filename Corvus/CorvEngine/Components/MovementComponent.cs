@@ -13,7 +13,7 @@ namespace CorvEngine.Entities
         public float maxJumpVelocity = 1050f;
         public float gravity = 5000.5f;
         public bool isJumping = false;
-        public bool isGrounded = true;
+        public bool isGrounded = false;
         public bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
         public Direction CurrDir = Direction.Down;
 
