@@ -56,6 +56,7 @@
   <ItemGroup>
     <Folder Include="Backgrounds\" />
     <Folder Include="Overlays\" />
+    <Folder Include="Sprites\Items\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\testfont.spritefont">
@@ -128,6 +129,13 @@
   <ItemGroup>
     <Compile Include="Tiles\generic_platformer_tiles.png">
       <Name>generic_platformer_tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\male_sprites.png">
+      <Name>male_sprites</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

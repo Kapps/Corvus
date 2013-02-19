@@ -132,7 +132,6 @@
     <Compile Include="Components\Blueprints\BlueprintParser.cs" />
     <Compile Include="Components\Blueprints\Generators\IdentityValueGenerator.cs" />
     <Compile Include="Components\MissingDependencyException.cs" />
-    <Compile Include="Components\PhysicsComponent.cs" />
     <Compile Include="Components\Blueprints\Generators\PropertyValueGenerator.cs" />
     <Compile Include="Components\Blueprints\Generators\RandomValueGenerator.cs" />
     <Compile Include="Components\SpriteComponent.cs" />
@@ -148,6 +147,7 @@
     <Compile Include="Graphics\SpriteFrame.cs" />
     <Compile Include="Graphics\SpriteFrameCollection.cs" />
     <Compile Include="Graphics\SpriteFrameData.cs" />
+    <Compile Include="PhysicsManager.cs" />
     <Compile Include="Scenes\AlphaTransition.cs" />
     <Compile Include="Scenes\Background.cs" />
     <Compile Include="Input\Bind.cs" />

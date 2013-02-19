@@ -100,7 +100,8 @@ namespace SpritePipeline {
 			// Then, allow for things like {1, 2}	{1, 4}.
 			// When needed anyways. For now just throw.
 			var Start = ReadIndex(FrameData);
-			var End = ReadIndex(FrameData);
+			string EndData = Reader.Read();
+			var End = ReadIndex(EndData);
 			int StartIndex = CoordsToIndex(Start, Header);
 			int EndIndex = CoordsToIndex(End, Header);
 			for(int i = StartIndex; i <= EndIndex; i++) {
@@ -113,7 +114,7 @@ namespace SpritePipeline {
 		}
 
 		private Tuple<int, int> IndexToCoords(int Index, SpriteHeader Header) {
-			return new Tuple<int, int>(Index / Header.Columns + 1, Index % Header.Columns + 1);
+			return new Tuple<int, int>(Index % Header.Columns + 1, Index / Header.Columns + 1);
 		}
 
 		private SpriteHeader ReadHeader(string Header, ContentProcessorContext Context) {

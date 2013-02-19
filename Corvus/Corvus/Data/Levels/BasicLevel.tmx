@@ -16,7 +16,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XywnCQBSF4cleO9E2fEZRLELBLixFt+LCTrQIXWsFHhcBGYwxmQmTx//BWWZy50DgxhgAAAAAAAAAAAAAAJDYK4eKvz/0jC5+zV7G3X13Vefuv3G9T9P6CK1onzfl7nmWt6x5XL/nkMrqDIBfnciYbhR6ivrqqbs+/RUWq7uZMm9RhwNlqIyUsTJRpkqsLJRlSlbWs3aSM5okbddZK5uPbHOcaT9b5Ay4YUf056JcQw+Rocr/LA/lGXoIoAKS/WIXZaeJ+4YPR3Vz/iOnFu28edCfm7T9ln0XAOrjBQ+r6PyAPgAA
+   H4sIAAAAAAAAC+3Xy23CQBSF4fGedBLagCQ8E4oIEogi2PIoArYoi3SSFJGskwo4CCwhC2PwjBl7+D/pLGe4PhLWtTEAAAAAAAAAAAAAACC2UtYl/33fM9o4N3sRz+66qyp3f4rt84TWh295+/xRfh3PspM1j+3/2aeiOgPgVi0y5iHyPUV1Paq7Ov3l1lZ3HaV7Rx02lKbypDwrL0pLaSt95TUlg8TZZOI7QpK267wrw6OMrrgzeTbPHbDDjujOl/Lte4gMZf5m+VP+fQ8BlEC8X0yj7IS4b7iwUTefF+TjsPN2lZ7Z735vKdntflV4z7twbX+XSr7nRzo/PmQS0PdH2n7ret+dqbO5slCWAfV3Sxv6s0J/dujPTtH9bQFcrBqVgD4AAA==
   </data>
  </layer>
  <layer name="Objects" width="80" height="50">
@@ -24,7 +24,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WTQ7BUBiFYfaCoVVgInaBmYEtMDZgEQz8JCyCgb+N6B4cSQcmrcqN+92r75OcSAfS09M0baUCAAAAAAAAAAAAAPgnE2Ua+PmtO7rI6/6La495Kx9c9/nm/z2H85RF3p4jn0VSn+6v6/Ps08y6QKTWykbZKjvjLjE6KxflqtyUu22dKD2UxLoESq9ZtW6AGPCt6ybEb7W5srAuUVCI++2Vg3WJgkLcLyQ1vQfrSiPjfch++Vrara10Cuy3VFY+SkWkr90GylAZpxt209/XcfJ2fFROFiUBAACADE+KtkBegD4AAA==
+   H4sIAAAAAAAAC+3WPU4CQRjGcejlFkCFcAmgETiF2FlwBagp8BBYCCZyCCzk4yJyBx+SLSxkGZg47wz7/yVPyG5g590HyE6pBAAAAAAAAAAAAAC4JWNlEvn61jP6yJv9P+495a5C8O3nks/3PdYpirw+n0MOkjn3/fr+n0OaWg+QqDdloSyVd+NZUvSlbJStslP2tuMk6Vs5WA+BwmuWrSdACtjr+olxrzZTXqyHcBRjfx/KynoIRzH2F5OqnoM1pX7ieUh/+drqraN0HfqbK68hhkrIo3obKk/KKOvwIXs9Hh9+Ha+VT8/17nStSsH3fk2l5fC++h/nGuruvsz++RrH33FP6SsD+gMA4Gb8ACV7SZeAPgAA
   </data>
  </layer>
  <layer name="Object Extensions" width="80" height="50">
@@ -32,7 +32,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XSwqDMBQFUB0XuhUtusLWjQhdaONIJ6mfKAlyDlzIIJ+XkAxSVQAAAAAAAADAZFy0v4Wun1rjO+RzYNwZ/tV+xd739B82zHc3qXcp93u5m9LOc62e1PcMsOZRz+1nHe8HWzQhbcgrki6kz1ZdHjn/BQAAAACU7wfUhSNugD4AAA==
+   H4sIAAAAAAAAC+3XQQqDMBAFUF0LvUqVesK2FxG8Wu9hutJFrdZoE+Q9+DBINGNIFikKAAAAAAAAAOCtm9R9pvPH9ngPeWx4bw/fej/i338Z/1zxvbOJ3Uupz8vZ5LaeS/3EnmeAJVU51pdyfhyscQ2pQ5qZ3ELaZN2lkfJeAADs7zWp3cX5F3stXvfhmXUFIBcDgcJem4A+AAA=
   </data>
  </layer>
  <objectgroup name="Enemies" width="80" height="50">

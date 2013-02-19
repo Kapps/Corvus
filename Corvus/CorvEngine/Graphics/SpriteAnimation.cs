@@ -92,6 +92,7 @@ namespace CorvEngine.Graphics {
 				if(_IsLooped) {
 					_Index = 0;
 				} else {
+					_Index--; // Stay at the last frame.
 					_IsComplete = true;
 					if(AnimationComplete != null)
 						AnimationComplete(this, new EventArgs());
