@@ -16,7 +16,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XywnCQBRG4Zm9dqJtGB9RDBahYBeWoltxYSdahK61Av9NQAaGPGEyyfngLDNc7urGGAAAAAAAAAAAAAAAAJRxVpfQQwCOl3qHHiIy7AyIw8gaM7ahp4jXRLubsr/aUu1urTYD2uFMJWquFmqpVipVW5V52jnfuuVv9Invv2CvDn8dK7zpflvnDTTDjdieh3qGHqJAl//vP+obegigA/L74mSL6+O90YardnMv0W1AN28V7K8Z333LvQsA8fgBKJgO+YA+AAA=
+   H4sIAAAAAAAAC+3XywnCQBSF4cleO9E2fEZRLELBLixFt+LCTrQIXWsFHhcBGYwxmQmTx//BWWZy50DgxhgAAAAAAAAAAAAAAJDYK4eKvz/0jC5+zV7G3X13Vefuv3G9T9P6CK1onzfl7nmWt6x5XL/nkMrqDIBfnciYbhR6ivrqqbs+/RUWq7uZMm9RhwNlqIyUsTJRpkqsLJRlSlbWs3aSM5okbddZK5uPbHOcaT9b5Ay4YUf056JcQw+Rocr/LA/lGXoIoAKS/WIXZaeJ+4YPR3Vz/iOnFu28edCfm7T9ln0XAOrjBQ+r6PyAPgAA
   </data>
  </layer>
  <layer name="Objects" width="80" height="50">
@@ -24,7 +24,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WOw4BYRiF4bEXlFaBRuwCncJCFCyCwiVhERRuGzF7cCRTaIZJJM7/xfskbybTnXzNTJYBAAAAAAAAAAAAAADgk757QHBj94Dgpu4BQa3UWm3U1rwlopM6q4u6qpt3Tkh3lbtH4O+1au4FiIB/3e+k+K82U3P3iIpSvN9O7d0jKkrxfimp6zvYUM2S7yH3e6+tu3VUt8L9Fmr5i1GBDHS3oRqpSXHDXvF8vucv7wd1dIwEAAAASjwAViEsB4A+AAA=
+   H4sIAAAAAAAAC+3WTQ7BUBiFYfaCoVVgInaBmYEtMDZgEQz8JCyCgb+N6B4cSQcmrcqN+92r75OcSAfS09M0baUCAAAAAAAAAAAAAPgnE2Ua+PmtO7rI6/6La495Kx9c9/nm/z2H85RF3p4jn0VSn+6v6/Ps08y6QKTWykbZKjvjLjE6KxflqtyUu22dKD2UxLoESq9ZtW6AGPCt6ybEb7W5srAuUVCI++2Vg3WJgkLcLyQ1vQfrSiPjfch++Vrara10Cuy3VFY+SkWkr90GylAZpxt209/XcfJ2fFROFiUBAACADE+KtkBegD4AAA==
   </data>
  </layer>
  <layer name="Object Extensions" width="80" height="50">
@@ -32,7 +32,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XIQ6AMAxA0U2TcBUg44Tj4tShNnAVvJf8pKKitqUAAAAAAAAAAH/Royv7CACAF0t95rWO9+CLLdqjY1CLzrTrcvgLAAAAAJi5AbGIkSWAPgAA
+   H4sIAAAAAAAAC+3XSwqDMBQFUB0XuhUtusLWjQhdaONIJ6mfKAlyDlzIIJ+XkAxSVQAAAAAAAADAZFy0v4Wun1rjO+RzYNwZ/tV+xd739B82zHc3qXcp93u5m9LOc62e1PcMsOZRz+1nHe8HWzQhbcgrki6kz1ZdHjn/BQAAAACU7wfUhSNugD4AAA==
   </data>
  </layer>
  <objectgroup name="Enemies" width="80" height="50">
