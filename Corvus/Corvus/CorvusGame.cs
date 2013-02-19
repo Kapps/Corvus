@@ -65,7 +65,7 @@ namespace Corvus {
 			// TODO: Allow support for different 'classes' by just using different blueprints.
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			var PlayerEntity = Blueprint.CreateEntity();
-			PlayerEntity.Size = new Vector2(64, 48);
+			PlayerEntity.Size = new Vector2(48, 32);
 			PlayerEntity.Position = new Vector2(PlayerEntity.Location.Width, 100);
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);

@@ -147,7 +147,6 @@
     <Compile Include="Graphics\SpriteFrame.cs" />
     <Compile Include="Graphics\SpriteFrameCollection.cs" />
     <Compile Include="Graphics\SpriteFrameData.cs" />
-    <Compile Include="PhysicsManager.cs" />
     <Compile Include="Scenes\AlphaTransition.cs" />
     <Compile Include="Scenes\Background.cs" />
     <Compile Include="Input\Bind.cs" />

@@ -92,7 +92,7 @@ namespace CorvEngine.Entities {
 				bool AnySolidHit = false;
 				foreach(var Layer in Parent.Scene.Layers) {
 					Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
-					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y + 0.1f)) {
+					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y) + 1.1f) {
 						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
 						if(TileAbove != null)
 							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.

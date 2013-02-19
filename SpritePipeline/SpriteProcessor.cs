@@ -38,7 +38,7 @@ namespace SpritePipeline {
 				for(int x = 0; x < Header.Columns; x++) {
 					int StartY = y * GridSize.Item2;
 					int StartX = x * GridSize.Item1;
-					Rectangle Source = new Rectangle(StartX, StartY, GridSize.Item1, GridSize.Item2);
+					Rectangle Source = new Rectangle(StartX + Header.Margins.Left, StartY + Header.Margins.Top, GridSize.Item1 - Header.Margins.Right, GridSize.Item2 - Header.Margins.Bottom);
 					string FrameName = IndexToName(new Tuple<int, int>(x + 1, y + 1));
 					SpriteFrameDataContent FrameData = new SpriteFrameDataContent() {
 						Name = FrameName,
@@ -118,9 +118,17 @@ namespace SpritePipeline {
 		}
 
 		private SpriteHeader ReadHeader(string Header, ContentProcessorContext Context) {
-			int IndexTab = Header.IndexOf('\t');
-			string FileName = Header.Substring(0, IndexTab);
-			string RawSize = Header.Substring(IndexTab).Trim();
+			var Reader = CreateReader(Header);
+			string FileName = Reader.Read();
+			string RawSize = Reader.Read();
+			Rectangle Margins = Rectangle.Empty;
+			if(Reader.HasMore()) {
+				string MarginLeftTop = Reader.Read();
+				string MarginBottomRight = Reader.Read();
+				var MLT = ReadIndex(MarginLeftTop);
+				var MBR = ReadIndex(MarginBottomRight);
+				Margins = new Rectangle(MLT.Item1, MLT.Item2, MBR.Item1, MBR.Item2);
+			}
 			var Size = ReadIndex(RawSize);
 			var TextureReference = new ExternalReference<Texture2DContent>(FileName);
 			var Texture = (Texture2DContent)Context.BuildAndLoadAsset<Texture2DContent, TextureContent>(TextureReference, "TextureProcessor");
@@ -128,7 +136,8 @@ namespace SpritePipeline {
 				Columns = Size.Item1,
 				Rows = Size.Item2,
 				Name = Path.GetFileNameWithoutExtension(FileName),
-				Texture = Texture
+				Texture = Texture,
+				Margins = Margins
 			};
 		}
 
@@ -178,6 +187,7 @@ namespace SpritePipeline {
 			public string Name;
 			public int Rows;
 			public int Columns;
+			public Rectangle Margins;
 		}
 
 		/// <summary>
