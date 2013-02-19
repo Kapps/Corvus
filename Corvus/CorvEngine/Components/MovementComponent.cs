@@ -10,9 +10,9 @@ namespace CorvEngine.Entities {
 		float maxWalkVelocity = 500f;
 		float maxJumpVelocity = 1050f;
 		float gravity = 5000.5f;
-		bool isJumping = false;
-		bool isGrounded = true;
-		bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
+		bool isJumping;
+		bool isGrounded;
+		bool jumpStart; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
 		Direction CurrDir = Direction.Down;
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace CorvEngine.Entities {
 				}
 
 				if(AnySolidHit || !AnyTileHit) {
-					isGrounded = false;
+					isGrounded = true;
 					jumpStart = false;
 					isJumping = false;
 					Parent.VelY = 0;
