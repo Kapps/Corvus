@@ -91,28 +91,33 @@ namespace CorvEngine.Scenes {
 		protected override void OnDraw(GameTime Time) {
 			// TODO: Call this once for each player after setting Viewport and Camera.
 			// TODO: Would be nice to do some sort of spacial partitioning here, but we don't yet.
-			var StartTile = Camera.Active.Position / TileSize;
-			var EndTile = (Camera.Active.Position + Camera.Active.Size) / TileSize;
-			var SpriteBatch = CorvBase.Instance.SpriteBatch;
+			foreach(var Player in CorvBase.Instance.Players) {
+				Camera.Active = Player.Camera; // TODO: These should all be different Viewports.
+				var Viewport = CorvBase.Instance.GraphicsDevice.Viewport;
+				Camera.Active.Size = new Vector2(Viewport.Width, Viewport.Height);
+				var StartTile = Camera.Active.Position / TileSize;
+				var EndTile = (Camera.Active.Position + Camera.Active.Size) / TileSize;
+				var SpriteBatch = CorvBase.Instance.SpriteBatch;
 
-			int StartX = Math.Max((int)StartTile.X, 0);
-			int StartY = Math.Max((int)StartTile.Y, 0);
-			int EndX = Math.Min((int)(EndTile.X + 0.5f), (int)TilesInMap.X - 1);
-			int EndY = Math.Min((int)(EndTile.Y + 0.5f), (int)TilesInMap.Y - 1);
-			foreach(var Layer in _Layers) {
-				for(int y = StartY; y <= EndY; y++) {
-					for(int x = StartX; x <= EndX; x++) {
-						Tile Tile = Layer.GetTile(x, y);
-						if(Tile == null)
-							continue;
-						var ScreenCoords = Camera.Active.ScreenToWorld(new Vector2(Tile.Location.X, Tile.Location.Y));
-						SpriteBatch.Draw(Tile.Texture, new Rectangle((int)ScreenCoords.X, (int)ScreenCoords.Y, Tile.Location.Width, Tile.Location.Height), Tile.SourceRect, Color.White);
+				int StartX = Math.Max((int)StartTile.X, 0);
+				int StartY = Math.Max((int)StartTile.Y, 0);
+				int EndX = Math.Min((int)(EndTile.X + 0.5f), (int)TilesInMap.X - 1);
+				int EndY = Math.Min((int)(EndTile.Y + 0.5f), (int)TilesInMap.Y - 1);
+				foreach(var Layer in _Layers) {
+					for(int y = StartY; y <= EndY; y++) {
+						for(int x = StartX; x <= EndX; x++) {
+							Tile Tile = Layer.GetTile(x, y);
+							if(Tile == null)
+								continue;
+							var ScreenCoords = Camera.Active.ScreenToWorld(new Vector2(Tile.Location.X, Tile.Location.Y));
+							SpriteBatch.Draw(Tile.Texture, new Rectangle((int)ScreenCoords.X, (int)ScreenCoords.Y, Tile.Location.Width, Tile.Location.Height), Tile.SourceRect, Color.White);
+						}
 					}
 				}
-			}
-			foreach(var Entity in _Entities) {
-				if(Camera.Active.Contains(Entity))
-					Entity.Draw();
+				foreach(var Entity in _Entities) {
+					if(Camera.Active.Contains(Entity))
+						Entity.Draw();
+				}
 			}
 		}
 

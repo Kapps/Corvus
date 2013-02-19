@@ -10,6 +10,6 @@ namespace CorvEngine.Scenes {
 	/// </summary>
 	public class Background {
 
-		private Texture2D _Texture;
+		//private Texture2D _Texture;
 	}
 }

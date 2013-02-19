@@ -23,11 +23,17 @@ namespace CorvEngine {
 		public Camera Camera { get; private set; }
 
 		/// <summary>
+		/// Gets the character that this player is controlling.
+		/// </summary>
+		public Entity Character { get; private set; }
+
+		/// <summary>
 		/// Creates a new Player with an InputManager attached to it.
 		/// </summary>
-		public Player() {
+		public Player(Entity Character) {
 			this.InputManager = new InputManager(this);
 			this.Camera = new Camera();
+			this.Character = Character;
 		}
 
 		/// <summary>

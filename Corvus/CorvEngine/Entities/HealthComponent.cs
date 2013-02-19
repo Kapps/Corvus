@@ -32,10 +32,17 @@ namespace CorvEngine.Entities {
 		public float CurrentHealth {
 			get { return _CurrentHealth; }
 			set {
+				if(_IsDead && value > 0)
+					throw new NotSupportedException("Unable to edit current health of a dead HealthComponent.");
 				value = Math.Min(MaxHealth, Math.Max(value, 0));
 				_CurrentHealth = value;
 				if(this.CurrentHealthChanged != null)
 					CurrentHealthChanged(this);
+				if(CurrentHealth == 0) {
+					_IsDead = true;
+					if(this.Died != null)
+						this.Died(this);
+				}
 			}
 		}
 
@@ -46,6 +53,8 @@ namespace CorvEngine.Entities {
 		public float MaxHealth {
 			get { return _MaxHealth; }
 			set {
+				if(_IsDead && value > 0)
+					throw new NotSupportedException("Unable to edit max health of a dead HealthComponent.");
 				float CurrPercent = CurrentHealth / MaxHealth;
 				_MaxHealth = value;
 				if(MaxHealthChanged != null)
@@ -67,5 +76,6 @@ namespace CorvEngine.Entities {
 
 		private float _CurrentHealth = 100;
 		private float _MaxHealth = 100;
+		private bool _IsDead = false;
 	}
 }

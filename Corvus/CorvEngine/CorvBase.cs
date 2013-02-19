@@ -25,6 +25,7 @@ namespace CorvEngine {
 		private GraphicsDeviceManager _GraphicsManager;
 		private GameStateManager _StateManager;
 		private SpriteBatch _SpriteBatch;
+		private FrameInvoker _FrameInvoker;
 		private float _TimeSinceFPSUpdate = 0;
 		private int _CurrentFrames;
 		private int _FPS;
@@ -107,6 +108,14 @@ namespace CorvEngine {
 		}
 
 		/// <summary>
+		/// Gets a global component that can be used to invoke a command exactly once per frame.
+		/// This is particularly useful when using events that start and stop triggering a command, such as movement binds.
+		/// </summary>
+		public FrameInvoker FrameInvoker {
+			get { return _FrameInvoker; }
+		}
+
+		/// <summary>
 		/// Gets the number of Update calls that occurred in the last second.
 		/// </summary>
 		public int FPS {
@@ -167,6 +176,7 @@ namespace CorvEngine {
 			if(Players.Contains(Player))
 				throw new ArgumentException("The given Player was already part of the game.");
 			this._Players.Add(Player);
+			this.RegisterGlobalComponent(Player.InputManager);
 			if(this.PlayerAdded != null)
 				this.PlayerAdded(Player);
 		}
@@ -178,6 +188,7 @@ namespace CorvEngine {
 			bool removed = _Players.Remove(Player);
 			if(!removed)
 				throw new KeyNotFoundException("The given Player was not registered with the game engine.");
+			this.RemoveGlobalComponent(Player.InputManager);
 			if(this.PlayerRemoved != null)
 				this.PlayerRemoved(Player);
 		}
@@ -204,6 +215,9 @@ namespace CorvEngine {
 #endif
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
+			this._FrameInvoker = new FrameInvoker();
+
+			this.RegisterGlobalComponent(this._FrameInvoker);
 			this.RegisterGlobalComponent(this._StateManager);
 			this.Initialize();
 		}

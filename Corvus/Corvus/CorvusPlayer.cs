@@ -10,10 +10,6 @@ namespace Corvus {
 	/// Provides an implementation of Player to be used in Corvus.
 	/// </summary>
 	class CorvusPlayer : Player {
-
-		/// <summary>
-		/// Gets the character that this player is currently controlling, if any.
-		/// </summary>
-		public Character Character { get; private set; }
+		public CorvusPlayer(Entity Character) : base(Character) { }
 	}
 }

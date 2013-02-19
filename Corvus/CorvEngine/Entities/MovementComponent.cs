@@ -72,48 +72,41 @@ namespace CorvEngine.Entities
             jumpStart = false;
         }
 
-        public void ApplyPhysics(GameTime gameTime, Scene Scene)
-        {
-            if (!isGrounded)
-            {
-                Parent.VelY += gravity * gameTime.GetTimeScalar();
-            }
+		public void ApplyPhysics(GameTime gameTime, Scene Scene) {
 
-            Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
-            Parent.Position += PositionDelta;
-            //entity.X += entity.VelX * gameTime.GetTimeScalar();
-            //entity.Y += entity.VelY * gameTime.GetTimeScalar();
+			Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
+			Parent.Position += PositionDelta;
+			//entity.X += entity.VelX * gameTime.GetTimeScalar();
+			//entity.Y += entity.VelY * gameTime.GetTimeScalar();
 
-            if (!jumpStart)
-            {
-                bool AnyTileHit = false;
-                bool AnySolidHit = false;
-                foreach (var Layer in Scene.Layers)
-                {
-                    Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
-                    if (Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y + 0.1f))
-                    {
-                        var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
-                        if (TileAbove != null)
-                            continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
-                        if (Parent.VelY < 0) // Don't 'fall' on to the tile if we're still going up.
-                            continue;
-                        Parent.Y = Tile.Location.Top - Tile.Location.Height;
-                        AnySolidHit = true;
-                        AnyTileHit = true;
-                    }
-                    else if (Tile != null)
-                        AnyTileHit = true;
-                }
-                if (AnySolidHit || !AnyTileHit)
-                {
-                    isGrounded = false;
-                    isJumping = false;
-                    jumpStart = false;
-                    Parent.VelY = 0;
-                }
-            }
-        }
+			if(!jumpStart) {
+				bool AnyTileHit = false;
+				bool AnySolidHit = false;
+				foreach(var Layer in Scene.Layers) {
+					Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
+					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y + 0.1f)) {
+						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
+						if(TileAbove != null)
+							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
+						if(Parent.VelY < 0) // Don't 'fall' on to the tile if we're still going up.
+							continue;
+						Parent.Y = Tile.Location.Top - Tile.Location.Height;
+						AnySolidHit = true;
+						AnyTileHit = true;
+					} else if(Tile != null)
+						AnyTileHit = true;
+				}
+				if(AnySolidHit || !AnyTileHit) {
+					isGrounded = false;
+					jumpStart = false;
+					isJumping = false;
+					Parent.VelY = 0;
+				}
+			}
+			if(!isGrounded) {
+				Parent.VelY += gravity * gameTime.GetTimeScalar();
+			}
+		}
 
         /*Old Physics
         if (entity.Y >= 1599.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.
