@@ -65,7 +65,7 @@ namespace CorvEngine.Entities {
 
 		public override void Draw() {
 			var Width = Parent.Size.X;
-			var Height = Parent.Size.X * 0.20f;
+			var Height = Parent.Size.X * 0.15f;
 			var Location = Parent.Position - new Vector2(0, Height + 5);
 			var ToScreen = Camera.Active.ScreenToWorld(Location);
 			Color HealthColor = Color.Lerp(Color.Red, Color.Green, CurrentHealth / MaxHealth);

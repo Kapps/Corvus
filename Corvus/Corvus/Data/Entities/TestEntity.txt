@@ -18,4 +18,5 @@ Mover
 # Show off multiple inheritance / composition.
 TestEntity : PlayerSprite, Healthy, Mover
 	PhysicsComponent
-	
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

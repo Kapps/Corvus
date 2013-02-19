@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine.Entities.Blueprints {
+namespace CorvEngine.Entities {
 	/// <summary>
 	/// Provides a collection of Components, accessible by name or type.
 	/// </summary>

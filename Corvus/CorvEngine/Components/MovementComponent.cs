@@ -15,7 +15,7 @@ namespace CorvEngine.Entities {
 
 		public override void Initialize() {
 			base.Initialize();
-			Physics = (PhysicsComponent)this.GetDependency(typeof(PhysicsComponent));
+			Physics = GetDependency<PhysicsComponent>();
 		}
 
 		/// <summary>

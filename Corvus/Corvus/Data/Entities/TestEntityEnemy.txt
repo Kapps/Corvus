@@ -18,3 +18,9 @@ MoverEnemy
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy
 	PhysicsComponent
+	CollisionDamageComponent
+		Damage: Random(30, 50)
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)

@@ -26,6 +26,7 @@ namespace CorvEngine.Entities {
 		private ComponentCollection _Components;
 		private bool _IsInitialized;
 		private Scene _Scene;
+		private bool _IsDisposed;
 
 		/// <summary>
 		/// Gets an event called when the position of this entity changes.
@@ -61,6 +62,13 @@ namespace CorvEngine.Entities {
 		/// </summary>
 		public Scene Scene {
 			get { return _Scene; }
+		}
+
+		/// <summary>
+		/// Indicates if this Entity has been disposed of, marking it invalid.
+		/// </summary>
+		public bool IsDisposed {
+			get { return _IsDisposed; }
 		}
 
 		/// <summary>
@@ -178,11 +186,13 @@ namespace CorvEngine.Entities {
 		/// <summary>
 		/// Disposes of this Entity and all of it's Components, removing them from the Scene.
 		/// </summary>
-		public void Dispose() {
+		public virtual void Dispose() {
+			if(_IsDisposed)
+				return;
+			_IsDisposed = true;
+			Scene.RemoveEntity(this);
 			foreach(var Component in this.Components)
 				Component.Dispose();
-			// TODO: This will of course break things if it's Scene that's disposing us because we were removed.
-			Scene.RemoveEntity(this);
 		}
 
 		public override string ToString() {

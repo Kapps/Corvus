@@ -135,19 +135,30 @@ namespace CorvEngine.Components {
 					Interlocked.Increment(ref TasksComplete);
 				});
 			}
+
+			HashSet<CollisionInfo> CurrentCollisions = new HashSet<CollisionInfo>();
 			while(true) {
 				bool FinishedAllTasks = TasksComplete == AllComponents.Length; // Has to be before inner while loop.
 				CollisionInfo Collision;
-				while(Collisions.TryPop(out Collision))
-					Collision.First.NotifyCollision(Collision.Second);
+				while(Collisions.TryPop(out Collision)) {
+					if(!PreviousCollisions.Contains(Collision)) {
+						Collision.First.NotifyCollision(Collision.Second);
+					}
+					CurrentCollisions.Add(Collision);
+				}
 				if(FinishedAllTasks)
 					break;
 			}
+			PreviousCollisions = CurrentCollisions;
 		}
 
 		protected override void OnDraw() {
 			
 		}
+
+		private float _Gravity = 5000;
+		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(20);
+		private HashSet<CollisionInfo> PreviousCollisions = new HashSet<CollisionInfo>();
 
 		private struct CollisionInfo {
 			public PhysicsComponent First;
@@ -162,7 +173,5 @@ namespace CorvEngine.Components {
 				return ci.First == First && ci.Second == Second;
 			}
 		}
-		private float _Gravity = 5000;
-		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(100);
 	}
 }

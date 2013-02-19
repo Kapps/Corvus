@@ -96,6 +96,10 @@
     <Compile Include="Audio\CorvCue.cs" />
     <Compile Include="Audio\CorvMusicCue.cs" />
     <Compile Include="Audio\CorvSoundEffectCue.cs" />
+    <Compile Include="Components\Blueprints\Generators\EnumValueGenerator.cs" />
+    <Compile Include="Components\ClassificationComponent.cs" />
+    <Compile Include="Components\CollisionDamageComponent.cs" />
+    <Compile Include="Components\CollisionEventComponent.cs" />
     <Compile Include="Components\PhysicsComponent.cs" />
     <Compile Include="Components\PhysicsSystem.cs" />
     <Compile Include="Components\System.cs" />
@@ -122,7 +126,7 @@
     <Compile Include="Components\Blueprints\Generators\CollectionValueGenerator.cs" />
     <Compile Include="Components\Blueprints\Generators\ColorValueGenerator.cs" />
     <Compile Include="Components\Component.cs" />
-    <Compile Include="Components\Blueprints\ComponentCollection.cs" />
+    <Compile Include="Components\ComponentCollection.cs" />
     <Compile Include="Components\Blueprints\ComponentProperty.cs" />
     <Compile Include="Components\Blueprints\ComponentBlueprint.cs" />
     <Compile Include="Components\HealthComponent.cs" />

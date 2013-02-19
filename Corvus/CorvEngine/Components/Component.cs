@@ -87,7 +87,7 @@ namespace CorvEngine.Entities {
 			if(_IsDisposed)
 				throw new ObjectDisposedException("Unable to dispose of a disposed object.", (Exception)null);
 			this._IsDisposed = true;
-			if(Parent != null)
+			if(Parent != null && !Parent.IsDisposed)
 				Parent.Components.Remove(this.Name);
 			if(this.Disposed != null)
 				this.Disposed(this);
@@ -126,12 +126,12 @@ namespace CorvEngine.Entities {
 		/// Returns the first Component of the specified type, throwing a MissingDependencyException if it's not found.
 		/// In the future, this may be used to allow providing dependency graph information between Components, but that's not the case yet.
 		/// </summary>
-		protected Component GetDependency(Type ComponentType) {
+		protected T GetDependency<T>() where T : Component {
 			// TODO: We should consider caching dependencies, since getting a component by a type is not exactly very efficient at the moment.
-			var Result = Parent.Components[ComponentType];
+			var Result = Parent.Components[typeof(T)];
 			if(Result == null)
-				throw new MissingDependencyException(this, ComponentType);
-			return Result;
+				throw new MissingDependencyException(this, typeof(T));
+			return (T)Result;
 		}
 
 		public override string ToString() {

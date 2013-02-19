@@ -18,6 +18,11 @@ namespace CorvEngine.Components {
 	public class PhysicsComponent : Component {
 
 		/// <summary>
+		/// An event raised when this Entity collides with a different Entity.
+		/// </summary>
+		public event CollisionDelegate Collided;
+
+		/// <summary>
 		/// Gets the velocity of this entity.
 		/// </summary>
 		public Vector2 Velocity {
@@ -81,7 +86,8 @@ namespace CorvEngine.Components {
 		/// Notifies this PhysicsComponent that a collision occurred with the other component.
 		/// </summary>
 		public void NotifyCollision(PhysicsComponent Other) {
-
+			if(this.Collided != null)
+				this.Collided(this, Other);
 		}
 
 		private float _GravityCoefficient = 1;
