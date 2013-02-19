@@ -45,6 +45,8 @@ namespace Corvus {
 		void CorvusGame_PlayerAdded(Player obj) {
 			if(SceneManager.ActiveScene != null)
 				SceneManager.ActiveScene.AddEntity(obj.Character);
+			var CameraComponent = new ChaseCameraComponent(obj.Camera);
+			obj.Character.Components.Add(CameraComponent);
 		}
 
 		protected override void Initialize() {
