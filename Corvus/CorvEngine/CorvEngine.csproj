@@ -96,6 +96,9 @@
     <Compile Include="Audio\CorvCue.cs" />
     <Compile Include="Audio\CorvMusicCue.cs" />
     <Compile Include="Audio\CorvSoundEffectCue.cs" />
+    <Compile Include="Components\PhysicsComponent.cs" />
+    <Compile Include="Components\PhysicsSystem.cs" />
+    <Compile Include="Components\System.cs" />
     <Compile Include="Controls\Border.cs" />
     <Compile Include="Controls\ControlManager.cs" />
     <Compile Include="Controls\Image.cs" />

@@ -19,6 +19,16 @@ namespace CorvEngine.Scenes {
 		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
 
 		/// <summary>
+		/// An event raised when an Entity is added to this Scene, called after the Entity is initialized.
+		/// </summary>
+		public event Action<Entity> EntityAdded;
+		
+		/// <summary>
+		/// An event raised when an Entity is removed from this Scene, called before the Entity is disposed.
+		/// </summary>
+		public event Action<Entity> EntityRemoved;
+
+		/// <summary>
 		/// Creates a Scene with the given LevelData.
 		/// </summary>
 		public Scene(LevelData Data, GameState State)
@@ -37,6 +47,13 @@ namespace CorvEngine.Scenes {
 		/// </summary>
 		public IEnumerable<Layer> Layers {
 			get { return _Layers; }
+		}
+
+		/// <summary>
+		/// Gets the Entities contained within this Scene.
+		/// </summary>
+		public IEnumerable<Entity> Entities {
+			get { return _Entities; }
 		}
 
 		/// <summary>
@@ -69,6 +86,8 @@ namespace CorvEngine.Scenes {
 			var Node = this._Entities.AddLast(Entity);
 			Entity.NodeReference = new EntityNode(Entity, Node);
 			Entity.Initialize(this);
+			if(this.EntityAdded != null)
+				this.EntityAdded(Entity);
 		}
 
 		/// <summary>
@@ -76,16 +95,35 @@ namespace CorvEngine.Scenes {
 		/// </summary>
 		/// <param name="Entity"></param>
 		public void RemoveEntity(Entity Entity) {
+			if(this.EntityRemoved != null)
+				this.EntityRemoved(Entity);
 			var Node = (NodeType)Entity.NodeReference.Node;
 			_Entities.Remove(Node);
 			Entity.NodeReference = null;
 		}
 
 		/// <summary>
+		/// Adds the specified System to be part of this Scene.
+		/// </summary>
+		public void AddSystem(Components.System System) {
+			// TODO: Should really share a common type/interface with Entity...
+			_Systems.Add(System);
+		}
+
+		/// <summary>
+		/// Removes the specified System from this Scene.
+		/// </summary>
+		public void RemoveSystem(Components.System System) {
+			// Same as above, this should be considered temporary.
+			_Systems.Remove(System);
+		}
+
+		/// <summary>
 		/// Disposes of this Scene, removing all remaining Entities.
 		/// </summary>
 		public void Dispose() {
-			_Entities.Clear();
+			foreach(var Entity in _Entities)
+				RemoveEntity(Entity);
 		}
 
 		protected override void OnDraw(GameTime Time) {
@@ -118,17 +156,21 @@ namespace CorvEngine.Scenes {
 					if(Camera.Active.Contains(Entity))
 						Entity.Draw();
 				}
+				foreach(var System in _Systems)
+					System.NotifyDraw();
 			}
 		}
 
 		protected override void OnUpdate(GameTime Time) {
-			foreach(var Entity in _Entities) {
+			foreach(var Entity in _Entities)
 				Entity.Update(Time);
-			}
+			foreach(var System in _Systems)
+				System.NotifyUpdate(Time);
 		}
 
 		private Layer[] _Layers;
 		private Vector2 _MapSize;
 		private Vector2 _TileSize;
+		private List<Components.System> _Systems = new List<Components.System>();
 	}	
 }
