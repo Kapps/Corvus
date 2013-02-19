@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Entities.Generators {
 	/// <summary>
 	/// Provides a PropertyValueGenerator that simply returns the argument that was passed in.
 	/// </summary>

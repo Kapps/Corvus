@@ -6,7 +6,7 @@ using CorvEngine.Entities;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Corvus {
+namespace Corvus.Components {
 	/// <summary>
 	/// A Component used to center a given camera on the Entity owning this component.
 	/// </summary>

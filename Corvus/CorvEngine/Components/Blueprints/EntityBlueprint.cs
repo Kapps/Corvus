@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Entities.Blueprints {
 	/// <summary>
 	/// Provides a blueprint class that can be used to construct an Entity from a predefined set of Components properties.
 	/// </summary>

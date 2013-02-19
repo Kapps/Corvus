@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using CorvEngine.Entities.Blueprints;
 using CorvEngine.Graphics;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;

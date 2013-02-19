@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using CorvEngine;
 using CorvEngine.Entities;
+using CorvEngine.Entities.Blueprints;
 using CorvEngine.Scenes;
+using Corvus.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Corvus {
+namespace Corvus.GameStates {
 	public class TestState : GameState {
 		public override bool BlocksUpdate {
 			get { return true; }

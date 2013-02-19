@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorvEngine;
+using Corvus.Components;
+using Corvus.GameStates;
 
 namespace Corvus {
 	/// <summary>

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Entities.Generators {
 	/// <summary>
 	/// A PropertyValueGenerator that returns a Vector(2|3|4) instance from input.
 	/// </summary>

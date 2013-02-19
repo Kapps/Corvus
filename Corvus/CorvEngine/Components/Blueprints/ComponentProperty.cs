@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Entities.Blueprints {
 	/// <summary>
 	/// Provides a class that adjusts a Property on a Component.
 	/// </summary>

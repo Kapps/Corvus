@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using CorvEngine.Entities;
+using CorvEngine.Entities.Blueprints;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

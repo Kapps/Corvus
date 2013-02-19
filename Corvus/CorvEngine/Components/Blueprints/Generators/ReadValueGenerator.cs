@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Entities.Generators {
 	/// <summary>
 	/// Provides a value generator that sets the value to a different property within that instance.
 	/// </summary>

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using CorvEngine.Entities.Blueprints;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Entities.Generators {
 	/// <summary>
 	/// Provides a generator that can be used to apply an operation to one or more arguments, returning a value to be assigned from them.
 	/// All derived classes must have a parameterless constructor, but it can be private.

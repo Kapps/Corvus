@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Corvus {
+namespace Corvus.Components {
 	/// <summary>
 	/// A global component used to display debugging information, such as frame rate and position.
 	/// </summary>
