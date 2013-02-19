@@ -36,13 +36,13 @@
   </data>
  </layer>
  <objectgroup name="Enemies" width="80" height="50">
-  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1028" y="1316" width="28" height="27">
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1025" y="1304" width="32" height="32">
    <properties>
     <property name="#PathComponent.Nodes" value="Collection(Vector(885, 1313), Vector(1263, 1313))"/>
     <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
    </properties>
   </object>
-  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1219" y="1090" width="28" height="27">
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1220" y="1077" width="32" height="32">
    <properties>
     <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
     <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>

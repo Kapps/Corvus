@@ -11,7 +11,7 @@ namespace CorvEngine.Entities
 
 		public List<Vector2> Nodes { get; private set; }
 		public Vector2 CurrentNode { get; private set; }
-		public int ArrivedNode = 5;
+		public int ArrivedNode = 25;
 		int nodeIndex = 0;
 
         public PathComponent()
