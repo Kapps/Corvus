@@ -72,7 +72,7 @@ namespace CorvEngine.Entities
             jumpStart = false;
         }
 
-		public void ApplyPhysics(GameTime gameTime, Scene Scene) {
+		private void ApplyPhysics(GameTime gameTime) {
 
 			Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
 			Parent.Position += PositionDelta;
@@ -82,7 +82,7 @@ namespace CorvEngine.Entities
 			if(!jumpStart) {
 				bool AnyTileHit = false;
 				bool AnySolidHit = false;
-				foreach(var Layer in Scene.Layers) {
+				foreach(var Layer in Parent.Scene.Layers) {
 					Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
 					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y + 0.1f)) {
 						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
@@ -107,6 +107,13 @@ namespace CorvEngine.Entities
 				Parent.VelY += gravity * gameTime.GetTimeScalar();
 			}
 		}
+
+        public override void Update(GameTime Time)
+        {
+            ApplyPhysics(Time);
+
+            base.Update(Time);
+        }
 
         /*Old Physics
         if (entity.Y >= 1599.99 && mc.jumpStart != true) //Test if object is on ground and not beginning a jump.

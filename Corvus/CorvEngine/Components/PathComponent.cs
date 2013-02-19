@@ -47,10 +47,8 @@ namespace CorvEngine.Entities
 			} else {
 				if(entity.X < CurrentNode.X) {
 					mc.Walk(Direction.Right);
-                    mc.ApplyPhysics(Time, entity.Scene);
 				} else {
 					mc.Walk(Direction.Left);
-                    mc.ApplyPhysics(Time, entity.Scene);
 				}
 			}
 

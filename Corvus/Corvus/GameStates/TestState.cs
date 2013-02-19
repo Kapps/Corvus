@@ -61,7 +61,7 @@ namespace Corvus.GameStates {
 			}
 
 			protected override void OnUpdate(GameTime Time) {
-				mc.ApplyPhysics(Time, Scene);
+				//mc.ApplyPhysics(Time, Scene); //No longer needed.
 			}
 
 			protected override void OnDraw(GameTime Time) {
