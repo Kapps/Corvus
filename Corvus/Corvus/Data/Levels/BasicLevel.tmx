@@ -42,7 +42,139 @@
     <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
    </properties>
   </object>
-  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1220" y="1077" width="32" height="32">
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1348" y="1564" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1220" y="1088" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1251" y="1564" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1140" y="1564" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1001" y="1564" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="900" y="1521" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="789" y="1514" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="669" y="1494" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="585" y="1497" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="439" y="1488" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="364" y="1490" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="531" y="1432" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="733" y="1409" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="849" y="1449" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1439" y="1445" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1528" y="1450" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1575" y="1476" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1661" y="1481" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1743" y="1480" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1931" y="1498" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1931" y="1498" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="2016" y="1505" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="2087" y="1494" width="32" height="32">
    <properties>
     <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
     <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>

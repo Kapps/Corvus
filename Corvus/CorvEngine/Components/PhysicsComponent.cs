@@ -6,6 +6,12 @@ using CorvEngine.Entities;
 using Microsoft.Xna.Framework;
 
 namespace CorvEngine.Components {
+
+	/// <summary>
+	/// A delegate used when a component between two systems occurs.
+	/// </summary>
+	public delegate void CollisionDelegate(PhysicsComponent Component, PhysicsComponent Other);
+
 	/// <summary>
 	/// Provides a component used to give components physics information and cause the PhysicsSystem to use it.
 	/// </summary>
@@ -47,6 +53,22 @@ namespace CorvEngine.Components {
 		}
 
 		/// <summary>
+		/// Indicates whether this Entity should collide with static objects, such as tiles.
+		/// </summary>
+		public bool PerformStaticCollision {
+			get { return _PerformStaticCollision; }
+			set { _PerformStaticCollision = value; }
+		}
+
+		/// <summary>
+		/// Indicates whether this Entity should collide with dynamic objects, such as other Entities.
+		/// </summary>
+		public bool PerformDynamicCollision {
+			get { return _PerformDynamicCollision; }
+			set { _PerformDynamicCollision = value; }
+		}
+
+		/// <summary>
 		/// Gets or sets the amount to multiply the force of gravity by.
 		/// For an Entity that should not be affected by gravity, this should be 0.
 		/// </summary>
@@ -55,8 +77,17 @@ namespace CorvEngine.Components {
 			set { _GravityCoefficient = value; }
 		}
 
+		/// <summary>
+		/// Notifies this PhysicsComponent that a collision occurred with the other component.
+		/// </summary>
+		public void NotifyCollision(PhysicsComponent Other) {
+
+		}
+
 		private float _GravityCoefficient = 1;
 		private Vector2 _Velocity;
 		private bool _IsGrounded = false;
+		private bool _PerformStaticCollision = true;
+		private bool _PerformDynamicCollision = true;
 	}
 }

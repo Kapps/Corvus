@@ -203,6 +203,7 @@ namespace CorvEngine {
 		private void OnInitialize() {
 			this._GraphicsManager.SynchronizeWithVerticalRetrace = false;
 #if !DEBUG
+			
 			//this._GraphicsManager.PreferMultiSampling = true;
 			this._GraphicsManager.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
 			this._GraphicsManager.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
