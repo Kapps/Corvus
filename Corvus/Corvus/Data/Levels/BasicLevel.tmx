@@ -16,7 +16,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XOwrCQBSG0WRzvgvFRSi4C5eirVi4Qv8mIIHB+CIxnANfOZdhqjtVBQAAAAAAAABAF6d07vsSAADwA5M0TbM0T4u0TKu0TptC29bZds2MMSn9C3Zp/9DhhZnts+/MALrzv4fha/aLY/28Me4b33DJ29w6dK37vukweb/PlPZb+y7A/7gDKirlFIA+AAA=
+   H4sIAAAAAAAAC+3XywnCQBRG4Zm9dqJtGB9RDBahYBeWoltxYSdahK61Av9NQAaGPGEyyfngLDNc7urGGAAAAAAAAAAAAAAAAJRxVpfQQwCOl3qHHiIy7AyIw8gaM7ahp4jXRLubsr/aUu1urTYD2uFMJWquFmqpVipVW5V52jnfuuVv9Invv2CvDn8dK7zpflvnDTTDjdieh3qGHqJAl//vP+obegigA/L74mSL6+O90YardnMv0W1AN28V7K8Z333LvQsA8fgBKJgO+YA+AAA=
   </data>
  </layer>
  <layer name="Objects" width="80" height="50">
@@ -24,7 +24,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WOw4BYRSG4X9q7AIVVoGGsQp0CguxDQqXZZjCbSNmDz7JFJoZ4k+cnHif5M1kupOvmEwIAAAAAAAAAAAAAAAAeCe1PsC5hfUBzq2sD3Bqq3Zqrw7Gt3h0Umd1UVd1sz3HpbvKrY9wqpaEUFeNxPoSvzrarqt6bPiVsXZL1eRP9uNfNw7/anHYLw77VWvqO95S7ZLvOftV62u3gRp+sN9abX5xlCNT7TZTc7UsNhwVz+d7/vJ+VJnFkQAAAECJB/dUOy+APgAA
+   H4sIAAAAAAAAC+3WOw4BYRiF4bEXlFaBRuwCncJCFCyCwiVhERRuGzF7cCRTaIZJJM7/xfskbybTnXzNTJYBAAAAAAAAAAAAAADgk757QHBj94Dgpu4BQa3UWm3U1rwlopM6q4u6qpt3Tkh3lbtH4O+1au4FiIB/3e+k+K82U3P3iIpSvN9O7d0jKkrxfimp6zvYUM2S7yH3e6+tu3VUt8L9Fmr5i1GBDHS3oRqpSXHDXvF8vucv7wd1dIwEAAAASjwAViEsB4A+AAA=
   </data>
  </layer>
  <layer name="Object Extensions" width="80" height="50">
@@ -32,7 +32,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XsRGAMBADwe8IPFAhbtxqwIR8wO7M5UpVBQAAAAAAAAD8xZNm9wgAAPjQkc40Nl3pblvXwy8AAAAA4M0Cm/o+4YA+AAA=
+   H4sIAAAAAAAAC+3XIQ6AMAxA0U2TcBUg44Tj4tShNnAVvJf8pKKitqUAAAAAAAAAAH/Royv7CACAF0t95rWO9+CLLdqjY1CLzrTrcvgLAAAAAJi5AbGIkSWAPgAA
   </data>
  </layer>
  <objectgroup name="Enemies" width="80" height="50">
