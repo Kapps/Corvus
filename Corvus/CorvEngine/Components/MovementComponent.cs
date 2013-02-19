@@ -105,7 +105,7 @@ namespace CorvEngine.Entities {
 						AnyTileHit = true;
 				}
 
-                if (AnySolidHit || !AnyTileHit)
+                if (AnySolidHit || !AnyTileHit) //If hitting any solid object OR not hitting any tile, ground us.
                 {
                     isGrounded = true;
                     jumpStart = false;
@@ -113,7 +113,7 @@ namespace CorvEngine.Entities {
                     Parent.VelY = 0;
                     PositionDelta.Y = 0;
                 }
-                else
+                else //We're not yet on ground.
                 {
                     isGrounded = false;
                 }

@@ -53,7 +53,8 @@ namespace CorvEngine.Entities
 			Entity entity = this.Parent;
 			MovementComponent mc = entity.GetComponent<MovementComponent>();
 
-			if(Vector2.Distance(entity.Position, CurrentNode) < ArrivedNode) {
+            //Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
+			if(Math.Abs(entity.Position.X - CurrentNode.X) < ArrivedNode) {
 				NextNode();
 			} else {
 				if(entity.X < CurrentNode.X) {
