@@ -7,3 +7,4 @@ bin
 *.cachefile
 Corvus/Corvus/Corvus.csproj.Debug.cachefile
 Corvus/Corvus/Corvus.csproj.Debug.cachefile
+*/Thumbs.db

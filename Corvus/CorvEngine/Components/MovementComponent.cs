@@ -5,88 +5,82 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine.Entities
-{
-    public class MovementComponent : Component
-    {
-        float maxWalkVelocity = 500f;
-        float maxJumpVelocity = 1050f;
-        float gravity = 5000.5f;
-        bool isJumping = false;
-        bool isGrounded = true;
-        bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
-        Direction CurrDir = Direction.Down;
+namespace CorvEngine.Entities {
+	public class MovementComponent : Component {
+		float maxWalkVelocity = 500f;
+		float maxJumpVelocity = 1050f;
+		float gravity = 5000.5f;
+		bool isJumping = false;
+		bool isGrounded = true;
+		bool jumpStart = false; //This flag is just essentially to account for the fact that we're grounded on the first jump. Could maybe do something like airtime too eventually.
+		Direction CurrDir = Direction.Down;
 
-        /// <summary>
-        /// Walk in a certain direction. Handles animation. Needs to be called each update.
-        /// </summary>
-        /// <param name="dir"></param>
-        public void Walk(Direction dir)
-        {
-            switch (dir)
+		/// <summary>
+		/// Walk in a certain direction. Handles animation. Needs to be called each update.
+		/// </summary>
+		/// <param name="dir"></param>
+		public void Walk(Direction dir) {
+			switch(dir) {
+				case Direction.Left:
+					this.Parent.VelX = maxWalkVelocity * -1;
+
+					if(CurrDir != dir)
+						Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + dir.ToString());
+
+					break;
+				case Direction.Right:
+					this.Parent.VelX = maxWalkVelocity;
+
+					if(CurrDir != dir)
+						Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + dir.ToString());
+
+					break;
+				case Direction.Up:
+					this.Parent.VelX = 0;
+					//entity.VelY = 1000 * -1;
+					break;
+				case Direction.Down:
+					this.Parent.VelX = 0;
+					//entity.VelY = 1000;
+					break;
+				case Direction.None:
+					this.Parent.VelX = 0;
+					//entity.VelY = 0;
+
+					if(CurrDir != dir)
+						Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + CurrDir);
+
+					break;
+			}
+
+			CurrDir = dir;
+		}
+
+		/// <summary>
+		/// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
+		/// </summary>
+		/// <param name="allowMulti"></param>
+		public void StartJump(bool allowMulti) {
+			if((isJumping == false && isGrounded == true) || allowMulti) //Test if able to jump.
             {
-                case Direction.Left:
-                    this.Parent.VelX = maxWalkVelocity * -1;
+				isJumping = true;
+				isGrounded = false;
+				jumpStart = true;
+				Parent.VelY = maxJumpVelocity * -1 + 50;
+			}
+		}
 
-                    if (CurrDir != dir)
-                        Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + dir.ToString());
+		/// <summary>
+		/// Just sets a flag to keep track of whether or not we're starting a jump in this update.
+		/// </summary>
+		private void EndStartJump() {
+			jumpStart = false;
+		}
 
-                    break;
-                case Direction.Right:
-                    this.Parent.VelX = maxWalkVelocity;
-
-                    if (CurrDir != dir)
-                        Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + dir.ToString());
-
-                    break;
-                case Direction.Up:
-                    this.Parent.VelX = 0;
-                    //entity.VelY = 1000 * -1;
-                    break;
-                case Direction.Down:
-                    this.Parent.VelX = 0;
-                    //entity.VelY = 1000;
-                    break;
-                case Direction.None:
-                    this.Parent.VelX = 0;
-                    //entity.VelY = 0;
-
-                    if (CurrDir != dir)
-                        Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Idle" + CurrDir);
-
-                    break;
-            }
-
-            CurrDir = dir;
-        }
-
-        /// <summary>
-        /// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
-        /// </summary>
-        /// <param name="allowMulti"></param>
-        public void StartJump(bool allowMulti)
-        {
-            if ((isJumping == false && isGrounded == true) || allowMulti) //Test if able to jump.
-            {
-                isJumping = true;
-                isGrounded = false;
-                jumpStart = true;
-                Parent.VelY = maxJumpVelocity * -1 + 50;
-            }
-        }
-
-        /// <summary>
-        /// Just sets a flag to keep track of whether or not we're starting a jump in this update.
-        /// </summary>
-        private void EndStartJump()
-        {
-            jumpStart = false;
-        }
-
-        /// <summary>
-        /// Handles walking and jumping, depending on flags and values.
-        /// </summary>
-        /// <param name="gameTime"></param>
+		/// <summary>
+		/// Handles walking and jumping, depending on flags and values.
+		/// </summary>
+		/// <param name="gameTime"></param>
 		private void ApplyPhysics(GameTime gameTime) {
 
 			Vector2 PositionDelta = Parent.Velocity * gameTime.GetTimeScalar();
@@ -124,13 +118,12 @@ namespace CorvEngine.Entities
 				Parent.VelY += gravity * gameTime.GetTimeScalar();
 			}
 
-            EndStartJump();
+			EndStartJump();
 		}
 
-        public override void Update(GameTime Time)
-        {
-            ApplyPhysics(Time);
-            base.Update(Time);
-        }
-    }
+		public override void Update(GameTime Time) {
+			ApplyPhysics(Time);
+			base.Update(Time);
+		}
+	}
 }
