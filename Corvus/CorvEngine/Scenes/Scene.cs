@@ -34,6 +34,7 @@ namespace CorvEngine.Scenes {
 		public Scene(LevelData Data, GameState State)
 			: base(State) {
 
+            this._Properties = Data.Properties;
 			this._Layers = Data.Layers;
 			foreach(var Entity in Data.DynamicObjects)
 				AddEntity(Entity);
@@ -41,6 +42,14 @@ namespace CorvEngine.Scenes {
 			this._MapSize = Data.MapSize;
 			this._TileSize = Data.TileSize;
 		}
+
+        /// <summary>
+        /// Gets the properties within this Scene.
+        /// </summary>
+        public IEnumerable<MapProperty> Properties
+        {
+            get { return _Properties; }
+        }
 
 		/// <summary>
 		/// Gets the layers present in this Scene.
@@ -168,6 +177,7 @@ namespace CorvEngine.Scenes {
 				System.NotifyUpdate(Time);
 		}
 
+        private MapProperty[] _Properties;
 		private Layer[] _Layers;
 		private Vector2 _MapSize;
 		private Vector2 _TileSize;
