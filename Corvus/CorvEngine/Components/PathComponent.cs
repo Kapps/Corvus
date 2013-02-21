@@ -18,6 +18,8 @@ namespace CorvEngine.Components {
 		private float _ArrivalDistance = 5;
 		private int _NodeIndex = 0;
 		private DateTime _LastJump = DateTime.Now;
+		private int _StepSize = 1;
+		private bool _ReverseOnCompletion = true;
 
 		/// <summary>
 		/// Gets the nodes that this entity paths to.
@@ -36,6 +38,14 @@ namespace CorvEngine.Components {
 		/// </summary>
 		public Vector2 CurrentNode {
 			get { return _CurrentNode; }
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this Entity should reverse it's path once the path is complete, as opposed to going to the beginning node.
+		/// </summary>
+		public bool ReverseOnCompletion {
+			get { return _ReverseOnCompletion; }
+			set { _ReverseOnCompletion = value; }
 		}
 
 		/// <summary>
@@ -78,10 +88,17 @@ namespace CorvEngine.Components {
         /// Sets the current node to the next node, and if it's last one, it loops over to the start.
         /// </summary>
 		public void AdvanceNode() {
-			if(_NodeIndex >= Nodes.Count - 1)
-				_NodeIndex = 0;
-			else
+			if(_ReverseOnCompletion) {
+				if(_StepSize > 0 && _NodeIndex >= Nodes.Count - _StepSize)
+					_StepSize *= -1;
+				if(_StepSize < 0 && _NodeIndex < Math.Abs(_StepSize))
+					_StepSize *= -1;
+				_NodeIndex += _StepSize;
+			} else {
 				_NodeIndex++;
+				if(_NodeIndex >= Nodes.Count)
+					_NodeIndex = 0;
+			}
 			_CurrentNode = Nodes[_NodeIndex];
 		}
 

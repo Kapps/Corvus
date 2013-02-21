@@ -80,7 +80,8 @@ namespace Corvus.Components {
 		private void ClearCameraPressed(BindState State) {
 			if(State != BindState.Pressed)
 				return;
-			CurrentCamera.Dispose();
+			if(!CurrentCamera.IsDisposed)
+				CurrentCamera.Dispose();
 			Player.Character.Components.Add((CurrentCamera = new ChaseCameraComponent(Player.Camera)));
 		}
 
