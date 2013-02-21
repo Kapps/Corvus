@@ -101,10 +101,12 @@ namespace CorvEngine.Input {
 		/// <summary>
 		/// Creates a new instance of Bind that invokes the given Action when pressed.
 		/// </summary>
-		public Bind(InputManager InputManager, Action<BindState> Action, bool MultiInvoke) {
+		public Bind(InputManager InputManager, Action<BindState> Action, bool MultiInvoke, params InputButton[] Buttons) {
 			this._InputManager = InputManager;
 			this._Action = Action;
 			this._MultiInvoke = MultiInvoke;
+			foreach(var Button in Buttons)
+				RegisterButton(Button);
 		}
 
 		/// <summary>

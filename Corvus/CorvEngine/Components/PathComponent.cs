@@ -15,7 +15,7 @@ namespace CorvEngine.Components {
 		private bool _AllowMultiJump = true;
 		private IList<Vector2> _Nodes;
 		private Vector2 _CurrentNode;
-		private float _ArrivalDistance = 25;
+		private float _ArrivalDistance = 5;
 		private int _NodeIndex = 0;
 		private DateTime _LastJump = DateTime.Now;
 
@@ -92,16 +92,19 @@ namespace CorvEngine.Components {
 		protected override void OnUpdate(GameTime Time) {
 			Entity entity = this.Parent;
 			MovementComponent mc = entity.GetComponent<MovementComponent>();
-
+			PhysicsComponent pc = entity.GetComponent<PhysicsComponent>();
             //Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
 			if(Math.Abs(entity.Position.X - CurrentNode.X) < ArrivalDistance) {
-				AdvanceNode();
+				if(entity.Y < CurrentNode.Y - ArrivalDistance && !pc.IsGrounded)
+					return; // Do nothing, just wait for us to fall on our location.
+				else
+					AdvanceNode();
 			} else {
-				mc.Walk(entity.X < CurrentNode.X ? Direction.Right : Direction.Left);
 				if(entity.Y > CurrentNode.Y + ArrivalDistance && (DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay) {
 					mc.Jump(AllowMultiJump);
 					_LastJump = DateTime.Now;
 				}
+				mc.Walk(entity.X < CurrentNode.X ? Direction.Right : Direction.Left);
 			}
 			base.OnUpdate(Time);
 		}

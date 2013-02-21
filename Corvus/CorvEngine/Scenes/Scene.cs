@@ -52,10 +52,9 @@ namespace CorvEngine.Scenes {
         /// <summary>
         /// Gets the properties within this Scene.
         /// </summary>
-        public IEnumerable<MapProperty> Properties
-        {
-            get { return _Properties; }
-        }
+		public IEnumerable<MapProperty> Properties {
+			get { return _Properties; }
+		}
 
 		/// <summary>
 		/// Gets the layers present in this Scene.
@@ -100,6 +99,13 @@ namespace CorvEngine.Scenes {
 		}
 
 		// TODO: Merge these into AddObject and RemoveObject.
+
+		/// <summary>
+		/// Returns the smallest entity which contains the given point, or null if none were found to be located there.
+		/// </summary>
+		public Entity GetEntityAtPosition(Point Position) {
+			return Entities.Where(c => c.Location.Contains(Position)).OrderBy(c => c.Location.Width * c.Location.Height).FirstOrDefault();
+		}
 
 		/// <summary>
 		/// Adds the given Entity to this Scene.

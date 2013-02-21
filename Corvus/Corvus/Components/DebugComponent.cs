@@ -20,7 +20,6 @@ namespace Corvus.Components {
 		const string DATA_FOLDER_PATH = "../../../Data";
 		public DebugComponent() : base(CorvusGame.Instance.Game) {
 			this.Font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/TestFont");
-			CorvusGame.Instance.PlayerAdded += Instance_PlayerAdded;
 			if(Directory.Exists(DATA_FOLDER_PATH)) {
 				FileSystemWatcher fsw = new FileSystemWatcher(DATA_FOLDER_PATH);
 				fsw.InternalBufferSize = 1024 * 256;
@@ -29,6 +28,15 @@ namespace Corvus.Components {
 				fsw.Created += DataFileUpdate;
 				fsw.EnableRaisingEvents = true;
 			}
+			SceneManager = CorvusGame.Instance.SceneManager;
+			CorvusGame.Instance.Game.IsMouseVisible = true;
+
+			this.Player = (CorvusPlayer)CorvusGame.Instance.Players.First();
+			Bind ReloadLevelsBind = new Bind(Player.InputManager, ReloadPressed, false, Keys.F5);
+			Player.InputManager.RegisterBind(ReloadLevelsBind);
+			Bind ClearCameraBind = new Bind(Player.InputManager, ClearCameraPressed, false, Keys.F12);
+			Player.InputManager.RegisterBind(ClearCameraBind);
+			CurrentCamera = Player.Character.GetComponent<ChaseCameraComponent>();
 		}
 
 		void DataFileUpdate(object sender, FileSystemEventArgs e) {
@@ -42,12 +50,6 @@ namespace Corvus.Components {
 			//ReloadLevel();
 		}
 
-		void Instance_PlayerAdded(Player Player) {
-			Bind Bind = new Bind(Player.InputManager, ReloadPressed, false);
-			Bind.RegisterButton(new InputButton(Keys.F5));
-			Player.InputManager.RegisterBind(Bind);
-		}
-
 		public override void Draw(GameTime gameTime) {
 			CorvusGame.Instance.SpriteBatch.DrawString(Font, "FPS: " + CorvusGame.Instance.FPS, new Vector2(10, GraphicsDevice.Viewport.Height - 30), Color.Yellow);
 			if(CorvusGame.Instance.Players.Any())
@@ -55,15 +57,41 @@ namespace Corvus.Components {
 			base.Draw(gameTime);
 		}
 
+		public override void Update(GameTime gameTime) {
+			MouseState State = Mouse.GetState();
+			if(State.LeftButton == ButtonState.Pressed && OldState.LeftButton != ButtonState.Pressed) {
+				var Entity = SceneManager.ActiveScene.GetEntityAtPosition(new Point(State.X + (int)Player.Camera.Position.X, State.Y + (int)Player.Camera.Position.Y));
+				if(Entity != null) {
+					if(!CurrentCamera.IsDisposed)
+						CurrentCamera.Dispose();
+					CurrentCamera = new ChaseCameraComponent(Player.Camera);
+					Entity.Components.Add(CurrentCamera);
+				}
+			}
+			base.Update(gameTime);
+		}
+
 		private void ReloadPressed(BindState State) {
-			if(State == BindState.Released)
+			if(State != BindState.Pressed)
 				return;
 			ReloadLevel();
 		}
 
-		private void ReloadLevel() {
-			CorvusGame.Instance.SceneManager.ReloadBlueprints();
-			CorvusGame.Instance.SceneManager.ReloadScenes();
+		private void ClearCameraPressed(BindState State) {
+			if(State != BindState.Pressed)
+				return;
+			CurrentCamera.Dispose();
+			Player.Character.Components.Add((CurrentCamera = new ChaseCameraComponent(Player.Camera)));
 		}
+
+		private void ReloadLevel() {
+			SceneManager.ReloadBlueprints();
+			SceneManager.ReloadScenes();
+		}
+
+		private ChaseCameraComponent CurrentCamera;
+		private MouseState OldState = Mouse.GetState();
+		private SceneManager SceneManager;
+		private CorvusPlayer Player;
 	}
 }
