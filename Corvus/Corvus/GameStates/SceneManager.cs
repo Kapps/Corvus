@@ -44,8 +44,7 @@ namespace Corvus.GameStates {
 		/// Creates a new instance of the SceneManager, loading all entitiy blueprints in preparation for Scene changes.
 		/// </summary>
 		public SceneManager() : base() {
-			foreach(var BlueprintFile in Directory.GetFiles("Data/Entities", "*.txt"))
-				BlueprintParser.ParseBlueprint(File.ReadAllText(BlueprintFile));
+			ReloadBlueprints();
 		}
 
 		/// <summary>
@@ -107,6 +106,14 @@ namespace Corvus.GameStates {
 		void Scene_Disposed(Scene obj) {
 			ActiveScenes.Remove((CorvusScene)obj);
 			this.RemoveComponent(obj);
+		}
+
+		/// <summary>
+		/// Reloads all EntityBlueprints from files in the Data folder.
+		/// </summary>
+		public void ReloadBlueprints() {
+			foreach(var BlueprintFile in Directory.GetFiles("Data/Entities", "*.txt"))
+				BlueprintParser.ParseBlueprint(File.ReadAllText(BlueprintFile));
 		}
 
 		/// <summary>

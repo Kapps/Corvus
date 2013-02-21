@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using CorvEngine;
 using CorvEngine.Input;
 using Corvus.GameStates;
@@ -37,10 +38,12 @@ namespace Corvus.Components {
 			string SourcePath = FileUri.AbsolutePath;
 			string DestinationPath = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "/" + RelativeUri.OriginalString);
 			File.Copy(SourcePath, DestinationPath, true);
+			Console.WriteLine("Found change in " + Path.GetFileNameWithoutExtension(e.FullPath) + " - Copied to bin folder.");
+			//ReloadLevel();
 		}
 
 		void Instance_PlayerAdded(Player Player) {
-			Bind Bind = new Bind(Player.InputManager, ReloadLevel, false);
+			Bind Bind = new Bind(Player.InputManager, ReloadPressed, false);
 			Bind.RegisterButton(new InputButton(Keys.F5));
 			Player.InputManager.RegisterBind(Bind);
 		}
@@ -52,9 +55,14 @@ namespace Corvus.Components {
 			base.Draw(gameTime);
 		}
 
-		private void ReloadLevel(BindState State) {
+		private void ReloadPressed(BindState State) {
 			if(State == BindState.Released)
 				return;
+			ReloadLevel();
+		}
+
+		private void ReloadLevel() {
+			CorvusGame.Instance.SceneManager.ReloadBlueprints();
 			CorvusGame.Instance.SceneManager.ReloadScenes();
 		}
 	}

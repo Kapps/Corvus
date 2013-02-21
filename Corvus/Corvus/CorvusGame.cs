@@ -66,7 +66,7 @@ namespace Corvus {
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			var PlayerEntity = Blueprint.CreateEntity();
 			PlayerEntity.Size = new Vector2(48, 32);
-			PlayerEntity.Position = new Vector2(PlayerEntity.Location.Width, 100);
+			PlayerEntity.Position = new Vector2(1790, 1376);
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
 			CorvusBinds.CreateBinds(Player);

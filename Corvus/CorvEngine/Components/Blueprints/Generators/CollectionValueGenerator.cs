@@ -28,11 +28,9 @@ namespace CorvEngine.Components.Blueprints.Generators {
 			} else
 				ElementType = typeof(object);
 			if(Collection == null) {
-				Type TypeToInstantiate;
-				if(ElementType.IsAbstract)
+				Type TypeToInstantiate = Property.PropertyType;
+				if(TypeToInstantiate.IsAbstract || TypeToInstantiate.IsInterface)
 					TypeToInstantiate = typeof(List<>).MakeGenericType(ElementType);
-				else
-					TypeToInstantiate = Property.PropertyType;
 				Collection = Activator.CreateInstance(TypeToInstantiate, true);
 			}
 

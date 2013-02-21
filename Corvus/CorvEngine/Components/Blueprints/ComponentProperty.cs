@@ -42,8 +42,9 @@ namespace CorvEngine.Components.Blueprints {
 			if(Property == null)
 				throw new KeyNotFoundException("Unable to find a property named '" + PropertyName + "' on Component of type '" + Component.GetType().Name + "'.");
 			object Value = Argument.GetValue(Component, Property);
-			object Converted = Convert.ChangeType(Value, Property.PropertyType);
-			Property.SetValue(Component, Converted, null);
+			if(!Property.PropertyType.IsAssignableFrom(Value.GetType()))
+				Value = Convert.ChangeType(Value, Property.PropertyType);
+			Property.SetValue(Component, Value, null);
 		}
 
 		/*public ComponentProperty(string ComponentName, string PropertyName, PropertyValueGenerator ValueGenerator, ComponentArgument[] GeneratorArguments) {

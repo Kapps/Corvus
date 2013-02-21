@@ -45,8 +45,8 @@ namespace CorvEngine.Components {
 				GameTime StepTime = new GameTime(Time.TotalGameTime.Subtract(Remaining), Delta);
 				Remaining = Remaining.Subtract(Delta);
 
-				PerformDynamicCollision(Time);
-				PerformStaticCollision(Time);
+				PerformDynamicCollision(StepTime);
+				PerformStaticCollision(StepTime);
 			}
 		}
 
