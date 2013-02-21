@@ -63,7 +63,7 @@ namespace CorvEngine.Entities {
 			}
 		}
 
-		public override void Draw() {
+		protected override void OnDraw() {
 			var Width = Parent.Size.X;
 			var Height = Parent.Size.X * 0.15f;
 			var Location = Parent.Position - new Vector2(0, Height + 5);
@@ -71,7 +71,7 @@ namespace CorvEngine.Entities {
 			Color HealthColor = Color.Lerp(Color.Red, Color.Green, CurrentHealth / MaxHealth);
 			//HealthColor = new Color(HealthColor.R, HealthColor.G, HealthColor.B, 40); // Give some transparency.
 			CorvBase.Instance.SpriteBatch.Draw(HealthBarTexture, new Rectangle((int)ToScreen.X, (int)ToScreen.Y, (int)Width, (int)Height), HealthColor);
-			base.Draw();
+			base.OnDraw();
 		}
 
 		private float _CurrentHealth = 100;

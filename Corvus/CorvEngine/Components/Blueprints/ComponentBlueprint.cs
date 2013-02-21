@@ -36,7 +36,7 @@ namespace CorvEngine.Entities.Blueprints {
 		/// </summary>
 		public Component CreateComponent() {
 			var Result = (Component)Activator.CreateInstance(Type, true);
-			typeof(Component).GetField("_Name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(Result, this.Name);
+			typeof(SceneObject).GetField("_Name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.FlattenHierarchy).SetValue(Result, this.Name);
 			foreach(var Property in Properties) {
 				Property.ApplyValue(Result);
 			}

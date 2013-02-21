@@ -45,8 +45,8 @@ namespace CorvEngine.Entities {
 			this._Sprite = Sprite;
 		}
 
-		public override void Draw() {
-			base.Draw();
+		protected override void OnDraw() {
+			base.OnDraw();
 			var SpriteBatch = CorvBase.Instance.SpriteBatch;
 			Vector2 ScreenPosition = Camera.Active.ScreenToWorld(Parent.Position);
 			var ActiveFrame = Sprite.ActiveAnimation.ActiveFrame.Frame;
@@ -54,8 +54,8 @@ namespace CorvEngine.Entities {
 			SpriteBatch.Draw(this.Sprite.Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Parent.Size.X, (int)Parent.Size.Y), SourceRect, Color);
 		}
 
-		public override void Update(Microsoft.Xna.Framework.GameTime Time) {
-			base.Update(Time);
+		protected override void OnUpdate(GameTime Time) {
+			base.OnUpdate(Time);
 			Sprite.ActiveAnimation.AdvanceAnimation(Time.ElapsedGameTime);
 		}
 	}

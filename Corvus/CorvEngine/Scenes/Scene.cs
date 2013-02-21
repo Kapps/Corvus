@@ -18,6 +18,8 @@ namespace CorvEngine.Scenes {
 		// Support does exist for plugging one in efficiently using an EntityNode reference though.
 		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
 
+
+		// TODO: This should be ObjectAdded and ObjectRemoved.
 		/// <summary>
 		/// An event raised when an Entity is added to this Scene, called after the Entity is initialized.
 		/// </summary>
@@ -77,6 +79,8 @@ namespace CorvEngine.Scenes {
 			get { return MapSize / TileSize; }
 		}
 
+		// TODO: Merge these into AddObject and RemoveObject.
+
 		/// <summary>
 		/// Adds the given Entity to this Scene.
 		/// </summary>
@@ -93,20 +97,19 @@ namespace CorvEngine.Scenes {
 		/// <summary>
 		/// Removes the given Entity from this Scene.
 		/// </summary>
-		/// <param name="Entity"></param>
 		public void RemoveEntity(Entity Entity) {
 			if(this.EntityRemoved != null)
 				this.EntityRemoved(Entity);
 			var Node = (NodeType)Entity.NodeReference.Node;
 			_Entities.Remove(Node);
-			Entity.NodeReference = null;
+			Entity.Dispose();
 		}
 
 		/// <summary>
 		/// Adds the specified System to be part of this Scene.
 		/// </summary>
 		public void AddSystem(Components.System System) {
-			// TODO: Should really share a common type/interface with Entity...
+			System.Initialize(this);
 			_Systems.Add(System);
 		}
 
@@ -116,13 +119,15 @@ namespace CorvEngine.Scenes {
 		public void RemoveSystem(Components.System System) {
 			// Same as above, this should be considered temporary.
 			_Systems.Remove(System);
+			System.Dispose();
 		}
 
 		/// <summary>
 		/// Disposes of this Scene, removing all remaining Entities.
 		/// </summary>
 		public void Dispose() {
-			foreach(var Entity in _Entities)
+			var DupedEntities = _Entities.ToArray();
+			foreach(var Entity in DupedEntities)
 				RemoveEntity(Entity);
 		}
 
@@ -153,19 +158,22 @@ namespace CorvEngine.Scenes {
 					}
 				}
 				foreach(var Entity in _Entities) {
-					if(Camera.Active.Contains(Entity))
+					if(Camera.Active.Contains(Entity) && !Entity.IsDisposed)
 						Entity.Draw();
 				}
 				foreach(var System in _Systems)
-					System.NotifyDraw();
+					if(!System.IsDisposed)
+						System.Draw();
 			}
 		}
 
 		protected override void OnUpdate(GameTime Time) {
 			foreach(var Entity in _Entities)
-				Entity.Update(Time);
+				if(!Entity.IsDisposed)
+					Entity.Update(Time);
 			foreach(var System in _Systems)
-				System.NotifyUpdate(Time);
+				if(!System.IsDisposed)
+					System.Update(Time);
 		}
 
 		private Layer[] _Layers;

@@ -49,7 +49,7 @@ namespace CorvEngine.Entities
         /// Decides which direction the AI should walk to follow the path. Simple x value check.
         /// </summary>
         /// <param name="Time"></param>
-		public override void Update(GameTime Time) {
+		protected override void OnUpdate(GameTime Time) {
 			Entity entity = this.Parent;
 			MovementComponent mc = entity.GetComponent<MovementComponent>();
 
@@ -66,7 +66,7 @@ namespace CorvEngine.Entities
 
 			//entity.X += entity.VelX * Time.GetTimeScalar();
 			//entity.Y += entity.VelY * Time.GetTimeScalar();
-			base.Update(Time);
+			base.OnUpdate(Time);
 		}
 	}
 }

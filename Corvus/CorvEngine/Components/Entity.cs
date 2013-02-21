@@ -20,14 +20,7 @@ namespace CorvEngine.Entities {
 	/// Represents a single entity in the game.
 	/// This class only provides a basic position within the world, leaving the remainder of game logic to be provided by Components.
 	/// </summary>
-	public class Entity : IDisposable {
-		private Vector2 _Position;
-		private Vector2 _Size;
-		private ComponentCollection _Components;
-		private bool _IsInitialized;
-		private Scene _Scene;
-		private bool _IsDisposed;
-
+	public class Entity : SceneObject {
 		/// <summary>
 		/// Gets an event called when the position of this entity changes.
 		/// </summary>
@@ -48,27 +41,6 @@ namespace CorvEngine.Entities {
 		/// </summary>
 		public ComponentCollection Components {
 			get { return _Components; }
-		}
-
-		/// <summary>
-		/// Indicates if this Component has already been initialized.
-		/// </summary>
-		public bool IsInitialized {
-			get { return _IsInitialized; }
-		}
-
-		/// <summary>
-		/// Gets the Scene that this Entity is part of, if any.
-		/// </summary>
-		public Scene Scene {
-			get { return _Scene; }
-		}
-
-		/// <summary>
-		/// Indicates if this Entity has been disposed of, marking it invalid.
-		/// </summary>
-		public bool IsDisposed {
-			get { return _IsDisposed; }
 		}
 
 		/// <summary>
@@ -144,53 +116,33 @@ namespace CorvEngine.Entities {
 		}
 
 		/// <summary>
-		/// Initializes this Entity. This is done by the Scene when this Entity is added to it.
-		/// </summary>
-		public void Initialize(Scene scene) {
-			if(this.IsInitialized)
-				throw new InvalidOperationException("Unable to initialize an Entity that has already been initialized.");
-			this._IsInitialized = true;
-			this._Scene = scene;
-			foreach(var Component in this.Components)
-				Component.Initialize();
-			OnInitialize();
-		}
-
-		/// <summary>
-		/// Handles any updating of this Entity.
+		/// Handles any updating of this Entity. The default implementation simply updates child Components.
 		/// This is called automatically by the Scene.
 		/// </summary>
-		public virtual void Update(GameTime Time) {
-			if(!IsInitialized)
-				throw new InvalidOperationException("Unable to Update an Entity before it's initialized.");
+		protected override void OnUpdate(GameTime Time) {
 			foreach(var Component in this.Components)
-				Component.Update(Time);
+				if(!Component.IsDisposed) // Possible to be disposed of by other updates.
+					Component.Update(Time);
 		}
 
 		/// <summary>
-		/// Draws this Entity. The default implementation draws the Sprite with Color applied as a tint.
-		/// This is called automatically by the Scene if the Entity is visible to the currently active Camera.
+		/// Draws this Entity. The default implementation simply renders all child Components.
+		/// This is called automatically by the Scene.
 		/// </summary>
-		public virtual void Draw() {
+		protected override void OnDraw() {
 			foreach(var Component in this.Components)
-				Component.Draw();
+				if(!Component.IsDisposed)
+					Component.Draw();
 		}
 
-		/// <summary>
-		/// Called when this Entity is initialized for the first time, after all Components are initialized.
-		/// </summary>
-		protected virtual void OnInitialize() {
-
+		protected override void OnInitialize() {
+			base.OnInitialize();
+			foreach(var Component in this.Components)
+				Component.Initialize(Scene);
 		}
 
-		/// <summary>
-		/// Disposes of this Entity and all of it's Components, removing them from the Scene.
-		/// </summary>
-		public virtual void Dispose() {
-			if(_IsDisposed)
-				return;
-			_IsDisposed = true;
-			Scene.RemoveEntity(this);
+		protected override void OnDispose() {
+			base.OnDispose();
 			foreach(var Component in this.Components)
 				Component.Dispose();
 		}
@@ -198,5 +150,9 @@ namespace CorvEngine.Entities {
 		public override string ToString() {
 			return "Entity (" + this.Components.Count + " Component(s))";
 		}
+
+		private Vector2 _Position;
+		private Vector2 _Size;
+		private ComponentCollection _Components;
 	}
 }

@@ -23,10 +23,10 @@ namespace Corvus.Components {
 			get { return _Camera; }
 		}
 
-		public override void Update(GameTime Time) {
+		protected override void OnUpdate(GameTime Time) {
 			var EntityMiddle = new Vector2(Parent.Location.X + (Parent.Location.Width / 2), Parent.Location.Y + (Parent.Location.Height / 2));
 			_Camera.Position = Parent.Position - (_Camera.Size / 2);
-			base.Update(Time);
+			base.OnUpdate(Time);
 		}
 
 		private Camera _Camera;

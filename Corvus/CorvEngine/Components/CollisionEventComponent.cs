@@ -56,8 +56,8 @@ namespace CorvEngine.Components {
 			set { _DisposeOnCollision = value; }
 		}
 
-		public override void Initialize() {
-			base.Initialize();
+		protected override void OnInitialize() {
+			base.OnInitialize();
 			var Physics = GetDependency<PhysicsComponent>();
 			Physics.Collided += Physics_Collided;
 		}

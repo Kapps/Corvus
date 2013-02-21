@@ -13,8 +13,8 @@ namespace CorvEngine.Entities {
 		Direction CurrDir = Direction.None;
 		PhysicsComponent Physics;
 
-		public override void Initialize() {
-			base.Initialize();
+		protected override void OnInitialize() {
+			base.OnInitialize();
 			Physics = GetDependency<PhysicsComponent>();
 		}
 
@@ -53,10 +53,6 @@ namespace CorvEngine.Entities {
 			if(Physics.IsGrounded || allowMulti) {
 				Physics.VelY = maxJumpVelocity * -1 + 50;
 			}
-		}
-
-		public override void Update(GameTime Time) {
-			base.Update(Time);
 		}
 	}
 }

@@ -15,14 +15,6 @@ namespace CorvEngine.Components {
 	public class PhysicsSystem : System {
 
 		/// <summary>
-		/// Creates a new PhysicsSystem for the given Scene.
-		/// </summary>
-		public PhysicsSystem(Scene Scene)
-			: base(Scene) {
-
-		}
-
-		/// <summary>
 		/// Indicates the force of gravity.
 		/// This number is currently fairly arbitrary, and should be tweaked as appropriate.
 		/// </summary>

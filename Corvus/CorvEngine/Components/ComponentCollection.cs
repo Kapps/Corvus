@@ -89,7 +89,7 @@ namespace CorvEngine.Entities {
 		private void PostItemAssigned(Component item) {
 			item.Parent = this.Entity;
 			if(Entity.IsInitialized && !item.IsInitialized)
-				item.Initialize();
+				item.Initialize(Entity.Scene);
 			if(this.ComponentAdded != null)
 				this.ComponentAdded(item);
 		}

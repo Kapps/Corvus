@@ -58,7 +58,7 @@ namespace Corvus.GameStates {
 			if(Scene == null) {
 				Scene = CorvusScene.Load(LevelName);
 				ActiveScenes.Add(Scene);
-				Scene.AddSystem(new PhysicsSystem(Scene));
+				Scene.AddSystem(new PhysicsSystem());
 				this.AddComponent(Scene);
 			}
 			var OldScene = _ActiveScene;
@@ -75,12 +75,32 @@ namespace Corvus.GameStates {
 			ActiveScene.Enabled = true;
 			foreach(var Player in CorvusGame.Instance.Players) {
 				if(Player.Character != null) {
-					OldScene.RemoveEntity(Player.Character);
+					if(OldScene != null)
+						OldScene.RemoveEntity(Player.Character);
 					ActiveScene.AddEntity(Player.Character);
 					Player.Character.Position = new Microsoft.Xna.Framework.Vector2(Player.Character.Location.Width + 10, Player.Character.Location.Height + 100);
 				}
 			}
 			return _ActiveScene;
+		}
+
+		/// <summary>
+		/// Reloads all scenes, including the currently active scene.
+		/// If no scene is active (and thus no scenes are loaded), this method returns immediately.
+		/// </summary>
+		public void ReloadScenes() {
+			if(ActiveScenes.Count == 0)
+				return;
+			// First remove all players from the active scene so we don't dispose them.
+			var PlayerChars = CorvusGame.Instance.Players.Select(c => c.Character);
+			string ActiveName = ActiveScene.Name;
+			foreach(var PlayerChar in PlayerChars)
+				_ActiveScene.RemoveEntity(PlayerChar);
+			string CurrentSceneName = _ActiveScene.Name;
+			foreach(var Scene in ActiveScenes)
+				Scene.Dispose();
+			_ActiveScene = null;
+			ChangeScene(ActiveName);
 		}
 
 		private CorvusScene _ActiveScene;
