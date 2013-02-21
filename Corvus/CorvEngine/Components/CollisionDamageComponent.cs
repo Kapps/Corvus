@@ -13,17 +13,17 @@ namespace CorvEngine.Components {
 		/// Gets or sets the damage that this component should deal.
 		/// </summary>
 		public float Damage {
-			get { return _Damage; }
-			set { _Damage = value; }
+            get { return _Damage; }
+            set { _Damage = value; }
 		}
 
-		private float _Damage;
-
+        private float _Damage;
+        
 		protected override bool OnCollision(Entity Entity, EntityClassification Classification) {
-			var HealthComponent = Entity.GetComponent<HealthComponent>();
-			if(HealthComponent == null)
+			var dc = Entity.GetComponent<DamageComponent>();
+            if (dc == null)
 				return false;
-			HealthComponent.CurrentHealth -= Damage;
+            dc.TakeDamage(Damage); //TODO: Might want to make this based on this entities strength.
 			return true;
 		}
 	}

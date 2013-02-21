@@ -99,6 +99,11 @@
       <Name>Wave Bank</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Fonts\DamageFont.spritefont">
+      <Name>DamageFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Levels\testLevel.tmx">
       <Name>testLevel</Name>
       <Importer>XmlImporter</Importer>
@@ -136,6 +141,13 @@
   <ItemGroup>
     <Compile Include="Sprites\male_sprites.png">
       <Name>male_sprites</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\HealthMeter.png">
+      <Name>HealthMeter</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -6,17 +6,25 @@ EnemySprite : RedSprite
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestEnemy)
 
-HealthyBig
-	HealthComponent
+Attributes
+	AttributesComponent
 		MaxHealth: Random(750, 800)
+		Strength: 7
+		Dexterity: 5
 
+HealthyBig
+	HealthBarComponent
+		
 Pather
 	PathComponent
 
 MoverEnemy
 	MovementComponent
+	
+Damager
+	DamageComponent
 
-TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager
 	PhysicsComponent
 	CollisionDamageComponent
 		Damage: Random(30, 50)

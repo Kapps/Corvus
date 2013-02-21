@@ -8,6 +8,8 @@ Content\Sprites\male_sprites.xnb
 Content\Fonts\testfont.xnb
 Content\Sprites\TestPlayer.xnb
 Content\Sprites\TestEnemy.xnb
+Content\Interface\HealthMeter.xnb
+Content\Fonts\DamageFont.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
