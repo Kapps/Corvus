@@ -18,6 +18,10 @@ namespace CorvEngine.Scenes {
 		// Support does exist for plugging one in efficiently using an EntityNode reference though.
 		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
 
+		/// <summary>
+		/// Gets an event called when this Scene is disposed.
+		/// </summary>
+		public event Action<Scene> Disposed;
 
 		// TODO: This should be ObjectAdded and ObjectRemoved.
 		/// <summary>
@@ -88,6 +92,13 @@ namespace CorvEngine.Scenes {
 			get { return MapSize / TileSize; }
 		}
 
+		/// <summary>
+		/// Indicates if this Scene has been disposed of.
+		/// </summary>
+		public bool IsDisposed {
+			get { return _IsDisposed; }
+		}
+
 		// TODO: Merge these into AddObject and RemoveObject.
 
 		/// <summary>
@@ -101,17 +112,7 @@ namespace CorvEngine.Scenes {
 			Entity.Initialize(this);
 			if(this.EntityAdded != null)
 				this.EntityAdded(Entity);
-		}
-
-		/// <summary>
-		/// Removes the given Entity from this Scene.
-		/// </summary>
-		public void RemoveEntity(Entity Entity) {
-			if(this.EntityRemoved != null)
-				this.EntityRemoved(Entity);
-			var Node = (NodeType)Entity.NodeReference.Node;
-			_Entities.Remove(Node);
-			Entity.Dispose();
+			Entity.Disposed += Entity_Disposed;
 		}
 
 		/// <summary>
@@ -119,6 +120,7 @@ namespace CorvEngine.Scenes {
 		/// </summary>
 		public void AddSystem(Components.SceneSystem System) {
 			System.Initialize(this);
+			System.Disposed += System_Disposed;
 			_Systems.Add(System);
 		}
 
@@ -132,12 +134,16 @@ namespace CorvEngine.Scenes {
 		}
 
 		/// <summary>
-		/// Disposes of this Scene, removing all remaining Entities.
+		/// Disposes of this Scene, removing all remaining Entities and Systems.
+		/// Unlike SceneObjects, a Scene may not be initialized after being disposed of.
 		/// </summary>
 		public void Dispose() {
+			_IsDisposed = true;
 			var DupedEntities = _Entities.ToArray();
 			foreach(var Entity in DupedEntities)
-				RemoveEntity(Entity);
+				Entity.Dispose();
+			if(this.Disposed != null)
+				this.Disposed(this);
 		}
 
 		protected override void OnDraw(GameTime Time) {
@@ -185,10 +191,24 @@ namespace CorvEngine.Scenes {
 					System.Update(Time);
 		}
 
+		private void Entity_Disposed(SceneObject obj) {
+			Entity Entity = (Entity)obj;
+			Entity.Disposed -= Entity_Disposed;
+			if(this.EntityRemoved != null)
+				this.EntityRemoved(Entity);
+			var Node = (NodeType)Entity.NodeReference.Node;
+			_Entities.Remove(Node);
+		}
+
+		private void System_Disposed(SceneObject obj) {
+			_Systems.Remove((SceneSystem)obj);
+		}
+
         private MapProperty[] _Properties;
 		private Layer[] _Layers;
 		private Vector2 _MapSize;
 		private Vector2 _TileSize;
 		private List<Components.SceneSystem> _Systems = new List<Components.SceneSystem>();
+		private bool _IsDisposed;
 	}	
 }

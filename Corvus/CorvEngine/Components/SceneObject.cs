@@ -87,10 +87,10 @@ namespace CorvEngine.Components {
 				throw new ObjectDisposedException("Unable to dispose of an already disposed object without a call to Initialize between the Disposes..", (Exception)null);
 			this._IsDisposed = true;
 			this._IsInitialized = false;
-			this._Scene = null;
 			OnDispose();
 			if(this.Disposed != null)
 				this.Disposed(this);
+			this._Scene = null;
 		}
 
 		/// <summary>

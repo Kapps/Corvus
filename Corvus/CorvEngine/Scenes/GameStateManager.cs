@@ -137,8 +137,10 @@ namespace CorvEngine.Scenes {
 			// While this could be optimized in many ways, it probably doesn't need to be. Same for Draw.
 			var UpdateHead = FirstReversed(c => c.BlocksUpdate);
 			for(var Node = UpdateHead; Node != null; Node = Node.Next) {
-				foreach(var Component in Node.Value.Components.OrderBy(c => c.UpdateOrder))
-					((IUpdateable)Component).Update(gameTime);
+				foreach(var Component in Node.Value.Components.OrderBy(c => c.UpdateOrder)) {
+					if(Component.Enabled)
+						((IUpdateable)Component).Update(gameTime);
+				}
 			}
 			base.Update(gameTime);
 		}
@@ -191,7 +193,8 @@ namespace CorvEngine.Scenes {
 
 		private void RenderComponents(GameState State, GameTime Time) {
 			foreach(var Component in State.Components.OrderBy(c => c.DrawOrder)) {
-				((IDrawable)Component).Draw(Time);
+				if(Component.Visible)
+					((IDrawable)Component).Draw(Time);
 			}
 		}
 	}

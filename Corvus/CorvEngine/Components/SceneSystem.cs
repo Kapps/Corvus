@@ -50,7 +50,6 @@ namespace CorvEngine.Components {
 		protected override void OnDispose() {
 			Scene.EntityAdded -= Scene_EntityAdded;
 			Scene.EntityRemoved -= Scene_EntityRemoved;
-			Scene.RemoveSystem(this);
 			base.OnDispose();
 		}
 
@@ -100,6 +99,7 @@ namespace CorvEngine.Components {
 						throw new KeyNotFoundException();
 				}
 			}
+			EntitiesTracked.Remove(Entity);
 			Entity.Components.ComponentAdded -= Components_ComponentAdded;
 			Entity.Components.ComponentRemoved -= Components_ComponentRemoved;
 		}

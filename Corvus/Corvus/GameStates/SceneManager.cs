@@ -54,9 +54,11 @@ namespace Corvus.GameStates {
 		/// Otherwise, the Scene will be loaded.
 		/// </summary>
 		public CorvusScene ChangeScene(string LevelName) {
+			// TODO: Refactor this.
 			var Scene = ActiveScenes.FirstOrDefault(c => c.Name.Equals(LevelName, StringComparison.InvariantCultureIgnoreCase));
 			if(Scene == null) {
 				Scene = CorvusScene.Load(LevelName);
+				Scene.Disposed += Scene_Disposed;
 				ActiveScenes.Add(Scene);
 				Scene.AddSystem(new PhysicsSystem());
 				this.AddComponent(Scene);
@@ -75,33 +77,36 @@ namespace Corvus.GameStates {
 			ActiveScene.Enabled = true;
 			foreach(var Player in CorvusGame.Instance.Players) {
 				if(Player.Character != null) {
-					if(OldScene != null)
-						OldScene.RemoveEntity(Player.Character);
+					if(!Player.Character.IsDisposed) // Dispose it to transfer to a new Scene.
+						Player.Character.Dispose();
+					var Position = Player.Character.Position;
 					ActiveScene.AddEntity(Player.Character);
-					Player.Character.Position = new Microsoft.Xna.Framework.Vector2(Player.Character.Location.Width + 10, Player.Character.Location.Height + 100);
+					Player.Character.Position = Position; // Keep them at their old position.
 				}
 			}
 
             //Plays the song. Not sure if it should be here.
-            if (Scene.Properties.Count() != 0)
-            {
-                foreach (MapProperty p in Scene.Properties)
-                {
-                    if (p.Name.Equals("Audio", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        var songProperties = p.Value.Split(',');
-                        if (songProperties.Length >= 1 && string.IsNullOrEmpty(songProperties[0]))
-                            continue; //Empty, don't play anything.
-                        else if (songProperties.Length != 2)
-                            throw new ArgumentException("Expected two arguments for Audio, being the song name and the fade duration. Ex:(SongName1, 2)");
-                        string songName = songProperties[0];
-                        float fadeDuration = float.Parse(songProperties[1]);
-                        CorvEngine.AudioManager.PlayMusic(songName, fadeDuration);
-                    }
-                }
-            }
+			if(Scene.Properties.Any()) {
+				foreach(MapProperty p in Scene.Properties) {
+					if(p.Name.Equals("Audio", StringComparison.InvariantCultureIgnoreCase)) {
+						var songProperties = p.Value.Split(',');
+						if(songProperties.Length >= 1 && string.IsNullOrEmpty(songProperties[0]))
+							continue; //Empty, don't play anything.
+						else if(songProperties.Length != 2)
+							throw new ArgumentException("Expected two arguments for Audio, being the song name and the fade duration. Ex:(SongName1, 2)");
+						string songName = songProperties[0];
+						float fadeDuration = float.Parse(songProperties[1]);
+						CorvEngine.AudioManager.PlayMusic(songName, fadeDuration);
+					}
+				}
+			}
 
 			return _ActiveScene;
+		}
+
+		void Scene_Disposed(Scene obj) {
+			ActiveScenes.Remove((CorvusScene)obj);
+			this.RemoveComponent(obj);
 		}
 
 		/// <summary>
@@ -115,9 +120,9 @@ namespace Corvus.GameStates {
 			var PlayerChars = CorvusGame.Instance.Players.Select(c => c.Character);
 			string ActiveName = ActiveScene.Name;
 			foreach(var PlayerChar in PlayerChars)
-				_ActiveScene.RemoveEntity(PlayerChar);
+				PlayerChar.Dispose();
 			string CurrentSceneName = _ActiveScene.Name;
-			foreach(var Scene in ActiveScenes)
+			foreach(var Scene in ActiveScenes.ToArray()) // Duplicate so can modify.
 				Scene.Dispose();
 			_ActiveScene = null;
 			ChangeScene(ActiveName);
