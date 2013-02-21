@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using CorvEngine;
@@ -15,10 +16,27 @@ namespace Corvus.Components {
 	/// </summary>
 	public class DebugComponent : DrawableGameComponent {
 		private SpriteFont Font;
-
+		const string DATA_FOLDER_PATH = "../../../Data";
 		public DebugComponent() : base(CorvusGame.Instance.Game) {
 			this.Font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/TestFont");
 			CorvusGame.Instance.PlayerAdded += Instance_PlayerAdded;
+			if(Directory.Exists(DATA_FOLDER_PATH)) {
+				FileSystemWatcher fsw = new FileSystemWatcher(DATA_FOLDER_PATH);
+				fsw.InternalBufferSize = 1024 * 256;
+				fsw.IncludeSubdirectories = true;
+				fsw.Changed += DataFileUpdate;
+				fsw.Created += DataFileUpdate;
+				fsw.EnableRaisingEvents = true;
+			}
+		}
+
+		void DataFileUpdate(object sender, FileSystemEventArgs e) {
+			var FileUri = new Uri(Path.GetFullPath(e.FullPath));
+			var DataUri = new Uri(Path.GetFullPath(DATA_FOLDER_PATH));
+			var RelativeUri = DataUri.MakeRelativeUri(FileUri);
+			string SourcePath = FileUri.AbsolutePath;
+			string DestinationPath = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "/" + RelativeUri.OriginalString);
+			File.Copy(SourcePath, DestinationPath, true);
 		}
 
 		void Instance_PlayerAdded(Player Player) {

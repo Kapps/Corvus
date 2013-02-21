@@ -183,5 +183,11 @@
     <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
    </properties>
   </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1864" y="775" width="32" height="32">
+   <properties>
+    <property name="#PathComponent.Nodes" value="Collection(Vector(1180, 1090), Vector(1920, 1090))"/>
+    <property name="PathComponent.CurrentNode" value="Read(Nodes, 0)"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
