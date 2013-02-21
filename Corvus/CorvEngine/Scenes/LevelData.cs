@@ -32,7 +32,10 @@ namespace CorvEngine.Scenes {
 		/// Returns an array of all the dynamic objects defined within this level.
 		/// </summary>
 		public Entity[] DynamicObjects { get; set; }
-
+        /// <summary>
+        /// Returns an array of all the properties defined within this level.
+        /// </summary>
+        public MapProperty[] Properties { get; set; }
 		/// <summary>
 		/// Loads the data for a level using the Tiled Map Xml format.
 		/// </summary>
@@ -48,15 +51,33 @@ namespace CorvEngine.Scenes {
 			List<TextureDetails> Textures = ParseTilesets(MapDetails);
 			List<Layer> Layers = ParseLayers(MapDetails, Textures);
 			List<Entity> Entities = ParseEntities(MapDetails);
+            List<MapProperty> Properties = ParseProperties(MapDetails);
 
 			LevelData Result = new LevelData() {
 				DynamicObjects = Entities.ToArray(),
 				Layers = Layers.ToArray(),
 				MapSize = new Vector2(MapDetails.MapWidth, MapDetails.MapHeight),
-				TileSize = new Vector2(MapDetails.MapTileWidth, MapDetails.MapTileHeight)
+				TileSize = new Vector2(MapDetails.MapTileWidth, MapDetails.MapTileHeight),
+                Properties = Properties.ToArray()
 			};
 			return Result;
 		}
+
+        private static List<MapProperty> ParseProperties(MapDetails Map)
+        {
+            List<MapProperty> Result = new List<MapProperty>();
+            foreach (XmlNode propertiesNode in Map.MapElement.SelectNodes("properties"))
+            {
+                foreach (XmlNode propertyNode in propertiesNode.SelectNodes("property"))
+                {
+                    string name = propertyNode.Attributes["name"].Value;
+                    string value = propertyNode.Attributes["value"].Value;
+                    Result.Add(new MapProperty(name, value));
+                }
+            }
+
+            return Result;
+        }
 
 		private static List<Entity> ParseEntities(MapDetails Map) {
 			List<Entity> Result = new List<Entity>();

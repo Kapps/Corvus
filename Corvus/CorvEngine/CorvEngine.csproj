@@ -172,6 +172,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\GameStateComponent.cs" />
     <Compile Include="Scenes\LevelData.cs" />
+    <Compile Include="Scenes\MapProperty.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Components\EntityNode.cs" />
     <Compile Include="Scenes\Tile.cs" />
