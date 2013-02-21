@@ -5,7 +5,7 @@ using System.Text;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a Component used to attach a Sprite to an Entity.
 	/// </summary>

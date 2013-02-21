@@ -6,7 +6,7 @@ using System.Threading;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides the base class for an object that is part of a Scene, such as a System, Component, or Entity.
 	/// </summary>

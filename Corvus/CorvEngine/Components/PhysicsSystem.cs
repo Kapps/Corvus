@@ -12,7 +12,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a System used to manage physics for Entities that have a PhysicsComponent.
 	/// </summary>
-	public class PhysicsSystem : System {
+	public class PhysicsSystem : SceneSystem {
 
 		/// <summary>
 		/// Indicates the force of gravity.

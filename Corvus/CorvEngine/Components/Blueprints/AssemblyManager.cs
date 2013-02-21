@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace CorvEngine.Entities.Blueprints {
+namespace CorvEngine.Components.Blueprints {
 	/// <summary>
 	/// An internal helper used to provide a list of assemblies that contain references to CorvEngine.
 	/// </summary>

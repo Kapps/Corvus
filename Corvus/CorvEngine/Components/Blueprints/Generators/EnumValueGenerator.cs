@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using CorvEngine.Entities.Blueprints;
+using CorvEngine.Components.Blueprints;
 
-namespace CorvEngine.Entities.Generators {
+namespace CorvEngine.Components.Blueprints.Generators {
 	/// <summary>
 	/// Provides a ValueGenerator that returns an enum with a qualified name.
 	/// </summary>
@@ -14,7 +15,7 @@ namespace CorvEngine.Entities.Generators {
 			get { return "Enum"; }
 		}
 
-		public override object GetValue(object Instance, System.Reflection.PropertyInfo Property, object[] Arguments) {
+		public override object GetValue(object Instance, PropertyInfo Property, object[] Arguments) {
 			if(Arguments.Length < 2)
 				throw new FormatException("Expected at least two arguments; the first the qualified name of the enum, the second and up the values to assign.");
 			string QualifiedName = Arguments[0].ToString();

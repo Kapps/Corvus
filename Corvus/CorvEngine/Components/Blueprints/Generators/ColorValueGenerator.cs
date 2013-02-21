@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CorvEngine.Entities.Generators {
+namespace CorvEngine.Components.Blueprints.Generators {
 	/// <summary>
 	/// Provides a value generator to generate a Color from either a name or an RGB(A) value.
 	/// </summary>

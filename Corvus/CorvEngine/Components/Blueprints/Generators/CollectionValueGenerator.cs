@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace CorvEngine.Entities.Generators {
+namespace CorvEngine.Components.Blueprints.Generators {
 	/// <summary>
 	/// Provides a value generator that instantiates a collection with it's default type, if null, and then adds all arguments after being converted to the appropriate type.
 	/// If the target property is both abstract and null, a list will be returned.

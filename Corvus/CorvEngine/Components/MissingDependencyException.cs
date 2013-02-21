@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	/// <summary>
 	/// An exception thrown when a Component is missing a specific dependency.
 	/// </summary>

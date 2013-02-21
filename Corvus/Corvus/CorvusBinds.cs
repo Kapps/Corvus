@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorvEngine;
-using CorvEngine.Entities;
+using CorvEngine.Components;
 using CorvEngine.Input;
 using Microsoft.Xna.Framework.Input;
 

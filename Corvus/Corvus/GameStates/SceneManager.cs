@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CorvEngine.Components;
-using CorvEngine.Entities.Blueprints;
+using CorvEngine.Components.Blueprints;
 using CorvEngine.Scenes;
 
 namespace Corvus.GameStates {

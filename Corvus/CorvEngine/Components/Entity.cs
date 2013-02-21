@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using CorvEngine.Entities.Blueprints;
+using CorvEngine.Components.Blueprints;
 using CorvEngine.Graphics;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 
 	/// <summary>
 	/// Called when the location of an Entity changes (either the position or the size).

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorvEngine.Entities;
+using CorvEngine.Components;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
-using NodeType = System.Collections.Generic.LinkedListNode<CorvEngine.Entities.Entity>;
+using NodeType = System.Collections.Generic.LinkedListNode<CorvEngine.Components.Entity>;
 
 namespace CorvEngine.Scenes {
 	/// <summary>
@@ -108,7 +108,7 @@ namespace CorvEngine.Scenes {
 		/// <summary>
 		/// Adds the specified System to be part of this Scene.
 		/// </summary>
-		public void AddSystem(Components.System System) {
+		public void AddSystem(Components.SceneSystem System) {
 			System.Initialize(this);
 			_Systems.Add(System);
 		}
@@ -116,7 +116,7 @@ namespace CorvEngine.Scenes {
 		/// <summary>
 		/// Removes the specified System from this Scene.
 		/// </summary>
-		public void RemoveSystem(Components.System System) {
+		public void RemoveSystem(Components.SceneSystem System) {
 			// Same as above, this should be considered temporary.
 			_Systems.Remove(System);
 			System.Dispose();
@@ -179,6 +179,6 @@ namespace CorvEngine.Scenes {
 		private Layer[] _Layers;
 		private Vector2 _MapSize;
 		private Vector2 _TileSize;
-		private List<Components.System> _Systems = new List<Components.System>();
+		private List<Components.SceneSystem> _Systems = new List<Components.SceneSystem>();
 	}	
 }

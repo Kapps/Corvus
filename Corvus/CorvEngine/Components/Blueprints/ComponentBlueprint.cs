@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
-namespace CorvEngine.Entities.Blueprints {
+namespace CorvEngine.Components.Blueprints {
 	/// <summary>
 	/// Provides a reference to a Component, including name and properties to assign.
 	/// </summary>
@@ -36,7 +37,7 @@ namespace CorvEngine.Entities.Blueprints {
 		/// </summary>
 		public Component CreateComponent() {
 			var Result = (Component)Activator.CreateInstance(Type, true);
-			typeof(SceneObject).GetField("_Name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.FlattenHierarchy).SetValue(Result, this.Name);
+			typeof(SceneObject).GetField("_Name", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy).SetValue(Result, this.Name);
 			foreach(var Property in Properties) {
 				Property.ApplyValue(Result);
 			}

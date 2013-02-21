@@ -103,7 +103,7 @@
     <Compile Include="Components\PhysicsComponent.cs" />
     <Compile Include="Components\PhysicsSystem.cs" />
     <Compile Include="Components\SceneObject.cs" />
-    <Compile Include="Components\System.cs" />
+    <Compile Include="Components\SceneSystem.cs" />
     <Compile Include="Controls\Border.cs" />
     <Compile Include="Controls\ControlManager.cs" />
     <Compile Include="Controls\Image.cs" />

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides information about a single Component used in the Game.
 	/// </summary>

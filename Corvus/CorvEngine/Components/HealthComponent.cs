@@ -6,7 +6,7 @@ using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a component for an Entity that can take damage and die.
 	/// </summary>

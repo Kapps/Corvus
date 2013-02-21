@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CorvEngine.Entities.Blueprints {
+namespace CorvEngine.Components.Blueprints {
 	/// <summary>
 	/// Provides a parser that can be used to parse EntityBlueprints and their corresponding ComponentBlueprints from a file.
 	/// </summary>

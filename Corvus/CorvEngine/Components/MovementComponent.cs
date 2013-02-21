@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	public class MovementComponent : Component {
 		float maxWalkVelocity = 500f;
 		float maxJumpVelocity = 1050f;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorvEngine.Entities
+namespace CorvEngine.Components
 {
 	class PathComponent : Component {
 		//Lazy implementation since not sure if permanent yet.

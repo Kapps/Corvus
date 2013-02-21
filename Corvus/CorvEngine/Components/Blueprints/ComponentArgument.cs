@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using CorvEngine.Entities.Generators;
+using CorvEngine.Components.Blueprints.Generators;
 
-namespace CorvEngine.Entities.Blueprints {
+namespace CorvEngine.Components.Blueprints {
 	/// <summary>
 	/// Represents an argument that can be passed into a PropertyValueGenerator to be transformed recursively.
 	/// </summary>

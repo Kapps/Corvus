@@ -5,14 +5,14 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
 
-namespace CorvEngine.Entities.Blueprints {
+namespace CorvEngine.Components.Blueprints {
 	/// <summary>
 	/// Provides a blueprint class that can be used to construct an Entity from a predefined set of Components properties.
 	/// </summary>
 	public class EntityBlueprint {
 		/**
 		 * TODO:
-		 *	First, we have a list of components (probably the type name, such as CorvEngine.Entities.PhysicsComponent).
+		 *	First, we have a list of components (probably the type name, such as CorvEngine.Components.PhysicsComponent).
 		 *	Next, we have a list of properties. Properties say what Component they're applied to, and what they do.
 		 *		They're not just flat values though, they can be calls to a ValueGenerator.
 		 *		For example, the value 'MaxHealth: Random(100, 150)' would call the RandomValueGenerator class to get a number between that.

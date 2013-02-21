@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorvEngine.Entities;
+using CorvEngine.Components;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 
@@ -12,7 +12,7 @@ namespace CorvEngine.Components {
 	/// A system applies operations to Entities within the Scene, such as providing physics logic.
 	/// While a Component can apply updates to itself, or render itself, it's recommended to use a System when dealing with multiple Entities.
 	/// </summary>
-	public abstract class System : SceneObject {		
+	public abstract class SceneSystem : SceneObject {		
 
 		/// <summary>
 		/// Returns all components of the specified type, or derived from the specified type, within the Scene.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorvEngine.Entities;
+using CorvEngine.Components;
 using Microsoft.Xna.Framework;
 
 namespace CorvEngine.Graphics {

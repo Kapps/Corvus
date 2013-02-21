@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace CorvEngine.Entities.Generators {
+namespace CorvEngine.Components.Blueprints.Generators {
 	/// <summary>
 	/// Provides a PropertyValueGenerator that loads a Sprite through the Content pipeline.
 	/// IMPORTANT: At the moment, this class uses the global Content loader, which will cause the resulting sprite to never be unloaded.

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorvEngine.Entities;
+using CorvEngine.Components;
 
-namespace CorvEngine.Entities {
+namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a reference to a node that contains an entity in order to allow for O(1) lookups, movements, and removals.
 	/// </summary>
