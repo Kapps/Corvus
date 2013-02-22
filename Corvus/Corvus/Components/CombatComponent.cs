@@ -40,8 +40,9 @@ namespace Corvus.Components {
 			var attackedEntity = Scene.GetEntityAtPosition(new Point((int)Parent.Location.Center.X + attackPoint, Parent.Location.Y));
 
 			if(attackedEntity != null) {
-				var damageComponent = attackedEntity.GetComponent<DamageComponent>();
-				damageComponent.TakeDamage(50);
+                var ac = this.GetDependency<AttributesComponent>();
+                var damageComponent = attackedEntity.GetComponent<DamageComponent>();
+                damageComponent.TakeDamage(ac);
 			}
 		}
 	}

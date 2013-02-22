@@ -13,7 +13,9 @@ namespace Corvus.Components {
 		private float _Strength = 0;    //Used for damage.
 		private float _StrModifier = 1f;
 		private float _Dexterity = 0;   //used for defense.
-		private float _DexModifier = 1f;
+        private float _DexModifier = 1f;
+        private float _CritChance = 0.05f;
+        private float _CritDamage = 1.5f;
 		private bool _IsDead = false;
 
 		/// <summary>
@@ -96,7 +98,25 @@ namespace Corvus.Components {
 		public float DexModifier {
 			get { return _DexModifier; }
 			set { _DexModifier = Math.Max(value, 0); }
-		}
+        }
+
+        /// <summary>
+        /// Gets or sets the critical chance. Value must range from 0 to 1.0.
+        /// </summary>
+        public float CritChance
+        {
+            get { return _CritChance; }
+            set { _CritChance = MathHelper.Clamp(value, 0, 1.0f); }
+        }
+
+        /// <summary>
+        /// Gets or sets the critical damage. Value cannot be lower than 1.
+        /// </summary>
+        public float CritDamage
+        {
+            get { return _CritDamage; }
+            set { _CritDamage = Math.Max(value, 1); }
+        }
 
 		/// <summary>
 		/// Gets the overall strength.
