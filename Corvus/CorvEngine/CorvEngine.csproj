@@ -101,6 +101,7 @@
     <Compile Include="Components\ClassificationComponent.cs" />
     <Compile Include="Components\CollisionDamageComponent.cs" />
     <Compile Include="Components\CollisionEventComponent.cs" />
+    <Compile Include="Components\CombatComponent.cs" />
     <Compile Include="Components\DamageComponent.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
     <Compile Include="Components\PhysicsComponent.cs" />

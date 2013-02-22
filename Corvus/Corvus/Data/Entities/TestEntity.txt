@@ -23,8 +23,11 @@ Mover
 Damager
 	DamageComponent
 
+Fighter
+	CombatComponent
+
 # Show off multiple inheritance / composition.
-TestEntity : PlayerSprite, Healthy, Mover, Attributes, Damager
+TestEntity : PlayerSprite, Healthy, Mover, Attributes, Damager, Fighter
 	PhysicsComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

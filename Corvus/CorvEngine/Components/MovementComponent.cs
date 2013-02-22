@@ -11,6 +11,7 @@ namespace CorvEngine.Components {
 		float maxWalkVelocity = 500f;
 		float maxJumpVelocity = 1050f;
 		Direction CurrDir = Direction.None;
+        public Direction LastWalkDir = Direction.None;
 		PhysicsComponent Physics;
 
 		protected override void OnInitialize() {
@@ -29,11 +30,13 @@ namespace CorvEngine.Components {
 					Physics.VelocityX = maxWalkVelocity * -1;
 					if(CurrDir != dir)
 						Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + dir.ToString());
+                    LastWalkDir = Direction.Left;
 					break;
 				case Direction.Right:
 					Physics.VelocityX = maxWalkVelocity;
 					if(CurrDir != dir)
 						Parent.GetComponent<SpriteComponent>().Sprite.PlayAnimation("Walk" + dir.ToString());
+                    LastWalkDir = Direction.Right;
 					break;
 				case Direction.None:
 					if(CurrDir != dir)

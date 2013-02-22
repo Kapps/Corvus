@@ -88,18 +88,24 @@ namespace CorvEngine.Components {
         /// Sets the current node to the next node, and if it's last one, it loops over to the start.
         /// </summary>
 		public void AdvanceNode() {
-			if(_ReverseOnCompletion) {
-				if(_StepSize > 0 && _NodeIndex >= Nodes.Count - _StepSize)
-					_StepSize *= -1;
-				if(_StepSize < 0 && _NodeIndex < Math.Abs(_StepSize))
-					_StepSize *= -1;
-				_NodeIndex += _StepSize;
-			} else {
-				_NodeIndex++;
-				if(_NodeIndex >= Nodes.Count)
-					_NodeIndex = 0;
-			}
-			_CurrentNode = Nodes[_NodeIndex];
+            if (Nodes != null)
+            {
+                if (_ReverseOnCompletion)
+                {
+                    if (_StepSize > 0 && _NodeIndex >= Nodes.Count - _StepSize)
+                        _StepSize *= -1;
+                    if (_StepSize < 0 && _NodeIndex < Math.Abs(_StepSize))
+                        _StepSize *= -1;
+                    _NodeIndex += _StepSize;
+                }
+                else
+                {
+                    _NodeIndex++;
+                    if (_NodeIndex >= Nodes.Count)
+                        _NodeIndex = 0;
+                }
+                _CurrentNode = Nodes[_NodeIndex];
+            }
 		}
 
         /// <summary>
@@ -107,22 +113,29 @@ namespace CorvEngine.Components {
         /// </summary>
         /// <param name="Time"></param>
 		protected override void OnUpdate(GameTime Time) {
-			Entity entity = this.Parent;
-			MovementComponent mc = entity.GetComponent<MovementComponent>();
-			PhysicsComponent pc = entity.GetComponent<PhysicsComponent>();
-            //Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
-			if(Math.Abs(entity.Position.X - CurrentNode.X) < ArrivalDistance) {
-				if(entity.Y < CurrentNode.Y - ArrivalDistance && !pc.IsGrounded)
-					return; // Do nothing, just wait for us to fall on our location.
-				else
-					AdvanceNode();
-			} else {
-				if(entity.Y > CurrentNode.Y + ArrivalDistance && (DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay) {
-					mc.Jump(AllowMultiJump);
-					_LastJump = DateTime.Now;
-				}
-				mc.Walk(entity.X < CurrentNode.X ? Direction.Right : Direction.Left);
-			}
+            if (Nodes != null)
+            {
+                Entity entity = this.Parent;
+                MovementComponent mc = entity.GetComponent<MovementComponent>();
+                PhysicsComponent pc = entity.GetComponent<PhysicsComponent>();
+                //Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
+                if (Math.Abs(entity.Position.X - CurrentNode.X) < ArrivalDistance)
+                {
+                    if (entity.Y < CurrentNode.Y - ArrivalDistance && !pc.IsGrounded)
+                        return; // Do nothing, just wait for us to fall on our location.
+                    else
+                        AdvanceNode();
+                }
+                else
+                {
+                    if (entity.Y > CurrentNode.Y + ArrivalDistance && (DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay)
+                    {
+                        mc.Jump(AllowMultiJump);
+                        _LastJump = DateTime.Now;
+                    }
+                    mc.Walk(entity.X < CurrentNode.X ? Direction.Right : Direction.Left);
+                }
+            }
 			base.OnUpdate(Time);
 		}
 	}

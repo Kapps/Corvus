@@ -183,5 +183,6 @@
     <property name="PathComponent.Nodes" value="Collection(Vector(10, 1568), Vector(2000, 1568))"/>
    </properties>
   </object>
+  <object name="TestEntityEnemy" type="TestEntityEnemy" x="1496" y="1282" width="32" height="32"/>
  </objectgroup>
 </map>
