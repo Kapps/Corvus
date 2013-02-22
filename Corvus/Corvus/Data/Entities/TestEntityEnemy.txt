@@ -1,6 +1,6 @@
 ﻿RedSprite
 	SpriteComponent (Sprite)
-		Color: Color(White)
+		Color: Color(Red)
 
 EnemySprite : RedSprite
 	SpriteComponent (Sprite)

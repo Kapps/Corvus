@@ -76,7 +76,6 @@ namespace CorvEngine.Components {
 			// This is safe to multi-thread because we're never modifying anything besides the Component itself.
 			List<Task> Tasks = new List<Task>();
 			foreach(var Component in GetFilteredComponents<PhysicsComponent>()) {
-				Vector2 PositionDelta = Component.Velocity * Time.GetTimeScalar();
 				bool AnySolidHit = false;
 				var Parent = Component.Parent;
 				if(!Component.IsGrounded)
@@ -87,7 +86,7 @@ namespace CorvEngine.Components {
 					if(Math.Sign(Component.VelocityX) != CurrSign)
 						Component.VelocityX = 0;
 				}
-
+				Vector2 PositionDelta = Component.Velocity * Time.GetTimeScalar();
 				foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
 					Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
 					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y) + 1.1f) {
@@ -116,6 +115,7 @@ namespace CorvEngine.Components {
 				// Special case: If we're at the bottom of the level, we should be considered grounded.
 				if(Parent.Y > Scene.MapSize.Y - Scene.TileSize.Y) {
 					Parent.Y = Scene.MapSize.Y - Scene.TileSize.Y;
+					Component.VelocityY = 0;
 					Component.IsGrounded = true;
 				}
 			}
@@ -174,9 +174,9 @@ namespace CorvEngine.Components {
 			
 		}
 
-		private float _Gravity = 5000;
+		private float _Gravity = 4000;
 		private float _HorizontalDrag = 6000;
-		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(20);
+		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(10);
 		private HashSet<CollisionInfo> PreviousCollisions = new HashSet<CollisionInfo>();
 
 		private struct CollisionInfo {

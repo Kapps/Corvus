@@ -112,7 +112,7 @@ namespace CorvEngine.Components {
 					AdvanceNode();
 				} else {
 					bool MissingHorizontally = CurrentNode.X > entity.Location.Right || CurrentNode.X < entity.Location.Left;
-					if(entity.Location.Top > CurrentNode.Y && (DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay && !MissingHorizontally) {
+					if(entity.Location.Top > CurrentNode.Y && /*(DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay &&*/ !MissingHorizontally) {
 						mc.Jump(AllowMultiJump);
 						_LastJump = DateTime.Now;
 					}
@@ -120,11 +120,11 @@ namespace CorvEngine.Components {
 						if(entity.Location.Left > CurrentNode.X) {
 							mc.BeginWalking(Direction.Left);
 							// Check if we'll need to jump this frame.
-							if(!ps.IsLocationSolid(new Vector2(entity.Location.Left - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom)))
+							if(!ps.IsLocationSolid(new Vector2(entity.Location.Left - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
 								mc.Jump(AllowMultiJump);
 						} else if(entity.Location.Right < CurrentNode.X) {
 							mc.BeginWalking(Direction.Right);
-							if(!ps.IsLocationSolid(new Vector2(entity.Location.Right - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom)))
+							if(!ps.IsLocationSolid(new Vector2(entity.Location.Right + pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
 								mc.Jump(AllowMultiJump);
 						}
 					} else

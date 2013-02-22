@@ -14,7 +14,7 @@ namespace CorvEngine.Components {
 		private PhysicsComponent PhysicsComponent;
 		private SpriteComponent SpriteComponent;
 		private float _WalkSpeed = 500;
-		private float _JumpSpeed = 1050;
+		private float _JumpSpeed = 950;
 		private float _WalkAcceleration = 9000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
@@ -87,7 +87,7 @@ namespace CorvEngine.Components {
 		/// </summary>
 		public void Jump(bool allowMulti) {
 			if(PhysicsComponent.IsGrounded || allowMulti)
-				PhysicsComponent.VelocityY = JumpSpeed * -1;
+				PhysicsComponent.VelocityY = -JumpSpeed;
 		}
 
 		protected override void OnUpdate(GameTime Time) {

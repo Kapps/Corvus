@@ -19,7 +19,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XTW6CQBjG8WGvN6nX0LZ+th6iTWg8hFs/DlG3xoU3sYfQtZ6gT1NJGhIEmQEG+v8lz84ZhydAXowBAAAAAAAAAAAAAAC++FQ2Dn7jq1tnL+LaXXdVRvdH5VTwf0Rsr6fO96KP8vZZ1D2Tdh7b57lKZT5nAPJrBca0g6pPUV8P6q5Df7kN1N1QGf2jDrtKT3lUnpRnpa8MlInykpBpbG080R5NkjTrvCnvfxLesWd8bZ49YIcZ0Z2D8lX1IVL4/M1yVi5VHwLwQDRfzIP0NHHecGGrbvYZsrvOvCNlbH5nv9eE/Mx+dXjPu3Bvf1nF3/Oh1n9cM2vQ90fSfOt63l2os6WyUtYN6q9MW/qzQn926M9O0f19AxYC1lGAPgAA
+   H4sIAAAAAAAAC+3XWwqCQBjFcd1cd7ouosBoEb12WUS9Rg/tpBZRz7WCTpgQgpnNqKP8f3DenGk8qHx5HgAAAAAAAAAAAAAAcMVO2Vu4xlXfzp7Hvdvuqojur8ot59+ImN5PlZ9FF/3bZ17PTNp5TN/nMhX5ngEAUBUNpam0lLbSUbpKTxkqo4RMYmvjifaok6RZZ6rMPhJk2DO+9p89YIYZ0Z6zcin7EClc/s9yVx5lHwJwQDRfLP301HHesOGgbk4/5OiH1/eVgRfOfuOEvGa/Knznbcja36/i3/lA6+fvLDLu5bKk+db2vLtSZ2tlo2xr1F+RDvRnhP7M0J+ZvPt7AvO/2AKAPgAA
   </data>
  </layer>
  <layer name="Objects" width="80" height="50">
@@ -44,106 +44,6 @@
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object type="TestEntityEnemy" x="1931" y="1498" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(1180, 1095), Vector(1920, 1095))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="1009" y="1520" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="1672" y="1523" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="1277" y="1525" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="1080" y="1524" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="920" y="1528" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="807" y="1527" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="716" y="1527" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="628" y="1524" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="459" y="1528" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="544" y="1527" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="381" y="1531" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="317" y="1528" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="164" y="1532" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="255" y="1529" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="-13" y="1533" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="203" y="1361" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="52" y="1405" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="89" y="1517" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
-  <object type="TestEntityEnemy" x="123" y="1493" width="32" height="32">
-   <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
-   </properties>
-  </object>
   <object type="TestEntityEnemy" x="268" y="59" width="32" height="32">
    <properties>
     <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
@@ -152,5 +52,37 @@
   <object name="Jumper" type="Path" x="151" y="849">
    <polyline points="0,0 87,55 216,-35 339,60 439,-35 539,58 723,-35 853,-9 985,-68 1109,-35 1273,-69 1368,-5 1499,27 1456,25 1328,-5 1254,-68 1090,-30 960,-65 820,-1 719,-35 535,61 420,-35 311,55 181,-41 56,53 -44,0"/>
   </object>
+  <object name="Climber" type="TestEntityEnemy" x="933" y="1308" width="29" height="31">
+   <properties>
+    <property name="PathComponent.ReverseOnCompletion" value="false"/>
+   </properties>
+  </object>
+  <object name="Climber" type="Path" x="943" y="1323">
+   <polyline points="5,11 325,12 259,13 181,-85 125,-183 287,-212 804,-213 860,-304 1049,-405 1133,-439 944,-504 780,-213 279,-216 187,-85 296,13 727,47 884,77 723,49 4,9"/>
+  </object>
+  <object name="Climber2" type="TestEntityEnemy" x="918" y="1310" width="29" height="31">
+   <properties>
+    <property name="PathComponent.ReverseOnCompletion" value="true"/>
+   </properties>
+  </object>
+  <object name="Climber2" type="Path" x="972" y="1319">
+   <polyline points="0,0 149,-83 73,-185 849,-305 1116,-435 912,-513"/>
+  </object>
+  <object name="Jumper2" type="TestEntityEnemy" x="1627" y="849" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="Jumper2" type="Path" x="1641" y="885">
+   <polyline points="0,0 -1535,-29"/>
+  </object>
  </objectgroup>
+ <layer name="Solid Objects" width="80" height="50">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QsQ3AIBAEwSeHTkwnQP/l+GsgAcsz0uWnjQAAAAAAAAAAAAC4Sy0RrZx+8V1Ptuv6bRvZbuaWhgAAAAD80AtoWnIEgD4AAA==
+  </data>
+ </layer>
 </map>

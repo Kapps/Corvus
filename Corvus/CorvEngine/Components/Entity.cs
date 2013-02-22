@@ -148,7 +148,7 @@ namespace CorvEngine.Components {
 		}
 
 		public override string ToString() {
-			return "Entity (" + this.Components.Count + " Component(s))";
+			return this.Name + " (" + this.Components.Count + " Component(s))";
 		}
 
 		private Vector2 _Position;

@@ -68,6 +68,15 @@ namespace Corvus.Components {
 					Entity.Components.Add(CurrentCamera);
 				}
 			}
+			if(State.RightButton == ButtonState.Pressed && OldState.RightButton != ButtonState.Pressed) {
+				var Entity = SceneManager.ActiveScene.GetEntityAtPosition(new Point(State.X + (int)Player.Camera.Position.X, State.Y + (int)Player.Camera.Position.Y));
+				if(Entity != null) {
+					foreach(var OtherEntity in SceneManager.ActiveScene.Entities.ToArray()) {
+						if(OtherEntity != Entity && !CorvusGame.Instance.Players.Any(c => c.Character == OtherEntity))
+							OtherEntity.Dispose();
+					}
+				}
+			}
 			base.Update(gameTime);
 		}
 
