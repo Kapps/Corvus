@@ -80,43 +80,96 @@ namespace CorvEngine.Scenes {
         }
 
 		private static List<Entity> ParseEntities(MapDetails Map) {
-			List<Entity> Result = new List<Entity>();
+			List<Entity> Entities = new List<Entity>();
+			List<PathDetails> Paths = new List<PathDetails>();
 			foreach(XmlNode ObjectGroupNode in Map.MapElement.SelectNodes("objectgroup")) {
 				foreach(XmlNode ObjectNode in ObjectGroupNode.SelectNodes("object")) {
-					int Width = int.Parse(ObjectNode.Attributes["width"].Value);
-					int Height = int.Parse(ObjectNode.Attributes["height"].Value);
-					int X = int.Parse(ObjectNode.Attributes["x"].Value);
-					int Y = int.Parse(ObjectNode.Attributes["y"].Value);
-					string BlueprintName = ObjectNode.Attributes["type"].Value;
-					EntityBlueprint Blueprint = EntityBlueprint.GetBlueprint(BlueprintName);
-					Entity Entity = Blueprint.CreateEntity();
-					Entity.Position = new Vector2(X, Y);
-					Entity.Size = new Vector2(Width, Height);
-
-					foreach(XmlNode PropertiesNode in ObjectNode.SelectNodes("properties")) {
-						foreach(XmlNode PropertyNode in PropertiesNode.SelectNodes("property")) {
-							string Name = PropertyNode.Attributes["name"].Value.Trim();
-							// So, this is quite a hack.
-							// Tiled doesn't allow us to re-order properties; it's all alphabetical.
-							// So we just support sticking a # in front of the property to make it go to the top of the list, and then ignore that #.
-							while(Name.FirstOrDefault() == '#')
-								Name = Name.Substring(1);
-							string Value = PropertyNode.Attributes["value"].Value.Trim();
-							string[] NamePropertySplit = Name.Split('.');
-							if(NamePropertySplit.Length != 2)
-								throw new FormatException("Expected object property name to be in the format of 'PathComponent.Nodes'.");
-							string ComponentName = NamePropertySplit[0].Trim();
-							string PropertyName = NamePropertySplit[1].Trim();
-							ComponentArgument Argument = ComponentArgument.Parse(Value).Single();
-							ComponentProperty ParsedProperty = new ComponentProperty(ComponentName, PropertyName, Argument);
-							var Component = Entity.Components[ComponentName];
-							ParsedProperty.ApplyValue(Component);
-						}
-					}
-					Result.Add(Entity);
+					ObjectType Type = ReadObjectType(ObjectNode);
+					if(Type == ObjectType.Path) {
+						var Path = ParsePath(ObjectNode);
+						Paths.Add(Path);
+					} else if(Type == ObjectType.Entity) {
+						var Entity = ParseEntity(ObjectNode);
+						Entities.Add(Entity);
+					} else
+						throw new ArgumentException("Unknown object type '" + Type + "'.");
 				}
 			}
-			return Result;
+
+			foreach(var Path in Paths) {
+				var Entity = Entities.Single(c => c.Name.Equals(Path.EntityName, StringComparison.InvariantCultureIgnoreCase));
+				var PathComponent = Entity.GetComponent<PathComponent>();
+				if(PathComponent == null) {
+					PathComponent = new PathComponent();
+					Entity.Components.Add(PathComponent);
+				}
+				if(PathComponent.Nodes != null)
+					PathComponent.Nodes.Clear();
+				foreach(var Node in Path.Nodes)
+					PathComponent.AddNode(Node);
+			}
+			return Entities;
+		}
+
+		private static PathDetails ParsePath(XmlNode ObjectNode) {
+			float X = float.Parse(ObjectNode.Attributes["x"].Value);
+			float Y = float.Parse(ObjectNode.Attributes["y"].Value);
+			string EntityName = ObjectNode.Attributes["name"].Value.Trim();
+			List<Vector2> Nodes = new List<Vector2>();
+			foreach(var PointText in ObjectNode.SelectSingleNode("polyline").Attributes["points"].Value.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)) {
+				int IndexComma = PointText.IndexOf(',');
+				float NodeX = float.Parse(PointText.Substring(0, IndexComma).Trim());
+				float NodeY = float.Parse(PointText.Substring(IndexComma + 1).Trim());
+				Nodes.Add(new Vector2(NodeX + X, NodeY + Y));
+			}
+			return new PathDetails() {
+				EntityName = EntityName,
+				Nodes = Nodes
+			};
+		}
+
+		private static Entity ParseEntity(XmlNode ObjectNode) {
+			float Width = float.Parse(ObjectNode.Attributes["width"].Value);
+			float Height = float.Parse(ObjectNode.Attributes["height"].Value);
+			float X = float.Parse(ObjectNode.Attributes["x"].Value);
+			float Y = float.Parse(ObjectNode.Attributes["y"].Value);
+			string BlueprintName = ObjectNode.Attributes["type"].Value.Trim();
+			string EntityName = ObjectNode.Attributes["name"] == null ? null : ObjectNode.Attributes["name"].Value.Trim();
+			EntityBlueprint Blueprint = EntityBlueprint.GetBlueprint(BlueprintName);
+			Entity Entity = Blueprint.CreateEntity();
+			if(!String.IsNullOrWhiteSpace(EntityName))
+				Entity.Name = EntityName;
+			Entity.Position = new Vector2(X, Y);
+			Entity.Size = new Vector2(Width, Height);
+
+			foreach(XmlNode PropertiesNode in ObjectNode.SelectNodes("properties")) {
+				foreach(XmlNode PropertyNode in PropertiesNode.SelectNodes("property")) {
+					string Name = PropertyNode.Attributes["name"].Value.Trim();
+					// So, this is quite a hack.
+					// Tiled doesn't allow us to re-order properties; it's all alphabetical.
+					// So we just support sticking a # in front of the property to make it go to the top of the list, and then ignore that #.
+					while(Name.FirstOrDefault() == '#')
+						Name = Name.Substring(1);
+					string Value = PropertyNode.Attributes["value"].Value.Trim();
+					string[] NamePropertySplit = Name.Split('.');
+					if(NamePropertySplit.Length != 2)
+						throw new FormatException("Expected object property name to be in the format of 'PathComponent.Nodes'.");
+					string ComponentName = NamePropertySplit[0].Trim();
+					string PropertyName = NamePropertySplit[1].Trim();
+					ComponentArgument Argument = ComponentArgument.Parse(Value).Single();
+					ComponentProperty ParsedProperty = new ComponentProperty(ComponentName, PropertyName, Argument);
+					var Component = Entity.Components[ComponentName];
+					ParsedProperty.ApplyValue(Component);
+				}
+			}
+			return Entity;
+		}
+
+		private static ObjectType ReadObjectType(XmlNode ObjectNode) {
+			string TypeAttrib = ObjectNode.Attributes["type"].Value;
+			if(TypeAttrib.Equals("Path", StringComparison.InvariantCultureIgnoreCase))
+				return ObjectType.Path;
+			return ObjectType.Entity;
 		}
 
 		private static List<Layer> ParseLayers(MapDetails Map, List<TextureDetails> Textures) {
@@ -226,6 +279,16 @@ namespace CorvEngine.Scenes {
 			public int TileHeight;
 			public int NumTilesWide;
 			public int NumTilesHigh;
+		}
+
+		private struct PathDetails {
+			public string EntityName;
+			public List<Vector2> Nodes;
+		}
+
+		private enum ObjectType {
+			Entity,
+			Path
 		}
 	}
 }

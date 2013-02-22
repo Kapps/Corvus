@@ -13,7 +13,7 @@ namespace CorvEngine.Components {
 
 		private float _JumpDelay = 200;
 		private bool _AllowMultiJump = false;
-		private IList<Vector2> _Nodes;
+		private IList<Vector2> _Nodes = new List<Vector2>();
 		private Vector2 _CurrentNode;
 		private int _NodeIndex = 0;
 		private DateTime _LastJump = DateTime.Now;
@@ -68,7 +68,7 @@ namespace CorvEngine.Components {
 		/// </summary>
 		/// <param name="node"></param>
 		public void AddNode(Vector2 node) {
-			if(Nodes.Count() == 0) {
+			if(Nodes.Count == 0) {
 				_CurrentNode = node;
 				_NodeIndex = 0;
 			}

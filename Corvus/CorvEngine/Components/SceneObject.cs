@@ -94,10 +94,16 @@ namespace CorvEngine.Components {
 		}
 
 		/// <summary>
-		/// Gets the name of this Components. Components are accessible by either type or name.
+		/// Gets or sets the name of this object. Objects are accessible by either type or name.
+		/// Changing the name of an object after it's initialized is not allowed.
 		/// </summary>
 		public virtual string Name {
 			get { return _Name; }
+			set {
+				if(IsInitialized)
+					throw new InvalidOperationException("Unable to change the name of an object after it's initialized.");
+				_Name = value; 
+			}
 		}
 
 		/// <summary>
