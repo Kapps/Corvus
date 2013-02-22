@@ -11,12 +11,13 @@ namespace CorvEngine.Components
     public class CombatComponent : Component
     {
         //This doesn't launch a projectile.
+        //We simply get an x,y value to attack and get the entity there, in order to apply damage.
         public void AttackSword()
         {
             MovementComponent mc = Parent.GetComponent<MovementComponent>();
 
-            int attackRange = 50;
-            int attackPoint;
+            int attackRange = 50; //This is the number we use to calculate our attack point. Range.
+            int attackPoint; //This eventually is calculated based on the range, and depends on what direction we're facing.
 
             if (mc.LastWalkDir == Direction.Left)
             {
@@ -26,12 +27,12 @@ namespace CorvEngine.Components
             {
                 attackPoint = attackRange;
             }
-            else
+            else //Player hasn't moved yet or just isn't facing left or right.
             {
                 attackPoint = 0;
             }
 
-            var attackedEntity = Scene.GetEntityAtPosition(new Point((int)Parent.CentreX + attackPoint, Parent.Location.Y));
+            var attackedEntity = Scene.GetEntityAtPosition(new Point((int)Parent.Location.Center.X + attackPoint, Parent.Location.Y));
 
             if (attackedEntity != null)
             {

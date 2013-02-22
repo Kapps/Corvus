@@ -98,11 +98,6 @@ namespace CorvEngine.Components {
 			get { return new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y); }
 		}
 
-        public float CentreX
-        {
-            get { return Position.X + (Size.X / 2); }
-        }
-
 		/// <summary>
 		/// Creates a new Entity with no Components assigned.
 		/// </summary>
