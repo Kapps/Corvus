@@ -24,12 +24,34 @@ namespace CorvEngine.Components {
 		}
 
 		/// <summary>
+		/// Indicates how much to slow each Entity down in the horizontal direction each frame.
+		/// This is essentially the force of Gravity, but horizontally, and applies both when grounded and when not.
+		/// </summary>
+		public float HorizontalDrag {
+			get { return _HorizontalDrag; }
+			set { _HorizontalDrag = value; }
+		}
+
+		/// <summary>
 		/// Indicates the maximum amount of time that can pass in a single physics step.
 		/// Updates where a longer period of time elapses are broken into multiple steps.
 		/// </summary>
 		public TimeSpan MaxStep {
 			get { return _MaxStep; }
 			set { _MaxStep = value; }
+		}
+
+		/// <summary>
+		/// Indicates if a solid tile exists at the given location, or if that location is beneath the map and thus considered solid as well.
+		/// </summary>
+		public bool IsLocationSolid(Vector2 Location) {
+			foreach(var Layer in Scene.Layers) {
+				if(Layer.IsSolid && Layer.GetTileAtPosition(Location) != null)
+					return true;
+			}
+			if(Location.Y >= Scene.MapSize.Y - Scene.TileSize.Y)
+				return true;
+			return false;
 		}
 
 		protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time) {
@@ -54,45 +76,49 @@ namespace CorvEngine.Components {
 			// This is safe to multi-thread because we're never modifying anything besides the Component itself.
 			List<Task> Tasks = new List<Task>();
 			foreach(var Component in GetFilteredComponents<PhysicsComponent>()) {
-				// For the moment, it's slower to make this run in parallel than to not.
-				//Task t = new Task(() => {
-					Vector2 PositionDelta = Component.Velocity * Time.GetTimeScalar();
-					bool AnySolidHit = false;
-					var Parent = Component.Parent;
-					if(!Component.IsGrounded)
-						Component.VelY += Gravity * Time.GetTimeScalar();
-					foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
-						Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
-						if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y) + 1.1f) {
-							var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
-							if(TileAbove != null)
-								continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
-							if(Component.VelY < 0) // Don't 'fall' on to the tile if we're still going up.
-								continue;
-							Parent.Y = Tile.Location.Top - Tile.Location.Height;
-							AnySolidHit = true;
-						}
-					}
+				Vector2 PositionDelta = Component.Velocity * Time.GetTimeScalar();
+				bool AnySolidHit = false;
+				var Parent = Component.Parent;
+				if(!Component.IsGrounded)
+					Component.VelocityY += Gravity * Time.GetTimeScalar();
+				if(Component.IsMoving) {
+					float CurrSign = Math.Sign(Component.VelocityX);
+					Component.VelocityX += -CurrSign * HorizontalDrag * Time.GetTimeScalar();
+					if(Math.Sign(Component.VelocityX) != CurrSign)
+						Component.VelocityX = 0;
+				}
 
-					if(AnySolidHit) { //If hitting any solid object OR not hitting any tile, ground us.
-						Component.IsGrounded = true;
-						Component.VelY = 0;
-						PositionDelta.Y = 0;
-					} else { //We're not yet on ground.
-						Component.IsGrounded = false;
+				foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
+					Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
+					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y) + 1.1f) {
+						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
+						if(TileAbove != null)
+							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
+						if(Component.VelocityY < 0) // Don't 'fall' on to the tile if we're still going up.
+							continue;
+						Parent.Y = Tile.Location.Top - Tile.Location.Height;
+						AnySolidHit = true;
 					}
+				}
 
-					Parent.Position += PositionDelta;
-					Parent.Y = Math.Max(0, Parent.Y);
-					Parent.X = Math.Max(-Scene.TileSize.X / 2, Parent.X);
-					Parent.Y = Math.Min(Scene.MapSize.Y - Scene.TileSize.Y, Parent.Y);
-					Parent.X = Math.Min(Scene.MapSize.X - Scene.TileSize.X, Parent.X);
-				//});
-				//Tasks.Add(t);
-				//t.Start();
+				if(AnySolidHit) { //If hitting any solid object OR not hitting any tile, ground us.
+					Component.IsGrounded = true;
+					Component.VelocityY = 0;
+					PositionDelta.Y = 0;
+				} else { //We're not yet on ground.
+					Component.IsGrounded = false;
+				}
+
+				Parent.Position += PositionDelta;
+				Parent.Y = Math.Max(0, Parent.Y);
+				Parent.X = Math.Max(-Scene.TileSize.X / 2, Parent.X);
+				Parent.X = Math.Min(Scene.MapSize.X - Scene.TileSize.X, Parent.X);
+				// Special case: If we're at the bottom of the level, we should be considered grounded.
+				if(Parent.Y > Scene.MapSize.Y - Scene.TileSize.Y) {
+					Parent.Y = Scene.MapSize.Y - Scene.TileSize.Y;
+					Component.IsGrounded = true;
+				}
 			}
-			//foreach(var Task in Tasks)
-			//	Task.Wait();
 		}
 
 		private void PerformDynamicCollision(GameTime Time) {
@@ -149,6 +175,7 @@ namespace CorvEngine.Components {
 		}
 
 		private float _Gravity = 5000;
+		private float _HorizontalDrag = 6000;
 		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(20);
 		private HashSet<CollisionInfo> PreviousCollisions = new HashSet<CollisionInfo>();
 

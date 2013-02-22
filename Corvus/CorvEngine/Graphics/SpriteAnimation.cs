@@ -16,6 +16,7 @@ namespace CorvEngine.Graphics {
 		private bool _IsComplete;
 		private string _Name;
 		private bool _IsDefault;
+		private float _SpeedModifier = 1;
 
 		/// <summary>
 		/// Gets an event called when the entire animation is completed.
@@ -67,13 +68,22 @@ namespace CorvEngine.Graphics {
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating how much this animation should be sped up or slowed down by.
+		/// A value of 2 would indicate twice as fast, where as a value of 0.5 would indicate each frame takes twice as long.
+		/// </summary>
+		public float SpeedModifier {
+			get { return _SpeedModifier; }
+			set { _SpeedModifier = value; }
+		}
+
+		/// <summary>
 		/// Advances the animation by the given period of time, provided that this animation is not yet complete.
 		/// </summary>
 		/// <param name="time"></param>
 		public void AdvanceAnimation(TimeSpan time) {
 			if(_IsComplete)
 				return;
-			_Elapsed += time;
+			_Elapsed += TimeSpan.FromTicks((long)(time.Ticks * this.SpeedModifier));
 			if(ActiveFrame.Duration <= _Elapsed)
 				AdvanceFrame();
 		}
@@ -84,6 +94,7 @@ namespace CorvEngine.Graphics {
 		public void Reset() {
 			_Index = 0;
 			_Elapsed = TimeSpan.Zero;
+			_IsComplete = false;
 		}
 
 		private void AdvanceFrame() {

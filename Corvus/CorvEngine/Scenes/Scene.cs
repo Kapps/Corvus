@@ -140,6 +140,17 @@ namespace CorvEngine.Scenes {
 		}
 
 		/// <summary>
+		/// Returns the first System that matches or is derived from the specified type, or null if none match.
+		/// </summary>
+		public T GetSystem<T>() where T : SceneSystem {
+			var Type = typeof(T);
+			foreach(var System in _Systems)
+				if(System.GetType() == Type || System.GetType().IsSubclassOf(Type))
+					return (T)System;
+			return null;
+		}
+
+		/// <summary>
 		/// Disposes of this Scene, removing all remaining Entities and Systems.
 		/// Unlike SceneObjects, a Scene may not be initialized after being disposed of.
 		/// </summary>

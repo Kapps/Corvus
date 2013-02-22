@@ -43,7 +43,7 @@ namespace CorvEngine.Components {
 		/// Gets or sets the Y component of the velocity.
 		/// This is simply a shortcut to work around property limitations.
 		/// </summary>
-		public float VelY {
+		public float VelocityY {
 			get { return _Velocity.Y; }
 			set { Velocity = new Vector2(Velocity.X, value); }
 		}
@@ -55,6 +55,14 @@ namespace CorvEngine.Components {
 		public bool IsGrounded {
 			get { return _IsGrounded; }
 			set { _IsGrounded = value; }
+		}
+
+		/// <summary>
+		/// Indicates if this Entity is currently moving horizontally.
+		/// This is generally assigned by a PhysicsSystem.
+		/// </summary>
+		public bool IsMoving {
+			get { return Math.Abs(VelocityX) > 0.0001f; }
 		}
 
 		/// <summary>
@@ -91,7 +99,7 @@ namespace CorvEngine.Components {
 		}
 
 		private float _GravityCoefficient = 1;
-		private Vector2 _Velocity;
+		private Vector2 _Velocity = Vector2.Zero;
 		private bool _IsGrounded = false;
 		private bool _PerformStaticCollision = true;
 		private bool _PerformDynamicCollision = true;

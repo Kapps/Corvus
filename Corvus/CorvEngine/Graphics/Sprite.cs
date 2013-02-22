@@ -49,37 +49,13 @@ namespace CorvEngine.Graphics {
 		}
 
 		/// <summary>
-		/// Stops the current animation, playing the specified animation instead.
+		/// Creates a new Sprite with the specified data.
 		/// </summary>
-		/// <param name="Name">The name of the animation to play.</param>
-		public void PlayAnimation(string Name) {
-			// TODO: Determine what to do if this is the active animation.
-			// Chances are, that if it's loopable we carry on, and if not we reset the animation.
-			var Animation = this.Animations[Name];
-			Animation.Reset();
-			this._ActiveAnimation = Animation;
-		}
-
-		/// <summary>
-		/// Stops the currently playing animation, returning back to one of the default animations.
-		/// </summary>
-		public void StopAnimation() {
+		public Sprite(Texture2D Texture, SpriteFrameCollection Frames, SpriteAnimationCollection Animations) {
+			this._Texture = Texture;
+			this._Frames = Frames;
+			this._Animations = Animations;
 			this._ActiveAnimation = GetDefaultAnimation();
-		}
-
-		/// <summary>
-		/// Returns the default animation for this sprite, or null if there is no default animation set.
-		/// If there are multiple defaults, a random one is returned.
-		/// </summary>
-		/// <returns></returns>
-		protected SpriteAnimation GetDefaultAnimation() {
-			var Defaults = this._Animations.Where(c => c.IsDefault).ToArray();
-			if(Defaults.Length == 0)
-				return null;
-			int Index;
-			lock(DefaultRandom)
-				Index = DefaultRandom.Next(0, Defaults.Length);
-			return Defaults[Index];
 		}
 
 		/// <summary>
@@ -109,13 +85,46 @@ namespace CorvEngine.Graphics {
 		}
 
 		/// <summary>
-		/// Creates a new Sprite with the specified data.
+		/// Stops the current animation, playing the specified animation instead.
 		/// </summary>
-		public Sprite(Texture2D Texture, SpriteFrameCollection Frames, SpriteAnimationCollection Animations) {
-			this._Texture = Texture;
-			this._Frames = Frames;
-			this._Animations = Animations;
+		/// <param name="Name">The name of the animation to play.</param>
+		/// <param name="Duration">If not zero, indicates how long the animation should take to play. Otherwise, plays using the default duration.</param>
+		public void PlayAnimation(string Name, TimeSpan? Duration = null) {
+			// TODO: Determine what to do if this is the active animation.
+			// Chances are, that if it's loopable we carry on, and if not we reset the animation.
+			var Animation = this.Animations[Name];
+			Animation.Reset();
+			Animation.SpeedModifier = (Duration == null ? 1 : CalculateSpeedModifier(Animation, Duration.Value));
+			this._ActiveAnimation = Animation;
+		}
+
+		/// <summary>
+		/// Stops the currently playing animation, returning back to one of the default animations.
+		/// </summary>
+		public void StopAnimation() {
 			this._ActiveAnimation = GetDefaultAnimation();
+		}
+
+		/// <summary>
+		/// Returns the default animation for this sprite, or null if there is no default animation set.
+		/// If there are multiple defaults, a random one is returned.
+		/// </summary>
+		/// <returns></returns>
+		protected SpriteAnimation GetDefaultAnimation() {
+			var Defaults = this._Animations.Where(c => c.IsDefault).ToArray();
+			if(Defaults.Length == 0)
+				return null;
+			int Index;
+			lock(DefaultRandom)
+				Index = DefaultRandom.Next(0, Defaults.Length);
+			return Defaults[Index];
+		}
+
+		private float CalculateSpeedModifier(SpriteAnimation Animation, TimeSpan Duration) {
+			TimeSpan OriginalTime = TimeSpan.FromTicks(0);
+			foreach(var Frame in Animation.Frames)
+				OriginalTime += Frame.Duration;
+			return (float)OriginalTime.Ticks / (float)Duration.Ticks;
 		}
 	}
 }

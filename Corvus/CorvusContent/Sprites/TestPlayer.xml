@@ -23,5 +23,9 @@
 		<Item>WalkLeft	50	{1, 10}	{9, 10}	Looped</Item>
 		<Item>WalkDown	50	{1, 11}	{9, 11}	Looped</Item>
 		<Item>WalkRight	50	{1, 12}	{9, 12}	Looped</Item>
+		<Item>AttackUp	60	{1, 5}	{8, 5}</Item>
+		<Item>AttackLeft	60	{1, 6}	{8, 6}</Item>
+		<Item>AttackDown	60	{1, 7}	{8, 7}</Item>
+		<Item>AttackRight	60	{1, 8}	{8, 8}</Item>
 	</Asset>
 </XnaContent>

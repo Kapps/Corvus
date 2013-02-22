@@ -27,9 +27,9 @@ namespace Corvus {
 			get { return _Player.Character == null ? null : _Player.Character.GetComponent<MovementComponent>(); }
 		}
 
-        private CombatComponent CombatComponent {
-            get { return _Player.Character == null ? null : _Player.Character.GetComponent<CombatComponent>(); }
-        }
+		private CombatComponent CombatComponent {
+			get { return _Player.Character == null ? null : _Player.Character.GetComponent<CombatComponent>(); }
+		}
 
 		private CorvusBinds(Player Player) {
 			this._Player = Player;
@@ -38,9 +38,9 @@ namespace Corvus {
 			switch(_Player.Index) {
 				case 1:
 					Assign(JumpPressed, false, new InputButton(Keys.Space));
-					Assign((c) => MovePressed(Direction.Left, c), true, new InputButton(Keys.Left));
-					Assign((c) => MovePressed(Direction.Right, c), true, new InputButton(Keys.Right));
-                    Assign(AttackPressed, false, new InputButton(Keys.Z));
+					Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Keys.Left));
+					Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Keys.Right));
+					Assign(AttackPressed, false, new InputButton(Keys.Z));
 					break;
 			}
 		}
@@ -68,18 +68,13 @@ namespace Corvus {
 				return;
 			switch(State) {
 				case BindState.Pressed:
-					if(WalkAction != null)
-						CorvusGame.Instance.FrameInvoker.RemoveCommand(WalkAction);
-					WalkAction = new Action(() => {
-						MovementComponent.Walk(Direction);
-					});
-					CorvusGame.Instance.FrameInvoker.RegisterCommand(WalkAction);
+					_WalkDepth++;
+					MovementComponent.BeginWalking(Direction);
 					break;
 				case BindState.Released:
-					if(WalkAction != null)
-						CorvusGame.Instance.FrameInvoker.RemoveCommand(WalkAction);
-					MovementComponent.Walk(CorvEngine.Direction.None);
-					WalkAction = null;
+					_WalkDepth--;
+					if(_WalkDepth == 0)
+						MovementComponent.StopWalking();
 					break;
 			}
 		}
@@ -90,18 +85,17 @@ namespace Corvus {
 			if(State == BindState.Pressed)
 				MovementComponent.Jump(true);
 			//else
-				//MovementComponent.EndStartJump();
+			//MovementComponent.EndStartJump();
 		}
 
 
-		private Action WalkAction;
+		private int _WalkDepth = 0;
 
-        private void AttackPressed(BindState State)
-        {
-            if (MovementComponent == null)
-                return;
-            if (State == BindState.Pressed)
-                CombatComponent.AttackSword();
-        }
+		private void AttackPressed(BindState State) {
+			if(MovementComponent == null)
+				return;
+			if(State == BindState.Pressed)
+				CombatComponent.AttackSword();
+		}
 	}
 }

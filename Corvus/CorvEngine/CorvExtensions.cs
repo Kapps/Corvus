@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CorvEngine;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -27,6 +28,19 @@ namespace System {
 		/// </summary>
 		public static float GetTimeScalar(this GameTime Time) {
 			return (float)Time.ElapsedGameTime.TotalSeconds;
+		}
+
+		/// <summary>
+		/// Returns the sign corresponding to this direction.
+		/// That is, for Up and Left this would return -1, and for Down and Right this would return 1.
+		/// For None, this returns 0.
+		/// </summary>
+		public static int GetSign(this Direction Direction) {
+			if(Direction == CorvEngine.Direction.Left || Direction == CorvEngine.Direction.Up)
+				return -1;
+			if(Direction == CorvEngine.Direction.Right || Direction == CorvEngine.Direction.Down)
+				return 1;
+			return 0;
 		}
 	}
 }
