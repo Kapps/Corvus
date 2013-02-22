@@ -54,6 +54,14 @@ namespace CorvEngine.Components {
 			return false;
 		}
 
+		/// <summary>
+		/// Returns all Entities that overlap the specified location.
+		/// </summary>
+		public IEnumerable<Entity> GetEntitiesAtLocation(Rectangle Location) {
+			// TODO: Use tiles instead of this O(N) approach.
+			return Scene.Entities.Where(c => c.Location.Intersects(Location));
+		}
+
 		protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time) {
 			const float FRAME_SKIP_DURATION = 2000;
 			// Do physics in steps, never doing more than a certain amount of time per step.

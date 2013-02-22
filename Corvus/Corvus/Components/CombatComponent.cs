@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorvEngine.Components;
+using CorvEngine;
 
-namespace CorvEngine.Components
-{
+namespace Corvus.Components {
 	public class CombatComponent : Component {
 
 		// TODO: Add classification for what can be attacked.
@@ -33,7 +33,7 @@ namespace CorvEngine.Components
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
 			// At the very least the sprites for it will be mutually exclusive.
-			sc.Sprite.PlayAnimation("Attack" + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(250));
+			sc.Sprite.PlayAnimation("BowAttack" + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
 
 			// TODO: This will make the user hit themselves potentially.
 			// When switching to PhysicsSystem, make sure to specify classification.

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CorvEngine.Components;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CorvEngine.Components {
+namespace Corvus.Components {
 	/// <summary>
 	/// Handles the damage events for this entity.
 	/// </summary>
 	public class DamageComponent : Component {
-		private SpriteFont _Font = CorvBase.Instance.GlobalContent.Load<SpriteFont>("Fonts/DamageFont");
+		private SpriteFont _Font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/DamageFont");
 		private List<DamageText> _DamageTexts = new List<DamageText>();
 
 		/// <summary>
@@ -93,7 +94,7 @@ namespace CorvEngine.Components {
 
 			public void Draw(SpriteFont font) {
 				//TODO: Might want to make the font scale with the size of the object.
-				CorvBase.Instance.SpriteBatch.DrawString(font, Value, _Position, Color.White);
+				CorvusGame.Instance.SpriteBatch.DrawString(font, Value, _Position, Color.White);
 			}
 		}
 

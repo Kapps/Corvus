@@ -23,9 +23,17 @@
 		<Item>WalkLeft	50	{1, 10}	{9, 10}	Looped</Item>
 		<Item>WalkDown	50	{1, 11}	{9, 11}	Looped</Item>
 		<Item>WalkRight	50	{1, 12}	{9, 12}	Looped</Item>
-		<Item>AttackUp	60	{1, 5}	{8, 5}</Item>
-		<Item>AttackLeft	60	{1, 6}	{8, 6}</Item>
-		<Item>AttackDown	60	{1, 7}	{8, 7}</Item>
-		<Item>AttackRight	60	{1, 8}	{8, 8}</Item>
+		<Item>SpearAttackUp	60	{1, 5}	{8, 5}</Item>
+		<Item>SpearAttackLeft	60	{1, 6}	{8, 6}</Item>
+		<Item>SpearAttackDown	60	{1, 7}	{8, 7}</Item>
+		<Item>SpearAttackRight	60	{1, 8}	{8, 8}</Item>
+		<Item>DaggerAttackUp	60	{1, 13}	{6, 13}</Item>
+		<Item>DaggerAttackLeft	60	{1, 14}	{6, 14}</Item>
+		<Item>DaggerAttackDown	60	{1, 15}	{6, 15}</Item>
+		<Item>DaggerAttackRight	60	{1, 16}	{6, 16}</Item>
+		<Item>BowAttackUp	60	{1, 17}	{13, 17}</Item>
+		<Item>BowAttackLeft	60	{1, 18}	{13, 18}</Item>
+		<Item>BowAttackDown	60	{1, 19}	{13, 19}</Item>
+		<Item>BowAttackRight	60	{1, 20}	{13, 20}</Item>
 	</Asset>
 </XnaContent>

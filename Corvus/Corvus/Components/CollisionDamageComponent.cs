@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 
-namespace CorvEngine.Components {
+namespace Corvus.Components {
 	/// <summary>
 	/// A Component used to deal damage when it collides with a different Entity.
 	/// </summary>

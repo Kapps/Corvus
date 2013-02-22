@@ -5,6 +5,7 @@ using System.Text;
 using CorvEngine;
 using CorvEngine.Components;
 using CorvEngine.Input;
+using Corvus.Components;
 using Microsoft.Xna.Framework.Input;
 
 namespace Corvus {
@@ -68,12 +69,10 @@ namespace Corvus {
 				return;
 			switch(State) {
 				case BindState.Pressed:
-					_WalkDepth++;
 					MovementComponent.BeginWalking(Direction);
 					break;
 				case BindState.Released:
-					_WalkDepth--;
-					if(_WalkDepth == 0)
+					if(MovementComponent.CurrentDirection == Direction)
 						MovementComponent.StopWalking();
 					break;
 			}
@@ -84,12 +83,7 @@ namespace Corvus {
 				return;
 			if(State == BindState.Pressed)
 				MovementComponent.Jump(true);
-			//else
-			//MovementComponent.EndStartJump();
 		}
-
-
-		private int _WalkDepth = 0;
 
 		private void AttackPressed(BindState State) {
 			if(MovementComponent == null)

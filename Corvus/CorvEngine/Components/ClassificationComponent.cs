@@ -6,6 +6,8 @@ using CorvEngine.Components;
 
 namespace CorvEngine.Components {
 
+	// TODO: This isn't extendable; it should stay in the engine probably, but needs to have a way of specifying more classifications if so.
+
 	/// <summary>
 	/// Indicates the classification of an Entity.
 	/// This can have multiple values, such as Enemy and Projectile, or Player and Trigger.

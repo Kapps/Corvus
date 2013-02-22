@@ -108,7 +108,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AttributesComponent.cs" />
     <Compile Include="Components\ChaseCameraComponent.cs" />
+    <Compile Include="Components\CollisionDamageComponent.cs" />
+    <Compile Include="Components\CombatComponent.cs" />
+    <Compile Include="Components\DamageComponent.cs" />
+    <Compile Include="Components\HealthBarComponent.cs" />
     <Compile Include="CorvusBinds.cs" />
     <Compile Include="CorvusGame.cs" />
     <Compile Include="CorvusPlayer.cs" />
