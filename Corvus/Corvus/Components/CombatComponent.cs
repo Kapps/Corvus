@@ -19,8 +19,8 @@ namespace Corvus.Components {
 			var sc = Parent.GetComponent<SpriteComponent>();
             var ps = Parent.Scene.GetSystem<PhysicsSystem>();
             var ac = this.GetDependency<AttributesComponent>();
-            int attackRange = 100; //This is the number we use to set our attack rectangle's width. So basically, it's horizontal range.
-            int attackHeight = 100; //This is the number we use to modify our attack rectangle's height. So basically, it's vertical range.
+            int attackRange = 100; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
+            int attackHeight = 100; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
 
 			// TODO: Provide an attack speed that makes them take that long to attack.
 			// TODO: Limit number of attacks they can do.
@@ -34,11 +34,11 @@ namespace Corvus.Components {
 
             if (mc.CurrentDirection == Direction.Left)
             {
-                attackRectangle = new Rectangle(Parent.Location.X - attackRange, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height);
+                attackRectangle = new Rectangle(Parent.Location.Center.X - attackRange, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height + attackHeight);
             }
             else if (mc.CurrentDirection == Direction.Right)
             {
-                attackRectangle = new Rectangle(Parent.Location.X, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height);
+                attackRectangle = new Rectangle(Parent.Location.Center.X, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height + attackHeight);
             }
             else
             {
