@@ -57,5 +57,10 @@ namespace Corvus.Components {
                 }
             }
 		}
+
+        public void AttackGun()
+        {
+
+        }
 	}
 }

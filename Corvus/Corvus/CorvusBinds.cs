@@ -41,7 +41,8 @@ namespace Corvus {
 					Assign(JumpPressed, false, new InputButton(Keys.Space));
 					Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Keys.Left));
 					Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Keys.Right));
-					Assign(AttackPressed, false, new InputButton(Keys.Z));
+					Assign(AttackSwordPressed, false, new InputButton(Keys.Z));
+                    Assign(AttackGunPressed, false, new InputButton(Keys.X));
 					break;
 			}
 		}
@@ -85,11 +86,19 @@ namespace Corvus {
 				MovementComponent.Jump(true);
 		}
 
-		private void AttackPressed(BindState State) {
+		private void AttackSwordPressed(BindState State) {
 			if(MovementComponent == null)
 				return;
 			if(State == BindState.Pressed)
 				CombatComponent.AttackSword();
 		}
+
+        private void AttackGunPressed(BindState State)
+        {
+            if (MovementComponent == null)
+                return;
+            if (State == BindState.Pressed)
+                CombatComponent.AttackGun();
+        }
 	}
 }
