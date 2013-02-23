@@ -19,13 +19,22 @@ Pather
 	PathComponent
 
 MoverEnemy
-	MovementComponent
+	MovementComponent 
 	
 Damager
 	DamageComponent
 
-TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager
+StatusEffecter
+	StatusEffectsComponent
+
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter
 	PhysicsComponent
+	CollisionStatusEffectComponent
+		EffectType: Enum(Corvus.Components.StatusEffectTypes, Poison) #Would prefer to read a string instead.
+		Intensity: Random(0.01, 0.5)
+		Duration: 5
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	CollisionDamageComponent
 		Damage: Random(30, 50)
 		DisposeOnCollision: true
