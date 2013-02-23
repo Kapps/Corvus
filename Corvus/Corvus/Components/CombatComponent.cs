@@ -15,19 +15,12 @@ namespace Corvus.Components {
 		//This doesn't launch a projectile.
 		//We simply get an x,y value to attack and get the entity there, in order to apply damage.
 		public void AttackSword() {
-			MovementComponent mc = Parent.GetComponent<MovementComponent>();
-			SpriteComponent sc = Parent.GetComponent<SpriteComponent>();
-
-			int attackRange = 50; //This is the number we use to calculate our attack point. Range.
-			int attackPoint; //This eventually is calculated based on the range, and depends on what direction we're facing.
-
-			if(mc.CurrentDirection == Direction.Left) {
-				attackPoint = attackRange * -1;
-			} else if(mc.CurrentDirection == Direction.Right) {
-				attackPoint = attackRange;
-			} else {//Player hasn't moved yet or just isn't facing left or right.
-				attackPoint = 0;
-			}
+			var mc = Parent.GetComponent<MovementComponent>();
+			var sc = Parent.GetComponent<SpriteComponent>();
+            var ps = Parent.Scene.GetSystem<PhysicsSystem>();
+            var ac = this.GetDependency<AttributesComponent>();
+            int attackRange = 100; //This is the number we use to set our attack rectangle's width. So basically, it's horizontal range.
+            int attackHeight = 100; //This is the number we use to modify our attack rectangle's height. So basically, it's vertical range.
 
 			// TODO: Provide an attack speed that makes them take that long to attack.
 			// TODO: Limit number of attacks they can do.
@@ -35,15 +28,34 @@ namespace Corvus.Components {
 			// At the very least the sprites for it will be mutually exclusive.
 			sc.Sprite.PlayAnimation("BowAttack" + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
 
-			// TODO: This will make the user hit themselves potentially.
-			// When switching to PhysicsSystem, make sure to specify classification.
-			var attackedEntity = Scene.GetEntityAtPosition(new Point((int)Parent.Location.Center.X + attackPoint, Parent.Location.Y));
+            //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
+            //The attack rectange is calculated using our centre, range, and half our height.
+            Rectangle attackRectangle;
 
-			if(attackedEntity != null) {
-                var ac = this.GetDependency<AttributesComponent>();
-                var damageComponent = attackedEntity.GetComponent<DamageComponent>();
-                damageComponent.TakeDamage(ac);
-			}
+            if (mc.CurrentDirection == Direction.Left)
+            {
+                attackRectangle = new Rectangle(Parent.Location.X - attackRange, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height);
+            }
+            else if (mc.CurrentDirection == Direction.Right)
+            {
+                attackRectangle = new Rectangle(Parent.Location.X, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height);
+            }
+            else
+            {
+                //Player hasn't moved yet or just isn't facing left or right.
+                //Set their rectangle to themselves (anything that is inside them will be attacked). Until we figure out how best to handle it anyways.
+                attackRectangle = Parent.Location;
+            }
+
+            //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
+            foreach (var attackedEntity in ps.GetEntitiesAtLocation(attackRectangle))
+            {
+                if (attackedEntity != Parent)
+                {
+                    var damageComponent = attackedEntity.GetComponent<DamageComponent>();
+                    damageComponent.TakeDamage(ac);
+                }
+            }
 		}
 	}
 }
