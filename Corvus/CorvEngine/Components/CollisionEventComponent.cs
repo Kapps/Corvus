@@ -63,14 +63,24 @@ namespace CorvEngine.Components {
 		}
 
 		void Physics_Collided(PhysicsComponent Component, PhysicsComponent Other) {
-			if(this.IsDisposed)
+			CollisionDetected(Component, Other, true);
+		}
+
+		private void CollisionDetected(PhysicsComponent Component, PhysicsComponent Other, bool TriggerRemaining) {
+			if(this.IsDisposed) // Prevent firing multiple times.
 				return;
 			var Classification = Other.Parent.GetComponent<ClassificationComponent>();
 			if(_Classification != EntityClassification.Any && (Classification == null || (Classification.Classification & this.Classification) == 0))
 				return;
 			bool Valid = OnCollision(Other.Parent, Classification == null ? EntityClassification.Unknown : Classification.Classification);
-			if(Valid && DisposeOnCollision)
-				this.Parent.Dispose();
+			if(Valid && DisposeOnCollision) {
+				this.Dispose();
+				if(TriggerRemaining) {
+					foreach(var OtherEvent in Parent.Components.Select(c => c as CollisionEventComponent).Where(c => c != null && c != this).ToArray())
+						OtherEvent.CollisionDetected(Component, Other, false);
+					Parent.Dispose();
+				}
+			}
 		}
 
 		/// <summary>

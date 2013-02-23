@@ -5,6 +5,7 @@ using System.Text;
 using CorvEngine.Components;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using NodeType = System.Collections.Generic.LinkedListNode<CorvEngine.Components.Entity>;
 
 namespace CorvEngine.Scenes {
@@ -166,10 +167,10 @@ namespace CorvEngine.Scenes {
 		protected override void OnDraw(GameTime Time) {
 			// TODO: Call this once for each player after setting Viewport and Camera.
 			// TODO: Would be nice to do some sort of spacial partitioning here, but we don't yet.
+			var GraphicsDevice = CorvBase.Instance.GraphicsDevice;
 			foreach(var Player in CorvBase.Instance.Players) {
-				Camera.Active = Player.Camera; // TODO: These should all be different Viewports.
-				var Viewport = CorvBase.Instance.GraphicsDevice.Viewport;
-				Camera.Active.Size = new Vector2(Viewport.Width, Viewport.Height);
+				Camera.Active = Player.Camera;
+				Viewport Viewport = new Viewport(0, 0, (int)Camera.Active.Size.X, (int)Camera.Active.Size.Y);
 				var StartTile = Camera.Active.Position / TileSize;
 				var EndTile = (Camera.Active.Position + Camera.Active.Size) / TileSize;
 				var SpriteBatch = CorvBase.Instance.SpriteBatch;

@@ -47,6 +47,15 @@ namespace Corvus {
 				SceneManager.ActiveScene.AddEntity(obj.Character);
 			var CameraComponent = new ChaseCameraComponent(obj.Camera);
 			obj.Character.Components.Add(CameraComponent);
+			/*float AspectRatio = GraphicsDevice.DisplayMode.AspectRatio;
+			Vector2 Size;
+			if(Math.Abs(AspectRatio - (16f / 9f)) < 0.01f)
+				Size = new Vector2(1600, 900);
+			else if(Math.Abs(AspectRatio - (16f / 10f)) < 0.01f)
+				Size = new Vector2(1680, 1050);
+			else
+				Size = new Vector2(1600, 900);
+			obj.Camera.Size = Size;*/
 		}
 
 		protected override void Initialize() {
@@ -58,6 +67,7 @@ namespace Corvus {
 			StateManager.PushState(_SceneManager);
 			CreateNewPlayer();
 			RegisterGlobalComponent(new DebugComponent());
+			GraphicsManager.ApplyChanges();
 		}
 
 		private void CreateNewPlayer() {

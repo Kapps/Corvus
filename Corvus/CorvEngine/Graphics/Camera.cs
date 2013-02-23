@@ -41,6 +41,14 @@ namespace CorvEngine.Graphics {
 		}
 
 		/// <summary>
+		/// Creates a new Camera at {0, 0}, with {ViewportWidth, ViewportHeight} as the Position and Size.
+		/// </summary>
+		public Camera() {
+			this.Position = new Vector2(0, 0);
+			this.Size = new Vector2(CorvBase.Instance.GraphicsDevice.Viewport.Width, CorvBase.Instance.GraphicsDevice.Viewport.Height);
+		}
+
+		/// <summary>
 		/// Gets a rectangle encompassing the Camera's viewport.
 		/// </summary>
 		public Rectangle Viewport {

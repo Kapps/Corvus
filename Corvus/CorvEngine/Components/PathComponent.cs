@@ -11,6 +11,8 @@ namespace CorvEngine.Components {
 	/// </summary>
 	class PathComponent : Component {
 
+		// TODO: Important to figure out what to do when an Entity gets stuck. Reverse to start of path maybe? Cheat and fly?
+
 		private float _JumpDelay = 200;
 		private bool _AllowMultiJump = false;
 		private IList<Vector2> _Nodes = new List<Vector2>();

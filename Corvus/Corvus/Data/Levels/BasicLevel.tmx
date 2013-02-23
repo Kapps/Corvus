@@ -58,7 +58,7 @@
    </properties>
   </object>
   <object name="Climber" type="Path" x="943" y="1323">
-   <polyline points="5,11 325,12 259,13 181,-85 125,-183 287,-212 804,-213 860,-304 1049,-405 1133,-439 944,-504 780,-213 279,-216 187,-85 296,13 727,47 884,77 723,49 4,9"/>
+   <polyline points="5,11 325,12 259,13 182,-84 114,-180 287,-212 804,-213 860,-304 1049,-405 1133,-439 944,-504 780,-213 279,-216 192,-83 296,13 727,47 884,77 723,49 4,9"/>
   </object>
   <object name="Climber2" type="TestEntityEnemy" x="918" y="1310" width="29" height="31">
    <properties>
@@ -66,7 +66,7 @@
    </properties>
   </object>
   <object name="Climber2" type="Path" x="972" y="1319">
-   <polyline points="0,0 149,-83 73,-185 849,-305 1116,-435 912,-513"/>
+   <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 912,-513"/>
   </object>
   <object name="Jumper2" type="TestEntityEnemy" x="1627" y="849" width="32" height="32">
    <properties>

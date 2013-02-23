@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using CorvEngine.Graphics;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -205,10 +206,17 @@ namespace CorvEngine {
 #if !DEBUG
 			
 			//this._GraphicsManager.PreferMultiSampling = true;
+#if WINDOWS
+			IntPtr hWnd = Game.Window.Handle;
+			var control = System.Windows.Forms.Control.FromHandle(hWnd);
+			var form = control.FindForm();
+			form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			form.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+#endif
 			this._GraphicsManager.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
 			this._GraphicsManager.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
 			this._GraphicsManager.ApplyChanges();
-			this._GraphicsManager.ToggleFullScreen();
+			//this._GraphicsManager.ToggleFullScreen();
 #else
 			this._GraphicsManager.PreferredBackBufferWidth = 1024;
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
@@ -232,6 +240,7 @@ namespace CorvEngine {
 				var GraphicsManager = new GraphicsDeviceManager(this);
 				CorvBase.Instance._GraphicsManager = GraphicsManager;
 				this.IsFixedTimeStep = false;
+				this.TargetElapsedTime = TimeSpan.FromMilliseconds(1f);
 			}
 
 			protected override void Initialize() {
@@ -240,6 +249,11 @@ namespace CorvEngine {
 			}
 
 			protected override void Update(GameTime gameTime) {
+				
+				base.Update(gameTime);
+			}
+
+			protected override void Draw(GameTime gameTime) {
 				var Instance = CorvBase._Instance;
 				Instance._TimeSinceFPSUpdate += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 				Instance._CurrentFrames++;
@@ -248,10 +262,6 @@ namespace CorvEngine {
 					Instance._TimeSinceFPSUpdate -= 1000;
 					Instance._CurrentFrames = 0;
 				}
-				base.Update(gameTime);
-			}
-
-			protected override void Draw(GameTime gameTime) {
 				GraphicsDevice.Clear(Color.DarkSlateGray);
 				CorvBase.Instance.SpriteBatch.Begin();
 				base.Draw(gameTime);

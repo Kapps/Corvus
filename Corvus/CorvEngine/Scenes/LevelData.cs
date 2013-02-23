@@ -40,7 +40,6 @@ namespace CorvEngine.Scenes {
 		/// Loads the data for a level using the Tiled Map Xml format.
 		/// </summary>
 		public static LevelData LoadTmx(string FilePath) {
-			// This is really just a terrible method that should be refactored a lot at some point, at least to split layer / tileset / object loading.
 			// https://github.com/bjorn/tiled/wiki/TMX-Map-Format contains a description of the format.
 			XmlDocument Doc = new XmlDocument();
 			Doc.Load(FilePath);

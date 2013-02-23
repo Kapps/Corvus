@@ -103,7 +103,7 @@ namespace CorvEngine.Components {
 							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
 						if(Component.VelocityY < 0) // Don't 'fall' on to the tile if we're still going up.
 							continue;
-						Parent.Y = Tile.Location.Top - Tile.Location.Height;
+						Parent.Y = Tile.Location.Top - Parent.Size.Y;
 						AnySolidHit = true;
 					}
 				}
@@ -184,7 +184,7 @@ namespace CorvEngine.Components {
 
 		private float _Gravity = 4000;
 		private float _HorizontalDrag = 6000;
-		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(10);
+		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(50);
 		private HashSet<CollisionInfo> PreviousCollisions = new HashSet<CollisionInfo>();
 
 		private struct CollisionInfo {
