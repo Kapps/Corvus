@@ -88,6 +88,8 @@ namespace Corvus.Components.Gameplay.StatusEffects
             _FloatingTexts.Update(gameTime, position);
         }
 
+        //TODO: Maybe make the effect scale with the size of entity. 
+        //TODO: Instead of drawing it here, maybe force every StatusEffect to draw it's own effect with it's own specialized position, etc.
         public virtual void Draw()
         {
             var ActiveFrame = _EffectSprite.ActiveAnimation.ActiveFrame.Frame;
