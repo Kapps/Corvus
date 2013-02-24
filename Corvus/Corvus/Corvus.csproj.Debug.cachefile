@@ -6,10 +6,12 @@ Content\Sprites\Enemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
 Content\Sprites\male_sprites.xnb
 Content\Interface\HealthMeter.xnb
+Content\Sprites\StatusEffects\testeffect.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
 Content\Sprites\TestEnemy.xnb
+Content\Sprites\StatusEffects\testeffect1.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using CorvEngine.Graphics;
+using CorvEngine.Components;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
@@ -15,10 +17,8 @@ namespace Corvus.Components.Gameplay.StatusEffects
     /// </summary>
     public class Poison : StatusEffect
     {
-        //TODO: Set the image to draw
-
         public override string Name { get { return "Poison"; } }
-        protected override Texture2D EffectImage { get { throw new NotImplementedException("REMEMBER TO IMPLEMENT DICK"); } }
+        protected override string EffectName { get { return "Sprites/StatusEffects/testeffect1"; } }
 
         private TimeSpan _TickTimer = TimeSpan.FromSeconds(0); 
 
@@ -30,7 +30,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
             {
                 float damage = ac.MaxHealth * Intensity;
                 ac.CurrentHealth -= damage;
-                _FloatingTexts.AddFloatingTexts(damage, Color.Purple);
+                _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
                 _TickTimer = TimeSpan.Zero;
             }
         }

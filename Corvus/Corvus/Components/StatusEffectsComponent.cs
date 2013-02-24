@@ -30,6 +30,7 @@ namespace Corvus.Components
             var statusEffect = (StatusEffect)Activator.CreateInstance(type);
             statusEffect.Intensity = intensity;
             statusEffect.Duration = duration;
+            statusEffect.EntitySize = this.Parent.Size;
             _StatusEffects.Add(statusEffect);
         }
 
