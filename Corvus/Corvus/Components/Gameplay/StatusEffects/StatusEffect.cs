@@ -24,7 +24,16 @@ namespace Corvus.Components.Gameplay.StatusEffects
         protected abstract string EffectName { get; }
 
         /// <summary>
-        /// Gets or sets intensity of the effect. 
+        /// Gets or sets the static amount this status effect should inflict. 
+        /// </summary>
+        public float BaseEffect
+        {
+            get { return _BaseEffect; }
+            set { _BaseEffect = Math.Max(value, 0); }
+        }
+
+        /// <summary>
+        /// Gets or sets intensity of the effect. This is usually expressed as a percentage. 
         /// </summary>
         public float Intensity
         {
@@ -44,7 +53,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// <summary>
         /// Gets or sets the entity size so it knows where to draw the effect.
         /// </summary>
-        public Vector2 EntitySize { get; set; }
+        public Vector2 EntitySize 
+        {
+            get { return _EntitySize; }
+            set { _EntitySize = value; }
+        }
 
         /// <summary>
         /// Gets a value determining whether this effect's duration has ended.
@@ -52,8 +65,10 @@ namespace Corvus.Components.Gameplay.StatusEffects
         public bool IsFinished { get; private set; }
 
         private Sprite _EffectSprite;
+        private float _BaseEffect;
         private float _Intensity;
         private float _Duration;
+        private Vector2 _EntitySize;
         protected TimeSpan _Timer = TimeSpan.Zero;
         protected FloatingTextList _FloatingTexts = new FloatingTextList();
         protected Vector2 Position { get; set; }
@@ -77,7 +92,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         {
             var ActiveFrame = _EffectSprite.ActiveAnimation.ActiveFrame.Frame;
             var SourceRect = ActiveFrame.Source;
-            var destinationRect = new Rectangle((int)(Position.X - EntitySize.X / 2 + SourceRect.Width/2), (int)(Position.Y - EntitySize.Y), (int)SourceRect.Width, (int)SourceRect.Height);
+            var destinationRect = new Rectangle((int)(Position.X - EntitySize.X / 2 + SourceRect.Width/2), (int)(Position.Y - EntitySize.Y), SourceRect.Width, SourceRect.Height);
             CorvusGame.Instance.SpriteBatch.Draw(_EffectSprite.Texture, destinationRect, SourceRect, Color.White);
 		    _FloatingTexts.Draw();
         }

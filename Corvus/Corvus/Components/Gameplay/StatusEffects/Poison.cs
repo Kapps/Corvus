@@ -13,7 +13,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
     //      handles all the one time only effects (Ex: strength down.)
 
     /// <summary>
-    /// A status effect that causes damage over time.
+    /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseEffect)
     /// </summary>
     public class Poison : StatusEffect
     {
@@ -28,7 +28,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
             _TickTimer += gameTime.ElapsedGameTime;
             if (_TickTimer >= TimeSpan.FromSeconds(1)) //apply every second
             {
-                float damage = ac.MaxHealth * Intensity;
+                float damage = ac.MaxHealth * Intensity + BaseEffect;
                 ac.CurrentHealth -= damage;
                 _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
                 _TickTimer = TimeSpan.Zero;

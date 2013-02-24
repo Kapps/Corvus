@@ -12,6 +12,7 @@ namespace Corvus.Components
     public class CollisionStatusEffectComponent : CollisionEventComponent
     {
         private string _EffectType;
+        private float _BaseEffect;
         private float _Intensity;
         private float _Duration;
 
@@ -25,7 +26,16 @@ namespace Corvus.Components
         }
 
         /// <summary>
-        /// The intensity of the effect. Value format depends on whether the effect is damage over time or one time only thing.
+        /// The static amount this effect will always apply.
+        /// </summary>
+        public float BaseEffect
+        {
+            get { return _BaseEffect; }
+            set { _BaseEffect = value; }
+        }
+
+        /// <summary>
+        /// The intensity of the effect. Usually expressed as a percentage.
         /// </summary>
         public float Intensity
         {
@@ -47,7 +57,7 @@ namespace Corvus.Components
             var se = Entity.GetComponent<StatusEffectsComponent>();
             if (se == null)
                 return false;
-            se.ApplyStatusEffect(Type.GetType(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", EffectType)), Intensity, Duration);
+            se.ApplyStatusEffect(Type.GetType(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", EffectType)), BaseEffect, Intensity, Duration);
             return true;
         }
     }

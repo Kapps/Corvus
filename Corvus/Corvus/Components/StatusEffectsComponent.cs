@@ -23,11 +23,13 @@ namespace Corvus.Components
         /// A plays a status effect.
         /// </summary>
         /// <param name="type">The type of status effect.</param>
+        /// <param name="baseEffect">The base effect of this effect.</param>
         /// <param name="intensity">The intensity of the effect.</param>
         /// <param name="duration">How long the effect should last.</param>
-        public void ApplyStatusEffect(Type type, float intensity, float duration)
+        public void ApplyStatusEffect(Type type, float baseEffect, float intensity, float duration)
         {
             var statusEffect = (StatusEffect)Activator.CreateInstance(type);
+            statusEffect.BaseEffect = baseEffect;
             statusEffect.Intensity = intensity;
             statusEffect.Duration = duration;
             statusEffect.EntitySize = this.Parent.Size;
