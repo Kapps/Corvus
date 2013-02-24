@@ -30,7 +30,7 @@ StatusEffecter
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter
 	PhysicsComponent
 	CollisionStatusEffectComponent
-		EffectType: Enum(Corvus.Components.StatusEffectTypes, Poison) #Would prefer to read a string instead.
+		EffectType: Poison
 		Intensity: Random(0.01, 0.5)
 		Duration: 5
 		DisposeOnCollision: true

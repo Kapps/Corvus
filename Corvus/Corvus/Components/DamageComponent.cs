@@ -6,6 +6,7 @@ using CorvEngine.Components;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Corvus.Components.Gameplay;
 
 namespace Corvus.Components{
     /// <summary>
@@ -72,94 +73,5 @@ namespace Corvus.Components{
         }
     }
 
-    //TODO: Refactor. Or let Onion do it since i'm not sure how he wants things.
-
-    /// <summary>
-    /// A collection of FloatingText. 
-    /// </summary>
-    public class FloatingTextList : List<FloatingText>
-    {
-        private SpriteFont _Font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/DamageFont");
-
-        public void AddFloatingTexts(float value, Color color)
-        {
-            string text = Math.Round(value, 0, MidpointRounding.AwayFromZero).ToString();
-            this.Add(new FloatingText(text, _Font.MeasureString(text), color));
-        }
-
-        public void Update(GameTime gameTime, Vector2 position)
-        {
-            foreach (FloatingText dt in this.Reverse<FloatingText>())
-            {
-                dt.Update(gameTime, position);
-                if (dt.IsFinished)
-                    this.Remove(dt);
-            }
-        }
-
-        public void Draw()
-        {
-            foreach (FloatingText dt in this)
-                dt.Draw(_Font);
-        }
-    }
-
-
-    /// <summary>
-    /// A class to display the damage value.
-    /// </summary>
-    public class FloatingText
-    {
-        // TODO: This should be in it's own class so that other components can use it.
-
-        /// <summary>
-        /// Gets or sets the value to display.
-        /// </summary>
-        public string Value { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Text size.
-        /// </summary>
-        public Vector2 TextSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets the text color.
-        /// </summary>
-        public Color TextColor { get; set; }
-
-        /// <summary>
-        /// Gets a value determining whether this text is finished animating.
-        /// </summary>
-        public bool IsFinished { get; private set; }
-
-        private Vector2 _Position { get; set; }
-        private TimeSpan _Timer = new TimeSpan();
-        private TimeSpan _Duration = TimeSpan.FromMilliseconds(450);
-        private float _YIncrement = 0f;
-
-        /// <summary>
-        /// Creates a new instance of FloatingText.
-        /// </summary>
-        public FloatingText(string value, Vector2 textSize, Color textColor)
-        {
-            Value = value;
-            TextSize = textSize;
-            TextColor = textColor;
-        }
-
-        public void Update(GameTime gameTime, Vector2 position)
-        {
-            _Position = position + new Vector2(0, _YIncrement) - new Vector2(TextSize.X / 2, 0); //to center and make it move up
-            _YIncrement -= 0.075f;
-            _Timer += gameTime.ElapsedGameTime;
-            if (_Timer >= _Duration)
-                IsFinished = true;
-        }
-
-        public void Draw(SpriteFont font)
-        {
-            //TODO: Might want to make the font scale with the size of the object.
-            CorvusGame.Instance.SpriteBatch.DrawString(font, Value, _Position, TextColor);
-        }
-    }
+    
 }

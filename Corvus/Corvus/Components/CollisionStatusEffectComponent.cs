@@ -47,7 +47,7 @@ namespace Corvus.Components
             var se = Entity.GetComponent<StatusEffectsComponent>();
             if (se == null)
                 return false;
-            se.ApplyStatusEffect(Type.GetType(string.Format("Corvus.Components.{0}", EffectType)), Intensity, Duration);
+            se.ApplyStatusEffect(Type.GetType(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", EffectType)), Intensity, Duration);
             return true;
         }
     }
