@@ -31,7 +31,7 @@ TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attrib
 	PhysicsComponent
 	CollisionStatusEffectComponent
 		EffectType: Poison
-		BaseEffect: 3
+		BaseValue: 3
 		Intensity: 0.01
 		Duration: 5
 		DisposeOnCollision: true

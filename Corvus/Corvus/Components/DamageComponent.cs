@@ -31,7 +31,7 @@ namespace Corvus.Components{
         /// </summary>
         public void TakeDamage(AttributesComponent attacker){
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
-            float criticalMultiplier = CriticalDamageChance(attacker.CritChance, attacker.CritDamage);
+            float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
             float overallDamage = damageTaken * criticalMultiplier;
             AttributesComponent.CurrentHealth -= overallDamage;
 

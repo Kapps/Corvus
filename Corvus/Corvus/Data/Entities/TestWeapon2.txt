@@ -1,0 +1,18 @@
+﻿WeaponSprite
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/TestWeapon2)
+
+Attributes
+	AttributesComponent
+		StrModifier: 1.1
+		DexModifier: 1.1
+		IntModifier: 1.0
+		CritChanceModifier: 0.5
+		CritDamageModifier: 5
+
+TestWeapon2: WeaponSprite, Attributes
+	PhysicsComponent
+	CollisionEquipmentComponent
+		WeaponType: Dagger
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)

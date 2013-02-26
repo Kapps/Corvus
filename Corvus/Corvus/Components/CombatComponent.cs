@@ -9,8 +9,18 @@ using CorvEngine;
 
 namespace Corvus.Components {
 	public class CombatComponent : Component {
+        //TODO: Maybe add attack speed so weapons affect them. 
+        //TODO: Same as above but for range.
 
 		// TODO: Add classification for what can be attacked.
+
+        public string AttackAnimation
+        {
+            get { return _AttackAnimation; }
+            set { _AttackAnimation = value; }
+        }
+
+        private string _AttackAnimation;
 
 		//This doesn't launch a projectile.
 		//We simply get an x,y value to attack and get the entity there, in order to apply damage.
@@ -26,7 +36,7 @@ namespace Corvus.Components {
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
 			// At the very least the sprites for it will be mutually exclusive.
-			sc.Sprite.PlayAnimation("BowAttack" + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
+			sc.Sprite.PlayAnimation(AttackAnimation + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
 
             //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
             //The attack rectange is calculated using our centre, range, and half our height.

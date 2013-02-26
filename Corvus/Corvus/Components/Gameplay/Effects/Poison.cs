@@ -13,9 +13,9 @@ namespace Corvus.Components.Gameplay.StatusEffects
     //      handles all the one time only effects (Ex: strength down.)
 
     /// <summary>
-    /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseValue)
+    /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseEffect)
     /// </summary>
-    public class Poison : StatusEffect
+    public class Poison : Effect
     {
         public override string Name { get { return "Poison"; } }
         protected override string SpriteName { get { return "Sprites/StatusEffects/testeffect1"; } }
@@ -28,7 +28,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
             _TickTimer += gameTime.ElapsedGameTime;
             if (_TickTimer >= TimeSpan.FromSeconds(1)) //apply every second
             {
-                float damage = ac.MaxHealth * Intensity + BaseValue;
+                float damage = ac.MaxHealth * Intensity + BaseEffect;
                 ac.CurrentHealth -= damage;
                 _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
                 _TickTimer = TimeSpan.Zero;
@@ -37,10 +37,10 @@ namespace Corvus.Components.Gameplay.StatusEffects
 
         public override void Draw()
         {
-            var ActiveFrame = _Sprite.ActiveAnimation.ActiveFrame.Frame;
+            var ActiveFrame = _EffectSprite.ActiveAnimation.ActiveFrame.Frame;
             var SourceRect = ActiveFrame.Source;
             var destinationRect = new Rectangle((int)(Position.X - EntitySize.X / 2 + SourceRect.Width / 2), (int)(Position.Y - EntitySize.Y), SourceRect.Width, SourceRect.Height);
-            CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, destinationRect, SourceRect, Color.White);
+            CorvusGame.Instance.SpriteBatch.Draw(_EffectSprite.Texture, destinationRect, SourceRect, Color.White);
             _FloatingTexts.Draw();
         }
     }

@@ -7,29 +7,26 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Corvus.Components {
+    /// <summary>
+    /// A class to manage attributes for this entity.
+    /// </summary>
 	public class AttributesComponent : Component {
-		private float _CurrentHealth = 100f;
-		private float _MaxHealth = 100f;
-		private float _Strength = 0;    //Used for damage.
-		private float _StrModifier = 1f;
-		private float _Dexterity = 0;   //used for defense.
-        private float _DexModifier = 1f;
-        private float _CritChance = 0.05f;
-        private float _CritDamage = 1.5f;
-		private bool _IsDead = false;
-
-		/// <summary>
-		/// Gets an event called when the health of this Component runs out.
-		/// </summary>
-		public event Action<AttributesComponent> Died;
-		/// <summary>
-		/// Gets an event called when the amount of health this Component has remaining is changed.
-		/// </summary>
-		public event Action<AttributesComponent> CurrentHealthChanged;
-		/// <summary>
-		/// Gets an event called when the max health this Component has is changed.
-		/// </summary>
-		public event Action<AttributesComponent> MaxHealthChanged;
+        /// <summary>
+        /// Gets the overall strength.
+        /// </summary>
+        public float Attack { get { return Strength * StrModifier; } }
+        /// <summary>
+        /// Gets the overall defense.
+        /// </summary>
+        public float Defense { get { return Dexterity * DexModifier; } }
+        /// <summary>
+        /// Gets the overall critical chance.
+        /// </summary>
+        public float CriticalChance { get { return MathHelper.Clamp(CritChance + CritChanceModifier, 0, 1f); } }
+        /// <summary>
+        /// Gets the overall critical damage.
+        /// </summary>
+        public float CriticalDamage { get { return Math.Max(CritDamage + CritDamageModifier, 0); } }
 
 		/// <summary>
 		/// Gets or sets the amount of health that this component has.
@@ -69,7 +66,7 @@ namespace Corvus.Components {
 		}
 
 		/// <summary>
-		/// Gets or sets the strength.
+		/// Gets or sets the strength. Strength affects physical and ranged damage.
 		/// </summary>
 		public float Strength {
 			get { return _Strength; }
@@ -85,7 +82,7 @@ namespace Corvus.Components {
 		}
 
 		/// <summary>
-		/// Gets or sets the Dexterity.
+		/// Gets or sets the Dexterity. Dexterity affects defense.
 		/// </summary>
 		public float Dexterity {
 			get { return _Dexterity; }
@@ -101,12 +98,39 @@ namespace Corvus.Components {
         }
 
         /// <summary>
+        /// Gets or sets the intelligence. Intelligence affects elemental damage and ... not really sure yet.
+        /// </summary>
+        public float Intelligence
+        {
+            get { return _Intelligence; }
+            set { _Intelligence = Math.Max(value, 0); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intelligence modifier. Should be expressed as a percentage.
+        /// </summary>
+        public float IntModifier
+        {
+            get { return _IntModifier; }
+            set { _IntModifier = Math.Max(value, 0); }
+        }
+
+        /// <summary>
         /// Gets or sets the critical chance. Value must range from 0 to 1.0.
         /// </summary>
         public float CritChance
         {
             get { return _CritChance; }
             set { _CritChance = MathHelper.Clamp(value, 0, 1.0f); }
+        }
+
+        /// <summary>
+        /// Gets or sets the critical chance modifier. Value must range from 0 to 1.0.
+        /// </summary>
+        public float CritChanceModifier
+        {
+            get { return _CritChanceModifier; }
+            set { _CritChanceModifier = MathHelper.Clamp(value, 0, 1.0f); }
         }
 
         /// <summary>
@@ -118,13 +142,41 @@ namespace Corvus.Components {
             set { _CritDamage = Math.Max(value, 1); }
         }
 
-		/// <summary>
-		/// Gets the overall strength.
-		/// </summary>
-		public float Attack { get { return Strength * StrModifier; } }
-		/// <summary>
-		/// Gets the overall defense.
-		/// </summary>
-		public float Defense { get { return Dexterity * DexModifier; } }
+        /// <summary>
+        /// Gets or sets the critical damage modifier. Value must range from 0 to 1.0.
+        /// </summary>
+        public float CritDamageModifier
+        {
+            get { return _CritDamageModifier; }
+            set { _CritDamageModifier =  MathHelper.Clamp(value, 0, 1.0f); }
+        }
+        
+        /// <summary>
+        /// Gets an event called when the health of this Component runs out.
+        /// </summary>
+        public event Action<AttributesComponent> Died;
+        /// <summary>
+        /// Gets an event called when the amount of health this Component has remaining is changed.
+        /// </summary>
+        public event Action<AttributesComponent> CurrentHealthChanged;
+        /// <summary>
+        /// Gets an event called when the max health this Component has is changed.
+        /// </summary>
+        public event Action<AttributesComponent> MaxHealthChanged;
+		
+        private float _CurrentHealth = 100f;
+        private float _MaxHealth = 100f;
+        private float _Strength = 0;    
+        private float _StrModifier = 1f;
+        private float _Dexterity = 0;   
+        private float _DexModifier = 1f;
+        private float _Intelligence = 0;
+        private float _IntModifier = 1f;
+        private float _CritChance = 0f;
+        private float _CritChanceModifier = 0f;
+        private float _CritDamage = 1.5f;
+        private float _CritDamageModifier = 0f;
+        private bool _IsDead = false;
+
 	}
 }

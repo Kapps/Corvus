@@ -112,10 +112,17 @@
     <Compile Include="Components\ChaseCameraComponent.cs" />
     <Compile Include="Components\CollisionDamageComponent.cs" />
     <Compile Include="Components\CollisionStatusEffectComponent.cs" />
+    <Compile Include="Components\CollisionEquipmentComponent.cs" />
     <Compile Include="Components\CombatComponent.cs" />
     <Compile Include="Components\DamageComponent.cs" />
+    <Compile Include="Components\EquipmentComponent.cs" />
+    <Compile Include="Components\Gameplay\Equipment\Dagger.cs" />
+    <Compile Include="Components\Gameplay\Equipment\Spear.cs" />
+    <Compile Include="Components\Gameplay\Equipment\Sword.cs" />
+    <Compile Include="Components\Gameplay\Equipment\Weapon.cs" />
     <Compile Include="Components\Gameplay\FloatingText.cs" />
     <Compile Include="Components\Gameplay\FloatingTextList.cs" />
+    <Compile Include="Components\Gameplay\Helper.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Poison.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffect.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectCollection.cs" />
@@ -133,6 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Entities\TestEntityEnemy.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\TestWeapon1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\TestWeapon2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Game.ico" />

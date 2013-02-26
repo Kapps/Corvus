@@ -12,7 +12,7 @@ namespace Corvus.Components
     public class CollisionStatusEffectComponent : CollisionEventComponent
     {
         private string _EffectType;
-        private float _BaseEffect;
+        private float _BaseValue;
         private float _Intensity;
         private float _Duration;
 
@@ -28,10 +28,10 @@ namespace Corvus.Components
         /// <summary>
         /// The static amount this effect will always apply.
         /// </summary>
-        public float BaseEffect
+        public float BaseValue
         {
-            get { return _BaseEffect; }
-            set { _BaseEffect = value; }
+            get { return _BaseValue; }
+            set { _BaseValue = value; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Corvus.Components
             var se = Entity.GetComponent<StatusEffectsComponent>();
             if (se == null)
                 return false;
-            se.ApplyStatusEffect(Type.GetType(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", EffectType)), BaseEffect, Intensity, Duration);
+            se.ApplyStatusEffect(EffectType, BaseValue, Intensity, Duration);
             return true;
         }
     }
