@@ -20,8 +20,8 @@ Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
 Data\Entities\TestEntityEnemy.txt
-Data\Entities\TestWeapon1.txt
-Data\Entities\TestWeapon2.txt
+Data\Entities\Spear.txt
+Data\Entities\Dagger.txt
 Data\Entities\TestEntity.txt
 Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx

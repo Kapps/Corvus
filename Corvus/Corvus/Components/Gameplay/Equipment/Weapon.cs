@@ -25,56 +25,6 @@ namespace Corvus.Components.Gameplay.Equipment
         /// </summary>
         public abstract string AnimationName { get; }
 
-        /// <summary>
-        /// Gets or sets the strength modifier of this weapon.
-        /// </summary>
-        public float StrModifier
-        {
-            get { return _StrModifier; }
-            set { _StrModifier = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the dexterity modifier of this weapon.
-        /// </summary>
-        public float DexModifier
-        {
-            get { return _DexModifier; }
-            set { _DexModifier = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the intelligence modifier of this weapon.
-        /// </summary>
-        public float IntModifier
-        {
-            get { return _IntModifier; }
-            set { _IntModifier = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the critical chance modifier of this weapon.
-        /// </summary>
-        public float CritChanceModifier
-        {
-            get { return _CritChanceModifier; }
-            set { _CritChanceModifier = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the critical damage modifier of this weapon.
-        /// </summary>
-        public float CritDamageModifier
-        {
-            get { return _CritDamageModifier; }
-            set { _CritDamageModifier = value; }
-        }
-
-
-        public float _StrModifier = 1f;
-        public float _DexModifier = 1f;
-        public float _IntModifier = 1f;
-        public float _CritChanceModifier = 0f;
-        public float _CritDamageModifier = 0f;
+        public Attributes Attributes { get; set; }
     }
 }

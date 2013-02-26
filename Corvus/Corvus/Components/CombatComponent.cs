@@ -14,13 +14,10 @@ namespace Corvus.Components {
 
 		// TODO: Add classification for what can be attacked.
 
-        public string AttackAnimation
-        {
-            get { return _AttackAnimation; }
-            set { _AttackAnimation = value; }
-        }
+        //The problem with this is that i'm assuming everything has an equipment component. So, if an enemy attacks, then they need the EquipmentComponent as well, which wouldnt make sense.
+        //I'm also assuming that this is what enemies will use (by this, i mean CombatComponent) for handling their attacks.
+        private EquipmentComponent EquipmentComponent;
 
-        private string _AttackAnimation;
 
 		//This doesn't launch a projectile.
 		//We simply get an x,y value to attack and get the entity there, in order to apply damage.
@@ -36,7 +33,7 @@ namespace Corvus.Components {
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
 			// At the very least the sprites for it will be mutually exclusive.
-			sc.Sprite.PlayAnimation(AttackAnimation + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
+			sc.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.AnimationName + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
 
             //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
             //The attack rectange is calculated using our centre, range, and half our height.
@@ -71,6 +68,12 @@ namespace Corvus.Components {
         public void AttackGun()
         {
 
+        }
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
         }
 	}
 }

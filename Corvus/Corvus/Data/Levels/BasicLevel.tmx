@@ -68,14 +68,15 @@
   <object name="Climber2" type="Path" x="972" y="1319">
    <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 912,-513"/>
   </object>
-  <object name="Jumper2" type="TestWeapon2" x="1627" y="1249" width="32" height="32">
+  <object name="Sit1" type="Dagger" x="1627" y="1249" width="32" height="32">
    
   </object>
-  <object name="Jumper2" type="TestWeapon1" x="1327" y="1249" width="32" height="32">
-
+  <object name="Sit2" type="Spear" x="1327" y="1249" width="32" height="32">
   </object>
-  <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1049" width="32" height="32">
-
+  <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1399" width="32" height="32">
+    <properties>
+      <property name="PathComponent.Nodes" value="Collection(Vector(1327, 1399))"/>
+    </properties>
   </object>
  </objectgroup>
  <layer name="Solid Objects" width="80" height="50">

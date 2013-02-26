@@ -44,7 +44,7 @@ namespace Corvus.Components
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
         }
-
+        //TODO: Find a better way to draw the effects.
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
@@ -55,7 +55,7 @@ namespace Corvus.Components
             var ToScreen = Camera.Active.ScreenToWorld(position);
             foreach (StatusEffect se in _StatusEffects.Reverse<StatusEffect>())
             {
-                se.Update(Time, AttributesComponent, ToScreen);
+                se.Update(Time, AttributesComponent.Attributes, ToScreen);
                 if (se.IsFinished)
                     _StatusEffects.Remove(se);
             }

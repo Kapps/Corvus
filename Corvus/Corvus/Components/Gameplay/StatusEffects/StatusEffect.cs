@@ -77,8 +77,9 @@ namespace Corvus.Components.Gameplay.StatusEffects
         {
             _Sprite = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
         }
-        
-        public virtual void Update(GameTime gameTime, AttributesComponent ac, Vector2 position)
+
+        //TODO: Find a better way to draw effects
+        public virtual void Update(GameTime gameTime, Attributes attributes, Vector2 position)
         {
             Position = position;
             _Timer += gameTime.ElapsedGameTime;
@@ -89,16 +90,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         }
 
         //TODO: Maybe make the effect scale with the size of entity. 
-        //TODO: Instead of drawing it here, maybe force every StatusEffect to draw it's own effect with it's own specialized position, etc.
         public abstract void Draw();
-        //public virtual void Draw()
-        //{
-        //    var ActiveFrame = _EffectSprite.ActiveAnimation.ActiveFrame.Frame;
-        //    var SourceRect = ActiveFrame.Source;
-        //    var destinationRect = new Rectangle((int)(Position.X - EntitySize.X / 2 + SourceRect.Width/2), (int)(Position.Y - EntitySize.Y), SourceRect.Width, SourceRect.Height);
-        //    CorvusGame.Instance.SpriteBatch.Draw(_EffectSprite.Texture, destinationRect, SourceRect, Color.White);
-        //    _FloatingTexts.Draw();
-        //}
 
         /// <summary>
         /// Resets the timer.

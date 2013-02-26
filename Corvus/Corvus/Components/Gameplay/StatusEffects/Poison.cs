@@ -20,16 +20,16 @@ namespace Corvus.Components.Gameplay.StatusEffects
         public override string Name { get { return "Poison"; } }
         protected override string SpriteName { get { return "Sprites/StatusEffects/testeffect1"; } }
 
-        private TimeSpan _TickTimer = TimeSpan.FromSeconds(0); 
+        private TimeSpan _TickTimer = TimeSpan.FromSeconds(0);
 
-        public override void Update(GameTime gameTime, AttributesComponent ac, Vector2 position)
+        public override void Update(GameTime gameTime, Attributes attributes, Vector2 position)
         {
-            base.Update(gameTime, ac, position);
+            base.Update(gameTime, attributes, position);
             _TickTimer += gameTime.ElapsedGameTime;
             if (_TickTimer >= TimeSpan.FromSeconds(1)) //apply every second
             {
-                float damage = ac.MaxHealth * Intensity + BaseValue;
-                ac.CurrentHealth -= damage;
+                float damage = attributes.MaxHealth * Intensity + BaseValue;
+                attributes.CurrentHealth -= damage;
                 _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
                 _TickTimer = TimeSpan.Zero;
             }
