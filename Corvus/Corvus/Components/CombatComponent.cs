@@ -9,41 +9,50 @@ using CorvEngine;
 
 namespace Corvus.Components {
 	public class CombatComponent : Component {
-        //TODO: Maybe add attack speed so weapons affect them. 
-        //TODO: Same as above but for range.
+        /// <summary>
+        /// Gets or sets what can be attacked. 
+        /// </summary>
+        public EntityClassification AttackableEntities
+        {
+            get { return _AttackableEntities; }
+            set { _AttackableEntities = value; }
+        }
 
-		// TODO: Add classification for what can be attacked.
-
+        private EntityClassification _AttackableEntities;
         //The problem with this is that i'm assuming everything has an equipment component. So, if an enemy attacks, then they need the EquipmentComponent as well, which wouldnt make sense.
         //I'm also assuming that this is what enemies will use (by this, i mean CombatComponent) for handling their attacks.
         private EquipmentComponent EquipmentComponent;
-
+        private AttributesComponent AttributesComponent;
+        private MovementComponent MovementComponent;
+        private SpriteComponent SpriteComponent;
+        private PhysicsSystem PhysicsSystem;
+        private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
+        private bool _IsAttacking = false;
 
 		//This doesn't launch a projectile.
 		//We simply get an x,y value to attack and get the entity there, in order to apply damage.
-		public void AttackSword() {
-			var mc = Parent.GetComponent<MovementComponent>();
-			var sc = Parent.GetComponent<SpriteComponent>();
-            var ps = Parent.Scene.GetSystem<PhysicsSystem>();
-            var ac = this.GetDependency<AttributesComponent>();
-            int attackRange = 100; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
-            int attackHeight = 100; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
-
-			// TODO: Provide an attack speed that makes them take that long to attack.
+		public void AttackMelee() {
+            //This guy is attacking, don't do anything.
+            if (_IsAttacking)
+                return;
+            _IsAttacking = true;
+            // TODO: Maybe the attack should start at a specific frame.
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
 			// At the very least the sprites for it will be mutually exclusive.
-			sc.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.AnimationName + (mc.CurrentDirection == Direction.None ? "Down" : mc.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(1000));
-
+            float attackSpeed = AttributesComponent.AttackSpeed;
+            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
+            
             //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
             //The attack rectange is calculated using our centre, range, and half our height.
+            int attackRange = (int)AttributesComponent.AttackRange.X; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
+            int attackHeight = (int)AttributesComponent.AttackRange.Y; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
             Rectangle attackRectangle;
-
-            if (mc.CurrentDirection == Direction.Left)
+            if (MovementComponent.CurrentDirection == Direction.Left)
             {
                 attackRectangle = new Rectangle(Parent.Location.Center.X - attackRange, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height + attackHeight);
             }
-            else if (mc.CurrentDirection == Direction.Right)
+            else if (MovementComponent.CurrentDirection == Direction.Right)
             {
                 attackRectangle = new Rectangle(Parent.Location.Center.X, Parent.Location.Y - attackHeight, attackRange, Parent.Location.Height + attackHeight);
             }
@@ -55,25 +64,51 @@ namespace Corvus.Components {
             }
 
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
-            foreach (var attackedEntity in ps.GetEntitiesAtLocation(attackRectangle))
+            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(attackRectangle))
             {
-                if (attackedEntity != Parent)
+                //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
+                var cc = attackedEntity.GetComponent<ClassificationComponent>(); 
+                if (attackedEntity != Parent && cc.Classification == AttackableEntities)
                 {
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
-                    damageComponent.TakeDamage(ac);
+                    damageComponent.TakeDamage(AttributesComponent);
                 }
             }
 		}
 
-        public void AttackGun()
+        public void AttackRanged()
         {
 
+        }
+
+        //TODO: Not really sure how to detect if something is blocking and to calculate damage accordingly. 
+        public void Blocking()
+        {
         }
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
             EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
+            AttributesComponent = this.GetDependency<AttributesComponent>();
+            MovementComponent = this.GetDependency<MovementComponent>();
+            SpriteComponent = this.GetDependency<SpriteComponent>();
+            PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
+        }
+
+        protected override void OnUpdate(GameTime Time)
+        {
+            base.OnUpdate(Time);
+            //Seems messy doing it his way.
+            if (_IsAttacking)
+            {
+                _Timer += Time.ElapsedGameTime;
+                if (_Timer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
+                {
+                    _IsAttacking = false;
+                    _Timer = TimeSpan.Zero;
+                }
+            }
         }
 	}
 }

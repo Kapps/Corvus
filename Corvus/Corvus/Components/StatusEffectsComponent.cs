@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Corvus.Components.Gameplay;
 using Corvus.Components.Gameplay.StatusEffects;
+using System.Reflection;
 
 namespace Corvus.Components
 {
@@ -24,18 +25,17 @@ namespace Corvus.Components
         /// <summary>
         /// A plays a status effect.
         /// </summary>
-        /// <param name="type">The nane of status effect.</param>
+        /// <param name="type">The name of status effect.</param>
         /// <param name="baseValue">The base value of this effect.</param>
         /// <param name="intensity">The intensity of the effect.</param>
         /// <param name="duration">How long the effect should last.</param>
         public void ApplyStatusEffect(string name, float baseValue, float intensity, float duration)
         {
-            Type type = Type.GetType(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", name));
-            var statusEffect = Helper.GetObject<StatusEffect>(type);
+            var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", name), new Type[] { typeof(Entity) });
+            var statusEffect = constructor(this.Parent);
             statusEffect.BaseValue = baseValue;
             statusEffect.Intensity = intensity;
             statusEffect.Duration = duration;
-            statusEffect.EntitySize = this.Parent.Size; //i want to remove this.
             _StatusEffects.Add(statusEffect);
         }
 
@@ -50,13 +50,9 @@ namespace Corvus.Components
             base.OnUpdate(Time);
             if (_StatusEffects.Count == 0)
                 return;
-            //TODO: All this crap is to draw the effects.
-            var width = Parent.Size.X;
-            var position = Parent.Position + new Vector2(width / 2, 0);
-            var ToScreen = Camera.Active.ScreenToWorld(position);
             foreach (StatusEffect se in _StatusEffects.Reverse<StatusEffect>())
             {
-                se.Update(Time, AttributesComponent.Attributes, ToScreen);
+                se.Update(Time);
                 if (se.IsFinished)
                     _StatusEffects.Remove(se);
             }
@@ -65,11 +61,10 @@ namespace Corvus.Components
         protected override void OnDraw()
         {
             base.OnDraw();
-            if (_StatusEffects.Count == 0)
-                return;
             foreach (StatusEffect se in _StatusEffects)
                 se.Draw();
         }
+
     }
 
 }

@@ -36,7 +36,7 @@ namespace Corvus.Components.Gameplay
 
         private Vector2 _Position { get; set; }
         private TimeSpan _Timer = new TimeSpan();
-        private TimeSpan _Duration = TimeSpan.FromMilliseconds(450);
+        private TimeSpan _Duration = TimeSpan.FromMilliseconds(550);
         private float _YIncrement = 0f;
 
         /// <summary>

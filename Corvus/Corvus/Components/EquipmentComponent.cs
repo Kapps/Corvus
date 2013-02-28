@@ -69,10 +69,12 @@ namespace Corvus.Components
             AttributesComponent = Parent.GetComponent<AttributesComponent>();
             CombatComponent = Parent.GetComponent<CombatComponent>();
 
-            //TODO: Instead of simply creating a blank entity, we can load the blueprint specified by the DefaultWeaponName and apply it's properties.
-            //sets default weapon (Note that the attributes are not set here. Meaning it's a attributeless weapon).
-            _DefaultWeapon = CreateWeapon(DefaultWeaponName);
+            //TODO: Seems like a hackish way of getting a weapon entity.
+            //      Also note that I'm assuming that the AllBlueprints field will always have ALL the blueprints. Not sure if it's ever cleared.
+            var weapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(DefaultWeaponName).CreateEntity();
+            _DefaultWeapon = CreateWeapon(DefaultWeaponName, weapon.GetComponent<AttributesComponent>().Attributes);
             _CurrentWeapon = _DefaultWeapon;
+            weapon.Dispose();
         }
 
         /// <summary>
@@ -80,8 +82,8 @@ namespace Corvus.Components
         /// </summary>
         private Weapon CreateWeapon(string name)
         {
-            Type type = Type.GetType(string.Format("Corvus.Components.Gameplay.Equipment.{0}", name));
-            var weapon = Helper.GetObject<Weapon>(type);
+            var constructor = Helper.GetObjectConstructor<Weapon>(string.Format("Corvus.Components.Gameplay.Equipment.{0}", name), new Type[] { });
+            var weapon = constructor();
             weapon.Attributes = new Attributes();
             return weapon;
         }

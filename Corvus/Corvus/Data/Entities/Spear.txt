@@ -9,6 +9,8 @@ Attributes
 		IntModifier: 1.0
 		CritChance: 0
 		CritDamage: 0
+		AttackRange: Vector(100, 100)
+		AttackSpeed: 300
 
 Motion
 	PhysicsComponent
@@ -19,3 +21,5 @@ Spear: WeaponSprite, Attributes, Motion
 		WeaponType: Spear
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)

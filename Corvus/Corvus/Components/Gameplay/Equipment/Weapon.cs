@@ -25,6 +25,9 @@ namespace Corvus.Components.Gameplay.Equipment
         /// </summary>
         public abstract string AnimationName { get; }
 
+        /// <summary>
+        /// The attributes from this weapon.
+        /// </summary>
         public Attributes Attributes { get; set; }
     }
 }

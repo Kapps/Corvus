@@ -90,7 +90,7 @@ namespace Corvus {
 			if(MovementComponent == null)
 				return;
 			if(State == BindState.Pressed)
-				CombatComponent.AttackSword();
+				CombatComponent.AttackMelee();
 		}
 
         private void AttackGunPressed(BindState State)
@@ -98,7 +98,7 @@ namespace Corvus {
             if (MovementComponent == null)
                 return;
             if (State == BindState.Pressed)
-                CombatComponent.AttackGun();
+                CombatComponent.AttackRanged();
         }
 	}
 }

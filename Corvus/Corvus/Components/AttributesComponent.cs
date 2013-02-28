@@ -63,6 +63,32 @@ namespace Corvus.Components {
             }
         }
 
+        /// <summary>
+        /// Gets or sets the attack range.
+        /// </summary>
+        public Vector2 AttackRange
+        {
+            get { 
+                if(EquipmentComponent == null)
+                    return Attributes.AttackRange;
+                return EquipmentComponent.CurrentWeapon.Attributes.AttackRange;
+            }
+            set { Attributes.AttackRange = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the attack speed in milliseconds.
+        /// </summary>
+        public float AttackSpeed
+        {
+            get{
+                if (EquipmentComponent == null)
+                    return Attributes.AttackSpeed;
+                return EquipmentComponent.CurrentWeapon.Attributes.AttackSpeed;
+            }
+            set { Attributes.AttackSpeed = value; }
+        }
+
 		/// <summary>
 		/// Gets or sets the amount of health that this component has.
 		/// </summary>
@@ -192,7 +218,7 @@ namespace Corvus.Components {
         }
 
         /// <summary>
-        /// Calculates the combined value of two attributes. (EX: this entities attributes plus it's equipment bonuses)
+        /// Calculates the combined value of two attributes. (EX: this entitie's attributes plus it's equipment bonuses)
         /// </summary>
         private float GetCombinedAttributeValues(float v1, float m1, float v2, float m2)
         {

@@ -9,6 +9,8 @@ Attributes
 		IntModifier: 1.0
 		CritChance: 0.5
 		CritDamage: 5
+		AttackRange: Vector(50, 50)
+		AttackSpeed: 150
 
 Motion
 	PhysicsComponent
@@ -18,3 +20,5 @@ Dagger: WeaponSprite, Attributes, Motion
 		WeaponType: Dagger
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)

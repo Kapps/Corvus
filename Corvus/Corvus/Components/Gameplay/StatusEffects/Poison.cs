@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CorvEngine.Graphics;
+using CorvEngine.Components;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
@@ -18,14 +19,15 @@ namespace Corvus.Components.Gameplay.StatusEffects
 
         private TimeSpan _TickTimer = TimeSpan.FromSeconds(0);
 
-        public override void Update(GameTime gameTime, Attributes attributes, Vector2 position)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, attributes, position);
+            base.Update(gameTime);
             _TickTimer += gameTime.ElapsedGameTime;
             if (_TickTimer >= TimeSpan.FromSeconds(1)) //apply every second
             {
-                float damage = attributes.MaxHealth * Intensity + BaseValue;
-                attributes.CurrentHealth -= damage;
+                var ac = Entity.GetComponent<AttributesComponent>();
+                float damage = ac.MaxHealth * Intensity + BaseValue;
+                ac.CurrentHealth -= damage;
                 _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
                 _TickTimer = TimeSpan.Zero;
             }
@@ -35,9 +37,13 @@ namespace Corvus.Components.Gameplay.StatusEffects
         {
             var ActiveFrame = _Sprite.ActiveAnimation.ActiveFrame.Frame;
             var SourceRect = ActiveFrame.Source;
-            var destinationRect = new Rectangle((int)(Position.X - EntitySize.X / 2 + SourceRect.Width / 2), (int)(Position.Y - EntitySize.Y), SourceRect.Width, SourceRect.Height);
+            var position = Camera.Active.ScreenToWorld(Entity.Position);
+            var destinationRect = new Rectangle((int)(position.X + SourceRect.Width / 2), (int)(position.Y - Entity.Size.Y), SourceRect.Width, SourceRect.Height);
             CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, destinationRect, SourceRect, Color.White);
             _FloatingTexts.Draw();
         }
+
+        //Unfortunately, need to specify this in order for StatusEffectsComponent to work properly.
+        public Poison(Entity entity) : base(entity) { }
     }
 }

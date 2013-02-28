@@ -13,6 +13,24 @@ namespace Corvus.Components.Gameplay
     public class Attributes
     {
         /// <summary>
+        /// Gets or sets the attack range.
+        /// </summary>
+        public Vector2 AttackRange
+        {
+            get { return _AttackRange; }
+            set { _AttackRange = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the attack speed in milliseconds.
+        /// </summary>
+        public float AttackSpeed
+        {
+            get { return _AttackSpeed; }
+            set { _AttackSpeed = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the amount of health that this component has.
         /// </summary>
         public float CurrentHealth
@@ -102,7 +120,9 @@ namespace Corvus.Components.Gameplay
             get { return _CritDamage; }
             set { _CritDamage = Math.Max(value, 1); }
         }
-        
+
+        private Vector2 _AttackRange = new Vector2();
+        private float _AttackSpeed = 0f;
         private float _CurrentHealth = 100f;
         private float _MaxHealth = 100f;
         private float _Strength = 0;
@@ -113,7 +133,6 @@ namespace Corvus.Components.Gameplay
         private float _IntModifier = 1f;
         private float _CritChance = 0f;
         private float _CritDamage = 0f;
-
         
     }
 }

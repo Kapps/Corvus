@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CorvEngine.Graphics;
-
+using CorvEngine.Components;
 namespace Corvus.Components.Gameplay.StatusEffects
 {
     //TODO: Probably could do some refactoring here. For example, move _TickTimer into this class so every class that
@@ -57,18 +57,14 @@ namespace Corvus.Components.Gameplay.StatusEffects
         }
 
         /// <summary>
-        /// Gets or sets the entity size so it knows where to draw the effect.
-        /// </summary>
-        public Vector2 EntitySize 
-        {
-            get { return _EntitySize; }
-            set { _EntitySize = value; }
-        }
-
-        /// <summary>
         /// Gets a value determining whether this effect's duration has ended.
         /// </summary>
         public bool IsFinished { get; private set; }
+
+        /// <summary>
+        /// Gets the entity being affected.
+        /// </summary>
+        public Entity Entity { get { return _Entity; } }
 
         /// <summary>
         /// A event that occurs when the status effect is finished. 
@@ -78,21 +74,24 @@ namespace Corvus.Components.Gameplay.StatusEffects
         private float _BaseValue;
         private float _Intensity;
         private float _Duration;
-        private Vector2 _EntitySize;
+        private Entity _Entity;
         protected Sprite _Sprite;
         protected TimeSpan _Timer = TimeSpan.Zero;
         protected FloatingTextList _FloatingTexts = new FloatingTextList();
-        protected Vector2 Position { get; set; }
-
-        public StatusEffect()
+        
+        /// <summary>
+        /// Creates a new instance of StatusEffect.
+        /// </summary>
+        /// <param name="entity">The entity being affected.</param>
+        public StatusEffect(Entity entity)
         {
-            _Sprite = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
+            this._Sprite = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
+            this._Entity = entity;
         }
 
         //TODO: Find a better way to draw effects
-        public virtual void Update(GameTime gameTime, Attributes attributes, Vector2 position)
+        public virtual void Update(GameTime gameTime)
         {
-            Position = position;
             _Timer += gameTime.ElapsedGameTime;
             if (_Timer >= TimeSpan.FromSeconds(Duration))
             {
@@ -101,7 +100,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
                     OnEventCompleted(this, new EventArgs());
             }
             _Sprite.ActiveAnimation.AdvanceAnimation(gameTime.ElapsedGameTime);
-            _FloatingTexts.Update(gameTime, position);
+
+            var width = Entity.Size.X;
+            var position = Entity.Position + new Vector2(width / 2, 0);
+            var ToScreen = Camera.Active.ScreenToWorld(position);
+            _FloatingTexts.Update(gameTime, ToScreen);
         }
 
         //TODO: Maybe make the effect scale with the size of entity. 

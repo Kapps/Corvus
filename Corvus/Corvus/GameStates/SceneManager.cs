@@ -114,7 +114,7 @@ namespace Corvus.GameStates {
 		public void ReloadBlueprints() {
             var a = Directory.GetFiles("Data/Entities", "*.txt");
 			foreach(var BlueprintFile in Directory.GetFiles("Data/Entities", "*.txt"))
-				BlueprintParser.ParseBlueprint(File.ReadAllText(BlueprintFile));
+				BlueprintParser.ParseBlueprint(File.ReadAllText(BlueprintFile)); 
 		}
 
 		/// <summary>
