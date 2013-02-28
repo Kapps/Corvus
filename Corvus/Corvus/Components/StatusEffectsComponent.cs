@@ -35,7 +35,7 @@ namespace Corvus.Components
             statusEffect.BaseValue = baseValue;
             statusEffect.Intensity = intensity;
             statusEffect.Duration = duration;
-            statusEffect.EntitySize = this.Parent.Size;
+            statusEffect.EntitySize = this.Parent.Size; //i want to remove this.
             _StatusEffects.Add(statusEffect);
         }
 
@@ -43,13 +43,14 @@ namespace Corvus.Components
         {
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
-        }
+        } 
         //TODO: Find a better way to draw the effects.
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
             if (_StatusEffects.Count == 0)
                 return;
+            //TODO: All this crap is to draw the effects.
             var width = Parent.Size.X;
             var position = Parent.Position + new Vector2(width / 2, 0);
             var ToScreen = Camera.Active.ScreenToWorld(position);

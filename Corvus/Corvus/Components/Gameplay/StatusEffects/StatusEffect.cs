@@ -8,9 +8,15 @@ using CorvEngine.Graphics;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
+    //TODO: Probably could do some refactoring here. For example, move _TickTimer into this class so every class that
+    //      Inherits from this will have access to it. 
+
     /// <summary>
     /// A base class for a status effect.
     /// </summary>
+    /// <remarks>
+    /// I would've preferred to call this class Effect but there is already a class that microsoft created called that.
+    /// </remarks>
     public abstract class StatusEffect
     {
         /// <summary>
@@ -64,6 +70,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// </summary>
         public bool IsFinished { get; private set; }
 
+        /// <summary>
+        /// A event that occurs when the status effect is finished. 
+        /// </summary>
+        protected event EventHandler OnEventCompleted;
+
         private float _BaseValue;
         private float _Intensity;
         private float _Duration;
@@ -84,7 +95,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
             Position = position;
             _Timer += gameTime.ElapsedGameTime;
             if (_Timer >= TimeSpan.FromSeconds(Duration))
+            {
                 IsFinished = true;
+                if (OnEventCompleted != null)
+                    OnEventCompleted(this, new EventArgs());
+            }
             _Sprite.ActiveAnimation.AdvanceAnimation(gameTime.ElapsedGameTime);
             _FloatingTexts.Update(gameTime, position);
         }

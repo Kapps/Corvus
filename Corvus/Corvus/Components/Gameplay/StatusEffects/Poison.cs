@@ -5,13 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CorvEngine.Graphics;
-using CorvEngine.Components;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
-    //TODO: Maybe create a seperate class that handles all damage over time effects and another that
-    //      handles all the one time only effects (Ex: strength down.)
-
     /// <summary>
     /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseValue)
     /// </summary>

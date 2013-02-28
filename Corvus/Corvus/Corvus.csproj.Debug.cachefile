@@ -9,6 +9,7 @@ Content\Interface\HealthMeter.xnb
 Content\Sprites\StatusEffects\testeffect.xnb
 Content\Sprites\Equipment\testweapon.xnb
 Content\Sprites\Equipment\testweaponD.xnb
+Content\Sprites\Powerups\TestPowerup.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
@@ -16,6 +17,7 @@ Content\Sprites\TestEnemy.xnb
 Content\Sprites\StatusEffects\testeffect1.xnb
 Content\Sprites\Equipment\TestWeapon1.xnb
 Content\Sprites\Equipment\TestWeapon2.xnb
+Content\Sprites\Powerups\TestPowerup1.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
