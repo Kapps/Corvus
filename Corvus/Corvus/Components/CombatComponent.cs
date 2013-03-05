@@ -27,6 +27,7 @@ namespace Corvus.Components {
         private MovementComponent MovementComponent;
         private SpriteComponent SpriteComponent;
         private PhysicsSystem PhysicsSystem;
+        private PhysicsComponent PhysicsComponent;
         private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private bool _IsAttacking = false;
         public bool _IsBlocking = false;
@@ -99,6 +100,7 @@ namespace Corvus.Components {
         //TODO: Not really sure how to detect if something is blocking and to calculate damage accordingly. 
         public void BeginBlock()
         {
+            //Stop walking when we start to block.
             MovementComponent.StopWalking();
 
             IsBlocking = true;
@@ -113,7 +115,7 @@ namespace Corvus.Components {
         {
             IsBlocking = false;
 
-            SpriteComponent.Sprite.PlayAnimation("Idle" + Parent.GetComponent<MovementComponent>().CurrentDirection.ToString());
+            SpriteComponent.Sprite.PlayAnimation("Idle" + MovementComponent.CurrentDirection.ToString());
         }
 
         protected override void OnInitialize()
@@ -124,6 +126,7 @@ namespace Corvus.Components {
             MovementComponent = this.GetDependency<MovementComponent>();
             SpriteComponent = this.GetDependency<SpriteComponent>();
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
+            PhysicsComponent = Parent.GetComponent<PhysicsComponent>();
         }
 
         protected override void OnUpdate(GameTime Time)
@@ -138,6 +141,12 @@ namespace Corvus.Components {
                     _IsAttacking = false;
                     _Timer = TimeSpan.Zero;
                 }
+            }
+
+            //Basically, if the player is walking and blocking, do blocking, which stops walking.
+            if (MovementComponent.IsWalking && IsBlocking)
+            {
+                BeginBlock();
             }
         }
 	}
