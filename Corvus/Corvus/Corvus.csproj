@@ -140,6 +140,9 @@
     <Compile Include="TestGames\Game2.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Entities\TestEntityProjectile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Entities\TestEntityEnemy.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

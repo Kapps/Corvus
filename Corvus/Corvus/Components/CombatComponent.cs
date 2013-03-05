@@ -92,12 +92,15 @@ namespace Corvus.Components {
 
         public void AttackRanged()
         {
-            
+            Entity projectile = new Entity();
+            //Scene.AddEntity(TestGames);
         }
 
         //TODO: Not really sure how to detect if something is blocking and to calculate damage accordingly. 
         public void BeginBlock()
         {
+            MovementComponent.StopWalking();
+
             IsBlocking = true;
             
             //TODO: Get a proper animation.
