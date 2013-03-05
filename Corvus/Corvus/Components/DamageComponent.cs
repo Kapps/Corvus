@@ -20,7 +20,9 @@ namespace Corvus.Components{
         /// Applies damage with only normal rule.
         /// </summary>
         public void TakeDamage(float incomingDamage){
-            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage);
+            var cc = Parent.GetComponent<CombatComponent>();
+
+            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage, cc.IsBlocking);
             AttributesComponent.CurrentHealth -= damageTaken;
 
             _FloatingTexts.AddFloatingTexts(damageTaken, Color.White);
@@ -30,7 +32,9 @@ namespace Corvus.Components{
         /// Applies damage, with the normal rules, based on the attacker's attributes.
         /// </summary>
         public void TakeDamage(AttributesComponent attacker){
-            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
+            var cc = Parent.GetComponent<CombatComponent>();
+
+            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack, cc.IsBlocking);
             float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
             float overallDamage = damageTaken * criticalMultiplier;
             AttributesComponent.CurrentHealth -= overallDamage;
@@ -41,8 +45,16 @@ namespace Corvus.Components{
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
         }
 
-        private float NormalDamageFormula(float myDefense, float incomingDamage){
-            return Math.Max(incomingDamage - (myDefense * 0.70f), 1);
+        //TODO: Fix blocking calculations. Now it just halves all damage.
+        private float NormalDamageFormula(float myDefense, float incomingDamage, bool isBlocking){
+            if (isBlocking)
+            {
+                return Math.Max(incomingDamage - (myDefense * 0.70f), 1)/2;
+            }
+            else
+            {
+                return Math.Max(incomingDamage - (myDefense * 0.70f), 1);
+            }
         }
 
         private float CriticalDamageChance(float critChance, float critDamage){
