@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 using CorvEngine;
+using CorvEngine.Input;
 
 namespace Corvus.Components {
 	public class CombatComponent : Component {
@@ -28,6 +29,19 @@ namespace Corvus.Components {
         private PhysicsSystem PhysicsSystem;
         private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private bool _IsAttacking = false;
+        public bool _IsBlocking = false;
+
+        public bool IsBlocking
+        {
+            get
+            {
+                return _IsBlocking;
+            }
+            set
+            {
+                _IsBlocking = value;
+            }
+        }
 
 		//This doesn't launch a projectile.
 		//We simply get an x,y value to attack and get the entity there, in order to apply damage.
@@ -78,12 +92,28 @@ namespace Corvus.Components {
 
         public void AttackRanged()
         {
-
+            Entity projectile = new Entity();
+            //Scene.AddEntity(TestGames);
         }
 
         //TODO: Not really sure how to detect if something is blocking and to calculate damage accordingly. 
-        public void Blocking()
+        public void BeginBlock()
         {
+            MovementComponent.StopWalking();
+
+            IsBlocking = true;
+            
+            //TODO: Get a proper animation.
+            var Animation = SpriteComponent.Sprite.Animations["BoredDown"];
+            if (SpriteComponent.Sprite.ActiveAnimation != Animation)
+                SpriteComponent.Sprite.PlayAnimation(Animation.Name);
+        }
+
+        public void EndBlock()
+        {
+            IsBlocking = false;
+
+            SpriteComponent.Sprite.PlayAnimation("Idle" + Parent.GetComponent<MovementComponent>().CurrentDirection.ToString());
         }
 
         protected override void OnInitialize()

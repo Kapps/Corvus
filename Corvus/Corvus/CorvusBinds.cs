@@ -43,6 +43,7 @@ namespace Corvus {
 					Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Keys.Right));
 					Assign(AttackSwordPressed, false, new InputButton(Keys.Z));
                     Assign(AttackGunPressed, false, new InputButton(Keys.X));
+                    Assign(BlockPressed, false, new InputButton(Keys.C));
 					break;
 			}
 		}
@@ -99,6 +100,21 @@ namespace Corvus {
                 return;
             if (State == BindState.Pressed)
                 CombatComponent.AttackRanged();
+        }
+
+        private void BlockPressed(BindState State)
+        {
+            if (MovementComponent == null)
+                return;
+            switch (State)
+            {
+                case BindState.Pressed:
+                    CombatComponent.BeginBlock();
+                    break;
+                case BindState.Released:
+                    CombatComponent.EndBlock();
+                    break;
+            }
         }
 	}
 }

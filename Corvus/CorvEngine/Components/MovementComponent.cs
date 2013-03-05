@@ -13,6 +13,7 @@ namespace CorvEngine.Components {
 	public class MovementComponent : Component {
 		private PhysicsComponent PhysicsComponent;
 		private SpriteComponent SpriteComponent;
+        //private CombatComponent CombatComponent;
 		private float _WalkSpeed = 500;
 		private float _JumpSpeed = 950;
 		private float _WalkAcceleration = 9000;
@@ -57,6 +58,7 @@ namespace CorvEngine.Components {
 			base.OnInitialize();
 			PhysicsComponent = GetDependency<PhysicsComponent>();
 			SpriteComponent = GetDependency<SpriteComponent>();
+            //CombatComponent = GetDependency<CombatComponent>();
 		}
 
 		/// <summary>
@@ -66,6 +68,12 @@ namespace CorvEngine.Components {
 		public void BeginWalking(Direction dir) {
 			if(dir != Direction.Left && dir != Direction.Right)
 				throw new ArgumentException("Walk only applies to the Left and Right directions.");
+
+            /*
+            if (CombatComponent.IsBlocking)
+                CombatComponent.EndBlock();
+            */
+
 			_WalkDirection = dir;
 			CurrentDirection = _WalkDirection;
 			var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];

@@ -1,0 +1,11 @@
+﻿ProjectileSprite
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Projectile)
+
+Mover
+	MovementComponent
+
+TestProjectile : PlayerSprite, Mover
+	PhysicsComponent
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
