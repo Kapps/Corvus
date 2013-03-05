@@ -99,6 +99,18 @@ namespace CorvEngine.Components {
 				PhysicsComponent.VelocityY = -JumpSpeed;
 		}
 
+        /// <summary>
+        /// Knocksback this entity by an approx. distance.  
+        /// </summary>
+        public void Knockback(float distance, int direction)
+        {
+            //TODO: find an actually formula for this.
+            float t = 0.100f;//ms
+            float vel = distance / t;
+            PhysicsComponent.VelocityY = -500;
+            PhysicsComponent.VelocityX = direction * vel; //new Vector2(direction * vel, -1 * 2000);
+        }
+
 		protected override void OnUpdate(GameTime Time) {
 			if(_WalkDirection == Direction.Left)
 				PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));

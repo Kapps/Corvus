@@ -46,7 +46,7 @@
   </object>
   <object type="TestEntityEnemy" x="268" y="59" width="32" height="32">
    <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
+    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(1000, 1584))"/>
    </properties>
   </object>
   <object name="Jumper" type="Path" x="151" y="849">
@@ -72,9 +72,10 @@
   </object>
   <object name="Sit2" type="Spear" x="1327" y="1249" width="32" height="32">
   </object>
-  <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1399" width="32" height="32">
+  <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1584" width="32" height="32">
     <properties>
-      <property name="PathComponent.Nodes" value="Collection(Vector(1327, 1399))"/>
+      <property name="PathComponent.Nodes" value="Collection(Vector(1450, 1650), Vector(1371,1650))"/>
+      <property name="PathComponent.ReverseOnCompletion" value="true"/>
     </properties>
   </object>
  </objectgroup>
