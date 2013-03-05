@@ -43,9 +43,20 @@ namespace Corvus.Components
         /// </summary>
         public void EquipWeapon(string name, AttributesComponent ac)
         {
+            var mc = this.GetDependency<MovementComponent>();
+            var oldWeapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(CurrentWeapon.Name).CreateEntity();
+            var scene = Parent.Scene;
+            int direction = (mc.CurrentDirection == CorvEngine.Direction.Left) ? 1 : -1;
+
+            oldWeapon.Position = new Vector2(Parent.Position.X + direction * (Parent.Size.X + 5) , Parent.Position.Y - Parent.Size.Y - 5);
+            oldWeapon.Size = new Vector2(32, 32);
+
+            scene.AddEntity(oldWeapon);
+
             //Same weapon, no need to re-assign.
             if (name.Equals(CurrentWeapon.Name))
                 return;
+
             //TODO: When equipping a new weapon, drop the old weapon so another player can pick it up or you can pick 
             //      it up if you don't like the new one.
             CurrentWeapon = CreateWeapon(name, ac.Attributes);
@@ -76,24 +87,14 @@ namespace Corvus.Components
             _CurrentWeapon = _DefaultWeapon;
             weapon.Dispose();
         }
-
-        /// <summary>
-        /// Create a attributeless weapon.
-        /// </summary>
-        private Weapon CreateWeapon(string name)
-        {
-            var constructor = Helper.GetObjectConstructor<Weapon>(string.Format("Corvus.Components.Gameplay.Equipment.{0}", name), new Type[] { });
-            var weapon = constructor();
-            weapon.Attributes = new Attributes();
-            return weapon;
-        }
-
+        
         /// <summary>
         /// Creates a weapon with the specified attributes.
         /// </summary>
         private Weapon CreateWeapon(string name, Attributes attributes)
         {
-            Weapon weapon = CreateWeapon(name);
+            var constructor = Helper.GetObjectConstructor<Weapon>(string.Format("Corvus.Components.Gameplay.Equipment.{0}", name), new Type[] { });
+            var weapon = constructor();
             weapon.Attributes = attributes;
             return weapon;
         }

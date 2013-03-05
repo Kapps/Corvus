@@ -11,7 +11,7 @@ Attributes
 		MaxHealth: Random(750, 800)
 		Strength: 7
 		Dexterity: 5
-
+	 
 HealthyBig
 	HealthBarComponent
 		
@@ -29,16 +29,20 @@ StatusEffecter
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter
 	PhysicsComponent
+	CollisionKnockbackComponent
+		Knockback: 0
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	CollisionDamageComponent
+		Damage: Random(30, 50)
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	CollisionStatusEffectComponent
 		EffectType: Poison
 		BaseValue: 3
 		Intensity: 0.01
 		Duration: 5
-		DisposeOnCollision: true
-		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
-	CollisionDamageComponent
-		Damage: Random(30, 50)
-		DisposeOnCollision: true
+		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)

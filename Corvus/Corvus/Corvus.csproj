@@ -111,6 +111,7 @@
     <Compile Include="Components\AttributesComponent.cs" />
     <Compile Include="Components\ChaseCameraComponent.cs" />
     <Compile Include="Components\CollisionDamageComponent.cs" />
+    <Compile Include="Components\CollisionKnockbackComponent.cs" />
     <Compile Include="Components\CollisionStatusEffectComponent.cs" />
     <Compile Include="Components\CollisionEquipmentComponent.cs" />
     <Compile Include="Components\CombatComponent.cs" />
