@@ -93,8 +93,29 @@ namespace Corvus.Components {
 
         public void AttackRanged()
         {
-            Entity projectile = new Entity();
-            //Scene.AddEntity(TestGames);
+            var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestProjectile").CreateEntity();
+
+            var pc = projectile.GetComponent<PhysicsComponent>();
+            pc.GravityCoefficient = 0.1f; //Some bullet drop, cause we're fancy.
+            pc.HorDragCoefficient = 0;
+
+            projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
+            projectile.Size = new Vector2(12, 12);
+
+            if (MovementComponent.CurrentDirection == Direction.Left)
+            {
+                pc.VelocityX = -1000;  
+            }
+            else if (MovementComponent.CurrentDirection == Direction.Right)
+            {
+                pc.VelocityX = 1000;
+            }
+            else
+            {
+                
+            }
+
+            Parent.Scene.AddEntity(projectile);
         }
 
         public void BeginBlock()
