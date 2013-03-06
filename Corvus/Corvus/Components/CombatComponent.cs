@@ -95,24 +95,24 @@ namespace Corvus.Components {
         {
             var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestProjectile").CreateEntity();
 
+            var cc = projectile.GetComponent<CollisionDamageComponent>();
+            cc.Damage = 50;
+
             var pc = projectile.GetComponent<PhysicsComponent>();
             pc.GravityCoefficient = 0.1f; //Some bullet drop, cause we're fancy.
             pc.HorDragCoefficient = 0;
 
-            projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
             projectile.Size = new Vector2(12, 12);
 
             if (MovementComponent.CurrentDirection == Direction.Left)
             {
+                projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
                 pc.VelocityX = -1000;  
             }
             else if (MovementComponent.CurrentDirection == Direction.Right)
             {
+                projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
                 pc.VelocityX = 1000;
-            }
-            else
-            {
-                
             }
 
             Parent.Scene.AddEntity(projectile);

@@ -7,5 +7,6 @@ Mover
 
 TestProjectile : ProjectileSprite, Mover
 	PhysicsComponent
+	CollisionDamageComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
