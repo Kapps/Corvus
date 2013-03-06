@@ -5,8 +5,13 @@
 Mover
 	MovementComponent
 
-TestProjectile : ProjectileSprite, Mover
+FighterProj
+	CombatComponent
+		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
+
+TestProjectile : ProjectileSprite, Mover, FighterProj
 	PhysicsComponent
 	CollisionDamageComponent
+	AttributesComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
