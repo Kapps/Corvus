@@ -13,12 +13,12 @@ namespace CorvEngine.Components {
 	public class MovementComponent : Component {
 		private PhysicsComponent PhysicsComponent;
 		private SpriteComponent SpriteComponent;
-        //private CombatComponent CombatComponent;
 		private float _WalkSpeed = 500;
 		private float _JumpSpeed = 950;
 		private float _WalkAcceleration = 9000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
+        private bool _IsWalking = false;
 
 		/// <summary>
 		/// Gets or sets the maximum speed that this Entity can walk at, in units per second.
@@ -54,11 +54,15 @@ namespace CorvEngine.Components {
 			set { _CurrentDirection = value; }
 		}
 
+        public bool IsWalking {
+            get { return _IsWalking; }
+            set { _IsWalking = value; }
+        }
+
 		protected override void OnInitialize() {
 			base.OnInitialize();
 			PhysicsComponent = GetDependency<PhysicsComponent>();
 			SpriteComponent = GetDependency<SpriteComponent>();
-            //CombatComponent = GetDependency<CombatComponent>();
 		}
 
 		/// <summary>
@@ -69,13 +73,9 @@ namespace CorvEngine.Components {
 			if(dir != Direction.Left && dir != Direction.Right)
 				throw new ArgumentException("Walk only applies to the Left and Right directions.");
 
-            /*
-            if (CombatComponent.IsBlocking)
-                CombatComponent.EndBlock();
-            */
-
 			_WalkDirection = dir;
 			CurrentDirection = _WalkDirection;
+            IsWalking = true;
 			var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];
 			if(SpriteComponent.Sprite.ActiveAnimation != Animation)
 				SpriteComponent.Sprite.PlayAnimation(Animation.Name);
@@ -87,6 +87,7 @@ namespace CorvEngine.Components {
 		/// </summary>
 		public void StopWalking() {
 			_WalkDirection = Direction.None;
+            IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}
 
