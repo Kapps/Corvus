@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using CorvEngine.Components;
 using Corvus.Components.Gameplay.Equipment;
 using Corvus.Components.Gameplay;
+using CorvEngine.Components.Blueprints;
 
 namespace Corvus.Components
 {
@@ -43,22 +44,11 @@ namespace Corvus.Components
         /// </summary>
         public void EquipWeapon(string name, AttributesComponent ac)
         {
-            var mc = this.GetDependency<MovementComponent>();
-            var oldWeapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(CurrentWeapon.Name).CreateEntity();
-            var scene = Parent.Scene;
-            int direction = (mc.CurrentDirection == CorvEngine.Direction.Left) ? 1 : -1;
-
-            oldWeapon.Position = new Vector2(Parent.Position.X + direction * (Parent.Size.X + 5) , Parent.Position.Y - Parent.Size.Y - 5);
-            oldWeapon.Size = new Vector2(32, 32);
-
-            scene.AddEntity(oldWeapon);
-
+            DropCurrentWeapon();
             //Same weapon, no need to re-assign.
             if (name.Equals(CurrentWeapon.Name))
                 return;
 
-            //TODO: When equipping a new weapon, drop the old weapon so another player can pick it up or you can pick 
-            //      it up if you don't like the new one.
             CurrentWeapon = CreateWeapon(name, ac.Attributes);
         }
 
@@ -67,11 +57,12 @@ namespace Corvus.Components
         /// </summary>
         public void RemoveWeapon()
         { 
-            //TODO: On weapon removal, through out your old weapon if it's not the default one.
-            //Already is the default weapon.
+            //Already is the default weapon. Don't drop weapon.
             if (CurrentWeapon.Name.Equals(DefaultWeaponName))
                 return;
-            //TODO: Set it to the default weapon.
+
+            DropCurrentWeapon();
+            _CurrentWeapon = _DefaultWeapon;
         }
 
         protected override void OnInitialize()
@@ -97,6 +88,20 @@ namespace Corvus.Components
             var weapon = constructor();
             weapon.Attributes = attributes;
             return weapon;
+        }
+
+        private void DropCurrentWeapon()
+        {
+            var mc = this.GetDependency<MovementComponent>();
+            var oldWeapon = EntityBlueprint.GetBlueprint(CurrentWeapon.Name).CreateEntity();
+            var scene = Parent.Scene;
+            int direction = (mc.CurrentDirection == CorvEngine.Direction.Left) ? 1 : -1;
+
+            //TODO: maybe make it fly out instead of just dropping.
+            oldWeapon.Position = new Vector2(Parent.Position.X + direction * (Parent.Size.X + 5), Parent.Position.Y - Parent.Size.Y - 5);
+            oldWeapon.Size = new Vector2(32, 32); //TODO: Weapon size may change in the future
+
+            scene.AddEntity(oldWeapon);
         }
 
     }

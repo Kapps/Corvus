@@ -10,6 +10,7 @@ Content\Sprites\StatusEffects\testeffect.xnb
 Content\Sprites\Equipment\testweapon.xnb
 Content\Sprites\Equipment\testweaponD.xnb
 Content\Sprites\Powerups\TestPowerup.xnb
+Content\Sprites\Projectile.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
@@ -18,7 +19,6 @@ Content\Sprites\StatusEffects\testeffect1.xnb
 Content\Sprites\Equipment\TestWeapon1.xnb
 Content\Sprites\Equipment\TestWeapon2.xnb
 Content\Sprites\Powerups\TestPowerup1.xnb
-Content\Sprites\Projectile.xnb
 Content\Sprites\TestProjectile.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
@@ -27,6 +27,7 @@ Data\Entities\TestEntityProjectile.txt
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\Spear.txt
 Data\Entities\Dagger.txt
+Data\Entities\TestPowerup.txt
 Data\Entities\TestEntity.txt
 Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx

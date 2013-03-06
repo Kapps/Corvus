@@ -30,18 +30,24 @@ namespace Corvus.Components {
         private PhysicsComponent PhysicsComponent;
         private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private bool _IsAttacking = false;
-        public bool _IsBlocking = false;
+        private bool _IsBlocking = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating that this entitiy is blocking.
+        /// </summary>
         public bool IsBlocking
         {
-            get
-            {
-                return _IsBlocking;
-            }
-            set
-            {
-                _IsBlocking = value;
-            }
+            get { return _IsBlocking; }
+            set { _IsBlocking = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating that this entity is attacking.
+        /// </summary>
+        public bool IsAttacking
+        {
+            get { return _IsAttacking; }
+            set { _IsAttacking = value; }
         }
 
 		//This doesn't launch a projectile.

@@ -9,41 +9,47 @@ using CorvEngine.Components;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
-    /// <summary>
-    /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseValue)
-    /// </summary>
-    public class Poison : StatusEffect
+    public class Healing : StatusEffect
     {
-        public override string Name { get { return "Poison"; } }
+        public override string Name { get { return "Healing"; } }
         protected override string SpriteName { get { return "Sprites/StatusEffects/testeffect1"; } }
 
         private TimeSpan _TickTimer = TimeSpan.FromSeconds(0);
+        private bool _IsFirstOccurance = false;
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            _TickTimer += gameTime.ElapsedGameTime;
-            if (_TickTimer >= TimeSpan.FromSeconds(1)) //apply every second
+            if (!_IsFirstOccurance)
             {
                 var ac = Entity.GetComponent<AttributesComponent>();
-                float damage = ac.MaxHealth * Intensity + BaseValue;
-                ac.CurrentHealth -= damage;
-                _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
+                float heal = BaseValue;
+                ac.CurrentHealth += heal;
+                _FloatingTexts.AddFloatingTexts(heal, Color.Aqua);
+                _IsFirstOccurance = true;
+            }
+            _TickTimer += gameTime.ElapsedGameTime;
+            if (_TickTimer >= TimeSpan.FromSeconds(1))
+            {
+                var ac = Entity.GetComponent<AttributesComponent>();
+                float heal = ac.MaxHealth * Intensity;
+                ac.CurrentHealth += heal;
+                _FloatingTexts.AddFloatingTexts(heal, Color.Aqua);
                 _TickTimer = TimeSpan.Zero;
             }
         }
-
+        
         public override void Draw()
         {
-            base.Draw();
+            base.Draw(); 
             var ActiveFrame = _Sprite.ActiveAnimation.ActiveFrame.Frame;
             var SourceRect = ActiveFrame.Source;
             var position = Camera.Active.ScreenToWorld(Entity.Position);
             var destinationRect = new Rectangle((int)(position.X + SourceRect.Width / 2), (int)(position.Y - Entity.Size.Y), SourceRect.Width, SourceRect.Height);
             CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, destinationRect, SourceRect, Color.White);
+        
         }
 
-        //Unfortunately, need to specify this in order for StatusEffectsComponent to work properly.
-        public Poison(Entity entity) : base(entity) { }
+        public Healing(Entity entity) : base(entity) { }
     }
 }

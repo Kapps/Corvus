@@ -20,15 +20,15 @@ namespace Corvus.Components.Gameplay.StatusEffects
     public abstract class StatusEffect
     {
         /// <summary>
-        /// Gets the name of the status effect.
+        /// Gets the name of the status effect. Also determines the effect to use.
         /// </summary>
         public abstract string Name { get; }
 
         /// <summary>
-        /// Gets the sprite name to display for this effect.
+        /// Gets the sprite sheet to get the animation from.
         /// </summary>
         protected abstract string SpriteName { get; }
-
+        
         /// <summary>
         /// Gets or sets the static amount this status effect should inflict. 
         /// </summary>
@@ -85,7 +85,10 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// <param name="entity">The entity being affected.</param>
         public StatusEffect(Entity entity)
         {
-            this._Sprite = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
+            var effect = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
+            effect.PlayAnimation(Name);
+            this._Sprite = effect;
+
             this._Entity = entity;
         }
 
@@ -108,7 +111,10 @@ namespace Corvus.Components.Gameplay.StatusEffects
         }
 
         //TODO: Maybe make the effect scale with the size of entity. 
-        public abstract void Draw();
+        public virtual void Draw()
+        {
+            _FloatingTexts.Draw();
+        }
 
         /// <summary>
         /// Resets the timer.
