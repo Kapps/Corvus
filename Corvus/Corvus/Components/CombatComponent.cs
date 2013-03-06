@@ -96,7 +96,6 @@ namespace Corvus.Components {
             //Scene.AddEntity(TestGames);
         }
 
-        //TODO: Not really sure how to detect if something is blocking and to calculate damage accordingly. 
         public void BeginBlock()
         {
             MovementComponent.StopWalking();

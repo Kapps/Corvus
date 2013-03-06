@@ -18,9 +18,12 @@ Content\Sprites\StatusEffects\testeffect1.xnb
 Content\Sprites\Equipment\TestWeapon1.xnb
 Content\Sprites\Equipment\TestWeapon2.xnb
 Content\Sprites\Powerups\TestPowerup1.xnb
+Content\Sprites\Projectile.xnb
+Content\Sprites\TestProjectile.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
+Data\Entities\TestEntityProjectile.txt
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\Spear.txt
 Data\Entities\Dagger.txt

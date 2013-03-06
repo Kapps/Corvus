@@ -14,29 +14,29 @@ namespace Corvus.Components{
     /// </summary>
     public class DamageComponent : Component{
         private AttributesComponent AttributesComponent;
+        private CombatComponent CombatComponent;
         private FloatingTextList _FloatingTexts = new FloatingTextList();
 
         /// <summary>
         /// Applies damage with only normal rule.
         /// </summary>
         public void TakeDamage(float incomingDamage){
-            var cc = Parent.GetComponent<CombatComponent>();
+            float blockMultipler = BlockDamageReduction();
+            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage);
+            float overallDamage = damageTaken * blockMultipler;
+            AttributesComponent.CurrentHealth -= overallDamage;
 
-            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage, cc.IsBlocking);
-            AttributesComponent.CurrentHealth -= damageTaken;
-
-            _FloatingTexts.AddFloatingTexts(damageTaken, Color.White);
+            _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
         }
 
         /// <summary>
         /// Applies damage, with the normal rules, based on the attacker's attributes.
         /// </summary>
         public void TakeDamage(AttributesComponent attacker){
-            var cc = Parent.GetComponent<CombatComponent>();
-
-            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack, cc.IsBlocking);
+            float blockMultipler = BlockDamageReduction();
+            float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
             float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
-            float overallDamage = damageTaken * criticalMultiplier;
+            float overallDamage = damageTaken * criticalMultiplier * blockMultipler;
             AttributesComponent.CurrentHealth -= overallDamage;
 
             if (criticalMultiplier != 1)
@@ -46,15 +46,15 @@ namespace Corvus.Components{
         }
 
         //TODO: Fix blocking calculations. Now it just halves all damage.
-        private float NormalDamageFormula(float myDefense, float incomingDamage, bool isBlocking){
-            if (isBlocking)
-            {
-                return Math.Max(incomingDamage - (myDefense * 0.70f), 1)/2;
-            }
-            else
-            {
-                return Math.Max(incomingDamage - (myDefense * 0.70f), 1);
-            }
+        private float BlockDamageReduction()
+        {
+            if (CombatComponent == null)
+                return 1f;
+            return (CombatComponent.IsBlocking) ? 0.5f : 1f;
+        }
+
+        private float NormalDamageFormula(float myDefense, float incomingDamage){
+            return Math.Max(incomingDamage - (myDefense * 0.70f), 1);
         }
 
         private float CriticalDamageChance(float critChance, float critDamage){
@@ -65,6 +65,7 @@ namespace Corvus.Components{
         protected override void OnInitialize(){
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
+            CombatComponent = Parent.GetComponent<CombatComponent>();
         }
 
         protected override void OnUpdate(GameTime Time){
