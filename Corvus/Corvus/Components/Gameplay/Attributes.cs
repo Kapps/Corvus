@@ -15,10 +15,10 @@ namespace Corvus.Components.Gameplay
         /// <summary>
         /// Gets or sets the attack range.
         /// </summary>
-        public Vector2 AttackRange
+        public Vector2 MeleeAttackRange
         {
-            get { return _AttackRange; }
-            set { _AttackRange = value; }
+            get { return _MeleeAttackRange; }
+            set { _MeleeAttackRange = value; }
         }
 
         /// <summary>
@@ -121,7 +121,16 @@ namespace Corvus.Components.Gameplay
             set { _CritDamage = Math.Max(value, 1); }
         }
 
-        private Vector2 _AttackRange = new Vector2();
+        /// <summary>
+        /// Gets or sets a value that indicates how much damage is reduced while blocking. Value must range from 0 to 1.0.
+        /// </summary>
+        public float BlockDamageReduction
+        {
+            get { return _BlockDamageReduction; }
+            set { _BlockDamageReduction = MathHelper.Clamp(value, 0f, 1f); }
+        }
+
+        private Vector2 _MeleeAttackRange = new Vector2();
         private float _AttackSpeed = 0f;
         private float _CurrentHealth = 100f;
         private float _MaxHealth = 100f;
@@ -133,6 +142,7 @@ namespace Corvus.Components.Gameplay
         private float _IntModifier = 1f;
         private float _CritChance = 0f;
         private float _CritDamage = 0f;
+        private float _BlockDamageReduction = 1f;
         
     }
 }

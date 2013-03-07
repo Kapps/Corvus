@@ -12,6 +12,8 @@ FighterProj
 TestProjectile : ProjectileSprite, Mover, FighterProj
 	PhysicsComponent
 	CollisionDamageComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
 	AttributesComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)

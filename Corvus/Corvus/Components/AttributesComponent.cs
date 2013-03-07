@@ -66,14 +66,14 @@ namespace Corvus.Components {
         /// <summary>
         /// Gets or sets the attack range.
         /// </summary>
-        public Vector2 AttackRange
+        public Vector2 MeleeAttackRange
         {
             get { 
                 if(EquipmentComponent == null)
-                    return Attributes.AttackRange;
-                return EquipmentComponent.CurrentWeapon.Attributes.AttackRange;
+                    return Attributes.MeleeAttackRange;
+                return EquipmentComponent.CurrentWeapon.Attributes.MeleeAttackRange;
             }
-            set { Attributes.AttackRange = value; }
+            set { Attributes.MeleeAttackRange = value; }
         }
 
         /// <summary>
@@ -87,6 +87,19 @@ namespace Corvus.Components {
                 return EquipmentComponent.CurrentWeapon.Attributes.AttackSpeed;
             }
             set { Attributes.AttackSpeed = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much damage is reduced while blocking. 
+        /// </summary>
+        public float BlockDamageReduction
+        {
+            get{
+                if (EquipmentComponent == null)
+                    return Attributes.BlockDamageReduction;
+                return EquipmentComponent.CurrentWeapon.Attributes.BlockDamageReduction;
+            }
+            set { Attributes.BlockDamageReduction = value; }
         }
 
 		/// <summary>
@@ -193,7 +206,7 @@ namespace Corvus.Components {
             get { return Attributes.CritDamage; }
             set { Attributes.CritDamage = value; }
         }
-                
+
         /// <summary>
         /// Gets an event called when the health of this Component runs out.
         /// </summary>

@@ -78,7 +78,10 @@ namespace Corvus.Components.Gameplay.StatusEffects
         protected Sprite _Sprite;
         protected TimeSpan _Timer = TimeSpan.Zero;
         protected FloatingTextList _FloatingTexts = new FloatingTextList();
-        
+        protected TimeSpan _TickTimer = TimeSpan.Zero;
+        protected TimeSpan _TickOccurance = TimeSpan.FromSeconds(1); //how long before a tick is registered.
+        protected bool _IsFirstOccurance = true;
+
         /// <summary>
         /// Creates a new instance of StatusEffect.
         /// </summary>
@@ -95,6 +98,19 @@ namespace Corvus.Components.Gameplay.StatusEffects
         //TODO: Find a better way to draw effects
         public virtual void Update(GameTime gameTime)
         {
+            if (_IsFirstOccurance)
+            {
+                OnFirstOccurance();
+                _IsFirstOccurance = false;
+            }
+
+            _TickTimer += gameTime.ElapsedGameTime;
+            if (_TickTimer >= _TickOccurance)
+            {
+                OnTick();
+                _TickTimer = TimeSpan.Zero;
+            }
+
             _Timer += gameTime.ElapsedGameTime;
             if (_Timer >= TimeSpan.FromSeconds(Duration))
             {
@@ -123,5 +139,15 @@ namespace Corvus.Components.Gameplay.StatusEffects
         {
             _Timer = TimeSpan.Zero;
         }
+
+        /// <summary>
+        /// Fires at the very start of the status effect. Use for one time events.
+        /// </summary>
+        protected abstract void OnFirstOccurance();
+
+        /// <summary>
+        /// Fires every time a tick is registered.
+        /// </summary>
+        protected abstract void OnTick();
     }
 }

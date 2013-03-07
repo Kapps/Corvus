@@ -50,7 +50,7 @@ namespace Corvus.Components{
         {
             if (CombatComponent == null)
                 return 1f;
-            return (CombatComponent.IsBlocking) ? 0.5f : 1f;
+            return (CombatComponent.IsBlocking) ? AttributesComponent.BlockDamageReduction : 1f;
         }
 
         private float NormalDamageFormula(float myDefense, float incomingDamage){

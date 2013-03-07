@@ -9,8 +9,9 @@ Attributes
 		IntModifier: 1.0
 		CritChance: 0.5
 		CritDamage: 5
-		AttackRange: Vector(50, 50)
+		MeleeAttackRange: Vector(50, 50)
 		AttackSpeed: 150
+		BlockDamageReduction: 0.66
 
 Motion
 	PhysicsComponent
