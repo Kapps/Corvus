@@ -97,6 +97,7 @@ namespace Corvus.Components {
             }
 		}
 
+        //TODO: Should possibly define a Component(?) that defines the projectile properties (things like GravityCoefficient, etc). 
         public void AttackRanged()
         {
             var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestProjectile").CreateEntity();
@@ -158,7 +159,7 @@ namespace Corvus.Components {
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
-            //Seems messy doing it his way.
+            //Seems messy doing it this way.
             if (_IsAttacking)
             {
                 _Timer += Time.ElapsedGameTime;

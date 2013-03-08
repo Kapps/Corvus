@@ -48,7 +48,7 @@ namespace Corvus.Components
             //Same weapon, no need to re-assign.
             if (name.Equals(CurrentWeapon.Name))
                 return;
-
+            
             CurrentWeapon = CreateWeapon(name, ac.Attributes);
         }
 

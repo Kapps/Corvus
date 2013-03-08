@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AIComponent.cs" />
     <Compile Include="Components\AttributesComponent.cs" />
     <Compile Include="Components\ChaseCameraComponent.cs" />
     <Compile Include="Components\CollisionDamageComponent.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffect.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectCollection.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
+    <Compile Include="Components\StatusEffectAttributesComponents.cs" />
     <Compile Include="Components\StatusEffectsComponent.cs" />
     <Compile Include="CorvusBinds.cs" />
     <Compile Include="CorvusGame.cs" />

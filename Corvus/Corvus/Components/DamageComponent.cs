@@ -45,9 +45,9 @@ namespace Corvus.Components{
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
         }
 
-        //TODO: Fix blocking calculations. Now it just halves all damage.
         private float BlockDamageReduction()
         {
+            //TODO: Remove this if CombatComponent is to be added to enemies as well.
             if (CombatComponent == null)
                 return 1f;
             return (CombatComponent.IsBlocking) ? AttributesComponent.BlockDamageReduction : 1f;

@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Corvus.Components.Gameplay;
 using Corvus.Components.Gameplay.StatusEffects;
-using System.Reflection;
 
 namespace Corvus.Components
 {
@@ -38,7 +37,7 @@ namespace Corvus.Components
             statusEffect.Duration = duration;
             _StatusEffects.Add(statusEffect);
         }
-
+        
         protected override void OnInitialize()
         {
             base.OnInitialize();
