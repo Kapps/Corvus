@@ -4,11 +4,12 @@
 
 TestPowerup : PowerupSprite
 	PhysicsComponent
-	CollisionStatusEffectComponent
+	StatusEffectAttributesComponent
 		EffectType: Healing
 		BaseValue: 50
 		Intensity: 0.035
 		Duration: 5
+	CollisionStatusEffectComponent		
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent

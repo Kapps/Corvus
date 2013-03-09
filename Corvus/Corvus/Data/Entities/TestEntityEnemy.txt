@@ -37,6 +37,11 @@ Combator
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator
 	PhysicsComponent
+	StatusEffectAttributesComponent
+		EffectType: Poison
+		BaseValue: 3
+		Intensity: 0.01
+		Duration: 5
 	CollisionKnockbackComponent
 		Knockback: 0
 		DisposeOnCollision: false
@@ -46,10 +51,6 @@ TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attrib
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	CollisionStatusEffectComponent
-		EffectType: Poison
-		BaseValue: 3
-		Intensity: 0.01
-		Duration: 5
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent

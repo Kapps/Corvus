@@ -130,8 +130,9 @@
     <Compile Include="Components\Gameplay\StatusEffects\Poison.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffect.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectCollection.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\StatusEffectAttributes.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
-    <Compile Include="Components\StatusEffectAttributesComponents.cs" />
+    <Compile Include="Components\StatusEffectAttributesComponent.cs" />
     <Compile Include="Components\StatusEffectsComponent.cs" />
     <Compile Include="CorvusBinds.cs" />
     <Compile Include="CorvusGame.cs" />

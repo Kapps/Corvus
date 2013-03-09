@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Corvus.Components.Gameplay.StatusEffects;
 
 namespace Corvus.Components.Gameplay.Equipment
 {
-    //TODO: Possibly rename this class so it can be applied to all equipment. (Assuming we want to implement armor, accessories, etc.)
     //TODO: Add some sort of skill management. 
-    //TODO: Maybe find a way for this weapon to have a effect (EX: Life steal, poison, etc)
     /// <summary>
     /// The base class for a weapon.
     /// </summary>

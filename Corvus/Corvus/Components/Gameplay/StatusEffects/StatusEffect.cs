@@ -28,33 +28,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Gets the sprite sheet to get the animation from.
         /// </summary>
         protected abstract string SpriteName { get; }
-        
-        /// <summary>
-        /// Gets or sets the static amount this status effect should inflict. 
-        /// </summary>
-        public float BaseValue
-        {
-            get { return _BaseValue; }
-            set { _BaseValue = Math.Max(value, 0); }
-        }
 
         /// <summary>
-        /// Gets or sets intensity of the effect. This is usually expressed as a percentage. 
+        /// Gets the attributes for this effect.
         /// </summary>
-        public float Intensity
-        {
-            get { return _Intensity; }
-            set { _Intensity = Math.Max(value, 0); }
-        }
-
-        /// <summary>
-        /// Gets or sets the duration of the effect in seconds.
-        /// </summary>
-        public float Duration
-        {
-            get { return _Duration; }
-            set { _Duration = Math.Max(value, 0); }
-        }
+        public StatusEffectAttributes Attributes { get { return _Attributes; } }
 
         /// <summary>
         /// Gets a value determining whether this effect's duration has ended.
@@ -71,9 +49,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// </summary>
         protected event EventHandler OnEventCompleted;
 
-        private float _BaseValue;
-        private float _Intensity;
-        private float _Duration;
+        private StatusEffectAttributes _Attributes;
         private Entity _Entity;
         protected Sprite _Sprite;
         protected TimeSpan _Timer = TimeSpan.Zero;
@@ -86,13 +62,13 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Creates a new instance of StatusEffect.
         /// </summary>
         /// <param name="entity">The entity being affected.</param>
-        public StatusEffect(Entity entity)
+        public StatusEffect(Entity entity, StatusEffectAttributes attributes)
         {
             var effect = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
             effect.PlayAnimation(Name);
             this._Sprite = effect;
-
             this._Entity = entity;
+            this._Attributes = attributes;
         }
 
         //TODO: Find a better way to draw effects
@@ -112,7 +88,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
             }
 
             _Timer += gameTime.ElapsedGameTime;
-            if (_Timer >= TimeSpan.FromSeconds(Duration))
+            if (_Timer >= TimeSpan.FromSeconds(Attributes.Duration))
             {
                 IsFinished = true;
                 if (OnEventCompleted != null)

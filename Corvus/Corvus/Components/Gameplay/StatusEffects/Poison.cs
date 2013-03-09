@@ -32,12 +32,12 @@ namespace Corvus.Components.Gameplay.StatusEffects
         protected override void OnTick()
         {
             var ac = Entity.GetComponent<AttributesComponent>();
-            float damage = ac.MaxHealth * Intensity + BaseValue;
+            float damage = ac.MaxHealth * Attributes.Intensity + Attributes.BaseValue;
             ac.CurrentHealth -= damage;
             _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
         }
 
         //Unfortunately, need to specify this in order for StatusEffectsComponent to work properly.
-        public Poison(Entity entity) : base(entity) { }
+        public Poison(Entity entity, StatusEffectAttributes attributes) : base(entity, attributes) { }
     }
 }

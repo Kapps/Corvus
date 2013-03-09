@@ -14,12 +14,15 @@ namespace Corvus.Components
     /// <summary>
     /// A Component to set the status effect attributes. Mainly used for weapons and enemy attacks.
     /// </summary>
-    public class StatusEffectAttributesComponents : Component
+    public class StatusEffectAttributesComponent : Component
     {
         private string _EffectType;
-        private float _BaseValue;
-        private float _Intensity;
-        private float _Duration;
+        private StatusEffectAttributes _StatusEffectAttributes = new StatusEffectAttributes();
+
+        /// <summary>
+        /// Gets the attributes.
+        /// </summary>
+        public StatusEffectAttributes StatusEffectAttributes { get { return _StatusEffectAttributes; } }
 
         /// <summary>
         /// The type of effect.
@@ -35,8 +38,8 @@ namespace Corvus.Components
         /// </summary>
         public float BaseValue
         {
-            get { return _BaseValue; }
-            set { _BaseValue = value; }
+            get { return StatusEffectAttributes.BaseValue; }
+            set { StatusEffectAttributes.BaseValue = value; }
         }
 
         /// <summary>
@@ -44,17 +47,17 @@ namespace Corvus.Components
         /// </summary>
         public float Intensity
         {
-            get { return _Intensity; }
-            set { _Intensity = value; }
+            get { return StatusEffectAttributes.Intensity; }
+            set { StatusEffectAttributes.Intensity = value; }
         }
 
         /// <summary>
-        /// How long this effect should last in milliseconds.
+        /// How long this effect should last in seconds.
         /// </summary>
         public float Duration
         {
-            get { return _Duration; }
-            set { _Duration = value; }
+            get { return StatusEffectAttributes.Duration; }
+            set { StatusEffectAttributes.Duration = value; }
         }
 
     }

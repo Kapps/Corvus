@@ -7,6 +7,7 @@ using CorvEngine.Components;
 using Corvus.Components.Gameplay.Equipment;
 using Corvus.Components.Gameplay;
 using CorvEngine.Components.Blueprints;
+using Corvus.Components.Gameplay.StatusEffects;
 
 namespace Corvus.Components
 {
@@ -32,12 +33,10 @@ namespace Corvus.Components
             get { return _CurrentWeapon; }
             private set { _CurrentWeapon = value; }
         }
-
+        
         private string _DefaultWeaponName = "Spear";
         private Weapon _DefaultWeapon;
         private Weapon _CurrentWeapon;
-        private AttributesComponent AttributesComponent;
-        private CombatComponent CombatComponent;
 
         /// <summary>
         /// Equips a weapon and applies it's attributes. 
@@ -48,7 +47,6 @@ namespace Corvus.Components
             //Same weapon, no need to re-assign.
             if (name.Equals(CurrentWeapon.Name))
                 return;
-            
             CurrentWeapon = CreateWeapon(name, ac.Attributes);
         }
 
@@ -71,16 +69,16 @@ namespace Corvus.Components
             AttributesComponent = Parent.GetComponent<AttributesComponent>();
             CombatComponent = Parent.GetComponent<CombatComponent>();
 
-            //TODO: Seems like a hackish way of getting a weapon entity.
-            //      Also note that I'm assuming that the AllBlueprints field will always have ALL the blueprints. Not sure if it's ever cleared.
+            //Creates the weapon from a blueprint.
             var weapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(DefaultWeaponName).CreateEntity();
-            _DefaultWeapon = CreateWeapon(DefaultWeaponName, weapon.GetComponent<AttributesComponent>().Attributes);
-            _CurrentWeapon = _DefaultWeapon;
+            var attri = weapon.GetComponent<AttributesComponent>();
+            _DefaultWeapon = CreateWeapon(DefaultWeaponName, attri.Attributes);
+            _CurrentWeapon = _DefaultWeapon; 
             weapon.Dispose();
         }
-        
+
         /// <summary>
-        /// Creates a weapon with the specified attributes.
+        /// Creates a weapon with the specified attributes and effect.
         /// </summary>
         private Weapon CreateWeapon(string name, Attributes attributes)
         {
@@ -103,6 +101,9 @@ namespace Corvus.Components
 
             scene.AddEntity(oldWeapon);
         }
+
+        private AttributesComponent AttributesComponent;
+        private CombatComponent CombatComponent;
 
     }
 }

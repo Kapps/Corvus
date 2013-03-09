@@ -28,7 +28,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         protected override void OnFirstOccurance()
         {
             var ac = Entity.GetComponent<AttributesComponent>();
-            float heal = BaseValue;
+            float heal = Attributes.BaseValue;
             ac.CurrentHealth += heal;
             _FloatingTexts.AddFloatingTexts(heal, Color.Aqua);
         }
@@ -36,11 +36,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
         protected override void OnTick()
         {
             var ac = Entity.GetComponent<AttributesComponent>();
-            float heal = ac.MaxHealth * Intensity;
+            float heal = ac.MaxHealth * Attributes.Intensity;
             ac.CurrentHealth += heal;
             _FloatingTexts.AddFloatingTexts(heal, Color.Aqua);
         }
 
-        public Healing(Entity entity) : base(entity) { }
+        public Healing(Entity entity, StatusEffectAttributes attributes) : base(entity, attributes) { }
     }
 }

@@ -19,18 +19,14 @@ namespace Corvus.Components {
             set { _AttackableEntities = value; }
         }
 
-        private EntityClassification _AttackableEntities;
-        //The problem with this is that i'm assuming everything has an equipment component. So, if an enemy attacks, then they need the EquipmentComponent as well, which wouldnt make sense.
-        //I'm also assuming that this is what enemies will use (by this, i mean CombatComponent) for handling their attacks.
-        private EquipmentComponent EquipmentComponent;
-        private AttributesComponent AttributesComponent;
-        private MovementComponent MovementComponent;
-        private SpriteComponent SpriteComponent;
-        private PhysicsSystem PhysicsSystem;
-        private PhysicsComponent PhysicsComponent;
-        private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
-        private bool _IsAttacking = false;
-        private bool _IsBlocking = false;
+        /// <summary>
+        /// Gets or sets a value indicating that this entity is attacking.
+        /// </summary>
+        public bool IsAttacking
+        {
+            get { return _IsAttacking; }
+            private set { _IsAttacking = value; }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating that this entitiy is blocking.
@@ -38,20 +34,21 @@ namespace Corvus.Components {
         public bool IsBlocking
         {
             get { return _IsBlocking; }
-            set { _IsBlocking = value; }
+            private set { _IsBlocking = value; }
         }
+        private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
+        private EntityClassification _AttackableEntities;
+        private bool _IsAttacking = false;
+        private bool _IsBlocking = false;
 
         /// <summary>
-        /// Gets or sets a value indicating that this entity is attacking.
+        /// Attacks an enemy with a close range attack.
         /// </summary>
-        public bool IsAttacking
-        {
-            get { return _IsAttacking; }
-            set { _IsAttacking = value; }
-        }
-
-		//This doesn't launch a projectile.
-		//We simply get an x,y value to attack and get the entity there, in order to apply damage.
+        ///<remarks>
+        /// I'm assuming this is what the player uses. As in, the enemies will have their own melee attack function.
+        /// I say this because I'm also assuming that EquipmentComponent is only used by players. Although, it would be
+        /// easy (maybe) to create a generic melee attack function but it might seem messy.
+        /// </remarks>
 		public void AttackMelee() {
             //This guy is attacking, don't do anything.
             if (_IsAttacking)
@@ -176,5 +173,14 @@ namespace Corvus.Components {
                 BeginBlock();
             }
         }
+
+        //The problem with this is that i'm assuming everything has an equipment component. So, if an enemy attacks, then they need the EquipmentComponent as well, which wouldnt make sense.
+        //I'm also assuming that this is what enemies will use (by this, i mean CombatComponent) for handling their attacks.
+        private EquipmentComponent EquipmentComponent;
+        private AttributesComponent AttributesComponent;
+        private MovementComponent MovementComponent;
+        private SpriteComponent SpriteComponent;
+        private PhysicsSystem PhysicsSystem;
+        private PhysicsComponent PhysicsComponent;
 	}
 }

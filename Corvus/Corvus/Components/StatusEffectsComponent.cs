@@ -22,19 +22,12 @@ namespace Corvus.Components
         private StatusEffectCollection _StatusEffects = new StatusEffectCollection();
 
         /// <summary>
-        /// A plays a status effect.
+        /// Applies a status effect to this entity
         /// </summary>
-        /// <param name="type">The name of status effect.</param>
-        /// <param name="baseValue">The base value of this effect.</param>
-        /// <param name="intensity">The intensity of the effect.</param>
-        /// <param name="duration">How long the effect should last.</param>
-        public void ApplyStatusEffect(string name, float baseValue, float intensity, float duration)
+        public void ApplyStatusEffect(string name, StatusEffectAttributes attributes)
         {
-            var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", name), new Type[] { typeof(Entity) });
-            var statusEffect = constructor(this.Parent);
-            statusEffect.BaseValue = baseValue;
-            statusEffect.Intensity = intensity;
-            statusEffect.Duration = duration;
+            var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", name), new Type[] { typeof(Entity), typeof(StatusEffectAttributes) });
+            var statusEffect = constructor(this.Parent, attributes);
             _StatusEffects.Add(statusEffect);
         }
         
