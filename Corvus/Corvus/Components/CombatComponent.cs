@@ -65,15 +65,12 @@ namespace Corvus.Components {
             //The attack rectange is calculated using our centre, range, and half our height.
             int MeleeAttackRange = (int)AttributesComponent.MeleeAttackRange.X; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
             int attackHeight = (int)AttributesComponent.MeleeAttackRange.Y; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
+            
             Rectangle attackRectangle;
             if (MovementComponent.CurrentDirection == Direction.Left)
-            {
                 attackRectangle = new Rectangle(Parent.Location.Center.X - MeleeAttackRange, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
-            }
             else if (MovementComponent.CurrentDirection == Direction.Right)
-            {
-                attackRectangle = new Rectangle(Parent.Location.Center.X, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
-            }
+                attackRectangle = new Rectangle(Parent.Location.Center.X , Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
             else
             {
                 //Player hasn't moved yet or just isn't facing left or right.

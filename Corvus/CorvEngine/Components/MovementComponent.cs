@@ -86,7 +86,8 @@ namespace CorvEngine.Components {
 		/// If the Entity is not walking, this method does nothing.
 		/// </summary>
 		public void StopWalking() {
-			_WalkDirection = Direction.None;
+            _WalkDirection = Direction.None; 
+            //PhysicsComponent.VelocityX = 0;
             IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}

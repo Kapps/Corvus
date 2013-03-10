@@ -130,7 +130,7 @@ namespace CorvEngine.Components {
 								mc.Jump(AllowMultiJump);
 						}
 					} else
-						mc.StopWalking();
+						mc.StopWalking(); //this is pointless.
 				}
 			}
 			base.OnUpdate(Time);

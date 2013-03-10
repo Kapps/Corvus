@@ -26,6 +26,15 @@ namespace Corvus.Components
             get { return _ReactionRange; }
             set { _ReactionRange = value; }
         }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much to offset the reaction box with respect to the entities centre. 
+        /// </summary>
+        public Vector2 Offset
+        {
+            get { return _OffSet; }
+            set { _OffSet = value; }
+        }
         
         /// <summary>
         /// Gets or sets a value that indicates the types of entities to search for.
@@ -37,6 +46,7 @@ namespace Corvus.Components
         }
 
         private Vector2 _ReactionRange = new Vector2();
+        private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
 
         protected override void OnUpdate(GameTime Time)
@@ -59,6 +69,8 @@ namespace Corvus.Components
                     //      All the below code does is stop the entities movement animation.
                     var mc = this.GetDependency<MovementComponent>();
                     mc.StopWalking();
+
+                    
                 }
             }
         }
@@ -76,14 +88,15 @@ namespace Corvus.Components
         /// </summary>
         private Rectangle GetReactionBox()
         {
-            //TODO: Remove this later. This is the same bug as above i believe.
+            //TODO: Remove this later. This is the same bug as above, i believe.
             if (Camera.Active == null)
                 return new Rectangle();
 
-            var center = Parent.Location.Center;
-            var position = new Vector2(center.X, center.Y);
-            var rectPos = new Vector2(position.X - ReactionRange.X / 2, position.Y - ReactionRange.Y / 2);
+            var center = new Vector2(Parent.Location.Center.X, Parent.Location.Center.Y);
 
+            //There's a bit of a bug when the direction is None. Basically, the Offset.X is gone when that happens.
+            var dirSign = CorvusExtensions.GetSign(MovementComponent.CurrentDirection);
+            var rectPos = new Vector2((center.X + (dirSign * Offset.X)) - ReactionRange.X / 2, (center.Y + Offset.Y) - ReactionRange.Y / 2);
             Rectangle rect = new Rectangle((int)rectPos.X, (int)rectPos.Y, (int)ReactionRange.X, (int)ReactionRange.Y);
             return rect;
         }
