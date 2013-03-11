@@ -24,9 +24,9 @@ namespace Corvus.Components
         /// <summary>
         /// Applies a status effect to this entity
         /// </summary>
-        public void ApplyStatusEffect(string name, StatusEffectAttributes attributes)
+        public void ApplyStatusEffect(StatusEffectAttributes attributes)
         {
-            var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", name), new Type[] { typeof(Entity), typeof(StatusEffectAttributes) });
+            var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", attributes.EffectType), new Type[] { typeof(Entity), typeof(StatusEffectAttributes) });
             var statusEffect = constructor(this.Parent, attributes);
             _StatusEffects.Add(statusEffect);
         }

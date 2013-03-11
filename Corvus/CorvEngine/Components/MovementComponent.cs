@@ -81,13 +81,20 @@ namespace CorvEngine.Components {
 				SpriteComponent.Sprite.PlayAnimation(Animation.Name);
 		}
 
+        public void BeginWalking()
+        {
+            IsWalking = true; 
+            var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];
+            if (SpriteComponent.Sprite.ActiveAnimation != Animation)
+                SpriteComponent.Sprite.PlayAnimation(Animation.Name);
+        }
+
 		/// <summary>
 		/// Informs the Entity to stop walking, no longer applying walk velocity.
 		/// If the Entity is not walking, this method does nothing.
 		/// </summary>
 		public void StopWalking() {
             _WalkDirection = Direction.None; 
-            //PhysicsComponent.VelocityX = 0;
             IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}
@@ -113,11 +120,11 @@ namespace CorvEngine.Components {
         }
 
 		protected override void OnUpdate(GameTime Time) {
-			if(_WalkDirection == Direction.Left)
-				PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-			else if(_WalkDirection == Direction.Right)
-				PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-			base.OnUpdate(Time);
-		}
+            if (_WalkDirection == Direction.Left)
+                PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
+            else if (_WalkDirection == Direction.Right)
+                PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
+            base.OnUpdate(Time);
+        }
 	}
 }

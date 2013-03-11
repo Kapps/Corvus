@@ -17,7 +17,7 @@ namespace Corvus.Components
             if (se == null)
                 return false;
             var seac = this.GetDependency<StatusEffectAttributesComponent>();
-            se.ApplyStatusEffect(seac.EffectType, seac.StatusEffectAttributes);
+            se.ApplyStatusEffect(seac.StatusEffectAttributes);
             return true;
         }
     }

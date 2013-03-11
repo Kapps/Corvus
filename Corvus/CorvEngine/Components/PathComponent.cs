@@ -108,30 +108,35 @@ namespace CorvEngine.Components {
 				PhysicsComponent pc = entity.GetComponent<PhysicsComponent>();
 				PhysicsSystem ps = Scene.GetSystem<PhysicsSystem>();
 				//Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
-				if(entity.Location.Contains((int)CurrentNode.X, (int)CurrentNode.Y)) {
-					if(!pc.IsGrounded)
-						return; // Do nothing, just wait for us to fall on our location.
-					AdvanceNode();
-				} else {
-					bool MissingHorizontally = CurrentNode.X > entity.Location.Right || CurrentNode.X < entity.Location.Left;
-					if(entity.Location.Top > CurrentNode.Y && /*(DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay &&*/ !MissingHorizontally) {
-						mc.Jump(AllowMultiJump);
-						_LastJump = DateTime.Now;
-					}
-					if(MissingHorizontally) {
-						if(entity.Location.Left > CurrentNode.X) {
-							mc.BeginWalking(Direction.Left);
-							// Check if we'll need to jump this frame.
-							if(!ps.IsLocationSolid(new Vector2(entity.Location.Left - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
-								mc.Jump(AllowMultiJump);
-						} else if(entity.Location.Right < CurrentNode.X) {
-							mc.BeginWalking(Direction.Right);
-							if(!ps.IsLocationSolid(new Vector2(entity.Location.Right + pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
-								mc.Jump(AllowMultiJump);
-						}
-					} else
-						mc.StopWalking(); //this is pointless.
-				}
+                if(entity.Location.Contains((int)CurrentNode.X, (int)CurrentNode.Y)) {
+                    if(!pc.IsGrounded)
+                        return; // Do nothing, just wait for us to fall on our location.
+                    AdvanceNode();
+                } else {
+                    bool MissingHorizontally = CurrentNode.X > entity.Location.Right || CurrentNode.X < entity.Location.Left;
+                    if(entity.Location.Top > CurrentNode.Y && /*(DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay &&*/ !MissingHorizontally) {
+                        mc.Jump(AllowMultiJump);
+                        _LastJump = DateTime.Now;
+                    }
+                    if (MissingHorizontally)
+                    {
+                        if (entity.Location.Left > CurrentNode.X)
+                        {
+                            mc.BeginWalking(Direction.Left);
+                            // Check if we'll need to jump this frame.
+                            if (!ps.IsLocationSolid(new Vector2(entity.Location.Left - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
+                                mc.Jump(AllowMultiJump);
+                        }
+                        else if (entity.Location.Right < CurrentNode.X)
+                        {
+                            mc.BeginWalking(Direction.Right);
+                            if (!ps.IsLocationSolid(new Vector2(entity.Location.Right + pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
+                                mc.Jump(AllowMultiJump);
+                        }
+                    }
+                    else
+                        mc.StopWalking(); 
+                }
 			}
 			base.OnUpdate(Time);
 		}

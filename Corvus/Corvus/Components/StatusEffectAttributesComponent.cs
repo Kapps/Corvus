@@ -16,7 +16,6 @@ namespace Corvus.Components
     /// </summary>
     public class StatusEffectAttributesComponent : Component
     {
-        private string _EffectType;
         private StatusEffectAttributes _StatusEffectAttributes = new StatusEffectAttributes();
 
         /// <summary>
@@ -29,8 +28,8 @@ namespace Corvus.Components
         /// </summary>
         public string EffectType
         {
-            get { return _EffectType; }
-            set { _EffectType = value; }
+            get { return StatusEffectAttributes.EffectType; }
+            set { StatusEffectAttributes.EffectType = value; }
         }
 
         /// <summary>

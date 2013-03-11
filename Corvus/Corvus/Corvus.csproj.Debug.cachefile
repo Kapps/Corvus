@@ -20,9 +20,12 @@ Content\Sprites\Equipment\TestWeapon1.xnb
 Content\Sprites\Equipment\TestWeapon2.xnb
 Content\Sprites\Powerups\TestPowerup1.xnb
 Content\Sprites\TestProjectile.xnb
+Content\Sprites\Equipment\testweaponB.xnb
+Content\Sprites\Equipment\TestWeapon3.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
+Data\Entities\Bow.txt
 Data\Entities\TestEntityProjectile.txt
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\Spear.txt

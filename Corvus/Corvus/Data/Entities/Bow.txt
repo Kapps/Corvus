@@ -1,12 +1,12 @@
 ﻿WeaponSprite
 	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/Equipment/TestWeapon1)
+		Sprite: Sprite(Sprites/Equipment/TestWeapon3)
 
 WeaponDataer
 	WeaponDataComponent
-		WeaponName: Spear
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
-		IsRanged: false
+		WeaponName: Bow
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Bow)
+		IsRanged: true
 
 Attributes
 	AttributesComponent
@@ -22,7 +22,7 @@ Attributes
 Motion
 	PhysicsComponent
 
-Spear: WeaponSprite, Attributes, Motion, WeaponDataer
+Bow: WeaponSprite, Attributes, Motion, WeaponDataer
 	PhysicsComponent
 	CollisionEquipmentComponent
 		DisposeOnCollision: true

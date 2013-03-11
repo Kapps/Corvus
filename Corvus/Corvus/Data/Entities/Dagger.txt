@@ -2,6 +2,12 @@
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/TestWeapon2)
 
+WeaponDataer
+	WeaponDataComponent
+		WeaponName: Dagger
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
+		IsRanged: false
+
 Attributes
 	AttributesComponent
 		StrModifier: 1.1
@@ -16,9 +22,8 @@ Attributes
 Motion
 	PhysicsComponent
 
-Dagger: WeaponSprite, Attributes, Motion
+Dagger: WeaponSprite, Attributes, Motion, WeaponDataer
 	CollisionEquipmentComponent
-		WeaponType: Dagger
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent

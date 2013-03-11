@@ -8,25 +8,30 @@ using Corvus.Components.Gameplay.StatusEffects;
 
 namespace Corvus.Components.Gameplay.Equipment
 {
-    //TODO: Add some sort of skill management. 
     /// <summary>
     /// The base class for a weapon.
     /// </summary>
-    public abstract class Weapon
+    public class Weapon
     {
         /// <summary>
-        /// Gets the name of the weapon.
+        /// Gets or sets the weapon data. Should be the same name as the file.
         /// </summary>
-        public abstract string Name { get; }
-
-        /// <summary>
-        /// Gets the animation name.
-        /// </summary>
-        public abstract string AnimationName { get; }
+        public WeaponData WeaponData { get; set; }
 
         /// <summary>
         /// The attributes from this weapon.
         /// </summary>
         public Attributes Attributes { get; set; }
+        
+        /// <summary>
+        /// Creates a new weapon with specified name and attributes.
+        /// </summary>
+        /// <param name="weaponType"></param>
+        /// <param name="attri"></param>
+        public Weapon(WeaponData data, Attributes attri)
+        {
+            WeaponData = data;
+            Attributes = attri;
+        }
     }
 }

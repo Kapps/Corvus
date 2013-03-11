@@ -9,6 +9,9 @@ using CorvEngine;
 using CorvEngine.Input;
 
 namespace Corvus.Components {
+    /// <summary>
+    /// A component that manages the combat.
+    /// </summary>
 	public class CombatComponent : Component {
         /// <summary>
         /// Gets or sets what can be attacked. 
@@ -36,10 +39,22 @@ namespace Corvus.Components {
             get { return _IsBlocking; }
             private set { _IsBlocking = value; }
         }
+
         private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private EntityClassification _AttackableEntities;
         private bool _IsAttacking = false;
         private bool _IsBlocking = false;
+
+        /// <summary>
+        /// Attack depending on whether the current weapon is melee or ranged.
+        /// </summary>
+        public void Attack()
+        {
+            if (EquipmentComponent.CurrentWeapon.WeaponData.IsRanged)
+                AttackRanged();
+            else
+                AttackMelee();
+        }
 
         /// <summary>
         /// Attacks an enemy with a close range attack.
@@ -49,7 +64,7 @@ namespace Corvus.Components {
         /// I say this because I'm also assuming that EquipmentComponent is only used by players. Although, it would be
         /// easy (maybe) to create a generic melee attack function but it might seem messy.
         /// </remarks>
-		public void AttackMelee() {
+		private void AttackMelee() {
             //This guy is attacking, don't do anything.
             if (_IsAttacking)
                 return;
@@ -59,7 +74,7 @@ namespace Corvus.Components {
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
 			// At the very least the sprites for it will be mutually exclusive.
             float attackSpeed = AttributesComponent.AttackSpeed;
-            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
+            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
             
             //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
             //The attack rectange is calculated using our centre, range, and half our height.
@@ -92,7 +107,7 @@ namespace Corvus.Components {
 		}
 
         //TODO: Should possibly define a Component(?) that defines the projectile properties (things like GravityCoefficient, etc). 
-        public void AttackRanged()
+        private void AttackRanged()
         {
             var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestProjectile").CreateEntity();
 
@@ -105,6 +120,8 @@ namespace Corvus.Components {
 
             projectile.Size = new Vector2(12, 12);
 
+            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(200));
+            
             if (MovementComponent.CurrentDirection == Direction.Left)
             {
                 projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
