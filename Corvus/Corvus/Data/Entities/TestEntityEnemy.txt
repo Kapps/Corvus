@@ -31,6 +31,7 @@ AIer
 	AIComponent
 		ReactionRange: Vector(500, 200)
 		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Projectile)
 
 Combator
 	CombatComponent

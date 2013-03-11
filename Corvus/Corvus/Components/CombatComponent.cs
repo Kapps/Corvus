@@ -127,7 +127,7 @@ namespace Corvus.Components {
             IsBlocking = true;
             
             //TODO: Get a proper animation.
-            var Animation = SpriteComponent.Sprite.Animations["BoredDown"];
+            var Animation = SpriteComponent.Sprite.Animations["Block" + MovementComponent.CurrentDirection.ToString()];
             if (SpriteComponent.Sprite.ActiveAnimation != Animation)
                 SpriteComponent.Sprite.PlayAnimation(Animation.Name);
         }

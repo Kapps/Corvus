@@ -93,29 +93,62 @@ namespace Corvus.Components
 
             var pc = this.GetDependency<PathComponent>();
             var mc = this.GetDependency<MovementComponent>();
-
+            var cc = this.GetDependency<CombatComponent>();
 
             bool foundEntity = false;
+            bool foundPlayer = false;
+            bool foundProjectile = false;
 
             //TODO: This could be very ineffecient.
             //Foreach entity in this entity's reaction box.
             foreach (Entity e in PhysicsSystem.GetEntitiesAtLocation(GetReactionBox()))
             {
-                var cc = e.GetComponent<ClassificationComponent>();
+                var clc = e.GetComponent<ClassificationComponent>();
+                var coc = e.GetComponent<CombatComponent>();
+                
 
-                if (cc.Classification == _EntitiesToSearchFor)
+                if (clc.Classification == EntityClassification.Player) //If Player
                 {
                     foundEntity = true;
-                    FollowEntity(e, Time); //Follow the player entity.
+                    foundPlayer = true;
                     IsFollowingEntity = true;
                     IsReacting = true;
 
+                    //If we're following a path, stop.
                     if (pc.IsPathing)
-                        pc.StopFollowing(); //Stop following the path.
+                        pc.StopFollowing();
+
+                    //Follow the player's entity.
+                    FollowEntity(e, Time); 
+
+                    //If the player is attacking and is within attacking range, block.
+                    if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
+                        cc.BeginBlock();
+
+                    //If the player isn't attacking, stop blocking.
+                    if (!coc.IsAttacking && cc.IsBlocking)
+                        cc.EndBlock();
+                }
+                else if (clc.Classification == EntityClassification.Projectile) //If Projectile
+                {
+                    foundEntity = true;
+                    foundProjectile = true;
+                    IsFollowingEntity = false;
+                    IsReacting = true;
+
+                    //If we're following a path, stop.
+                    if (pc.IsPathing)
+                        pc.StopFollowing();
+
+                    //Basically, projectiles within our rectangle might hit us, so we'll just block.
+                    if (EntityFlyingToMe(e))
+                        cc.BeginBlock();
+                    else
+                        cc.EndBlock();
                 }
             }
 
-            //If nothing of note was reacted to, continue our pathing and set variables.
+            //If no entities were found, resume normal pathing and end blocking.
             if (!foundEntity)
             {
                 IsReacting = false;
@@ -123,6 +156,9 @@ namespace Corvus.Components
 
                 if (!pc.IsPathing)
                     pc.StartFollowing();
+
+                if (cc.IsBlocking)
+                    cc.EndBlock();
             }
         }
 
@@ -194,6 +230,44 @@ namespace Corvus.Components
                     mc.StopWalking(); //this is pointless.
                 }
             }
+        }
+
+        private bool EntityFacingMe(Entity e)
+        {
+            var mc = e.GetComponent<MovementComponent>();
+            
+            if (e.Location.Center.X == Parent.Location.Center.X)
+                return true;
+            else if ((e.Location.Center.X < Parent.Location.Center.X) && mc.CurrentDirection == Direction.Right)
+                return true;
+            else if ((e.Location.Center.X > Parent.Location.Center.X) && mc.CurrentDirection == Direction.Left)
+                return true;
+            else
+                return false;
+        }
+
+        private bool EntityFlyingToMe(Entity e)
+        {
+            var pc = e.GetComponent<PhysicsComponent>();
+
+            if (e.Location.Center.X == Parent.Location.Center.X)
+                return true;
+            else if ((e.Location.Center.X < Parent.Location.Center.X) && pc.VelocityX >= 0)
+                return true;
+            else if ((e.Location.Center.X > Parent.Location.Center.X) && pc.VelocityX <= 0)
+                return true;
+            else
+                return false;
+        }
+
+        private bool EntityWithinAttackRange(Entity e)
+        {
+            var atc = e.GetComponent<AttributesComponent>();
+
+            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) < atc.MeleeAttackRange.X)
+                return true;
+            else
+                return false;
         }
 
         private MovementComponent MovementComponent;
