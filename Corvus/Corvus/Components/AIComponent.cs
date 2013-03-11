@@ -106,20 +106,23 @@ namespace Corvus.Components
                 if (cc.Classification == _EntitiesToSearchFor)
                 {
                     foundEntity = true;
-
-                    pc.StopFollowing(); //Stop following the path.
                     FollowEntity(e, Time); //Follow the player entity.
                     IsFollowingEntity = true;
                     IsReacting = true;
+
+                    if (pc.IsPathing)
+                        pc.StopFollowing(); //Stop following the path.
                 }
             }
 
             //If nothing of note was reacted to, continue our pathing and set variables.
             if (!foundEntity)
             {
-                pc.StartFollowing();
                 IsReacting = false;
                 IsFollowingEntity = false;
+
+                if (!pc.IsPathing)
+                    pc.StartFollowing();
             }
         }
 
@@ -187,7 +190,7 @@ namespace Corvus.Components
                 }
                 else
                 {
-                    cc.AttackMelee();
+                    //cc.AttackMelee();
                     mc.StopWalking(); //this is pointless.
                 }
             }
