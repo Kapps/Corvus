@@ -81,6 +81,11 @@ namespace Corvus.Components
         private bool _AllowMultiJump = true;
         private bool _IsFollowingEntity = false;
 
+        private PhysicsSystem PhysicsSystem;
+        private MovementComponent MovementComponent;
+        private PathComponent PathComponent;
+        private CombatComponent CombatComponent;
+
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
@@ -90,10 +95,6 @@ namespace Corvus.Components
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
             if (PhysicsSystem == null)
                 return;
-
-            var pc = this.GetDependency<PathComponent>();
-            var mc = this.GetDependency<MovementComponent>();
-            var cc = this.GetDependency<CombatComponent>();
 
             bool foundEntity = false;
             bool foundPlayer = false;
@@ -115,19 +116,19 @@ namespace Corvus.Components
                     IsReacting = true;
 
                     //If we're following a path, stop.
-                    if (pc.IsPathing)
-                        pc.StopFollowing();
+                    if (PathComponent.IsPathing)
+                        PathComponent.StopFollowing();
 
                     //Follow the player's entity.
                     FollowEntity(e, Time); 
 
                     //If the player is attacking and is within attacking range, block.
                     if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
-                        cc.BeginBlock();
+                        CombatComponent.BeginBlock();
 
                     //If the player isn't attacking, stop blocking.
-                    if (!coc.IsAttacking && cc.IsBlocking)
-                        cc.EndBlock();
+                    if (!coc.IsAttacking && CombatComponent.IsBlocking)
+                        CombatComponent.EndBlock();
                 }
                 else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                 {
@@ -137,14 +138,14 @@ namespace Corvus.Components
                     IsReacting = true;
 
                     //If we're following a path, stop.
-                    if (pc.IsPathing)
-                        pc.StopFollowing();
+                    if (PathComponent.IsPathing)
+                        PathComponent.StopFollowing();
 
                     //Basically, projectiles within our rectangle might hit us, so we'll just block.
                     if (EntityGoingToMe(e))
-                        cc.BeginBlock();
+                        CombatComponent.BeginBlock();
                     else
-                        cc.EndBlock();
+                        CombatComponent.EndBlock();
                 }
             }
 
@@ -154,11 +155,11 @@ namespace Corvus.Components
                 IsReacting = false;
                 IsFollowingEntity = false;
 
-                if (!pc.IsPathing)
-                    pc.StartFollowing();
+                if (!PathComponent.IsPathing)
+                    PathComponent.StartFollowing();
 
-                if (cc.IsBlocking)
-                    cc.EndBlock();
+                if (CombatComponent.IsBlocking)
+                    CombatComponent.EndBlock();
             }
         }
 
@@ -166,6 +167,9 @@ namespace Corvus.Components
         {
             base.OnInitialize();
             MovementComponent = this.GetDependency<MovementComponent>();
+            PathComponent = this.GetDependency<PathComponent>();
+            MovementComponent = this.GetDependency<MovementComponent>();
+            CombatComponent = this.GetDependency<CombatComponent>();
             //TODO: Initialize this here. 
             //PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
         }
@@ -270,8 +274,5 @@ namespace Corvus.Components
             else
                 return false;
         }
-
-        private MovementComponent MovementComponent;
-        private PhysicsSystem PhysicsSystem;
     }
 }
