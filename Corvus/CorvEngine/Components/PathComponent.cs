@@ -9,7 +9,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a component that causes an Entity to follow a set path repeatedly.
 	/// </summary>
-	class PathComponent : Component {
+	public class PathComponent : Component {
 
 		// TODO: Important to figure out what to do when an Entity gets stuck. Reverse to start of path maybe? Cheat and fly?
 
@@ -21,6 +21,7 @@ namespace CorvEngine.Components {
 		private DateTime _LastJump = DateTime.Now;
 		private int _StepSize = 1;
 		private bool _ReverseOnCompletion = true;
+        private bool _IsPathing = true;
 
 		/// <summary>
 		/// Gets the nodes that this entity paths to.
@@ -65,6 +66,15 @@ namespace CorvEngine.Components {
 			set { _AllowMultiJump = value; }
 		}
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to allow this entity to follow the path.
+        /// </summary>
+        public bool IsPathing
+        {
+            get { return _IsPathing; }
+            set { _IsPathing = value; }
+        }
+
 		/// <summary>
 		/// Add a new node to the list of nodes.
 		/// </summary>
@@ -102,7 +112,7 @@ namespace CorvEngine.Components {
 		/// </summary>
 		/// <param name="Time"></param>
 		protected override void OnUpdate(GameTime Time) {
-			if(Nodes != null) {
+			if(Nodes != null && IsPathing) {
 				Entity entity = this.Parent;
 				MovementComponent mc = entity.GetComponent<MovementComponent>();
 				PhysicsComponent pc = entity.GetComponent<PhysicsComponent>();
@@ -135,5 +145,21 @@ namespace CorvEngine.Components {
 			}
 			base.OnUpdate(Time);
 		}
+
+        /// <summary>
+        /// Set the variable that allows us to follow a path to true, meaning we will continue following the path.
+        /// </summary>
+        public void StartFollowing()
+        {
+            IsPathing = true;
+        }
+
+        /// <summary>
+        /// Set the variable that allows us to follow a path to false, meaning we will stop following the path.
+        /// </summary>
+        public void StopFollowing()
+        {
+            IsPathing = false;
+        }
 	}
 }

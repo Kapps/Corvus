@@ -63,14 +63,18 @@ namespace Corvus.Components
             foreach (Entity e in PhysicsSystem.GetEntitiesAtLocation(GetReactionBox()))
             {
                 var cc = e.GetComponent<ClassificationComponent>();
+                var pc = this.GetDependency<PathComponent>();
+                var mc = this.GetDependency<MovementComponent>();
+
                 if (cc.Classification == _EntitiesToSearchFor)
                 {
                     //TODO: Make it actually do something. Current does nothing significant.
-                    //      All the below code does is stop the entities movement animation.
-                    var mc = this.GetDependency<MovementComponent>();
                     mc.StopWalking();
-
-                    
+                    pc.StopFollowing();
+                }
+                else
+                {
+                    pc.StartFollowing();
                 }
             }
         }
