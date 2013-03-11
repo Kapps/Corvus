@@ -6,6 +6,7 @@ using CorvEngine.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CorvEngine.Graphics;
+using CorvEngine;
 
 namespace Corvus.Components
 {
@@ -51,10 +52,34 @@ namespace Corvus.Components
             set { _IsReacting = value; }
         }
 
+        public bool IsFollowingEntity
+        {
+            get { return _IsFollowingEntity; }
+            set { _IsFollowingEntity = value; }
+        }
+
+        public DateTime LastJump
+        {
+            get { return _LastJump; }
+            set { _LastJump = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to allow this entity to jump multiple times.
+        /// </summary>
+        public bool AllowMultiJump
+        {
+            get { return _AllowMultiJump; }
+            set { _AllowMultiJump = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
         private bool _IsReacting = false;
+        private DateTime _LastJump = DateTime.Now;
+        private bool _AllowMultiJump = true;
+        private bool _IsFollowingEntity = false;
 
         protected override void OnUpdate(GameTime Time)
         {
@@ -69,8 +94,8 @@ namespace Corvus.Components
             var pc = this.GetDependency<PathComponent>();
             var mc = this.GetDependency<MovementComponent>();
 
-            //We'll know after the loop below if we reacted.
-            IsReacting = false;
+
+            bool foundEntity = false;
 
             //TODO: This could be very ineffecient.
             //Foreach entity in this entity's reaction box.
@@ -80,15 +105,22 @@ namespace Corvus.Components
 
                 if (cc.Classification == _EntitiesToSearchFor)
                 {
-                    //TODO: Make it actually do something. Current just stops following path.
-                    pc.StopFollowing();
+                    foundEntity = true;
+
+                    pc.StopFollowing(); //Stop following the path.
+                    FollowEntity(e, Time); //Follow the player entity.
+                    IsFollowingEntity = true;
                     IsReacting = true;
                 }
             }
 
-            //If nothing of note was reacted to, continue our pathing.
-            if (!IsReacting)
+            //If nothing of note was reacted to, continue our pathing and set variables.
+            if (!foundEntity)
+            {
                 pc.StartFollowing();
+                IsReacting = false;
+                IsFollowingEntity = false;
+            }
         }
 
         protected override void OnInitialize()
@@ -115,6 +147,50 @@ namespace Corvus.Components
             var rectPos = new Vector2((center.X + (dirSign * Offset.X)) - ReactionRange.X / 2, (center.Y + Offset.Y) - ReactionRange.Y / 2);
             Rectangle rect = new Rectangle((int)rectPos.X, (int)rectPos.Y, (int)ReactionRange.X, (int)ReactionRange.Y);
             return rect;
+        }
+
+        //TODO: Make this account for attack range and entity size.
+        //TODO: Maybe make this not allow them to leave their platform as well, just to avoid issues with pathing.
+        private void FollowEntity(Entity e, GameTime Time)
+        {
+            var entity = this.Parent;
+            var mc = entity.GetComponent<MovementComponent>();
+            var pc = entity.GetComponent<PhysicsComponent>();
+            var ps = Scene.GetSystem<PhysicsSystem>();
+            var cc = entity.GetComponent<CombatComponent>();
+            var AllowMultiJump = false;
+            int followDistance = 50;
+
+            if (entity.Location.Contains((int)e.Location.Center.X, (int)e.Location.Center.Y))
+            {
+                if (!pc.IsGrounded)
+                    return; // Do nothing, just wait for us to fall on our location.
+            }
+            else
+            {
+                bool MissingHorizontally = e.Location.Center.X - followDistance > entity.Location.Right || e.Location.Center.X + followDistance < entity.Location.Left;
+                if (entity.Location.Bottom > e.Location.Bottom && !MissingHorizontally)
+                {
+                    mc.Jump(AllowMultiJump);
+                    LastJump = DateTime.Now;
+                }
+                if (MissingHorizontally)
+                {
+                    if (entity.Location.Center.X > e.Location.Center.X + followDistance)
+                    {
+                        mc.BeginWalking(Direction.Left);
+                    }
+                    else if (entity.Location.Center.X < e.Location.Center.X - followDistance)
+                    {
+                        mc.BeginWalking(Direction.Right);
+                    }
+                }
+                else
+                {
+                    cc.AttackMelee();
+                    mc.StopWalking(); //this is pointless.
+                }
+            }
         }
 
         private MovementComponent MovementComponent;
