@@ -141,7 +141,7 @@ namespace Corvus.Components
                         pc.StopFollowing();
 
                     //Basically, projectiles within our rectangle might hit us, so we'll just block.
-                    if (EntityFlyingToMe(e))
+                    if (EntityGoingToMe(e))
                         cc.BeginBlock();
                     else
                         cc.EndBlock();
@@ -198,7 +198,8 @@ namespace Corvus.Components
             var ps = Scene.GetSystem<PhysicsSystem>();
             var cc = entity.GetComponent<CombatComponent>();
             var AllowMultiJump = false;
-            int followDistance = 50;
+            Random r = new Random();
+            int followDistance = r.Next(40, 60);
 
             if (entity.Location.Contains((int)e.Location.Center.X, (int)e.Location.Center.Y))
             {
@@ -246,12 +247,12 @@ namespace Corvus.Components
                 return false;
         }
 
-        private bool EntityFlyingToMe(Entity e)
+        private bool EntityGoingToMe(Entity e)
         {
             var pc = e.GetComponent<PhysicsComponent>();
 
-            if (e.Location.Center.X == Parent.Location.Center.X)
-                return true;
+            if (e.Location.Center.X == Parent.Location.Center.X) //Won't get stuck inside entities now. Didn't before, but slight chance that it could happen. Besides, it's already hit you at this point.
+                return false;
             else if ((e.Location.Center.X < Parent.Location.Center.X) && pc.VelocityX > 0)
                 return true;
             else if ((e.Location.Center.X > Parent.Location.Center.X) && pc.VelocityX < 0)
