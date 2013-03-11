@@ -252,9 +252,9 @@ namespace Corvus.Components
 
             if (e.Location.Center.X == Parent.Location.Center.X)
                 return true;
-            else if ((e.Location.Center.X < Parent.Location.Center.X) && pc.VelocityX >= 0)
+            else if ((e.Location.Center.X < Parent.Location.Center.X) && pc.VelocityX > 0)
                 return true;
-            else if ((e.Location.Center.X > Parent.Location.Center.X) && pc.VelocityX <= 0)
+            else if ((e.Location.Center.X > Parent.Location.Center.X) && pc.VelocityX < 0)
                 return true;
             else
                 return false;
