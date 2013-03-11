@@ -45,9 +45,16 @@ namespace Corvus.Components
             set { _EntitiesToSearchFor = value; }
         }
 
+        public bool IsReacting
+        {
+            get { return _IsReacting; }
+            set { _IsReacting = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
+        private bool _IsReacting = false;
 
         protected override void OnUpdate(GameTime Time)
         {
@@ -59,23 +66,29 @@ namespace Corvus.Components
             if (PhysicsSystem == null)
                 return;
 
+            var pc = this.GetDependency<PathComponent>();
+            var mc = this.GetDependency<MovementComponent>();
+
+            //We'll know after the loop below if we reacted.
+            IsReacting = false;
+
             //TODO: This could be very ineffecient.
+            //Foreach entity in this entity's reaction box.
             foreach (Entity e in PhysicsSystem.GetEntitiesAtLocation(GetReactionBox()))
             {
                 var cc = e.GetComponent<ClassificationComponent>();
-                var pc = this.GetDependency<PathComponent>();
-                var mc = this.GetDependency<MovementComponent>();
 
                 if (cc.Classification == _EntitiesToSearchFor)
                 {
-                    //TODO: Make it actually do something. Current does nothing significant.
+                    //TODO: Make it actually do something. Current just stops following path.
                     pc.StopFollowing();
-                }
-                else
-                {
-                    pc.StartFollowing();
+                    IsReacting = true;
                 }
             }
+
+            //If nothing of note was reacted to, continue our pathing.
+            if (!IsReacting)
+                pc.StartFollowing();
         }
 
         protected override void OnInitialize()
