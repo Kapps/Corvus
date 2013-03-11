@@ -113,10 +113,10 @@ namespace CorvEngine.Components {
 		/// <param name="Time"></param>
 		protected override void OnUpdate(GameTime Time) {
 			if(Nodes != null && IsPathing) {
-				Entity entity = this.Parent;
-				MovementComponent mc = entity.GetComponent<MovementComponent>();
-				PhysicsComponent pc = entity.GetComponent<PhysicsComponent>();
-				PhysicsSystem ps = Scene.GetSystem<PhysicsSystem>();
+				var entity = this.Parent;
+				var mc = entity.GetComponent<MovementComponent>();
+				var pc = entity.GetComponent<PhysicsComponent>();
+				var ps = Scene.GetSystem<PhysicsSystem>();
 				//Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
 				if(entity.Location.Contains((int)CurrentNode.X, (int)CurrentNode.Y)) {
 					if(!pc.IsGrounded)
@@ -159,6 +159,8 @@ namespace CorvEngine.Components {
         /// </summary>
         public void StopFollowing()
         {
+            var mc = this.Parent.GetComponent<MovementComponent>();
+            mc.StopWalking();
             IsPathing = false;
         }
 	}

@@ -69,7 +69,6 @@ namespace Corvus.Components
                 if (cc.Classification == _EntitiesToSearchFor)
                 {
                     //TODO: Make it actually do something. Current does nothing significant.
-                    mc.StopWalking();
                     pc.StopFollowing();
                 }
                 else
