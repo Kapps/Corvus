@@ -29,8 +29,9 @@ StatusEffecter
 
 AIer
 	AIComponent
-		ReactionRange: Vector(500, 100)
+		ReactionRange: Vector(500, 200)
 		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Projectile)
 
 Combator
 	CombatComponent
@@ -55,3 +56,4 @@ TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attrib
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
+	EquipmentComponent
