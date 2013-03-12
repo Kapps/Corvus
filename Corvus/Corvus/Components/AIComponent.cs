@@ -46,28 +46,31 @@ namespace Corvus.Components
             set { _EntitiesToSearchFor = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the bool representing whether or not the AI is reacting to something.
+        /// </summary>
         public bool IsReacting
         {
             get { return _IsReacting; }
             set { _IsReacting = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the bool respresenting whether or not the AI is following something.
+        /// </summary>
         public bool IsFollowingEntity
         {
             get { return _IsFollowingEntity; }
             set { _IsFollowingEntity = value; }
         }
 
-        public DateTime LastJump
+        /// <summary>
+        /// Gets or sets the bool respresenting whether or not the AI is enabled.
+        /// </summary>
+        public bool AIEnabled
         {
-            get { return _LastJump; }
-            set { _LastJump = value; }
-        }
-
-        public DateTime LastAttack
-        {
-            get { return _LastAttack; }
-            set { _LastAttack = value; }
+            get { return _AIEnabled; }
+            set { _AIEnabled = value; }
         }
 
         /// <summary>
@@ -83,10 +86,9 @@ namespace Corvus.Components
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
         private bool _IsReacting = false;
-        private DateTime _LastJump = DateTime.Now;
         private bool _AllowMultiJump = true;
         private bool _IsFollowingEntity = false;
-        private DateTime _LastAttack;
+        private bool _AIEnabled = true;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -99,73 +101,72 @@ namespace Corvus.Components
         {
             base.OnUpdate(Time);
 
-            bool foundEntity = false;
-            bool foundPlayer = false;
-            bool foundProjectile = false;
-
-            //TODO: This could be very ineffecient.
-            //Foreach entity in this entity's reaction box.
-            foreach (Entity e in PhysicsSystem.GetEntitiesAtLocation(GetReactionBox()))
+            if (AIEnabled)
             {
-                var clc = e.GetComponent<ClassificationComponent>();
-                var coc = e.GetComponent<CombatComponent>();
-                
-                if (clc.Classification == EntityClassification.Player) //If Player
+                bool foundEntity = false;
+
+                //TODO: This could be very ineffecient.
+                //Foreach entity in this entity's reaction box.
+                foreach (Entity e in PhysicsSystem.GetEntitiesAtLocation(GetReactionBox()))
                 {
-                    foundEntity = true;
-                    foundPlayer = true;
-                    IsFollowingEntity = true;
-                    IsReacting = true;
+                    var clc = e.GetComponent<ClassificationComponent>();
+                    var coc = e.GetComponent<CombatComponent>();
 
-                    //If we're following a path, stop.
-                    if (PathComponent.IsPathing)
-                        PathComponent.StopFollowing();
+                    if (clc.Classification == EntityClassification.Player) //If Player
+                    {
+                        foundEntity = true;
+                        IsFollowingEntity = true;
+                        IsReacting = true;
 
-                    //Follow the entity.
-                    FollowEntity(e, Time); 
+                        //If we're following a path, stop.
+                        if (PathComponent.PathingEnabled)
+                            PathComponent.StopFollowing();
 
-                    //If the entity is attacking and is within attacking range, and is facing us, block.
-                    if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e))
-                        CombatComponent.BeginBlock();
+                        //Follow the entity.
+                        FollowEntity(e, Time);
 
-                    //If the entity isn't attacking, stop blocking.
-                    if (!coc.IsAttackingMelee && CombatComponent.IsBlocking)
-                        CombatComponent.EndBlock();
+                        //If the entity is attacking and is within attacking range, and is facing us, block.
+                        if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e))
+                            CombatComponent.BeginBlock();
 
-                    if (!MovementComponent.IsWalking)
-                        CombatComponent.AttackAI();
-                }
-                else if (clc.Classification == EntityClassification.Projectile) //If Projectile
-                {
-                    foundEntity = true;
-                    foundProjectile = true;
-                    IsFollowingEntity = false;
-                    IsReacting = true;
-
-                    //If we're following a path, stop.
-                    if (PathComponent.IsPathing)
-                        PathComponent.StopFollowing();
-
-                    //Basically, projectiles within our rectangle might hit us, so we'll just block.
-                    if (EntityGoingToMe(e))
-                        CombatComponent.BeginBlock();
-                    else
-                        if (CombatComponent.IsBlocking)
+                        //If the entity isn't attacking, stop blocking.
+                        if (!coc.IsAttackingMelee && CombatComponent.IsBlocking)
                             CombatComponent.EndBlock();
+
+                        if (!MovementComponent.IsWalking)
+                            CombatComponent.AttackAI();
+                    }
+                    else if (clc.Classification == EntityClassification.Projectile) //If Projectile
+                    {
+                        foundEntity = true;
+                        IsFollowingEntity = false;
+                        IsReacting = true;
+
+                        //If we're following a path, stop.
+                        if (PathComponent.PathingEnabled)
+                            PathComponent.StopFollowing();
+
+                        //Basically, projectiles within our rectangle might hit us, so we'll just block.
+                        if (EntityGoingToMe(e))
+                            CombatComponent.BeginBlock();
+                        else
+                            if (CombatComponent.IsBlocking)
+                                CombatComponent.EndBlock();
+                    }
                 }
-            }
 
-            //If no entities were found, resume normal pathing and end blocking.
-            if (!foundEntity)
-            {
-                IsReacting = false;
-                IsFollowingEntity = false;
+                //If no entities were found, resume normal pathing and end blocking.
+                if (!foundEntity)
+                {
+                    IsReacting = false;
+                    IsFollowingEntity = false;
 
-                if (!PathComponent.IsPathing)
-                    PathComponent.StartFollowing();
+                    if (!PathComponent.PathingEnabled)
+                        PathComponent.StartFollowing();
 
-                if (CombatComponent.IsBlocking)
-                    CombatComponent.EndBlock();
+                    if (CombatComponent.IsBlocking)
+                        CombatComponent.EndBlock();
+                }
             }
         }
 
@@ -219,7 +220,6 @@ namespace Corvus.Components
                 if (entity.Location.Bottom > e.Location.Bottom && !MissingHorizontally)
                 {
                     MovementComponent.Jump(AllowMultiJump);
-                    LastJump = DateTime.Now;
                 }
                 if (MissingHorizontally)
                 {
@@ -277,6 +277,31 @@ namespace Corvus.Components
                 return true;
             else
                 return false;
+        }
+
+        /// <summary>
+        /// Stops AI and ends any current AI actions, such as walking or blocking.
+        /// </summary>
+        public void StopAI()
+        {
+            AIEnabled = false;
+
+            IsReacting = false;
+            IsFollowingEntity = false;
+
+            if (CombatComponent.IsBlocking)
+                CombatComponent.EndBlock();
+
+            if (MovementComponent.IsWalking)
+                MovementComponent.StopWalking();
+        }
+
+        /// <summary>
+        /// Resumes AI.
+        /// </summary>
+        public void StartAI()
+        {
+            AIEnabled = true;
         }
     }
 }
