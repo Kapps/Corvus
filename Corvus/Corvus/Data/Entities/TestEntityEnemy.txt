@@ -12,6 +12,8 @@ Attributes
 		Strength: 7
 		Dexterity: 5
 		BlockDamageReduction: 0.2
+		MeleeAttackRange: Vector(100, 100)
+		AttackSpeed: 300
 
 HealthyBig
 	HealthBarComponent
@@ -36,6 +38,7 @@ AIer
 
 Combator
 	CombatComponent
+		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Player)
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator
 	PhysicsComponent
@@ -57,4 +60,3 @@ TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attrib
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
-	EquipmentComponent

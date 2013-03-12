@@ -19,3 +19,4 @@ TestProjectile : ProjectileSprite, Mover, FighterProj
 	AttributesComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
+	ProjectileComponent

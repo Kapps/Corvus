@@ -63,6 +63,11 @@ namespace CorvEngine.Components {
 			return Scene.Entities.Where(c => c.Location.Intersects(Location));
 		}
 
+        private void DeleteSelfIfProjectile()
+        {
+
+        }
+
 		protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time) {
 			const float FRAME_SKIP_DURATION = 2000;
 			// Do physics in steps, never doing more than a certain amount of time per step.
