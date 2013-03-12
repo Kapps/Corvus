@@ -11,12 +11,10 @@ namespace CorvEngine.Components {
 	/// </summary>
 	/// <remarks>
 	/// All subclasses of Component should have a parameterless constructor for blueprints and serialization.
+	/// Each Component should be marked as Serializable.
 	/// </remarks>
+	[Serializable]
 	public class Component : SceneObject {
-
-		// TODO: Component, System, and Entity need a new class.
-		// At the very least it needs to have Update, Draw, Initialize, Dispose, and Scene.
-		// Plus, events for things like Disposed and Initialized.
 
 		/// <summary>
 		/// Creates a new Component with no Parent yet.

@@ -138,6 +138,7 @@ namespace CorvEngine.Components {
 			// Instead of using Tasks and waiting on them though, we're just keeping track of how many objects we've checked collision for.
 			// Since we know ahead of time how many there are to do it for, this provides us an efficient way to keep tarck.
 			// Also, using a ConcurrentStack because it's likely to be the most efficient since it can just use a CAS instead of a lock.
+			// Currently, this method creates a whole lot of garbage. Probably doesn't hurt too badly though.
 			ConcurrentStack<CollisionInfo> Collisions = new ConcurrentStack<CollisionInfo>();
 			var AllComponents = GetFilteredComponents<PhysicsComponent>().ToArray();
 			int TasksComplete = 0;
@@ -183,7 +184,7 @@ namespace CorvEngine.Components {
 		}
 
 		private float _Gravity = 4000;
-		private float _HorizontalDrag = 6000;
+		private float _HorizontalDrag = 12000;
 		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(50);
 		private HashSet<CollisionInfo> PreviousCollisions = new HashSet<CollisionInfo>();
 

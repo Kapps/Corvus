@@ -35,7 +35,8 @@ namespace CorvEngine.Scenes {
         /// <summary>
         /// Returns an array of all the properties defined within this level.
         /// </summary>
-        public MapProperty[] Properties { get; set; }
+        public LevelProperty[] Properties { get; set; }
+
 		/// <summary>
 		/// Loads the data for a level using the Tiled Map Xml format.
 		/// </summary>
@@ -50,7 +51,7 @@ namespace CorvEngine.Scenes {
 			List<TextureDetails> Textures = ParseTilesets(MapDetails);
 			List<Layer> Layers = ParseLayers(MapDetails, Textures);
 			List<Entity> Entities = ParseEntities(MapDetails);
-            List<MapProperty> Properties = ParseProperties(MapDetails);
+            List<LevelProperty> Properties = ParseProperties(MapDetails);
 
 			LevelData Result = new LevelData() {
 				DynamicObjects = Entities.ToArray(),
@@ -62,16 +63,16 @@ namespace CorvEngine.Scenes {
 			return Result;
 		}
 
-        private static List<MapProperty> ParseProperties(MapDetails Map)
+        private static List<LevelProperty> ParseProperties(MapDetails Map)
         {
-            List<MapProperty> Result = new List<MapProperty>();
+            List<LevelProperty> Result = new List<LevelProperty>();
             foreach (XmlNode propertiesNode in Map.MapElement.SelectNodes("properties"))
             {
                 foreach (XmlNode propertyNode in propertiesNode.SelectNodes("property"))
                 {
                     string name = propertyNode.Attributes["name"].Value;
                     string value = propertyNode.Attributes["value"].Value;
-                    Result.Add(new MapProperty(name, value));
+                    Result.Add(new LevelProperty(name, value));
                 }
             }
 

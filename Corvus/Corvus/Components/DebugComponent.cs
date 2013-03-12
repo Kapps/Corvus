@@ -54,6 +54,10 @@ namespace Corvus.Components {
 			CorvusGame.Instance.SpriteBatch.DrawString(Font, "FPS: " + CorvusGame.Instance.FPS, new Vector2(10, GraphicsDevice.Viewport.Height - 30), Color.Yellow);
 			if(CorvusGame.Instance.Players.Any())
 				CorvusGame.Instance.SpriteBatch.DrawString(Font, "Center: " + CorvusGame.Instance.Players.First().Character.Location.Center, new Vector2(10, GraphicsDevice.Viewport.Height - 50), Color.Yellow);
+			string GenText = "Garbage Collections Per Generation - ";
+			for(int i = 0; i <= GC.MaxGeneration; i++)
+				GenText += "{" + i + ", " + GC.CollectionCount(i) + "} ";
+			CorvusGame.Instance.SpriteBatch.DrawString(Font, GenText, new Vector2(10, GraphicsDevice.Viewport.Height - 70), Color.Yellow);
 			base.Draw(gameTime);
 		}
 

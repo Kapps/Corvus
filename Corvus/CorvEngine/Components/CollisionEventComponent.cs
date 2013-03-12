@@ -38,6 +38,8 @@ namespace CorvEngine.Components {
 	/// Provides the base class for a Component that handles collisions with a given Entity, restricted to a specific classification.
 	/// </summary>
 	public abstract class CollisionEventComponent : Component {
+		private DateTime _LastTriggered;
+		private TimeSpan _MinimumTriggerDelay;
 
 		/// <summary>
 		/// Gets or sets the classification that the Entity needs to have for the damage to occur.
@@ -56,6 +58,25 @@ namespace CorvEngine.Components {
 			set { _DisposeOnCollision = value; }
 		}
 
+		/// <summary>
+		/// Gets or sets the minimum delay between triggers of this component.
+		/// That is, this component will not be triggered more often than this value.
+		/// This property is ignored when DisposeOnCollision is true.
+		/// The default value is zero, or no delay.
+		/// Note that this applies to all components triggering this one, not on a per-component basis.
+		/// </summary>
+		public TimeSpan MinimumTriggerDelay {
+			get { return _MinimumTriggerDelay; }
+			set { _MinimumTriggerDelay = value; }
+		}
+
+		/// <summary>
+		/// Gets the time that this component was last triggered, or null if it has not been triggered yet.
+		/// </summary>
+		public DateTime? LastTriggered {
+			get { return _LastTriggered; }
+		}
+
 		protected override void OnInitialize() {
 			base.OnInitialize();
 			var Physics = GetDependency<PhysicsComponent>();
@@ -69,16 +90,23 @@ namespace CorvEngine.Components {
 		private void CollisionDetected(PhysicsComponent Component, PhysicsComponent Other, bool TriggerRemaining) {
 			if(this.IsDisposed) // Prevent firing multiple times.
 				return;
+			if(this.LastTriggered.HasValue && (DateTime.Now - this.LastTriggered.Value) < MinimumTriggerDelay)
+				return; // Limit to MinimumTriggerDelay since the last event.
 			var Classification = Other.Parent.GetComponent<ClassificationComponent>();
 			if(_Classification != EntityClassification.Any && (Classification == null || (Classification.Classification & this.Classification) == 0))
 				return;
 			bool Valid = OnCollision(Other.Parent, Classification == null ? EntityClassification.Unknown : Classification.Classification);
-			if(Valid && DisposeOnCollision) {
-				this.Dispose();
-				if(TriggerRemaining) {
-					foreach(var OtherEvent in Parent.Components.Select(c => c as CollisionEventComponent).Where(c => c != null && c != this).ToArray())
-						OtherEvent.CollisionDetected(Component, Other, false);
-					Parent.Dispose();
+			if(Valid) {
+				this._LastTriggered = DateTime.Now;
+				if(DisposeOnCollision) {
+					this.Dispose();
+					if(TriggerRemaining) {
+						// TODO: This should only trigger things not already triggered for this collision.
+						// (Aka, DisposeOnCollision is false and already triggered before this one).
+						foreach(var OtherEvent in Parent.Components.Select(c => c as CollisionEventComponent).Where(c => c != null && c != this).ToArray())
+							OtherEvent.CollisionDetected(Component, Other, false);
+						Parent.Dispose();
+					}
 				}
 			}
 		}

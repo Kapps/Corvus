@@ -50,7 +50,7 @@
    </properties>
   </object>
   <object name="Jumper" type="Path" x="151" y="849">
-   <polyline points="0,0 87,55 216,-35 339,60 439,-35 539,58 723,-35 853,-9 985,-68 1109,-35 1273,-69 1368,-5 1499,27 1456,25 1328,-5 1254,-68 1090,-30 960,-65 820,-1 719,-35 535,61 420,-35 311,55 181,-41 56,53 -44,0"/>
+   <polyline points="0,0 87,55 216,-35 339,60 439,-35 539,58 723,-35 853,-9 985,-68 1109,-35 1273,-69 1368,-5 1499,27 1456,25 1328,-5 1254,-68 1090,-30 960,-65 820,-1 719,-35 535,61 420,-35 311,55 191,-31 56,53 -44,0"/>
   </object>
   <object name="Climber" type="TestEntityEnemy" x="933" y="1308" width="29" height="31">
    <properties>
@@ -58,15 +58,16 @@
    </properties>
   </object>
   <object name="Climber" type="Path" x="943" y="1323">
-   <polyline points="5,11 325,12 259,13 182,-84 114,-180 287,-212 804,-213 860,-304 1049,-405 1133,-439 944,-504 780,-213 279,-216 192,-83 296,13 727,47 884,77 723,49 4,9"/>
+   <polyline points="5,11 325,12 259,13 179,-80 114,-180 287,-212 804,-213 860,-304 1049,-405 1133,-439 944,-504 780,-213 279,-216 192,-83 296,13 727,47 884,77 723,49 4,9"/>
   </object>
   <object name="Climber2" type="TestEntityEnemy" x="918" y="1310" width="29" height="31">
    <properties>
     <property name="PathComponent.ReverseOnCompletion" value="true"/>
+    <property name="Sprite Component.Color" value="Color(128, 128, 255, 255)"/>
    </properties>
   </object>
   <object name="Climber2" type="Path" x="972" y="1319">
-   <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 912,-513"/>
+   <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 915,-501"/>
   </object>
   <object name="Jumper2" type="TestEntityEnemy" x="1627" y="849" width="32" height="32">
    <properties>
@@ -75,6 +76,16 @@
   </object>
   <object name="Jumper2" type="Path" x="1641" y="885">
    <polyline points="0,0 -1535,-29"/>
+  </object>
+  <object name="Climber3" type="TestEntityEnemy" x="1837" y="1373" width="29" height="31">
+   <properties>
+     <property name="PathComponent.AllowMultiJump" value="true" />
+    <property name="PathComponent.ReverseOnCompletion" value="true"/>
+    <property name="Sprite Component.Color" value="Color(128, 125, 128, 255)"/>
+   </properties>
+  </object>
+  <object name="Climber3" type="Path" x="1814" y="1379">
+   <polyline points="0,0 -697,-60 -693,-141 -758,-239 106,-267 12,-363 172,-469 271,-491 66,-564 -200,-494 -314,-531 -564,-564 -823,-528 -942,-567 -1108,-469 -1338,-467 -1597,-467 -1703,-532"/>
   </object>
  </objectgroup>
  <layer name="Solid Objects" width="80" height="50">

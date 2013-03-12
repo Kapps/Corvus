@@ -15,7 +15,7 @@ namespace CorvEngine.Components {
 		private SpriteComponent SpriteComponent;
 		private float _WalkSpeed = 500;
 		private float _JumpSpeed = 950;
-		private float _WalkAcceleration = 9000;
+		private float _WalkAcceleration = 15000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
 

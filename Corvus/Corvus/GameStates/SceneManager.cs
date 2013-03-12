@@ -86,7 +86,7 @@ namespace Corvus.GameStates {
 
             //Plays the song. Not sure if it should be here.
 			if(Scene.Properties.Any()) {
-				foreach(MapProperty p in Scene.Properties) {
+				foreach(LevelProperty p in Scene.Properties) {
 					if(p.Name.Equals("Audio", StringComparison.InvariantCultureIgnoreCase)) {
 						var songProperties = p.Value.Split(',');
 						if(songProperties.Length >= 1 && string.IsNullOrEmpty(songProperties[0]))

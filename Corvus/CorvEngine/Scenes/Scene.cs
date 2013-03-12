@@ -53,7 +53,7 @@ namespace CorvEngine.Scenes {
         /// <summary>
         /// Gets the properties within this Scene.
         /// </summary>
-		public IEnumerable<MapProperty> Properties {
+		public IEnumerable<LevelProperty> Properties {
 			get { return _Properties; }
 		}
 
@@ -222,7 +222,7 @@ namespace CorvEngine.Scenes {
 			_Systems.Remove((SceneSystem)obj);
 		}
 
-        private MapProperty[] _Properties;
+        private LevelProperty[] _Properties;
 		private Layer[] _Layers;
 		private Vector2 _MapSize;
 		private Vector2 _TileSize;

@@ -114,7 +114,7 @@ namespace CorvEngine.Components {
 					AdvanceNode();
 				} else {
 					bool MissingHorizontally = CurrentNode.X > entity.Location.Right || CurrentNode.X < entity.Location.Left;
-					if(entity.Location.Top > CurrentNode.Y && /*(DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay &&*/ !MissingHorizontally) {
+					if(entity.Location.Top > CurrentNode.Y && (DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay && !MissingHorizontally) {
 						mc.Jump(AllowMultiJump);
 						_LastJump = DateTime.Now;
 					}
