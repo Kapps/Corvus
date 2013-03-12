@@ -8,6 +8,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a collection of Components, accessible by name or type.
 	/// </summary>
+	[Serializable]
 	public class ComponentCollection : KeyedCollection<string, Component> {
 
 		/// <summary>

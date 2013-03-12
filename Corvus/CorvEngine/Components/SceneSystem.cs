@@ -12,6 +12,7 @@ namespace CorvEngine.Components {
 	/// A system applies operations to Entities within the Scene, such as providing physics logic.
 	/// While a Component can apply updates to itself, or render itself, it's recommended to use a System when dealing with multiple Entities.
 	/// </summary>
+	[Serializable]
 	public abstract class SceneSystem : SceneObject {		
 
 		/// <summary>

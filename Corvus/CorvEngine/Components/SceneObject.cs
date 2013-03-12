@@ -10,6 +10,10 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides the base class for an object that is part of a Scene, such as a System, Component, or Entity.
 	/// </summary>
+	/// <remarks>
+	/// Any class inheriting SceneObject should be marked Serializable, and have a parameterless (possibly private) constructor.
+	/// </remarks>
+	[Serializable]
 	public abstract class SceneObject {
 
 		// TODO: Still more we can move here.

@@ -175,7 +175,6 @@
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Components\EntityNode.cs" />
     <Compile Include="Scenes\Tile.cs" />
-    <Compile Include="Scenes\TmxLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audio\Microsoft.Xna.Framework.Xact.dll" />

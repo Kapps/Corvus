@@ -47,6 +47,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a component that classifies an Entity, indicating if it's a Player, Enemy, Powerup, etc.
 	/// </summary>
+	[Serializable]
 	public class ClassificationComponent : Component {
 		/// <summary>
 		/// Gets or sets the classification of this Entity.

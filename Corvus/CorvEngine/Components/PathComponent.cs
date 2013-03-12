@@ -9,6 +9,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a component that causes an Entity to follow a set path repeatedly.
 	/// </summary>
+	[Serializable]
 	public class PathComponent : Component {
 
 		// TODO: Important to figure out what to do when an Entity gets stuck. Reverse to start of path maybe? Cheat and fly?

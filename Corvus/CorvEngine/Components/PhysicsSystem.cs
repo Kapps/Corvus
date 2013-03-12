@@ -12,6 +12,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a System used to manage physics for Entities that have a PhysicsComponent.
 	/// </summary>
+	[Serializable]
 	public class PhysicsSystem : SceneSystem {
 
 		/// <summary>

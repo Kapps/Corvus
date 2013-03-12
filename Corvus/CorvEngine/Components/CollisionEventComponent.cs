@@ -37,6 +37,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides the base class for a Component that handles collisions with a given Entity, restricted to a specific classification.
 	/// </summary>
+	[Serializable]
 	public abstract class CollisionEventComponent : Component {
 		private DateTime _LastTriggered;
 		private TimeSpan _MinimumTriggerDelay;

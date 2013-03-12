@@ -15,10 +15,6 @@ namespace CorvEngine.Scenes {
 	public class Scene : GameStateComponent, IDisposable {
 		// TODO: Should this really be a GameStateComponent?
 
-		// TODO: Eventually, this should be changed to use a QuadTree or Grid, but for now we don't need the performance.
-		// Support does exist for plugging one in efficiently using an EntityNode reference though.
-		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
-
 		/// <summary>
 		/// Gets an event called when this Scene is disposed.
 		/// </summary>
@@ -256,5 +252,8 @@ namespace CorvEngine.Scenes {
 		private List<Components.SceneSystem> _Systems = new List<Components.SceneSystem>();
 		private bool _IsDisposed;
 		private bool _IsInitialized;
+		// TODO: Eventually, this should be changed to use a QuadTree or Grid, but for now we don't need the performance.
+		// Support does exist for plugging one in efficiently using an EntityNode reference though.
+		private LinkedList<Entity> _Entities = new LinkedList<Entity>();
 	}	
 }

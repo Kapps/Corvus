@@ -10,8 +10,7 @@ namespace CorvEngine.Components {
 	/// Provides information about a single Component used in the Game.
 	/// </summary>
 	/// <remarks>
-	/// All subclasses of Component should have a parameterless constructor for blueprints and serialization.
-	/// Each Component should be marked as Serializable.
+	/// All subclasses of Component should have a parameterless constructor for blueprints and serialization, but it can be private.
 	/// </remarks>
 	[Serializable]
 	public class Component : SceneObject {

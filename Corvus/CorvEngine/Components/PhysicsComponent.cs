@@ -15,6 +15,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a component used to give components physics information and cause the PhysicsSystem to use it.
 	/// </summary>
+	[Serializable]
 	public class PhysicsComponent : Component {
 
 		/// <summary>

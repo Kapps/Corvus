@@ -20,6 +20,7 @@ namespace CorvEngine.Components {
 	/// Represents a single entity in the game.
 	/// This class only provides a basic position within the world, leaving the remainder of game logic to be provided by Components.
 	/// </summary>
+	[Serializable]
 	public class Entity : SceneObject {
 		/// <summary>
 		/// Gets an event called when the position of this entity changes.

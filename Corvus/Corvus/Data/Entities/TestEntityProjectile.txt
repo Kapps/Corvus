@@ -4,6 +4,8 @@
 
 Mover
 	MovementComponent
+		MaxWalkingSpeed: 50
+		WalkAcceleration: 100
 
 FighterProj
 	CombatComponent

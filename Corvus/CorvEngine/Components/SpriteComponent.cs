@@ -9,6 +9,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a Component used to attach a Sprite to an Entity.
 	/// </summary>
+	[Serializable]
 	public class SpriteComponent : Component {
 		private Sprite _Sprite;
 		private Color _Color = Color.White;

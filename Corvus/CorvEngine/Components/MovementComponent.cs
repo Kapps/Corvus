@@ -10,6 +10,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Implements a Component used to provide movement and jumping capabilites to an Entity.
 	/// </summary>
+	[Serializable]
 	public class MovementComponent : Component {
 		private PhysicsComponent PhysicsComponent;
 		private SpriteComponent SpriteComponent;

@@ -8,6 +8,7 @@ namespace CorvEngine.Components {
 	/// <summary>
 	/// Provides a reference to a node that contains an entity in order to allow for O(1) lookups, movements, and removals.
 	/// </summary>
+	[Serializable]
 	internal class EntityNode {
 		/// <summary>
 		/// Gets the Entity that this node points to.
