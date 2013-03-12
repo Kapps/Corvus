@@ -2,30 +2,31 @@
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/TestWeapon3)
 
-WeaponDataer
-	WeaponDataComponent
+WeaponProperties
+	WeaponPropertiesComponent 
 		WeaponName: Bow
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Bow)
 		IsRanged: true
-
-Attributes
+		AppliesEffect: false
+		ProjectileName: TestProjectile
+		ProjectileVelocity: Vector(600, 50)
 	AttributesComponent
-		StrModifier: 1.0
-		DexModifier: 1.0
+		StrModifier: 0.6
+		DexModifier: 0.8
 		IntModifier: 1.0
-		CritChance: 0
-		CritDamage: 0
-		MeleeAttackRange: Vector(100, 100)
-		AttackSpeed: 300
-		BlockDamageReduction: 0.25
-
+		CritChance: 0.15
+		CritDamage: 1.5
+		MeleeAttackRange: Vector(50, 50)
+		AttackSpeed: 100
+		BlockDamageReduction: 0.85
+	StatusEffectAttributesComponent
+	
 Motion
 	PhysicsComponent
 
-Bow: WeaponSprite, Attributes, Motion, WeaponDataer
-	PhysicsComponent
+Bow: WeaponSprite, WeaponProperties, Motion
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
 	CollisionEquipmentComponent
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
-	ClassificationComponent
-		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)

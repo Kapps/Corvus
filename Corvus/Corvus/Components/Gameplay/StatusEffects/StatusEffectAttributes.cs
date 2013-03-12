@@ -5,10 +5,13 @@ using System.Text;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
+    /// <summary>
+    /// A class that contains the properties for a status effect.
+    /// </summary>
     public class StatusEffectAttributes
     {
         /// <summary>
-        /// Gets or sets the name of this statuse effect.
+        /// Gets or sets the name of this status effect.
         /// </summary>
         public string EffectType
         {

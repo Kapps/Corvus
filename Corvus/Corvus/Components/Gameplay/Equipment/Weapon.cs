@@ -16,22 +16,28 @@ namespace Corvus.Components.Gameplay.Equipment
         /// <summary>
         /// Gets or sets the weapon data. Should be the same name as the file.
         /// </summary>
-        public WeaponData WeaponData { get; set; }
+        public WeaponProperties WeaponData { get; set; }
 
         /// <summary>
-        /// The attributes from this weapon.
+        /// Gets or sets the attributes for this weapon.
         /// </summary>
         public Attributes Attributes { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the status effect for this weapon, if there is one.
+        /// </summary>
+        public StatusEffectAttributes Effect { get; set; }
+
         /// <summary>
         /// Creates a new weapon with specified name and attributes.
         /// </summary>
         /// <param name="weaponType"></param>
         /// <param name="attri"></param>
-        public Weapon(WeaponData data, Attributes attri)
+        public Weapon(WeaponProperties data, Attributes attri, StatusEffectAttributes effect)
         {
             WeaponData = data;
             Attributes = attri;
+            Effect = effect;
         }
     }
 }

@@ -33,9 +33,12 @@ namespace Corvus.Components {
 		private bool _IsDead = false;
 
 		/// <summary>
-		/// Gets this components Attributes.
+		/// Gets or sets this components Attributes.
 		/// </summary>
-		public Attributes Attributes { get { return _Attributes; } }
+		public Attributes Attributes { 
+            get { return _Attributes; }
+            set { _Attributes = value; }
+        }
 
 		/// <summary>
 		/// Gets the overall attack power.
