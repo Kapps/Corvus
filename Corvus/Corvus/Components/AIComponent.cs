@@ -131,7 +131,8 @@ namespace Corvus.Components
                     if (!coc.IsAttacking && CombatComponent.IsBlocking)
                         CombatComponent.EndBlock();
 
-                    CombatComponent.AttackAI();
+                    if (!MovementComponent.IsWalking)
+                        CombatComponent.AttackAI();
                 }
                 else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                 {
@@ -234,7 +235,8 @@ namespace Corvus.Components
                 }
                 else
                 {
-                    mc.StopWalking(); //this is pointless.
+                    if (mc.IsWalking)
+                        mc.StopWalking(); //this is pointless.
                 }
             }
         }
