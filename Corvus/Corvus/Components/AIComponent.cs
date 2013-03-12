@@ -148,7 +148,8 @@ namespace Corvus.Components
                     if (EntityGoingToMe(e))
                         CombatComponent.BeginBlock();
                     else
-                        CombatComponent.EndBlock();
+                        if (CombatComponent.IsBlocking)
+                            CombatComponent.EndBlock();
                 }
             }
 
