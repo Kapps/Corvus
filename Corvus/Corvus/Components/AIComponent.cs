@@ -92,6 +92,8 @@ namespace Corvus.Components
         private MovementComponent MovementComponent;
         private PathComponent PathComponent;
         private CombatComponent CombatComponent;
+        private PhysicsComponent PhysicsComponent;
+        private AttributesComponent AttributesComponent;
 
         protected override void OnUpdate(GameTime Time)
         {
@@ -108,7 +110,6 @@ namespace Corvus.Components
                 var clc = e.GetComponent<ClassificationComponent>();
                 var coc = e.GetComponent<CombatComponent>();
                 
-
                 if (clc.Classification == EntityClassification.Player) //If Player
                 {
                     foundEntity = true;
@@ -120,15 +121,15 @@ namespace Corvus.Components
                     if (PathComponent.IsPathing)
                         PathComponent.StopFollowing();
 
-                    //Follow the player's entity.
+                    //Follow the entity.
                     FollowEntity(e, Time); 
 
-                    //If the player is attacking and is within attacking range, block.
-                    if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
+                    //If the entity is attacking and is within attacking range, and is facing us, block.
+                    if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e))
                         CombatComponent.BeginBlock();
 
-                    //If the player isn't attacking, stop blocking.
-                    if (!coc.IsAttacking && CombatComponent.IsBlocking)
+                    //If the entity isn't attacking, stop blocking.
+                    if (!coc.IsAttackingMelee && CombatComponent.IsBlocking)
                         CombatComponent.EndBlock();
 
                     if (!MovementComponent.IsWalking)
@@ -176,6 +177,8 @@ namespace Corvus.Components
             MovementComponent = this.GetDependency<MovementComponent>();
             CombatComponent = this.GetDependency<CombatComponent>();
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
+            PhysicsComponent = this.GetDependency<PhysicsComponent>();
+            AttributesComponent = this.GetDependency<AttributesComponent>();
         }
 
         /// <summary>
@@ -201,42 +204,38 @@ namespace Corvus.Components
         private void FollowEntity(Entity e, GameTime Time)
         {
             var entity = this.Parent;
-            var mc = entity.GetComponent<MovementComponent>();
-            var pc = entity.GetComponent<PhysicsComponent>();
-            var ps = Scene.GetSystem<PhysicsSystem>();
-            var cc = entity.GetComponent<CombatComponent>();
             var AllowMultiJump = false;
             Random r = new Random();
-            int followDistance = r.Next(40, 60);
+            float attackRange = AttributesComponent.MeleeAttackRange.X;
 
             if (entity.Location.Contains((int)e.Location.Center.X, (int)e.Location.Center.Y))
             {
-                if (!pc.IsGrounded)
+                if (!PhysicsComponent.IsGrounded)
                     return; // Do nothing, just wait for us to fall on our location.
             }
             else
             {
-                bool MissingHorizontally = e.Location.Center.X - followDistance > entity.Location.Right || e.Location.Center.X + followDistance < entity.Location.Left;
+                bool MissingHorizontally = e.Location.Center.X - attackRange > entity.Location.Right || e.Location.Center.X + attackRange < entity.Location.Left;
                 if (entity.Location.Bottom > e.Location.Bottom && !MissingHorizontally)
                 {
-                    mc.Jump(AllowMultiJump);
+                    MovementComponent.Jump(AllowMultiJump);
                     LastJump = DateTime.Now;
                 }
                 if (MissingHorizontally)
                 {
-                    if (entity.Location.Center.X > e.Location.Center.X + followDistance)
+                    if (entity.Location.Center.X > e.Location.Center.X + attackRange)
                     {
-                        mc.BeginWalking(Direction.Left);
+                        MovementComponent.BeginWalking(Direction.Left);
                     }
-                    else if (entity.Location.Center.X < e.Location.Center.X - followDistance)
+                    else if (entity.Location.Center.X < e.Location.Center.X - attackRange)
                     {
-                        mc.BeginWalking(Direction.Right);
+                        MovementComponent.BeginWalking(Direction.Right);
                     }
                 }
                 else
                 {
-                    if (mc.IsWalking)
-                        mc.StopWalking(); //this is pointless.
+                    if (MovementComponent.IsWalking)
+                        MovementComponent.StopWalking(); //this is pointless.
                 }
             }
         }
@@ -273,7 +272,8 @@ namespace Corvus.Components
         {
             var atc = e.GetComponent<AttributesComponent>();
 
-            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) < atc.MeleeAttackRange.X)
+            //TODO: Figure out why the attackrange isn't quite correct... I mean, this'll (+10) likely fix it in almost every situation, so not priority, but still.
+            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) <= atc.MeleeAttackRange.X + 10)
                 return true;
             else
                 return false;

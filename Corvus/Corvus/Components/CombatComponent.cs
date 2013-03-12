@@ -23,12 +23,12 @@ namespace Corvus.Components {
         }
 
         /// <summary>
-        /// Gets or sets a value indicating that this entity is attacking.
+        /// Gets or sets a value indicating that this entity is attacking using melee.
         /// </summary>
-        public bool IsAttacking
+        public bool IsAttackingMelee
         {
-            get { return _IsAttacking; }
-            private set { _IsAttacking = value; }
+            get { return _IsAttackingMelee; }
+            private set { _IsAttackingMelee = value; }
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Corvus.Components {
         private GameTime GameTime = new GameTime();
         private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private EntityClassification _AttackableEntities;
-        private bool _IsAttacking = false;
+        private bool _IsAttackingMelee = false;
         private bool _IsBlocking = false;
 
 
@@ -64,9 +64,9 @@ namespace Corvus.Components {
         public void AttackAI()
         {
             //This guy is attacking, don't do anything.
-            if (_IsAttacking)
+            if (_IsAttackingMelee)
                 return;
-            _IsAttacking = true;
+            _IsAttackingMelee = true;
             // TODO: Maybe the attack should start at a specific frame.
             // TODO: Limit number of attacks they can do.
             // TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
@@ -114,9 +114,9 @@ namespace Corvus.Components {
         /// </remarks>
 		private void AttackMelee() {
             //This guy is attacking, don't do anything.
-            if (_IsAttacking)
+            if (_IsAttackingMelee)
                 return;
-            _IsAttacking = true;
+            _IsAttackingMelee = true;
             // TODO: Maybe the attack should start at a specific frame.
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
@@ -225,12 +225,12 @@ namespace Corvus.Components {
             base.OnUpdate(Time);
             GameTime = Time;
             //Seems messy doing it this way.
-            if (_IsAttacking)
+            if (_IsAttackingMelee)
             {
                 _Timer += Time.ElapsedGameTime;
                 if (_Timer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
                 {
-                    _IsAttacking = false;
+                    _IsAttackingMelee = false;
                     _Timer = TimeSpan.Zero;
                 }
             }
