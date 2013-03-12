@@ -226,6 +226,24 @@ namespace Corvus.Components {
 			EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
 		}
 
+        /// <summary>
+        /// Gets or sets the block chance, for AI.
+        /// </summary>
+        public float BlockChance
+        {
+            get { return Attributes.BlockChance; }
+            set { Attributes.BlockChance = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the block speed, for AI.
+        /// </summary>
+        public float BlockSpeed
+        {
+            get { return Attributes.BlockSpeed; }
+            set { Attributes.BlockSpeed = value; }
+        }
+
 		/// <summary>
 		/// Calculates the combined value of two attributes. (EX: this entitie's attributes plus it's equipment bonuses)
 		/// </summary>

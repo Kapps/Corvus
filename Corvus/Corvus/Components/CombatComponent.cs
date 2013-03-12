@@ -50,11 +50,12 @@ namespace Corvus.Components {
         }
 
         private GameTime GameTime = new GameTime();
-        private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
+        private TimeSpan _AttackTimer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private EntityClassification _AttackableEntities;
         private bool _IsAttackingMelee = false;
         private bool _IsAttackingRanged = false;
         private bool _IsBlocking = false;
+        private DateTime _LastBlock;
 
         /// <summary>
         /// Attack depending on whether the current weapon is melee or ranged.
@@ -172,15 +173,20 @@ namespace Corvus.Components {
 
         public void BeginBlock()
         {
-            //Stop walking when we start to block.
-            MovementComponent.StopWalking();
+            if ((DateTime.Now - _LastBlock).TotalMilliseconds > AttributesComponent.BlockSpeed)
+            {
+                _LastBlock = DateTime.Now;
 
-            IsBlocking = true;
-            
-            //TODO: Get a proper animation.
-            var Animation = SpriteComponent.Sprite.Animations["Block" + MovementComponent.CurrentDirection.ToString()];
-            if (SpriteComponent.Sprite.ActiveAnimation != Animation)
-                SpriteComponent.Sprite.PlayAnimation(Animation.Name);
+                //Stop walking when we start to block.
+                MovementComponent.StopWalking();
+
+                IsBlocking = true;
+
+                //TODO: Get a proper animation.
+                var Animation = SpriteComponent.Sprite.Animations["Block" + MovementComponent.CurrentDirection.ToString()];
+                if (SpriteComponent.Sprite.ActiveAnimation != Animation)
+                    SpriteComponent.Sprite.PlayAnimation(Animation.Name);
+            }
         }
 
         public void EndBlock()
@@ -208,12 +214,13 @@ namespace Corvus.Components {
             //TODO: Potential for bugs when we are combining both booleans.
             if (IsAttackingMelee || IsAttackingRanged)
             {
-                _Timer += Time.ElapsedGameTime;
-                if (_Timer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
+                _AttackTimer += Time.ElapsedGameTime;
+                if (_AttackTimer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
                 {
                     IsAttackingMelee = false;
                     IsAttackingRanged = false;
-                    _Timer = TimeSpan.Zero;
+                    _AttackTimer = TimeSpan.Zero;
+                    
                 }
             }
 

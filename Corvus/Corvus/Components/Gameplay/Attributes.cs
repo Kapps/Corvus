@@ -130,6 +130,18 @@ namespace Corvus.Components.Gameplay
             set { _BlockDamageReduction = MathHelper.Clamp(value, 0f, 1f); }
         }
 
+        public float BlockChance
+        {
+            get { return _BlockChance; }
+            set { _BlockChance = Math.Max(value, 0); }
+        }
+
+        public float BlockSpeed
+        {
+            get { return _BlockSpeed; }
+            set { _BlockSpeed = Math.Max(value, 0); }
+        }
+
         private Vector2 _MeleeAttackRange = new Vector2();
         private float _AttackSpeed = 0f;
         private float _CurrentHealth = 100f;
@@ -143,6 +155,7 @@ namespace Corvus.Components.Gameplay
         private float _CritChance = 0f;
         private float _CritDamage = 0f;
         private float _BlockDamageReduction = 1f;
-        
+        private float _BlockChance = 1f;
+        private float _BlockSpeed = 0f;
     }
 }
