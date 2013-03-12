@@ -60,6 +60,7 @@ namespace Corvus.GameStates {
 				Scene.Disposed += Scene_Disposed;
 				ActiveScenes.Add(Scene);
 				Scene.AddSystem(new PhysicsSystem());
+				Scene.Initialize();
 				this.AddComponent(Scene);
 			}
 			var OldScene = _ActiveScene;

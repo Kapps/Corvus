@@ -94,9 +94,18 @@ namespace CorvEngine.Scenes {
 
 		/// <summary>
 		/// Indicates if this Scene has been disposed of.
+		/// Unlike Entities and Components, a Scene may only be disposed once.
 		/// </summary>
 		public bool IsDisposed {
 			get { return _IsDisposed; }
+		}
+
+		/// <summary>
+		/// Indicates if this Scene has been initialized.
+		/// Unlike Entities and Components, a Scene may only be initialized once.
+		/// </summary>
+		public bool IsInitialized {
+			get { return _IsInitialized; }
 		}
 
 		// TODO: Merge these into AddObject and RemoveObject.
@@ -116,7 +125,8 @@ namespace CorvEngine.Scenes {
 				throw new ArgumentException("This Entity is already part of a different scene.");
 			var Node = this._Entities.AddLast(Entity);
 			Entity.NodeReference = new EntityNode(Entity, Node);
-			Entity.Initialize(this);
+			if(IsInitialized)
+				Entity.Initialize(this);
 			if(this.EntityAdded != null)
 				this.EntityAdded(Entity);
 			Entity.Disposed += Entity_Disposed;
@@ -126,7 +136,8 @@ namespace CorvEngine.Scenes {
 		/// Adds the specified System to be part of this Scene.
 		/// </summary>
 		public void AddSystem(Components.SceneSystem System) {
-			System.Initialize(this);
+			if(IsInitialized)
+				System.Initialize(this);
 			System.Disposed += System_Disposed;
 			_Systems.Add(System);
 		}
@@ -152,10 +163,26 @@ namespace CorvEngine.Scenes {
 		}
 
 		/// <summary>
+		/// Initializes the Scene and all Systems and Entities within it.
+		/// This may only ever be called once on a Scene.
+		/// </summary>
+		public void Initialize() {
+			if(_IsInitialized)
+				throw new InvalidOperationException("Unable to initialize a Scene multiple times.");
+			_IsInitialized = true;
+			foreach(var System in _Systems)
+				System.Initialize(this);
+			foreach(var Entity in _Entities)
+				Entity.Initialize(this);
+		}
+
+		/// <summary>
 		/// Disposes of this Scene, removing all remaining Entities and Systems.
 		/// Unlike SceneObjects, a Scene may not be initialized after being disposed of.
 		/// </summary>
 		public void Dispose() {
+			if(_IsDisposed)
+				throw new InvalidOperationException("Unable to dispose a Scene multiple times.");
 			_IsDisposed = true;
 			var DupedEntities = _Entities.ToArray();
 			foreach(var Entity in DupedEntities)
@@ -228,5 +255,6 @@ namespace CorvEngine.Scenes {
 		private Vector2 _TileSize;
 		private List<Components.SceneSystem> _Systems = new List<Components.SceneSystem>();
 		private bool _IsDisposed;
+		private bool _IsInitialized;
 	}	
 }
