@@ -59,6 +59,14 @@ namespace Corvus.Components {
         }
 
         /// <summary>
+        /// An attack meant to be used for AI, as they lack equipment components.
+        /// </summary>
+        public void AttackAI()
+        {
+
+        }
+
+        /// <summary>
         /// Attacks an enemy with a close range attack.
         /// </summary>
         ///<remarks>

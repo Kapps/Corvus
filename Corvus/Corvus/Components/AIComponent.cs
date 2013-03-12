@@ -147,6 +147,9 @@ namespace Corvus.Components
                     else
                         CombatComponent.EndBlock();
                 }
+
+                //For now, just a crapload of attacks when they see player.
+                CombatComponent.AttackAI();
             }
 
             //If no entities were found, resume normal pathing and end blocking.
