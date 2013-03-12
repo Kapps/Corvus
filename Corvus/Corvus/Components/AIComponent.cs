@@ -64,6 +64,12 @@ namespace Corvus.Components
             set { _LastJump = value; }
         }
 
+        public DateTime LastAttack
+        {
+            get { return _LastAttack; }
+            set { _LastAttack = value; }
+        }
+
         /// <summary>
         /// Gets or sets a value indicating whether to allow this entity to jump multiple times.
         /// </summary>
@@ -80,6 +86,7 @@ namespace Corvus.Components
         private DateTime _LastJump = DateTime.Now;
         private bool _AllowMultiJump = true;
         private bool _IsFollowingEntity = false;
+        private DateTime _LastAttack;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -89,12 +96,6 @@ namespace Corvus.Components
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
-
-            //TODO: Remove this later. I think there is a bug where the entities placed using Tiled are initialized BEFORE
-            //      the Scene itself. Basically, OnInitialize() is called on the entity before any SceneSystems are added.
-            PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
-            if (PhysicsSystem == null)
-                return;
 
             bool foundEntity = false;
             bool foundPlayer = false;
@@ -129,6 +130,8 @@ namespace Corvus.Components
                     //If the player isn't attacking, stop blocking.
                     if (!coc.IsAttacking && CombatComponent.IsBlocking)
                         CombatComponent.EndBlock();
+
+                    CombatComponent.AttackAI();
                 }
                 else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                 {
@@ -147,9 +150,6 @@ namespace Corvus.Components
                     else
                         CombatComponent.EndBlock();
                 }
-
-                //For now, just a crapload of attacks when they see player.
-                CombatComponent.AttackAI();
             }
 
             //If no entities were found, resume normal pathing and end blocking.
@@ -173,8 +173,7 @@ namespace Corvus.Components
             PathComponent = this.GetDependency<PathComponent>();
             MovementComponent = this.GetDependency<MovementComponent>();
             CombatComponent = this.GetDependency<CombatComponent>();
-            //TODO: Initialize this here. 
-            //PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
+            PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
         }
 
         /// <summary>
@@ -234,7 +233,6 @@ namespace Corvus.Components
                 }
                 else
                 {
-                    //cc.AttackMelee();
                     mc.StopWalking(); //this is pointless.
                 }
             }
