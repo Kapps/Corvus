@@ -224,10 +224,16 @@ namespace CorvEngine.Scenes {
 		}
 
 		protected override void OnUpdate(GameTime Time) {
-			foreach(var Entity in _Entities)
+			// Create a copy of our systems and entities so we can update without worry of disposed ones.
+			// We can of course easily optimize this if need be.
+			var EntitiesCopy = new Entity[_Entities.Count];
+			var SystemsCopy = new SceneSystem[_Systems.Count];
+			_Entities.CopyTo(EntitiesCopy, 0);
+			_Systems.CopyTo(SystemsCopy, 0);
+			foreach(var Entity in EntitiesCopy)
 				if(!Entity.IsDisposed)
 					Entity.Update(Time);
-			foreach(var System in _Systems)
+			foreach(var System in SystemsCopy)
 				if(!System.IsDisposed)
 					System.Update(Time);
 		}
