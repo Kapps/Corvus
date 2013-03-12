@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Corvus.Components.Gameplay;
 using Corvus.Components.Gameplay.StatusEffects;
 
 namespace Corvus.Components
@@ -20,39 +22,29 @@ namespace Corvus.Components
         private StatusEffectCollection _StatusEffects = new StatusEffectCollection();
 
         /// <summary>
-        /// A plays a status effect.
+        /// Applies a status effect to this entity
         /// </summary>
-        /// <param name="type">The type of status effect.</param>
-        /// <param name="baseEffect">The base effect of this effect.</param>
-        /// <param name="intensity">The intensity of the effect.</param>
-        /// <param name="duration">How long the effect should last.</param>
-        public void ApplyStatusEffect(Type type, float baseEffect, float intensity, float duration)
+        public void ApplyStatusEffect(StatusEffectAttributes attributes)
         {
-            var statusEffect = (StatusEffect)Activator.CreateInstance(type);
-            statusEffect.BaseEffect = baseEffect;
-            statusEffect.Intensity = intensity;
-            statusEffect.Duration = duration;
-            statusEffect.EntitySize = this.Parent.Size;
+            var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", attributes.EffectType), new Type[] { typeof(Entity), typeof(StatusEffectAttributes) });
+            var statusEffect = constructor(this.Parent, attributes);
             _StatusEffects.Add(statusEffect);
         }
-
+        
         protected override void OnInitialize()
         {
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
-        }
-
+        } 
+        //TODO: Find a better way to draw the effects.
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
             if (_StatusEffects.Count == 0)
                 return;
-            var width = Parent.Size.X;
-            var position = Parent.Position + new Vector2(width / 2, 0);
-            var ToScreen = Camera.Active.ScreenToWorld(position);
             foreach (StatusEffect se in _StatusEffects.Reverse<StatusEffect>())
             {
-                se.Update(Time, AttributesComponent, ToScreen);
+                se.Update(Time);
                 if (se.IsFinished)
                     _StatusEffects.Remove(se);
             }
@@ -61,11 +53,10 @@ namespace Corvus.Components
         protected override void OnDraw()
         {
             base.OnDraw();
-            if (_StatusEffects.Count == 0)
-                return;
             foreach (StatusEffect se in _StatusEffects)
                 se.Draw();
         }
+
     }
 
 }

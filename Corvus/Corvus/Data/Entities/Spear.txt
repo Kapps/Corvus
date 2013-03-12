@@ -1,0 +1,31 @@
+﻿WeaponSprite
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/TestWeapon1)
+
+WeaponDataer
+	WeaponDataComponent
+		WeaponName: Spear
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
+		IsRanged: false
+
+Attributes
+	AttributesComponent
+		StrModifier: 1.0
+		DexModifier: 1.0
+		IntModifier: 1.0
+		CritChance: 0
+		CritDamage: 0
+		MeleeAttackRange: Vector(100, 100)
+		AttackSpeed: 300
+		BlockDamageReduction: 0.25
+
+Motion
+	PhysicsComponent
+
+Spear: WeaponSprite, Attributes, Motion, WeaponDataer
+	PhysicsComponent
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)

@@ -18,6 +18,7 @@ namespace CorvEngine.Components {
 		private float _WalkAcceleration = 15000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
+        private bool _IsWalking = false;
 
 		/// <summary>
 		/// Gets or sets the maximum speed that this Entity can walk at, in units per second.
@@ -53,6 +54,11 @@ namespace CorvEngine.Components {
 			set { _CurrentDirection = value; }
 		}
 
+        public bool IsWalking {
+            get { return _IsWalking; }
+            set { _IsWalking = value; }
+        }
+
 		protected override void OnInitialize() {
 			base.OnInitialize();
 			PhysicsComponent = GetDependency<PhysicsComponent>();
@@ -66,19 +72,30 @@ namespace CorvEngine.Components {
 		public void BeginWalking(Direction dir) {
 			if(dir != Direction.Left && dir != Direction.Right)
 				throw new ArgumentException("Walk only applies to the Left and Right directions.");
+
 			_WalkDirection = dir;
 			CurrentDirection = _WalkDirection;
+            IsWalking = true;
 			var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];
 			if(SpriteComponent.Sprite.ActiveAnimation != Animation)
 				SpriteComponent.Sprite.PlayAnimation(Animation.Name);
 		}
+
+        public void BeginWalking()
+        {
+            IsWalking = true; 
+            var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];
+            if (SpriteComponent.Sprite.ActiveAnimation != Animation)
+                SpriteComponent.Sprite.PlayAnimation(Animation.Name);
+        }
 
 		/// <summary>
 		/// Informs the Entity to stop walking, no longer applying walk velocity.
 		/// If the Entity is not walking, this method does nothing.
 		/// </summary>
 		public void StopWalking() {
-			_WalkDirection = Direction.None;
+            _WalkDirection = Direction.None; 
+            IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}
 
@@ -90,12 +107,24 @@ namespace CorvEngine.Components {
 				PhysicsComponent.VelocityY = -JumpSpeed;
 		}
 
+        /// <summary>
+        /// Knocksback this entity by an approx. distance.  
+        /// </summary>
+        public void Knockback(float distance, int direction)
+        {
+            //TODO: find an actually formula for this.
+            float t = 0.100f;//ms
+            float vel = distance / t;
+            PhysicsComponent.VelocityY = -500;
+            PhysicsComponent.VelocityX = direction * vel; //new Vector2(direction * vel, -1 * 2000);
+        }
+
 		protected override void OnUpdate(GameTime Time) {
-			if(_WalkDirection == Direction.Left)
-				PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-			else if(_WalkDirection == Direction.Right)
-				PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-			base.OnUpdate(Time);
-		}
+            if (_WalkDirection == Direction.Left)
+                PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
+            else if (_WalkDirection == Direction.Right)
+                PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
+            base.OnUpdate(Time);
+        }
 	}
 }

@@ -9,30 +9,35 @@ using CorvEngine.Components;
 
 namespace Corvus.Components.Gameplay.StatusEffects
 {
-    //TODO: Maybe create a seperate class that handles all damage over time effects and another that
-    //      handles all the one time only effects (Ex: strength down.)
-
     /// <summary>
-    /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseEffect)
+    /// A status effect that causes damage over time. Damage is calculated by: (MaxHealth * intensity + BaseValue)
     /// </summary>
     public class Poison : StatusEffect
     {
         public override string Name { get { return "Poison"; } }
-        protected override string EffectName { get { return "Sprites/StatusEffects/testeffect1"; } }
+        protected override string SpriteName { get { return "Sprites/StatusEffects/testeffect1"; } }
 
-        private TimeSpan _TickTimer = TimeSpan.FromSeconds(0); 
-
-        public override void Update(GameTime gameTime, AttributesComponent ac, Vector2 position)
+        public override void Draw()
         {
-            base.Update(gameTime, ac, position);
-            _TickTimer += gameTime.ElapsedGameTime;
-            if (_TickTimer >= TimeSpan.FromSeconds(1)) //apply every second
-            {
-                float damage = ac.MaxHealth * Intensity + BaseEffect;
-                ac.CurrentHealth -= damage;
-                _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
-                _TickTimer = TimeSpan.Zero;
-            }
+            base.Draw();
+            var ActiveFrame = _Sprite.ActiveAnimation.ActiveFrame.Frame;
+            var SourceRect = ActiveFrame.Source;
+            var position = Camera.Active.ScreenToWorld(Entity.Position);
+            var destinationRect = new Rectangle((int)(position.X + SourceRect.Width / 2), (int)(position.Y - Entity.Size.Y), SourceRect.Width, SourceRect.Height);
+            CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, destinationRect, SourceRect, Color.White);
         }
+
+        protected override void OnFirstOccurance() { }
+
+        protected override void OnTick()
+        {
+            var ac = Entity.GetComponent<AttributesComponent>();
+            float damage = ac.MaxHealth * Attributes.Intensity + Attributes.BaseValue;
+            ac.CurrentHealth -= damage;
+            _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
+        }
+
+        //Unfortunately, need to specify this in order for StatusEffectsComponent to work properly.
+        public Poison(Entity entity, StatusEffectAttributes attributes) : base(entity, attributes) { }
     }
 }

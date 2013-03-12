@@ -1,0 +1,19 @@
+﻿ProjectileSprite
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/TestProjectile)
+
+Mover
+	MovementComponent
+
+FighterProj
+	CombatComponent
+		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
+
+TestProjectile : ProjectileSprite, Mover, FighterProj
+	PhysicsComponent
+	CollisionDamageComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
+	AttributesComponent
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)

@@ -32,6 +32,10 @@ namespace Corvus {
 			get { return _Player.Character == null ? null : _Player.Character.GetComponent<CombatComponent>(); }
 		}
 
+        private EquipmentComponent EquipmentComponent{
+            get { return _Player.Character == null ? null : _Player.Character.GetComponent<EquipmentComponent>(); }
+        }
+
 		private CorvusBinds(Player Player) {
 			this._Player = Player;
 			this._Binds = new List<Bind>();
@@ -41,8 +45,10 @@ namespace Corvus {
 					Assign(JumpPressed, false, new InputButton(Keys.Space));
 					Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Keys.Left));
 					Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Keys.Right));
-					Assign(AttackSwordPressed, false, new InputButton(Keys.Z));
-                    Assign(AttackGunPressed, false, new InputButton(Keys.X));
+                    Assign(BlockPressed, false, new InputButton(Keys.X));
+                    Assign((c) => SwitchWeapon(true, c), false, new InputButton(Keys.A));
+                    Assign((c) => SwitchWeapon(false, c), false, new InputButton(Keys.S));
+                    Assign(Attack, false, new InputButton(Keys.Z));
 					break;
 			}
 		}
@@ -85,20 +91,41 @@ namespace Corvus {
 			if(State == BindState.Pressed)
 				MovementComponent.Jump(true);
 		}
-
-		private void AttackSwordPressed(BindState State) {
-			if(MovementComponent == null)
-				return;
-			if(State == BindState.Pressed)
-				CombatComponent.AttackSword();
-		}
-
-        private void AttackGunPressed(BindState State)
+        
+        private void BlockPressed(BindState State)
         {
             if (MovementComponent == null)
                 return;
+            switch (State)
+            {
+                case BindState.Pressed:
+                    CombatComponent.BeginBlock();
+                    break;
+                case BindState.Released:
+                    CombatComponent.EndBlock();
+                    break;
+            }
+        }
+
+        private void SwitchWeapon(bool isPrev, BindState state)
+        {
+            if (EquipmentComponent == null)
+                return;
+            if (state == BindState.Pressed)
+            {
+                if (isPrev)
+                    EquipmentComponent.SwitchWeapon(isPrev);
+                else
+                    EquipmentComponent.SwitchWeapon(isPrev);
+            }
+        }
+
+        private void Attack(BindState State)
+        {
+            if (CombatComponent == null)
+                return;
             if (State == BindState.Pressed)
-                CombatComponent.AttackGun();
+                CombatComponent.Attack();
         }
 	}
 }

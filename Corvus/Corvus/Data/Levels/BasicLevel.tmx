@@ -46,7 +46,7 @@
   </object>
   <object type="TestEntityEnemy" x="268" y="59" width="32" height="32">
    <properties>
-    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(2000, 1584))"/>
+    <property name="PathComponent.Nodes" value="Collection(Vector(30, 1584), Vector(1000, 1584))"/>
    </properties>
   </object>
   <object name="Jumper" type="Path" x="151" y="849">
@@ -69,13 +69,16 @@
   <object name="Climber2" type="Path" x="972" y="1319">
    <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 915,-501"/>
   </object>
-  <object name="Jumper2" type="TestEntityEnemy" x="1627" y="849" width="32" height="32">
-   <properties>
-    <property name="PathComponent.JumpDelay" value="300"/>
-   </properties>
+  <object name="Sit1" type="Dagger" x="1627" y="1249" width="32" height="32">
   </object>
-  <object name="Jumper2" type="Path" x="1641" y="885">
-   <polyline points="0,0 -1535,-29"/>
+  <object name="Sit2" type="Bow" x="1327" y="1249" width="32" height="32">
+  </object>
+   <object name="Powerup1" type="TestPowerup" x="1427" y="1249" width="32" height="32">
+   </object>
+   <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1584" width="32" height="32">
+    <properties>
+      <property name="PathComponent.Nodes" value="Collection(Vector(1450, 1650), Vector(1450,1650))"/>
+    </properties>
   </object>
   <object name="Climber3" type="TestEntityEnemy" x="1837" y="1373" width="29" height="31">
    <properties>

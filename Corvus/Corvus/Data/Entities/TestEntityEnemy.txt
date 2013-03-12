@@ -11,7 +11,7 @@ Attributes
 		MaxHealth: Random(750, 800)
 		Strength: 7
 		Dexterity: 5
-
+	 
 HealthyBig
 	HealthBarComponent
 		
@@ -27,18 +27,33 @@ Damager
 StatusEffecter
 	StatusEffectsComponent
 
-TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter
+AIer
+	AIComponent
+		ReactionRange: Vector(500, 200)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Projectile)
+
+Combator
+	CombatComponent
+
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator
 	PhysicsComponent
-	CollisionStatusEffectComponent
+	StatusEffectAttributesComponent
 		EffectType: Poison
-		BaseEffect: 3
+		BaseValue: 3
 		Intensity: 0.01
 		Duration: 5
-		DisposeOnCollision: true
+	CollisionKnockbackComponent
+		Knockback: 0
+		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	CollisionDamageComponent
 		Damage: Random(30, 50)
-		DisposeOnCollision: true
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	CollisionStatusEffectComponent
+		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
+	EquipmentComponent

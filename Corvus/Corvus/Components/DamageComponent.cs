@@ -14,31 +14,43 @@ namespace Corvus.Components{
     /// </summary>
     public class DamageComponent : Component{
         private AttributesComponent AttributesComponent;
+        private CombatComponent CombatComponent;
         private FloatingTextList _FloatingTexts = new FloatingTextList();
 
         /// <summary>
         /// Applies damage with only normal rule.
         /// </summary>
         public void TakeDamage(float incomingDamage){
+            float blockMultipler = BlockDamageReduction();
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage);
-            AttributesComponent.CurrentHealth -= damageTaken;
+            float overallDamage = damageTaken * blockMultipler;
+            AttributesComponent.CurrentHealth -= overallDamage;
 
-            _FloatingTexts.AddFloatingTexts(damageTaken, Color.White);
+            _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
         }
 
         /// <summary>
         /// Applies damage, with the normal rules, based on the attacker's attributes.
         /// </summary>
         public void TakeDamage(AttributesComponent attacker){
+            float blockMultipler = BlockDamageReduction();
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
-            float criticalMultiplier = CriticalDamageChance(attacker.CritChance, attacker.CritDamage);
-            float overallDamage = damageTaken * criticalMultiplier;
+            float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
+            float overallDamage = damageTaken * criticalMultiplier * blockMultipler;
             AttributesComponent.CurrentHealth -= overallDamage;
 
             if (criticalMultiplier != 1)
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.Orange);
             else
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
+        }
+
+        private float BlockDamageReduction()
+        {
+            //TODO: Remove this if CombatComponent is to be added to enemies as well.
+            if (CombatComponent == null)
+                return 1f;
+            return (CombatComponent.IsBlocking) ? AttributesComponent.BlockDamageReduction : 1f;
         }
 
         private float NormalDamageFormula(float myDefense, float incomingDamage){
@@ -53,6 +65,7 @@ namespace Corvus.Components{
         protected override void OnInitialize(){
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
+            CombatComponent = Parent.GetComponent<CombatComponent>();
         }
 
         protected override void OnUpdate(GameTime Time){
