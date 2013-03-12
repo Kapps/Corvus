@@ -94,6 +94,18 @@ namespace Corvus.Components
             set { _DeathStarted = value; }
         }
 
+        private bool FleeingStarted
+        {
+            get { return _FleeingStarted; }
+            set { _FleeingStarted = value; }
+        }
+
+        private Entity FleeingFromEntity
+        {
+            get { return _FleeingFromEntity; }
+            set { _FleeingFromEntity = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
@@ -103,6 +115,8 @@ namespace Corvus.Components
         private bool _AIEnabled = true;
         private DateTime _StartOfDeath;
         private bool _DeathStarted;
+        private bool _FleeingStarted;
+        private Entity _FleeingFromEntity;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -120,7 +134,7 @@ namespace Corvus.Components
 
             if (AIEnabled)
             {
-                if (!DeathStarted)
+                if (!DeathStarted && !FleeingStarted) //NORMAL AI
                 {
                     bool foundEntity = false;
 
@@ -156,6 +170,12 @@ namespace Corvus.Components
 
                             if (!MovementComponent.IsWalking)
                                 CombatComponent.AttackAI();
+
+                            if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 25)
+                            {
+                                FleeingStarted = true;
+                                FleeingFromEntity = e;
+                            }
                         }
                         else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                         {
@@ -188,19 +208,10 @@ namespace Corvus.Components
                         if (CombatComponent.IsBlocking)
                             CombatComponent.EndBlock();
                     }
-
-                    //Begin process of death if entity has run out of health.
-                    if (AttributesComponent.CurrentHealth <= 0)
-                    {
-                        if (!DeathStarted)
-                            StartOfDeath = DateTime.Now;
-
-                        DeathStarted = true;
-                    }
                 }
-                else
+                else if (DeathStarted) //DYING AI
                 {
-                    double totalMs = (DateTime.Now - _StartOfDeath).TotalMilliseconds;
+                    double totalMs = (DateTime.Now - StartOfDeath).TotalMilliseconds;
                     double walkTime = 250;
 
                     if (totalMs < walkTime)
@@ -213,6 +224,24 @@ namespace Corvus.Components
                         MovementComponent.BeginWalking(Direction.Right);
                     else
                         Parent.Dispose();
+                }
+                else if (FleeingStarted) //FLEEING AI
+                {
+                    Direction entityDir = GetEntityDirection(FleeingFromEntity);
+
+                    if (entityDir == Direction.Left)
+                        MovementComponent.BeginWalking(Direction.Right);
+                    else
+                        MovementComponent.BeginWalking(Direction.Left);
+
+                    //Begin process of death if entity has run out of health.
+                    if (AttributesComponent.CurrentHealth <= 0)
+                    {
+                        if (!DeathStarted)
+                            StartOfDeath = DateTime.Now;
+
+                        DeathStarted = true;
+                    }
                 }
             }
         }
@@ -327,6 +356,16 @@ namespace Corvus.Components
                 return true;
             else
                 return false;
+        }
+
+        private Direction GetEntityDirection(Entity e)
+        {
+            if (e.Location.Center.X < Parent.Location.Center.X)
+                return Direction.Left;
+            else if (e.Location.Center.X > Parent.Location.Center.X)
+                return Direction.Right;
+            else
+                return Direction.Left;
         }
 
         /// <summary>
