@@ -96,6 +96,9 @@ namespace Corvus.Components
         private CombatComponent CombatComponent;
         private PhysicsComponent PhysicsComponent;
         private AttributesComponent AttributesComponent;
+        private SpriteComponent SpriteComponent;
+        private HealthBarComponent HealthBarComponent;
+        private DamageComponent DamageComponent;
 
         protected override void OnUpdate(GameTime Time)
         {
@@ -125,8 +128,10 @@ namespace Corvus.Components
                         //Follow the entity.
                         FollowEntity(e, Time);
 
-                        //If the entity is attacking and is within attacking range, and is facing us, block.
-                        if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e))
+                        Random r = new Random();
+                        int blockChance = r.Next(1, 5);
+                        //If the entity is attacking and is within attacking range, and is facing us, and we're not currently blocking, and blockChance is good, block.
+                        if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e) && !coc.IsBlocking && blockChance >= 3)
                             CombatComponent.BeginBlock();
 
                         //If the entity isn't attacking, stop blocking.
@@ -167,6 +172,10 @@ namespace Corvus.Components
                     if (CombatComponent.IsBlocking)
                         CombatComponent.EndBlock();
                 }
+
+                //Kill the entity if it has run out of health.
+                if (AttributesComponent.CurrentHealth <= 0)
+                    Parent.Dispose();
             }
         }
 
@@ -180,6 +189,9 @@ namespace Corvus.Components
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
             PhysicsComponent = this.GetDependency<PhysicsComponent>();
             AttributesComponent = this.GetDependency<AttributesComponent>();
+            SpriteComponent = this.GetDependency<SpriteComponent>();
+            HealthBarComponent = this.GetDependency<HealthBarComponent>();
+            DamageComponent = this.GetDependency<DamageComponent>();
         }
 
         /// <summary>
