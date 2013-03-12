@@ -40,10 +40,12 @@ namespace Corvus.Components {
             private set { _IsBlocking = value; }
         }
 
+        private GameTime GameTime = new GameTime();
         private TimeSpan _Timer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private EntityClassification _AttackableEntities;
         private bool _IsAttacking = false;
         private bool _IsBlocking = false;
+
 
         /// <summary>
         /// Attack depending on whether the current weapon is melee or ranged.
@@ -97,9 +99,14 @@ namespace Corvus.Components {
             foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(attackRectangle))
             {
                 //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
-                var cc = attackedEntity.GetComponent<ClassificationComponent>(); 
+                var cc = attackedEntity.GetComponent<ClassificationComponent>();
                 if (attackedEntity != Parent && cc.Classification == AttackableEntities)
                 {
+                    //TODO: Find a better way, if it's really needed. 
+                    //A hack to get the Ai to react before taking damage.
+                    var aic = attackedEntity.GetComponent<AIComponent>();
+                    aic.Update(GameTime);
+
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
                     damageComponent.TakeDamage(AttributesComponent);
                 }
@@ -170,6 +177,7 @@ namespace Corvus.Components {
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
+            GameTime = Time;
             //Seems messy doing it this way.
             if (_IsAttacking)
             {

@@ -11,7 +11,8 @@ Attributes
 		MaxHealth: Random(750, 800)
 		Strength: 7
 		Dexterity: 5
-	 
+		BlockDamageReduction: 0.2
+
 HealthyBig
 	HealthBarComponent
 		

@@ -11,6 +11,7 @@ Content\Sprites\Equipment\testweapon.xnb
 Content\Sprites\Equipment\testweaponD.xnb
 Content\Sprites\Powerups\TestPowerup.xnb
 Content\Sprites\Projectile.xnb
+Content\Sprites\Equipment\testweaponB.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
@@ -20,7 +21,6 @@ Content\Sprites\Equipment\TestWeapon1.xnb
 Content\Sprites\Equipment\TestWeapon2.xnb
 Content\Sprites\Powerups\TestPowerup1.xnb
 Content\Sprites\TestProjectile.xnb
-Content\Sprites\Equipment\testweaponB.xnb
 Content\Sprites\Equipment\TestWeapon3.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
