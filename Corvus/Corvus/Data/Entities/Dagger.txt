@@ -10,9 +10,9 @@ WeaponProperties
 		AppliesEffect: true
 	AttributesComponent
 		Strength: 0
-		StrModifier: 1.1
+		StrModifier: 1.05
 		Dexterity: 0
-		DexModifier: 1.1
+		DexModifier: 1.05
 		Intelligence: 0
 		IntModifier: 1.0
 		CritChance: 0.5
