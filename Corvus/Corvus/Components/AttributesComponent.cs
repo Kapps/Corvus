@@ -224,7 +224,7 @@ namespace Corvus.Components {
 		}
 
         /// <summary>
-        /// Gets or sets the block chance, for AI.
+        /// Gets or sets the block chance.
         /// </summary>
         public float BlockChance
         {
@@ -233,7 +233,7 @@ namespace Corvus.Components {
         }
 
         /// <summary>
-        /// Gets or sets the block speed, for AI.
+        /// Gets or sets the block speed.
         /// </summary>
         public float BlockSpeed
         {

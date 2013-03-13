@@ -326,6 +326,16 @@ namespace Corvus.Components
                     if (MovementComponent.IsWalking)
                         MovementComponent.StopWalking(); //this is pointless.
                 }
+
+                //Ensure they are facing the correct direction, if they move within AI rectangle.
+                if (entity.Location.Center.X > e.Location.Center.X)
+                {
+                    MovementComponent.CurrentDirection = Direction.Left;
+                }
+                else if (entity.Location.Center.X < e.Location.Center.X)
+                {
+                    MovementComponent.CurrentDirection = Direction.Right;
+                }
             }
         }
 
