@@ -11,14 +11,19 @@ WeaponProperties
 		ProjectileName: TestProjectile
 		ProjectileVelocity: Vector(600, 50)
 	AttributesComponent
+		Strength: 0
 		StrModifier: 0.6
+		Dexterity: 0
 		DexModifier: 0.8
+		Intelligence: 0
 		IntModifier: 1.0
 		CritChance: 0.15
 		CritDamage: 1.5
 		MeleeAttackRange: Vector(50, 50)
 		AttackSpeed: 100
 		BlockDamageReduction: 0.85
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectAttributesComponent
 	
 Motion

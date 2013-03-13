@@ -120,6 +120,7 @@
     <Compile Include="Components\DamageComponent.cs" />
     <Compile Include="Components\EquipmentComponent.cs" />
     <Compile Include="Components\Gameplay\Attributes.cs" />
+    <Compile Include="Components\Gameplay\Elements.cs" />
     <Compile Include="Components\Gameplay\Equipment\Weapon.cs" />
     <Compile Include="Components\Gameplay\Equipment\WeaponCollection.cs" />
     <Compile Include="Components\Gameplay\Equipment\WeaponProperties.cs" />

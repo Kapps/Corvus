@@ -9,14 +9,19 @@ WeaponProperties
 		IsRanged: false
 		AppliesEffect: true
 	AttributesComponent
+		Strength: 0
 		StrModifier: 1.1
+		Dexterity: 0
 		DexModifier: 1.1
+		Intelligence: 0
 		IntModifier: 1.0
 		CritChance: 0.5
 		CritDamage: 5
 		MeleeAttackRange: Vector(50, 50)
 		AttackSpeed: 150
 		BlockDamageReduction: 0.66
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectAttributesComponent
 		EffectType: Poison
 		BaseValue: 500

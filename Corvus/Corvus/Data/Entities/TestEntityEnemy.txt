@@ -15,6 +15,7 @@ Attributes
 		MeleeAttackRange: Vector(100, 100)
 		AttackSpeed: 300
 		BlockSpeed: 300
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
 
 HealthyBig
 	HealthBarComponent

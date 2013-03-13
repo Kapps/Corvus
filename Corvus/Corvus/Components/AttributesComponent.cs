@@ -62,6 +62,17 @@ namespace Corvus.Components {
 			}
 		}
 
+        /// <summary>
+        /// Gets the overall elemental power.
+        /// </summary>
+        public float ElementPower{
+            get{
+                if (EquipmentComponent == null)
+                    return Intelligence * IntModifier;
+                return GetCombinedAttributeValues(Intelligence, IntModifier, EquipmentComponent.CurrentWeapon.Attributes.Intelligence, EquipmentComponent.CurrentWeapon.Attributes.IntModifier);
+            }
+        }
+
 		/// <summary>
 		/// Gets the overall critical chance.
 		/// </summary>
@@ -118,7 +129,33 @@ namespace Corvus.Components {
 				return EquipmentComponent.CurrentWeapon.Attributes.BlockDamageReduction;
 			}
 			set { Attributes.BlockDamageReduction = value; }
-		}
+        }
+
+        /// <summary>
+        /// Gets or sets the elements this entity is resistant to.
+        /// </summary>
+        public Elements ResistantElements
+        {
+            get { 
+                if(EquipmentComponent == null)
+                    return Attributes.ResistantElements;
+                return EquipmentComponent.CurrentWeapon.Attributes.ResistantElements;
+            }
+            set { Attributes.ResistantElements = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the elements this entity can attack with.
+        /// </summary>
+        public Elements AttackingElements
+        {
+            get { 
+                if(EquipmentComponent == null)
+                    return Attributes.AttackingElements;
+                return EquipmentComponent.CurrentWeapon.Attributes.AttackingElements;
+            }
+            set { Attributes.AttackingElements = value; }
+        }
 
 		/// <summary>
 		/// Gets or sets the amount of health that this component has.
@@ -190,7 +227,7 @@ namespace Corvus.Components {
 		}
 
 		/// <summary>
-		/// Gets or sets the intelligence. Intelligence affects elemental damage and ... not really sure yet.
+		/// Gets or sets the intelligence. Intelligence affects elemental damage and resistance.
 		/// </summary>
 		public float Intelligence {
 			get { return Attributes.Intelligence; }

@@ -34,6 +34,5 @@ Fighter
 TestEntity : PlayerSprite, Healthy, Mover, Attributes, Damager, StatusEffecter, Fighter
 	PhysicsComponent
 	EquipmentComponent
-		DefaultWeaponName: Bow
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
