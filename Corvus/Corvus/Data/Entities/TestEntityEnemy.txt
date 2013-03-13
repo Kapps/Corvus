@@ -14,7 +14,8 @@ Attributes
 		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(100, 100)
 		AttackSpeed: 300
-		BlockSpeed: 300
+		BlockSpeed: 500
+		BlockChance: 0.7
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
 
 HealthyBig
