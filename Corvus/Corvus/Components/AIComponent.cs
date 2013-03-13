@@ -56,15 +56,6 @@ namespace Corvus.Components
         }
 
         /// <summary>
-        /// Gets or sets the bool respresenting whether or not the AI is following something.
-        /// </summary>
-        public bool IsFollowingEntity
-        {
-            get { return _IsFollowingEntity; }
-            set { _IsFollowingEntity = value; }
-        }
-
-        /// <summary>
         /// Gets or sets the bool respresenting whether or not the AI is enabled.
         /// </summary>
         public bool AIEnabled
@@ -100,23 +91,15 @@ namespace Corvus.Components
             set { _FleeingStarted = value; }
         }
 
-        private Entity FleeingFromEntity
-        {
-            get { return _FleeingFromEntity; }
-            set { _FleeingFromEntity = value; }
-        }
-
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
         private bool _IsReacting = false;
         private bool _AllowMultiJump = true;
-        private bool _IsFollowingEntity = false;
         private bool _AIEnabled = true;
         private DateTime _StartOfDeath;
         private bool _DeathStarted;
         private bool _FleeingStarted;
-        private Entity _FleeingFromEntity;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -140,6 +123,8 @@ namespace Corvus.Components
                     bool projectileFlyingToMe = false;
                     bool entityAttackingMe = false;
                     bool entityAttackable = false;
+                    bool entityFollowable = false;
+                    Entity entityToFollow = null;
 
                     //TODO: This could be very ineffecient.
                     //Foreach entity in this entity's reaction box.
@@ -151,11 +136,9 @@ namespace Corvus.Components
                         if (clc.Classification == EntityClassification.Player) //If Player
                         {
                             foundEntity = true;
-                            IsFollowingEntity = true;
-                            IsReacting = true;
 
-                            //Follow the entity.
-                            FollowEntity(e, Time);
+                            entityFollowable = true;
+                            entityToFollow = e;
 
                             if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e))
                                 entityAttackingMe = true;
@@ -166,15 +149,12 @@ namespace Corvus.Components
                             if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 25)
                             {
                                 FleeingStarted = true;
-                                FleeingFromEntity = e;
                             }
                         }
                         else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                         {
                             foundEntity = true;
-                            IsFollowingEntity = false;
-                            IsReacting = true;
-
+                            
                             //Basically, projectiles within our rectangle might hit us, so we'll just block.
                             if (EntityGoingToMe(e))
                                 projectileFlyingToMe = true;
@@ -183,6 +163,9 @@ namespace Corvus.Components
 
                     if (foundEntity) //If we found an entity.
                     {
+                        //We're reacting to an entity.
+                        IsReacting = true;
+
                         //If we're following a path, stop.
                         if (PathComponent.PathingEnabled)
                             PathComponent.StopFollowing();
@@ -194,22 +177,25 @@ namespace Corvus.Components
                                 CombatComponent.BeginBlock();
                         }
 
+                        if (entityFollowable && entityToFollow != null)
+                            FollowEntity(entityToFollow, Time);
+
+                        //If an entity is attackable, attack.
+                        if (entityAttackable)
+                            CombatComponent.AttackAI();
+
                         //If there's no projectile coming to us, or no entity attacking us, end the block.
                         if (!entityAttackingMe && !projectileFlyingToMe)
                         {
                             if (CombatComponent.IsBlocking)
                                 CombatComponent.EndBlock();
                         }
-
-                        //If an entity is attackable, attack.
-                        if (entityAttackable)
-                            CombatComponent.AttackAI();
                     }
                     else //If we found nothing.
                     {
                         IsReacting = false;
-                        IsFollowingEntity = false;
 
+                        //Resume following the path.
                         if (!PathComponent.PathingEnabled)
                             PathComponent.StartFollowing();
                     }
@@ -232,7 +218,6 @@ namespace Corvus.Components
                 }
                 else if (FleeingStarted) //FLEEING AI
                 {
-                    Direction entityDir = GetEntityDirection(FleeingFromEntity);
                     Vector2 leftPlatformVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Bottom + 1);
                     Vector2 rightPlatformVector = new Vector2(Parent.Location.Center.X + 50, Parent.Location.Bottom + 1);
                     Vector2 leftWallVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Center.Y);
@@ -403,7 +388,6 @@ namespace Corvus.Components
             AIEnabled = false;
 
             IsReacting = false;
-            IsFollowingEntity = false;
 
             if (CombatComponent.IsBlocking)
                 CombatComponent.EndBlock();
