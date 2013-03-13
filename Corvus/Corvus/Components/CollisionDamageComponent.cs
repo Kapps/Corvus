@@ -17,13 +17,29 @@ namespace Corvus.Components {
             set { _Damage = value; }
 		}
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether to use this entity's attributes to apply damage.
+        /// </summary>
+        public bool UseAttributes
+        {
+            get { return _UseAttributes; }
+            set { _UseAttributes = value; }
+        }
+
         private float _Damage;
+        private bool _UseAttributes = false;
         
 		protected override bool OnCollision(Entity Entity, EntityClassification Classification) {
 			var dc = Entity.GetComponent<DamageComponent>();
             if (dc == null)
 				return false;
-            dc.TakeDamage(Damage); //TODO: Might want to make this based on this entities strength.
+            if (!UseAttributes)
+                dc.TakeDamage(Damage);
+            else
+            {
+                var attri = this.GetDependency<AttributesComponent>();
+                dc.TakeDamage(attri);
+            }
 			return true;
 		}
 	}

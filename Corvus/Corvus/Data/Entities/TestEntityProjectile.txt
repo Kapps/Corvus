@@ -1,22 +1,29 @@
-﻿ProjectileSprite
+﻿#FOR PROJECTILE ENTITIES
+#This is to keep track of what components are required and which ones are optional.
+
+#REQUIREMENTS
+#These are the requirements when making projectile entities.
+Requirements
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestProjectile)
-
-Mover
-	MovementComponent
-		MaxWalkingSpeed: 50
-		WalkAcceleration: 100
-
-FighterProj
-	CombatComponent
-		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
-
-TestProjectile : ProjectileSprite, Mover, FighterProj
-	PhysicsComponent
-	CollisionDamageComponent
-		DisposeOnCollision: true
-		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
+	ProjectileComponent
 	AttributesComponent
+	EquipmentComponent
+	StatusEffectAttributesComponent
+	MovementComponent
+	PhysicsComponent
+		GravityCoefficient: 0.1
+		HorDragCoefficient: 0
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
-	ProjectileComponent
+
+CollisionEventer
+	CollisionProjectileComponent
+		DisposeOnCollision: true
+		
+#NOTE: Use ONLY CollisionProjectileComponent for projectile entities.
+#Don't set any of the attributes except for thee ones shown above. Attributes are applied in code.
+#	All 
+#		DisposeOnCollision = to true, unless you want them to go through objects.
+
+TestProjectile : Requirements, CollisionEventer

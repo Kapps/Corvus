@@ -18,8 +18,9 @@ namespace Corvus.Components
             if (ec == null)
                 return false;
             var ac = this.GetDependency<AttributesComponent>();
-            var wdc = this.GetDependency<WeaponDataComponent>();
-            ec.EquipWeapon(new Weapon(wdc.WeaponData, ac.Attributes));
+            var wdc = this.GetDependency<WeaponPropertiesComponent>();
+            var seac = Parent.GetComponent<StatusEffectAttributesComponent>();
+            ec.EquipWeapon(new Weapon(wdc.WeaponData, ac.Attributes, seac.StatusEffectAttributes));
             return true;
         }
     }

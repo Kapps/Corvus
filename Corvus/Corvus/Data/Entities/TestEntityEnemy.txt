@@ -11,7 +11,7 @@ Attributes
 		MaxHealth: Random(750, 800)
 		Strength: 7
 		Dexterity: 5
-		BlockDamageReduction: 0.2
+		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(100, 100)
 		AttackSpeed: 300
 		BlockSpeed: 300
@@ -34,8 +34,7 @@ StatusEffecter
 AIer
 	AIComponent
 		ReactionRange: Vector(500, 200)
-		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player)
-		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Projectile)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
 
 Combator
 	CombatComponent

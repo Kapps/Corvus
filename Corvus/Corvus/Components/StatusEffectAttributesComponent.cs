@@ -21,7 +21,10 @@ namespace Corvus.Components
         /// <summary>
         /// Gets the attributes.
         /// </summary>
-        public StatusEffectAttributes StatusEffectAttributes { get { return _StatusEffectAttributes; } }
+        public StatusEffectAttributes StatusEffectAttributes { 
+            get { return _StatusEffectAttributes; }
+            set { _StatusEffectAttributes = value; }
+        }
 
         /// <summary>
         /// The type of effect.

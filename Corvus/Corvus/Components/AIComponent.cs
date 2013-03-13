@@ -276,7 +276,7 @@ namespace Corvus.Components
         /// </summary>
         private Rectangle GetReactionBox()
         {
-            //TODO: Remove this later. This is the same bug as above, i believe.
+            //TODO: Remove this later. Some weird bug that i can't explain.
             if (Camera.Active == null)
                 return new Rectangle();
 
@@ -324,7 +324,7 @@ namespace Corvus.Components
                 else
                 {
                     if (MovementComponent.IsWalking)
-                        MovementComponent.StopWalking(); //this is pointless.
+                        MovementComponent.StopWalking(); 
                 }
 
                 //Ensure they are facing the correct direction, if they move within AI rectangle.

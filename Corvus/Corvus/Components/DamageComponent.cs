@@ -45,11 +45,7 @@ namespace Corvus.Components{
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
         }
 
-        private float BlockDamageReduction()
-        {
-            //TODO: Remove this if CombatComponent is to be added to enemies as well.
-            if (CombatComponent == null)
-                return 1f;
+        private float BlockDamageReduction(){
             return (CombatComponent.IsBlocking) ? AttributesComponent.BlockDamageReduction : 1f;
         }
 

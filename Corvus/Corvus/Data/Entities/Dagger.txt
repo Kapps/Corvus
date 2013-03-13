@@ -2,13 +2,12 @@
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/TestWeapon2)
 
-WeaponDataer
-	WeaponDataComponent
+WeaponProperties
+	WeaponPropertiesComponent
 		WeaponName: Dagger
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
 		IsRanged: false
-
-Attributes
+		AppliesEffect: true
 	AttributesComponent
 		StrModifier: 1.1
 		DexModifier: 1.1
@@ -18,13 +17,18 @@ Attributes
 		MeleeAttackRange: Vector(50, 50)
 		AttackSpeed: 150
 		BlockDamageReduction: 0.66
+	StatusEffectAttributesComponent
+		EffectType: Poison
+		BaseValue: 500
+		Intensity: 0.3
+		Duration: 5
 
 Motion
 	PhysicsComponent
 
-Dagger: WeaponSprite, Attributes, Motion, WeaponDataer
+Dagger: WeaponSprite, WeaponProperties, Motion
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
 	CollisionEquipmentComponent
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
-	ClassificationComponent
-		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)

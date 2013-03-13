@@ -32,6 +32,15 @@ namespace Corvus.Components {
         }
 
         /// <summary>
+        /// Get or sets a value indicating that this entity is attacking using range.
+        /// </summary>
+        public bool IsAttackingRanged
+        {
+            get { return _IsAttackingRanged; }
+            set { _IsAttackingRanged = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating that this entitiy is blocking.
         /// </summary>
         public bool IsBlocking
@@ -44,9 +53,9 @@ namespace Corvus.Components {
         private TimeSpan _AttackTimer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private EntityClassification _AttackableEntities;
         private bool _IsAttackingMelee = false;
+        private bool _IsAttackingRanged = false;
         private bool _IsBlocking = false;
         private DateTime _LastBlock;
-
 
         /// <summary>
         /// Attack depending on whether the current weapon is melee or ranged.
@@ -68,32 +77,13 @@ namespace Corvus.Components {
             if (_IsAttackingMelee)
                 return;
             _IsAttackingMelee = true;
-            // TODO: Maybe the attack should start at a specific frame.
-            // TODO: Limit number of attacks they can do.
-            // TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
-            // At the very least the sprites for it will be mutually exclusive.
+
+            //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
 
-            //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
-            //The attack rectange is calculated using our centre, range, and half our height.
-            int MeleeAttackRange = (int)AttributesComponent.MeleeAttackRange.X; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
-            int attackHeight = (int)AttributesComponent.MeleeAttackRange.Y; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
-
-            Rectangle attackRectangle;
-            if (MovementComponent.CurrentDirection == Direction.Left)
-                attackRectangle = new Rectangle(Parent.Location.Center.X - MeleeAttackRange, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
-            else if (MovementComponent.CurrentDirection == Direction.Right)
-                attackRectangle = new Rectangle(Parent.Location.Center.X, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
-            else
-            {
-                //Player hasn't moved yet or just isn't facing left or right.
-                //Set their rectangle to themselves (anything that is inside them will be attacked). Until we figure out how best to handle it anyways.
-                attackRectangle = Parent.Location;
-            }
-
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
-            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(attackRectangle))
+            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()))
             {
                 //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
                 var cc = attackedEntity.GetComponent<ClassificationComponent>();
@@ -101,6 +91,16 @@ namespace Corvus.Components {
                 {
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
                     damageComponent.TakeDamage(AttributesComponent);
+
+                    //TODO: Need a property to determine if the enemy can apply status effects through attacks.
+                    //When the enemy attacks, apply status effects, if any. 
+                    var seac = Parent.GetComponent<StatusEffectAttributesComponent>();
+                    if (seac == null)
+                        continue;
+                    var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
+                    if (enemySEC == null)
+                        continue;
+                    enemySEC.ApplyStatusEffect(seac.StatusEffectAttributes);
                 }
             }
         }
@@ -108,42 +108,20 @@ namespace Corvus.Components {
         /// <summary>
         /// Attacks an enemy with a close range attack.
         /// </summary>
-        ///<remarks>
-        /// I'm assuming this is what the player uses. As in, the enemies will have their own melee attack function.
-        /// I say this because I'm also assuming that EquipmentComponent is only used by players. Although, it would be
-        /// easy (maybe) to create a generic melee attack function but it might seem messy.
-        /// </remarks>
 		private void AttackMelee() {
             //This guy is attacking, don't do anything.
-            if (_IsAttackingMelee)
+            if (IsAttackingMelee)
                 return;
-            _IsAttackingMelee = true;
+            IsAttackingMelee = true;
             // TODO: Maybe the attack should start at a specific frame.
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
 			// At the very least the sprites for it will be mutually exclusive.
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
-            
-            //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
-            //The attack rectange is calculated using our centre, range, and half our height.
-            int MeleeAttackRange = (int)AttributesComponent.MeleeAttackRange.X; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
-            int attackHeight = (int)AttributesComponent.MeleeAttackRange.Y; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
-            
-            Rectangle attackRectangle;
-            if (MovementComponent.CurrentDirection == Direction.Left)
-                attackRectangle = new Rectangle(Parent.Location.Center.X - MeleeAttackRange, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
-            else if (MovementComponent.CurrentDirection == Direction.Right)
-                attackRectangle = new Rectangle(Parent.Location.Center.X , Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
-            else
-            {
-                //Player hasn't moved yet or just isn't facing left or right.
-                //Set their rectangle to themselves (anything that is inside them will be attacked). Until we figure out how best to handle it anyways.
-                attackRectangle = Parent.Location;
-            }
 
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
-            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(attackRectangle))
+            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()))
             {
                 //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
                 var cc = attackedEntity.GetComponent<ClassificationComponent>();
@@ -156,38 +134,41 @@ namespace Corvus.Components {
 
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
                     damageComponent.TakeDamage(AttributesComponent);
+
+                    //Applies a status effect to the attacked enemy, if they can be affected.
+                    var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
+                    if (EquipmentComponent.CurrentWeapon.WeaponData.AppliesEffect && enemySEC != null)
+                        enemySEC.ApplyStatusEffect(EquipmentComponent.CurrentWeapon.Effect);
                 }
             }
 		}
 
-        //TODO: Should possibly define a Component(?) that defines the projectile properties (things like GravityCoefficient, etc). 
         private void AttackRanged()
         {
-            var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestProjectile").CreateEntity();
-
-            var cc = projectile.GetComponent<CollisionDamageComponent>();
-            cc.Damage = 50;
-
-            var pc = projectile.GetComponent<PhysicsComponent>();
-            pc.GravityCoefficient = 0.1f; //Some bullet drop, cause we're fancy.
-            pc.HorDragCoefficient = 0;
-
-            projectile.Size = new Vector2(12, 12);
-
-            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(200));
+            if (IsAttackingRanged)
+                return;
+            IsAttackingRanged = true;
             
-            if (MovementComponent.CurrentDirection == Direction.Left)
+            //Create entity
+            var weaponData = EquipmentComponent.CurrentWeapon.WeaponData;
+            var projectile = CreateProjectileEntity(weaponData.ProjectileName, weaponData.ProjectileVelocity);
+
+            //A bit of a hack to get the projectile to apply damage and status effects.
+            var ac = projectile.GetComponent<AttributesComponent>();
+            ac.Attributes = AttributesComponent.Attributes;
+            var ec = projectile.GetComponent<EquipmentComponent>();
+            ec.EquipWeapon(EquipmentComponent.CurrentWeapon);
+            if (EquipmentComponent.CurrentWeapon.WeaponData.AppliesEffect)
             {
-                projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
-                pc.VelocityX = -1000;  
-            }
-            else if (MovementComponent.CurrentDirection == Direction.Right)
-            {
-                projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
-                pc.VelocityX = 1000;
+                var cpc = projectile.GetComponent<CollisionProjectileComponent>();
+                cpc.AppliesEffect = true;
+                var seac = projectile.GetComponent<StatusEffectAttributesComponent>();
+                seac.StatusEffectAttributes = EquipmentComponent.CurrentWeapon.Effect;
             }
 
-            Parent.Scene.AddEntity(projectile);
+            //set animation
+            float attackSpeed = AttributesComponent.AttackSpeed;
+            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
         }
 
         public void BeginBlock()
@@ -230,14 +211,16 @@ namespace Corvus.Components {
         {
             base.OnUpdate(Time);
             GameTime = Time;
-            //Seems messy doing it this way.
-            if (_IsAttackingMelee)
+            //TODO: Potential for bugs when we are combining both booleans.
+            if (IsAttackingMelee || IsAttackingRanged)
             {
                 _AttackTimer += Time.ElapsedGameTime;
                 if (_AttackTimer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
                 {
-                    _IsAttackingMelee = false;
+                    IsAttackingMelee = false;
+                    IsAttackingRanged = false;
                     _AttackTimer = TimeSpan.Zero;
+                    
                 }
             }
 
@@ -248,8 +231,48 @@ namespace Corvus.Components {
             }
         }
 
-        //The problem with this is that i'm assuming everything has an equipment component. So, if an enemy attacks, then they need the EquipmentComponent as well, which wouldnt make sense.
-        //I'm also assuming that this is what enemies will use (by this, i mean CombatComponent) for handling their attacks.
+        private Rectangle CreateHitBox()
+        {
+            //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
+            //The attack rectange is calculated using our centre, range, and half our height.
+            int MeleeAttackRange = (int)AttributesComponent.MeleeAttackRange.X; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
+            int attackHeight = (int)AttributesComponent.MeleeAttackRange.Y; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
+
+            Rectangle attackRectangle;
+            if (MovementComponent.CurrentDirection == Direction.Left)
+                attackRectangle = new Rectangle(Parent.Location.Center.X - MeleeAttackRange, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
+            else if (MovementComponent.CurrentDirection == Direction.Right)
+                attackRectangle = new Rectangle(Parent.Location.Center.X, Parent.Location.Y - attackHeight, MeleeAttackRange, Parent.Location.Height + attackHeight);
+            else
+            {
+                //Player hasn't moved yet or just isn't facing left or right.
+                //Set their rectangle to themselves (anything that is inside them will be attacked). Until we figure out how best to handle it anyways.
+                attackRectangle = Parent.Location;
+            }
+            return attackRectangle;
+        }
+
+        private Entity CreateProjectileEntity(string name, Vector2 velocity)
+        {
+            var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(name).CreateEntity();
+            projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
+            projectile.Size = new Vector2(12, 12); //TODO: Might need to track this as well.
+            Parent.Scene.AddEntity(projectile);
+
+            //Sets the entities this can attack.
+            var cpc = projectile.GetComponent<CollisionProjectileComponent>();
+            cpc.Classification = this.AttackableEntities;
+
+            //Set projectile velocity.
+            var pc = projectile.GetComponent<PhysicsComponent>();
+            if (MovementComponent.CurrentDirection == Direction.Right)
+                pc.Velocity = new Vector2(velocity.X, -velocity.Y);
+            else if (MovementComponent.CurrentDirection == Direction.Left)
+                pc.Velocity = new Vector2(-velocity.X, -velocity.Y);
+
+            return projectile;
+        }
+
         private EquipmentComponent EquipmentComponent;
         private AttributesComponent AttributesComponent;
         private MovementComponent MovementComponent;
