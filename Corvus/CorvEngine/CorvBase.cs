@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -249,8 +250,17 @@ namespace CorvEngine {
 			}
 
 			protected override void Update(GameTime gameTime) {
-				
-				base.Update(gameTime);
+				//try {
+					base.Update(gameTime);
+				/*} catch(Exception ex) {
+					// TODO: Do something here.
+					// Like, display a UI mbox asking if they wish to continue.
+					// Also, allow actually handling what happens on an exception.
+					// Ideally, it'd log the exception, maybe upload to a server, and then either continue or quit.
+					// If the same exception type is received each frame, it won't log it multiple times.
+					if(Debugger.IsAttached)
+						Console.WriteLine(ex);
+				}*/
 			}
 
 			protected override void Draw(GameTime gameTime) {
