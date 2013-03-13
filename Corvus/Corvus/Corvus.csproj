@@ -113,15 +113,17 @@
     <Compile Include="Components\ChaseCameraComponent.cs" />
     <Compile Include="Components\CollisionDamageComponent.cs" />
     <Compile Include="Components\CollisionKnockbackComponent.cs" />
+    <Compile Include="Components\CollisionProjectileComponent.cs" />
     <Compile Include="Components\CollisionStatusEffectComponent.cs" />
     <Compile Include="Components\CollisionEquipmentComponent.cs" />
     <Compile Include="Components\CombatComponent.cs" />
     <Compile Include="Components\DamageComponent.cs" />
     <Compile Include="Components\EquipmentComponent.cs" />
     <Compile Include="Components\Gameplay\Attributes.cs" />
+    <Compile Include="Components\Gameplay\Elements.cs" />
     <Compile Include="Components\Gameplay\Equipment\Weapon.cs" />
     <Compile Include="Components\Gameplay\Equipment\WeaponCollection.cs" />
-    <Compile Include="Components\Gameplay\Equipment\WeaponData.cs" />
+    <Compile Include="Components\Gameplay\Equipment\WeaponProperties.cs" />
     <Compile Include="Components\Gameplay\Equipment\WeaponTypes.cs" />
     <Compile Include="Components\Gameplay\FloatingText.cs" />
     <Compile Include="Components\Gameplay\FloatingTextList.cs" />
@@ -135,7 +137,7 @@
     <Compile Include="Components\ProjectileComponent.cs" />
     <Compile Include="Components\StatusEffectAttributesComponent.cs" />
     <Compile Include="Components\StatusEffectsComponent.cs" />
-    <Compile Include="Components\WeaponDataComponent.cs" />
+    <Compile Include="Components\WeaponPropertiesComponent.cs" />
     <Compile Include="CorvusBinds.cs" />
     <Compile Include="CorvusGame.cs" />
     <Compile Include="CorvusPlayer.cs" />

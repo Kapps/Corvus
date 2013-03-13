@@ -36,20 +36,21 @@ namespace Corvus.Components{
             float blockMultipler = BlockDamageReduction();
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
             float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
-            float overallDamage = damageTaken * criticalMultiplier * blockMultipler;
+            float elementalMultiplier = ElementalDamage(AttributesComponent.ResistantElements, AttributesComponent.ElementPower, attacker.AttackingElements, attacker.ElementPower);
+            float overallDamage = damageTaken * criticalMultiplier * blockMultipler * elementalMultiplier;
             AttributesComponent.CurrentHealth -= overallDamage;
 
-            if (criticalMultiplier != 1)
+            if (criticalMultiplier != 1) //critical hit.
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.Orange);
+            else if (elementalMultiplier > 1) //entity is weak to that element
+                _FloatingTexts.AddFloatingTexts(overallDamage, Color.Crimson);
+            else if (elementalMultiplier < 1) //entity is resistant to that element
+                _FloatingTexts.AddFloatingTexts(overallDamage, Color.Navy);
             else
                 _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
         }
-
-        private float BlockDamageReduction()
-        {
-            //TODO: Remove this if CombatComponent is to be added to enemies as well.
-            if (CombatComponent == null)
-                return 1f;
+        
+        private float BlockDamageReduction(){
             return (CombatComponent.IsBlocking) ? AttributesComponent.BlockDamageReduction : 1f;
         }
 
@@ -60,6 +61,36 @@ namespace Corvus.Components{
         private float CriticalDamageChance(float critChance, float critDamage){
             Random rand = new Random();
             return (rand.NextDouble() <= critChance) ? critDamage : 1f;
+        }
+        
+        /// <summary>
+        /// Basically. Fire < Water < Earth < Wind < Fire.... Physical reduces Phyiscal by 75%.
+        /// </summary>
+        private float ElementalDamage(Elements res, float myInt, Elements att, float attackerInt)
+        {
+            if (res == Elements.None || att == Elements.None)
+                return 1f;
+            
+            float multiplier = 1f;
+            if (res == Elements.Physical && att == Elements.Physical)
+                multiplier -= 0.75f;
+            else if ((res == Elements.Fire && att == Elements.Water) ||
+                (res == Elements.Water && att == Elements.Earth) ||
+                (res == Elements.Earth && att == Elements.Wind) ||
+                (res == Elements.Wind && att == Elements.Fire))
+            {
+                multiplier += 0.5f;
+                multiplier += (attackerInt / (attackerInt + myInt)); //TODO: Not really much of a bonus... will think of something later.
+            }
+            else if ((att == Elements.Fire && res == Elements.Water) ||
+                (att == Elements.Water && res == Elements.Earth) ||
+                (att == Elements.Earth && res == Elements.Wind) ||
+                (att == Elements.Wind && res == Elements.Fire))
+            {
+                multiplier -= 0.5f;
+                multiplier -= (myInt / (2f * (myInt + attackerInt)));
+            }
+            return multiplier;
         }
 
         protected override void OnInitialize(){

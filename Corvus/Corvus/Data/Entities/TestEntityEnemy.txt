@@ -8,12 +8,17 @@ EnemySprite : RedSprite
 
 Attributes
 	AttributesComponent
-		MaxHealth: Random(750, 800)
+		MaxHealth: Random(250, 300)
 		Strength: 7
 		Dexterity: 5
-		BlockDamageReduction: 0.2
+		Intelligence: 4
+		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(100, 100)
 		AttackSpeed: 300
+		BlockSpeed: 500
+		BlockChance: 0.7
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 
 HealthyBig
 	HealthBarComponent
@@ -33,8 +38,7 @@ StatusEffecter
 AIer
 	AIComponent
 		ReactionRange: Vector(500, 200)
-		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player)
-		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Projectile)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
 
 Combator
 	CombatComponent

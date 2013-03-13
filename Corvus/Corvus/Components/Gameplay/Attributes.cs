@@ -86,7 +86,7 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
-        /// Gets or sets the intelligence. Intelligence affects elemental damage and ... not really sure yet.
+        /// Gets or sets the intelligence. Intelligence affects elemental damage and resistance.
         /// </summary>
         public float Intelligence
         {
@@ -130,6 +130,36 @@ namespace Corvus.Components.Gameplay
             set { _BlockDamageReduction = MathHelper.Clamp(value, 0f, 1f); }
         }
 
+        public float BlockChance
+        {
+            get { return _BlockChance; }
+            set { _BlockChance = Math.Max(value, 0); }
+        }
+
+        public float BlockSpeed
+        {
+            get { return _BlockSpeed; }
+            set { _BlockSpeed = Math.Max(value, 0); }
+        }
+
+        /// <summary>
+        /// Gets or sets the elements this entity is resistant to.
+        /// </summary>
+        public Elements ResistantElements
+        {
+            get { return _ResistantElements; }
+            set { _ResistantElements = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the elements this entity can attack with.
+        /// </summary>
+        public Elements AttackingElements
+        {
+            get { return _AttackingElements; }
+            set { _AttackingElements = value; }
+        }
+
         private Vector2 _MeleeAttackRange = new Vector2();
         private float _AttackSpeed = 0f;
         private float _CurrentHealth = 100f;
@@ -143,6 +173,9 @@ namespace Corvus.Components.Gameplay
         private float _CritChance = 0f;
         private float _CritDamage = 0f;
         private float _BlockDamageReduction = 1f;
-        
+        private float _BlockChance = 1f;
+        private float _BlockSpeed = 0f;
+        private Elements _ResistantElements = Elements.None;
+        private Elements _AttackingElements = Elements.Physical;
     }
 }

@@ -12,7 +12,7 @@ namespace Corvus.Components.Gameplay
     /// </summary>
     public class FloatingText
     {
-        // TODO: This should be in it's own class so that other components can use it.
+        
 
         /// <summary>
         /// Gets or sets the value to display.

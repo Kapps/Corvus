@@ -13,6 +13,7 @@ Attributes
 		MaxHealth: Random(450, 500)
 		Strength: 25
 		Dexterity: 20
+		Intelligence: 10
 
 Healthy
 	HealthBarComponent

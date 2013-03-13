@@ -27,7 +27,7 @@ namespace CorvEngine.Components {
 		private DateTime _LastJump = DateTime.Now;
 		private int _StepSize = 1;
 		private bool _ReverseOnCompletion = true;
-        private bool _IsPathing = true;
+        private bool _PathingEnabled = true;
 
 		/// <summary>
 		/// Gets the nodes that this entity paths to.
@@ -75,10 +75,10 @@ namespace CorvEngine.Components {
         /// <summary>
         /// Gets or sets a value indicating whether to allow this entity to follow the path.
         /// </summary>
-        public bool IsPathing
+        public bool PathingEnabled
         {
-            get { return _IsPathing; }
-            set { _IsPathing = value; }
+            get { return _PathingEnabled; }
+            set { _PathingEnabled = value; }
         }
 
 		/// <summary>
@@ -118,7 +118,7 @@ namespace CorvEngine.Components {
 		/// </summary>
 		/// <param name="Time"></param>
 		protected override void OnUpdate(GameTime Time) {
-			if(Nodes != null && IsPathing) {
+			if(Nodes != null && PathingEnabled) {
 				var entity = this.Parent;
 				var mc = entity.GetComponent<MovementComponent>();
 				var pc = entity.GetComponent<PhysicsComponent>();
@@ -162,7 +162,7 @@ namespace CorvEngine.Components {
         /// </summary>
         public void StartFollowing()
         {
-            IsPathing = true;
+            PathingEnabled = true;
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace CorvEngine.Components {
         {
             var mc = this.Parent.GetComponent<MovementComponent>();
             mc.StopWalking();
-            IsPathing = false;
+            PathingEnabled = false;
         }
 	}
 }

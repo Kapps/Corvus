@@ -33,9 +33,12 @@ namespace Corvus.Components {
 		private bool _IsDead = false;
 
 		/// <summary>
-		/// Gets this components Attributes.
+		/// Gets or sets this components Attributes.
 		/// </summary>
-		public Attributes Attributes { get { return _Attributes; } }
+		public Attributes Attributes { 
+            get { return _Attributes; }
+            set { _Attributes = value; }
+        }
 
 		/// <summary>
 		/// Gets the overall attack power.
@@ -58,6 +61,17 @@ namespace Corvus.Components {
 				return GetCombinedAttributeValues(Dexterity, DexModifier, EquipmentComponent.CurrentWeapon.Attributes.Dexterity, EquipmentComponent.CurrentWeapon.Attributes.DexModifier);
 			}
 		}
+
+        /// <summary>
+        /// Gets the overall elemental power.
+        /// </summary>
+        public float ElementPower{
+            get{
+                if (EquipmentComponent == null)
+                    return Intelligence * IntModifier;
+                return GetCombinedAttributeValues(Intelligence, IntModifier, EquipmentComponent.CurrentWeapon.Attributes.Intelligence, EquipmentComponent.CurrentWeapon.Attributes.IntModifier);
+            }
+        }
 
 		/// <summary>
 		/// Gets the overall critical chance.
@@ -115,7 +129,33 @@ namespace Corvus.Components {
 				return EquipmentComponent.CurrentWeapon.Attributes.BlockDamageReduction;
 			}
 			set { Attributes.BlockDamageReduction = value; }
-		}
+        }
+
+        /// <summary>
+        /// Gets or sets the elements this entity is resistant to.
+        /// </summary>
+        public Elements ResistantElements
+        {
+            get { 
+                if(EquipmentComponent == null)
+                    return Attributes.ResistantElements;
+                return EquipmentComponent.CurrentWeapon.Attributes.ResistantElements;
+            }
+            set { Attributes.ResistantElements = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the elements this entity can attack with.
+        /// </summary>
+        public Elements AttackingElements
+        {
+            get { 
+                if(EquipmentComponent == null)
+                    return Attributes.AttackingElements;
+                return EquipmentComponent.CurrentWeapon.Attributes.AttackingElements;
+            }
+            set { Attributes.AttackingElements = value; }
+        }
 
 		/// <summary>
 		/// Gets or sets the amount of health that this component has.
@@ -187,7 +227,7 @@ namespace Corvus.Components {
 		}
 
 		/// <summary>
-		/// Gets or sets the intelligence. Intelligence affects elemental damage and ... not really sure yet.
+		/// Gets or sets the intelligence. Intelligence affects elemental damage and resistance.
 		/// </summary>
 		public float Intelligence {
 			get { return Attributes.Intelligence; }
@@ -222,6 +262,24 @@ namespace Corvus.Components {
 			base.OnInitialize();
 			EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
 		}
+
+        /// <summary>
+        /// Gets or sets the block chance.
+        /// </summary>
+        public float BlockChance
+        {
+            get { return Attributes.BlockChance; }
+            set { Attributes.BlockChance = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the block speed.
+        /// </summary>
+        public float BlockSpeed
+        {
+            get { return Attributes.BlockSpeed; }
+            set { Attributes.BlockSpeed = value; }
+        }
 
 		/// <summary>
 		/// Calculates the combined value of two attributes. (EX: this entitie's attributes plus it's equipment bonuses)

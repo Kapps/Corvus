@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 using Corvus.Components.Gameplay.Equipment;
+using Microsoft.Xna.Framework;
 
 namespace Corvus.Components
 {
     /// <summary>
     /// A component to set the attributes for weapons.
     /// </summary>
-    public class WeaponDataComponent : Component
+    public class WeaponPropertiesComponent : Component
     {
         /// <summary>
         /// Gets the weapon data from this component.
         /// </summary>
-        public WeaponData WeaponData { get { return _WeaponData; } }
+        public WeaponProperties WeaponData { get { return _WeaponData; } }
 
         /// <summary>
         /// Gets or sets the weapon name.
@@ -44,6 +45,33 @@ namespace Corvus.Components
             set { WeaponData.IsRanged = value; }
         }
 
-        private WeaponData _WeaponData = new WeaponData();
+        /// <summary>
+        /// Gets or sets a value indicating that this weapon applies a status effect.
+        /// </summary>
+        public bool AppliesEffect
+        {
+            get { return WeaponData.AppliesEffect; }
+            set { WeaponData.AppliesEffect = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the projectile to fire. 
+        /// </summary>
+        public string ProjectileName
+        {
+            get { return WeaponData.ProjectileName; }
+            set { WeaponData.ProjectileName = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the projectile velocity.
+        /// </summary>
+        public Vector2 ProjectileVelocity
+        {
+            get { return WeaponData.ProjectileVelocity; }
+            set { WeaponData.ProjectileVelocity = value; }
+        }
+
+        private WeaponProperties _WeaponData = new WeaponProperties();
     }
 }
