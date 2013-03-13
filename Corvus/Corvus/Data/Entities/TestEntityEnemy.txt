@@ -44,9 +44,15 @@ Combator
 	CombatComponent
 		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Player)
 
-TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator
+Combatpropertieser
+	CombatPropertiesComponent
+		IsMelee: true
+		IsRanged: false
+		AppliesEffect: true
+
+TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator, Combatpropertieser
 	PhysicsComponent
-	StatusEffectAttributesComponent
+	StatusEffectPropertiesComponent
 		EffectType: Poison
 		BaseValue: 3
 		Intensity: 0.01

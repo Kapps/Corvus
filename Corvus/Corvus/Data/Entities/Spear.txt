@@ -6,8 +6,10 @@ WeaponProperties
 	WeaponPropertiesComponent
 		WeaponName: Spear
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
+	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: false
+		ConsumesMana: false
 	AttributesComponent
 		Strength: 0
 		StrModifier: 1.0
@@ -22,7 +24,7 @@ WeaponProperties
 		BlockDamageReduction: 0.25
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
-	StatusEffectAttributesComponent
+	StatusEffectPropertiesComponent
 
 Motion
 	PhysicsComponent

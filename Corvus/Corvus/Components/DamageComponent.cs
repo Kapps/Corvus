@@ -90,6 +90,12 @@ namespace Corvus.Components{
                 multiplier -= 0.5f;
                 multiplier -= (myInt / (2f * (myInt + attackerInt)));
             }
+            else if (res == Elements.All && (att == Elements.Fire || att == Elements.Water ||
+                    att == Elements.Earth || att == Elements.Wind))
+            {
+                multiplier -= 0.75f;
+                multiplier -= (myInt / (4f * (myInt + attackerInt)));
+            }
             return multiplier;
         }
 

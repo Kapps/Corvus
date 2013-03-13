@@ -23,21 +23,12 @@ namespace Corvus.Components {
         }
 
         /// <summary>
-        /// Gets or sets a value indicating that this entity is attacking using melee.
+        /// Gets or sets a value indicating that this entity is attacking using either melee or ranged.
         /// </summary>
-        public bool IsAttackingMelee
+        public bool IsAttacking
         {
-            get { return _IsAttackingMelee; }
-            private set { _IsAttackingMelee = value; }
-        }
-
-        /// <summary>
-        /// Get or sets a value indicating that this entity is attacking using range.
-        /// </summary>
-        public bool IsAttackingRanged
-        {
-            get { return _IsAttackingRanged; }
-            set { _IsAttackingRanged = value; }
+            get { return _IsAttacking; }
+            private set { _IsAttacking = value; }
         }
 
         /// <summary>
@@ -52,67 +43,41 @@ namespace Corvus.Components {
         private GameTime GameTime = new GameTime();
         private TimeSpan _AttackTimer = new TimeSpan(); //not sure if this is the best way to set up attack speed.
         private EntityClassification _AttackableEntities;
-        private bool _IsAttackingMelee = false;
-        private bool _IsAttackingRanged = false;
+        private bool _IsAttacking = false;
         private bool _IsBlocking = false;
         private DateTime _LastBlock;
 
         /// <summary>
-        /// Attack depending on whether the current weapon is melee or ranged.
+        /// For Player only: Attack depending on whether the current weapon is melee or ranged.
         /// </summary>
         public void Attack()
         {
-            if (EquipmentComponent.CurrentWeapon.WeaponData.IsRanged)
+            //This guy is attacking, don't do anything.
+            if (IsAttacking)
+                return;
+
+            //TODO: probably should move this to the AttackRanged/Melee functions
+            if (EquipmentComponent.CurrentWeapon.CombatProperties.ConsumesMana)
+            {
+                //Not enough mana so can't attack
+                if (AttributesComponent.CurrentMana < EquipmentComponent.CurrentWeapon.CombatProperties.ManaCost)
+                    return;
+                AttributesComponent.CurrentMana -= EquipmentComponent.CurrentWeapon.CombatProperties.ManaCost;
+            }
+
+            IsAttacking = true;
+
+            //determine what type of attack to do.
+            if (EquipmentComponent.CurrentWeapon.CombatProperties.IsRanged)
                 AttackRanged();
             else
                 AttackMelee();
         }
 
         /// <summary>
-        /// An attack meant to be used for AI, as they lack equipment components.
-        /// </summary>
-        public void AttackAI()
-        {
-            //This guy is attacking, don't do anything.
-            if (_IsAttackingMelee)
-                return;
-            _IsAttackingMelee = true;
-
-            //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
-            float attackSpeed = AttributesComponent.AttackSpeed;
-            SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
-
-            //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
-            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()))
-            {
-                //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
-                var cc = attackedEntity.GetComponent<ClassificationComponent>();
-                if (attackedEntity != Parent && cc.Classification == AttackableEntities)
-                {
-                    var damageComponent = attackedEntity.GetComponent<DamageComponent>();
-                    damageComponent.TakeDamage(AttributesComponent);
-
-                    //TODO: Need a property to determine if the enemy can apply status effects through attacks.
-                    //When the enemy attacks, apply status effects, if any. 
-                    var seac = Parent.GetComponent<StatusEffectAttributesComponent>();
-                    if (seac == null)
-                        continue;
-                    var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
-                    if (enemySEC == null)
-                        continue;
-                    enemySEC.ApplyStatusEffect(seac.StatusEffectAttributes);
-                }
-            }
-        }
-
-        /// <summary>
         /// Attacks an enemy with a close range attack.
         /// </summary>
 		private void AttackMelee() {
-            //This guy is attacking, don't do anything.
-            if (IsAttackingMelee)
-                return;
-            IsAttackingMelee = true;
             // TODO: Maybe the attack should start at a specific frame.
 			// TODO: Limit number of attacks they can do.
 			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
@@ -137,38 +102,82 @@ namespace Corvus.Components {
 
                     //Applies a status effect to the attacked enemy, if they can be affected.
                     var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
-                    if (EquipmentComponent.CurrentWeapon.WeaponData.AppliesEffect && enemySEC != null)
+                    if (EquipmentComponent.CurrentWeapon.CombatProperties.AppliesEffect && enemySEC != null)
                         enemySEC.ApplyStatusEffect(EquipmentComponent.CurrentWeapon.Effect);
                 }
             }
 		}
 
         private void AttackRanged()
-        {
-            if (IsAttackingRanged)
-                return;
-            IsAttackingRanged = true;
-            
+        {            
             //Create entity
-            var weaponData = EquipmentComponent.CurrentWeapon.WeaponData;
-            var projectile = CreateProjectileEntity(weaponData.ProjectileName, weaponData.ProjectileVelocity);
+            var weaponData = EquipmentComponent.CurrentWeapon;
+            var projectile = CreateProjectileEntity(weaponData.CombatProperties.ProjectileName, weaponData.CombatProperties.ProjectileVelocity);
 
             //A bit of a hack to get the projectile to apply damage and status effects.
             var ac = projectile.GetComponent<AttributesComponent>();
             ac.Attributes = AttributesComponent.Attributes;
             var ec = projectile.GetComponent<EquipmentComponent>();
             ec.EquipWeapon(EquipmentComponent.CurrentWeapon);
-            if (EquipmentComponent.CurrentWeapon.WeaponData.AppliesEffect)
+            var cpc = projectile.GetComponent<CombatPropertiesComponent>();
+            cpc.CombatProperties = EquipmentComponent.CurrentWeapon.CombatProperties;
+            if (EquipmentComponent.CurrentWeapon.CombatProperties.AppliesEffect)
             {
-                var cpc = projectile.GetComponent<CollisionProjectileComponent>();
-                cpc.AppliesEffect = true;
-                var seac = projectile.GetComponent<StatusEffectAttributesComponent>();
+                var seac = projectile.GetComponent<StatusEffectPropertiesComponent>();
                 seac.StatusEffectAttributes = EquipmentComponent.CurrentWeapon.Effect;
             }
 
             //set animation
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
+        }
+
+        /// <summary>
+        /// An attack meant to be used for AI, as they lack equipment components.
+        /// </summary>
+        public void AttackAI()
+        {
+            //This guy is attacking, don't do anything.
+            if (IsAttacking)
+                return;
+
+            var cpc = this.GetDependency<CombatPropertiesComponent>();
+            IsAttacking = true;
+            if (!cpc.IsRanged)
+                EnemyAttackMelee();
+            //TODO: put range attack here.
+        }
+
+        private void EnemyAttackMelee()
+        {
+            //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
+            float attackSpeed = AttributesComponent.AttackSpeed;
+            SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
+
+            //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
+            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()))
+            {
+                //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
+                var cc = attackedEntity.GetComponent<ClassificationComponent>();
+                if (attackedEntity != Parent && cc.Classification == AttackableEntities)
+                {
+                    var damageComponent = attackedEntity.GetComponent<DamageComponent>();
+                    damageComponent.TakeDamage(AttributesComponent);
+
+                    var cpc = this.GetDependency<CombatPropertiesComponent>();
+                    //When the enemy attacks, apply status effects, if any. 
+                    if (cpc.AppliesEffect)
+                    {
+                        var seac = Parent.GetComponent<StatusEffectPropertiesComponent>();
+                        if (seac == null)
+                            continue;
+                        var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
+                        if (enemySEC == null)
+                            continue;
+                        enemySEC.ApplyStatusEffect(seac.StatusEffectAttributes);
+                    }
+                }
+            }
         }
 
         public void BeginBlock()
@@ -211,16 +220,13 @@ namespace Corvus.Components {
         {
             base.OnUpdate(Time);
             GameTime = Time;
-            //TODO: Potential for bugs when we are combining both booleans.
-            if (IsAttackingMelee || IsAttackingRanged)
+            if (IsAttacking)
             {
                 _AttackTimer += Time.ElapsedGameTime;
                 if (_AttackTimer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
                 {
-                    IsAttackingMelee = false;
-                    IsAttackingRanged = false;
+                    IsAttacking = false;
                     _AttackTimer = TimeSpan.Zero;
-                    
                 }
             }
 

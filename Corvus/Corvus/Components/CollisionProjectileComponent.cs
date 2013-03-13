@@ -5,6 +5,7 @@ using System.Text;
 using CorvEngine.Components;
 using Corvus.Components.Gameplay;
 using Corvus.Components.Gameplay.Equipment;
+using Microsoft.Xna.Framework;
 
 namespace Corvus.Components
 {
@@ -13,19 +14,10 @@ namespace Corvus.Components
     /// </summary>
     public class CollisionProjectileComponent : CollisionEventComponent
     {
-        /// <summary>
-        /// Gets or sets a value indicating this projectile also applies a status effect. SHOULD ONLY BE SET IN CODE.
-        /// </summary>
-        public bool AppliesEffect
-        {
-            get { return _AppliesEffect; }
-            set { _AppliesEffect = value; }
-        }
-
-        private bool _AppliesEffect = false;
         private AttributesComponent AttributesComponent;
-        private StatusEffectAttributesComponent SEAComponent;
-
+        private StatusEffectPropertiesComponent SEAComponent;
+        private CombatPropertiesComponent CPComponent;
+                
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
             bool colGood = false;
@@ -36,13 +28,34 @@ namespace Corvus.Components
                 colGood = true;
             }
             //Apply status effect if it can.
-            if (AppliesEffect)
-            {
+            if (CPComponent.AppliesEffect){
                 var sc = Entity.GetComponent<StatusEffectsComponent>();
                 if (sc != null){
                     sc.ApplyStatusEffect(SEAComponent.StatusEffectAttributes);
                     colGood = true;
                 }
+            }
+            //Make an aoe appear if there should be one.
+            if (CPComponent.IsAoE)
+            {
+                //var aoe = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("AreaOfEffect").CreateEntity();
+                //aoe.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Center.Y); //TODO: FIX. THIS IS ACTUALLY WRONG.
+                //aoe.Size = new Vector2(CPComponent.AoESize.X, CPComponent.AoESize.Y); 
+                //Parent.Scene.AddEntity(aoe);
+
+                ////set the sprite to draw.
+                //var effect = CorvusGame.Instance.GlobalContent.LoadSprite(CPComponent.AoEName);
+                //var sc = aoe.GetComponent<SpriteComponent>();
+                //sc.Sprite = effect;
+
+                ////give it it's properties.
+                //var cpc = aoe.GetComponent<CombatPropertiesComponent>();
+                //cpc.CombatProperties = CPComponent.CombatProperties;
+                //var ac = aoe.GetComponent<AttributesComponent>();
+                //ac.Attributes = AttributesComponent.Attributes;
+                //var se = aoe.GetComponent<StatusEffectPropertiesComponent>();
+                //se.StatusEffectAttributes = SEAComponent.StatusEffectAttributes;
+
             }
 
             return colGood;
@@ -52,7 +65,8 @@ namespace Corvus.Components
         {
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
-            SEAComponent = Parent.GetComponent<StatusEffectAttributesComponent>();
+            SEAComponent = Parent.GetComponent<StatusEffectPropertiesComponent>();
+            CPComponent = this.GetDependency<CombatPropertiesComponent>();
         }
     }
 }

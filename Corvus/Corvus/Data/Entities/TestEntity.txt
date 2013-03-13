@@ -11,6 +11,8 @@ PlayerSprite : BlueSprite
 Attributes
 	AttributesComponent
 		MaxHealth: Random(450, 500)
+		MaxMana: 100
+		ManaRegen: 0.01
 		Strength: 25
 		Dexterity: 20
 		Intelligence: 10
@@ -35,5 +37,6 @@ Fighter
 TestEntity : PlayerSprite, Healthy, Mover, Attributes, Damager, StatusEffecter, Fighter
 	PhysicsComponent
 	EquipmentComponent
+		DefaultWeaponName: Bow
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

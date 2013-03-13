@@ -113,9 +113,10 @@ namespace Corvus.Components
             //Creates the weapon from a blueprint.
             var weapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(DefaultWeaponName).CreateEntity();
             var attri = weapon.GetComponent<AttributesComponent>();
+            var props = weapon.GetComponent<CombatPropertiesComponent>();
             var data = weapon.GetComponent<WeaponPropertiesComponent>();
-            var effect = weapon.GetComponent<StatusEffectAttributesComponent>();
-            _DefaultWeapon = new Weapon(data.WeaponData, attri.Attributes, effect.StatusEffectAttributes);
+            var effect = weapon.GetComponent<StatusEffectPropertiesComponent>();
+            _DefaultWeapon = new Weapon(data.WeaponData, props.CombatProperties, attri.Attributes, effect.StatusEffectAttributes);
             Weapons.Add(_DefaultWeapon);
             weapon.Dispose();
         }

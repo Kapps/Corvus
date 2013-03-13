@@ -194,6 +194,43 @@ namespace Corvus.Components {
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets the amount of mana that this component has.
+        /// </summary>
+        public float CurrentMana
+        {
+            get { return Attributes.CurrentMana; }
+            set
+            {
+                value = Math.Min(MaxMana, Math.Max(value, 0));
+                Attributes.CurrentMana = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum mana allowed for this component.
+        /// Setting this value also alters the current mana to be equal to the old percentage of mana.
+        /// </summary>
+        public float MaxMana
+        {
+            get { return Attributes.MaxMana; }
+            set
+            {
+                float currPercent = CurrentMana / MaxMana;
+                Attributes.MaxMana = value;
+                CurrentMana = MaxMana * currPercent;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much mana, expressed as a percentage of the max mana, to recover per second. 
+        /// </summary>
+        public float ManaRegen
+        {
+            get { return Attributes.ManaRegen; }
+            set { Attributes.ManaRegen = value; }
+        }
+
 		/// <summary>
 		/// Gets or sets the strength. Strength affects physical and ranged damage.
 		/// </summary>
@@ -290,5 +327,14 @@ namespace Corvus.Components {
 			float result = cAdd * cMult;
 			return result;
 		}
+
+        protected override void OnUpdate(GameTime Time)
+        {
+            base.OnUpdate(Time);
+            if (!_IsDead && ManaRegen != 0)
+            {
+                CurrentMana += (MaxMana * ManaRegen) * (float)Time.ElapsedGameTime.Milliseconds / 1000f;
+            }
+        }
 	}
 }

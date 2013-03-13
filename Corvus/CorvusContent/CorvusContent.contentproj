@@ -244,7 +244,7 @@
     <Compile Include="Sprites\Effects\Explosions.xml">
       <Name>Explosions</Name>
       <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
+      <Processor>SpriteProcessor</Processor>
     </Compile>
     <Compile Include="Sprites\Effects\Explosion2.png">
       <Name>Explosion2</Name>

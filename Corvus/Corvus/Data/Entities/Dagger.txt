@@ -6,8 +6,11 @@ WeaponProperties
 	WeaponPropertiesComponent
 		WeaponName: Dagger
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
+	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: true
+		ConsumesMana: false
+		ManaCost: 0
 	AttributesComponent
 		Strength: 0
 		StrModifier: 1.05
@@ -22,7 +25,7 @@ WeaponProperties
 		BlockDamageReduction: 0.66
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
-	StatusEffectAttributesComponent
+	StatusEffectPropertiesComponent
 		EffectType: Poison
 		BaseValue: 500
 		Intensity: 0.3

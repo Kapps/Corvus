@@ -38,6 +38,6 @@ namespace Corvus.Components.Gameplay.StatusEffects
         }
 
         //Unfortunately, need to specify this in order for StatusEffectsComponent to work properly.
-        public Poison(Entity entity, StatusEffectAttributes attributes) : base(entity, attributes) { }
+        public Poison(Entity entity, StatusEffectProperties attributes) : base(entity, attributes) { }
     }
 }

@@ -6,10 +6,17 @@ WeaponProperties
 	WeaponPropertiesComponent 
 		WeaponName: Bow
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Bow)
+	CombatPropertiesComponent
 		IsRanged: true
 		AppliesEffect: false
+		IsAoE: true
+		ConsumesMana: false
 		ProjectileName: TestProjectile
 		ProjectileVelocity: Vector(600, 50)
+		AoEName: Sprites/Effects/Explosions
+		AoESize: Vector(50, 50)
+		AoEDuration: 5
+		AoEDamagePercent: 0.33
 	AttributesComponent
 		Strength: 0
 		StrModifier: 0.6
@@ -24,7 +31,7 @@ WeaponProperties
 		BlockDamageReduction: 0.85
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
-	StatusEffectAttributesComponent
+	StatusEffectPropertiesComponent
 	
 Motion
 	PhysicsComponent

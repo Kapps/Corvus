@@ -14,16 +14,16 @@ namespace Corvus.Components
     /// <summary>
     /// A Component to set the status effect attributes. Mainly used for weapons and enemy attacks.
     /// </summary>
-    public class StatusEffectAttributesComponent : Component
+    public class StatusEffectPropertiesComponent : Component
     {
-        private StatusEffectAttributes _StatusEffectAttributes = new StatusEffectAttributes();
+        private StatusEffectProperties _StatusEffectProperties = new StatusEffectProperties();
 
         /// <summary>
         /// Gets the attributes.
         /// </summary>
-        public StatusEffectAttributes StatusEffectAttributes { 
-            get { return _StatusEffectAttributes; }
-            set { _StatusEffectAttributes = value; }
+        public StatusEffectProperties StatusEffectAttributes { 
+            get { return _StatusEffectProperties; }
+            set { _StatusEffectProperties = value; }
         }
 
         /// <summary>

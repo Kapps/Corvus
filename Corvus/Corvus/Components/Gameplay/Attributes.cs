@@ -50,6 +50,33 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
+        /// Gets or sets the amount of mana that his entity currently has.
+        /// </summary>
+        public float CurrentMana
+        {
+            get { return _CurrentMana; }
+            set { _CurrentMana = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the max mana.
+        /// </summary>
+        public float MaxMana
+        {
+            get { return _MaxMana; }
+            set { _MaxMana = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much mana, expressed as a percentage of the max mana, to recover per second. 
+        /// </summary>
+        public float ManaRegen
+        {
+            get { return _ManaRegen; }
+            set { _ManaRegen = MathHelper.Clamp(value, 0f, 1f); }
+        }
+
+        /// <summary>
         /// Gets or sets the strength. Strength affects physical and ranged damage.
         /// </summary>
         public float Strength
@@ -164,6 +191,9 @@ namespace Corvus.Components.Gameplay
         private float _AttackSpeed = 0f;
         private float _CurrentHealth = 100f;
         private float _MaxHealth = 100f;
+        private float _CurrentMana = 50f;
+        private float _MaxMana = 50f;
+        private float _ManaRegen = 0f;
         private float _Strength = 0;
         private float _StrModifier = 1f;
         private float _Dexterity = 0;

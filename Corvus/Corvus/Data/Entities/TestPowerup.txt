@@ -4,7 +4,7 @@
 
 TestPowerup : PowerupSprite
 	PhysicsComponent
-	StatusEffectAttributesComponent
+	StatusEffectPropertiesComponent
 		EffectType: Healing
 		BaseValue: 50
 		Intensity: 0.035
