@@ -23,7 +23,7 @@ WeaponProperties
 		AttackSpeed: 100
 		BlockDamageReduction: 0.85
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
-		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
 	StatusEffectAttributesComponent
 	
 Motion

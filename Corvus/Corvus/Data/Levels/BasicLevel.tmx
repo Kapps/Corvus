@@ -73,7 +73,7 @@
   </object>
   <object name="Sit2" type="Bow" x="1327" y="1249" width="32" height="32">
   </object>
-   <object name="Powerup1" type="TestPowerup" x="1427" y="1249" width="32" height="32">
+   <object name="Powerup1" type="TestEntityEnemy" x="1427" y="1249" width="32" height="32">
    </object>
    <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1584" width="32" height="32">
     <properties>
