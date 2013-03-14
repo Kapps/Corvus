@@ -11,7 +11,6 @@ namespace Corvus.Components
 {
     /// <summary>
     /// A component to handle all combat components. For players, these are set through weapons, otherwise, this is the place to do it.
-    /// This class should only be directly used by enemies.
     /// </summary>
     public class CombatPropertiesComponent : Component
     {
@@ -20,7 +19,12 @@ namespace Corvus.Components
         /// </summary>
         public CombatProperties CombatProperties
         {
-            get { return _CombatProperties; }
+            get { 
+                //The first check is there to avoid a bug when creating the blueprint.
+                if(EquipmentComponent == null || !EquipmentComponent.UseWeaponBonuses)
+                    return _CombatProperties;
+                return EquipmentComponent.CurrentWeapon.CombatProperties;
+            }
             set { _CombatProperties = value; }
         }
 
@@ -62,6 +66,15 @@ namespace Corvus.Components
         }
 
         /// <summary>
+        /// Gets or sets a percentage that indicates when the attack hit box should occur with respect to the attack speed.
+        /// </summary>
+        public float HitDelay
+        {
+            get { return CombatProperties.HitDelay; }
+            set { CombatProperties.HitDelay = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this entity consumes mana.
         /// Player Only.
         /// </summary>
@@ -69,16 +82,6 @@ namespace Corvus.Components
         {
             get { return CombatProperties.ConsumesMana; }
             set { CombatProperties.ConsumesMana = value; }
-        }
-
-        /// <summary>
-        /// How much mana to consume.
-        /// Player Only.
-        /// </summary>
-        public float ManaCost
-        {
-            get { return CombatProperties.ManaCost; }
-            set { CombatProperties.ManaCost = value; }
         }
 
         /// <summary>
@@ -100,12 +103,39 @@ namespace Corvus.Components
         }
 
         /// <summary>
+        /// Gets or sets how much to offset the projectile spawn point with respect to the center of the sprite.
+        /// </summary>
+        public Vector2 ProjectileOffset
+        {
+            get { return CombatProperties.ProjectileOffset; }
+            set { CombatProperties.ProjectileOffset = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the projectile velocity.
         /// </summary>
         public Vector2 ProjectileVelocity
         {
             get { return CombatProperties.ProjectileVelocity; }
             set { CombatProperties.ProjectileVelocity = value; }
+        }
+
+        /// <summary>
+        ///  Gets or sets the amount to multiply the force of gravity by.
+        /// </summary>
+        public float ProjectileGravityCoefficient
+        {
+            get { return CombatProperties.ProjectileGravityCoefficient; }
+            set { CombatProperties.ProjectileGravityCoefficient = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the amount to multiply the force of horizontal drag by.
+        /// </summary>
+        public float ProjectileHorDragCoefficient
+        {
+            get { return CombatProperties.ProjectileHorDragCoefficient; }
+            set { CombatProperties.ProjectileHorDragCoefficient = value; }
         }
 
         /// <summary>
@@ -125,6 +155,7 @@ namespace Corvus.Components
             get { return CombatProperties.AoESize; }
             set { CombatProperties.AoESize = value; }
         }
+
         /// <summary>
         /// Gets or sets the duration the area of effect should linger.
         /// </summary>
@@ -152,7 +183,13 @@ namespace Corvus.Components
             set { CombatProperties.AoEHitableEntities = value; }
         }
 
-
         private CombatProperties _CombatProperties = new CombatProperties();
+        private EquipmentComponent EquipmentComponent;
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
+        }
     }
 }

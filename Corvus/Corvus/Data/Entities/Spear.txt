@@ -10,6 +10,7 @@ WeaponProperties
 		IsRanged: false
 		AppliesEffect: false
 		IsAoE: false
+		HitDelay: 0.5
 		ConsumesMana: false
 		AoEName: Sprites/Effects/Explosions
 		AoESize: Vector(50, 50)
@@ -31,6 +32,10 @@ WeaponProperties
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
 	StatusEffectPropertiesComponent
+		EffectType: Poison
+		BaseValue: 3111
+		Intensity: 0.01
+		Duration: 5
 
 Motion
 	PhysicsComponent

@@ -20,6 +20,21 @@ Attributes
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 
+Combatpropertieser
+	CombatPropertiesComponent
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0.5
+		ConsumesMana: false
+		ProjectileName: TestProjectile
+		ProjectileVelocity: Vector(600, 50)
+		AoEName: Sprites/Effects/Explosions
+		AoESize: Vector(50, 50)
+		AoEDuration: 5
+		AoEDamagePercent: 0.33
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
+
 HealthyBig
 	HealthBarComponent
 		
@@ -41,22 +56,10 @@ AIer
 		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
 
 Combator
+	EquipmentComponent
+		UseWeaponBonuses: false
 	CombatComponent
 		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Player)
-
-Combatpropertieser
-	CombatPropertiesComponent
-		IsRanged: false
-		AppliesEffect: false
-		IsAoE: false
-		ConsumesMana: false
-		ProjectileName: TestProjectile
-		ProjectileVelocity: Vector(600, 50)
-		AoEName: Sprites/Effects/Explosions
-		AoESize: Vector(50, 50)
-		AoEDuration: 5
-		AoEDamagePercent: 0.33
-		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator, Combatpropertieser
 	PhysicsComponent

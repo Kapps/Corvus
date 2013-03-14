@@ -12,6 +12,9 @@ using Microsoft.Xna.Framework;
 
 namespace Corvus.Components
 {
+    /// <summary>
+    /// A component to manage a projectile. This should only be used by Projectile.txt.
+    /// </summary>
     public class ProjectileComponent : CollisionEventComponent
     {
         private AttributesComponent AttributesComponent;
@@ -33,7 +36,7 @@ namespace Corvus.Components
 
             if (clc.Classification == EntityClassification.Projectile && pc.IsGrounded)
                 Parent.Dispose();
-
+            
             base.OnUpdate(Time);
         }
 
@@ -58,15 +61,17 @@ namespace Corvus.Components
                 }
             }
             //Make an aoe appear if there should be one.
-            if (CPComponent.IsAoE)
+            if (CPComponent.IsAoE) {
                 AreaOfEffectComponent.CreateAoEEntity(this.Parent);
+                colGood = true;
+            }
 
             return colGood;
         }
 
         //NOTE: Not tested with enemies yet :p
         /// <summary>
-        /// Creates a projectile entity by the entity calling this function. 
+        /// Creates a projectile entity next to the entity calling this function. 
         /// </summary>
         public static void CreateProjectileEntity(Entity entity)
         {
@@ -78,56 +83,41 @@ namespace Corvus.Components
             var MovementComponent = entity.GetComponent<MovementComponent>();
 
             var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("Projectile").CreateEntity();
-            if (EquipmentComponent == null)
-            {
-                var aoeEC = projectile.GetComponent<EquipmentComponent>();
-                projectile.Components.Remove(aoeEC);
-            }
-            projectile.Size = (EquipmentComponent == null) ? new Vector2(CPComponent.ProjectileSize.X, CPComponent.ProjectileSize.Y) :
-                                                             new Vector2(EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileSize.X, EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileSize.Y);
-
-            projectile.Position = new Vector2(entity.Location.Center.X, entity.Location.Top);
+            projectile.Size = new Vector2(CPComponent.ProjectileSize.X, CPComponent.ProjectileSize.Y);
+            var center = entity.Location.Center;
+            projectile.Position = new Vector2(center.X + CorvusExtensions.GetSign(MovementComponent.CurrentDirection) * (CPComponent.ProjectileOffset.X),
+                                                center.Y + CPComponent.ProjectileOffset.Y);
+            
             entity.Scene.AddEntity(projectile);
-
-            string spriteName = (EquipmentComponent == null) ? CPComponent.ProjectileName : EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileName;
+            string spriteName = CPComponent.ProjectileName;
             var sprite = CorvusGame.Instance.GlobalContent.LoadSprite(spriteName);
             var sc = projectile.GetComponent<SpriteComponent>();
             sc.Sprite = sprite;
-
-            //A bit of a hack to get the projectile to apply damage and status effects.
+            //Apply properties
             var ac = projectile.GetComponent<AttributesComponent>();
             ac.Attributes = AttributesComponent.Attributes;
-            if (EquipmentComponent != null)
+            if (CPComponent.AppliesEffect)
+            {
+                var seac = projectile.GetComponent<StatusEffectPropertiesComponent>();
+                seac.StatusEffectAttributes = SEAComponent.StatusEffectAttributes;
+            }
+            if(EquipmentComponent.UseWeaponBonuses)// != null)
             {
                 var ec = projectile.GetComponent<EquipmentComponent>();
+                ec.UseWeaponBonuses = true;
                 ec.EquipWeapon(EquipmentComponent.CurrentWeapon);
-                if (EquipmentComponent.CurrentWeapon.CombatProperties.AppliesEffect)
-                {
-                    var seac = projectile.GetComponent<StatusEffectPropertiesComponent>();
-                    seac.StatusEffectAttributes = EquipmentComponent.CurrentWeapon.Effect;
-                }
             }
-            else
-            {
-                if (CPComponent.AppliesEffect)
-                {
-                    var seac = projectile.GetComponent<StatusEffectPropertiesComponent>();
-                    seac.StatusEffectAttributes = SEAComponent.StatusEffectAttributes;
-                }
-            }
-
             var cpc = projectile.GetComponent<CombatPropertiesComponent>();
-            cpc.CombatProperties = (EquipmentComponent == null) ? CPComponent.CombatProperties : EquipmentComponent.CurrentWeapon.CombatProperties;
-
+            cpc.CombatProperties = CPComponent.CombatProperties;
             var pc = projectile.GetComponent<ProjectileComponent>();
             pc.Classification = CombatComponent.AttackableEntities;
-
             var physC = projectile.GetComponent<PhysicsComponent>();
+            physC.GravityCoefficient = CPComponent.ProjectileGravityCoefficient;
+            physC.HorDragCoefficient = CPComponent.ProjectileHorDragCoefficient;
             if (MovementComponent.CurrentDirection == Direction.Right)
-                physC.Velocity = new Vector2(EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileVelocity.X, -EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileVelocity.Y);
+                physC.Velocity = new Vector2(CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
             else if (MovementComponent.CurrentDirection == Direction.Left)
-                physC.Velocity = new Vector2(-EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileVelocity.X, -EquipmentComponent.CurrentWeapon.CombatProperties.ProjectileVelocity.Y);
-
+                physC.Velocity = new Vector2(-CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
         }
     }
 }

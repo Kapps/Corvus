@@ -46,6 +46,7 @@ namespace Corvus.Components {
         private bool _IsAttacking = false;
         private bool _IsBlocking = false;
         private DateTime _LastBlock;
+        private Action _AttackAction; 
 
         /// <summary>
         /// For Player only: Attack depending on whether the current weapon is melee or ranged.
@@ -56,35 +57,30 @@ namespace Corvus.Components {
             if (IsAttacking)
                 return;
 
-            //TODO: probably should move this to the AttackRanged/Melee functions
-            if (EquipmentComponent.CurrentWeapon.CombatProperties.ConsumesMana)
+            //check if it consumes mana.
+            if (CombatPropertiesComponent.ConsumesMana)
             {
                 //Not enough mana so can't attack
-                if (AttributesComponent.CurrentMana < EquipmentComponent.CurrentWeapon.CombatProperties.ManaCost)
+                if (AttributesComponent.CurrentMana < AttributesComponent.ManaCost)
                     return;
-                AttributesComponent.CurrentMana -= EquipmentComponent.CurrentWeapon.CombatProperties.ManaCost;
+                AttributesComponent.CurrentMana -= AttributesComponent.ManaCost;
             }
 
             IsAttacking = true;
+            //set animation
+            float attackSpeed = AttributesComponent.AttackSpeed;
+            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
 
             //determine what type of attack to do.
-            if (EquipmentComponent.CurrentWeapon.CombatProperties.IsRanged)
-                AttackRanged();
+            if (CombatPropertiesComponent.IsRanged)
+                _AttackAction = AttackRanged;
             else
-                AttackMelee();
+                _AttackAction = AttackMelee;
         }
-
         /// <summary>
         /// Attacks an enemy with a close range attack.
         /// </summary>
 		private void AttackMelee() {
-            // TODO: Maybe the attack should start at a specific frame.
-			// TODO: Limit number of attacks they can do.
-			// TODO: Decide on how best to integrate things that are mutually exclusive, like attacking while walking.
-			// At the very least the sprites for it will be mutually exclusive.
-            float attackSpeed = AttributesComponent.AttackSpeed;
-            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
-
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
             foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()).Reverse())
             {
@@ -102,10 +98,10 @@ namespace Corvus.Components {
 
                     //Applies a status effect to the attacked enemy, if they can be affected.
                     var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
-                    if (EquipmentComponent.CurrentWeapon.CombatProperties.AppliesEffect && enemySEC != null)
+                    if (CombatPropertiesComponent.AppliesEffect && enemySEC != null)
                         enemySEC.ApplyStatusEffect(EquipmentComponent.CurrentWeapon.Effect);
 
-                    if (EquipmentComponent.CurrentWeapon.CombatProperties.IsAoE)
+                    if (CombatPropertiesComponent.IsAoE)
                         AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 }
             }
@@ -114,9 +110,6 @@ namespace Corvus.Components {
         private void AttackRanged()
         {
             ProjectileComponent.CreateProjectileEntity(this.Parent);
-            //set animation
-            float attackSpeed = AttributesComponent.AttackSpeed;
-            SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
         }
 
         /// <summary>
@@ -130,17 +123,18 @@ namespace Corvus.Components {
 
             var cpc = this.GetDependency<CombatPropertiesComponent>();
             IsAttacking = true;
+
+            //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
+            float attackSpeed = AttributesComponent.AttackSpeed;
+            SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
+
             if (!cpc.IsRanged)
-                EnemyAttackMelee();
+                _AttackAction = EnemyAttackMelee;
             //TODO: put range attack here.
         }
 
         private void EnemyAttackMelee()
         {
-            //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
-            float attackSpeed = AttributesComponent.AttackSpeed;
-            SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
-
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
             foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()).Reverse())
             {
@@ -151,9 +145,8 @@ namespace Corvus.Components {
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
                     damageComponent.TakeDamage(AttributesComponent);
 
-                    var cpc = this.GetDependency<CombatPropertiesComponent>();
                     //When the enemy attacks, apply status effects, if any. 
-                    if (cpc.AppliesEffect)
+                    if (CombatPropertiesComponent.AppliesEffect)
                     {
                         var seac = Parent.GetComponent<StatusEffectPropertiesComponent>();
                         if (seac == null)
@@ -163,7 +156,7 @@ namespace Corvus.Components {
                             continue;
                         enemySEC.ApplyStatusEffect(seac.StatusEffectAttributes);
                     }
-                    if (cpc.IsAoE)
+                    if (CombatPropertiesComponent.IsAoE)
                         AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 }
             }
@@ -203,6 +196,7 @@ namespace Corvus.Components {
             SpriteComponent = this.GetDependency<SpriteComponent>();
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
             PhysicsComponent = Parent.GetComponent<PhysicsComponent>();
+            CombatPropertiesComponent = this.GetDependency<CombatPropertiesComponent>();
         }
 
         protected override void OnUpdate(GameTime Time)
@@ -212,11 +206,24 @@ namespace Corvus.Components {
             if (IsAttacking)
             {
                 _AttackTimer += Time.ElapsedGameTime;
+                //MovementComponent.WalkSpeedModifier = 0.1f;
+                if(_AttackTimer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed * CombatPropertiesComponent.HitDelay) && _AttackAction != null)
+                {
+                    _AttackAction();
+                    _AttackAction = null;
+                }
+                //attack ends
                 if (_AttackTimer >= TimeSpan.FromMilliseconds(AttributesComponent.AttackSpeed))
                 {
                     IsAttacking = false;
+                    //MovementComponent.WalkSpeedModifier = 1f;
+                    //if (MovementComponent.IsWalking)
+                    //    MovementComponent.BeginWalking(MovementComponent.CurrentDirection);
+                    //else
+                    //    MovementComponent.StopWalking();
                     _AttackTimer = TimeSpan.Zero;
                 }
+                
             }
 
             //Basically, if the player is walking and blocking, do blocking, which stops walking.
@@ -253,5 +260,6 @@ namespace Corvus.Components {
         private SpriteComponent SpriteComponent;
         private PhysicsSystem PhysicsSystem;
         private PhysicsComponent PhysicsComponent;
+        private CombatPropertiesComponent CombatPropertiesComponent;
 	}
 }

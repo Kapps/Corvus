@@ -27,6 +27,15 @@ namespace Corvus.Components
         public Weapon CurrentWeapon { get { return Weapons[_CurrentWeaponIndex]; } }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to use weapon bonuses. Should be false for enemies, true for players.
+        /// </summary>
+        public bool UseWeaponBonuses
+        {
+            get { return _UseWeaponBonuses; }
+            set { _UseWeaponBonuses = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the number of weapons allowed. 
         /// </summary>
         public int Capacity
@@ -45,6 +54,7 @@ namespace Corvus.Components
         }
 
         private WeaponCollection _Weapons = new WeaponCollection();
+        private bool _UseWeaponBonuses = false;
         private int _Capacity = 3;
         private int _CurrentWeaponIndex = 0;
         private string _DefaultWeaponName;

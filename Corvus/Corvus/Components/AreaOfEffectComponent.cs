@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 namespace Corvus.Components
 {
     /// <summary>
-    /// A component to manage area of effect entities. Shouldnt be used by anything else.
+    /// A component to manage the area of effect entity. Shouldnt be used by anything else.
     /// </summary>
     public class AreaOfEffectComponent : CollisionEventComponent
     {
@@ -71,41 +71,37 @@ namespace Corvus.Components
             var SEAComponent = entity.GetComponent<StatusEffectPropertiesComponent>();
             var AttributesComponent = entity.GetComponent<AttributesComponent>();
             var EquipmentComponent = entity.GetComponent<EquipmentComponent>();
+            var MovementComponent = entity.GetComponent<MovementComponent>();
 
             var aoe = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("AreaOfEffect").CreateEntity();
-            //remove equipment component to avoid bugs.
-            if (EquipmentComponent == null)
-            {
-                var aoeEC = aoe.GetComponent<EquipmentComponent>();
-                aoe.Components.Remove(aoeEC);
-            }
-            aoe.Size = (EquipmentComponent == null) ? new Vector2(CPComponent.AoESize.X, CPComponent.AoESize.Y) 
-                                                    : new Vector2(EquipmentComponent.CurrentWeapon.CombatProperties.AoESize.X, EquipmentComponent.CurrentWeapon.CombatProperties.AoESize.X);
-            
-            aoe.Position = new Vector2(entity.Location.Center.X - (aoe.Size.X / 2), entity.Location.Center.Y - (aoe.Size.Y / 2)); 
+            aoe.Size = new Vector2(CPComponent.AoESize.X, CPComponent.AoESize.Y);
+            var center = entity.Location.Center;
+            aoe.Position = new Vector2(center.X - (aoe.Size.X / 2), center.Y - (aoe.Size.Y / 2));
             entity.Scene.AddEntity(aoe);
-
-            //set the sprite to draw.
-            var spriteName = (EquipmentComponent == null) ? CPComponent.AoEName : EquipmentComponent.CurrentWeapon.CombatProperties.AoEName;
+            var spriteName = CPComponent.AoEName;
             var effect = CorvusGame.Instance.GlobalContent.LoadSprite(spriteName);
             var sc = aoe.GetComponent<SpriteComponent>();
             sc.Sprite = effect;
-
             //give it it's properties.
-            if (EquipmentComponent != null)
+            if (EquipmentComponent.UseWeaponBonuses)
             {
                 var ec = aoe.GetComponent<EquipmentComponent>();
+                ec.UseWeaponBonuses = true;
                 ec.EquipWeapon(EquipmentComponent.CurrentWeapon);
+                var se = aoe.GetComponent<StatusEffectPropertiesComponent>();
+                se.StatusEffectAttributes = EquipmentComponent.CurrentWeapon.Effect;
+            }
+            else
+            {
+                var se = aoe.GetComponent<StatusEffectPropertiesComponent>();
+                se.StatusEffectAttributes = SEAComponent.StatusEffectAttributes;
             }
             var cpc = aoe.GetComponent<CombatPropertiesComponent>();
-            cpc.CombatProperties = (EquipmentComponent == null) ? CPComponent.CombatProperties : EquipmentComponent.CurrentWeapon.CombatProperties;
+            cpc.CombatProperties = CPComponent.CombatProperties;
             var ac = aoe.GetComponent<AttributesComponent>();
             ac.Attributes = AttributesComponent.Attributes;
-            var se = aoe.GetComponent<StatusEffectPropertiesComponent>();
-            se.StatusEffectAttributes = (EquipmentComponent == null) ? SEAComponent.StatusEffectAttributes : EquipmentComponent.CurrentWeapon.Effect;
             var aoec = aoe.GetComponent<AreaOfEffectComponent>();
-            aoec.Classification = (EquipmentComponent == null) ? CPComponent.AoEHitableEntities : EquipmentComponent.CurrentWeapon.CombatProperties.AoEHitableEntities;
-
+            aoec.Classification = CPComponent.AoEHitableEntities;
         }
 
     }

@@ -9,8 +9,8 @@ WeaponProperties
 	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: true
+		HitDelay: 0.75
 		ConsumesMana: false
-		ManaCost: 0
 	AttributesComponent
 		Strength: 0
 		StrModifier: 1.05

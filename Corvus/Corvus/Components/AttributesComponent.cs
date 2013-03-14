@@ -8,8 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Corvus.Components.Gameplay;
 
 namespace Corvus.Components {
-	//TODO: Maybe remove those if(EquipmentManager == null) statements if we decide to put equipmentcomponent on all entities.
-
 	/// <summary>
 	/// A class to manage attributes for this entity.
 	/// </summary>
@@ -30,7 +28,7 @@ namespace Corvus.Components {
 
 		private EquipmentComponent EquipmentComponent;
 		private Attributes _Attributes = new Attributes();
-		private bool _IsDead = false;
+        private bool _IsDead = false;
 
 		/// <summary>
 		/// Gets or sets this components Attributes.
@@ -45,7 +43,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public float Attack {
 			get {
-				if(EquipmentComponent == null)
+				if(!EquipmentComponent.UseWeaponBonuses)
 					return Strength * StrModifier;
 				return GetCombinedAttributeValues(Strength, StrModifier, EquipmentComponent.CurrentWeapon.Attributes.Strength, EquipmentComponent.CurrentWeapon.Attributes.StrModifier);
 			}
@@ -56,7 +54,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public float Defense {
 			get {
-				if(EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
 					return Dexterity * DexModifier;
 				return GetCombinedAttributeValues(Dexterity, DexModifier, EquipmentComponent.CurrentWeapon.Attributes.Dexterity, EquipmentComponent.CurrentWeapon.Attributes.DexModifier);
 			}
@@ -67,7 +65,7 @@ namespace Corvus.Components {
         /// </summary>
         public float ElementPower{
             get{
-                if (EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
                     return Intelligence * IntModifier;
                 return GetCombinedAttributeValues(Intelligence, IntModifier, EquipmentComponent.CurrentWeapon.Attributes.Intelligence, EquipmentComponent.CurrentWeapon.Attributes.IntModifier);
             }
@@ -78,7 +76,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public float CriticalChance {
 			get {
-				if(EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
 					return CritChance;
 				return MathHelper.Clamp(CritChance + EquipmentComponent.CurrentWeapon.Attributes.CritChance, 0, 1f);
 			}
@@ -89,7 +87,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public float CriticalDamage {
 			get {
-				if(EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
 					return CritDamage;
 				return CritDamage + EquipmentComponent.CurrentWeapon.Attributes.CritDamage;
 			}
@@ -100,7 +98,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public Vector2 MeleeAttackRange {
 			get {
-				if(EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
 					return Attributes.MeleeAttackRange;
 				return EquipmentComponent.CurrentWeapon.Attributes.MeleeAttackRange;
 			}
@@ -112,7 +110,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public float AttackSpeed {
 			get {
-				if(EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
 					return Attributes.AttackSpeed;
 				return EquipmentComponent.CurrentWeapon.Attributes.AttackSpeed;
 			}
@@ -124,7 +122,7 @@ namespace Corvus.Components {
 		/// </summary>
 		public float BlockDamageReduction {
 			get {
-				if(EquipmentComponent == null)
+                if (!EquipmentComponent.UseWeaponBonuses)
 					return Attributes.BlockDamageReduction;
 				return EquipmentComponent.CurrentWeapon.Attributes.BlockDamageReduction;
 			}
@@ -136,8 +134,8 @@ namespace Corvus.Components {
         /// </summary>
         public Elements ResistantElements
         {
-            get { 
-                if(EquipmentComponent == null)
+            get {
+                if (!EquipmentComponent.UseWeaponBonuses)
                     return Attributes.ResistantElements;
                 return EquipmentComponent.CurrentWeapon.Attributes.ResistantElements;
             }
@@ -149,8 +147,8 @@ namespace Corvus.Components {
         /// </summary>
         public Elements AttackingElements
         {
-            get { 
-                if(EquipmentComponent == null)
+            get {
+                if (!EquipmentComponent.UseWeaponBonuses)
                     return Attributes.AttackingElements;
                 return EquipmentComponent.CurrentWeapon.Attributes.AttackingElements;
             }
@@ -229,6 +227,20 @@ namespace Corvus.Components {
         {
             get { return Attributes.ManaRegen; }
             set { Attributes.ManaRegen = value; }
+        }
+
+        /// <summary>
+        /// How much mana to consume.
+        /// Player Only.
+        /// </summary>
+        public float ManaCost
+        {
+            get { 
+                if(!EquipmentComponent.UseWeaponBonuses)
+                    return Attributes.ManaCost;
+                return EquipmentComponent.CurrentWeapon.Attributes.ManaCost;
+            }
+            set { Attributes.ManaCost = value; }
         }
 
 		/// <summary>

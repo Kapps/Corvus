@@ -15,19 +15,37 @@ namespace CorvEngine.Components {
 		private PhysicsComponent PhysicsComponent;
 		private SpriteComponent SpriteComponent;
 		private float _WalkSpeed = 500;
+        private float _WalkSpeedModifier = 1f;
 		private float _JumpSpeed = 950;
 		private float _WalkAcceleration = 15000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
         private bool _IsWalking = false;
 
-		/// <summary>
-		/// Gets or sets the maximum speed that this Entity can walk at, in units per second.
-		/// </summary>
+        /// <summary>
+        /// Gets or sets the maximum speed that this Entity can walk at multiplied by the walk speed modifier.
+        /// </summary>
 		public float MaxWalkingSpeed {
-			get { return _WalkSpeed; }
-			set { _WalkSpeed = value; }
+			get { return WalkSpeed * WalkSpeedModifier; }
 		}
+
+        /// <summary>
+        /// Gets or sets the walking speed that this Entity can walk at, in units per second.
+        /// </summary>
+        public float WalkSpeed
+        {
+            get { return _WalkSpeed; }
+            set { _WalkSpeed = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the walk speed modifier.
+        /// </summary>
+        public float WalkSpeedModifier
+        {
+            get { return _WalkSpeedModifier; }
+            set { _WalkSpeedModifier = value; }
+        }
 
 		/// <summary>
 		/// Gets or sets the speed to increase velocity by each frame when walking, up to MaxWalkingSpeed.
@@ -82,14 +100,6 @@ namespace CorvEngine.Components {
 				SpriteComponent.Sprite.PlayAnimation(Animation.Name);
 		}
 
-        public void BeginWalking()
-        {
-            IsWalking = true; 
-            var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];
-            if (SpriteComponent.Sprite.ActiveAnimation != Animation)
-                SpriteComponent.Sprite.PlayAnimation(Animation.Name);
-        }
-
 		/// <summary>
 		/// Informs the Entity to stop walking, no longer applying walk velocity.
 		/// If the Entity is not walking, this method does nothing.
@@ -99,7 +109,7 @@ namespace CorvEngine.Components {
             IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}
-
+        
 		/// <summary>
 		/// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
 		/// </summary>

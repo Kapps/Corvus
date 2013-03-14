@@ -18,17 +18,20 @@ namespace Corvus.Components.Gameplay
         private bool _IsRanged = false;
         private bool _AppliesEffect = false;
         private bool _IsAoE = false;
+        private float _HitDelay = 0f;
         private bool _ConsumesMana = false;
-        private float _ManaCost = 0f;
         private string _ProjectileName = "";
         private Vector2 _ProjectileSize = new Vector2();
+        private Vector2 _ProjectileOffset = new Vector2();
         private Vector2 _ProjectileVelocity = new Vector2();
+        private float _ProjectileGravityCoefficient = 0f;
+        private float _ProjectileHorDragCoefficient = 0f;
         private string _AoEName = "";
         private Vector2 _AoESize = new Vector2();
         private float _AoEDuration = 0f;
         private float _AoEDamagePercent = 0f;
         private EntityClassification _AoEHitableEntities = EntityClassification.Any;
-
+        
         /// <summary>
         /// Gets or sets whether this entity can attack with melee.
         /// Enemy Only.
@@ -40,7 +43,7 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
-        /// Gets or sets whether this entity can attack with range
+        /// Gets or sets whether this entity can attack with range.
         /// </summary>
         public bool IsRanged
         {
@@ -67,6 +70,15 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
+        /// Gets or sets a percentage that indicates when the attack hit box should occur with respect to the attack speed.
+        /// </summary>
+        public float HitDelay
+        {
+            get { return _HitDelay; }
+            set { _HitDelay = MathHelper.Clamp(value, 0f, 1f); }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this entity consumes mana.
         /// Player Only.
         /// </summary>
@@ -74,16 +86,6 @@ namespace Corvus.Components.Gameplay
         {
             get { return _ConsumesMana; }
             set { _ConsumesMana = value; }
-        }
-
-        /// <summary>
-        /// How much mana to consume.
-        /// Player Only.
-        /// </summary>
-        public float ManaCost
-        {
-            get { return _ManaCost; }
-            set { _ManaCost = value; }
         }
 
         /// <summary>
@@ -105,12 +107,39 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
+        /// Gets or sets how much to offset the projectile spawn point with respect to the center of the sprite.
+        /// </summary>
+        public Vector2 ProjectileOffset
+        {
+            get { return _ProjectileOffset; }
+            set { _ProjectileOffset = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the projectile velocity.
         /// </summary>
         public Vector2 ProjectileVelocity
         {
             get { return _ProjectileVelocity; }
             set { _ProjectileVelocity = value; }
+        }
+
+        /// <summary>
+        ///  Gets or sets the amount to multiply the force of gravity by.
+        /// </summary>
+        public float ProjectileGravityCoefficient
+        {
+            get { return _ProjectileGravityCoefficient; }
+            set { _ProjectileGravityCoefficient = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the amount to multiply the force of horizontal drag by.
+        /// </summary>
+        public float ProjectileHorDragCoefficient
+        {
+            get { return _ProjectileHorDragCoefficient; }
+            set { _ProjectileHorDragCoefficient = value; }
         }
 
         /// <summary>

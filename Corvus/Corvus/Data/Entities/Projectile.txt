@@ -1,4 +1,5 @@
-﻿Projectile
+﻿#NOTE: This is the generic projectile entity. All projectiles will use this. 
+Projectile
 	SpriteComponent
 	CombatPropertiesComponent
 	ProjectileComponent
@@ -8,8 +9,6 @@
 	StatusEffectPropertiesComponent
 	MovementComponent
 	PhysicsComponent
-		GravityCoefficient: 0.1
-		HorDragCoefficient: 0
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
 
