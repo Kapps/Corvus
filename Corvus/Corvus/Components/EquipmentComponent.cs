@@ -47,7 +47,7 @@ namespace Corvus.Components
         private WeaponCollection _Weapons = new WeaponCollection();
         private int _Capacity = 3;
         private int _CurrentWeaponIndex = 0;
-        private string _DefaultWeaponName = "Spear";
+        private string _DefaultWeaponName;
         private Weapon _DefaultWeapon;
 
         /// <summary>
@@ -109,6 +109,9 @@ namespace Corvus.Components
             AttributesComponent = this.GetDependency<AttributesComponent>();
             _Weapons = new WeaponCollection();
             _CurrentWeaponIndex = 0;
+
+            if(string.IsNullOrEmpty(DefaultWeaponName))
+                return;
 
             //Creates the weapon from a blueprint.
             var weapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(DefaultWeaponName).CreateEntity();

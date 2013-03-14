@@ -46,9 +46,17 @@ Combator
 
 Combatpropertieser
 	CombatPropertiesComponent
-		IsMelee: true
 		IsRanged: false
-		AppliesEffect: true
+		AppliesEffect: false
+		IsAoE: false
+		ConsumesMana: false
+		ProjectileName: TestProjectile
+		ProjectileVelocity: Vector(600, 50)
+		AoEName: Sprites/Effects/Explosions
+		AoESize: Vector(50, 50)
+		AoEDuration: 5
+		AoEDamagePercent: 0.33
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator, Combatpropertieser
 	PhysicsComponent

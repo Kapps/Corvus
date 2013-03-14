@@ -1,0 +1,15 @@
+﻿Projectile
+	SpriteComponent
+	CombatPropertiesComponent
+	ProjectileComponent
+		DisposeOnCollision: true
+	AttributesComponent
+	EquipmentComponent
+	StatusEffectPropertiesComponent
+	MovementComponent
+	PhysicsComponent
+		GravityCoefficient: 0.1
+		HorDragCoefficient: 0
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Projectile)
+

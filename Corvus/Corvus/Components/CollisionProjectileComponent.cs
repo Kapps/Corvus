@@ -37,26 +37,7 @@ namespace Corvus.Components
             }
             //Make an aoe appear if there should be one.
             if (CPComponent.IsAoE)
-            {
-                //var aoe = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("AreaOfEffect").CreateEntity();
-                //aoe.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Center.Y); //TODO: FIX. THIS IS ACTUALLY WRONG.
-                //aoe.Size = new Vector2(CPComponent.AoESize.X, CPComponent.AoESize.Y); 
-                //Parent.Scene.AddEntity(aoe);
-
-                ////set the sprite to draw.
-                //var effect = CorvusGame.Instance.GlobalContent.LoadSprite(CPComponent.AoEName);
-                //var sc = aoe.GetComponent<SpriteComponent>();
-                //sc.Sprite = effect;
-
-                ////give it it's properties.
-                //var cpc = aoe.GetComponent<CombatPropertiesComponent>();
-                //cpc.CombatProperties = CPComponent.CombatProperties;
-                //var ac = aoe.GetComponent<AttributesComponent>();
-                //ac.Attributes = AttributesComponent.Attributes;
-                //var se = aoe.GetComponent<StatusEffectPropertiesComponent>();
-                //se.StatusEffectAttributes = SEAComponent.StatusEffectAttributes;
-
-            }
+                AreaOfEffectComponent.CreateAoEEntity(this.Parent);
 
             return colGood;
         }

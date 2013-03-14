@@ -9,14 +9,16 @@ WeaponProperties
 	CombatPropertiesComponent
 		IsRanged: true
 		AppliesEffect: false
-		IsAoE: true
+		IsAoE: false
 		ConsumesMana: false
-		ProjectileName: TestProjectile
+		ProjectileName: Sprites/TestProjectile
+		ProjectileSize: Vector(12, 12)
 		ProjectileVelocity: Vector(600, 50)
 		AoEName: Sprites/Effects/Explosions
 		AoESize: Vector(50, 50)
 		AoEDuration: 5
 		AoEDamagePercent: 0.33
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 	AttributesComponent
 		Strength: 0
 		StrModifier: 0.6
@@ -30,7 +32,7 @@ WeaponProperties
 		AttackSpeed: 100
 		BlockDamageReduction: 0.85
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
-		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
 	StatusEffectPropertiesComponent
 	
 Motion

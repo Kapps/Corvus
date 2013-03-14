@@ -9,7 +9,13 @@ WeaponProperties
 	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: false
+		IsAoE: false
 		ConsumesMana: false
+		AoEName: Sprites/Effects/Explosions
+		AoESize: Vector(50, 50)
+		AoEDuration: 5
+		AoEDamagePercent: 0.33
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 	AttributesComponent
 		Strength: 0
 		StrModifier: 1.0

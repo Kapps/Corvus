@@ -9,10 +9,12 @@ AreaOfEffect: AOESprite
 		PerformDynamicCollision: false
 		GravityCoefficient: 0
 		HorDragCoefficient: 0
+	EquipmentComponent
 	AttributesComponent
 	StatusEffectPropertiesComponent
 	CombatPropertiesComponent
 	AreaOfEffectComponent
+		DisposeOnCollision: false
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
 

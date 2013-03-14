@@ -158,7 +158,7 @@
     <Content Include="Data\Entities\AreaOfEffect.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\TestEntityProjectile.txt">
+    <Content Include="Data\Entities\Projectile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\TestEntityEnemy.txt">

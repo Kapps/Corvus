@@ -32,7 +32,7 @@ Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
 Data\Entities\Bow.txt
 Data\Entities\AreaOfEffect.txt
-Data\Entities\TestEntityProjectile.txt
+Data\Entities\Projectile.txt
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\Spear.txt
 Data\Entities\Dagger.txt

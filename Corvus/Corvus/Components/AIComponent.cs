@@ -181,8 +181,8 @@ namespace Corvus.Components
                             FollowEntity(entityToFollow, Time);
 
                         //If an entity is attackable, attack.
-                        //if (entityAttackable)
-                        //    CombatComponent.AttackAI();
+                        if (entityAttackable)
+                            CombatComponent.AttackAI();
 
                         //If there's no projectile coming to us, or no entity attacking us, end the block.
                         if (!entityAttackingMe && !projectileFlyingToMe)

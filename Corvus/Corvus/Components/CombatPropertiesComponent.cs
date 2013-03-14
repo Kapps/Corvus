@@ -82,12 +82,21 @@ namespace Corvus.Components
         }
 
         /// <summary>
-        /// Gets or sets the projectile to fire. 
+        /// Gets or sets the projectile sprite to fire. 
         /// </summary>
         public string ProjectileName
         {
             get { return CombatProperties.ProjectileName; }
             set { CombatProperties.ProjectileName = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the size of the projectile.
+        /// </summary>
+        public Vector2 ProjectileSize
+        {
+            get { return CombatProperties.ProjectileSize; }
+            set { CombatProperties.ProjectileSize = value; }
         }
 
         /// <summary>
@@ -132,6 +141,15 @@ namespace Corvus.Components
         {
             get { return CombatProperties.AoEDamagePercent; }
             set { CombatProperties.AoEDamagePercent = MathHelper.Clamp(value, 0f, 1f); }
+        }
+
+        /// <summary>
+        /// Gets or sets the entities that are hitable by the area of effect.
+        /// </summary>
+        public EntityClassification AoEHitableEntities
+        {
+            get { return CombatProperties.AoEHitableEntities; }
+            set { CombatProperties.AoEHitableEntities = value; }
         }
 
 

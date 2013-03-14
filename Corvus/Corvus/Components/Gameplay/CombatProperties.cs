@@ -21,11 +21,13 @@ namespace Corvus.Components.Gameplay
         private bool _ConsumesMana = false;
         private float _ManaCost = 0f;
         private string _ProjectileName = "";
+        private Vector2 _ProjectileSize = new Vector2();
         private Vector2 _ProjectileVelocity = new Vector2();
         private string _AoEName = "";
         private Vector2 _AoESize = new Vector2();
         private float _AoEDuration = 0f;
         private float _AoEDamagePercent = 0f;
+        private EntityClassification _AoEHitableEntities = EntityClassification.Any;
 
         /// <summary>
         /// Gets or sets whether this entity can attack with melee.
@@ -85,12 +87,21 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
-        /// Gets or sets the projectile to fire. 
+        /// Gets or sets the projectile sprite to fire. 
         /// </summary>
         public string ProjectileName
         {
             get { return _ProjectileName; }
             set { _ProjectileName = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the size of the projectile.
+        /// </summary>
+        public Vector2 ProjectileSize
+        {
+            get { return _ProjectileSize; }
+            set { _ProjectileSize = value; }
         }
 
         /// <summary>
@@ -135,6 +146,15 @@ namespace Corvus.Components.Gameplay
         {
             get { return _AoEDamagePercent; }
             set { _AoEDamagePercent = MathHelper.Clamp(value, 0f, 1f); }
+        }
+
+        /// <summary>
+        /// Gets or sets the entities that are hitable by the area of effect.
+        /// </summary>
+        public EntityClassification AoEHitableEntities
+        {
+            get { return _AoEHitableEntities; }
+            set { _AoEHitableEntities = value; }
         }
 
 

@@ -86,7 +86,7 @@ namespace Corvus.Components {
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
 
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
-            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()))
+            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()).Reverse())
             {
                 //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
                 var cc = attackedEntity.GetComponent<ClassificationComponent>();
@@ -104,29 +104,16 @@ namespace Corvus.Components {
                     var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
                     if (EquipmentComponent.CurrentWeapon.CombatProperties.AppliesEffect && enemySEC != null)
                         enemySEC.ApplyStatusEffect(EquipmentComponent.CurrentWeapon.Effect);
+
+                    if (EquipmentComponent.CurrentWeapon.CombatProperties.IsAoE)
+                        AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 }
             }
 		}
 
         private void AttackRanged()
-        {            
-            //Create entity
-            var weaponData = EquipmentComponent.CurrentWeapon;
-            var projectile = CreateProjectileEntity(weaponData.CombatProperties.ProjectileName, weaponData.CombatProperties.ProjectileVelocity);
-
-            //A bit of a hack to get the projectile to apply damage and status effects.
-            var ac = projectile.GetComponent<AttributesComponent>();
-            ac.Attributes = AttributesComponent.Attributes;
-            var ec = projectile.GetComponent<EquipmentComponent>();
-            ec.EquipWeapon(EquipmentComponent.CurrentWeapon);
-            var cpc = projectile.GetComponent<CombatPropertiesComponent>();
-            cpc.CombatProperties = EquipmentComponent.CurrentWeapon.CombatProperties;
-            if (EquipmentComponent.CurrentWeapon.CombatProperties.AppliesEffect)
-            {
-                var seac = projectile.GetComponent<StatusEffectPropertiesComponent>();
-                seac.StatusEffectAttributes = EquipmentComponent.CurrentWeapon.Effect;
-            }
-
+        {
+            ProjectileComponent.CreateProjectileEntity(this.Parent);
             //set animation
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
@@ -155,7 +142,7 @@ namespace Corvus.Components {
             SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
 
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
-            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()))
+            foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()).Reverse())
             {
                 //might be a little inefficient because we have to keep searching a list to get the ClassificationComponent.
                 var cc = attackedEntity.GetComponent<ClassificationComponent>();
@@ -176,6 +163,8 @@ namespace Corvus.Components {
                             continue;
                         enemySEC.ApplyStatusEffect(seac.StatusEffectAttributes);
                     }
+                    if (cpc.IsAoE)
+                        AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 }
             }
         }
@@ -256,27 +245,6 @@ namespace Corvus.Components {
                 attackRectangle = Parent.Location;
             }
             return attackRectangle;
-        }
-
-        private Entity CreateProjectileEntity(string name, Vector2 velocity)
-        {
-            var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(name).CreateEntity();
-            projectile.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
-            projectile.Size = new Vector2(12, 12); //TODO: Might need to track this as well.
-            Parent.Scene.AddEntity(projectile);
-
-            //Sets the entities this can attack.
-            var cpc = projectile.GetComponent<CollisionProjectileComponent>();
-            cpc.Classification = this.AttackableEntities;
-
-            //Set projectile velocity.
-            var pc = projectile.GetComponent<PhysicsComponent>();
-            if (MovementComponent.CurrentDirection == Direction.Right)
-                pc.Velocity = new Vector2(velocity.X, -velocity.Y);
-            else if (MovementComponent.CurrentDirection == Direction.Left)
-                pc.Velocity = new Vector2(-velocity.X, -velocity.Y);
-
-            return projectile;
         }
 
         private EquipmentComponent EquipmentComponent;
