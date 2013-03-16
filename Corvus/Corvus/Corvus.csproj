@@ -136,6 +136,7 @@
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectCollection.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectProperties.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
+    <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Components\ProjectileComponent.cs" />
     <Compile Include="Components\StatusEffectPropertiesComponent.cs" />
     <Compile Include="Components\StatusEffectsComponent.cs" />

@@ -23,18 +23,10 @@ namespace Corvus {
 		public IEnumerable<Bind> Binds {
 			get { return _Binds; }
 		}
-
-		private MovementComponent MovementComponent {
-			get { return _Player.Character == null ? null : _Player.Character.GetComponent<MovementComponent>(); }
+        
+        private PlayerControlComponent PlayerControlComponent {
+			get { return _Player.Character == null ? null : _Player.Character.GetComponent<PlayerControlComponent>(); }
 		}
-
-		private CombatComponent CombatComponent {
-			get { return _Player.Character == null ? null : _Player.Character.GetComponent<CombatComponent>(); }
-		}
-
-        private EquipmentComponent EquipmentComponent{
-            get { return _Player.Character == null ? null : _Player.Character.GetComponent<EquipmentComponent>(); }
-        }
 
 		private CorvusBinds(Player Player) {
 			this._Player = Player;
@@ -71,61 +63,47 @@ namespace Corvus {
 		}
 
 		private void MovePressed(Direction Direction, BindState State) {
-			// TODO: Fix this when MovementComponent makes sense.
-			if(MovementComponent == null)
-				return;
 			switch(State) {
 				case BindState.Pressed:
-					MovementComponent.BeginWalking(Direction);
+                    PlayerControlComponent.BeginWalking(Direction);
 					break;
 				case BindState.Released:
-					if(MovementComponent.CurrentDirection == Direction)
-						MovementComponent.StopWalking();
+                    if (PlayerControlComponent.CurrentDirection == Direction)
+                        PlayerControlComponent.StopWalking();
 					break;
 			}
 		}
 
 		private void JumpPressed(BindState State) {
-			if(MovementComponent == null)
-				return;
 			if(State == BindState.Pressed)
-				MovementComponent.Jump(true);
+                PlayerControlComponent.Jump(true);
 		}
         
-        private void BlockPressed(BindState State)
-        {
-            if (MovementComponent == null)
-                return;
+        private void BlockPressed(BindState State){
             switch (State)
             {
                 case BindState.Pressed:
-                    CombatComponent.BeginBlock();
+                    PlayerControlComponent.BeginBlock();
                     break;
                 case BindState.Released:
-                    CombatComponent.EndBlock();
+                    PlayerControlComponent.EndBlock();
                     break;
             }
         }
 
-        private void SwitchWeapon(bool isPrev, BindState state)
-        {
-            if (EquipmentComponent == null)
-                return;
+        private void SwitchWeapon(bool isPrev, BindState state){
             if (state == BindState.Pressed)
             {
                 if (isPrev)
-                    EquipmentComponent.SwitchWeapon(isPrev);
+                    PlayerControlComponent.SwitchWeapon(isPrev);
                 else
-                    EquipmentComponent.SwitchWeapon(isPrev);
+                    PlayerControlComponent.SwitchWeapon(isPrev);
             }
         }
 
-        private void Attack(BindState State)
-        {
-            if (CombatComponent == null)
-                return;
+        private void Attack(BindState State){
             if (State == BindState.Pressed)
-                CombatComponent.Attack();
+                PlayerControlComponent.Attack();
         }
 	}
 }

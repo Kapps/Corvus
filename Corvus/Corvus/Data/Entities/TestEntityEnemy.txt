@@ -8,8 +8,8 @@ EnemySprite : RedSprite
 
 Attributes
 	AttributesComponent
-		MaxHealth: Random(250, 300)
-		Strength: 7
+		MaxHealth: Random(2500, 3000)
+		Strength: 75
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
@@ -27,6 +27,7 @@ Combatpropertieser
 		IsAoE: false
 		HitDelay: 0.5
 		ConsumesMana: false
+		AttackSlowDown: 1
 		ProjectileName: TestProjectile
 		ProjectileVelocity: Vector(600, 50)
 		AoEName: Sprites/Effects/Explosions

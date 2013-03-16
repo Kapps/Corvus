@@ -20,6 +20,7 @@ namespace Corvus.Components.Gameplay
         private bool _IsAoE = false;
         private float _HitDelay = 0f;
         private bool _ConsumesMana = false;
+        private float _AttackSlowDown = 1f;
         private string _ProjectileName = "";
         private Vector2 _ProjectileSize = new Vector2();
         private Vector2 _ProjectileOffset = new Vector2();
@@ -31,7 +32,7 @@ namespace Corvus.Components.Gameplay
         private float _AoEDuration = 0f;
         private float _AoEDamagePercent = 0f;
         private EntityClassification _AoEHitableEntities = EntityClassification.Any;
-        
+
         /// <summary>
         /// Gets or sets whether this entity can attack with melee.
         /// Enemy Only.
@@ -86,6 +87,15 @@ namespace Corvus.Components.Gameplay
         {
             get { return _ConsumesMana; }
             set { _ConsumesMana = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a percentage that indicates how much to slow down the movement speed of the entity while it is attacking.
+        /// </summary>
+        public float AttackSlowDown
+        {
+            get { return _AttackSlowDown; }
+            set { _AttackSlowDown = MathHelper.Clamp(value, 0f, 1f); }
         }
 
         /// <summary>

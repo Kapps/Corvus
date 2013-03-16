@@ -12,6 +12,7 @@ WeaponProperties
 		IsAoE: true
 		HitDelay: 0.65
 		ConsumesMana: false
+		AttackSlowDown: 0
 		ProjectileName: Sprites/TestProjectile
 		ProjectileSize: Vector(12, 12)
 		ProjectileOffset: Vector(5, -7)

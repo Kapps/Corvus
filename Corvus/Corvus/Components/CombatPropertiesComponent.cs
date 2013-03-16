@@ -85,6 +85,15 @@ namespace Corvus.Components
         }
 
         /// <summary>
+        /// Gets or sets a value that indicates how much to slow down the movement speed of the entity while it is attacking.
+        /// </summary>
+        public float AttackSlowDown
+        {
+            get { return CombatProperties.AttackSlowDown; }
+            set { CombatProperties.AttackSlowDown = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the projectile sprite to fire. 
         /// </summary>
         public string ProjectileName

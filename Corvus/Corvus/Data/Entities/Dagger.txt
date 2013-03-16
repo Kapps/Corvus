@@ -11,15 +11,16 @@ WeaponProperties
 		AppliesEffect: true
 		HitDelay: 0.75
 		ConsumesMana: false
+		AttackSlowDown: 0.65
 	AttributesComponent
-		Strength: 0
+		Strength: 10
 		StrModifier: 1.05
 		Dexterity: 0
 		DexModifier: 1.05
 		Intelligence: 0
 		IntModifier: 1.0
 		CritChance: 0.5
-		CritDamage: 5
+		CritDamage: 1.2
 		MeleeAttackRange: Vector(50, 50)
 		AttackSpeed: 150
 		BlockDamageReduction: 0.66
@@ -27,8 +28,8 @@ WeaponProperties
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
 		EffectType: Poison
-		BaseValue: 500
-		Intensity: 0.3
+		BaseValue: 1
+		Intensity: 0.03
 		Duration: 5
 
 Motion

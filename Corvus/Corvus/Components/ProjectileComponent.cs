@@ -71,9 +71,10 @@ namespace Corvus.Components
 
         //NOTE: Not tested with enemies yet :p
         /// <summary>
-        /// Creates a projectile entity next to the entity calling this function. 
+        /// Creates a projectile entity next to the entity calling this function.
+        /// The launch direction can be set manually to avoid awkward projectiles, otherwise it uses the movement components current direction.
         /// </summary>
-        public static void CreateProjectileEntity(Entity entity)
+        public static void CreateProjectileEntity(Entity entity, Direction? launchDirection = null)
         {
             var CPComponent = entity.GetComponent<CombatPropertiesComponent>();
             var SEAComponent = entity.GetComponent<StatusEffectPropertiesComponent>();
@@ -114,9 +115,10 @@ namespace Corvus.Components
             var physC = projectile.GetComponent<PhysicsComponent>();
             physC.GravityCoefficient = CPComponent.ProjectileGravityCoefficient;
             physC.HorDragCoefficient = CPComponent.ProjectileHorDragCoefficient;
-            if (MovementComponent.CurrentDirection == Direction.Right)
+            var direction = (launchDirection == null) ? MovementComponent.CurrentDirection : launchDirection;
+            if (direction == Direction.Right)
                 physC.Velocity = new Vector2(CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
-            else if (MovementComponent.CurrentDirection == Direction.Left)
+            else if (direction == Direction.Left)
                 physC.Velocity = new Vector2(-CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
         }
     }

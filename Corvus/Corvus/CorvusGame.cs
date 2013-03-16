@@ -66,7 +66,7 @@ namespace Corvus {
 			// Start off in game.
 			StateManager.PushState(_SceneManager);
 			CreateNewPlayer();
-			RegisterGlobalComponent(new DebugComponent());
+            RegisterGlobalComponent(new DebugComponent());
 			GraphicsManager.ApplyChanges();
 		}
 
@@ -76,7 +76,7 @@ namespace Corvus {
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			var PlayerEntity = Blueprint.CreateEntity();
 			PlayerEntity.Size = new Vector2(48, 32);
-			PlayerEntity.Position = new Vector2(1790, 1376);
+            PlayerEntity.Position = new Vector2(1790, 1090);//376);
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
 			CorvusBinds.CreateBinds(Player);

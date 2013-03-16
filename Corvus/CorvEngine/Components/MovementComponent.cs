@@ -73,16 +73,22 @@ namespace CorvEngine.Components {
 			set { _CurrentDirection = value; }
 		}
 
+        /// <summary>
+        /// Gets or sets a value  that indicates whether this entity is walking.
+        /// </summary>
         public bool IsWalking {
             get { return _IsWalking; }
             set { _IsWalking = value; }
         }
 
-		protected override void OnInitialize() {
-			base.OnInitialize();
-			PhysicsComponent = GetDependency<PhysicsComponent>();
-			SpriteComponent = GetDependency<SpriteComponent>();
-		}
+        /// <summary>
+        /// Gets or sets the walk direction.
+        /// </summary>
+        public Direction WalkDirection
+        {
+            get { return _WalkDirection; }
+            set { _WalkDirection = value; }
+        }
 
 		/// <summary>
 		/// Causes this Entity to being walking in the given direction, either Left or Right.
@@ -109,7 +115,7 @@ namespace CorvEngine.Components {
             IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}
-        
+
 		/// <summary>
 		/// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
 		/// </summary>
@@ -128,6 +134,13 @@ namespace CorvEngine.Components {
             float vel = distance / t;
             PhysicsComponent.VelocityY = -500;
             PhysicsComponent.VelocityX = direction * vel; //new Vector2(direction * vel, -1 * 2000);
+        }
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            PhysicsComponent = GetDependency<PhysicsComponent>();
+            SpriteComponent = GetDependency<SpriteComponent>();
         }
 
 		protected override void OnUpdate(GameTime Time) {
