@@ -263,11 +263,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-	<Compile Include="Interface\Outline.png">
-		<Name>Outline</Name>
-		<Importer>TextureImporter</Importer>
-		<Processor>TextureProcessor</Processor>
-	</Compile>
+    <Compile Include="Interface\Outline.png">
+      <Name>Outline</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Tiles\crate 32x32.png">
       <Name>crate 32x32</Name>
       <Importer>TextureImporter</Importer>
@@ -297,6 +297,18 @@
     </Compile>
     <Compile Include="Tiles\water 32x32.png">
       <Name>water 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tiles\coin_bronze 32x32.png">
+      <Name>coin_bronze 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tiles\coin_silver 32x32.png">
+      <Name>coin_silver 32x32</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -21,6 +21,12 @@
  <tileset firstgid="794" name="water 32x32" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/water 32x32.png" width="96" height="62"/>
  </tileset>
+ <tileset firstgid="797" name="coin_silver 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/coin_silver 32x32.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="798" name="coin_bronze 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/coin_bronze 32x32.png" width="32" height="32"/>
+ </tileset>
  <layer name="Background" width="200" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqqqqqqrvD45e8VMgTgAA
