@@ -40,6 +40,8 @@ namespace Corvus.Components {
 			Player.InputManager.RegisterBind(ClearCameraBind);
 			Bind ToggleGeometryBind = new Bind(Player.InputManager, ToggleGeometryPressed, false, Keys.F11);
 			Player.InputManager.RegisterBind(ToggleGeometryBind);
+			Bind ToggleEntityBind = new Bind(Player.InputManager, ToggleEntityPressed, false, Keys.F10);
+			Player.InputManager.RegisterBind(ToggleEntityBind);
 			CurrentCamera = Player.Character.GetComponent<ChaseCameraComponent>();
 			GeometryTexture = CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/Outline");
 		}
@@ -60,6 +62,11 @@ namespace Corvus.Components {
 				TiledPlatformerGeometry Geometry = (TiledPlatformerGeometry)CorvusGame.Instance.SceneManager.ActiveScene.Geometry;
 				foreach(TiledPlatformerGeometryObject GeometryObj in Geometry.GeometryObjects) {
 					CorvusGame.Instance.SpriteBatch.Draw(GeometryTexture, Camera.Active.WorldToScreen(GeometryObj.Location), new Color(255, 0, 0, 64));
+				}
+			}
+			if(DisplayEntities) {
+				foreach(var Entity in SceneManager.ActiveScene.Entities) {
+					CorvusGame.Instance.SpriteBatch.Draw(GeometryTexture, Camera.Active.WorldToScreen(Entity.Location), new Color(0, 0, 255, 64));
 				}
 			}
 			CorvusGame.Instance.SpriteBatch.DrawString(Font, "FPS: " + CorvusGame.Instance.FPS, new Vector2(10, GraphicsDevice.Viewport.Height - 30), Color.Yellow);
@@ -115,6 +122,12 @@ namespace Corvus.Components {
 			DisplayGeometry = !DisplayGeometry;
 		}
 
+		private void ToggleEntityPressed(BindState State) {
+			if(State != BindState.Pressed)
+				return;
+			DisplayEntities = !DisplayEntities;
+		}
+
 		private void ReloadLevel() {
 			SceneManager.ReloadBlueprints();
 			SceneManager.ReloadScenes();
@@ -133,6 +146,7 @@ namespace Corvus.Components {
 		private SceneManager SceneManager;
 		private CorvusPlayer Player;
 		private bool DisplayGeometry;
+		private bool DisplayEntities;
 		private Texture2D GeometryTexture;
 		private Dictionary<object, Color> RandomObjectColors = new Dictionary<object, Color>();
 		private Random rnd = new Random();

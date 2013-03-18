@@ -63,11 +63,6 @@ namespace CorvEngine.Components {
 			return Scene.Entities.Where(c => c.Location.Intersects(Location));
 		}
 
-        private void DeleteSelfIfProjectile()
-        {
-
-        }
-
 		protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time) {
 			const float FRAME_SKIP_DURATION = 2000;
 			// Do physics in steps, never doing more than a certain amount of time per step.
@@ -88,6 +83,7 @@ namespace CorvEngine.Components {
 
 		private void PerformStaticCollision(GameTime Time) {
 			// This is safe to multi-thread because we're never modifying anything besides the Component itself.
+			// But each iteration is so cheap that the overhead of threading outweighs performance benefits.
 			List<Task> Tasks = new List<Task>();
 			foreach(var Component in GetFilteredComponents<PhysicsComponent>()) {
 				bool AnySolidHit = false;
@@ -127,8 +123,8 @@ namespace CorvEngine.Components {
 				Parent.X = Math.Max(-Scene.TileSize.X / 2, Parent.X);
 				Parent.X = Math.Min(Scene.MapSize.X - Scene.TileSize.X, Parent.X);
 				// Special case: If we're at the bottom of the level, we should be considered grounded.
-				if(Parent.Y > Scene.MapSize.Y - Scene.TileSize.Y) {
-					Parent.Y = Scene.MapSize.Y - Scene.TileSize.Y;
+				if(Parent.Y > Scene.MapSize.Y - Parent.Size.Y) {
+					Parent.Y = Scene.MapSize.Y - Parent.Size.Y;
 					Component.VelocityY = 0;
 					Component.IsGrounded = true;
 				}

@@ -16,9 +16,13 @@ Content\Sprites\Effects\Explosion1.xnb
 Content\Sprites\Effects\Explosion2.xnb
 Content\Sprites\Effects\Explosion3.xnb
 Content\Sprites\Effects\Explosions1.xnb
+Content\Interface\Outline.xnb
 Content\Tiles\crate 32x32.xnb
 Content\Tiles\ground 32x32.xnb
 Content\Tiles\spikes 32x32.xnb
+Content\Tiles\coin 32x32.xnb
+Content\Tiles\lava 32x32.xnb
+Content\Tiles\water 32x32.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
@@ -30,10 +34,6 @@ Content\Sprites\Powerups\TestPowerup1.xnb
 Content\Sprites\TestProjectile.xnb
 Content\Sprites\Equipment\TestWeapon3.xnb
 Content\Sprites\Effects\Explosions.xnb
-Content\Tiles\coin 32x32.xnb
-Content\Tiles\lava 32x32.xnb
-Content\Tiles\water 32x32.xnb
-Content\Interface\Outline.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
