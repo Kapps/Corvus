@@ -1,0 +1,10 @@
+﻿DeadlyArea
+	PhysicsComponent
+		GravityCoefficient: 0
+	CollisionDamageComponent
+		Damage: Random(9999, 9999)
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
+

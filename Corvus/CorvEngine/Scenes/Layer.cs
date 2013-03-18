@@ -31,6 +31,14 @@ namespace CorvEngine.Scenes {
 		}
 
 		/// <summary>
+		/// Gets an array of all of the tiles within this level.
+		/// This should be used only in rare situations, and never modified.
+		/// </summary>
+		public Tile[,] Tiles {
+			get { return _Tiles; }
+		}
+
+		/// <summary>
 		/// Gets or sets the scale of this layer.
 		/// Adjusting the scale of a layer affects all objects within it, and can give the illusion of 3D space when multiple layers with different scales are set.
 		/// </summary>

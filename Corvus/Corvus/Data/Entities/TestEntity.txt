@@ -15,7 +15,7 @@ Properties
 		JumpSpeed: 950
 	PhysicsComponent
 		GravityCoefficient: 0.6
-		HorDragCoefficient: 1
+		HorizontalDragCoefficient: 1
 	AttributesComponent
 		MaxHealth: Random(450, 500)
 		MaxMana: 100

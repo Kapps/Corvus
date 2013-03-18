@@ -14,6 +14,11 @@ namespace CorvEngine.Components {
 
 		// TODO: Important to figure out what to do when an Entity gets stuck. Reverse to start of path maybe? Cheat and fly?
 
+		// TODO: This needs to be heavily re-done to allow for SceneGeometry.
+		// For one thing, should just determine MovementActions to send to MovementComponent (also needs to be redone).
+		// MovementComponent should either be able to handle all basic MovementActions (up, down, left, right, jump) or be abstract.
+
+
 		private float _JumpDelay = 200;
 		private bool _AllowMultiJump = false;
 		private IList<Vector2> _Nodes = new List<Vector2>();

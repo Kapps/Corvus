@@ -111,7 +111,7 @@ namespace Corvus.Components{
                 return;
             var width = Parent.Size.X;
             var position = Parent.Position + new Vector2(width / 2, 0);
-            var ToScreen = Camera.Active.ScreenToWorld(position);
+            var ToScreen = Camera.Active.WorldToScreen(position);
             _FloatingTexts.Update(Time, ToScreen);
         }
 

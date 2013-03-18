@@ -25,7 +25,7 @@ namespace Corvus.Components {
 			var Width = Parent.Size.X;
 			var Height = Parent.Size.X * 0.15f;
 			var Location = Parent.Position - new Vector2(0, Height + 5);
-			var ToScreen = Camera.Active.ScreenToWorld(Location);
+			var ToScreen = Camera.Active.WorldToScreen(Location);
 			Color HealthColor = Color.Lerp(Color.Red, Color.Green, ac.CurrentHealth / ac.MaxHealth);
 			//HealthColor = new Color(HealthColor.R, HealthColor.G, HealthColor.B, 40); // Give some transparency.
 

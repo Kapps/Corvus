@@ -49,7 +49,7 @@ namespace CorvEngine.Components {
 		protected override void OnDraw() {
 			base.OnDraw();
 			var SpriteBatch = CorvBase.Instance.SpriteBatch;
-			Vector2 ScreenPosition = Camera.Active.ScreenToWorld(Parent.Position);
+			Vector2 ScreenPosition = Camera.Active.WorldToScreen(Parent.Position);
 			var ActiveFrame = Sprite.ActiveAnimation.ActiveFrame.Frame;
 			var SourceRect = ActiveFrame.Source;
 			SpriteBatch.Draw(this.Sprite.Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Parent.Size.X, (int)Parent.Size.Y), SourceRect, Color);

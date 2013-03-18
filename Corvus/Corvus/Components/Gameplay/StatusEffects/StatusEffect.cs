@@ -98,7 +98,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
 
             var width = Entity.Size.X;
             var position = Entity.Position + new Vector2(width / 2, 0);
-            var ToScreen = Camera.Active.ScreenToWorld(position);
+            var ToScreen = Camera.Active.WorldToScreen(position);
             _FloatingTexts.Update(gameTime, ToScreen);
         }
 
