@@ -148,8 +148,10 @@ namespace Corvus.Components
             var oldWeapon = EntityBlueprint.GetBlueprint(weaponToDrop).CreateEntity();
             oldWeapon.Position = new Vector2(Parent.Position.X + -CorvusExtensions.GetSign(mc.CurrentDirection) * (Parent.Size.X + 5), Parent.Position.Y - Parent.Size.Y - 5);
             oldWeapon.Size = new Vector2(32, 32); //TODO: Weapon size may change in the future
-
             scene.AddEntity(oldWeapon);
+
+            var pc = oldWeapon.GetComponent<PhysicsComponent>();
+            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f, -325f);
         }
 
         private AttributesComponent AttributesComponent;

@@ -43,6 +43,8 @@ WeaponProperties
 	
 Motion
 	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorDragCoefficient: 0.01
 
 Bow: WeaponSprite, WeaponProperties, Motion
 	ClassificationComponent

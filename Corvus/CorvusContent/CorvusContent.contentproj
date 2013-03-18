@@ -54,6 +54,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Audio\SoundEffects\" />
     <Folder Include="Backgrounds\" />
     <Folder Include="Overlays\" />
     <Folder Include="Sprites\Items\" />
@@ -87,18 +88,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Audio\RPGAudio.xgs">
-      <Name>RPGAudio</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Audio\Sound Bank.xsb">
-      <Name>Sound Bank</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Audio\Wave Bank.xwb">
-      <Name>Wave Bank</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Compile Include="Fonts\DamageFont.spritefont">
       <Name>DamageFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -261,6 +250,48 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\weapons.png">
+      <Name>weapons</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Bow.xml">
+      <Name>Bow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Spear.xml">
+      <Name>Spear</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Dagger.xml">
+      <Name>Dagger</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\CorvAudio.xap">
+      <Name>CorvAudio</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Audio\Music\Field1.wav">
+      <Name>Field1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

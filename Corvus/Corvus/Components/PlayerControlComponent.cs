@@ -23,7 +23,7 @@ namespace Corvus.Components
 
         public void BeginWalking(Direction dir)
         {
-            if (!CC.IsAttacking)
+            if (!CC.IsAttacking)// && PC.IsGrounded)
                 MC.BeginWalking(dir);
             else
             {
@@ -43,9 +43,13 @@ namespace Corvus.Components
                 MC.IsWalking = false;
             }
         }
-
+        //private bool _HasJumped = false;
+        //private Direction _JumpDirection;
         public void Jump(bool multijump)
         {
+            //_JumpDirection = MC.CurrentDirection;
+            //_HasJumped = true;
+
             MC.Jump(multijump);
             if (CC.IsBlocking)
                 CC.EndBlock();
@@ -107,6 +111,16 @@ namespace Corvus.Components
                 SwitchWeapon(_IsPrev);
                 _WantsToSwitchWeapon = false;
             }
+
+            //if (_HasJumped)
+            //{
+            //    if (_JumpDirection != MC.CurrentDirection)
+            //        MC.WalkSpeedModifier = 0.6f;
+            //    else
+            //        MC.WalkSpeedModifier = 1f;
+            //}
+            //if (_HasJumped && PC.IsGrounded)
+            //    MC.WalkSpeedModifier = 1f;
 
         }
     }

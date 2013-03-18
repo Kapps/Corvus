@@ -70,6 +70,7 @@
    <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 915,-501"/>
   </object>
   <object name="Sit1" type="Dagger" x="1627" y="1249" width="32" height="32"/>
+  <object name="Sit3" type="Spear" x="1427" y="1249" width="32" height="32"/>
   <object name="Sit2" type="Bow" x="1327" y="1249" width="32" height="32"/>
   <object name="Powerup1" type="TestEntityEnemy" x="1427" y="1249" width="32" height="32"/>
   <object name="Jumper2" type="TestEntityEnemy" x="1314" y="1498" width="32" height="32">

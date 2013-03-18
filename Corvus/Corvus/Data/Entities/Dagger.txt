@@ -34,6 +34,8 @@ WeaponProperties
 
 Motion
 	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorDragCoefficient: 0.01
 
 Dagger: WeaponSprite, WeaponProperties, Motion
 	ClassificationComponent

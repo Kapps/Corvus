@@ -14,7 +14,7 @@ Properties
 		WalkAcceleration: 15000
 		JumpSpeed: 950
 	PhysicsComponent
-		GravityCoefficient: 0.8
+		GravityCoefficient: 0.6
 		HorDragCoefficient: 1
 	AttributesComponent
 		MaxHealth: Random(450, 500)
@@ -28,6 +28,7 @@ Properties
 	EquipmentComponent
 		UseWeaponBonuses: true 
 		DefaultWeaponName: Spear
+		Capacity: 3
 
 Healthy
 	HealthBarComponent
