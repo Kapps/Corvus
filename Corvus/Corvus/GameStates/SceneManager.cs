@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 using CorvEngine.Components.Blueprints;
+using CorvEngine.Geometry;
 using CorvEngine.Scenes;
 
 namespace Corvus.GameStates {
@@ -60,7 +61,8 @@ namespace Corvus.GameStates {
 				Scene.Disposed += Scene_Disposed;
 				ActiveScenes.Add(Scene);
 				Scene.AddSystem(new PhysicsSystem());
-				Scene.Initialize();
+				TiledPlatformerGeometry Geometry = new TiledPlatformerGeometry(Scene);
+				Scene.Initialize(Geometry);
 				this.AddComponent(Scene);
 			}
 			var OldScene = _ActiveScene;

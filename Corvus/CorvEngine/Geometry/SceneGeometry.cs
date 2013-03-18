@@ -18,16 +18,15 @@ namespace CorvEngine.Geometry {
 		// After all, we may not need to update paths every update call.
 
 		/// <summary>
-		/// Gets the Scene that this geometry is being used for.
+		/// Gets the scene that's being used for this geometry.
 		/// </summary>
-		public Scene Scene {
-			get { return _Scene; }
-		}
+		public Scene Scene { get; private set; }
 
 		/// <summary>
 		/// Creates a new SceneGeometry for the specified Scene.
 		/// </summary>
 		public SceneGeometry(Scene Scene) {
+			this.Scene = Scene;
 			Scene.EntityAdded += Scene_EntityAdded;
 		}
 
@@ -47,6 +46,7 @@ namespace CorvEngine.Geometry {
 			if(Geometry != null) {
 				_EntityGeometries.Add(Entity, Geometry);
 				AddGeometry(Geometry);
+				Entity.Disposed += (scobj) => OnEntityDisposed((Entity)scobj);
 			}
 		}
 
@@ -90,7 +90,6 @@ namespace CorvEngine.Geometry {
 		/// </summary>
 		protected abstract void AddGeometry(ISceneGeometryObject Object);
 
-		private Scene _Scene;
 		private Dictionary<Entity, ISceneGeometryObject> _EntityGeometries = new Dictionary<Entity, ISceneGeometryObject>();
 	}
 }

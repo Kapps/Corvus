@@ -65,8 +65,15 @@ namespace CorvEngine.Graphics {
 		/// <summary>
 		/// Maps the given world coordinates to screen coordinates.
 		/// </summary>
-		public Vector2 ScreenToWorld(Vector2 Position) {
+		public Vector2 WorldToScreen(Vector2 Position) {
 			return new Vector2(Position.X - this.Position.X, Position.Y - this.Position.Y);
+		}
+
+		/// <summary>
+		/// Maps the given rectangle from world coordinates to screen coordinates, keeping the width and height intact.
+		/// </summary>
+		public Rectangle WorldToScreen(Rectangle Location) {
+			return new Rectangle(Location.X - (int)this.Position.X, Location.Y - (int)this.Position.Y, Location.Width, Location.Height);
 		}
 	}
 }

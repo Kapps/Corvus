@@ -22,7 +22,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
             base.Draw();
             var ActiveFrame = _Sprite.ActiveAnimation.ActiveFrame.Frame;
             var SourceRect = ActiveFrame.Source;
-            var position = Camera.Active.ScreenToWorld(Entity.Position);
+            var position = Camera.Active.WorldToScreen(Entity.Position);
             var destinationRect = new Rectangle((int)(position.X + SourceRect.Width / 2), (int)(position.Y - Entity.Size.Y), SourceRect.Width, SourceRect.Height);
             CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, destinationRect, SourceRect, Color.White);
         }

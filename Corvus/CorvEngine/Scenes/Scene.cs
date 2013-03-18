@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorvEngine.Components;
+using CorvEngine.Geometry;
 using CorvEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,16 +35,21 @@ namespace CorvEngine.Scenes {
 		/// <summary>
 		/// Creates a Scene with the given LevelData.
 		/// </summary>
-		public Scene(LevelData Data, GameState State)
-			: base(State) {
-
-            this._Properties = Data.Properties;
-			this._Layers = Data.Layers;
-			foreach(var Entity in Data.DynamicObjects)
-				AddEntity(Entity);
-
+		public Scene(LevelData Data, GameState State) : base(State) {
 			this._MapSize = Data.MapSize;
 			this._TileSize = Data.TileSize;
+			this._Properties = Data.Properties;
+			this._Layers = Data.Layers;
+			this._Geometry = Geometry;
+			foreach(var Entity in Data.DynamicObjects)
+				AddEntity(Entity);
+		}
+
+		/// <summary>
+		/// Gets the geometry used for solid objects within the Scene.
+		/// </summary>
+		public SceneGeometry Geometry {
+			get { return _Geometry; }
 		}
 
         /// <summary>
@@ -162,10 +168,11 @@ namespace CorvEngine.Scenes {
 		/// Initializes the Scene and all Systems and Entities within it.
 		/// This may only ever be called once on a Scene.
 		/// </summary>
-		public void Initialize() {
+		public void Initialize(SceneGeometry Geometry) {
 			if(_IsInitialized)
 				throw new InvalidOperationException("Unable to initialize a Scene multiple times.");
 			_IsInitialized = true;
+			this._Geometry = Geometry;
 			foreach(var System in _Systems)
 				System.Initialize(this);
 			foreach(var Entity in _Entities)
@@ -208,7 +215,7 @@ namespace CorvEngine.Scenes {
 							Tile Tile = Layer.GetTile(x, y);
 							if(Tile == null)
 								continue;
-							var ScreenCoords = Camera.Active.ScreenToWorld(new Vector2(Tile.Location.X, Tile.Location.Y));
+							var ScreenCoords = Camera.Active.WorldToScreen(new Vector2(Tile.Location.X, Tile.Location.Y));
 							SpriteBatch.Draw(Tile.Texture, new Rectangle((int)ScreenCoords.X, (int)ScreenCoords.Y, Tile.Location.Width, Tile.Location.Height), Tile.SourceRect, Color.White);
 						}
 					}
@@ -258,6 +265,7 @@ namespace CorvEngine.Scenes {
 		private List<Components.SceneSystem> _Systems = new List<Components.SceneSystem>();
 		private bool _IsDisposed;
 		private bool _IsInitialized;
+		private SceneGeometry _Geometry;
 		// TODO: Eventually, this should be changed to use a QuadTree or Grid, but for now we don't need the performance.
 		// Support does exist for plugging one in efficiently using an EntityNode reference though.
 		private LinkedList<Entity> _Entities = new LinkedList<Entity>();

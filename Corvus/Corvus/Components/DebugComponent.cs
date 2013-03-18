@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using CorvEngine;
+using CorvEngine.Geometry;
+using CorvEngine.Graphics;
 using CorvEngine.Input;
 using Corvus.GameStates;
 using Microsoft.Xna.Framework;
@@ -36,7 +38,10 @@ namespace Corvus.Components {
 			Player.InputManager.RegisterBind(ReloadLevelsBind);
 			Bind ClearCameraBind = new Bind(Player.InputManager, ClearCameraPressed, false, Keys.F12);
 			Player.InputManager.RegisterBind(ClearCameraBind);
+			Bind ToggleGeometryBind = new Bind(Player.InputManager, ToggleGeometryPressed, false, Keys.F11);
+			Player.InputManager.RegisterBind(ToggleGeometryBind);
 			CurrentCamera = Player.Character.GetComponent<ChaseCameraComponent>();
+			GeometryTexture = CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/Outline");
 		}
 
 		void DataFileUpdate(object sender, FileSystemEventArgs e) {
@@ -51,6 +56,12 @@ namespace Corvus.Components {
 		}
 
 		public override void Draw(GameTime gameTime) {
+			if(DisplayGeometry) {
+				TiledPlatformerGeometry Geometry = (TiledPlatformerGeometry)CorvusGame.Instance.SceneManager.ActiveScene.Geometry;
+				foreach(TiledPlatformerGeometryObject GeometryObj in Geometry.GeometryObjects) {
+					CorvusGame.Instance.SpriteBatch.Draw(GeometryTexture, Camera.Active.WorldToScreen(GeometryObj.Location), new Color(255, 0, 0, 64));
+				}
+			}
 			CorvusGame.Instance.SpriteBatch.DrawString(Font, "FPS: " + CorvusGame.Instance.FPS, new Vector2(10, GraphicsDevice.Viewport.Height - 30), Color.Yellow);
 			if(CorvusGame.Instance.Players.Any())
 				CorvusGame.Instance.SpriteBatch.DrawString(Font, "Center: " + CorvusGame.Instance.Players.First().Character.Location.Center, new Vector2(10, GraphicsDevice.Viewport.Height - 50), Color.Yellow);
@@ -98,14 +109,32 @@ namespace Corvus.Components {
 			Player.Character.Components.Add((CurrentCamera = new ChaseCameraComponent(Player.Camera)));
 		}
 
+		private void ToggleGeometryPressed(BindState State) {
+			if(State != BindState.Pressed)
+				return;
+			DisplayGeometry = !DisplayGeometry;
+		}
+
 		private void ReloadLevel() {
 			SceneManager.ReloadBlueprints();
 			SceneManager.ReloadScenes();
+		}
+
+		private Color GenerateRandomColorForObject(object obj, int alpha) {
+			if(RandomObjectColors.ContainsKey(obj))
+				return RandomObjectColors[obj];
+			Color col = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble(), alpha / 255f);
+			RandomObjectColors[obj] = col;
+			return col;
 		}
 
 		private ChaseCameraComponent CurrentCamera;
 		private MouseState OldState = Mouse.GetState();
 		private SceneManager SceneManager;
 		private CorvusPlayer Player;
+		private bool DisplayGeometry;
+		private Texture2D GeometryTexture;
+		private Dictionary<object, Color> RandomObjectColors = new Dictionary<object, Color>();
+		private Random rnd = new Random();
 	}
 }

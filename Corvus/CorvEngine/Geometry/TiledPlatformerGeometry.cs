@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using CorvEngine.Scenes;
+using Microsoft.Xna.Framework;
 
 namespace CorvEngine.Geometry {
 
 	/// <summary>
 	/// Provides information about the geometry of a Platformer game, allowing path-finding to take place.
 	/// </summary>
-	public class TiledPlatformerGeometry {
+	public class TiledPlatformerGeometry : SceneGeometry {
 		/*
 		 * So, approach will be as follows:
 		 * Go through each tile in the level, and find all groups of solid blocks.
@@ -67,6 +71,178 @@ namespace CorvEngine.Geometry {
 		 * Also, what do we do if no path is available?
 		 *	That's up to the game.
 		 *	
-		 */	 
+		 */
+
+
+		// Right now, path finding is done in two steps.
+		// First, there's local pathfinding.
+		// Local pathfinding is done when you're on the same geometry object as your target.
+		// In this situation you just go left if left, right if right, or jump if higher.
+		// Otherwise, if you can't reach, just have the game do whatever.
+		// We can return null and game can handle what it wants to do in that situation.
+		// Probably go left/right in order with a flag that resets every time a path is available.
+		// We can determine the platform of an entity by checking the highest platform within the X/Y position that's below the entity.
+
+		/// <summary>
+		/// Returns all of the geometry objects that this instance contains.
+		/// </summary>
+		public IEnumerable<ISceneGeometryObject> GeometryObjects {
+			get { return _Geometry; }
+		}
+
+		/// <summary>
+		/// Creates a new TiledPlatformerGeometry instance for the given Scene.
+		/// </summary>
+		public TiledPlatformerGeometry(Scene Scene) : base(Scene) {
+			GenerateTileGeometry();
+		}
+
+		private void GenerateTileGeometry() {
+			// We only care about layers that are solid. Cache which are to save some cycles.
+			Tile[][,] SolidTiles = Scene.Layers.Where(c => c.IsSolid).Select(c => c.Tiles).ToArray();
+			// We'll check if tiles are checked already, as it could get a bit complicated to keep track.
+			// To check if a tile is checked, we'll simply store if it's X and Y coordinate was checked.
+			// Using a bool array of hundreds of thousands of elements seems a bit wasteful however.
+			BitArray CheckedTiles = new BitArray((int)(Scene.TilesInMap.Y * Scene.TilesInMap.X), false);
+			for(int y = 0; y < Scene.TilesInMap.Y; y++) {
+				for(int x = 0; x < Scene.TilesInMap.X; x++) {
+					if(!Exists(SolidTiles, CheckedTiles, x, y))
+						continue;
+					int BitIndex = y * (int)Scene.TilesInMap.X + x;
+					bool AlreadyChecked = CheckedTiles.Get(BitIndex);
+					if(AlreadyChecked)
+						continue;
+					//CheckedTiles.Set(BitIndex, true);
+					// When we have a tile we need to check, find the largest rectangle that encompasses it.
+					Rectangle TileBoundaries = GetLargestSolidTileRectangle(SolidTiles, CheckedTiles, x, y);
+					Rectangle WorldBoundaries = new Rectangle(TileBoundaries.X * (int)Scene.TileSize.X, TileBoundaries.Y * (int)Scene.TileSize.Y,
+						TileBoundaries.Width * (int)Scene.TileSize.X, TileBoundaries.Height * (int)Scene.TileSize.Y);
+					TiledPlatformerGeometryObject Obj = new TiledPlatformerGeometryObject(WorldBoundaries);
+					AddGeometry(Obj);
+				}
+			}
+		}
+
+		private Rectangle GetLargestSolidTileRectangle(Tile[][,] SolidTiles, BitArray CheckedTiles, int StartX, int StartY) {
+			// Basically, we know we start at the top-level coordinate.
+			// So we increase X until we reach a gap.
+			// At that point, we increase Y and check each tile for that row until EndX.
+			// If we encounter a gap, we set EndX to be where that gap was.
+			// We know that every row above it was valid until that location so no need to start over.
+			// Also, we treat each checked tile as a gap. Otherwise we'd have duplicates.
+			// There's a pretty significant issue here though.
+			// Imagine a scenario such as
+			/**
+			*  . . . . . . . 
+			*  . . .   . . .
+			*  . . .   . . .
+			*  . . .   . . .
+			*/ 
+			// How would this be handled?
+			// The result would end up being something like:
+			/**
+			* 1 1 1 2 2 2 2 
+			* 1 1 1   3 3 3
+			* 1 1 1   3 3 3
+			* 1 1 1   3 3 3
+			*/
+			// Which probably doesn't make much sense..
+			// You can't even reach 3 ever.
+
+			// So for now we'll just assume there are no gaps.
+			// This is the way that probably makes most sense for our game...
+			// Though this is in the engine which shouldn't make that assumption, but oh well.
+			// TODO: Handle the above.
+
+			int EndX, EndY;
+			/*for(EndX = StartX; EndX < Scene.TilesInMap.X; EndX++) {
+				if(!Exists(SolidTiles, CheckedTiles, EndX, StartY))
+					break;
+			}
+			//EndX--;
+			for(EndY = StartY; EndY < Scene.TilesInMap.Y; EndY++) {
+				if(!Exists(SolidTiles, CheckedTiles, StartX, EndY))
+					break;
+			}
+			//EndY--;
+			for(int x = StartX; x < EndX; x++) {
+				for(int y = StartY; y < EndY; y++) {
+					int Index = (y * (int)Scene.TilesInMap.X + x);
+					Debug.Assert(!CheckedTiles.Get(Index), "Expected no overlapping tiles when using the rectangle tile approach.");
+					
+					CheckedTiles.Set(Index, true);
+				}
+			}*/
+
+			// For now, scrapped above and switched to original one. I think it works better.
+			// Can play with it and determine which works better in practice.
+			// Also should probably be able to declare a layer unreachable.
+			// So, first find the largest possible EndX and EndY. This is taken from above.
+			for(EndX = StartX; EndX < Scene.TilesInMap.X; EndX++) {
+				if(!Exists(SolidTiles, CheckedTiles, EndX, StartY))
+					break;
+			}
+			for(EndY = StartY; EndY < Scene.TilesInMap.Y; EndY++) {
+				if(!Exists(SolidTiles, CheckedTiles, StartX, EndY))
+					break;
+			}
+			// Now verify no gaps in each row. if there is a gap, lower the EndX.
+			for(int y = StartY; y < EndY; y++) {
+				for(int x = StartX; x < EndX; x++) {
+					if(!Exists(SolidTiles, CheckedTiles, x, y)) {
+						// Found a gap, reduce EndX to the spot we found a gap at.
+						// Then continue on to the next row.
+						EndX = x;
+						break;
+					}
+				}
+			}
+			// Lastly, indicate we checked this rectangle.
+			for(int x = StartX; x < EndX; x++) {
+				for(int y = StartY; y < EndY; y++) {
+					int Index = GetIndex(x, y);
+					Debug.Assert(!CheckedTiles.Get(Index), "Expected no overlapping tiles when using the rectangle tile approach.");
+					
+					CheckedTiles.Set(Index, true);
+				}
+			}
+			return new Rectangle(StartX, StartY, EndX - StartX, EndY - StartY);
+		}
+
+		private bool Exists(Tile[][,] Tiles, BitArray CheckedTiles, int X, int Y) {
+			foreach(var TileSet in Tiles) {
+				if(TileSet[X, Y] != null) {
+					if(CheckedTiles.Get(GetIndex(X, Y)))
+						continue;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private int GetIndex(int X, int Y) {
+			return Y * (int)Scene.TilesInMap.X + X;
+		}
+
+		protected override ISceneGeometryObject CreateGeometryForEntity(Components.Entity Entity) {
+			// At the moment nothing is ever solid.
+			// We should probably change that at some point.
+			return null;
+		}
+
+		protected override void RemoveGeometry(ISceneGeometryObject Object) {
+			bool Removed = _Geometry.Remove(Object);
+			if(!Removed)
+				throw new KeyNotFoundException();
+		}
+
+		protected override void AddGeometry(ISceneGeometryObject Object) {
+			Debug.Assert(Object is TiledPlatformerGeometryObject);
+			// Of course we should use something like a QuadTree,
+			// but we're not actually doing solid entities so too few to matter.
+			_Geometry.Add(Object);
+		}
+
+		private List<ISceneGeometryObject> _Geometry = new List<ISceneGeometryObject>();
 	}
 }
