@@ -8,19 +8,29 @@ using CorvEngine.Input;
 
 namespace Corvus.Components
 {
+    /// <summary>
+    /// A component to manage user input and the various states involved with the entity.
+    /// </summary>
     public class PlayerControlComponent : Component
     {
         private bool _WantsToBlock = false;
         private bool _WantsToSwitchWeapon = false;
         private bool _IsPrev = false;
+        private AttributesComponent AC;
         private MovementComponent MC;
         private CombatComponent CC;
         private PhysicsComponent PC;
         private SpriteComponent SC;
         private EquipmentComponent EC;
 
+        /// <summary>
+        /// Gets the current direction.
+        /// </summary>
         public Direction CurrentDirection { get { return MC.CurrentDirection; } }
 
+        /// <summary>
+        /// Moves the player in the specified direction. If it is attacking, the player is slowed. 
+        /// </summary>
         public void BeginWalking(Direction dir)
         {
             if (!CC.IsAttacking)// && PC.IsGrounded)
@@ -33,6 +43,9 @@ namespace Corvus.Components
             }
         }
 
+        /// <summary>
+        /// Stops the player's movement.
+        /// </summary>
         public void StopWalking()
         {
             if (!CC.IsAttacking)
@@ -43,23 +56,28 @@ namespace Corvus.Components
                 MC.IsWalking = false;
             }
         }
-        //private bool _HasJumped = false;
-        //private Direction _JumpDirection;
+
+        /// <summary>
+        /// Forces the player to jump. If it is blocking, cancels it.
+        /// </summary>
         public void Jump(bool multijump)
         {
-            //_JumpDirection = MC.CurrentDirection;
-            //_HasJumped = true;
-
             MC.Jump(multijump);
             if (CC.IsBlocking)
                 CC.EndBlock();
         }
 
+        /// <summary>
+        /// Forces the player to attack.
+        /// </summary>
         public void Attack()
         {
             CC.Attack();
         }
 
+        /// <summary>
+        /// Force the player to block. The player will remain blocking until the button is released. 
+        /// </summary>
         public void BeginBlock()
         {
             //can't block while in the middle of an attack or in the air
@@ -69,12 +87,18 @@ namespace Corvus.Components
                 _WantsToBlock = true;
         }
 
+        /// <summary>
+        /// Stops blocking.
+        /// </summary>
         public void EndBlock()
         {
             _WantsToBlock = false;
             CC.EndBlock();
         }
 
+        /// <summary>
+        /// Switches weapon. 
+        /// </summary>
         public void SwitchWeapon(bool getPrev)
         {
             //cant switch weapons when attacking or blocking
@@ -90,6 +114,7 @@ namespace Corvus.Components
         protected override void OnInitialize()
         {
             base.OnInitialize();
+            AC = this.GetDependency<AttributesComponent>();
             MC = this.GetDependency<MovementComponent>();
             CC = this.GetDependency<CombatComponent>();
             PC = this.GetDependency<PhysicsComponent>();
@@ -101,27 +126,23 @@ namespace Corvus.Components
         {
             base.OnUpdate(Time);
 
+            //TODO: Not sure if this is the best place to handle death.
+            //if (AC.IsDead)
+            //{
+            //    EC.RemoveWeapons();
+            //    this.Parent.Dispose();
+            //}
+
             if (_WantsToBlock && (!CC.IsAttacking && PC.IsGrounded))
             {
                 BeginBlock();
                 _WantsToBlock = false;
             }
-            if (_WantsToSwitchWeapon && (!CC.IsAttacking))// && !CC.IsBlocking))
+            if (_WantsToSwitchWeapon && (!CC.IsAttacking))
             {
                 SwitchWeapon(_IsPrev);
                 _WantsToSwitchWeapon = false;
             }
-
-            //if (_HasJumped)
-            //{
-            //    if (_JumpDirection != MC.CurrentDirection)
-            //        MC.WalkSpeedModifier = 0.6f;
-            //    else
-            //        MC.WalkSpeedModifier = 1f;
-            //}
-            //if (_HasJumped && PC.IsGrounded)
-            //    MC.WalkSpeedModifier = 1f;
-
         }
     }
 }

@@ -15,12 +15,9 @@ namespace Corvus.Components
     /// </summary>
     public class AIComponent : Component
     {
-        //TODO: Not sure if it should be circle, rectangle, or some obscure shape. Right now, it's a rectangle.
-        //TODO: Might also make this rectangle based on the direction of the entity. So that the player has a chance to sneak up on enemies.
-        //TODO: Create a property that specifies the center of the rectangle. This would also be affected by the direction of the entity.
         /// <summary>
         /// Gets or sets a value that indicates how far this entity will check before reacting. 
-        /// The area is centered with the center of the sprite. (Might change later on)
+        /// The area is centered with the center of the sprite.
         /// </summary>
         public Vector2 ReactionRange
         {

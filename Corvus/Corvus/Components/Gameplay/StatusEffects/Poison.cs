@@ -15,27 +15,22 @@ namespace Corvus.Components.Gameplay.StatusEffects
     public class Poison : StatusEffect
     {
         public override string Name { get { return "Poison"; } }
-        protected override string SpriteName { get { return "Sprites/StatusEffects/testeffect1"; } }
-
-        public override void Draw()
-        {
-            base.Draw();
-            var ActiveFrame = _Sprite.ActiveAnimation.ActiveFrame.Frame;
-            var SourceRect = ActiveFrame.Source;
-            var position = Camera.Active.WorldToScreen(Entity.Position);
-            var destinationRect = new Rectangle((int)(position.X + SourceRect.Width / 2), (int)(position.Y - Entity.Size.Y), SourceRect.Width, SourceRect.Height);
-            CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, destinationRect, SourceRect, Color.White);
+        protected override string SpriteName { get { return "Sprites/StatusEffects/Effect_Poison"; } }
+        protected override bool IsGood { get { return false; } }
+        
+        protected override void OnFirstOccurance() {
+            FloatingTextComponent.Add("Poison", Color.DarkViolet);
         }
-
-        protected override void OnFirstOccurance() { }
 
         protected override void OnTick()
         {
             var ac = Entity.GetComponent<AttributesComponent>();
             float damage = ac.MaxHealth * Attributes.Intensity + Attributes.BaseValue;
             ac.CurrentHealth -= damage;
-            _FloatingTexts.AddFloatingTexts(damage, Color.DarkViolet);
+            FloatingTextComponent.Add(damage, Color.DarkViolet);
         }
+
+        protected override void OnFinished() { }
 
         //Unfortunately, need to specify this in order for StatusEffectsComponent to work properly.
         public Poison(Entity entity, StatusEffectProperties attributes) : base(entity, attributes) { }

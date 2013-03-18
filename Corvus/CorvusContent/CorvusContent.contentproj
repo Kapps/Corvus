@@ -142,20 +142,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\StatusEffects\testeffect.png">
-      <Name>testeffect</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\StatusEffects\testeffect1.xml">
-      <Name>testeffect1</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Equipment\testweapon.png">
       <Name>testweapon</Name>
       <Importer>TextureImporter</Importer>
@@ -340,6 +326,98 @@
     </Compile>
     <Compile Include="Tiles\coin_silver 32x32.png">
       <Name>coin_silver 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Healing.png">
+      <Name>Healing</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\ManaHeal.png">
+      <Name>ManaHeal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Poison.png">
+      <Name>Poison</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_Might.xml">
+      <Name>Effect_Might</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Effect_Healing.xml">
+      <Name>Effect_Healing</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Effect_ManaHeal.xml">
+      <Name>Effect_ManaHeal</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Effect_Poison.xml">
+      <Name>Effect_Poison</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_Weakness.xml">
+      <Name>Effect_Weakness</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Might.png">
+      <Name>Might</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Weakness.png">
+      <Name>Weakness</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Pierce.png">
+      <Name>Pierce</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_Pierce.xml">
+      <Name>Effect_Pierce</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_Recover.xml">
+      <Name>Effect_Recover</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Effect_Slow.xml">
+      <Name>Effect_Slow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Recover.png">
+      <Name>Recover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Slow.png">
+      <Name>Slow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

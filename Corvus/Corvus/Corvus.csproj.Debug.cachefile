@@ -6,7 +6,6 @@ Content\Sprites\Enemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
 Content\Sprites\male_sprites.xnb
 Content\Interface\HealthMeter.xnb
-Content\Sprites\StatusEffects\testeffect.xnb
 Content\Sprites\Equipment\testweapon.xnb
 Content\Sprites\Equipment\testweaponD.xnb
 Content\Sprites\Powerups\TestPowerup.xnb
@@ -17,20 +16,6 @@ Content\Sprites\Effects\Explosion2.xnb
 Content\Sprites\Effects\Explosion3.xnb
 Content\Sprites\Effects\Explosions1.xnb
 Content\Sprites\Equipment\weapons.xnb
-Content\Fonts\testfont.xnb
-Content\Fonts\DamageFont.xnb
-Content\Sprites\TestPlayer.xnb
-Content\Sprites\TestEnemy.xnb
-Content\Sprites\StatusEffects\testeffect1.xnb
-Content\Sprites\Equipment\TestWeapon1.xnb
-Content\Sprites\Equipment\TestWeapon2.xnb
-Content\Sprites\Powerups\TestPowerup1.xnb
-Content\Sprites\TestProjectile.xnb
-Content\Sprites\Equipment\TestWeapon3.xnb
-Content\Sprites\Effects\Explosions.xnb
-Content\Sprites\Equipment\Bow.xnb
-Content\Sprites\Equipment\Spear.xnb
-Content\Sprites\Equipment\Dagger.xnb
 Content\Interface\Outline.xnb
 Content\Tiles\crate 32x32.xnb
 Content\Tiles\ground 32x32.xnb
@@ -40,6 +25,35 @@ Content\Tiles\lava 32x32.xnb
 Content\Tiles\water 32x32.xnb
 Content\Tiles\coin_bronze 32x32.xnb
 Content\Tiles\coin_silver 32x32.xnb
+Content\Sprites\StatusEffects\Healing.xnb
+Content\Sprites\StatusEffects\ManaHeal.xnb
+Content\Sprites\StatusEffects\Poison.xnb
+Content\Sprites\StatusEffects\Might.xnb
+Content\Sprites\StatusEffects\Weakness.xnb
+Content\Sprites\StatusEffects\Pierce.xnb
+Content\Sprites\StatusEffects\Recover.xnb
+Content\Sprites\StatusEffects\Slow.xnb
+Content\Fonts\testfont.xnb
+Content\Fonts\DamageFont.xnb
+Content\Sprites\TestPlayer.xnb
+Content\Sprites\TestEnemy.xnb
+Content\Sprites\Equipment\TestWeapon1.xnb
+Content\Sprites\Equipment\TestWeapon2.xnb
+Content\Sprites\Powerups\TestPowerup1.xnb
+Content\Sprites\TestProjectile.xnb
+Content\Sprites\Equipment\TestWeapon3.xnb
+Content\Sprites\Effects\Explosions.xnb
+Content\Sprites\Equipment\Bow.xnb
+Content\Sprites\Equipment\Spear.xnb
+Content\Sprites\Equipment\Dagger.xnb
+Content\Sprites\StatusEffects\Effect_Might.xnb
+Content\Sprites\StatusEffects\Effect_Healing.xnb
+Content\Sprites\StatusEffects\Effect_ManaHeal.xnb
+Content\Sprites\StatusEffects\Effect_Poison.xnb
+Content\Sprites\StatusEffects\Effect_Weakness.xnb
+Content\Sprites\StatusEffects\Effect_Pierce.xnb
+Content\Sprites\StatusEffects\Effect_Recover.xnb
+Content\Sprites\StatusEffects\Effect_Slow.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

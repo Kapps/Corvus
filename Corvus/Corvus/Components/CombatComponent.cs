@@ -81,7 +81,7 @@ namespace Corvus.Components {
 
             //Slow down move speed while attacking.
             if (PhysicsComponent.IsGrounded)
-                MovementComponent.WalkSpeedModifier = CombatPropertiesComponent.AttackSlowDown;
+                MovementComponent.CombatWalkSpeedModifier = 0;//CombatPropertiesComponent.AttackSlowDown;
             
             //set animation
             float attackSpeed = AttributesComponent.AttackSpeed;
@@ -113,7 +113,7 @@ namespace Corvus.Components {
 
             //Slow down entity when it is attacking on the ground
             if (PhysicsComponent.IsGrounded)
-                MovementComponent.WalkSpeedModifier = CombatPropertiesComponent.AttackSlowDown;
+                MovementComponent.CombatWalkSpeedModifier = 0;// CombatPropertiesComponent.AttackSlowDown;
 
             //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
             float attackSpeed = AttributesComponent.AttackSpeed;
@@ -126,16 +126,12 @@ namespace Corvus.Components {
 
         public void BeginBlock()
         {
-            //Can't Block in air
-            //if (!PhysicsComponent.IsGrounded)
-            //    return;
-
             if ((DateTime.Now - _LastBlock).TotalMilliseconds > AttributesComponent.BlockSpeed)
             {
                 _LastBlock = DateTime.Now;
 
                 //Stop walking when we start to block.
-                MovementComponent.WalkSpeedModifier = 0f;
+                MovementComponent.CombatWalkSpeedModifier = 0f;
                 IsBlocking = true;
 
                 //TODO: Get a proper animation.
@@ -170,15 +166,6 @@ namespace Corvus.Components {
             if (IsAttacking)
             {
                 _AttackTimer += Time.ElapsedGameTime;
-                //TODO: Not sure if these if's should affect both players and enemies. If we want these things to only affect players,
-                //      move them to PlayerControlComponent.
-                //blocking while attacking cancels attacking
-                //if (IsBlocking)
-                //{
-                //    IsAttacking = false;
-                //    _AttackAction = null;
-                //    _AttackTimer = TimeSpan.Zero;
-                //}
 
                 //XOR: jumping while attacking cancels attacking and landing while attacking cancels the attack.
                 if (_StartedAttackFromGround == !PhysicsComponent.IsGrounded)
@@ -295,7 +282,7 @@ namespace Corvus.Components {
 
         private void ResumeAnimation()
         {
-            MovementComponent.WalkSpeedModifier = 1f;
+            MovementComponent.CombatWalkSpeedModifier = 1f;
             if (MovementComponent.IsWalking)
                 MovementComponent.BeginWalking(MovementComponent.CurrentDirection);
             else 

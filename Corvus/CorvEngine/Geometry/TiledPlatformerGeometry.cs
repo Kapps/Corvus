@@ -255,7 +255,7 @@ namespace CorvEngine.Geometry {
 				throw new InvalidOperationException("Unable to calculate a path for an Entity that has no physics component, movement component, or if a physics system is not set.");
 			double Gravity = PhysicsSystem.Gravity * PhysicsComponent.GravityCoefficient;
 			double Drag = PhysicsSystem.HorizontalDrag * PhysicsComponent.HorizontalDragCoefficient;
-			double JumpAccel = MovementComponent.JumpSpeed;
+			double JumpAccel = MovementComponent.MaxJumpSpeed;
 			TimeSpan TimeForTopHeight = TimeSpan.FromSeconds(JumpAccel / Gravity);
 			// The average velocity during this time will be half of the initial acceleration, since we're decelerating at a constant rate.
 			// Thus, the amount we travel will be the time * half of initial acceleration.

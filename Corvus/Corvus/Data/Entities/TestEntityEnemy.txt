@@ -8,7 +8,7 @@ EnemySprite : RedSprite
 
 Attributes
 	AttributesComponent
-		MaxHealth: Random(2500, 3000)
+		MaxHealth: Random(250, 300)
 		Strength: 75
 		Dexterity: 5
 		Intelligence: 4
@@ -46,6 +46,7 @@ MoverEnemy
 	MovementComponent 
 	
 Damager
+	FloatingTextComponent
 	DamageComponent
 
 StatusEffecter

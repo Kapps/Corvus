@@ -12,7 +12,6 @@ namespace Corvus.Components {
 	/// A class to manage attributes for this entity.
 	/// </summary>
 	public class AttributesComponent : Component {
-
 		/// <summary>
 		/// Gets an event called when the health of this Component runs out.
 		/// </summary>
@@ -29,6 +28,11 @@ namespace Corvus.Components {
 		private EquipmentComponent EquipmentComponent;
 		private Attributes _Attributes = new Attributes();
         private bool _IsDead = false;
+
+        /// <summary>
+        /// Gets whether this entity is dead.
+        /// </summary>
+        public bool IsDead { get { return _IsDead; } }
 
 		/// <summary>
 		/// Gets or sets this components Attributes.
@@ -161,8 +165,8 @@ namespace Corvus.Components {
 		public float CurrentHealth {
 			get { return Attributes.CurrentHealth; }
 			set {
-				if(_IsDead && value > 0)
-					throw new NotSupportedException("Unable to edit current health of a dead HealthComponent.");
+                if (_IsDead && value > 0)
+                    return;//throw new NotSupportedException("Unable to edit current health of a dead HealthComponent.");
 				value = Math.Min(MaxHealth, Math.Max(value, 0));
 				Attributes.CurrentHealth = value;
 				if(this.CurrentHealthChanged != null)

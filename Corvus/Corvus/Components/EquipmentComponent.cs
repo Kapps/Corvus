@@ -82,17 +82,17 @@ namespace Corvus.Components
         /// </summary>
         public void RemoveWeapons()
         {
-            //TODO: Actually test this. Note that when dropping weapons, they will all clump together because the flight distance isnt implemented yet.
-            
             //Default weapon is the currently equiped one so do nothing.
             if (Weapons.Count() == 1 && CurrentWeapon.WeaponData.Name == DefaultWeaponName)
                 return;
+            float launchMod = 1f;
             foreach (Weapon w in Weapons.Reverse())
             {
                 //drop the weapon except for the default one.
                 if (w.WeaponData.Name != DefaultWeaponName)
-                    DropWeapon(w.WeaponData.Name);
+                    DropWeapon(w.WeaponData.Name, launchMod);
                 Weapons.Remove(w);
+                launchMod += 0.25f;
             }
             _CurrentWeaponIndex = 0;
             Weapons.Add(_DefaultWeapon);
@@ -141,7 +141,7 @@ namespace Corvus.Components
             Weapons.Add(newWeapon);
         }
 
-        private void DropWeapon(string weaponToDrop)
+        private void DropWeapon(string weaponToDrop, float launchModifier = 1f)
         {
             var mc = this.GetDependency<MovementComponent>();
             var scene = Parent.Scene;
@@ -151,7 +151,7 @@ namespace Corvus.Components
             scene.AddEntity(oldWeapon);
 
             var pc = oldWeapon.GetComponent<PhysicsComponent>();
-            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f, -325f);
+            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f * launchModifier, -325f * launchModifier);
         }
 
         private AttributesComponent AttributesComponent;

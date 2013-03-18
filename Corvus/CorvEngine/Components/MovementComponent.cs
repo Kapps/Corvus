@@ -16,7 +16,9 @@ namespace CorvEngine.Components {
 		private SpriteComponent SpriteComponent;
 		private float _WalkSpeed = 500;
         private float _WalkSpeedModifier = 1f;
+        private float _CombatWalkSpeedModifier = 1f;
 		private float _JumpSpeed = 950;
+        private float _JumpSpeedModifier = 1f;
 		private float _WalkAcceleration = 15000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
@@ -26,8 +28,16 @@ namespace CorvEngine.Components {
         /// Gets or sets the maximum speed that this Entity can walk at multiplied by the walk speed modifier.
         /// </summary>
 		public float MaxWalkingSpeed {
-			get { return WalkSpeed * WalkSpeedModifier; }
+			get { return WalkSpeed * WalkSpeedModifier * CombatWalkSpeedModifier; }
 		}
+
+        /// <summary>
+        /// Gets or sets how fast this Entity jumps multiplied by the jump speed modifier.
+        /// Note that this does not take into consideration gravity.
+        /// </summary>
+        public float MaxJumpSpeed {
+            get { return JumpSpeed * JumpSpeedModifier; }
+        }
 
         /// <summary>
         /// Gets or sets the walking speed that this Entity can walk at, in units per second.
@@ -47,6 +57,16 @@ namespace CorvEngine.Components {
             set { _WalkSpeedModifier = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a combat walks speed modifier. 
+        /// Basically a hack so I use speed modifier status effects without screwing up how attacking works.
+        /// </summary>
+        public float CombatWalkSpeedModifier
+        {
+            get { return _CombatWalkSpeedModifier; }
+            set { _CombatWalkSpeedModifier = value; }
+        }
+
 		/// <summary>
 		/// Gets or sets the speed to increase velocity by each frame when walking, up to MaxWalkingSpeed.
 		/// This value is in units per second, and is affected by HorizontalDrag.
@@ -64,6 +84,15 @@ namespace CorvEngine.Components {
 			get { return _JumpSpeed; }
 			set { _JumpSpeed = value; }
 		}
+
+        /// <summary>
+        /// Gets or sets how much to modifier the jump speed.
+        /// </summary>
+        public float JumpSpeedModifier
+        {
+            get { return _JumpSpeedModifier; }
+            set { _JumpSpeedModifier = value; }
+        }
 
 		/// <summary>
 		/// Gets or sets the direction that this Entity is facing.
@@ -121,7 +150,7 @@ namespace CorvEngine.Components {
 		/// </summary>
 		public void Jump(bool allowMulti) {
 			if(PhysicsComponent.IsGrounded || allowMulti)
-				PhysicsComponent.VelocityY = -JumpSpeed;
+				PhysicsComponent.VelocityY = -MaxJumpSpeed;
 		}
 
         /// <summary>
@@ -130,7 +159,7 @@ namespace CorvEngine.Components {
         public void Knockback(float distance, int direction)
         {
             //TODO: find an actually formula for this.
-            float t = 0.100f;//ms
+            float t = 0.100f;//s
             float vel = distance / t;
             PhysicsComponent.VelocityY = -500;
             PhysicsComponent.VelocityX = direction * distance;// direction* vel; //new Vector2(direction * vel, -1 * 2000);

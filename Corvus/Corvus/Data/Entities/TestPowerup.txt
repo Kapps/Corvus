@@ -5,9 +5,9 @@
 TestPowerup : PowerupSprite
 	PhysicsComponent
 	StatusEffectPropertiesComponent
-		EffectType: Healing
+		EffectType: Might
 		BaseValue: 50
-		Intensity: 0.035
+		Intensity: 0.5
 		Duration: 5
 	CollisionStatusEffectComponent		
 		DisposeOnCollision: true

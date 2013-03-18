@@ -12,8 +12,6 @@ namespace Corvus.Components.Gameplay
     /// </summary>
     public class FloatingText
     {
-        
-
         /// <summary>
         /// Gets or sets the value to display.
         /// </summary>
@@ -36,7 +34,7 @@ namespace Corvus.Components.Gameplay
 
         private Vector2 _Position { get; set; }
         private TimeSpan _Timer = new TimeSpan();
-        private TimeSpan _Duration = TimeSpan.FromMilliseconds(550);
+        private TimeSpan _Duration = TimeSpan.FromMilliseconds(850);
         private float _YIncrement = 0f;
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace Corvus.Components.Gameplay
         public void Update(GameTime gameTime, Vector2 position)
         {
             _Position = position + new Vector2(0, _YIncrement) - new Vector2(TextSize.X / 2, 0); //to center and make it move up
-            _YIncrement -= 0.075f;
+            _YIncrement -= 0.045f;
             _Timer += gameTime.ElapsedGameTime;
             if (_Timer >= _Duration)
                 IsFinished = true;

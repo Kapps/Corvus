@@ -30,6 +30,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
         protected abstract string SpriteName { get; }
 
         /// <summary>
+        /// Gets a value that indicates this is a 'good' effect. (Ex: healing is good, poison is bad).
+        /// </summary>
+        protected abstract bool IsGood { get; }
+
+        /// <summary>
         /// Gets the attributes for this effect.
         /// </summary>
         public StatusEffectProperties Attributes { get { return _Attributes; } }
@@ -43,20 +48,16 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Gets the entity being affected.
         /// </summary>
         public Entity Entity { get { return _Entity; } }
-
-        /// <summary>
-        /// A event that occurs when the status effect is finished. 
-        /// </summary>
-        protected event EventHandler OnEventCompleted;
+        private Color ImageColor { get { return (IsGood) ? Color.LightBlue : Color.LightSalmon; } }
 
         private StatusEffectProperties _Attributes;
         private Entity _Entity;
         protected Sprite _Sprite;
         protected TimeSpan _Timer = TimeSpan.Zero;
-        protected FloatingTextList _FloatingTexts = new FloatingTextList();
         protected TimeSpan _TickTimer = TimeSpan.Zero;
         protected TimeSpan _TickOccurance = TimeSpan.FromSeconds(1); //how long before a tick is registered.
         protected bool _IsFirstOccurance = true;
+        protected FloatingTextComponent FloatingTextComponent;
 
         /// <summary>
         /// Creates a new instance of StatusEffect.
@@ -64,14 +65,15 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// <param name="entity">The entity being affected.</param>
         public StatusEffect(Entity entity, StatusEffectProperties attributes)
         {
-            var effect = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
-            effect.PlayAnimation(Name);
+            var effect = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName); 
+            var animation = effect.Animations.First();
+            effect.PlayAnimation(animation.Name);
             this._Sprite = effect;
             this._Entity = entity;
             this._Attributes = attributes;
+            FloatingTextComponent = entity.GetComponent<FloatingTextComponent>();
         }
 
-        //TODO: Find a better way to draw effects
         public virtual void Update(GameTime gameTime)
         {
             if (_IsFirstOccurance)
@@ -91,21 +93,15 @@ namespace Corvus.Components.Gameplay.StatusEffects
             if (_Timer >= TimeSpan.FromSeconds(Attributes.Duration))
             {
                 IsFinished = true;
-                if (OnEventCompleted != null)
-                    OnEventCompleted(this, new EventArgs());
+                OnFinished();
             }
             _Sprite.ActiveAnimation.AdvanceAnimation(gameTime.ElapsedGameTime);
-
-            var width = Entity.Size.X;
-            var position = Entity.Position + new Vector2(width / 2, 0);
-            var ToScreen = Camera.Active.WorldToScreen(position);
-            _FloatingTexts.Update(gameTime, ToScreen);
         }
 
-        //TODO: Maybe make the effect scale with the size of entity. 
-        public virtual void Draw()
+        public virtual void Draw(Vector2 position)
         {
-            _FloatingTexts.Draw();
+            var SourceRect = _Sprite.ActiveAnimation.ActiveFrame.Frame.Source;
+            CorvusGame.Instance.SpriteBatch.Draw(_Sprite.Texture, position, SourceRect, ImageColor);
         }
 
         /// <summary>
@@ -125,5 +121,10 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Fires every time a tick is registered.
         /// </summary>
         protected abstract void OnTick();
+
+        /// <summary>
+        /// Fires when the effect has finished.
+        /// </summary>
+        protected abstract void OnFinished();
     }
 }

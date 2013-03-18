@@ -8,7 +8,7 @@ WeaponProperties
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
 	CombatPropertiesComponent
 		IsRanged: false
-		AppliesEffect: false
+		AppliesEffect: true
 		IsAoE: false
 		HitDelay: 0.5
 		ConsumesMana: false
@@ -33,9 +33,9 @@ WeaponProperties
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
-		EffectType: Poison
-		BaseValue: 3111
-		Intensity: 0.01
+		EffectType: Weakness
+		BaseValue: 1
+		Intensity: 0.5
 		Duration: 5
 
 Motion

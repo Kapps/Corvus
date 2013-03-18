@@ -34,7 +34,7 @@ namespace Corvus.Components {
             if (dc == null)
 				return false;
             if (!UseAttributes)
-                dc.TakeDamage(Damage);
+                dc.TakeDamage(this.Parent, Damage);
             else
             {
                 var attri = this.GetDependency<AttributesComponent>();

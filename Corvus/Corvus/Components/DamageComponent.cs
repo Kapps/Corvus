@@ -15,25 +15,26 @@ namespace Corvus.Components{
     public class DamageComponent : Component{
         private AttributesComponent AttributesComponent;
         private CombatComponent CombatComponent;
-        private FloatingTextList _FloatingTexts = new FloatingTextList();
+        private MovementComponent MovementComponent;
+        private FloatingTextComponent FloatingTextComponent;
 
         /// <summary>
-        /// Applies damage with only normal rule.
+        /// Applies static damage with only normal rule.
         /// </summary>
-        public void TakeDamage(float incomingDamage){
-            float blockMultipler = BlockDamageReduction();
+        public void TakeDamage(Entity attacker, float incomingDamage, float modifier = 1f){
+            float blockMultipler = BlockDamageReduction(attacker);
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage);
-            float overallDamage = damageTaken * blockMultipler;
+            float overallDamage = damageTaken * blockMultipler * modifier;
             AttributesComponent.CurrentHealth -= overallDamage;
 
-            _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
+            FloatingTextComponent.Add(overallDamage, Color.White);
         }
 
         /// <summary>
         /// Applies damage, with the normal rules, based on the attacker's attributes.
         /// </summary>
         public void TakeDamage(AttributesComponent attacker, float modifier = 1f){
-            float blockMultipler = BlockDamageReduction();
+            float blockMultipler = BlockDamageReduction(attacker.Parent);
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
             float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
             float elementalMultiplier = ElementalDamage(AttributesComponent.ResistantElements, AttributesComponent.ElementPower, attacker.AttackingElements, attacker.ElementPower);
@@ -41,17 +42,13 @@ namespace Corvus.Components{
             AttributesComponent.CurrentHealth -= overallDamage;
 
             if (criticalMultiplier != 1) //critical hit.
-                _FloatingTexts.AddFloatingTexts(overallDamage, Color.Orange);
+                FloatingTextComponent.Add(overallDamage, Color.Orange);
             else if (elementalMultiplier > 1) //entity is weak to that element
-                _FloatingTexts.AddFloatingTexts(overallDamage, Color.Crimson);
+                FloatingTextComponent.Add(overallDamage, Color.Crimson);
             else if (elementalMultiplier < 1) //entity is resistant to that element
-                _FloatingTexts.AddFloatingTexts(overallDamage, Color.Navy);
+                FloatingTextComponent.Add(overallDamage, Color.Navy);
             else
-                _FloatingTexts.AddFloatingTexts(overallDamage, Color.White);
-        }
-        
-        private float BlockDamageReduction(){
-            return (CombatComponent.IsBlocking) ? AttributesComponent.BlockDamageReduction : 1f;
+                FloatingTextComponent.Add(overallDamage, Color.White);
         }
 
         private float NormalDamageFormula(float myDefense, float incomingDamage){
@@ -61,6 +58,22 @@ namespace Corvus.Components{
         private float CriticalDamageChance(float critChance, float critDamage){
             Random rand = new Random();
             return (rand.NextDouble() <= critChance) ? critDamage : 1f;
+        }
+
+        private float BlockDamageReduction(Entity attacker)
+        {
+            if (!CombatComponent.IsBlocking)
+                return 1f;
+            else
+            {
+                var myLoc = this.Parent.Location.Center.X;
+                var attackerLoc = attacker.Location.Center.X;
+                var pos = attackerLoc - myLoc;
+                if ((MovementComponent.CurrentDirection == CorvEngine.Direction.Right && pos > 0) ||
+                    (MovementComponent.CurrentDirection == CorvEngine.Direction.Left && pos < 0))
+                    return AttributesComponent.BlockDamageReduction;
+            }
+            return 1f;
         }
         
         /// <summary>
@@ -80,7 +93,7 @@ namespace Corvus.Components{
                 (res == Elements.Wind && att == Elements.Fire))
             {
                 multiplier += 0.5f;
-                multiplier += (attackerInt / (attackerInt + myInt)); //TODO: Not really much of a bonus... will think of something later.
+                multiplier += (attackerInt / (attackerInt + myInt));
             }
             else if ((att == Elements.Fire && res == Elements.Water) ||
                 (att == Elements.Water && res == Elements.Earth) ||
@@ -103,23 +116,14 @@ namespace Corvus.Components{
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
             CombatComponent = Parent.GetComponent<CombatComponent>();
+            MovementComponent = this.GetDependency<MovementComponent>();
+            FloatingTextComponent = this.GetDependency<FloatingTextComponent>();
         }
 
-        protected override void OnUpdate(GameTime Time){
+        protected override void OnUpdate(GameTime Time)
+        {
             base.OnUpdate(Time);
-            if (_FloatingTexts.Count == 0)
-                return;
-            var width = Parent.Size.X;
-            var position = Parent.Position + new Vector2(width / 2, 0);
-            var ToScreen = Camera.Active.WorldToScreen(position);
-            _FloatingTexts.Update(Time, ToScreen);
-        }
-
-        protected override void OnDraw(){
-            base.OnDraw();
-            if (_FloatingTexts.Count == 0)
-                return;
-            _FloatingTexts.Draw();
+            FloatingTextComponent.Update(Time);
         }
     }
 

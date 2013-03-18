@@ -36,7 +36,7 @@ namespace Corvus.Components
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
         } 
-        //TODO: Find a better way to draw the effects.
+
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
@@ -49,12 +49,19 @@ namespace Corvus.Components
                     _StatusEffects.Remove(se);
             }
         }
-
+        //TODO: The offsets are hardcoded.
         protected override void OnDraw()
         {
             base.OnDraw();
+            var entityPos = Camera.Active.WorldToScreen(this.Parent.Location);
+            var position = new Vector2(entityPos.X, entityPos.Bottom + 5);
+            float xOffset = 0f;
             foreach (StatusEffect se in _StatusEffects)
-                se.Draw();
+            {
+                se.Draw(position);
+                xOffset += 17f;
+                position.X += xOffset;
+            }
         }
 
     }

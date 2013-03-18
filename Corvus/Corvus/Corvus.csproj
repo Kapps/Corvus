@@ -120,6 +120,7 @@
     <Compile Include="Components\CombatPropertiesComponent.cs" />
     <Compile Include="Components\DamageComponent.cs" />
     <Compile Include="Components\EquipmentComponent.cs" />
+    <Compile Include="Components\FloatingTextComponent.cs" />
     <Compile Include="Components\Gameplay\Attributes.cs" />
     <Compile Include="Components\Gameplay\CombatProperties.cs" />
     <Compile Include="Components\Gameplay\Elements.cs" />
@@ -131,10 +132,16 @@
     <Compile Include="Components\Gameplay\FloatingTextList.cs" />
     <Compile Include="Components\Gameplay\Helper.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Healing.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\ManaHeal.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\Might.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\Pierce.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Poison.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\Recover.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\Slow.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffect.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectCollection.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectProperties.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\Weakness.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
     <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Components\ProjectileComponent.cs" />
@@ -161,7 +168,6 @@
     <Content Include="Data\Entities\DeadlyArea.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\EnemyWeapon.txt" />
     <Content Include="Data\Entities\Projectile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
