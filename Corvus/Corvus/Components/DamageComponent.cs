@@ -32,12 +32,12 @@ namespace Corvus.Components{
         /// <summary>
         /// Applies damage, with the normal rules, based on the attacker's attributes.
         /// </summary>
-        public void TakeDamage(AttributesComponent attacker){
+        public void TakeDamage(AttributesComponent attacker, float modifier = 1f){
             float blockMultipler = BlockDamageReduction();
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
             float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
             float elementalMultiplier = ElementalDamage(AttributesComponent.ResistantElements, AttributesComponent.ElementPower, attacker.AttackingElements, attacker.ElementPower);
-            float overallDamage = damageTaken * criticalMultiplier * blockMultipler * elementalMultiplier;
+            float overallDamage = damageTaken * criticalMultiplier * blockMultipler * elementalMultiplier * modifier;
             AttributesComponent.CurrentHealth -= overallDamage;
 
             if (criticalMultiplier != 1) //critical hit.
@@ -89,6 +89,12 @@ namespace Corvus.Components{
             {
                 multiplier -= 0.5f;
                 multiplier -= (myInt / (2f * (myInt + attackerInt)));
+            }
+            else if (res == Elements.All && (att == Elements.Fire || att == Elements.Water ||
+                    att == Elements.Earth || att == Elements.Wind))
+            {
+                multiplier -= 0.75f;
+                multiplier -= (myInt / (4f * (myInt + attackerInt)));
             }
             return multiplier;
         }

@@ -32,7 +32,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// <summary>
         /// Gets the attributes for this effect.
         /// </summary>
-        public StatusEffectAttributes Attributes { get { return _Attributes; } }
+        public StatusEffectProperties Attributes { get { return _Attributes; } }
 
         /// <summary>
         /// Gets a value determining whether this effect's duration has ended.
@@ -49,7 +49,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// </summary>
         protected event EventHandler OnEventCompleted;
 
-        private StatusEffectAttributes _Attributes;
+        private StatusEffectProperties _Attributes;
         private Entity _Entity;
         protected Sprite _Sprite;
         protected TimeSpan _Timer = TimeSpan.Zero;
@@ -62,7 +62,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Creates a new instance of StatusEffect.
         /// </summary>
         /// <param name="entity">The entity being affected.</param>
-        public StatusEffect(Entity entity, StatusEffectAttributes attributes)
+        public StatusEffect(Entity entity, StatusEffectProperties attributes)
         {
             var effect = CorvusGame.Instance.GlobalContent.LoadSprite(SpriteName);
             effect.PlayAnimation(Name);

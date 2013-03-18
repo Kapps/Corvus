@@ -69,20 +69,17 @@
   <object name="Climber2" type="Path" x="972" y="1319">
    <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 915,-501"/>
   </object>
-  <object name="Sit1" type="Dagger" x="1627" y="1249" width="32" height="32">
-  </object>
-  <object name="Sit2" type="Bow" x="1327" y="1249" width="32" height="32">
-  </object>
-   <object name="Powerup1" type="TestEntityEnemy" x="1427" y="1249" width="32" height="32">
-   </object>
-   <object name="Jumper2" type="TestEntityEnemy" x="1327" y="1584" width="32" height="32">
-    <properties>
-      <property name="PathComponent.Nodes" value="Collection(Vector(1450, 1650), Vector(1450,1650))"/>
-    </properties>
+  <object name="Sit1" type="Dagger" x="1627" y="1249" width="32" height="32"/>
+  <object name="Sit2" type="Bow" x="1327" y="1249" width="32" height="32"/>
+  <object name="Powerup1" type="TestEntityEnemy" x="1427" y="1249" width="32" height="32"/>
+  <object name="Jumper2" type="TestEntityEnemy" x="1314" y="1498" width="32" height="32">
+   <properties>
+    <property name="PathComponent.Nodes" value="Collection(Vector(1450, 1650), Vector(1450,1650))"/>
+   </properties>
   </object>
   <object name="Climber3" type="TestEntityEnemy" x="1837" y="1373" width="29" height="31">
    <properties>
-     <property name="PathComponent.AllowMultiJump" value="true" />
+    <property name="PathComponent.AllowMultiJump" value="true"/>
     <property name="PathComponent.ReverseOnCompletion" value="true"/>
     <property name="Sprite Component.Color" value="Color(128, 125, 128, 255)"/>
    </properties>
@@ -96,7 +93,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQ3AIBAEwSeHTkwnQP/l+GsgAcsz0uWnjQAAAAAAAAAAAAC4Sy0RrZx+8V1Ptuv6bRvZbuaWhgAAAAD80AtoWnIEgD4AAA==
+   H4sIAAAAAAAAC+3QsQ3AIBAEwSc3nZg6nAD9l8PXYAcGaUa6/LQRAAAAAAAAAAAAAHu5SkQtf784153tmn6v9Ww3clNDAAAAgCM99mkLDYJPw4A+AAA=
   </data>
  </layer>
 </map>

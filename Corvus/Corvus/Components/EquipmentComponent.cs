@@ -27,6 +27,15 @@ namespace Corvus.Components
         public Weapon CurrentWeapon { get { return Weapons[_CurrentWeaponIndex]; } }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to use weapon bonuses. Should be false for enemies, true for players.
+        /// </summary>
+        public bool UseWeaponBonuses
+        {
+            get { return _UseWeaponBonuses; }
+            set { _UseWeaponBonuses = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the number of weapons allowed. 
         /// </summary>
         public int Capacity
@@ -45,9 +54,10 @@ namespace Corvus.Components
         }
 
         private WeaponCollection _Weapons = new WeaponCollection();
+        private bool _UseWeaponBonuses = false;
         private int _Capacity = 3;
         private int _CurrentWeaponIndex = 0;
-        private string _DefaultWeaponName = "Spear";
+        private string _DefaultWeaponName;
         private Weapon _DefaultWeapon;
 
         /// <summary>
@@ -110,12 +120,16 @@ namespace Corvus.Components
             _Weapons = new WeaponCollection();
             _CurrentWeaponIndex = 0;
 
+            if(string.IsNullOrEmpty(DefaultWeaponName))
+                return;
+
             //Creates the weapon from a blueprint.
             var weapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(DefaultWeaponName).CreateEntity();
             var attri = weapon.GetComponent<AttributesComponent>();
+            var props = weapon.GetComponent<CombatPropertiesComponent>();
             var data = weapon.GetComponent<WeaponPropertiesComponent>();
-            var effect = weapon.GetComponent<StatusEffectAttributesComponent>();
-            _DefaultWeapon = new Weapon(data.WeaponData, attri.Attributes, effect.StatusEffectAttributes);
+            var effect = weapon.GetComponent<StatusEffectPropertiesComponent>();
+            _DefaultWeapon = new Weapon(data.WeaponData, props.CombatProperties, attri.Attributes, effect.StatusEffectAttributes);
             Weapons.Add(_DefaultWeapon);
             weapon.Dispose();
         }

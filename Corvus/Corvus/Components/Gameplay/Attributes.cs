@@ -12,6 +12,28 @@ namespace Corvus.Components.Gameplay
     /// </summary>
     public class Attributes
     {
+        private Vector2 _MeleeAttackRange = new Vector2();
+        private float _AttackSpeed = 0f;
+        private float _CurrentHealth = 100f;
+        private float _MaxHealth = 100f;
+        private float _CurrentMana = 50f;
+        private float _MaxMana = 50f;
+        private float _ManaRegen = 0f;
+        private float _ManaCost = 0f;
+        private float _Strength = 0;
+        private float _StrModifier = 1f;
+        private float _Dexterity = 0;
+        private float _DexModifier = 1f;
+        private float _Intelligence = 0;
+        private float _IntModifier = 1f;
+        private float _CritChance = 0f;
+        private float _CritDamage = 0f;
+        private float _BlockDamageReduction = 1f;
+        private float _BlockChance = 1f;
+        private float _BlockSpeed = 0f;
+        private Elements _ResistantElements = Elements.None;
+        private Elements _AttackingElements = Elements.Physical;
+
         /// <summary>
         /// Gets or sets the attack range.
         /// </summary>
@@ -29,7 +51,7 @@ namespace Corvus.Components.Gameplay
             get { return _AttackSpeed; }
             set { _AttackSpeed = value; }
         }
-
+        
         /// <summary>
         /// Gets or sets the amount of health that this component has.
         /// </summary>
@@ -47,6 +69,43 @@ namespace Corvus.Components.Gameplay
         {
             get { return _MaxHealth; }
             set { _MaxHealth = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the amount of mana that his entity currently has.
+        /// </summary>
+        public float CurrentMana
+        {
+            get { return _CurrentMana; }
+            set { _CurrentMana = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the max mana.
+        /// </summary>
+        public float MaxMana
+        {
+            get { return _MaxMana; }
+            set { _MaxMana = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much mana, expressed as a percentage of the max mana, to recover per second. 
+        /// </summary>
+        public float ManaRegen
+        {
+            get { return _ManaRegen; }
+            set { _ManaRegen = MathHelper.Clamp(value, 0f, 1f); }
+        }
+
+        /// <summary>
+        /// How much mana to consume.
+        /// Player Only.
+        /// </summary>
+        public float ManaCost
+        {
+            get { return _ManaCost; }
+            set { _ManaCost = value; }
         }
 
         /// <summary>
@@ -159,23 +218,5 @@ namespace Corvus.Components.Gameplay
             get { return _AttackingElements; }
             set { _AttackingElements = value; }
         }
-
-        private Vector2 _MeleeAttackRange = new Vector2();
-        private float _AttackSpeed = 0f;
-        private float _CurrentHealth = 100f;
-        private float _MaxHealth = 100f;
-        private float _Strength = 0;
-        private float _StrModifier = 1f;
-        private float _Dexterity = 0;
-        private float _DexModifier = 1f;
-        private float _Intelligence = 0;
-        private float _IntModifier = 1f;
-        private float _CritChance = 0f;
-        private float _CritDamage = 0f;
-        private float _BlockDamageReduction = 1f;
-        private float _BlockChance = 1f;
-        private float _BlockSpeed = 0f;
-        private Elements _ResistantElements = Elements.None;
-        private Elements _AttackingElements = Elements.Physical;
     }
 }

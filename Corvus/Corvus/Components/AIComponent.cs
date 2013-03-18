@@ -140,7 +140,7 @@ namespace Corvus.Components
                             entityFollowable = true;
                             entityToFollow = e;
 
-                            if (coc.IsAttackingMelee && EntityWithinAttackRange(e) && EntityFacingMe(e))
+                            if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
                                 entityAttackingMe = true;
 
                             if (!MovementComponent.IsWalking)
@@ -180,8 +180,8 @@ namespace Corvus.Components
                         if (entityFollowable && entityToFollow != null)
                             FollowEntity(entityToFollow, Time);
 
-                        //If an entity is attackable, attack.
-                        if (entityAttackable)
+                        //If an entity is attackable and if i (the enemy) am not blocking, attack.
+                        if (entityAttackable && !CombatComponent.IsBlocking)
                             CombatComponent.AttackAI();
 
                         //If there's no projectile coming to us, or no entity attacking us, end the block.

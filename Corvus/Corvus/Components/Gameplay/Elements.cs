@@ -13,6 +13,10 @@ namespace Corvus.Components.Gameplay
         Fire = 2,
         Water = 4,
         Wind = 8,
-        Earth = 16
+        Earth = 16,
+        /// <summary>
+        /// All means Fire, Water, Wind, and Earth. Should only be used for Resistance.
+        /// </summary>
+        All = 32
     }
 }

@@ -244,7 +244,7 @@
     <Compile Include="Sprites\Effects\Explosions.xml">
       <Name>Explosions</Name>
       <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
+      <Processor>SpriteProcessor</Processor>
     </Compile>
     <Compile Include="Sprites\Effects\Explosion2.png">
       <Name>Explosion2</Name>
@@ -263,8 +263,40 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\Outline.png">
-      <Name>Outline</Name>
+	<Compile Include="Interface\Outline.png">
+		<Name>Outline</Name>
+		<Importer>TextureImporter</Importer>
+		<Processor>TextureProcessor</Processor>
+	</Compile>
+    <Compile Include="Tiles\crate 32x32.png">
+      <Name>crate 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tiles\ground 32x32.png">
+      <Name>ground 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tiles\spikes 32x32.png">
+      <Name>spikes 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tiles\coin 32x32.png">
+      <Name>coin 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tiles\lava 32x32.png">
+      <Name>lava 32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tiles\water 32x32.png">
+      <Name>water 32x32</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

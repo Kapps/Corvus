@@ -8,7 +8,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
     /// <summary>
     /// A class that contains the properties for a status effect.
     /// </summary>
-    public class StatusEffectAttributes
+    public class StatusEffectProperties
     {
         /// <summary>
         /// Gets or sets the name of this status effect.

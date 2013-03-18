@@ -6,8 +6,18 @@ WeaponProperties
 	WeaponPropertiesComponent
 		WeaponName: Spear
 		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
+	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0.5
+		ConsumesMana: false
+		AttackSlowDown: 0.2
+		AoEName: Sprites/Effects/Explosions
+		AoESize: Vector(50, 50)
+		AoEDuration: 5
+		AoEDamagePercent: 0.33
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 	AttributesComponent
 		Strength: 0
 		StrModifier: 1.0
@@ -21,8 +31,12 @@ WeaponProperties
 		AttackSpeed: 300
 		BlockDamageReduction: 0.25
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
-		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
-	StatusEffectAttributesComponent
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+	StatusEffectPropertiesComponent
+		EffectType: Poison
+		BaseValue: 3111
+		Intensity: 0.01
+		Duration: 5
 
 Motion
 	PhysicsComponent

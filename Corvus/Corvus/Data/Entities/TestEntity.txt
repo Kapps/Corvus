@@ -8,18 +8,29 @@ PlayerSprite : BlueSprite
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/TestPlayer)
 
-Attributes
+Properties
+	MovementComponent
+		WalkSpeed: 500
+		WalkAcceleration: 15000
+		JumpSpeed: 950
+	PhysicsComponent
+		GravityCoefficient: 0.8
+		HorDragCoefficient: 1
 	AttributesComponent
 		MaxHealth: Random(450, 500)
+		MaxMana: 100
+		ManaRegen: 0.01
 		Strength: 25
 		Dexterity: 20
 		Intelligence: 10
+		CritChance: 0
+		CritDamage: 0
+	EquipmentComponent
+		UseWeaponBonuses: true 
+		DefaultWeaponName: Spear
 
 Healthy
 	HealthBarComponent
-
-Mover
-	MovementComponent
 
 Damager
 	DamageComponent
@@ -28,12 +39,12 @@ StatusEffecter
 	StatusEffectsComponent
 
 Fighter
+	CombatPropertiesComponent
 	CombatComponent
 		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
 
 # Show off multiple inheritance / composition.
-TestEntity : PlayerSprite, Healthy, Mover, Attributes, Damager, StatusEffecter, Fighter
-	PhysicsComponent
-	EquipmentComponent
+TestEntity : PlayerSprite, Healthy, Properties, Damager, StatusEffecter, Fighter
+	PlayerControlComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

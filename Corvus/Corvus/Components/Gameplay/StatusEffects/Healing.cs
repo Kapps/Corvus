@@ -41,6 +41,6 @@ namespace Corvus.Components.Gameplay.StatusEffects
             _FloatingTexts.AddFloatingTexts(heal, Color.Aqua);
         }
 
-        public Healing(Entity entity, StatusEffectAttributes attributes) : base(entity, attributes) { }
+        public Healing(Entity entity, StatusEffectProperties attributes) : base(entity, attributes) { }
     }
 }

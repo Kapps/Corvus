@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Corvus.Components.Gameplay;
 
 namespace Corvus.Components.Gameplay.Equipment
 {
+    /// <summary>
+    /// A class to manage all the weapon details.
+    /// </summary>
     public class WeaponProperties
     {
         /// <summary>
@@ -25,43 +29,7 @@ namespace Corvus.Components.Gameplay.Equipment
             get { return _WeaponType; }
             set { _WeaponType = value; }
         }
-
-        /// <summary>
-        /// Gets or sets whether this weapon is a ranged weapon or not.
-        /// </summary>
-        public bool IsRanged
-        {
-            get { return _IsRanged; }
-            set { _IsRanged = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating that this weapon applies a status effect.
-        /// </summary>
-        public bool AppliesEffect
-        {
-            get { return _AppliesEffect; }
-            set { _AppliesEffect = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the projectile to fire. 
-        /// </summary>
-        public string ProjectileName
-        {
-            get { return _ProjectileName; }
-            set { _ProjectileName = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the projectile velocity.
-        /// </summary>
-        public Vector2 ProjectileVelocity
-        {
-            get { return _ProjectileVelocity; }
-            set { _ProjectileVelocity = value; }
-        }
-
+        
         /// <summary>
         /// Gets the animation name.
         /// </summary>
@@ -69,9 +37,6 @@ namespace Corvus.Components.Gameplay.Equipment
 
         private string _Name = "";
         private WeaponTypes _WeaponType;
-        private bool _IsRanged = false;
-        private bool _AppliesEffect = false;
-        private string _ProjectileName = "";
-        private Vector2 _ProjectileVelocity = new Vector2();
+
     }
 }

@@ -1,21 +1,21 @@
-﻿WeaponSprite
+﻿#this is a placeholder for enemy weapons. 
+
+WeaponSprite
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/TestWeapon3)
 
 WeaponProperties
 	WeaponPropertiesComponent 
-		WeaponName: Bow
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Bow)
+		WeaponName: EnemyWeapon
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, None)
 	CombatPropertiesComponent
 		IsRanged: true
 		AppliesEffect: false
-		IsAoE: true
+		IsAoE: false
 		HitDelay: 0.65
 		ConsumesMana: false
-		AttackSlowDown: 0
 		ProjectileName: Sprites/TestProjectile
 		ProjectileSize: Vector(12, 12)
-		ProjectileOffset: Vector(5, -7)
 		ProjectileVelocity: Vector(600, 50)
 		ProjectileGravityCoefficient: 0.1
 		ProjectileHorDragCoefficient: 0
@@ -25,8 +25,7 @@ WeaponProperties
 		AoEDamagePercent: 0.33
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 	AttributesComponent
-		ManaCost: 0
-		Strength: 0
+		Strength: 10
 		StrModifier: 0.6
 		Dexterity: 0
 		DexModifier: 0.8
@@ -44,7 +43,7 @@ WeaponProperties
 Motion
 	PhysicsComponent
 
-Bow: WeaponSprite, WeaponProperties, Motion
+EnemyWeapon: WeaponSprite, WeaponProperties, Motion
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
 	CollisionEquipmentComponent

@@ -1,0 +1,20 @@
+﻿#NOTE: This is the generic explosion entity. All explosions will use this. 
+
+AOESprite
+	SpriteComponent
+
+AreaOfEffect: AOESprite
+	PhysicsComponent
+		PerformStaticCollision: false
+		PerformDynamicCollision: false
+		GravityCoefficient: 0
+		HorDragCoefficient: 0
+	EquipmentComponent
+	AttributesComponent
+	StatusEffectPropertiesComponent
+	CombatPropertiesComponent
+	AreaOfEffectComponent
+		DisposeOnCollision: false
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
+

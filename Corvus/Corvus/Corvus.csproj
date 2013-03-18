@@ -109,17 +109,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AIComponent.cs" />
+    <Compile Include="Components\AreaOfEffectComponent.cs" />
     <Compile Include="Components\AttributesComponent.cs" />
     <Compile Include="Components\ChaseCameraComponent.cs" />
     <Compile Include="Components\CollisionDamageComponent.cs" />
     <Compile Include="Components\CollisionKnockbackComponent.cs" />
-    <Compile Include="Components\CollisionProjectileComponent.cs" />
     <Compile Include="Components\CollisionStatusEffectComponent.cs" />
     <Compile Include="Components\CollisionEquipmentComponent.cs" />
     <Compile Include="Components\CombatComponent.cs" />
+    <Compile Include="Components\CombatPropertiesComponent.cs" />
     <Compile Include="Components\DamageComponent.cs" />
     <Compile Include="Components\EquipmentComponent.cs" />
     <Compile Include="Components\Gameplay\Attributes.cs" />
+    <Compile Include="Components\Gameplay\CombatProperties.cs" />
     <Compile Include="Components\Gameplay\Elements.cs" />
     <Compile Include="Components\Gameplay\Equipment\Weapon.cs" />
     <Compile Include="Components\Gameplay\Equipment\WeaponCollection.cs" />
@@ -132,10 +134,11 @@
     <Compile Include="Components\Gameplay\StatusEffects\Poison.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffect.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectCollection.cs" />
-    <Compile Include="Components\Gameplay\StatusEffects\StatusEffectAttributes.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\StatusEffectProperties.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
+    <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Components\ProjectileComponent.cs" />
-    <Compile Include="Components\StatusEffectAttributesComponent.cs" />
+    <Compile Include="Components\StatusEffectPropertiesComponent.cs" />
     <Compile Include="Components\StatusEffectsComponent.cs" />
     <Compile Include="Components\WeaponPropertiesComponent.cs" />
     <Compile Include="CorvusBinds.cs" />
@@ -152,7 +155,11 @@
     <Content Include="Data\Entities\Bow.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\TestEntityProjectile.txt">
+    <Content Include="Data\Entities\AreaOfEffect.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\EnemyWeapon.txt" />
+    <Content Include="Data\Entities\Projectile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\TestEntityEnemy.txt">
@@ -219,6 +226,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Data\Levels\SmallLevel.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\Tutorial.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
