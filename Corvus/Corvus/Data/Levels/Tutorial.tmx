@@ -41,5 +41,10 @@
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
- <objectgroup name="Enemies" width="200" height="25" visible="0"/>
+ <objectgroup name="Enemies" width="200" height="25">
+  <object type="DeadlyArea" x="1210" y="754" width="266" height="48"/>
+  <object type="DeadlyArea" x="2626" y="283" width="59" height="46"/>
+  <object type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
+  <object type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
+ </objectgroup>
 </map>
