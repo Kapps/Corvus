@@ -30,6 +30,9 @@ Content\Sprites\Powerups\TestPowerup1.xnb
 Content\Sprites\TestProjectile.xnb
 Content\Sprites\Equipment\TestWeapon3.xnb
 Content\Sprites\Effects\Explosions.xnb
+Content\Tiles\coin 32x32.xnb
+Content\Tiles\lava 32x32.xnb
+Content\Tiles\water 32x32.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
@@ -45,3 +48,4 @@ Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx
 Data\Levels\Dickoleanders.tmx
 Data\Levels\SmallLevel.tmx
+Data\Levels\Tutorial.tmx
