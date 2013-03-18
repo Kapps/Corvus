@@ -25,7 +25,7 @@ namespace Corvus.GameStates {
 		/// Loads and returns the scene with the given name.
 		/// </summary>
 		public static CorvusScene Load(string Name) {
-			LevelData Data = LevelData.LoadTmx("Data/Levels/" + Name + ".tmx");
+			LevelData Data = LevelData.LoadTmx("Data/Levels/" + "Tutorial" + ".tmx");
 			var SceneManager = CorvusGame.Instance.SceneManager;
 			CorvusScene Result = new CorvusScene(Data, Name, SceneManager);
 			return Result;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="ground 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/ground 32x32.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="778" name="spikes 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/spikes 32x32.png" width="96" height="48"/>
+ </tileset>
+ <tileset firstgid="781" name="crate 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/crate 32x32.png" width="96" height="96"/>
+ </tileset>
+ <layer name="Background" width="150" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQ0AAAzDoM6/6Uu4AUhYNVVVVVVVVVVVVVVVVVVVfR54sJLrmDoAAA==
+  </data>
+ </layer>
+ <layer name="Foreground" width="150" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3a2w6CMBBF0WJRosa7/v+vOiYQS4ME05be9krOiy8KUzIzRKUAAAAAoG6NVmrTR+vYv6Y+5v0vqQ6dXMO2z76A68mNef+pAwCE8enhxz4l9O4aNQnWjhkqf11mtSt1H0Fc7CMApsScvVKc++BHzNlr6HGcLfhkzk+crTqcpM5nySVgvVtrNrd3wH/D2UzfVWp0k9wD1mpq73NJy9kamXpfE/sZfMj3PiWvjOrUcbZG5p7bNWdqs/e59ME1eugvub0DroHZ+1z64Bo9FPkwe59LH8yxh6bAdW8JkSUzxdwcR+LH5w7jKzv9/d/Jwcrwub3Xk7TyBqJzLdSYOgAA
+  </data>
+ </layer>
+ <layer name="Objects" width="150" height="25" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BgQAAAADDoPlTH+ECVQEAAAAAAAAAAAAAAAAAwDe+/XrRmDoAAA==
+  </data>
+ </layer>
+ <layer name="Solid Objects" width="150" height="25" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BgQAAAADDoPlTH+ECVQEAAAAAAAAAAAAAAAAAwDe+/XrRmDoAAA==
+  </data>
+ </layer>
+ <objectgroup name="Enemies" width="150" height="25" visible="0"/>
+</map>
