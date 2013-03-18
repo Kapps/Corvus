@@ -8,7 +8,7 @@ AreaOfEffect: AOESprite
 		PerformStaticCollision: false
 		PerformDynamicCollision: false
 		GravityCoefficient: 0
-		HorDragCoefficient: 0
+		HorizontalDragCoefficient: 0
 	EquipmentComponent
 	AttributesComponent
 	StatusEffectPropertiesComponent

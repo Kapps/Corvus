@@ -41,7 +41,7 @@ WeaponProperties
 Motion
 	PhysicsComponent
 		GravityCoefficient: 0.2
-		HorDragCoefficient: 0.01
+		HorizontalDragCoefficient: 0.01
 Spear: WeaponSprite, WeaponProperties, Motion
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
