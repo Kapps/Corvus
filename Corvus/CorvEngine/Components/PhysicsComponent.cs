@@ -95,11 +95,10 @@ namespace CorvEngine.Components {
         /// Gets or sets the amount to multiply the force of horizontal drag by.
         /// For an Entity that should not be affected by horizontal drag, this should be 0.
         /// </summary>
-        public float HorDragCoefficient
-        {
-            get { return _HorDragCoefficient; }
-            set { _HorDragCoefficient = value; }
-        }
+		public float HorizontalDragCoefficient {
+			get { return _HorizontalDragCoefficient; }
+			set { _HorizontalDragCoefficient = value; }
+		}
 
 		/// <summary>
 		/// Notifies this PhysicsComponent that a collision occurred with the other component.
@@ -110,7 +109,7 @@ namespace CorvEngine.Components {
 		}
 
 		private float _GravityCoefficient = 1;
-        private float _HorDragCoefficient = 1;
+        private float _HorizontalDragCoefficient = 1;
 		private Vector2 _Velocity = Vector2.Zero;
 		private bool _IsGrounded = false;
 		private bool _PerformStaticCollision = true;

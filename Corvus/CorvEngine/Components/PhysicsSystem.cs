@@ -96,7 +96,7 @@ namespace CorvEngine.Components {
                     Component.VelocityY += Gravity * Time.GetTimeScalar() * Parent.GetComponent<PhysicsComponent>().GravityCoefficient; //Prolly not the best thing to do GetComponent, eventually make something else.
 				if(Component.IsMoving) {
 					float CurrSign = Math.Sign(Component.VelocityX);
-					Component.VelocityX += -CurrSign * HorizontalDrag * Time.GetTimeScalar() * Parent.GetComponent<PhysicsComponent>().HorDragCoefficient;
+					Component.VelocityX += -CurrSign * HorizontalDrag * Time.GetTimeScalar() * Parent.GetComponent<PhysicsComponent>().HorizontalDragCoefficient;
 					if(Math.Sign(Component.VelocityX) != CurrSign)
 						Component.VelocityX = 0;
 				}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using CorvEngine.Components;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 
@@ -241,6 +242,28 @@ namespace CorvEngine.Geometry {
 			// Of course we should use something like a QuadTree,
 			// but we're not actually doing solid entities so too few to matter.
 			_Geometry.Add(Object);
+		}
+
+		/// <summary>
+		/// Indicates whether the given Entity can reach the second object, starting from the first, in one jump.
+		/// </summary>
+		private bool CanEntityReachObject(Entity Entity, TiledPlatformerGeometryObject First, TiledPlatformerGeometryObject Second) {
+			var PhysicsComponent = Entity.GetComponent<PhysicsComponent>();
+			var PhysicsSystem = Scene.GetSystem<PhysicsSystem>();
+			var MovementComponent = Entity.GetComponent<MovementComponent>();
+			if(PhysicsComponent == null || PhysicsSystem == null || MovementComponent == null)
+				throw new InvalidOperationException("Unable to calculate a path for an Entity that has no physics component, movement component, or if a physics system is not set.");
+			double Gravity = PhysicsSystem.Gravity * PhysicsComponent.GravityCoefficient;
+			double Drag = PhysicsSystem.HorizontalDrag * PhysicsComponent.HorizontalDragCoefficient;
+			double JumpAccel = MovementComponent.JumpSpeed;
+			TimeSpan TimeForTopHeight = TimeSpan.FromSeconds(JumpAccel / Gravity);
+			// The average velocity during this time will be half of the initial acceleration, since we're decelerating at a constant rate.
+			// Thus, the amount we travel will be the time * half of initial acceleration.
+			double JumpHeight = JumpAccel / TimeForTopHeight.TotalSeconds / 2;
+			// Okay, this shall be unpleasant.
+			// Given the X and Y acceleration of an Entity, determine how far it can go on a jump and how high it reaches.
+			// We also need to determine 
+			return false;
 		}
 
 		private List<ISceneGeometryObject> _Geometry = new List<ISceneGeometryObject>();

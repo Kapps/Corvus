@@ -114,7 +114,7 @@ namespace Corvus.Components
             pc.Classification = CombatComponent.AttackableEntities;
             var physC = projectile.GetComponent<PhysicsComponent>();
             physC.GravityCoefficient = CPComponent.ProjectileGravityCoefficient;
-            physC.HorDragCoefficient = CPComponent.ProjectileHorDragCoefficient;
+            physC.HorizontalDragCoefficient = CPComponent.ProjectileHorDragCoefficient;
             var direction = (launchDirection == null) ? MovementComponent.CurrentDirection : launchDirection;
             if (direction == Direction.Right)
                 physC.Velocity = new Vector2(CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
