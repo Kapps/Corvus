@@ -173,11 +173,12 @@ namespace CorvEngine.Components {
         }
 
 		protected override void OnUpdate(GameTime Time) {
+            base.OnUpdate(Time);
             if (_WalkDirection == Direction.Left)
                 PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
             else if (_WalkDirection == Direction.Right)
                 PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-            base.OnUpdate(Time);
+           
         }
 	}
 }

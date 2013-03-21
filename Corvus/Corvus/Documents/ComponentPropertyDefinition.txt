@@ -1,0 +1,29 @@
+﻿In case you don't know what possible values are for certain properties or you don't know what it does, look here.
+I'm only placing the ones that aren't obvious from their name.
+
+********************************
+	CombatPropertiesComponent
+********************************
+
+IsMelee:	FOR ENEMY ONLY, Used to determine if the enemy can attack with melee. Enemy could have both ranged and melee attacks.
+HitDelay:	(Value: 0 - 1), After a % of the attack speed, the hit box will appear. Used to prevent attacks from occurring immediately.
+AttackSlowDown:		NOT USED ANYMORE.
+ProjectileOffset:	Where the projectile will come out from with respect to the centre of the sprite.
+AoEDamgePercent:	How much to weaken the AoE attack.
+
+
+********************************
+	AIComponent (Enemy Only component)
+********************************
+
+Offset:		How much to offset the reaction box with respect to the center of the entity.
+
+
+
+
+
+
+
+
+
+

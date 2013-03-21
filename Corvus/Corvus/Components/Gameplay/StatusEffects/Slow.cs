@@ -10,7 +10,7 @@ using CorvEngine.Components;
 namespace Corvus.Components.Gameplay.StatusEffects
 {
     /// <summary>
-    /// A status effect that reduces the movement speed and jump speed of the affected entity. Slow is calculated by: Intensity * WalkSpeed
+    /// A status effect that reduces the movement speed and jump speed of the affected entity. Slow is calculated by: Intensity * (walk, attack, jump)Speed
     /// </summary>
     public class Slow : StatusEffect
     {
@@ -24,6 +24,9 @@ namespace Corvus.Components.Gameplay.StatusEffects
             var mc = Entity.GetComponent<MovementComponent>();
             mc.WalkSpeedModifier *= Attributes.Intensity;
             mc.JumpSpeedModifier *= Attributes.Intensity;
+
+            var ac = Entity.GetComponent<AttributesComponent>();
+            ac.AttackSpeedModifier *= 1 + Attributes.Intensity;
         }
 
         protected override void OnTick() { }
@@ -33,6 +36,9 @@ namespace Corvus.Components.Gameplay.StatusEffects
             var mc = Entity.GetComponent<MovementComponent>();
             mc.WalkSpeedModifier /= Attributes.Intensity;
             mc.JumpSpeedModifier /= Attributes.Intensity;
+
+            var ac = Entity.GetComponent<AttributesComponent>();
+            ac.AttackSpeedModifier /= 1 + Attributes.Intensity;
         }
 
         public Slow(Entity entity, StatusEffectProperties prop) : base(entity, prop) { }

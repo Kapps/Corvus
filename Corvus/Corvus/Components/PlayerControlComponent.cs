@@ -6,6 +6,9 @@ using CorvEngine.Components;
 using CorvEngine;
 using CorvEngine.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Corvus.GameStates;
+using Corvus;
 
 namespace Corvus.Components
 {
@@ -14,6 +17,8 @@ namespace Corvus.Components
     /// </summary>
     public class PlayerControlComponent : Component
     {
+        private string _DyingSprite = "";
+        private float _DyingDuration = 0f;
         private int _Level = 1;
         private int _CurrentExperience = 0;
         private int _ExperienceForNextLevel = 0;
@@ -32,7 +37,25 @@ namespace Corvus.Components
         private PhysicsComponent PC;
         private SpriteComponent SC;
         private EquipmentComponent EC;
-        
+
+        /// <summary>
+        /// Gets or sets the dying sprite.
+        /// </summary>
+        public string DyingSprite
+        {
+            get { return _DyingSprite; }
+            set { _DyingSprite = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the dying duration.
+        /// </summary>
+        public float DyingDuration
+        {
+            get { return _DyingDuration; }
+            set { _DyingDuration = value; }
+        }
+
         /// <summary>
         /// Gets or sets the current level.
         /// </summary>
@@ -230,8 +253,10 @@ namespace Corvus.Components
             PC = this.GetDependency<PhysicsComponent>();
             SC = this.GetDependency<SpriteComponent>();
             EC = this.GetDependency<EquipmentComponent>();
-            if(!AC.IsDiedRegistered)
-                AC.Died += AC_Died;
+
+            //TODO: Don't forget to uncomment this 
+            //if(!AC.IsDiedRegistered)
+            //    AC.Died += AC_Died;
         }
 
         protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time)
@@ -252,8 +277,9 @@ namespace Corvus.Components
 
         void AC_Died(AttributesComponent obj)
         {
-            EC.RemoveWeapons();   
-           // obj.Parent.Dispose();
+            EC.RemoveWeapons();
+            DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
+            obj.Parent.Dispose();
         }
         
         private void LevelUp()

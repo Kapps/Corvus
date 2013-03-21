@@ -1,6 +1,10 @@
 ﻿Enitity Templates
 	This is where I'll post templates for making entities so all of you guys know what does what.
+	This doesn't include all possible entities, just the common ones.
+	Look in ComponentPropertyDefinition.txt for certain property settings.
 	These templates will have only their default values set.
+	For enum's, look in their respective file to see possible values. 
+	For Status effects, look in the Components/Gameplay/StatusEffects for possible values.
 
 **********************
 *	PowerUps	******
@@ -28,8 +32,228 @@ Required
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
 
-#don't forget the Entity name.
-HealLow : Properties, Required
+%%%%% : Properties, Required
+
+**********************************************************************************
+*	Weapons (Not finished. THERE is one more thing i want to add to it.)	******
+**********************************************************************************
+
+#editable
+Properties
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/ %%%% ) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0
+		ConsumesMana: false
+		#KNKB  Leave this here. This is here until i figure out Knockback. I can just do a Find and Replace to put it in.
+		#If not ranged, remove all projectile properties.
+		ProjectileName: Sprites/ %%%%
+		ProjectileSize: Vector(0, 0)
+		ProjectileOffset: Vector(0, 0)
+		ProjectileVelocity: Vector(0, 0)
+		ProjectileGravityCoefficient: 0
+		ProjectileHorDragCoefficient: 0
+		#if this does not have an aoe effect, remove all of these.
+		AoEName: Sprites/ %%%%
+		AoESize: Vector(0, 0)
+		AoEDuration: 0
+		AoEDamagePercent: 0
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
+	AttributesComponent
+		ManaCost: 0		#Only used if it consumes mana. 
+		Strength: 0
+		StrModifier: 1
+		Dexterity: 0
+		DexModifier: 1
+		Intelligence: 0
+		IntModifier: 1
+		CritChance: 0
+		CritDamage: 0
+		MeleeAttackRange: Vector(0, 0)
+		AttackSpeed: 0
+		BlockDamageReduction: 1
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+	StatusEffectPropertiesComponent
+		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
+		EffectType: %%%%
+		BaseValue: 0
+		Intensity: 1
+		Duration: 0
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+%%%%: Properties, Required
+
+
+***************************************************************************************
+*	Enemy (probably not finished. Might be one or two more components to add)	*******
+***************************************************************************************
+
+#editable
+Properties
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/ %%%% )
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsMelee: true
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0
+		#KNKB  Leave this here. This is here until i figure out Knockback. I can just do a Find and Replace to put it in.
+		#If not ranged, remove all projectile properties.
+		ProjectileName: Sprites/ %%%%
+		ProjectileSize: Vector(0, 0)
+		ProjectileOffset: Vector(0, 0)
+		ProjectileVelocity: Vector(0, 0)
+		ProjectileGravityCoefficient: 0
+		ProjectileHorDragCoefficient: 0
+		#if this does not have an aoe effect, remove all of these.
+		AoEName: Sprites/ %%%%
+		AoESize: Vector(0, 0)
+		AoEDuration: 0
+		AoEDamagePercent: 0
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
+	MovementComponent
+		WalkSpeed: 500
+		WalkAcceleration: 15000
+		JumpSpeed: 950
+	PhysicsComponent
+		GravityCoefficient: 1
+		HorizontalDragCoefficient: 1
+	AttributesComponent
+		MaxHealth: 100
+		Strength: 0
+		Dexterity: 0
+		Intelligence: 0
+		BlockDamageReduction: 1
+		MeleeAttackRange: Vector(0, 0)
+		AttackSpeed: 0
+		BlockSpeed: 0
+		BlockChance: 1
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+	StatusEffectPropertiesComponent
+		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
+		EffectType: %%%%
+		BaseValue: 0
+		Intensity: 1
+		Duration: 0
+	DestroyableObjectComponent
+		DyingSprite: Sprites/ %%%%
+		DyingDuration: 0
+		AwardedExperience: 0
+		DropsItem: false
+		#remove these if it doesn't drop items
+		DroppableItems: %%%%
+		DropRate: 0
+		DropCoefficient: 2
+	AIComponent
+		ReactionRange: Vector(0, 0)
+		Offset: Vector(0, 0)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
+	CombatComponent
+		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Player)
+
+CollisionProperties
+	#remove the ones you don't want
+	CollisionKnockbackComponent
+		Knockback: 0
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	CollisionDamageComponent
+		Damage: 0
+		UseAttributes: false 
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	CollisionStatusEffectComponent
+		#Need to set these StatueEffectPropertiesComponent.
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+#Do not edit
+Required
+	HealthBarComponent
+	PathComponent
+	FloatingTextComponent
+	DamageComponent
+	StatusEffectsComponent
+	EquipmentComponent
+		UseWeaponBonuses: false
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
+
+%%%%: Properties, CollisionProperties, Required
+
+**********************************************************************
+*	Player (Not finished. Possible more components incoming.)	******
+**********************************************************************
+
+#editable
+Properties
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/ %%% )
+		Color: Color(White)
+	MovementComponent
+		WalkSpeed: 500
+		WalkAcceleration: 15000
+		JumpSpeed: 950
+	PhysicsComponent
+		GravityCoefficient: 1
+		HorizontalDragCoefficient: 1
+	PlayerControlComponent
+		DyingSprite: Sprites/ %%%%
+		DyingDuration: 0
+		Level: 1
+		CurrentExperience: 0
+		ExperienceForNextLevel: 0
+		RequiredExperienceCurve: 1
+		HealthGrowth: 0
+		ManaGrowth: 0
+		StrGrowth: 0
+		DexGrowth: 0
+		IntGrowth: 0
+	AttributesComponent
+		MaxHealth: 100
+		MaxMana: 50
+		ManaRegen: 0
+		Strength: 0
+		Dexterity: 0
+		Intelligence: 0
+		CritChance: 0
+		CritDamage: 0
+	EquipmentComponent
+		UseWeaponBonuses: true #do not edit
+		DefaultWeaponName: Spear
+		Capacity: 3
+	CombatComponent
+		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
+
+Required
+	HealthBarComponent #Remove this when interface is finished
+	CombatPropertiesComponent
+	DamageComponent
+	StatusEffectsComponent
+	FloatingTextComponent
+	ClassificationComponent
+	Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+		
+%%%%: Properties, Required
+
 
 
 

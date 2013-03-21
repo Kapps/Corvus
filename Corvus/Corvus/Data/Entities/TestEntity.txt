@@ -17,6 +17,8 @@ Properties
 		GravityCoefficient: 0.6
 		HorizontalDragCoefficient: 1
 	PlayerControlComponent
+		DyingSprite: Sprites/Effects/Explosions
+		DyingDuration: 2
 		Level: 1
 		CurrentExperience: 0
 		ExperienceForNextLevel: 20
@@ -30,7 +32,7 @@ Properties
 		MaxHealth: Random(450, 500)
 		MaxMana: 100
 		ManaRegen: 0.01
-		Strength: 25000
+		Strength: 25
 		Dexterity: 20
 		Intelligence: 10
 		CritChance: 0

@@ -120,8 +120,8 @@ namespace Corvus.Components {
 		public float AttackSpeed {
 			get {
                 if (!EquipmentComponent.UseWeaponBonuses)
-					return Attributes.AttackSpeed;
-				return EquipmentComponent.CurrentWeapon.Attributes.AttackSpeed;
+					return Attributes.AttackSpeed * AttackSpeedModifier;
+                return EquipmentComponent.CurrentWeapon.Attributes.AttackSpeed * AttackSpeedModifier;
 			}
 			set { Attributes.AttackSpeed = value; }
 		}
@@ -251,6 +251,15 @@ namespace Corvus.Components {
                 return EquipmentComponent.CurrentWeapon.Attributes.ManaCost;
             }
             set { Attributes.ManaCost = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the attack speed modifier.
+        /// </summary>
+        public float AttackSpeedModifier
+        {
+            get { return Attributes.AttackSpeedModifier; }
+            set { Attributes.AttackSpeedModifier = value; }
         }
 
 		/// <summary>

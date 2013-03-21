@@ -1,0 +1,13 @@
+﻿DyingEntity
+	SpriteComponent
+	FloatingTextComponent
+	PhysicsComponent
+		PerformStaticCollision: false
+		PerformDynamicCollision: false
+		GravityCoefficient: 0
+		HorizontalDragCoefficient: 0
+	DyingComponent
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
+
+

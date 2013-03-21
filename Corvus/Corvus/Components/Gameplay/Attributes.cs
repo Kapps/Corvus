@@ -14,6 +14,7 @@ namespace Corvus.Components.Gameplay
     {
         private Vector2 _MeleeAttackRange = new Vector2();
         private float _AttackSpeed = 0f;
+        private float _AttackSpeedModifier = 1f;
         private float _CurrentHealth = 100f;
         private float _MaxHealth = 100f;
         private float _CurrentMana = 50f;
@@ -33,7 +34,7 @@ namespace Corvus.Components.Gameplay
         private float _BlockSpeed = 0f;
         private Elements _ResistantElements = Elements.None;
         private Elements _AttackingElements = Elements.Physical;
-
+        
         /// <summary>
         /// Gets or sets the attack range.
         /// </summary>
@@ -50,6 +51,15 @@ namespace Corvus.Components.Gameplay
         {
             get { return _AttackSpeed; }
             set { _AttackSpeed = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the attack speed modifier.
+        /// </summary>
+        public float AttackSpeedModifier
+        {
+            get { return _AttackSpeedModifier; }
+            set { _AttackSpeedModifier = Math.Max(value, 0f); }
         }
         
         /// <summary>

@@ -2,11 +2,11 @@
 Properties
 	SpriteComponent (Sprite)
 		Color: Color(White)
-		Sprite: Sprite(Sprites/Powerups/Powerup_HealLow)
+		Sprite: Sprite(Sprites/Powerups/Powerup_ManaMid) #Fill in
 	StatusEffectPropertiesComponent
-		EffectType: Healing
-		BaseValue: 10
-		Intensity: 0.05
+		EffectType: ManaHeal
+		BaseValue: 20
+		Intensity: 0.1
 		Duration: 6
 
 #do not modify
@@ -21,4 +21,4 @@ Required
 		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
 
 #don't forget the Entity name.
-HealLow : Properties, Required
+ManaMid : Properties, Required

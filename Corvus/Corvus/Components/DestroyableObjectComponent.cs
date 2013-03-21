@@ -10,34 +10,37 @@ using CorvEngine.Components.Blueprints;
 namespace Corvus.Components
 {
     /// <summary>
-    /// A enum to determine how drop rates are determined.
-    /// </summary>
-    public enum DropRateType
-    {
-        /// <summary>
-        /// All items have an equal chance of dropping.
-        /// </summary>
-        Even,
-
-        /// <summary>
-        /// Drop rates are calculated by the set drop rate, divided by the drop coefficient.
-        /// </summary>
-        Linear
-    }
-
-    /// <summary>
     /// A component to handle entity death. Can drop items or weapons.
     /// Player should not have this.
     /// </summary>
     public class DestroyableObjectComponent : Component
     {
         private AttributesComponent AC;
+        private string _DyingSprite = "";
+        private float _DyingDuration = 0f;
         private int _AwardedExperience = 0;
         private bool _DropsItem = false;
         private List<string> _DroppableItems = new List<string>();
-        private DropRateType _DropRateType = DropRateType.Even;
         private float _DropRate = 0;
         private float _DropCoefficient = 2;
+
+        /// <summary>
+        /// Gets or sets the dying sprite.
+        /// </summary>
+        public string DyingSprite
+        {
+            get { return _DyingSprite; }
+            set { _DyingSprite = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the dying duration.
+        /// </summary>
+        public float DyingDuration
+        {
+            get { return _DyingDuration; }
+            set { _DyingDuration = Math.Max(value, 0f); }
+        }
 
         /// <summary>
         /// Gets or sets a value that indicates how much experience is awarded when this entity dies.
@@ -65,16 +68,7 @@ namespace Corvus.Components
             get { return _DroppableItems; }
             set { _DroppableItems = value; }
         }
-
-        /// <summary>
-        /// Gets or sets the drop rate type.
-        /// </summary>
-        public DropRateType DropRateType
-        {
-            get { return _DropRateType; }
-            set { _DropRateType = value; }
-        }
-
+        
         /// <summary>
         /// Gets or sets the drop rate.
         /// </summary>
@@ -101,24 +95,25 @@ namespace Corvus.Components
                 AC.Died += AC_Died;
         }
         
-        //TODO: Drop rate stuff is actually horribly wrong but it's fine if you don't care.
         void AC_Died(AttributesComponent obj)
         {
             //Drops item
             if (DropsItem && DroppableItems.Count != 0)
             {
                 Random rand = new Random();
+                float chance = (float)rand.NextDouble();
                 float droprate = DropRate;
+                float floor = 0f;
                 string item = "";
                 foreach (string i in DroppableItems)
                 {
-                    if ((float)rand.NextDouble() <= droprate)
+                    if (floor < chance && chance <=(droprate + floor))
                     {
                         item = i;
                         break;
                     }
-                    if(DropRateType == Components.DropRateType.Linear)
-                        droprate /= DropCoefficient;
+                    floor += droprate;
+                    droprate /= DropCoefficient;
                 }
                 if (!string.IsNullOrEmpty(item))
                 {
@@ -137,9 +132,8 @@ namespace Corvus.Components
                 pcp.CurrentExperience += AwardedExperience;
             }
             
-            //TODO: Put a delay before it dies but that would require some wierd stuff.
+            DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
             obj.Parent.Dispose();
         }
-
     }
 }

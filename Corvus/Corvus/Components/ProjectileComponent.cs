@@ -96,6 +96,7 @@ namespace Corvus.Components
             var sprite = CorvusGame.Instance.GlobalContent.LoadSprite(spriteName);
             var sc = projectile.GetComponent<SpriteComponent>();
             sc.Sprite = sprite;
+
             //Apply properties
             var ac = projectile.GetComponent<AttributesComponent>();
             ac.Attributes = AttributesComponent.Attributes;

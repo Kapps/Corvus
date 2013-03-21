@@ -26,7 +26,7 @@ namespace Corvus.Components {
             set { _UseAttributes = value; }
         }
 
-        private float _Damage;
+        private float _Damage = 0;
         private bool _UseAttributes = false;
         
 		protected override bool OnCollision(Entity Entity, EntityClassification Classification) {

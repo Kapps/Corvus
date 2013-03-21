@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
 	<Asset Type="System.String[]">
-		<Item>Sprites/Effects/Explosion1.png	{2, 5}</Item>
-    <Item>Explode	200	{1, 1}	{2, 5}	Default	Looped</Item>
-    <Item>IdleDown	200	{1, 1}	{1, 1}	Looped</Item>
-    <Item>IdleLeft	200	{1, 1}	{1, 1}	Looped</Item>
-    <Item>IdleRight	200	{1, 1}	{1, 1}	Looped</Item>
-    <Item>IdleUp	200	{1, 1}	{1, 1}	Looped</Item>
+		<Item>Sprites/Effects/Explosion1.png	{5, 2}</Item>
+    <Item>Explode	200	{1, 1}	{5, 2}	Default	Looped</Item>
 	</Asset>
 </XnaContent>

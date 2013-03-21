@@ -82,6 +82,9 @@ namespace Corvus.Components
             var effect = CorvusGame.Instance.GlobalContent.LoadSprite(spriteName);
             var sc = aoe.GetComponent<SpriteComponent>();
             sc.Sprite = effect;
+            var anim = sc.Sprite.ActiveAnimation;
+            sc.Sprite.PlayAnimation(anim.Name, TimeSpan.FromSeconds(CPComponent.AoEDuration));
+
             //give it it's properties.
             if (EquipmentComponent.UseWeaponBonuses)
             {

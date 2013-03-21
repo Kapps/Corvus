@@ -20,14 +20,20 @@ Attributes
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 	DestroyableObjectComponent
+		DyingSprite: Sprites/Effects/Explosions
+		DyingDuration: 0.5
 		AwardedExperience: 10
 		DropsItem: true
-		DroppableItems: Collection(Dagger, HealMid)
-		DropRateType: Enum(Corvus.Components.DropRateType, Even)
+		DroppableItems: Collection(Dagger, HealMid, HealLow, HealMid, HealLow)
 		DropRate: 0.5
 		DropCoefficient: 2
 
 Combatpropertieser
+	StatusEffectPropertiesComponent
+		EffectType: Pierce
+		BaseValue: 3
+		Intensity: 0.5
+		Duration: 5
 	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: false
@@ -72,11 +78,6 @@ Combator
 
 TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attributes, Damager, StatusEffecter, AIer, Combator, Combatpropertieser
 	PhysicsComponent
-	StatusEffectPropertiesComponent
-		EffectType: Poison
-		BaseValue: 3
-		Intensity: 0.01
-		Duration: 5
 	CollisionKnockbackComponent
 		Knockback: 0
 		DisposeOnCollision: false

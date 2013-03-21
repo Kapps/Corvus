@@ -1,0 +1,23 @@
+﻿Color code for damage text and status effects:
+	Numbers (From damage or status effects) 
+		White: Regular Damage
+		Orange: Critical Hit
+		Crimson: Entity is weak to that element.
+		Navy: Entity is resistant to that element.
+		Aqua: Healing 
+		DarkBlue: ManaHeal
+		Crimson: Might,
+		Navy: Pierce, Slow, Weakness
+		DarkViolet: Poison
+		LightCyan: Recover (text part only)
+
+	StatusEffect Icon
+		LightSalmon: A positive effect.
+		LightBlue: A negative effect.
+
+
+
+
+
+
+

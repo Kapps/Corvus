@@ -20,7 +20,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
 
         protected override void OnFirstOccurance()
         {
-            FloatingTextComponent.Add("ManaHeal", Color.DarkBlue);
+            FloatingTextComponent.Add("Mana Heal", Color.DarkBlue);
             var ac = Entity.GetComponent<AttributesComponent>();
             float manaheal = Attributes.BaseValue;
             ac.CurrentMana += manaheal;

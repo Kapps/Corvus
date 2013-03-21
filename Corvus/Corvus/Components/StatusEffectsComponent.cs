@@ -40,8 +40,6 @@ namespace Corvus.Components
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
-            if (_StatusEffects.Count == 0)
-                return;
             foreach (StatusEffect se in _StatusEffects.Reverse<StatusEffect>())
             {
                 se.Update(Time);

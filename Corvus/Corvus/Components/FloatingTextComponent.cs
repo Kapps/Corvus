@@ -10,16 +10,33 @@ using Corvus.Components.Gameplay;
 
 namespace Corvus.Components
 {
+    /// <summary>
+    /// A component for drawing floating text beside the entity.
+    /// </summary>
     public class FloatingTextComponent : Component
     {
-        public FloatingTextList FloatingTextList { get { return _FloatingTextList; } }
         private FloatingTextList _FloatingTextList;
 
+        /// <summary>
+        /// Gets or sets the list of floating text.
+        /// </summary>
+        public FloatingTextList FloatingTextList
+        { 
+            get { return _FloatingTextList; }
+            set { _FloatingTextList = value; }
+        }
+
+        /// <summary>
+        /// Adds a floating text with the specified float value and color.
+        /// </summary>
         public void Add(float value, Color color)
         {
             _FloatingTextList.AddFloatingTexts(value, color);
         }
 
+        /// <summary>
+        /// Adds a floating text with the specified string value and color.
+        /// </summary>
         public void Add(string value, Color color)
         {
             _FloatingTextList.AddFloatingTexts(value, color);

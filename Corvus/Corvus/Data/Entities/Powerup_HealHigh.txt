@@ -2,11 +2,11 @@
 Properties
 	SpriteComponent (Sprite)
 		Color: Color(White)
-		Sprite: Sprite(Sprites/Powerups/Powerup_HealLow)
+		Sprite: Sprite(Sprites/Powerups/Powerup_HealHigh) #Fill in
 	StatusEffectPropertiesComponent
 		EffectType: Healing
-		BaseValue: 10
-		Intensity: 0.05
+		BaseValue: 100
+		Intensity: 0.15
 		Duration: 6
 
 #do not modify
@@ -21,4 +21,4 @@ Required
 		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
 
 #don't forget the Entity name.
-HealLow : Properties, Required
+HealHigh : Properties, Required

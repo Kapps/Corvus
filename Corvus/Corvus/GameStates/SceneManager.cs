@@ -63,7 +63,7 @@ namespace Corvus.GameStates {
 				Scene.AddSystem(new PhysicsSystem());
 				TiledPlatformerGeometry Geometry = new TiledPlatformerGeometry(Scene);
 				Scene.Initialize(Geometry);
-				this.AddComponent(Scene);
+                this.AddComponent(Scene);
 			}
 			var OldScene = _ActiveScene;
 			if(OldScene == Scene)

@@ -434,6 +434,128 @@
       <Processor>SpriteProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_Vigor.xml">
+      <Name>Effect_Vigor</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Vigor.png">
+      <Name>Vigor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\Powerup_Vigor.xml">
+      <Name>Powerup_Vigor</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Vigor.png">
+      <Name>Vigor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\HealHigh.png">
+      <Name>HealHigh</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_HealHigh.xml">
+      <Name>Powerup_HealHigh</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\ManaLow.png">
+      <Name>ManaLow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_ManaLow.xml">
+      <Name>Powerup_ManaLow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\ManaMid.png">
+      <Name>ManaMid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_ManaMid.xml">
+      <Name>Powerup_ManaMid</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\ManaHigh.png">
+      <Name>ManaHigh</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_ManaHigh.xml">
+      <Name>Powerup_ManaHigh</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\Might.png">
+      <Name>Might</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_Might.xml">
+      <Name>Powerup_Might</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\Powerup_Recover.xml">
+      <Name>Powerup_Recover</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Recover.png">
+      <Name>Recover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_Fleet.xml">
+      <Name>Effect_Fleet</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\Fleet.png">
+      <Name>Fleet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\Fleet.png">
+      <Name>Fleet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_Fleet.xml">
+      <Name>Powerup_Fleet</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

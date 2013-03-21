@@ -20,8 +20,8 @@ WeaponProperties
 		ProjectileGravityCoefficient: 0.1
 		ProjectileHorDragCoefficient: 0
 		AoEName: Sprites/Effects/Explosions
-		AoESize: Vector(50, 50)
-		AoEDuration: 5
+		AoESize: Vector(30, 30)
+		AoEDuration: 0.25
 		AoEDamagePercent: 0.33
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 	AttributesComponent
