@@ -8,7 +8,6 @@ Content\Sprites\male_sprites.xnb
 Content\Interface\HealthMeter.xnb
 Content\Sprites\Equipment\testweapon.xnb
 Content\Sprites\Equipment\testweaponD.xnb
-Content\Sprites\Powerups\TestPowerup.xnb
 Content\Sprites\Projectile.xnb
 Content\Sprites\Equipment\testweaponB.xnb
 Content\Sprites\Effects\Explosion1.xnb
@@ -33,13 +32,14 @@ Content\Sprites\StatusEffects\Weakness.xnb
 Content\Sprites\StatusEffects\Pierce.xnb
 Content\Sprites\StatusEffects\Recover.xnb
 Content\Sprites\StatusEffects\Slow.xnb
+Content\Sprites\Powerups\HealLow.xnb
+Content\Sprites\Powerups\HealMid.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
 Content\Sprites\TestEnemy.xnb
 Content\Sprites\Equipment\TestWeapon1.xnb
 Content\Sprites\Equipment\TestWeapon2.xnb
-Content\Sprites\Powerups\TestPowerup1.xnb
 Content\Sprites\TestProjectile.xnb
 Content\Sprites\Equipment\TestWeapon3.xnb
 Content\Sprites\Effects\Explosions.xnb
@@ -54,17 +54,20 @@ Content\Sprites\StatusEffects\Effect_Weakness.xnb
 Content\Sprites\StatusEffects\Effect_Pierce.xnb
 Content\Sprites\StatusEffects\Effect_Recover.xnb
 Content\Sprites\StatusEffects\Effect_Slow.xnb
+Content\Sprites\Powerups\Powerup_HealLow.xnb
+Content\Sprites\Powerups\Powerup_HealMid.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
 Data\Entities\Bow.txt
 Data\Entities\AreaOfEffect.txt
 Data\Entities\DeadlyArea.txt
+Data\Entities\Powerup_HealLow.txt
+Data\Entities\Powerup_HealMid.txt
 Data\Entities\Projectile.txt
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\Spear.txt
 Data\Entities\Dagger.txt
-Data\Entities\TestPowerup.txt
 Data\Entities\TestEntity.txt
 Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx

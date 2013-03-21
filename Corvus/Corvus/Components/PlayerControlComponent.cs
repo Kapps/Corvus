@@ -5,6 +5,7 @@ using System.Text;
 using CorvEngine.Components;
 using CorvEngine;
 using CorvEngine.Input;
+using Microsoft.Xna.Framework;
 
 namespace Corvus.Components
 {
@@ -13,6 +14,15 @@ namespace Corvus.Components
     /// </summary>
     public class PlayerControlComponent : Component
     {
+        private int _Level = 1;
+        private int _CurrentExperience = 0;
+        private int _ExperienceForNextLevel = 0;
+        private float _RequiredExperienceCurve = 2f;
+        private float _HealthGrowth = 0;
+        private float _ManaGrowth = 0;
+        private float _StrGrowth = 0;
+        private float _DexGrowth = 0;
+        private float _IntGrowth = 0;
         private bool _WantsToBlock = false;
         private bool _WantsToSwitchWeapon = false;
         private bool _IsPrev = false;
@@ -22,6 +32,106 @@ namespace Corvus.Components
         private PhysicsComponent PC;
         private SpriteComponent SC;
         private EquipmentComponent EC;
+        
+        /// <summary>
+        /// Gets or sets the current level.
+        /// </summary>
+        public int Level
+        {
+            get { return _Level; }
+            set { _Level = Math.Max(value, 1); }
+        }
+
+        /// <summary>
+        /// Gets or sets the current experience.
+        /// </summary>
+        public int CurrentExperience
+        {
+            get { return _CurrentExperience; }
+            set
+            {
+                //no exp for the dead!
+                if (AC == null || AC.IsDead)
+                    return;
+                int change = value - ExperienceForNextLevel;
+                if (change < 0)
+                    _CurrentExperience = value;
+                else
+                {
+                    //level up.
+                    int exp = 0;
+                    do {
+                        exp = change;
+                        LevelUp();
+                        change -= ExperienceForNextLevel;
+                    } while (change > 0);
+                    _CurrentExperience = exp;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the experience 
+        /// </summary>
+        public int ExperienceForNextLevel
+        {
+            get { return _ExperienceForNextLevel; }
+            set { _ExperienceForNextLevel = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating how much to multiply the next level required experience by.
+        /// </summary>
+        public float RequiredExperienceCurve
+        {
+            get { return _RequiredExperienceCurve; }
+            set { _RequiredExperienceCurve = Math.Max(value, 0); }
+        }
+
+        /// <summary>
+        /// Gets or sets the health growth.
+        /// </summary>
+        public float HealthGrowth
+        {
+            get { return _HealthGrowth; }
+            set { _HealthGrowth = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the mana growth.
+        /// </summary>
+        public float ManaGrowth
+        {
+            get { return _ManaGrowth; }
+            set { _ManaGrowth = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the strength growth.
+        /// </summary>
+        public float StrGrowth
+        {
+            get { return _StrGrowth; }
+            set { _StrGrowth = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the dexterity growth.
+        /// </summary>
+        public float DexGrowth
+        {
+            get { return _DexGrowth; }
+            set { _DexGrowth = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the intelligence growth.
+        /// </summary>
+        public float IntGrowth
+        {
+            get { return _IntGrowth; }
+            set { _IntGrowth = value; }
+        }
 
         /// <summary>
         /// Gets the current direction.
@@ -110,12 +220,7 @@ namespace Corvus.Components
                 _IsPrev = getPrev;
             }
         }
-
-        public PlayerControlComponent() :base()
-        {
-            AC.Died += AC_Died; //TODO: Not sure if best place to put this.
-        }
-
+                
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -125,6 +230,8 @@ namespace Corvus.Components
             PC = this.GetDependency<PhysicsComponent>();
             SC = this.GetDependency<SpriteComponent>();
             EC = this.GetDependency<EquipmentComponent>();
+            if(!AC.IsDiedRegistered)
+                AC.Died += AC_Died;
         }
 
         protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time)
@@ -146,7 +253,21 @@ namespace Corvus.Components
         void AC_Died(AttributesComponent obj)
         {
             EC.RemoveWeapons();   
-            obj.Parent.Dispose();
+           // obj.Parent.Dispose();
+        }
+        
+        private void LevelUp()
+        {
+            var fc = this.GetDependency<FloatingTextComponent>();
+
+            Level += 1;
+            fc.Add("Level " + Level.ToString() + "!", Color.Gold);
+            ExperienceForNextLevel = (int)(ExperienceForNextLevel * RequiredExperienceCurve);
+            AC.MaxHealth += HealthGrowth;
+            AC.MaxMana += ManaGrowth;
+            AC.Strength += StrGrowth;
+            AC.Dexterity += DexGrowth;
+            AC.Intelligence += IntGrowth;
         }
     }
 }

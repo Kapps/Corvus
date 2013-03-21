@@ -24,7 +24,7 @@ namespace Corvus.Components {
 		/// Gets an event called when the max health this Component has is changed.
 		/// </summary>
 		public event Action<AttributesComponent> MaxHealthChanged;
-
+        
 		private EquipmentComponent EquipmentComponent;
 		private Attributes _Attributes = new Attributes();
         private bool _IsDead = false;
@@ -34,6 +34,11 @@ namespace Corvus.Components {
         /// </summary>
         public bool IsDead { get { return _IsDead; } }
 
+        /// <summary>
+        /// Gets a value indicating that the Died event has been registered.
+        /// </summary>
+        public bool IsDiedRegistered { get { return Died != null; } }
+        
 		/// <summary>
 		/// Gets or sets this components Attributes.
 		/// </summary>
@@ -95,7 +100,7 @@ namespace Corvus.Components {
 					return CritDamage;
 				return CritDamage + EquipmentComponent.CurrentWeapon.Attributes.CritDamage;
 			}
-		}
+        }
 
 		/// <summary>
 		/// Gets or sets the attack range.
@@ -166,6 +171,7 @@ namespace Corvus.Components {
 			get { return Attributes.CurrentHealth; }
 			set {
                 if (_IsDead && value > 0)
+                    //TODO: Replace original setting. I removed cuz it was annoying when testing healing :P
                     return;//throw new NotSupportedException("Unable to edit current health of a dead HealthComponent.");
 				value = Math.Min(MaxHealth, Math.Max(value, 0));
 				Attributes.CurrentHealth = value;
@@ -311,11 +317,6 @@ namespace Corvus.Components {
 			set { Attributes.CritDamage = value; }
 		}
 
-		protected override void OnInitialize() {
-			base.OnInitialize();
-			EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
-		}
-
         /// <summary>
         /// Gets or sets the block chance.
         /// </summary>
@@ -343,6 +344,12 @@ namespace Corvus.Components {
 			float result = cAdd * cMult;
 			return result;
 		}
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
+        }
 
         protected override void OnUpdate(GameTime Time)
         {

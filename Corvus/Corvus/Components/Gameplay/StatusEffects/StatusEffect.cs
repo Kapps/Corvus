@@ -48,7 +48,7 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Gets the entity being affected.
         /// </summary>
         public Entity Entity { get { return _Entity; } }
-        private Color ImageColor { get { return (IsGood) ? Color.LightBlue : Color.LightSalmon; } }
+        private Color ImageColor { get { return (!IsGood) ? Color.LightBlue : Color.LightSalmon; } }
 
         private StatusEffectProperties _Attributes;
         private Entity _Entity;

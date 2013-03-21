@@ -19,6 +19,13 @@ Attributes
 		BlockChance: 0.7
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
+	DestroyableObjectComponent
+		AwardedExperience: 10
+		DropsItem: true
+		DroppableItems: Collection(Dagger, HealMid)
+		DropRateType: Enum(Corvus.Components.DropRateType, Even)
+		DropRate: 0.5
+		DropCoefficient: 2
 
 Combatpropertieser
 	CombatPropertiesComponent

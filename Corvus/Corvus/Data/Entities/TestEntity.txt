@@ -16,11 +16,21 @@ Properties
 	PhysicsComponent
 		GravityCoefficient: 0.6
 		HorizontalDragCoefficient: 1
+	PlayerControlComponent
+		Level: 1
+		CurrentExperience: 0
+		ExperienceForNextLevel: 20
+		RequiredExperienceCurve: 2.5
+		HealthGrowth: 25
+		ManaGrowth: 5
+		StrGrowth: 4
+		DexGrowth: 3
+		IntGrowth: 2
 	AttributesComponent
 		MaxHealth: Random(450, 500)
 		MaxMana: 100
 		ManaRegen: 0.01
-		Strength: 25
+		Strength: 25000
 		Dexterity: 20
 		Intelligence: 10
 		CritChance: 0
@@ -47,6 +57,5 @@ Fighter
 
 # Show off multiple inheritance / composition.
 TestEntity : PlayerSprite, Healthy, Properties, Damager, StatusEffecter, Fighter
-	PlayerControlComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

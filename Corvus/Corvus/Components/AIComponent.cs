@@ -210,8 +210,8 @@ namespace Corvus.Components
                         MovementComponent.BeginWalking(Direction.Left);
                     else if (totalMs >= walkTime*3 && totalMs < walkTime*4)
                         MovementComponent.BeginWalking(Direction.Right);
-                    else
-                        Parent.Dispose();
+                    //else
+                    //    Parent.Dispose();
                 }
                 else if (FleeingStarted) //FLEEING AI
                 {

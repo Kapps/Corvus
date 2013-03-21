@@ -1,0 +1,24 @@
+﻿#editable 
+Properties
+	SpriteComponent (Sprite)
+		Color: Color(White)
+		Sprite: Sprite(Sprites/Powerups/Powerup_HealMid)
+	StatusEffectPropertiesComponent
+		EffectType: Healing
+		BaseValue: 25
+		Intensity: 0.1
+		Duration: 6
+
+#do not modify
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	CollisionStatusEffectComponent		
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+
+#don't forget the Entity name.
+HealMid : Properties, Required

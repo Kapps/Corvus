@@ -35,8 +35,10 @@ namespace Corvus.Components
             var pc = Parent.GetComponent<PhysicsComponent>();
 
             if (clc.Classification == EntityClassification.Projectile && pc.IsGrounded)
+            {
+                AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 Parent.Dispose();
-            
+            }
             base.OnUpdate(Time);
         }
 

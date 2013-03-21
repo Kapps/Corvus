@@ -1,0 +1,24 @@
+﻿#editable 
+Properties
+	SpriteComponent (Sprite)
+		Color: Color(White)
+		Sprite: Sprite(Sprites/Powerups/Powerup_HealLow)
+	StatusEffectPropertiesComponent
+		EffectType: Healing
+		BaseValue: 10
+		Intensity: 0.05
+		Duration: 5
+
+#do not modify
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	CollisionStatusEffectComponent		
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+
+#don't forget the Entity name.
+HealLow : Properties, Required

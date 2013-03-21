@@ -85,6 +85,7 @@ namespace Corvus.Components
             //Default weapon is the currently equiped one so do nothing.
             if (Weapons.Count() == 1 && CurrentWeapon.WeaponData.Name == DefaultWeaponName)
                 return;
+            Random rand = new Random();
             float launchMod = 1f;
             foreach (Weapon w in Weapons.Reverse())
             {
@@ -151,7 +152,7 @@ namespace Corvus.Components
             scene.AddEntity(oldWeapon);
 
             var pc = oldWeapon.GetComponent<PhysicsComponent>();
-            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f * launchModifier, -325f * launchModifier);
+            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f * launchModifier, -325f * launchModifier );
         }
 
         private AttributesComponent AttributesComponent;
