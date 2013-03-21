@@ -111,6 +111,11 @@ namespace Corvus.Components
             }
         }
 
+        public PlayerControlComponent() :base()
+        {
+            AC.Died += AC_Died; //TODO: Not sure if best place to put this.
+        }
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -125,14 +130,7 @@ namespace Corvus.Components
         protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time)
         {
             base.OnUpdate(Time);
-
-            //TODO: Not sure if this is the best place to handle death.
-            //if (AC.IsDead)
-            //{
-            //    EC.RemoveWeapons();
-            //    this.Parent.Dispose();
-            //}
-
+            
             if (_WantsToBlock && (!CC.IsAttacking && PC.IsGrounded))
             {
                 BeginBlock();
@@ -143,6 +141,12 @@ namespace Corvus.Components
                 SwitchWeapon(_IsPrev);
                 _WantsToSwitchWeapon = false;
             }
+        }
+
+        void AC_Died(AttributesComponent obj)
+        {
+            EC.RemoveWeapons();   
+            obj.Parent.Dispose();
         }
     }
 }
