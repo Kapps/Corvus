@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/ground 32x32.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="10" name="lava 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/lava 32x32.png" width="96" height="62"/>
+ </tileset>
+ <tileset firstgid="13" name="spikes 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/spikes 32x32.png" width="96" height="48"/>
+ </tileset>
+ <tileset firstgid="16" name="water 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/water 32x32.png" width="96" height="62"/>
+ </tileset>
+ <tileset firstgid="19" name="crate 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/crate 32x32.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="28" name="fence 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/fence 32x32.png" width="96" height="84"/>
+ </tileset>
+ <tileset firstgid="34" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <layer name="Background" width="40" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwEocvy/UOux1Bw1VRVVVVVVR89Si6mKwAZAAA=
+  </data>
+ </layer>
+ <layer name="Foreground" width="40" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SUQoAEBBFUSk/2P96+Z6SZDC4t169BRzniIiIqJUXs1YQozeS7qw5lO5w+EY9d6cd9tzh8M5G3e12OOoOh3c06261w1l3OLSZtjtth9rucEj0T7Eu1WWjvwBhi8WoABkAAA==
+  </data>
+ </layer>
+ <objectgroup name="Enemies" width="40" height="40">
+  <object type="DeadlyArea" x="-5" y="1232" width="1290" height="41"/>
+ </objectgroup>
+</map>

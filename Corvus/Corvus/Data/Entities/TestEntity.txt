@@ -12,7 +12,7 @@ Properties
 	MovementComponent
 		WalkSpeed: 500
 		WalkAcceleration: 15000
-		JumpSpeed: 950
+		JumpSpeed: 850
 	PhysicsComponent
 		GravityCoefficient: 0.6
 		HorizontalDragCoefficient: 1
