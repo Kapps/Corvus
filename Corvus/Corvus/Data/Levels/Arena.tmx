@@ -28,7 +28,7 @@
  </layer>
  <layer name="Foreground" width="40" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SUQoAEBBFUSk/2P96+Z6SZDC4t169BRzniIiIqJUXs1YQozeS7qw5lO5w+EY9d6cd9tzh8M5G3e12OOoOh3c06261w1l3OLSZtjtth9rucEj0T7Eu1WWjvwBhi8WoABkAAA==
+   H4sIAAAAAAAAC+3SuwqAMAxG4Xod1Pd/XjN0KKUWSqtJ8Bz4IWOGLwQiIiJ6apLNcYvyL6VW2Ra3K/9C40rd5bPgMHWXD4d+q7mz4LDmDod+a3Gn4bDFHQ791OPuC4c97nBot5Hu3nA40h0Oif7VITtll9H7BqT/yVQAGQAA
   </data>
  </layer>
  <objectgroup name="Enemies" width="40" height="40">
