@@ -9,7 +9,7 @@ EnemySprite : RedSprite
 Attributes
 	AttributesComponent
 		MaxHealth: Random(250, 300)
-		Strength: 75
+		Strength: 7
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
@@ -22,7 +22,7 @@ Attributes
 	DestroyableObjectComponent
 		DyingSprite: Sprites/Effects/Explosions
 		DyingDuration: 0.5
-		AwardedExperience: 10
+		AwardedExperience: 100
 		DropsItem: true
 		DroppableItems: Collection(Dagger, HealMid, HealLow, HealMid, HealLow)
 		DropRate: 0.5

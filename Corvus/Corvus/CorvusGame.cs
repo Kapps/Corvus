@@ -57,15 +57,17 @@ namespace Corvus {
 				Size = new Vector2(1600, 900);
 			obj.Camera.Size = Size;*/
 		}
-
 		protected override void Initialize() {
 			// TODO: Add your initialization logic here
 			this.RegisterGlobalComponent(new AudioManager(this.Game, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
 			_SceneManager = new SceneManager();
 			_SceneManager.ChangeScene("BasicLevel");
-			// Start off in game.
-			StateManager.PushState(_SceneManager);
+            // Start off in game.
+            StateManager.PushState(_SceneManager);
+            _MainMenuState = new MainMenuState();
+            //StateManager.PushState(_MainMenuState); //TODO: Move this probably
 			CreateNewPlayer();
+            MenuBinds(); //TODO: Not sure how to do Menu Binds, temp for now.
             RegisterGlobalComponent(new DebugComponent());
 			GraphicsManager.ApplyChanges();
 		}
@@ -82,6 +84,20 @@ namespace Corvus {
 			CorvusBinds.CreateBinds(Player);
 		}
 
-		private SceneManager _SceneManager;
+        //possibly temp
+        private void MenuBinds()
+        {
+            var player = this.Players.First();
+
+            CorvEngine.Input.Bind Next = new CorvEngine.Input.Bind(player.InputManager, _MainMenuState.ControlManager.NextControl, false, Microsoft.Xna.Framework.Input.Keys.Down);
+            player.InputManager.RegisterBind(Next);
+            CorvEngine.Input.Bind Prev = new CorvEngine.Input.Bind(player.InputManager, _MainMenuState.ControlManager.PreviousControl, false, Microsoft.Xna.Framework.Input.Keys.Up);
+            player.InputManager.RegisterBind(Prev);
+            CorvEngine.Input.Bind Select = new CorvEngine.Input.Bind(player.InputManager, _MainMenuState.ControlManager.SelectControl, false, Microsoft.Xna.Framework.Input.Keys.Enter);
+            player.InputManager.RegisterBind(Select);
+        }
+
+        private SceneManager _SceneManager;
+        private MainMenuState _MainMenuState;
 	}
 }

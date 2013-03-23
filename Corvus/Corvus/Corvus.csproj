@@ -157,10 +157,16 @@
     <Compile Include="CorvusPlayer.cs" />
     <Compile Include="Components\DebugComponent.cs" />
     <Compile Include="GameStates\CorvusScene.cs" />
+    <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="GameStates\SceneManager.cs" />
+    <Compile Include="Interface\ControlManagerComponent.cs" />
+    <Compile Include="Interface\Controls\BaseControl.cs" />
+    <Compile Include="Interface\Controls\Image.cs" />
+    <Compile Include="Interface\Controls\Label.cs" />
+    <Compile Include="Interface\Controls\LinkButton.cs" />
+    <Compile Include="Interface\InGameInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="TestGames\Game2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Entities\Bow.txt">

@@ -1,5 +1,4 @@
 using System;
-using Corvus.TestGames;
 
 namespace Corvus {
     static class Program {

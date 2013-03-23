@@ -187,7 +187,6 @@ CollisionProperties
 
 #Do not edit
 Required
-	HealthBarComponent
 	PathComponent
 	FloatingTextComponent
 	DamageComponent

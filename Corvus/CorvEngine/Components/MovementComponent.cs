@@ -161,8 +161,8 @@ namespace CorvEngine.Components {
             //TODO: find an actually formula for this.
             float t = 0.100f;//s
             float vel = distance / t;
-            PhysicsComponent.VelocityY = -500;
-            PhysicsComponent.VelocityX = direction * distance;// direction* vel; //new Vector2(direction * vel, -1 * 2000);
+           /// PhysicsComponent.VelocityY += -500;
+            PhysicsComponent.VelocityX += direction * vel;// direction* vel; //new Vector2(direction * vel, -1 * 2000);
         }
 
         protected override void OnInitialize()

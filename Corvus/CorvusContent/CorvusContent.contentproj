@@ -206,6 +206,7 @@
       <Name>Explosions</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
     <Compile Include="Sprites\Effects\Explosion2.png">
       <Name>Explosion2</Name>
