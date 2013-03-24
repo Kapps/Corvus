@@ -90,8 +90,8 @@ namespace Corvus.Components
 
         private bool Aggressive
         {
-            get { return _ChasesPlayer; }
-            set { _ChasesPlayer = value; }
+            get { return _Aggressive; }
+            set { _Aggressive = value; }
         }
 
         private Vector2 _ReactionRange = new Vector2();
@@ -103,7 +103,7 @@ namespace Corvus.Components
         private DateTime _StartOfDeath;
         private bool _DeathStarted;
         private bool _FleeingStarted;
-        private bool _ChasesPlayer = true;
+        private bool _Aggressive = false;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;

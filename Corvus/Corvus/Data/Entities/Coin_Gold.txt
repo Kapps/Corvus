@@ -1,0 +1,3 @@
+﻿Coin_Gold
+	SpriteComponent
+		Sprite: Sprite(Sprites/Items/Coin_Gold)

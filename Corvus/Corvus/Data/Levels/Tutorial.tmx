@@ -52,5 +52,6 @@
   <object type="DeadlyArea" x="2626" y="283" width="59" height="46"/>
   <object type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
   <object type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
+  <object type="Coin_Bronze" x="662" y="559" width="32" height="32"/>
  </objectgroup>
 </map>
