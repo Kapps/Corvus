@@ -24,7 +24,7 @@ namespace Corvus.Components
         {
             var sc = Entity.GetComponent<ScoreComponent>();
             sc.Score += Value;
-            this.Dispose();
+            Parent.Dispose();
             return true;
         }
     }

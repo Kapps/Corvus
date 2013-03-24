@@ -83,6 +83,8 @@ Content\Sprites\Items\CoinSilver.xnb
 Content\Sprites\Items\Coin_Gold.xnb
 Content\Sprites\Items\Coin_Silver.xnb
 Content\Sprites\Items\Coin_Bronze.xnb
+Content\Sprites\Items\KeyGold.xnb
+Content\Sprites\Items\Key_Gold.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
@@ -91,6 +93,7 @@ Data\Entities\AreaOfEffect.txt
 Data\Entities\Coin_Bronze.txt
 Data\Entities\Coin_Silver.txt
 Data\Entities\Coin_Gold.txt
+Data\Entities\LevelChanger.txt
 Data\Entities\DeadlyArea.txt
 Data\Entities\DyingEntity.txt
 Data\Entities\Powerup_Fleet.txt
