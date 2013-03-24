@@ -14,6 +14,8 @@ namespace Corvus.Components
     /// </summary>
     public class CollisionKnockbackComponent : CollisionEventComponent
     {
+        private float _Knockback;
+        private bool _UseAttributes = false;
         /// <summary>
         /// Distance to knockback the entity.
         /// </summary>
@@ -23,17 +25,23 @@ namespace Corvus.Components
             set { _Knockback = value; }
         }
 
-        private float _Knockback;
+        /// <summary>
+        /// Gets or sets a value that indicates to use this entities attributes.
+        /// </summary>
+        public bool UseAttributes
+        {
+            get { return _UseAttributes; }
+            set { _UseAttributes = value; }
+        }
 
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
-            if (Knockback == 0)
-                return false;
             var mc = Entity.GetComponent<MovementComponent>();
             if (mc == null)
                 return false;
             float myx = Entity.Position.X - Parent.Position.X;
-            mc.Knockback(Knockback, (myx> 0) ? 1: -1);
+            float kb = (!UseAttributes) ? Knockback : this.GetDependency<AttributesComponent>().TotalKnockback;
+            mc.Knockback(kb, (myx > 0) ? 1 : -1);
             return true;
         }
     }

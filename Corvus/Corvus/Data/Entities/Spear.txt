@@ -12,7 +12,6 @@ WeaponProperties
 		IsAoE: false
 		HitDelay: 0.5
 		ConsumesMana: false
-		AttackSlowDown: 0.2
 		AoEName: Sprites/Effects/Explosions
 		AoESize: Vector(50, 50)
 		AoEDuration: 5
@@ -30,6 +29,7 @@ WeaponProperties
 		MeleeAttackRange: Vector(100, 100)
 		AttackSpeed: 300
 		BlockDamageReduction: 0.25
+		Knockback: 50
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent

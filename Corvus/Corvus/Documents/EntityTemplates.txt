@@ -49,7 +49,6 @@ Properties
 		IsAoE: false
 		HitDelay: 0
 		ConsumesMana: false
-		#KNKB  Leave this here. This is here until i figure out Knockback. I can just do a Find and Replace to put it in.
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/ %%%%
 		ProjectileSize: Vector(0, 0)
@@ -76,6 +75,7 @@ Properties
 		MeleeAttackRange: Vector(0, 0)
 		AttackSpeed: 0
 		BlockDamageReduction: 1
+		Knockback: 0
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
@@ -114,7 +114,6 @@ Properties
 		AppliesEffect: false
 		IsAoE: false
 		HitDelay: 0
-		#KNKB  Leave this here. This is here until i figure out Knockback. I can just do a Find and Replace to put it in.
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/ %%%%
 		ProjectileSize: Vector(0, 0)
@@ -145,6 +144,7 @@ Properties
 		AttackSpeed: 0
 		BlockSpeed: 0
 		BlockChance: 1
+		Knockback: 0
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
@@ -172,10 +172,12 @@ Properties
 CollisionProperties
 	#remove the ones you don't want
 	CollisionKnockbackComponent
+		UseAttributes: false
 		Knockback: 0
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	CollisionDamageComponent
+		UseAttributes: false
 		Damage: 0
 		UseAttributes: false 
 		DisposeOnCollision: false
@@ -243,7 +245,6 @@ Properties
 		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
 
 Required
-	HealthBarComponent #Remove this when interface is finished
 	CombatPropertiesComponent
 	DamageComponent
 	StatusEffectsComponent

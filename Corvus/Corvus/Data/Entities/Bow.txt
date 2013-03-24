@@ -12,7 +12,6 @@ WeaponProperties
 		IsAoE: true
 		HitDelay: 0.65
 		ConsumesMana: false
-		AttackSlowDown: 0
 		ProjectileName: Sprites/TestProjectile
 		ProjectileSize: Vector(12, 12)
 		ProjectileOffset: Vector(5, -7)
@@ -37,6 +36,7 @@ WeaponProperties
 		MeleeAttackRange: Vector(50, 50)
 		AttackSpeed: 500
 		BlockDamageReduction: 0.85
+		Knockback: 100
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
 	StatusEffectPropertiesComponent

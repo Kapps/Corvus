@@ -32,6 +32,8 @@ namespace Corvus.Components.Gameplay
         private float _BlockDamageReduction = 1f;
         private float _BlockChance = 1f;
         private float _BlockSpeed = 0f;
+        private float _Knockback = 0f;
+        private float _KnockbackModifier = 1f;
         private Elements _ResistantElements = Elements.None;
         private Elements _AttackingElements = Elements.Physical;
         
@@ -227,6 +229,24 @@ namespace Corvus.Components.Gameplay
         {
             get { return _AttackingElements; }
             set { _AttackingElements = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the knockback.
+        /// </summary>
+        public float Knockback
+        {
+            get { return _Knockback; }
+            set { _Knockback = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the knockback modifer. Should be expressed as a percentage.
+        /// </summary>
+        public float KnockbackModifier
+        {
+            get { return _KnockbackModifier; }
+            set { _KnockbackModifier = Math.Max(value, 0); }
         }
     }
 }

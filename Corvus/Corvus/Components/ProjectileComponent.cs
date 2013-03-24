@@ -20,6 +20,7 @@ namespace Corvus.Components
         private AttributesComponent AttributesComponent;
         private StatusEffectPropertiesComponent SEAComponent;
         private CombatPropertiesComponent CPComponent;
+        private PhysicsComponent PC;
 
         protected override void OnInitialize()
         {
@@ -27,6 +28,7 @@ namespace Corvus.Components
             AttributesComponent = this.GetDependency<AttributesComponent>();
             SEAComponent = Parent.GetComponent<StatusEffectPropertiesComponent>();
             CPComponent = this.GetDependency<CombatPropertiesComponent>();
+            PC = this.GetDependency<PhysicsComponent>();
         }
 
         protected override void OnUpdate(GameTime Time)
@@ -52,6 +54,14 @@ namespace Corvus.Components
                 dc.TakeDamage(AttributesComponent);
                 colGood = true;
             }
+
+            var mc = Entity.GetComponent<MovementComponent>();
+            if (mc != null)
+            {
+                mc.Knockback(AttributesComponent.TotalKnockback, (PC.VelocityX > 0) ? 1 : -1);
+                colGood = true;
+            }
+
             //Apply status effect if it can.
             if (CPComponent.AppliesEffect)
             {

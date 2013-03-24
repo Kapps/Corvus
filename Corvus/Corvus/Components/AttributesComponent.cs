@@ -102,6 +102,18 @@ namespace Corvus.Components {
 			}
         }
 
+        /// <summary>
+        /// Gets the total knockback.
+        /// </summary>
+        public float TotalKnockback
+        {
+            get {
+                if (!EquipmentComponent.UseWeaponBonuses)
+                    return Knockback * KnockbackModifier;
+                return EquipmentComponent.CurrentWeapon.Attributes.Knockback * KnockbackModifier;
+            }
+        }
+
 		/// <summary>
 		/// Gets or sets the attack range.
 		/// </summary>
@@ -136,6 +148,28 @@ namespace Corvus.Components {
 				return EquipmentComponent.CurrentWeapon.Attributes.BlockDamageReduction;
 			}
 			set { Attributes.BlockDamageReduction = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the knockback.
+        /// </summary>
+        public float Knockback
+        {
+            get {
+                if (!EquipmentComponent.UseWeaponBonuses)
+                    return Attributes.Knockback;
+                return EquipmentComponent.CurrentWeapon.Attributes.Knockback;
+            }
+            set { Attributes.Knockback = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the knockback modifier.
+        /// </summary>
+        public float KnockbackModifier
+        {
+            get { return Attributes.KnockbackModifier; }
+            set { Attributes.KnockbackModifier = value; }
         }
 
         /// <summary>

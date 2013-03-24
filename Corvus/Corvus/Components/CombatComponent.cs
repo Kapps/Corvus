@@ -214,6 +214,10 @@ namespace Corvus.Components {
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
                     damageComponent.TakeDamage(AttributesComponent);
 
+                    //Apply knockback.
+                    var mc = attackedEntity.GetComponent<MovementComponent>();
+                    mc.Knockback(AttributesComponent.TotalKnockback, CorvusExtensions.GetSign(MovementComponent.CurrentDirection));
+                    
                     //Applies a status effect to the attacked enemy, if they can be affected.
                     var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();
                     if (CombatPropertiesComponent.AppliesEffect && enemySEC != null)
@@ -241,7 +245,11 @@ namespace Corvus.Components {
                 {
                     var damageComponent = attackedEntity.GetComponent<DamageComponent>();
                     damageComponent.TakeDamage(AttributesComponent);
-
+                    
+                    //knockback
+                    var mc = attackedEntity.GetComponent<MovementComponent>();
+                    mc.Knockback(AttributesComponent.TotalKnockback, CorvusExtensions.GetSign(MovementComponent.CurrentDirection));
+                    
                     //When the enemy attacks, apply status effects, if any. 
                     if (CombatPropertiesComponent.AppliesEffect)
                     {
