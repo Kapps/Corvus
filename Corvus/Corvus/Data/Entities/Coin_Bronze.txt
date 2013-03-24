@@ -3,3 +3,4 @@
 		Sprite: Sprite(Sprites/Items/Coin_Bronze)
 	PhysicsComponent
 	CollisionCoinComponent
+		Value: 1

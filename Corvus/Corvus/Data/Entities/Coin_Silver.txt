@@ -1,3 +1,6 @@
 ﻿Coin_Silver
 	SpriteComponent
 		Sprite: Sprite(Sprites/Items/Coin_Silver)
+	PhysicsComponent
+	CollisionCoinComponent
+		Value: 3

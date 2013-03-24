@@ -12,10 +12,19 @@ namespace Corvus.Components
 {
     class CollisionCoinComponent : CollisionEventComponent
     {
+        public int Value
+        {
+            get { return _Value; }
+            set { _Value = value; }
+        }
+
+        private int _Value;
+
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
             var sc = Entity.GetComponent<ScoreComponent>();
-            sc.Score++;
+            sc.Score += Value;
+            this.Dispose();
             return true;
         }
     }
