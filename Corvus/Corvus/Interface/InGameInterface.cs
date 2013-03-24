@@ -38,6 +38,9 @@ namespace Corvus.Interface
             string weaponstring = string.Format("Weapon: {0}", ec.CurrentWeapon.WeaponData.Name);
             CorvBase.Instance.SpriteBatch.DrawString(_font, weaponstring, new Vector2(10, 30), Color.White);
 
+            var sc = player.Character.GetComponent<Corvus.Components.ScoreComponent>();
+            string scoreString = "Score: " + sc.Score;
+            CorvBase.Instance.SpriteBatch.DrawString(_font, scoreString, new Vector2(10, 50), Color.Gold);
         }
 
     }

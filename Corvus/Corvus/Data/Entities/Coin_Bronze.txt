@@ -1,3 +1,5 @@
 ﻿Coin_Bronze
 	SpriteComponent
 		Sprite: Sprite(Sprites/Items/Coin_Bronze)
+	PhysicsComponent
+	CollisionCoinComponent
