@@ -67,7 +67,7 @@ StatusEffecter
 
 AIer
 	AIComponent
-		ReactionRange: Vector(500, 200)
+		ReactionRange: Vector(500, 50)
 		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
 
 Combator
