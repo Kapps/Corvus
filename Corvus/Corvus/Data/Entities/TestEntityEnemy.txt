@@ -13,7 +13,7 @@ Attributes
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
-		MeleeAttackRange: Vector(150, 150)
+		MeleeAttackRange: Vector(35, 150)
 		AttackSpeed: 900
 		BlockSpeed: 500
 		BlockChance: 0.7
