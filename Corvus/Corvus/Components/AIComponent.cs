@@ -70,7 +70,7 @@ namespace Corvus.Components
             set { _AllowMultiJump = value; }
         }
 
-        private DateTime StartOfDeath
+        private DateTime DeathTime
         {
             get { return _StartOfDeath; }
             set { _StartOfDeath = value; }
@@ -199,19 +199,14 @@ namespace Corvus.Components
                 }
                 else if (DeathStarted) //DYING AI
                 {
-                    double totalMs = (DateTime.Now - StartOfDeath).TotalMilliseconds;
+                    Direction walkDirection = MovementComponent.WalkDirection == Direction.Left ? Direction.Right : Direction.Left;
                     double walkTime = 200;
 
-                    if (totalMs < walkTime)
-                        MovementComponent.BeginWalking(Direction.Left);
-                    else if (totalMs >= walkTime && totalMs < walkTime*2)
-                        MovementComponent.BeginWalking(Direction.Right);
-                    else if (totalMs >= walkTime*2 && totalMs < walkTime*3)
-                        MovementComponent.BeginWalking(Direction.Left);
-                    else if (totalMs >= walkTime*3 && totalMs < walkTime*4)
-                        MovementComponent.BeginWalking(Direction.Right);
-                    //else
-                    //    Parent.Dispose();
+                    if ((DateTime.Now - DeathTime).TotalMilliseconds > walkTime)
+                    {
+                        MovementComponent.BeginWalking(walkDirection);
+                        DeathTime = DateTime.Now;
+                    } 
                 }
                 else if (FleeingStarted) //FLEEING AI
                 {
@@ -234,10 +229,10 @@ namespace Corvus.Components
                             MovementComponent.BeginWalking(Direction.Left);
 
                     //Begin process of death if entity has run out of health.
-                    if (AttributesComponent.CurrentHealth <= 0)
+                    if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 10)
                     {
                         if (!DeathStarted)
-                            StartOfDeath = DateTime.Now;
+                            DeathTime = DateTime.Now;
 
                         DeathStarted = true;
                     }
