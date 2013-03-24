@@ -103,7 +103,7 @@ namespace Corvus.Components
         private DateTime _StartOfDeath;
         private bool _DeathStarted;
         private bool _FleeingStarted;
-        private bool _Aggressive = false;
+        private bool _Aggressive = true;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;

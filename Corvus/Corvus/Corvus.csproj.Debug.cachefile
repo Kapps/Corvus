@@ -93,10 +93,10 @@ Data\Entities\Bow.txt
 Data\Entities\Coin_Bronze.txt
 Data\Entities\Coin_Gold.txt
 Data\Entities\Coin_Silver.txt
+Data\Entities\LevelChanger.txt
 Data\Entities\Dagger.txt
 Data\Entities\DeadlyArea.txt
 Data\Entities\DyingEntity.txt
-Data\Entities\LevelChanger.txt
 Data\Entities\Powerup_Fleet.txt
 Data\Entities\Powerup_HealHigh.txt
 Data\Entities\Powerup_HealLow.txt

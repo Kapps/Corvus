@@ -48,12 +48,18 @@
   </data>
  </layer>
  <objectgroup name="Enemies" width="200" height="25">
-  <object type="DeadlyArea" x="1210" y="754" width="266" height="48"/>
-  <object type="DeadlyArea" x="2626" y="283" width="59" height="46"/>
-  <object type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
-  <object type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
-  <object type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
-  <object type="Coin_Silver" x="751" y="525" width="32" height="32"/>
-  <object type="Coin_Gold" x="831" y="528" width="32" height="32"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="1210" y="754" width="266" height="48"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="2626" y="283" width="59" height="46"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
+  <object name="Bronze" type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="751" y="525" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="831" y="528" width="32" height="32"/>
+  <object name="LevelChanger" type="LevelChanger" x="1160" y="130" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
+    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

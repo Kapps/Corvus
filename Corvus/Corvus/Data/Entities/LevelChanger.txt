@@ -1,6 +1,7 @@
-﻿Coin_Bronze
+﻿LevelChanger
 	SpriteComponent
-		Sprite: Sprite(Sprites/Items/Coin_Bronze)
+		Sprite: Sprite(Sprites/Items/Key_Gold)
 	PhysicsComponent
-	CollisionCoinComponent
-		Value: 1
+	LevelChangeComponent
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Trigger)
