@@ -88,6 +88,12 @@ namespace Corvus.Components
             set { _FleeingStarted = value; }
         }
 
+        private bool Aggressive
+        {
+            get { return _ChasesPlayer; }
+            set { _ChasesPlayer = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
@@ -97,6 +103,7 @@ namespace Corvus.Components
         private DateTime _StartOfDeath;
         private bool _DeathStarted;
         private bool _FleeingStarted;
+        private bool _ChasesPlayer = true;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -163,9 +170,23 @@ namespace Corvus.Components
                         //We're reacting to an entity.
                         IsReacting = true;
 
-                        //If we're following a path, stop.
-                        if (PathComponent.PathingEnabled)
+                        //If we're following a path and we're aggressive, stop following the path.
+                        if (PathComponent.PathingEnabled && Aggressive)
+                        {
                             PathComponent.StopFollowing();
+                        }
+
+                        //If we're able to follow an entity and we're aggressive, follow the entity.
+                        if (entityFollowable && entityToFollow != null && Aggressive)
+                        {
+                            FollowEntity(entityToFollow, Time);
+                        }
+
+                        //If an entity is attackable and if i (the enemy) am not blocking, attack.
+                        if (entityAttackable && !CombatComponent.IsBlocking)
+                        {
+                            CombatComponent.AttackAI();
+                        }
 
                         //If a projectile is coming to us, or an entity is attacking us, block.
                         if (entityAttackingMe || projectileFlyingToMe)
@@ -173,13 +194,6 @@ namespace Corvus.Components
                             if (!CombatComponent.IsBlocking)
                                 CombatComponent.BeginBlock();
                         }
-
-                        if (entityFollowable && entityToFollow != null)
-                            FollowEntity(entityToFollow, Time);
-
-                        //If an entity is attackable and if i (the enemy) am not blocking, attack.
-                        if (entityAttackable && !CombatComponent.IsBlocking)
-                            CombatComponent.AttackAI();
 
                         //If there's no projectile coming to us, or no entity attacking us, end the block.
                         if (!entityAttackingMe && !projectileFlyingToMe)
