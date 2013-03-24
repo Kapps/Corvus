@@ -148,6 +148,7 @@
     <Compile Include="Components\Gameplay\StatusEffects\Vigor.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Weakness.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
+    <Compile Include="Components\LevelChangeComponent.cs" />
     <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Components\ProjectileComponent.cs" />
     <Compile Include="Components\ScoreComponent.cs" />
@@ -171,22 +172,22 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Entities\Bow.txt">
+    <Content Include="Data\Entities\AreaOfEffect.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\AreaOfEffect.txt">
+    <Content Include="Data\Entities\Bow.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\Coin_Bronze.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\Coin_Silver.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\Entities\Coin_Gold.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\LevelChanger.txt">
+    <Content Include="Data\Entities\Coin_Silver.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Dagger.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\DeadlyArea.txt">
@@ -195,22 +196,10 @@
     <Content Include="Data\Entities\DyingEntity.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Entities\LevelChanger.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Entities\Powerup_Fleet.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Entities\Powerup_Recover.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Entities\Powerup_Might.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Entities\Powerup_ManaHigh.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Entities\Powerup_ManaMid.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Entities\Powerup_ManaLow.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\Powerup_HealHigh.txt">
@@ -222,19 +211,34 @@
     <Content Include="Data\Entities\Powerup_HealMid.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Entities\Powerup_ManaHigh.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Powerup_ManaLow.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Powerup_ManaMid.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Powerup_Might.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Powerup_Recover.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Entities\Powerup_Vigor.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\Projectile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\TestEntityEnemy.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\Entities\Spear.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\Dagger.txt">
+    <Content Include="Data\Entities\TestEntity.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\TestEntityEnemy.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Documents\ColorCodes.txt" />
@@ -242,9 +246,6 @@
     <Content Include="Documents\EntityTemplates.txt" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
-    <Content Include="Data\Entities\TestEntity.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CorvEngine\CorvEngine.csproj">
@@ -291,6 +292,9 @@
     <Content Include="Data\Levels\Dickoleanders.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Data\Entities\TestEntity.txt.orig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Levels\Arena.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
