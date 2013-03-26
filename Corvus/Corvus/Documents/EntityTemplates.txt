@@ -247,6 +247,8 @@ Properties
 Required
 	CombatPropertiesComponent
 	DamageComponent
+	ScoreComponent
+	GamepadComponent
 	StatusEffectsComponent
 	FloatingTextComponent
 	ClassificationComponent
