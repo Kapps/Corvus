@@ -12,6 +12,11 @@ namespace CorvEngine.Components
 {
     public class ArenaSystem : SceneSystem
     {
+        public int Wave
+        {
+            get { return _Wave; }
+        }
+
         private int _Wave;
         private int _TotalEnemiesWave;
 

@@ -39,5 +39,7 @@
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
    </properties>
   </object>
+  <object name="Spawner" type="Spawner" x="617" y="931" width="32" height="32"/>
+  <object name="Spawner" type="Spawner" x="619" y="802" width="32" height="32"/>
  </objectgroup>
 </map>

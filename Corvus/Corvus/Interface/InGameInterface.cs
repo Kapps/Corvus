@@ -44,6 +44,12 @@ namespace Corvus.Interface
             CorvBase.Instance.SpriteBatch.DrawString(_font, scoreString, new Vector2(10, 50), Color.Gold);
 
             var arenaSystem = player.Character.Scene.GetSystem<ArenaSystem>();
+
+            if (arenaSystem != null)
+            {
+                string waveString = "Wave: " + arenaSystem.Wave;
+                CorvBase.Instance.SpriteBatch.DrawString(_font, waveString, new Vector2(10, 70), Color.White);
+            }
         }
     }
 }
