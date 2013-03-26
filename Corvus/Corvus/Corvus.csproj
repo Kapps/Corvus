@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="Components\AIComponent.cs" />
     <Compile Include="Components\AreaOfEffectComponent.cs" />
+    <Compile Include="Components\ArenaSystem.cs" />
     <Compile Include="Components\AttributesComponent.cs" />
     <Compile Include="Components\ChaseCameraComponent.cs" />
     <Compile Include="Components\CollisionCoinComponent.cs" />
