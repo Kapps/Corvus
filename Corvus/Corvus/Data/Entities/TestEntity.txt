@@ -10,8 +10,8 @@ PlayerSprite : BlueSprite
 
 Properties
 	MovementComponent
-		WalkSpeed: 500
-		WalkAcceleration: 15000
+		WalkSpeed: 350
+		WalkAcceleration: 13000
 		JumpSpeed: 850
 	PhysicsComponent
 		GravityCoefficient: 0.6

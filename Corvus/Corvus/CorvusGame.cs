@@ -8,6 +8,9 @@ using CorvEngine.Components.Blueprints;
 using Corvus.Components;
 using Corvus.GameStates;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using CorvEngine.Input;
+
 
 namespace Corvus {
 	/// <summary>
@@ -65,7 +68,7 @@ namespace Corvus {
             // Start off in game.
             StateManager.PushState(_SceneManager);
             _MainMenuState = new MainMenuState();
-            //StateManager.PushState(_MainMenuState); //TODO: Move this probably
+            StateManager.PushState(_MainMenuState); //TODO: Move this probably
 			CreateNewPlayer();
             MenuBinds(); //TODO: Not sure how to do Menu Binds, temp for now.
             RegisterGlobalComponent(new DebugComponent());
@@ -81,7 +84,7 @@ namespace Corvus {
             PlayerEntity.Position = new Vector2(1790, 1376);
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
-			CorvusBinds.CreateBinds(Player);
+			CorvusBinds.CreateBinds(Player); 
 		}
 
         //possibly temp
@@ -89,12 +92,19 @@ namespace Corvus {
         {
             var player = this.Players.First();
 
-            CorvEngine.Input.Bind Next = new CorvEngine.Input.Bind(player.InputManager, _MainMenuState.ControlManager.NextControl, false, Microsoft.Xna.Framework.Input.Keys.Down);
+            Bind Next = new Bind(player.InputManager, _MainMenuState.ControlManager.NextControl, false, Keys.Down);
             player.InputManager.RegisterBind(Next);
-            CorvEngine.Input.Bind Prev = new CorvEngine.Input.Bind(player.InputManager, _MainMenuState.ControlManager.PreviousControl, false, Microsoft.Xna.Framework.Input.Keys.Up);
+            Bind Prev = new Bind(player.InputManager, _MainMenuState.ControlManager.PreviousControl, false, Keys.Up);
             player.InputManager.RegisterBind(Prev);
-            CorvEngine.Input.Bind Select = new CorvEngine.Input.Bind(player.InputManager, _MainMenuState.ControlManager.SelectControl, false, Microsoft.Xna.Framework.Input.Keys.Enter);
+            Bind Select = new Bind(player.InputManager, _MainMenuState.ControlManager.SelectControl, false, Keys.Enter);
             player.InputManager.RegisterBind(Select);
+            //xbox controller
+            Bind GamePadNext = new Bind(player.InputManager, _MainMenuState.ControlManager.NextControl, false, Buttons.LeftThumbstickDown);
+            player.InputManager.RegisterBind(GamePadNext);
+            Bind GamePadPrev = new Bind(player.InputManager, _MainMenuState.ControlManager.PreviousControl, false, Buttons.LeftThumbstickUp);
+            player.InputManager.RegisterBind(GamePadPrev);
+            Bind GamePadSelect = new Bind(player.InputManager, _MainMenuState.ControlManager.SelectControl, false, Buttons.A);
+            player.InputManager.RegisterBind(GamePadSelect);
         }
 
         private SceneManager _SceneManager;

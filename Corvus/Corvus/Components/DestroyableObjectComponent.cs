@@ -23,7 +23,8 @@ namespace Corvus.Components
         private List<string> _DroppableItems = new List<string>();
         private float _DropRate = 0;
         private float _DropCoefficient = 2;
-
+        private int _CoinsValue = 0;
+        
         /// <summary>
         /// Gets or sets the dying sprite.
         /// </summary>
@@ -87,6 +88,15 @@ namespace Corvus.Components
             set { _DropCoefficient = Math.Max(value, 1f); }
         }
 
+        /// <summary>
+        /// Gets or sets the number of coins this entity drops.
+        /// </summary>
+        public int CoinsValue
+        {
+            get { return _CoinsValue; }
+            set { _CoinsValue = value; }
+        }
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -124,6 +134,19 @@ namespace Corvus.Components
                 }
             }
 
+            //Drop coins
+            int c = CoinsValue;
+            int gold = (c < 5) ? 0 : c /= 5 ;
+            int silver = (c < 3) ? 0 : c /= 3;
+            int bronze = c;
+
+            for (int i = 0; i < gold; i++)
+                GenerateCoinEntity("Coin_Gold", 2f - ((float)i) / 10);
+            for (int i = 0; i < silver; i++)
+                GenerateCoinEntity("Coin_Silver", 1.5f - ((float)i) / 10);
+            for (int i = 0; i < bronze; i++)
+                GenerateCoinEntity("Coin_Bronze", 1f - ((float)i) / 10);
+
             //Give exp.
             //CorvBase.Instance.Players
             foreach (var p in CorvBase.Instance.Players)
@@ -134,6 +157,21 @@ namespace Corvus.Components
             
             DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
             obj.Parent.Dispose();
+        }
+
+        private void GenerateCoinEntity(string coinName, float xmod)
+        {
+            var c = EntityBlueprint.GetBlueprint(coinName).CreateEntity();
+            c.Size = new Vector2(12, 12);
+            c.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
+            Parent.Scene.AddEntity(c);
+            
+            Random rand = new Random();
+            var pc = c.GetComponent<PhysicsComponent>();
+            pc.HorizontalDragCoefficient = 0.01f;
+            pc.GravityCoefficient = 0.2f;
+            var mc = this.GetDependency<MovementComponent>();
+            pc.VelocityX = ((mc == null) ? ((rand.Next(0, 5) <= 2) ? 1 : -1) : -CorvusExtensions.GetSign(mc.CurrentDirection)) * (50f * xmod);
         }
     }
 }

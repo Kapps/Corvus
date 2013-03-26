@@ -4,5 +4,6 @@
 	PhysicsComponent
 	CollisionCoinComponent
 		Value: 3
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)

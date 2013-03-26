@@ -25,9 +25,10 @@ Attributes
 		DyingDuration: 0.5
 		AwardedExperience: 100
 		DropsItem: true
-		DroppableItems: Collection(Dagger, HealMid, HealLow, HealMid, HealLow)
+		DroppableItems: Collection(HealMid, HealLow, Might, Vigor)
 		DropRate: 0.5
 		DropCoefficient: 2
+		CoinsValue: Random(6, 10)
 
 Combatpropertieser
 	StatusEffectPropertiesComponent

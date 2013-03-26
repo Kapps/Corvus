@@ -138,6 +138,7 @@
     <Compile Include="Components\Gameplay\Helper.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Fleet.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Healing.cs" />
+    <Compile Include="Components\Gameplay\StatusEffects\IWorkOut.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\ManaHeal.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Might.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Pierce.cs" />
@@ -165,12 +166,14 @@
     <Compile Include="GameStates\CorvusScene.cs" />
     <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="GameStates\SceneManager.cs" />
+    <Compile Include="Interface\ArenaInterface.cs" />
     <Compile Include="Interface\ControlManagerComponent.cs" />
     <Compile Include="Interface\Controls\BaseControl.cs" />
     <Compile Include="Interface\Controls\Image.cs" />
     <Compile Include="Interface\Controls\Label.cs" />
     <Compile Include="Interface\Controls\LinkButton.cs" />
     <Compile Include="Interface\InGameInterface.cs" />
+    <Compile Include="Interface\UIHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
@@ -247,6 +250,7 @@
     <Content Include="Data\Entities\TestEntityEnemy.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Documents\CodeGeneratedEntitySizes.txt" />
     <Content Include="Documents\ColorCodes.txt" />
     <Content Include="Documents\ComponentPropertyDefinition.txt" />
     <Content Include="Documents\EntityTemplates.txt" />

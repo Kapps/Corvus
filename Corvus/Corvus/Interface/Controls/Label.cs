@@ -8,11 +8,16 @@ using CorvEngine;
 
 namespace Corvus.Interface.Controls
 {
+    /// <summary>
+    /// A class to draw text.
+    /// </summary>
     public class Label : BaseControl
     {
         private string _Text = "";
-        private Vector2 _Size = new Vector2();
 
+        /// <summary>
+        /// Gets or sets the text to display.
+        /// </summary>
         public string Text 
         {
             get { return _Text; }
@@ -21,12 +26,10 @@ namespace Corvus.Interface.Controls
                 if (_Text != value)
                 {
                     _Text = value;
-                    _Size = SpriteFont.MeasureString(_Text);
+                    Size = SpriteFont.MeasureString(_Text);
                 }
             }
         }
-
-        public Vector2 Size { get { return _Size; } }
 
         public Label(SpriteFont font)
             : base(font)

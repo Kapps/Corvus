@@ -87,6 +87,7 @@ namespace Corvus.Components
                 return;
             Random rand = new Random();
             float launchMod = 1f;
+            var wlist = Weapons.Take(Weapons.Count);
             foreach (Weapon w in Weapons.Reverse())
             {
                 //drop the weapon except for the default one.
@@ -148,7 +149,7 @@ namespace Corvus.Components
             var scene = Parent.Scene;
             var oldWeapon = EntityBlueprint.GetBlueprint(weaponToDrop).CreateEntity();
             oldWeapon.Position = new Vector2(Parent.Position.X + -CorvusExtensions.GetSign(mc.CurrentDirection) * (Parent.Size.X + 5), Parent.Position.Y - Parent.Size.Y - 5);
-            oldWeapon.Size = new Vector2(32, 32); //TODO: Weapon size may change in the future
+            oldWeapon.Size = new Vector2(16, 16); 
             scene.AddEntity(oldWeapon);
 
             var pc = oldWeapon.GetComponent<PhysicsComponent>();

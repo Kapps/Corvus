@@ -11,11 +11,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Corvus.Interface
 {
+    /// <summary>
+    /// A GameStateComponent to manage menu controls.
+    /// </summary>
     public class ControlManagerComponent : GameStateComponent
     {
         private List<BaseControl> _Controls = new List<BaseControl>();
         private int _CurrentIndex = 0;
 
+        /// <summary>
+        /// Adds a control.
+        /// </summary>
         public void AddControl(BaseControl bc)
         {
             _Controls.Add(bc);
@@ -28,7 +34,7 @@ namespace Corvus.Interface
         {
             foreach (var bc in _Controls)
             {
-                if (bc.TabStop)
+                if (bc.TabStop && bc.IsEnabled)
                 {
                     bc.HasFocus = true;
                     _CurrentIndex = _Controls.IndexOf(bc);

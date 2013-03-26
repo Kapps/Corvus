@@ -10,7 +10,7 @@ using CorvEngine;
 
 namespace Corvus.Components
 {
-    class CollisionCoinComponent : CollisionEventComponent
+    public class CollisionCoinComponent : CollisionEventComponent
     {
         public int Value
         {
@@ -24,6 +24,9 @@ namespace Corvus.Components
         {
             var sc = Entity.GetComponent<ScoreComponent>();
             sc.Coins += Value;
+            var ftc = Entity.GetComponent<FloatingTextComponent>();
+            if (ftc != null)
+                ftc.Add("+" + Value.ToString(), Color.Gold);
             Parent.Dispose();
             return true;
         }

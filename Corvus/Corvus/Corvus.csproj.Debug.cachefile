@@ -1,6 +1,5 @@
 Content\TestTexture.xnb
 Content\Sprites\Player.xnb
-Content\Interface\testbg.xnb
 Content\Interface\HealthBar.xnb
 Content\Sprites\Enemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
@@ -49,8 +48,12 @@ Content\Sprites\Items\CoinGold.xnb
 Content\Sprites\Items\CoinBronze.xnb
 Content\Sprites\Items\CoinSilver.xnb
 Content\Sprites\Items\KeyGold.xnb
+Content\Interface\TitleText.xnb
+Content\Interface\TitleScreenBackground.xnb
+Content\Sprites\StatusEffects\IWorkOut.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
+Content\Fonts\MainMenuFont.xnb
 Content\Sprites\TestPlayer.xnb
 Content\Sprites\TestEnemy.xnb
 Content\Sprites\Equipment\TestWeapon1.xnb
@@ -85,6 +88,7 @@ Content\Sprites\Items\Coin_Gold.xnb
 Content\Sprites\Items\Coin_Silver.xnb
 Content\Sprites\Items\Coin_Bronze.xnb
 Content\Sprites\Items\Key_Gold.xnb
+Content\Sprites\StatusEffects\Effect_IWorkOut.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
@@ -93,6 +97,7 @@ Data\Entities\Bow.txt
 Data\Entities\Coin_Bronze.txt
 Data\Entities\Coin_Gold.txt
 Data\Entities\Coin_Silver.txt
+Data\Entities\Spawner.txt
 Data\Entities\LevelChanger.txt
 Data\Entities\Dagger.txt
 Data\Entities\DeadlyArea.txt

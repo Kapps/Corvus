@@ -5,11 +5,12 @@
 		Crimson: Entity is weak to that element.
 		Navy: Entity is resistant to that element.
 		Aqua: Healing 
-		DarkBlue: ManaHeal
+		DarkBlue: ManaHeal, ManaCost(when you use a weapon that uses mana.)
 		Crimson: Might,
 		Navy: Pierce, Slow, Weakness
 		DarkViolet: Poison
 		LightCyan: Recover (text part only)
+		Black: Weapon name on pick up
 
 	StatusEffect Icon
 		LightSalmon: A positive effect.

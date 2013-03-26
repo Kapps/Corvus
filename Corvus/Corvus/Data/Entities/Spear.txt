@@ -13,11 +13,12 @@ WeaponProperties
 		HitDelay: 0.5
 		ConsumesMana: false
 		AoEName: Sprites/Effects/Explosions
-		AoESize: Vector(50, 50)
+		AoESize: Vector(50, 32)
 		AoEDuration: 5
 		AoEDamagePercent: 0.33
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
 	AttributesComponent
+		ManaCost: 0
 		Strength: 0
 		StrModifier: 1.0
 		Dexterity: 0

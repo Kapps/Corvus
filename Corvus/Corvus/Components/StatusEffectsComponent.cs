@@ -53,12 +53,10 @@ namespace Corvus.Components
             base.OnDraw();
             var entityPos = Camera.Active.WorldToScreen(this.Parent.Location);
             var position = new Vector2(entityPos.X, entityPos.Bottom + 5);
-            float xOffset = 0f;
             foreach (StatusEffect se in _StatusEffects)
             {
                 se.Draw(position);
-                xOffset += 17f;
-                position.X += xOffset;
+                position.X += 17f;
             }
         }
 

@@ -66,6 +66,8 @@ namespace Corvus.Components {
                 if (AttributesComponent.CurrentMana < AttributesComponent.ManaCost)
                     return;
                 AttributesComponent.CurrentMana -= AttributesComponent.ManaCost;
+                var ftc = this.GetDependency<FloatingTextComponent>();
+                ftc.Add("-" + AttributesComponent.ManaCost.ToString(), Color.DarkBlue);
             }
 
             IsAttacking = true;
@@ -138,7 +140,7 @@ namespace Corvus.Components {
                 var Animation = SpriteComponent.Sprite.Animations["Block" + MovementComponent.CurrentDirection.ToString()];
                 if (SpriteComponent.Sprite.ActiveAnimation != Animation)
                     SpriteComponent.Sprite.PlayAnimation(Animation.Name);
-            }
+            } 
         }
 
         public void EndBlock()
@@ -231,6 +233,8 @@ namespace Corvus.Components {
 
         private void AttackRanged()
         {
+            if (!CombatPropertiesComponent.IsRanged)
+                return;
             ProjectileComponent.CreateProjectileEntity(this.Parent, _AttackStartedDirection);
         }
 

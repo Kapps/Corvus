@@ -162,6 +162,7 @@ Properties
 		DroppableItems: %%%%
 		DropRate: 0
 		DropCoefficient: 2
+		CoinsValue: 0
 	AIComponent
 		ReactionRange: Vector(0, 0)
 		Offset: Vector(0, 0)

@@ -15,10 +15,16 @@ using CorvEngine.Input;
 
 namespace Corvus.GameStates
 {
+    /// <summary>
+    /// A state to manage the main menu.
+    /// </summary>
     public class MainMenuState : GameState
     {
         private ControlManagerComponent _ControlManager;
 
+        /// <summary>
+        /// Gets the control manager.
+        /// </summary>
         public ControlManagerComponent ControlManager { get { return _ControlManager; } }
 
         public override bool BlocksUpdate
@@ -30,51 +36,70 @@ namespace Corvus.GameStates
         {
             get { return true; }
         }
-        
+
         public MainMenuState()
             : base()
         {
             _ControlManager = new ControlManagerComponent(this);
-            //this is all testing.
-            SpriteFont font = CorvBase.Instance.GlobalContent.Load<SpriteFont>("Fonts/testfont");
-            Label lbl1 = new Label(font);
-            lbl1.Text = "Hello world";
-            lbl1.Position = new Vector2(200f);
-            lbl1.Scale = 2.5f;
-            _ControlManager.AddControl(lbl1);
+            SpriteFont font = LoadContent<SpriteFont>("Fonts/MainMenuFont");
+            
+            Image bgImg = new Image(LoadContent<Texture2D>("Interface/TitleScreenBackground"));
+            bgImg.Size = new Vector2(UIHelper.Viewport.Width, UIHelper.Viewport.Height);
+            ControlManager.AddControl(bgImg);
 
-            Image img = new Image(CorvBase.Instance.GlobalContent.Load<Texture2D>("Sprites/Effects/Explosion1"));
-            img.Position = new Vector2(500f);
-            _ControlManager.AddControl(img);
+            Image titleImg = new Image(LoadContent<Texture2D>("Interface/TitleText"));
+            titleImg.Position = UIHelper.AlignControl(titleImg.Size, HorizontalAlignment.Center, VerticalAlignment.Top) + new Vector2(0, (UIHelper.Viewport.Height/2) * 0.1f);;
+            ControlManager.AddControl(titleImg);
 
-            LinkButton btn = new LinkButton(font);
-            btn.Text = "New Game";
-            btn.Position = new Vector2(0f);
-            btn.Selected += (sender, e) =>
-            {
-                CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel");
-                CorvBase.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
-            };
-            _ControlManager.AddControl(btn);
+            var hackSize = new Vector2(175f, 50f); // a hack to align things.
+            LinkButton continueBtn = new LinkButton(font);
+            continueBtn.Text = "Continue";
+            continueBtn.Color = Color.Black;
+            continueBtn.IsVisible = false; //TODO: Will need to hide this if there is no saved state.
+            continueBtn.IsEnabled = false;
+            continueBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 50f);
+            continueBtn.Selected += continueBtn_Selected;
+            ControlManager.AddControl(continueBtn);
 
-            LinkButton btn1 = new LinkButton(font);
-            btn1.Text = "Button Two";
-            btn1.Position = new Vector2(0f, 30f);
-            _ControlManager.AddControl(btn1);
+            LinkButton newGameBtn = new LinkButton(font);
+            newGameBtn.Text = "New Game";
+            newGameBtn.Color = Color.Black;
+            newGameBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 100f);
+            newGameBtn.Selected += newGameBtn_Selected;
+            ControlManager.AddControl(newGameBtn);
 
-            LinkButton btn2 = new LinkButton(font);
-            btn2.Text = "Button Three";
-            btn2.Position = new Vector2(0f, 60f);
-            _ControlManager.AddControl(btn2);
+            LinkButton arenaModeBtn = new LinkButton(font);
+            arenaModeBtn.Text = "Arena Mode";
+            arenaModeBtn.Color = Color.Black;
+            arenaModeBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 150f);
+            arenaModeBtn.Selected += arenaModeBtn_Selected;
+            ControlManager.AddControl(arenaModeBtn);
 
-
-            _ControlManager.SetFocus();
+            ControlManager.SetFocus();
             this.AddComponent(_ControlManager);
-
-            //TODO: Not sure how to do binds for controls. Temporary for now.
+        }
+        
+        void continueBtn_Selected(object sender, EventArgs e)
+        {
             
         }
 
+        void newGameBtn_Selected(object sender, EventArgs e)
+        {
+            CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel");
+            CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
+        }
+
+        void arenaModeBtn_Selected(object sender, EventArgs e)
+        {
+            CorvusGame.Instance.SceneManager.ChangeScene("Arena");
+            CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
+        }
+
+        private T LoadContent<T>(string name)
+        {
+            return CorvusGame.Instance.GlobalContent.Load<T>(name);
+        }
     }
 
 }

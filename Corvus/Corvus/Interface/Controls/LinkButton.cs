@@ -8,12 +8,17 @@ using CorvEngine;
 
 namespace Corvus.Interface.Controls
 {
+    /// <summary>
+    /// A focusable control with text.
+    /// </summary>
     public class LinkButton : BaseControl
     {
         private string _Text = "";
         private Color _FocusedColor = Color.Red;
-        private Vector2 _Size = new Vector2();
         
+        /// <summary>
+        /// Gets or sets the text to display.
+        /// </summary>
         public string Text
         {
             get { return _Text; }
@@ -22,18 +27,20 @@ namespace Corvus.Interface.Controls
                 if (_Text != value)
                 {
                     _Text = value;
-                    _Size = SpriteFont.MeasureString(_Text);
+                    Size = SpriteFont.MeasureString(_Text);
                 }
             }
         }
 
+        /// <summary>
+        /// Gets or sets the color of the text when this control is focused.
+        /// </summary>
         public Color FocusedColor
         {
             get { return _FocusedColor; }
             set { _FocusedColor = value; }
         }
 
-        public Vector2 Size { get { return _Size; } }
 
         public LinkButton(SpriteFont font)
             : base(font)

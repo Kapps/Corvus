@@ -66,13 +66,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\testbg.png">
-      <Name>testbg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\SpritePipeline\SpritePipeline.csproj">
       <Project>{422fca0f-2d7e-4440-8954-e373cce2478d}</Project>
       <Name>SpritePipeline</Name>
@@ -89,6 +82,11 @@
   <ItemGroup>
     <Compile Include="Fonts\DamageFont.spritefont">
       <Name>DamageFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\MainMenuFont.spritefont">
+      <Name>MainMenuFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -613,6 +611,32 @@
       <Name>Key_Gold</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\TitleText.png">
+      <Name>TitleText</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\TitleScreenBackground.png">
+      <Name>TitleScreenBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\StatusEffects\Effect_IWorkOut.xml">
+      <Name>Effect_IWorkOut</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\StatusEffects\IWorkOut.png">
+      <Name>IWorkOut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

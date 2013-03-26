@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CorvEngine.Components;
 using Corvus.Components.Gameplay.Equipment;
+using Microsoft.Xna.Framework;
 
 namespace Corvus.Components
 {
@@ -22,6 +23,10 @@ namespace Corvus.Components
             var wdc = this.GetDependency<WeaponPropertiesComponent>();
             var seac = Parent.GetComponent<StatusEffectPropertiesComponent>();
             ec.EquipWeapon(new Weapon(wdc.WeaponData, cpc.CombatProperties, ac.Attributes, seac.StatusEffectAttributes));
+
+            var ftc = Entity.GetComponent<FloatingTextComponent>();
+            ftc.Add(wdc.WeaponData.Name, Color.Black);
+
             return true;
         }
     }

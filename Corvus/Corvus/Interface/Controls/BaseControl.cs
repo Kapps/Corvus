@@ -8,6 +8,9 @@ using CorvEngine;
 
 namespace Corvus.Interface.Controls
 {
+    /// <summary>
+    /// The base control for user interface elements.
+    /// </summary>
     public abstract class BaseControl
     {
         /// <summary>
@@ -16,6 +19,7 @@ namespace Corvus.Interface.Controls
         public event EventHandler Selected;
 
         private Vector2 _Position = new Vector2();
+        private Vector2 _Size = new Vector2();
         private bool _HasFocus = false;
         private bool _IsVisible = true;
         private bool _IsEnabled = true;
@@ -27,7 +31,7 @@ namespace Corvus.Interface.Controls
         /// <summary>
         /// Gets the sprite batch.
         /// </summary>
-        public SpriteBatch SpriteBatch { get { return CorvBase.Instance.SpriteBatch; } }
+        protected SpriteBatch SpriteBatch { get { return CorvBase.Instance.SpriteBatch; } }
 
         /// <summary>
         /// Gets or sets the position of the element, with the margin applied. 
@@ -36,6 +40,15 @@ namespace Corvus.Interface.Controls
         {
             get { return _Position; }
             set { _Position = value; }
+        }
+
+        /// <summary>
+        /// Gets or the size of the control.
+        /// </summary>
+        public virtual Vector2 Size
+        {
+            get { return _Size; }
+            set { _Size = value; }
         }
 
         /// <summary>
@@ -127,6 +140,5 @@ namespace Corvus.Interface.Controls
         /// Draws the element
         /// </summary>
         public abstract void Draw(GameTime gameTime);
-
     }
 }

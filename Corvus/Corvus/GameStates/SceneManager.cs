@@ -7,6 +7,7 @@ using CorvEngine.Components;
 using CorvEngine.Components.Blueprints;
 using CorvEngine.Geometry;
 using CorvEngine.Scenes;
+using Corvus.Interface;
 
 namespace Corvus.GameStates {
 
@@ -57,16 +58,19 @@ namespace Corvus.GameStates {
 			// TODO: Refactor this.
 			var Scene = ActiveScenes.FirstOrDefault(c => c.Name.Equals(LevelName, StringComparison.InvariantCultureIgnoreCase));
 			if(Scene == null) {
-				Scene = CorvusScene.Load(LevelName);
+                Scene = CorvusScene.Load(LevelName);
 				Scene.Disposed += Scene_Disposed;
-				ActiveScenes.Add(Scene);
+                ActiveScenes.Add(Scene);
 				Scene.AddSystem(new PhysicsSystem());
 
-                if (Scene.Name.Contains("Arena")) //This is likely a shitty idea for obvious reasons, will likely work.
+                //This is likely a shitty idea for obvious reasons, will likely work.
+                if (Scene.Name.Contains("Arena"))
+                {
                     Scene.AddSystem(new ArenaSystem());
-
+                    this.AddComponent(new ArenaInterface(Scene.GameState));
+                }
 				TiledPlatformerGeometry Geometry = new TiledPlatformerGeometry(Scene);
-				Scene.Initialize(Geometry);
+                Scene.Initialize(Geometry);
                 this.AddComponent(Scene);
                 this.AddComponent(new Corvus.Interface.InGameInterface(Scene.GameState)); //TODO: Possibly the wrong spot?
 			}
