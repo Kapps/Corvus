@@ -152,6 +152,7 @@
     <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Components\ProjectileComponent.cs" />
     <Compile Include="Components\ScoreComponent.cs" />
+    <Compile Include="Components\SpawnerComponent.cs" />
     <Compile Include="Components\StatusEffectPropertiesComponent.cs" />
     <Compile Include="Components\StatusEffectsComponent.cs" />
     <Compile Include="Components\WeaponPropertiesComponent.cs" />
