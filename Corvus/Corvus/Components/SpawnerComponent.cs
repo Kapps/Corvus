@@ -10,7 +10,7 @@ using CorvEngine;
 
 namespace Corvus.Components
 {
-    class SpawnerComponent : Component
+    public class SpawnerComponent : Component
     {
         DateTime _LastSpawn;
         List<Entity> _SpawnedEntities;

@@ -61,6 +61,10 @@ namespace Corvus.GameStates {
 				Scene.Disposed += Scene_Disposed;
 				ActiveScenes.Add(Scene);
 				Scene.AddSystem(new PhysicsSystem());
+
+                if (Scene.Name.Contains("Arena")) //This is likely a shitty idea for obvious reasons, will likely work.
+                    Scene.AddSystem(new ArenaSystem());
+
 				TiledPlatformerGeometry Geometry = new TiledPlatformerGeometry(Scene);
 				Scene.Initialize(Geometry);
                 this.AddComponent(Scene);
