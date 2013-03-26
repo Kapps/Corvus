@@ -97,6 +97,7 @@
     <Compile Include="Audio\CorvCue.cs" />
     <Compile Include="Audio\CorvMusicCue.cs" />
     <Compile Include="Audio\CorvSoundEffectCue.cs" />
+    <Compile Include="Components\ArenaSystem.cs" />
     <Compile Include="Components\Blueprints\Generators\EnumValueGenerator.cs" />
     <Compile Include="Components\ClassificationComponent.cs" />
     <Compile Include="Components\CollisionEventComponent.cs" />
