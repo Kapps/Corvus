@@ -28,6 +28,8 @@ namespace Corvus.Components{
             AttributesComponent.CurrentHealth -= overallDamage;
 
             FloatingTextComponent.Add(overallDamage, Color.White);
+            
+            GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
         }
 
         /// <summary>
@@ -49,6 +51,8 @@ namespace Corvus.Components{
                 FloatingTextComponent.Add(overallDamage, Color.Navy);
             else
                 FloatingTextComponent.Add(overallDamage, Color.White);
+            //vibrate!
+            GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
         }
 
         private float NormalDamageFormula(float myDefense, float incomingDamage){
@@ -83,7 +87,7 @@ namespace Corvus.Components{
         {
             if (res == Elements.None || att == Elements.None)
                 return 1f;
-            
+
             float multiplier = 1f;
             if (res == Elements.Physical && att == Elements.Physical)
                 multiplier -= 0.75f;
