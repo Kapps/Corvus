@@ -70,5 +70,11 @@ namespace Corvus.Components
         {
             ArenaSystem = Scene.GetSystem<ArenaSystem>();
         }
+
+        public void Reset()
+        {
+            EntitiesSpawned = new List<Entity>();
+            _TotalEntitiesSpawned = 0;
+        }
     }
 }
