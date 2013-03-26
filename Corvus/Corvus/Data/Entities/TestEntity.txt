@@ -59,5 +59,6 @@ Fighter
 
 # Show off multiple inheritance / composition.
 TestEntity : PlayerSprite, Properties, Damager, StatusEffecter, Fighter, Score
+	GamepadComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

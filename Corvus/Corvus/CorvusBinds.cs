@@ -41,6 +41,14 @@ namespace Corvus {
                     Assign((c) => SwitchWeapon(true, c), false, new InputButton(Keys.A));
                     Assign((c) => SwitchWeapon(false, c), false, new InputButton(Keys.S));
                     Assign(Attack, false, new InputButton(Keys.Z));
+                    //xbox controller
+                    Assign(JumpPressed, false, new InputButton(Buttons.B));
+                    Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Buttons.LeftThumbstickLeft));
+                    Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Buttons.LeftThumbstickRight));
+                    Assign(BlockPressed, false, new InputButton(Buttons.X));
+                    Assign((c) => SwitchWeapon(true, c), false, new InputButton(Buttons.RightShoulder));
+                    Assign((c) => SwitchWeapon(false, c), false, new InputButton(Buttons.LeftShoulder));
+                    Assign(Attack, false, new InputButton(Buttons.A));
 					break;
 			}
 		}

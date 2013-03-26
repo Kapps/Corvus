@@ -44,6 +44,11 @@ Content\Sprites\Powerups\Might.xnb
 Content\Sprites\Powerups\Recover.xnb
 Content\Sprites\StatusEffects\Fleet.xnb
 Content\Sprites\Powerups\Fleet.xnb
+Content\Tiles\fence 32x32.xnb
+Content\Sprites\Items\CoinGold.xnb
+Content\Sprites\Items\CoinBronze.xnb
+Content\Sprites\Items\CoinSilver.xnb
+Content\Sprites\Items\KeyGold.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Sprites\TestPlayer.xnb
@@ -76,14 +81,9 @@ Content\Sprites\Powerups\Powerup_Might.xnb
 Content\Sprites\Powerups\Powerup_Recover.xnb
 Content\Sprites\StatusEffects\Effect_Fleet.xnb
 Content\Sprites\Powerups\Powerup_Fleet.xnb
-Content\Tiles\fence 32x32.xnb
-Content\Sprites\Items\CoinGold.xnb
-Content\Sprites\Items\CoinBronze.xnb
-Content\Sprites\Items\CoinSilver.xnb
 Content\Sprites\Items\Coin_Gold.xnb
 Content\Sprites\Items\Coin_Silver.xnb
 Content\Sprites\Items\Coin_Bronze.xnb
-Content\Sprites\Items\KeyGold.xnb
 Content\Sprites\Items\Key_Gold.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb

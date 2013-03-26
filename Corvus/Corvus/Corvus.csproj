@@ -124,6 +124,7 @@
     <Compile Include="Components\DyingComponent.cs" />
     <Compile Include="Components\EquipmentComponent.cs" />
     <Compile Include="Components\FloatingTextComponent.cs" />
+    <Compile Include="Components\GamepadComponent.cs" />
     <Compile Include="Components\Gameplay\Attributes.cs" />
     <Compile Include="Components\Gameplay\CombatProperties.cs" />
     <Compile Include="Components\Gameplay\Elements.cs" />
