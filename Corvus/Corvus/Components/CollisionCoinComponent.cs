@@ -23,7 +23,7 @@ namespace Corvus.Components
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
             var sc = Entity.GetComponent<ScoreComponent>();
-            sc.Score += Value;
+            sc.Coins += Value;
             Parent.Dispose();
             return true;
         }

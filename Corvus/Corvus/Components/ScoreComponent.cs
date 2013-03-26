@@ -9,12 +9,12 @@ namespace Corvus.Components
 {
     public class ScoreComponent : Component
     {
-        public int Score
+        public int Coins
         {
-            get { return _Score; }
-            set { _Score = value; }
+            get { return _Coins; }
+            set { _Coins = value; }
         }
 
-        private int _Score = 0;
+        private int _Coins = 0;
     }
 }

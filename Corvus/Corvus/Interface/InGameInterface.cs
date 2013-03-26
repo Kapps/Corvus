@@ -6,6 +6,7 @@ using CorvEngine;
 using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using CorvEngine.Components;
 
 namespace Corvus.Interface
 { 
@@ -39,9 +40,10 @@ namespace Corvus.Interface
             CorvBase.Instance.SpriteBatch.DrawString(_font, weaponstring, new Vector2(10, 30), Color.White);
 
             var sc = player.Character.GetComponent<Corvus.Components.ScoreComponent>();
-            string scoreString = "Score: " + sc.Score;
+            string scoreString = "Coins: " + sc.Coins;
             CorvBase.Instance.SpriteBatch.DrawString(_font, scoreString, new Vector2(10, 50), Color.Gold);
-        }
 
+            var arenaSystem = player.Character.Scene.GetSystem<ArenaSystem>();
+        }
     }
 }
