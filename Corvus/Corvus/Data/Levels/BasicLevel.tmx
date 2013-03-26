@@ -88,10 +88,16 @@
   <object name="Climber3" type="Path" x="1814" y="1379">
    <polyline points="0,0 -697,-60 -693,-141 -758,-239 106,-267 12,-363 172,-469 271,-491 66,-564 -200,-494 -314,-531 -564,-564 -823,-528 -942,-567 -1108,-469 -1338,-467 -1597,-467 -1703,-532"/>
   </object>
-  <object name="LevelChanger" type="LevelChanger" x="1265" y="983" width="32" height="32">
+  <object name="LevelChanger" type="LevelChanger" x="1418" y="1493" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
     <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
+   </properties>
+  </object>
+  <object name="LevelChanger" type="LevelChanger" x="1584" y="1494" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Arena"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Arena"/>
    </properties>
   </object>
  </objectgroup>
