@@ -12,9 +12,16 @@ namespace CorvEngine.Components
 {
     public class ArenaSystem : SceneSystem
     {
-        int _Wave;
-        int _TotalEnemiesSpawned;
-        int _DifficultModifier;
+        private int _Wave;
+        private int _TotalEnemiesWave;
+
+        //Unsure about these being here, but fine for now.
+        private int _TotalEnemiesSpawned;
+        private int _TotalEnemiesKilled;
+        private int _TotalEnemiesSpawnedWave;
+        private int _TotalEnemiesKilledWave;
+
+        private int _DifficultyModifier; //This'll actually just be calculated by wave most likely, so probably unnecessary.
 
         protected override void OnUpdate(GameTime Time)
         {

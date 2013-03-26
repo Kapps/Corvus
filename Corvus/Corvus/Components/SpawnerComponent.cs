@@ -12,8 +12,8 @@ namespace Corvus.Components
 {
     public class SpawnerComponent : Component
     {
-        DateTime _LastSpawn;
-        List<Entity> _SpawnedEntities;
+        private DateTime _LastSpawn;
+        private List<Entity> _SpawnedEntities;
 
         /*
         protected override void OnUpdate(GameTime Time)
