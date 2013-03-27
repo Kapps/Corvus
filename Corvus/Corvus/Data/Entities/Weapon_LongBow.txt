@@ -1,0 +1,52 @@
+
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Long Bow
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Bow)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_LongBow ) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: true
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0.65
+		ConsumesMana: false
+		#If not ranged, remove all projectile properties.
+		ProjectileName: Sprites/Projectiles/Projectile_Arrow
+		ProjectileSize: Vector(12, 12)
+		ProjectileOffset: Vector(5, -7)
+		ProjectileVelocity: Vector(800, 100)
+		ProjectileGravityCoefficient: 0.1
+		ProjectileHorDragCoefficient: 0
+	AttributesComponent
+		ManaCost: 0		#Only used if it consumes mana. 
+		Strength: 15
+		StrModifier: 0.8
+		Dexterity: 0
+		DexModifier: 0.8
+		Intelligence: 0
+		IntModifier: 1
+		CritChance: 0.15
+		CritDamage: 0.5
+		MeleeAttackRange: Vector(0, 0)
+		AttackSpeed: 600
+		BlockDamageReduction: 0.85
+		Knockback: 125
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+	StatusEffectPropertiesComponent
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+LongBow: Properties, Required

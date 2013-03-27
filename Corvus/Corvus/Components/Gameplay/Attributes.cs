@@ -184,12 +184,12 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
-        /// Gets or sets the critical damage. Value cannot be lower than 1.
+        /// Gets or sets the critical damage. 
         /// </summary>
         public float CritDamage
         {
             get { return _CritDamage; }
-            set { _CritDamage = Math.Max(value, 1); }
+            set { _CritDamage = Math.Max(value, 0); }
         }
 
         /// <summary>

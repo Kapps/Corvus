@@ -1,5 +1,5 @@
 ﻿A list to keep track of the size of entities being generated.
 	
 	Coins: 12,12
-	Weapons: 16,16
+	Weapons: 22,22
 	Powerups: 16,16

@@ -68,7 +68,7 @@ namespace Corvus {
             // Start off in game.
             StateManager.PushState(_SceneManager);
             _MainMenuState = new MainMenuState();
-            StateManager.PushState(_MainMenuState); //TODO: Move this probably
+            //StateManager.PushState(_MainMenuState); //TODO: Move this probably
 			CreateNewPlayer();
             MenuBinds(); //TODO: Not sure how to do Menu Binds, temp for now.
             RegisterGlobalComponent(new DebugComponent());

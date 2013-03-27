@@ -35,11 +35,14 @@ Required
 %%%%% : Properties, Required
 
 **********************************************************************************
-*	Weapons (Not finished. THERE is one more thing i want to add to it.)	******
+*	Weapons		******************************************************************
 **********************************************************************************
 
 #editable
 Properties
+	WeaponPropertiesComponent 
+		WeaponName: %%%%
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, %%%%)
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/ %%%% ) #fill in
 		Color: Color(White)
@@ -50,15 +53,16 @@ Properties
 		HitDelay: 0
 		ConsumesMana: false
 		#If not ranged, remove all projectile properties.
-		ProjectileName: Sprites/ %%%%
+		ProjectileName: Sprites/Projectiles/ %%%%
 		ProjectileSize: Vector(0, 0)
 		ProjectileOffset: Vector(0, 0)
 		ProjectileVelocity: Vector(0, 0)
 		ProjectileGravityCoefficient: 0
 		ProjectileHorDragCoefficient: 0
 		#if this does not have an aoe effect, remove all of these.
-		AoEName: Sprites/ %%%%
+		AoEName: Sprites/Effects/ %%%%
 		AoESize: Vector(0, 0)
+		AoEOffset: Vector(0, 0)
 		AoEDuration: 0
 		AoEDamagePercent: 0
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
@@ -124,6 +128,7 @@ Properties
 		#if this does not have an aoe effect, remove all of these.
 		AoEName: Sprites/ %%%%
 		AoESize: Vector(0, 0)
+		AoEOffset: Vector(0, 0)
 		AoEDuration: 0
 		AoEDamagePercent: 0
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
@@ -145,6 +150,8 @@ Properties
 		BlockSpeed: 0
 		BlockChance: 1
 		Knockback: 0
+		CritChance: 0
+		CritDamage: 1
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
@@ -237,7 +244,7 @@ Properties
 		Dexterity: 0
 		Intelligence: 0
 		CritChance: 0
-		CritDamage: 0
+		CritDamage: 1
 	EquipmentComponent
 		UseWeaponBonuses: true #do not edit
 		DefaultWeaponName: Spear

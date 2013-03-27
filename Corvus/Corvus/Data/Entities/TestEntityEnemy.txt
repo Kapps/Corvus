@@ -9,7 +9,7 @@ EnemySprite : RedSprite
 Attributes
 	AttributesComponent
 		MaxHealth: Random(250, 300)
-		Strength: 7
+		Strength: 75
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
@@ -17,11 +17,11 @@ Attributes
 		AttackSpeed: 900
 		BlockSpeed: 500
 		BlockChance: 0.7
-		Knockback: 100
+		Knockback: 0
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 	DestroyableObjectComponent
-		DyingSprite: Sprites/Effects/Explosions
+		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 0.5
 		AwardedExperience: 100
 		DropsItem: true
@@ -81,7 +81,7 @@ TestEntityEnemy : RedSprite, EnemySprite, HealthyBig, Pather, MoverEnemy, Attrib
 	PhysicsComponent
 	CollisionKnockbackComponent
 		UseAttributes: false
-		Knockback: 200
+		Knockback: 0
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
 	CollisionDamageComponent

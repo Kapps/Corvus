@@ -1,0 +1,57 @@
+
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Fireball
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spell)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_Fireball) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: true
+		AppliesEffect: true
+		IsAoE: false
+		HitDelay: 0.9
+		ConsumesMana: true
+		#If not ranged, remove all projectile properties.
+		ProjectileName: Sprites/Projectiles/Projectile_Fireball
+		ProjectileSize: Vector(15, 15)
+		ProjectileOffset: Vector(5, -7)
+		ProjectileVelocity: Vector(400, 60)
+		ProjectileGravityCoefficient: 0.05
+		ProjectileHorDragCoefficient: 0
+	AttributesComponent
+		ManaCost: 4		#Only used if it consumes mana. 
+		Strength: 0
+		StrModifier: 1.1
+		Dexterity: 0
+		DexModifier: 0.5
+		Intelligence: 0
+		IntModifier: 1.75
+		CritChance: 0.07
+		CritDamage: 0.1
+		MeleeAttackRange: Vector(0, 0)
+		AttackSpeed: 450
+		BlockDamageReduction: 0.9
+		Knockback: 100
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+	StatusEffectPropertiesComponent
+		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
+		EffectType: Weakness
+		BaseValue: 0
+		Intensity: 0.85
+		Duration: 10
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+Fireball: Properties, Required

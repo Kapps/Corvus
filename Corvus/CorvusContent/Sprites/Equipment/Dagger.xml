@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<XnaContent>
-  <Asset Type="System.String[]">
-    <Item>Sprites/Equipment/weapons.png	{5, 3}</Item>
-    <Item>IdleDown	200	{5, 3}	{5, 3}	Default	Looped</Item>
-  </Asset>
-</XnaContent>

@@ -69,10 +69,10 @@
   <object name="Climber2" type="Path" x="972" y="1319">
    <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 915,-501"/>
   </object>
-  <object name="Sit1" type="Dagger" x="1627" y="1249" width="32" height="32"/>
-  <object name="Sit3" type="Spear" x="1427" y="1249" width="32" height="32"/>
-  <object name="Sit2" type="Bow" x="1327" y="1249" width="32" height="32"/>
-  <object name="Powerup1" type="Recover" x="1427" y="1249" width="16" height="16"/>
+  <object name="Sit1" type="PoisonBomb" x="1627" y="1249" width="22" height="22"/>
+  <object name="Sit3" type="ArcticLance" x="1427" y="1249" width="22" height="22"/>
+  <object name="Sit2" type="IronBow" x="1327" y="1249" width="22" height="22"/>
+  <object name="Powerup1" type="IWorkOut" x="1427" y="1249" width="16" height="16"/>
   <object name="Jumper2" type="TestEntityEnemy" x="1314" y="1498" width="32" height="32">
    <properties>
     <property name="PathComponent.Nodes" value="Collection(Vector(1450, 1650), Vector(1450,1650))"/>
@@ -85,6 +85,7 @@
     <property name="Sprite Component.Color" value="Color(128, 125, 128, 255)"/>
    </properties>
   </object>
+   <!--
   <object name="Climber3" type="Path" x="1814" y="1379">
    <polyline points="0,0 -697,-60 -693,-141 -758,-239 106,-267 12,-363 172,-469 271,-491 66,-564 -200,-494 -314,-531 -564,-564 -823,-528 -942,-567 -1108,-469 -1338,-467 -1597,-467 -1703,-532"/>
   </object>
@@ -100,6 +101,7 @@
        <property name="LevelChangeComponent.PrevLevel" value="Arena"/>
      </properties>
    </object>
+   -->
  </objectgroup>
  <layer name="Solid Objects" width="80" height="50">
   <properties>

@@ -139,114 +139,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Equipment\testweapon.png">
-      <Name>testweapon</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\TestWeapon1.xml">
-      <Name>TestWeapon1</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\testweaponD.png">
-      <Name>testweaponD</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\TestWeapon2.xml">
-      <Name>TestWeapon2</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Projectile.png">
-      <Name>Projectile</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\TestProjectile.xml">
-      <SubType>Designer</SubType>
-      <Name>TestProjectile</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\TestWeapon3.xml">
-      <Name>TestWeapon3</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Equipment\testweaponB.png">
-      <Name>testweaponB</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Effects\Explosion1.png">
       <Name>Explosion1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Effects\Explosions.xml">
-      <Name>Explosions</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
     <Compile Include="Sprites\Effects\Explosion2.png">
       <Name>Explosion2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Effects\Explosion3.png">
-      <Name>Explosion3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Effects\Explosions1.png">
-      <Name>Explosions1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\weapons.png">
-      <Name>weapons</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\Bow.xml">
-      <Name>Bow</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\Spear.xml">
-      <Name>Spear</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Equipment\Dagger.xml">
-      <Name>Dagger</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>SpriteProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -635,6 +536,264 @@
     </Compile>
     <Compile Include="Sprites\StatusEffects\IWorkOut.png">
       <Name>IWorkOut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerups\IWorkOut.png">
+      <Name>IWorkOut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Powerups\Powerup_IWorkOut.xml">
+      <Name>Powerup_IWorkOut</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\IronBow.png">
+      <Name>IronBow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\IronLance.png">
+      <Name>IronLance</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\IronSword.png">
+      <Name>IronSword</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_IronBow.xml">
+      <Name>Weapon_IronBow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_IronLance.xml">
+      <Name>Weapon_IronLance</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_IronSword.xml">
+      <Name>Weapon_IronSword</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Fireball.png">
+      <Name>Fireball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_Fireball.xml">
+      <Name>Weapon_Fireball</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Projectiles\Arrow.png">
+      <Name>Arrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\Fireball.png">
+      <Name>Fireball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\Projectile_Arrow.xml">
+      <Name>Projectile_Arrow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\Projectile_Fireball.xml">
+      <Name>Projectile_Fireball</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\GaiaBlade.png">
+      <Name>GaiaBlade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_GaiaBlade.xml">
+      <Name>Weapon_GaiaBlade</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Effects\Effect_Explosion1.xml">
+      <Name>Effect_Explosion1</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Effects\Effect_Explosion2.xml">
+      <Name>Effect_Explosion2</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Effects\Effect_Sand.xml">
+      <Name>Effect_Sand</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Effects\Sand.png">
+      <Name>Sand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Iceball.png">
+      <Name>Iceball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_IceBall.xml">
+      <Name>Weapon_IceBall</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Projectiles\IceBall.png">
+      <Name>IceBall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\Projectile_IceBall.xml">
+      <Name>Projectile_IceBall</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\EarthBall.png">
+      <Name>EarthBall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_EarthBall.xml">
+      <Name>Weapon_EarthBall</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Projectiles\Projectile_Rock.xml">
+      <Name>Projectile_Rock</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\Rock.png">
+      <Name>Rock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Weapon_WindBall.xml">
+      <Name>Weapon_WindBall</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\WindBall.png">
+      <Name>WindBall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Projectiles\Projectile_WindBall.xml">
+      <Name>Projectile_WindBall</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\WindBall.png">
+      <Name>WindBall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\LongBow.png">
+      <Name>LongBow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_LongBow.xml">
+      <Name>Weapon_LongBow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\PoisonBomb.png">
+      <Name>PoisonBomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_PoisonBomb.xml">
+      <Name>Weapon_PoisonBomb</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Effects\Effect_PoisonGas.xml">
+      <Name>Effect_PoisonGas</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Effects\PoisonGas.png">
+      <Name>PoisonGas</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Projectiles\PoisonBomb.png">
+      <Name>PoisonBomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Projectiles\Projectile_PoisonBomb.xml">
+      <Name>Projectile_PoisonBomb</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\ArcticLance.png">
+      <Name>ArcticLance</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_ArcticLance.xml">
+      <Name>Weapon_ArcticLance</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Effects\Effect_IcePillar.xml">
+      <Name>Effect_IcePillar</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Effects\IcePillar.png">
+      <Name>IcePillar</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

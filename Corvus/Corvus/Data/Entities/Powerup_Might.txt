@@ -7,7 +7,7 @@ Properties
 		EffectType: Might
 		BaseValue: 0
 		Intensity: 0.5
-		Duration: 10
+		Duration: 30
 
 #do not modify
 Required

@@ -6,6 +6,7 @@ using CorvEngine.Components;
 using Corvus.Components.Gameplay;
 using Corvus.Components.Gameplay.Equipment;
 using Microsoft.Xna.Framework;
+using CorvEngine;
 
 namespace Corvus.Components
 {
@@ -73,10 +74,12 @@ namespace Corvus.Components
             var EquipmentComponent = entity.GetComponent<EquipmentComponent>();
             var MovementComponent = entity.GetComponent<MovementComponent>();
 
+            var aoeOffset = new Vector2(CorvusExtensions.GetSign(MovementComponent.CurrentDirection) * CPComponent.AoEOffset.X, CPComponent.AoEOffset.Y);
+
             var aoe = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("AreaOfEffect").CreateEntity();
             aoe.Size = new Vector2(CPComponent.AoESize.X, CPComponent.AoESize.Y);
             var center = entity.Location.Center;
-            aoe.Position = new Vector2(center.X - (aoe.Size.X / 2), center.Y - (aoe.Size.Y / 2));
+            aoe.Position = new Vector2(center.X - (aoe.Size.X / 2) + aoeOffset.X , center.Y - (aoe.Size.Y / 2) + aoeOffset.Y);
             entity.Scene.AddEntity(aoe);
             var spriteName = CPComponent.AoEName;
             var effect = CorvusGame.Instance.GlobalContent.LoadSprite(spriteName);

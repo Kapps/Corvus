@@ -29,10 +29,11 @@ namespace Corvus.Components.Gameplay
         private float _ProjectileHorDragCoefficient = 0f;
         private string _AoEName = "";
         private Vector2 _AoESize = new Vector2();
+        private Vector2 _AoEOffset = new Vector2();
         private float _AoEDuration = 0f;
         private float _AoEDamagePercent = 0f;
         private EntityClassification _AoEHitableEntities = EntityClassification.Any;
-
+        
         /// <summary>
         /// Gets or sets whether this entity can attack with melee.
         /// Enemy Only.
@@ -169,6 +170,16 @@ namespace Corvus.Components.Gameplay
             get { return _AoESize; }
             set { _AoESize = value; }
         }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much to offset the area of offset with respect to the center of the entity.
+        /// </summary>
+        public Vector2 AoEOffset
+        {
+            get { return _AoEOffset; }
+            set { _AoEOffset = value; }
+        }
+
         /// <summary>
         /// Gets or sets the duration the area of effect should linger.
         /// </summary>

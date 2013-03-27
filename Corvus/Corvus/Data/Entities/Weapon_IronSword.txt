@@ -1,0 +1,45 @@
+
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Iron Sword
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_IronSword) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0.65
+		ConsumesMana: false
+	AttributesComponent
+		ManaCost: 0		#Only used if it consumes mana. 
+		Strength: 0
+		StrModifier: 1.1
+		Dexterity: 0
+		DexModifier: 1.05
+		Intelligence: 0
+		IntModifier: 1
+		CritChance: 0.1
+		CritDamage: 0.2
+		MeleeAttackRange: Vector(50, 40)
+		AttackSpeed: 300
+		BlockDamageReduction: 0.6
+		Knockback: 75
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+	StatusEffectPropertiesComponent
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+IronSword: Properties, Required

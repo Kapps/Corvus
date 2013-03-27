@@ -16,6 +16,8 @@ namespace Corvus.Components.Gameplay.Equipment
 
         Dagger,
 
-        Bow
+        Bow,
+
+        Spell
     }
 }

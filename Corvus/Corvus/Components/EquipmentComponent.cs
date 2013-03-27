@@ -147,13 +147,15 @@ namespace Corvus.Components
         {
             var mc = this.GetDependency<MovementComponent>();
             var scene = Parent.Scene;
-            var oldWeapon = EntityBlueprint.GetBlueprint(weaponToDrop).CreateEntity();
+            var oldWeapon = EntityBlueprint.GetBlueprint(weaponToDrop.Replace(" ", "")).CreateEntity();
             oldWeapon.Position = new Vector2(Parent.Position.X + -CorvusExtensions.GetSign(mc.CurrentDirection) * (Parent.Size.X + 5), Parent.Position.Y - Parent.Size.Y - 5);
-            oldWeapon.Size = new Vector2(16, 16); 
+            oldWeapon.Size = new Vector2(22, 22); 
             scene.AddEntity(oldWeapon);
 
+            Random rand = new Random();
+            float rMod = (float)rand.Next(20, 50);
             var pc = oldWeapon.GetComponent<PhysicsComponent>();
-            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f * launchModifier, -325f * launchModifier );
+            pc.Velocity = new Vector2(-CorvusExtensions.GetSign(mc.CurrentDirection) * 225f * launchModifier + rMod, -325f * launchModifier + rMod);
         }
 
         private AttributesComponent AttributesComponent;

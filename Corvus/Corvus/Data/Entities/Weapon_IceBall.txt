@@ -1,0 +1,57 @@
+
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Ice Ball
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spell)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_IceBall) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: true
+		AppliesEffect: true
+		IsAoE: false
+		HitDelay: 0.9
+		ConsumesMana: true
+		#If not ranged, remove all projectile properties.
+		ProjectileName: Sprites/Projectiles/Projectile_IceBall
+		ProjectileSize: Vector(16, 16)
+		ProjectileOffset: Vector(5, -7)
+		ProjectileVelocity: Vector(380, 70)
+		ProjectileGravityCoefficient: 0.05
+		ProjectileHorDragCoefficient: 0
+	AttributesComponent
+		ManaCost: 4		#Only used if it consumes mana. 
+		Strength: 0
+		StrModifier: 1.05
+		Dexterity: 0
+		DexModifier: 0.6
+		Intelligence: 10
+		IntModifier: 1.75
+		CritChance: 0.1
+		CritDamage: 0.15
+		MeleeAttackRange: Vector(0, 0)
+		AttackSpeed: 450
+		BlockDamageReduction: 0.9
+		Knockback: 100
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Water)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Water)
+	StatusEffectPropertiesComponent
+		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
+		EffectType: Slow
+		BaseValue: 0
+		Intensity: 0.75
+		Duration: 5
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+IceBall: Properties, Required

@@ -39,5 +39,9 @@
     <Item>BlockLeft	150	{1, 2}	{7, 2}	Looped</Item>
     <Item>BlockDown	150	{1, 3}	{7, 3}	Looped	Default</Item>
     <Item>BlockRight	150	{1, 4}	{7, 4}	Looped</Item>
+    <Item>SpellAttackUp	150	{1, 1}	{7, 1}	Looped</Item>
+    <Item>SpellAttackLeft	150	{1, 2}	{7, 2}	Looped</Item>
+    <Item>SpellAttackDown	150	{1, 3}	{7, 3}	Looped</Item>
+    <Item>SpellAttackRight	150	{1, 4}	{7, 4}	Looped</Item>
 	</Asset>
 </XnaContent>

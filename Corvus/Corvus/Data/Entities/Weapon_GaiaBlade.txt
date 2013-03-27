@@ -1,0 +1,57 @@
+
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Gaia Blade
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_GaiaBlade ) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: false
+		AppliesEffect: true
+		IsAoE: true
+		HitDelay: 0.65
+		ConsumesMana: true
+		#if this does not have an aoe effect, remove all of these.
+		AoEName: Sprites/Effects/Effect_Sand
+		AoESize: Vector(25, 70)
+		AoEOffset: Vector(40, -5)
+		AoEDuration: 0.15
+		AoEDamagePercent: 0.25
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy) #can be whatever entity types.
+	AttributesComponent
+		ManaCost: 8		#Only used if it consumes mana. 
+		Strength: 10
+		StrModifier: 1.35
+		Dexterity: 15
+		DexModifier: 1.3
+		Intelligence: 5
+		IntModifier: 1.1
+		CritChance: 0.05
+		CritDamage: 0.1
+		MeleeAttackRange: Vector(50, 40)
+		AttackSpeed: 300
+		BlockDamageReduction: 0.45
+		Knockback: 60
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
+	StatusEffectPropertiesComponent
+		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
+		EffectType: Slow
+		BaseValue: 0
+		Intensity: 0.15
+		Duration: 1
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+GaiaBlade: Properties, Required

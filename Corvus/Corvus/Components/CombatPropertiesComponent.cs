@@ -166,6 +166,16 @@ namespace Corvus.Components
         }
 
         /// <summary>
+        /// Gets or sets a value that indicates how much to offset the area of offset with respect to the center of the entity.
+        /// </summary>
+        public Vector2 AoEOffset
+        {
+            get { return CombatProperties.AoEOffset; }
+            set { CombatProperties.AoEOffset = value; }
+        }
+
+
+        /// <summary>
         /// Gets or sets the duration the area of effect should linger.
         /// </summary>
         public float AoEDuration

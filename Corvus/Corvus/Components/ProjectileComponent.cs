@@ -38,7 +38,8 @@ namespace Corvus.Components
 
             if (clc.Classification == EntityClassification.Projectile && pc.IsGrounded)
             {
-                AreaOfEffectComponent.CreateAoEEntity(this.Parent);
+                if(CPComponent.IsAoE)
+                    AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 Parent.Dispose();
             }
             base.OnUpdate(Time);
@@ -89,11 +90,11 @@ namespace Corvus.Components
         public static void CreateProjectileEntity(Entity entity, Direction? launchDirection = null)
         {
             var CPComponent = entity.GetComponent<CombatPropertiesComponent>();
-            var SEAComponent = entity.GetComponent<StatusEffectPropertiesComponent>();
             var AttributesComponent = entity.GetComponent<AttributesComponent>();
             var EquipmentComponent = entity.GetComponent<EquipmentComponent>();
             var CombatComponent = entity.GetComponent<CombatComponent>();
             var MovementComponent = entity.GetComponent<MovementComponent>();
+            var SEAComponent = entity.GetComponent<StatusEffectPropertiesComponent>();
 
             var projectile = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("Projectile").CreateEntity();
             projectile.Size = new Vector2(CPComponent.ProjectileSize.X, CPComponent.ProjectileSize.Y);
@@ -113,7 +114,7 @@ namespace Corvus.Components
             if (CPComponent.AppliesEffect)
             {
                 var seac = projectile.GetComponent<StatusEffectPropertiesComponent>();
-                seac.StatusEffectAttributes = SEAComponent.StatusEffectAttributes;
+                seac.StatusEffectAttributes = (SEAComponent != null) ? SEAComponent.StatusEffectAttributes : EquipmentComponent.CurrentWeapon.Effect;
             }
             if(EquipmentComponent.UseWeaponBonuses)// != null)
             {
@@ -133,6 +134,8 @@ namespace Corvus.Components
                 physC.Velocity = new Vector2(CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
             else if (direction == Direction.Left)
                 physC.Velocity = new Vector2(-CPComponent.CombatProperties.ProjectileVelocity.X, -CPComponent.CombatProperties.ProjectileVelocity.Y);
+            var mc = projectile.GetComponent<MovementComponent>();
+            mc.CurrentDirection = MovementComponent.CurrentDirection;
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿#editable 
+Properties
+	SpriteComponent (Sprite)
+		Color: Color(White)
+		Sprite: Sprite(Sprites/Powerups/Powerup_IWorkOut) #Fill in
+	StatusEffectPropertiesComponent
+		EffectType: IWorkOut
+		BaseValue: 0
+		Intensity: 0.5
+		Duration: 30
+
+#do not modify
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	CollisionStatusEffectComponent		
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+
+#don't forget the Entity name.
+IWorkOut : Properties, Required

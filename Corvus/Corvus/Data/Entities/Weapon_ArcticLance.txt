@@ -1,0 +1,52 @@
+﻿
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Arctic Lance
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_ArcticLance) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: true
+		HitDelay: 0.5
+		ConsumesMana: true
+		#if this does not have an aoe effect, remove all of these.
+		AoEName: Sprites/Effects/Effect_IcePillar
+		AoESize: Vector(25, 70)
+		AoEOffset: Vector(40, -5)
+		AoEDuration: 0.15
+		AoEDamagePercent: 0.45
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy) #can be whatever entity types.
+	AttributesComponent
+		ManaCost: 5		#Only used if it consumes mana. 
+		Strength: 5
+		StrModifier: 1.20
+		Dexterity: 10
+		DexModifier: 1.4
+		Intelligence: 8
+		IntModifier: 1.2
+		CritChance: 0.03
+		CritDamage: 0.20
+		MeleeAttackRange: Vector(60, 40)
+		AttackSpeed: 400
+		BlockDamageReduction: 0.5
+		Knockback: 110
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Water)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Water)
+	StatusEffectPropertiesComponent
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+ArcticLance: Properties, Required
