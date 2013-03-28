@@ -90,6 +90,21 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <Compile Include="Fonts\PlayerNameFont.spritefont">
+      <Name>PlayerNameFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\PlayerCoinsFont.spritefont">
+      <Name>PlayerCoinsFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\PlayerAttributeFont.spritefont">
+      <Name>PlayerAttributeFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Levels\testLevel.tmx">
       <Name>testLevel</Name>
       <Importer>XmlImporter</Importer>
@@ -796,6 +811,94 @@
       <Name>IcePillar</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\PlayerUI.png">
+      <Name>PlayerUI</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\PlayerHealthMeter.png">
+      <Name>PlayerHealthMeter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Interface\PlayerManaMeter.png">
+      <Name>PlayerManaMeter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\PlayerWeaponBg.png">
+      <Name>PlayerWeaponBg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\PlayerCoin.png">
+      <Name>PlayerCoin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\PlayerExpBar.png">
+      <Name>PlayerExpBar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\ShortBow.png">
+      <Name>ShortBow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_ShortBow.xml">
+      <Name>Weapon_ShortBow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Trident.png">
+      <Name>Trident</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_Trident.xml">
+      <Name>Weapon_Trident</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\BastardSword.png">
+      <Name>BastardSword</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_BastardSword.xml">
+      <Name>Weapon_BastardSword</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Equipment\Muramasa.png">
+      <Name>Muramasa</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Equipment\Weapon_Muramasa.xml">
+      <Name>Weapon_Muramasa</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>SpriteProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

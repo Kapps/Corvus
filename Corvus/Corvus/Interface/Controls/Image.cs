@@ -33,7 +33,7 @@ namespace Corvus.Interface.Controls
 
         public override void Draw(GameTime gameTime)
         {
-            this.SpriteBatch.Draw(Texture, Position, new Rectangle(0, 0, (int)Size.X, (int)Size.Y), Color);
+            this.SpriteBatch.Draw(Texture, new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y), Texture.Bounds, Color);
         }
     }
 }

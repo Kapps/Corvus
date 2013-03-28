@@ -2,38 +2,31 @@
 #editable
 Properties
 	WeaponPropertiesComponent 
-		WeaponName: Long Bow
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Bow)
+		WeaponName: Bastard Sword
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
 	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/Equipment/Weapon_LongBow ) #fill in
+		Sprite: Sprite(Sprites/Equipment/Weapon_BastardSword) #fill in
 		Color: Color(White)
 	CombatPropertiesComponent
-		IsRanged: true
+		IsRanged: false
 		AppliesEffect: false
 		IsAoE: false
 		HitDelay: 0.65
 		ConsumesMana: false
-		#If not ranged, remove all projectile properties.
-		ProjectileName: Sprites/Projectiles/Projectile_Arrow
-		ProjectileSize: Vector(12, 12)
-		ProjectileOffset: Vector(5, -7)
-		ProjectileVelocity: Vector(700, 50)
-		ProjectileGravityCoefficient: 0.05
-		ProjectileHorDragCoefficient: 0
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
-		Strength: 15
-		StrModifier: 0.8
-		Dexterity: 0
-		DexModifier: 0.8
+		Strength: 35
+		StrModifier: 1.15
+		Dexterity: 5
+		DexModifier: 1.1
 		Intelligence: 0
 		IntModifier: 1
-		CritChance: 0.15
-		CritDamage: 0.5
-		MeleeAttackRange: Vector(0, 0)
-		AttackSpeed: 700
-		BlockDamageReduction: 0.85
-		Knockback: 125
+		CritChance: 0.1
+		CritDamage: 0.3
+		MeleeAttackRange: Vector(50, 40)
+		AttackSpeed: 275
+		BlockDamageReduction: 0.5
+		Knockback: 80
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
@@ -49,4 +42,4 @@ Required
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 
-LongBow: Properties, Required
+BastardSword: Properties, Required

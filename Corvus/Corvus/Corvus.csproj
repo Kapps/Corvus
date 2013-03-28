@@ -172,6 +172,7 @@
     <Compile Include="Interface\Controls\Image.cs" />
     <Compile Include="Interface\Controls\Label.cs" />
     <Compile Include="Interface\Controls\LinkButton.cs" />
+    <Compile Include="Interface\Controls\PlayerUI.cs" />
     <Compile Include="Interface\InGameInterface.cs" />
     <Compile Include="Interface\UIHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -247,6 +248,9 @@
     <Content Include="Data\Entities\Weapon_ArcticLance.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Entities\Weapon_BastardSword.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Entities\Weapon_EarthBall.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -271,7 +275,16 @@
     <Content Include="Data\Entities\Weapon_LongBow.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Entities\Weapon_Muramasa.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Entities\Weapon_PoisonBomb.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Weapon_ShortBow.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Weapon_Trident.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\Weapon_WindBall.txt">

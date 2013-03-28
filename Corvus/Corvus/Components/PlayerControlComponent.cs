@@ -255,8 +255,8 @@ namespace Corvus.Components
             EC = this.GetDependency<EquipmentComponent>();
 
             //TODO: Don't forget to uncomment this 
-            //if(!AC.IsDiedRegistered)
-            //    AC.Died += AC_Died;
+            if (!AC.IsDiedRegistered)
+                AC.Died += AC_Died;
         }
 
         protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time)

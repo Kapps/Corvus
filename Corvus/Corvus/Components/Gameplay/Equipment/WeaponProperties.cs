@@ -35,6 +35,11 @@ namespace Corvus.Components.Gameplay.Equipment
         /// </summary>
         public string AnimationName { get { return WeaponType.ToString() + "Attack"; } }
 
+        /// <summary>
+        /// Gets the name of this weapon based on it's entity name. HACK, i know.
+        /// </summary>
+        public string SystemName { get { return Name.Replace(" ", ""); } }
+
         private string _Name = "";
         private WeaponTypes _WeaponType;
 

@@ -35,6 +35,7 @@ namespace Corvus {
 			switch(_Player.Index) {
 				case 1:
 					Assign(JumpPressed, false, new InputButton(Keys.Space));
+					Assign(JumpPressed, false, new InputButton(Keys.Up));
 					Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Keys.Left));
 					Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Keys.Right));
                     Assign(BlockPressed, false, new InputButton(Keys.X));

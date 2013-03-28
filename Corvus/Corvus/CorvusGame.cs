@@ -69,7 +69,7 @@ namespace Corvus {
             StateManager.PushState(_SceneManager);
             _MainMenuState = new MainMenuState();
             //StateManager.PushState(_MainMenuState); //TODO: Move this probably
-			CreateNewPlayer();
+            CreateNewPlayer();
             MenuBinds(); //TODO: Not sure how to do Menu Binds, temp for now.
             RegisterGlobalComponent(new DebugComponent());
 			GraphicsManager.ApplyChanges();

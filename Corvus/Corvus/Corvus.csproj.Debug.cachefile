@@ -118,6 +118,23 @@ Content\Sprites\Effects\Effect_PoisonGas.xnb
 Content\Sprites\Projectiles\Projectile_PoisonBomb.xnb
 Content\Sprites\Equipment\Weapon_ArcticLance.xnb
 Content\Sprites\Effects\Effect_IcePillar.xnb
+Content\Interface\PlayerUI.xnb
+Content\Interface\PlayerHealthMeter.xnb
+Content\Interface\PlayerManaMeter.xnb
+Content\Interface\PlayerWeaponBg.xnb
+Content\Interface\PlayerCoin.xnb
+Content\Interface\PlayerExpBar.xnb
+Content\Sprites\Equipment\ShortBow.xnb
+Content\Sprites\Equipment\Trident.xnb
+Content\Sprites\Equipment\BastardSword.xnb
+Content\Sprites\Equipment\Muramasa.xnb
+Content\Fonts\PlayerNameFont.xnb
+Content\Fonts\PlayerCoinsFont.xnb
+Content\Fonts\PlayerAttributeFont.xnb
+Content\Sprites\Equipment\Weapon_ShortBow.xnb
+Content\Sprites\Equipment\Weapon_Trident.xnb
+Content\Sprites\Equipment\Weapon_BastardSword.xnb
+Content\Sprites\Equipment\Weapon_Muramasa.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
@@ -144,6 +161,7 @@ Data\Entities\Misc_Projectile.txt
 Data\Entities\TestEntity.txt
 Data\Entities\TestEntityEnemy.txt
 Data\Entities\Weapon_ArcticLance.txt
+Data\Entities\Weapon_BastardSword.txt
 Data\Entities\Weapon_EarthBall.txt
 Data\Entities\Weapon_Fireball.txt
 Data\Entities\Weapon_GaiaBlade.txt
@@ -152,7 +170,10 @@ Data\Entities\Weapon_IronBow.txt
 Data\Entities\Weapon_IronLance.txt
 Data\Entities\Weapon_IronSword.txt
 Data\Entities\Weapon_LongBow.txt
+Data\Entities\Weapon_Muramasa.txt
 Data\Entities\Weapon_PoisonBomb.txt
+Data\Entities\Weapon_ShortBow.txt
+Data\Entities\Weapon_Trident.txt
 Data\Entities\Weapon_WindBall.txt
 Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx

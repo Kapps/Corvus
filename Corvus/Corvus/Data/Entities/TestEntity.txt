@@ -30,8 +30,8 @@ Properties
 		IntGrowth: 2
 	AttributesComponent
 		MaxHealth: Random(45000, 50000)
-		MaxMana: 1000
-		ManaRegen: 0.05
+		MaxMana: 100
+		ManaRegen: 0.005
 		Strength: 25
 		Dexterity: 20
 		Intelligence: 10
@@ -40,7 +40,7 @@ Properties
 	EquipmentComponent
 		UseWeaponBonuses: true 
 		DefaultWeaponName: IronLance
-		Capacity: 1
+		Capacity: 3
 		
 Damager
 	FloatingTextComponent

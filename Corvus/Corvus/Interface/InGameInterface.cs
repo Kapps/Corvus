@@ -7,6 +7,7 @@ using CorvEngine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CorvEngine.Components;
+using Corvus.Interface.Controls;
 
 namespace Corvus.Interface
 { 
@@ -15,7 +16,7 @@ namespace Corvus.Interface
     /// </summary>
     public class InGameInterface : GameStateComponent
     {
-        SpriteFont _font = CorvBase.Instance.GlobalContent.Load<SpriteFont>("Fonts/testfont");
+        private List<PlayerUI> _PlayerUIs = new List<PlayerUI>();
 
         public InGameInterface(GameState gamestate)
             : base(gamestate)
@@ -23,32 +24,32 @@ namespace Corvus.Interface
             this.Enabled = true;
             this.Visible = true;
             this.DrawOrder = 700;
+            CorvusGame.Instance.PlayerAdded += Instance_PlayerAdded;
+            CorvusGame.Instance.PlayerRemoved += Instance_PlayerRemoved;
         }
 
-        protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time)
-        {
-            
-        }
+        protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time) { }
 
         protected override void OnDraw(Microsoft.Xna.Framework.GameTime Time)
         {
-            //TODO: create a control that represents a single players interface thing.
-            var player = CorvBase.Instance.Players.First();
-            var ac = player.Character.GetComponent<Corvus.Components.AttributesComponent>();
-
-            string hpstring = string.Format("HP: {0} / {1}", ((int)ac.CurrentHealth).ToString(), ((int)ac.MaxHealth).ToString());
-            CorvBase.Instance.SpriteBatch.DrawString(_font, hpstring, new Vector2(10, 10), Color.Red);
-
-            string mpstring = string.Format("Mana: {0} / {1}", ((int)ac.CurrentMana).ToString(), ((int)ac.MaxMana).ToString());
-            CorvBase.Instance.SpriteBatch.DrawString(_font, mpstring, new Vector2(10, 30), Color.Blue);
-
-            var ec = player.Character.GetComponent<Corvus.Components.EquipmentComponent>();
-            string weaponstring = string.Format("Weapon: {0}", ec.CurrentWeapon.WeaponData.Name);
-            CorvBase.Instance.SpriteBatch.DrawString(_font, weaponstring, new Vector2(10, 50), Color.White);
-
-            var sc = player.Character.GetComponent<Corvus.Components.ScoreComponent>();
-            string scoreString = "Coins: " + sc.Coins;
-            CorvBase.Instance.SpriteBatch.DrawString(_font, scoreString, new Vector2(10, 70), Color.Gold);
+            if (_PlayerUIs.Count() == 0)
+                return;
+            var UIs = _PlayerUIs.Take(_PlayerUIs.Count());
+            foreach (var p in UIs)
+                p.Draw(Time);
         }
+
+        void Instance_PlayerAdded(Player obj)
+        {
+            PlayerUI ui = new PlayerUI(obj);
+            ui.Position = new Vector2(_PlayerUIs.Count() * (255f) + 5f, 5f);
+            _PlayerUIs.Add(ui);
+        }
+        
+        void Instance_PlayerRemoved(Player obj)
+        {
+            _PlayerUIs.Remove(_PlayerUIs.Where(p => p.ID == obj.Character.ID).SingleOrDefault());
+        }
+
     }
 }

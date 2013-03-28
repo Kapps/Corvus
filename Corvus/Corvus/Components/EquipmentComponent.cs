@@ -27,6 +27,11 @@ namespace Corvus.Components
         public Weapon CurrentWeapon { get { return Weapons[_CurrentWeaponIndex]; } }
 
         /// <summary>
+        /// Gets the current weapon index.
+        /// </summary>
+        public int CurrentIndex { get { return _CurrentWeaponIndex; } }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to use weapon bonuses. Should be false for enemies, true for players.
         /// </summary>
         public bool UseWeaponBonuses
@@ -83,7 +88,7 @@ namespace Corvus.Components
         public void RemoveWeapons()
         {
             //Default weapon is the currently equiped one so do nothing.
-            if (Weapons.Count() == 1 && CurrentWeapon.WeaponData.Name == DefaultWeaponName)
+            if (Weapons.Count() == 1 && CurrentWeapon.WeaponData.SystemName == DefaultWeaponName)
                 return;
             Random rand = new Random();
             float launchMod = 1f;
@@ -91,8 +96,8 @@ namespace Corvus.Components
             foreach (Weapon w in Weapons.Reverse())
             {
                 //drop the weapon except for the default one.
-                if (w.WeaponData.Name != DefaultWeaponName)
-                    DropWeapon(w.WeaponData.Name, launchMod);
+                if (w.WeaponData.SystemName != DefaultWeaponName)
+                    DropWeapon(w.WeaponData.SystemName, launchMod);
                 Weapons.Remove(w);
                 launchMod += 0.25f;
             }
@@ -138,7 +143,7 @@ namespace Corvus.Components
 
         private void ReplaceWeapon(Weapon oldWeapon, Weapon newWeapon)
         {
-            DropWeapon(oldWeapon.WeaponData.Name);
+            DropWeapon(oldWeapon.WeaponData.SystemName);
             Weapons.Remove(oldWeapon);
             Weapons.Add(newWeapon);
         }
@@ -147,7 +152,7 @@ namespace Corvus.Components
         {
             var mc = this.GetDependency<MovementComponent>();
             var scene = Parent.Scene;
-            var oldWeapon = EntityBlueprint.GetBlueprint(weaponToDrop.Replace(" ", "")).CreateEntity();
+            var oldWeapon = EntityBlueprint.GetBlueprint(weaponToDrop).CreateEntity();
             oldWeapon.Position = new Vector2(Parent.Position.X + -CorvusExtensions.GetSign(mc.CurrentDirection) * (Parent.Size.X + 5), Parent.Position.Y - Parent.Size.Y - 5);
             oldWeapon.Size = new Vector2(22, 22); 
             scene.AddEntity(oldWeapon);
