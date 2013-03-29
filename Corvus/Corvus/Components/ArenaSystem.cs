@@ -33,9 +33,16 @@ namespace CorvEngine.Components
         protected override void OnUpdate(GameTime Time)
         {
             bool allEntitiesDisposed = true;
+            bool allSpawnersComplete = true;
 
+            //Go over each of the spawner components. 
+            //Check if all entities are disposed and all spawners are finished spawning.
+            //If just one isn't done or all entities were not disposed, we cannot complete the wave.
             foreach (SpawnerComponent spawnerComponent in SpawnerComponents)
             {
+                if (spawnerComponent.TotalEntitiesToSpawn != spawnerComponent.TotalEntitiesSpawned)
+                    allSpawnersComplete = false;
+
                 foreach (Entity entity in spawnerComponent.EntitiesSpawned)
                 {
                     if (entity.IsDisposed == false)
@@ -43,7 +50,7 @@ namespace CorvEngine.Components
                 }
             }
 
-            if (allEntitiesDisposed)
+            if (allEntitiesDisposed && allSpawnersComplete)
             {
                 foreach (SpawnerComponent spawnerComponent in SpawnerComponents)
                 {

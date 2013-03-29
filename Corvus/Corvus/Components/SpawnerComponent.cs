@@ -25,10 +25,10 @@ namespace Corvus.Components
         }
 
         //Best to put this somewhere else?
-        public int EntitiesToSpawn
+        public int TotalEntitiesToSpawn
         {
-            get { return _EntitiesToSpawn; }
-            set { _EntitiesToSpawn = value; }
+            get { return _TotalEntitiesToSpawn; }
+            set { _TotalEntitiesToSpawn = value; }
         }
 
         public bool SpawnerEnabled
@@ -43,18 +43,25 @@ namespace Corvus.Components
             set { _EntitiesSpawned = value; }
         }
 
+        public string BlueprintName
+        {
+            get { return _BlueprintName; }
+            set { _BlueprintName = value; }
+        }
+
         private bool _SpawnerEnabled = true;
         private DateTime _LastSpawn;
         private List<Entity> _EntitiesSpawned = new List<Entity>();
         private int _TotalEntitiesSpawned;
-        private int _EntitiesToSpawn = 1;
+        private int _TotalEntitiesToSpawn = 1;
         private ArenaSystem ArenaSystem;
+        private string _BlueprintName;
 
         protected override void OnUpdate(GameTime Time)
         {
-            if ((DateTime.Now - LastSpawn).TotalSeconds > 2 && TotalEntitiesSpawned != EntitiesToSpawn && SpawnerEnabled)
+            if ((DateTime.Now - LastSpawn).TotalSeconds > 2 && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
             {
-                Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestEntityEnemy").CreateEntity();
+                Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(BlueprintName).CreateEntity();
                 entity.Position = this.Parent.Position;
                 entity.Size = new Vector2(32, 32);
                 Scene.AddEntity(entity);
