@@ -33,7 +33,17 @@ namespace Corvus.Components.Gameplay.Equipment
         /// <summary>
         /// Gets the animation name.
         /// </summary>
-        public string AnimationName { get { return WeaponType.ToString() + "Attack"; } }
+        public string AnimationName { 
+            get {
+                string type = (WeaponType == WeaponTypes.Spell || WeaponType == WeaponTypes.Bow) ? WeaponType.ToString() : "Melee";
+                return type + "Attack";
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating that his weapon is melee.
+        /// </summary>
+        public bool IsMelee { get { return !(WeaponType == WeaponTypes.Spell || WeaponType == WeaponTypes.Bow); } }
 
         /// <summary>
         /// Gets the name of this weapon based on it's entity name. HACK, i know.

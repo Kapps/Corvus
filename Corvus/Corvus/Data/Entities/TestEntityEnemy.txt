@@ -49,6 +49,9 @@ Combatpropertieser
 		AoEDuration: 5
 		AoEDamagePercent: 0.33
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player)
+		EnemyUseWeaponAnimation: true
+		EnemyWeaponName: Sprites/Equipment/IronSword
+		EnemyWeaponOffset: Vector(0,-4)
 
 HealthyBig
 	HealthBarComponent

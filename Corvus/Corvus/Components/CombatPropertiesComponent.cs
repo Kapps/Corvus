@@ -201,6 +201,33 @@ namespace Corvus.Components
             get { return CombatProperties.AoEHitableEntities; }
             set { CombatProperties.AoEHitableEntities = value; }
         }
+        
+        /// <summary>
+        /// Gets or sets a value indicating the enemy should use a swinging weapon animation.
+        /// </summary>
+        public bool EnemyUseWeaponAnimation
+        {
+            get { return CombatProperties.EnemyUseWeaponAnimation; }
+            set { CombatProperties.EnemyUseWeaponAnimation = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates which weapon to use as a swinging animation.
+        /// </summary>
+        public string EnemyWeaponName
+        {
+            get { return CombatProperties.EnemyWeaponName; }
+            set { CombatProperties.EnemyWeaponName = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how much to offset the weapon animation by.
+        /// </summary>
+        public Vector2 EnemyWeaponOffset
+        {
+            get { return CombatProperties.EnemyWeaponOffset; }
+            set { CombatProperties.EnemyWeaponOffset = value; }
+        }
 
         private CombatProperties _CombatProperties = new CombatProperties();
         private EquipmentComponent EquipmentComponent;

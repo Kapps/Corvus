@@ -19,7 +19,7 @@ namespace Corvus.Components.Gameplay
         private Entity _Entity;
         private float _Duration = 0f;
         private float _RotationAngle;
-        private float _OffSet = 0f;
+        private Vector2 _OffSet = new Vector2();
         private Vector2 _Origin;
         private SpriteEffects _Flip;
         private DateTime _StartTime;
@@ -29,11 +29,11 @@ namespace Corvus.Components.Gameplay
         /// <summary>
         /// Starts the weapon swing animation based on the entity, weapon name, and it's duration (usually the attack speed.).
         /// </summary>
-        public void Start(Entity src, string weapon, float duration, float offset = 0f)
+        public void Start(Entity src, string weapon, float duration, Vector2 offset)
         {
             _StartAnimation = true;
             _Entity = src;
-            _Weapon = CorvusGame.Instance.GlobalContent.Load<Texture2D>("Sprites/Equipment/" + weapon);
+            _Weapon = CorvusGame.Instance.GlobalContent.Load<Texture2D>(weapon);
             _Duration = duration;
             _StartTime = DateTime.Now;
             _RotationAngle = 0f;
@@ -42,7 +42,7 @@ namespace Corvus.Components.Gameplay
             _Direction = CorvusExtensions.GetSign(mc.CurrentDirection);
             _Origin = (mc.CurrentDirection == Direction.Left) ? new Vector2(_Entity.Size.X / 2, _Entity.Size.Y / 2) : new Vector2(0f, _Entity.Size.Y / 2);
             _Flip = (mc.CurrentDirection == Direction.Left) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            _OffSet = _Direction * offset;
+            _OffSet = new Vector2(_Direction * offset.X, offset.Y);
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Corvus.Components.Gameplay
             if (!_StartAnimation)
                 return;
 
-            var pos = new Vector2(_Entity.Location.Center.X + _Direction * _Entity.Size.X / 2 + _OffSet, _Entity.Location.Center.Y - 4);
+            var pos = new Vector2(_Entity.Location.Center.X + _Direction * _Entity.Size.X / 2 + _OffSet.X, _Entity.Location.Center.Y + _OffSet.Y);
             var toscreen = Camera.Active.WorldToScreen(pos);
-            CorvusGame.Instance.SpriteBatch.Draw(_Weapon, toscreen, _Weapon.Bounds, Color.White, _RotationAngle, _Origin, 1f, _Flip, 0f);
+            CorvusGame.Instance.SpriteBatch.Draw(_Weapon, toscreen, new Rectangle(0,0,22,22), Color.White, _RotationAngle, _Origin, 1f, _Flip, 0f);
         }
 
 

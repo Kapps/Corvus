@@ -3,7 +3,7 @@
 Properties
 	WeaponPropertiesComponent 
 		WeaponName: Gaia Blade
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Sword)
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/Weapon_GaiaBlade ) #fill in
 		Color: Color(White)

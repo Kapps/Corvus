@@ -90,8 +90,8 @@ namespace Corvus.Components {
             //set animation
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
-
-            _WeaponSwingAnimation.Start(this.Parent, EquipmentComponent.CurrentWeapon.WeaponData.SystemName, attackSpeed, -5f);
+            if(EquipmentComponent.CurrentWeapon.WeaponData.IsMelee)
+                _WeaponSwingAnimation.Start(this.Parent, "Sprites/Equipment/"+ EquipmentComponent.CurrentWeapon.WeaponData.SystemName, attackSpeed, new Vector2(-4f));
 
             //determine what type of attack to do.
             if (CombatPropertiesComponent.IsRanged)
@@ -124,6 +124,8 @@ namespace Corvus.Components {
             //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
+            if(cpc.EnemyUseWeaponAnimation)
+                _WeaponSwingAnimation.Start(this.Parent, cpc.EnemyWeaponName, attackSpeed, cpc.EnemyWeaponOffset);
 
             if (!cpc.IsRanged)
                 _AttackAction = EnemyAttackMelee;

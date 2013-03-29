@@ -3,7 +3,7 @@
 Properties
 	WeaponPropertiesComponent 
 		WeaponName: Iron Sword
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Dagger)
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Sword)
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Equipment/Weapon_IronSword) #fill in
 		Color: Color(White)

@@ -131,7 +131,10 @@ Properties
 		AoEOffset: Vector(0, 0)
 		AoEDuration: 0
 		AoEDamagePercent: 0
-		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types
+		EnemyUseWeaponAnimation: false
+		EnemyWeaponName: Sprites/ %%%% #Remove if not using a weapon animation.
+		EnemyWeaponOffset: Vector(0, 0)
 	MovementComponent
 		WalkSpeed: 500
 		WalkAcceleration: 15000
