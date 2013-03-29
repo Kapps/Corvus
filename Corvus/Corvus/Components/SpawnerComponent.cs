@@ -89,7 +89,7 @@ namespace Corvus.Components
             if (ArenaSystem == null)
                 return 1;
             else
-                return ArenaSystem.Wave / 10;
+                return ArenaSystem.Wave / 10f;
         }
 
         protected override void OnInitialize()
