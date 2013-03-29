@@ -25,10 +25,10 @@ namespace Corvus.Components
         }
 
         //Best to put this somewhere else?
-        public int EntitiesToSpawn
+        public int TotalEntitiesToSpawn
         {
-            get { return _EntitiesToSpawn; }
-            set { _EntitiesToSpawn = value; }
+            get { return _TotalEntitiesToSpawn; }
+            set { _TotalEntitiesToSpawn = value; }
         }
 
         public bool SpawnerEnabled
@@ -43,20 +43,37 @@ namespace Corvus.Components
             set { _EntitiesSpawned = value; }
         }
 
+        public string BlueprintName
+        {
+            get { return _BlueprintName; }
+            set { _BlueprintName = value; }
+        }
+
         private bool _SpawnerEnabled = true;
         private DateTime _LastSpawn;
         private List<Entity> _EntitiesSpawned = new List<Entity>();
         private int _TotalEntitiesSpawned;
-        private int _EntitiesToSpawn = 1;
+        private int _TotalEntitiesToSpawn = 1;
         private ArenaSystem ArenaSystem;
+        private string _BlueprintName;
 
         protected override void OnUpdate(GameTime Time)
         {
-            if ((DateTime.Now - LastSpawn).TotalSeconds > 2 && TotalEntitiesSpawned != EntitiesToSpawn && SpawnerEnabled)
+            if ((DateTime.Now - LastSpawn).TotalSeconds > 2 && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
             {
-                Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("TestEntityEnemy").CreateEntity();
+                //Set up the basic entity.
+                Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(BlueprintName).CreateEntity();
                 entity.Position = this.Parent.Position;
                 entity.Size = new Vector2(32, 32);
+
+                //Modify the entity's difficulty, based on the wave.
+                //Was debating setting the modifiers, but this just seems to make sense, as they're a completely new entity.
+                var ac = entity.GetComponent<AttributesComponent>();
+                var difficulty = GetDifficulty();
+                ac.Strength = ac.Strength * difficulty;
+                ac.MaxHealth = ac.MaxHealth * difficulty;
+
+                //Add the entity to the game.
                 Scene.AddEntity(entity);
                 TotalEntitiesSpawned++;
                 EntitiesSpawned.Add(entity);
@@ -64,6 +81,15 @@ namespace Corvus.Components
             }
 
             base.OnUpdate(Time);
+        }
+
+        //Make this a property if we have more complicated spawners eventually, as we'll probably set it in tiled.
+        private float GetDifficulty()
+        {
+            if (ArenaSystem == null)
+                return 1;
+            else
+                return ArenaSystem.Wave / 10f;
         }
 
         protected override void OnInitialize()

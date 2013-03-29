@@ -86,23 +86,18 @@
     <property name="Sprite Component.Color" value="Color(128, 125, 128, 255)"/>
    </properties>
   </object>
-   <!--
-  <object name="Climber3" type="Path" x="1814" y="1379">
-   <polyline points="0,0 -697,-60 -693,-141 -758,-239 106,-267 12,-363 172,-469 271,-491 66,-564 -200,-494 -314,-531 -564,-564 -823,-528 -942,-567 -1108,-469 -1338,-467 -1597,-467 -1703,-532"/>
+  <object name="Tutorial" type="LevelChanger" x="2318" y="1504" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
+   </properties>
   </object>
-   <object name="LevelChanger" type="LevelChanger" x="1418" y="1093" width="32" height="32">
-     <properties>
-       <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
-       <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
-     </properties>
-   </object>
-   <object name="LevelChanger" type="LevelChanger" x="1584" y="1094" width="32" height="32">
-     <properties>
-       <property name="LevelChangeComponent.NextLevel" value="Arena"/>
-       <property name="LevelChangeComponent.PrevLevel" value="Arena"/>
-     </properties>
-   </object>
-   -->
+  <object name="Tutorial" type="LevelChanger" x="2458" y="1497" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Arena"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Arena"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Solid Objects" width="80" height="50">
   <properties>

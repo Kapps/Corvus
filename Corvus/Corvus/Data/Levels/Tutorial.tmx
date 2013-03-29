@@ -55,7 +55,7 @@
   <object name="Bronze" type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="751" y="525" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="831" y="528" width="32" height="32"/>
-  <object name="LevelChanger" type="LevelChanger" x="1160" y="130" width="32" height="32">
+  <object name="BasicLevel" type="LevelChanger" x="1160" y="130" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
