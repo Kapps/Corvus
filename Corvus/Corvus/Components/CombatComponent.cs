@@ -7,6 +7,7 @@ using System.Text;
 using CorvEngine.Components;
 using CorvEngine;
 using CorvEngine.Input;
+using Corvus.Components.Gameplay;
 
 namespace Corvus.Components {
     /// <summary>
@@ -49,6 +50,7 @@ namespace Corvus.Components {
         private Action _AttackAction;
         private bool _StartedAttackFromGround = false;
         private Direction _AttackStartedDirection = Direction.None;
+        private WeaponSwingAnimation _WeaponSwingAnimation = new WeaponSwingAnimation();
 
         /// <summary>
         /// For Player only: Attack depending on whether the current weapon is melee or ranged.
@@ -88,6 +90,8 @@ namespace Corvus.Components {
             //set animation
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
+
+            _WeaponSwingAnimation.Start(this.Parent, EquipmentComponent.CurrentWeapon.WeaponData.SystemName, attackSpeed, -5f);
 
             //determine what type of attack to do.
             if (CombatPropertiesComponent.IsRanged)
@@ -165,6 +169,7 @@ namespace Corvus.Components {
         {
             base.OnUpdate(Time);
             GameTime = Time;
+            _WeaponSwingAnimation.Update(Time);
             if (IsAttacking)
             {
                 _AttackTimer += Time.ElapsedGameTime;
@@ -175,6 +180,7 @@ namespace Corvus.Components {
                     IsAttacking = false;
                     _AttackAction = null;
                     _AttackTimer = TimeSpan.Zero;
+                    _WeaponSwingAnimation.Stop();
                     ResumeAnimation();     
                 }
                
@@ -197,6 +203,12 @@ namespace Corvus.Components {
             if (IsBlocking)
                 BeginBlock();
 
+        }
+
+        protected override void OnDraw()
+        {
+            base.OnDraw();
+            _WeaponSwingAnimation.Draw();
         }
 
         private void AttackMelee()

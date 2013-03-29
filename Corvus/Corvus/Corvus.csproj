@@ -150,6 +150,7 @@
     <Compile Include="Components\Gameplay\StatusEffects\StatusEffectProperties.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Vigor.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Weakness.cs" />
+    <Compile Include="Components\Gameplay\WeaponSwingAnimation.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
     <Compile Include="Components\LevelChangeComponent.cs" />
     <Compile Include="Components\PlayerControlComponent.cs" />
