@@ -28,9 +28,9 @@
 		<Item>SpearAttackDown	60	{1, 7}	{8, 7}</Item>
 		<Item>SpearAttackRight	60	{1, 8}	{8, 8}</Item>
 		<Item>DaggerAttackUp	60	{1, 13}	{6, 13}</Item>
-		<Item>DaggerAttackLeft	60	{1, 14}	{6, 14}</Item>
+		<Item>DaggerAttackRight	60	{1, 14}	{5, 14}</Item>
 		<Item>DaggerAttackDown	60	{1, 15}	{6, 15}</Item>
-		<Item>DaggerAttackRight	60	{1, 16}	{6, 16}</Item>
+		<Item>DaggerAttackLeft	60	{1, 16}	{5, 16}</Item>
 		<Item>BowAttackUp	60	{1, 17}	{13, 17}</Item>
 		<Item>BowAttackLeft	60	{1, 18}	{13, 18}</Item>
 		<Item>BowAttackDown	60	{1, 19}	{13, 19}</Item>

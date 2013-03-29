@@ -39,7 +39,7 @@ Properties
 		CritDamage: 1.5
 	EquipmentComponent
 		UseWeaponBonuses: true 
-		DefaultWeaponName: IronLance
+		DefaultWeaponName: IronSword
 		Capacity: 3
 		
 Damager
