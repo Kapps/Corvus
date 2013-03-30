@@ -13,6 +13,7 @@ Properties
 		IsAoE: true
 		HitDelay: 0.9
 		ConsumesMana: true
+		AttackSound: Spell1
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/Projectiles/Projectile_PoisonBomb
 		ProjectileSize: Vector(16, 16)
@@ -27,6 +28,7 @@ Properties
 		AoEDuration: 0.25
 		AoEDamagePercent: 0.5
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
+		AoESound: LavaSplash
 	AttributesComponent
 		ManaCost: 12		#Only used if it consumes mana. 
 		Strength: 0

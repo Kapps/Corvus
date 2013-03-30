@@ -27,6 +27,7 @@ namespace Corvus.Components
             var ftc = Entity.GetComponent<FloatingTextComponent>();
             if (ftc != null)
                 ftc.Add("+" + Value.ToString(), Color.Gold);
+            AudioManager.PlaySoundEffect("CoinPickup");
             Parent.Dispose();
             return true;
         }

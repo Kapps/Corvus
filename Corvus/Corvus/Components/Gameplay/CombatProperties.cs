@@ -21,18 +21,21 @@ namespace Corvus.Components.Gameplay
         private float _HitDelay = 0f;
         private bool _ConsumesMana = false;
         private float _AttackSlowDown = 1f;
+        private string _AttackSound = "";
         private string _ProjectileName = "";
         private Vector2 _ProjectileSize = new Vector2();
         private Vector2 _ProjectileOffset = new Vector2();
         private Vector2 _ProjectileVelocity = new Vector2();
         private float _ProjectileGravityCoefficient = 0f;
         private float _ProjectileHorDragCoefficient = 0f;
+        private string _ProjectileOnHitSound = "";
         private string _AoEName = "";
         private Vector2 _AoESize = new Vector2();
         private Vector2 _AoEOffset = new Vector2();
         private float _AoEDuration = 0f;
         private float _AoEDamagePercent = 0f;
         private EntityClassification _AoEHitableEntities = EntityClassification.Any;
+        private string _AoESound = "";
         private bool _EnemyUseWeaponAnimation = false;
         private string _EnemyWeaponName = "";
         private Vector2 _EnemyWeaponOffset = new Vector2();
@@ -103,6 +106,15 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
+        /// Gets or sets the sound to play when this weapon is used.
+        /// </summary>
+        public string AttackSound
+        {
+            get { return _AttackSound; }
+            set { _AttackSound = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the projectile sprite to fire. 
         /// </summary>
         public string ProjectileName
@@ -154,6 +166,15 @@ namespace Corvus.Components.Gameplay
         {
             get { return _ProjectileHorDragCoefficient; }
             set { _ProjectileHorDragCoefficient = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the sound to play when this projectile collides.
+        /// </summary>
+        public string ProjectileOnHitSound
+        {
+            get { return _ProjectileOnHitSound; }
+            set { _ProjectileOnHitSound = value; }
         }
 
         /// <summary>
@@ -210,6 +231,14 @@ namespace Corvus.Components.Gameplay
             set { _AoEHitableEntities = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the sound effect to play for this area of effect.
+        /// </summary>
+        public string AoESound
+        {
+            get { return _AoESound; }
+            set { _AoESound = value; }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating the enemy should use a swinging weapon animation.

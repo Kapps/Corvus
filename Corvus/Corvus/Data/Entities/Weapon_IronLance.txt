@@ -13,6 +13,7 @@ Properties
 		IsAoE: false
 		HitDelay: 0.5
 		ConsumesMana: false
+		AttackSound: SpearSwing
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
 		Strength: 5

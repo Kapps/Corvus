@@ -7,6 +7,8 @@ EnemySprite : RedSprite
 		Sprite: Sprite(Sprites/TestEnemy)
 
 Attributes
+	DamageComponent
+		OnHitSound: Hit1
 	AttributesComponent
 		MaxHealth: Random(250, 300)
 		Strength: 75
@@ -23,6 +25,7 @@ Attributes
 	DestroyableObjectComponent
 		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 0.5
+		DyingSound: Explode1
 		AwardedExperience: 100
 		DropsItem: true
 		DroppableItems: Collection(HealMid, HealLow, Might, Vigor)
@@ -64,7 +67,6 @@ MoverEnemy
 	
 Damager
 	FloatingTextComponent
-	DamageComponent
 
 StatusEffecter
 	StatusEffectsComponent

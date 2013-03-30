@@ -27,6 +27,8 @@ namespace Corvus.Components
             var ftc = Entity.GetComponent<FloatingTextComponent>();
             ftc.Add(wdc.WeaponData.Name, Color.Black);
 
+            CorvEngine.AudioManager.PlaySoundEffect("WeaponPickup");
+
             return true;
         }
     }

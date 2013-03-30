@@ -69,10 +69,10 @@
   <object name="Climber2" type="Path" x="972" y="1319">
    <polyline points="0,0 167,-78 84,-177 849,-305 1116,-435 915,-501"/>
   </object>
-  <object name="Sit1" type="Muramasa" x="1627" y="1249" width="22" height="22"/>
-  <object name="Sit3" type="LongBow" x="1427" y="1249" width="22" height="22"/>
-  <object name="Sit2" type="WindBall" x="1327" y="1249" width="22" height="22"/>
-  <object name="Sit4" type="FireBall" x="1527" y="1249" width="22" height="22"/>
+  <object name="Sit1" type="GaiaBlade" x="1627" y="1249" width="22" height="22"/>
+  <object name="Sit3" type="Trident" x="1427" y="1249" width="22" height="22"/>
+  <object name="Sit2" type="ArcticLance" x="1327" y="1249" width="22" height="22"/>
+  <object name="Sit4" type="IceBall" x="1527" y="1249" width="22" height="22"/>
   <object name="Powerup1" type="IWorkOut" x="1127" y="1249" width="16" height="16"/>
   <object name="Jumper2" type="TestEntityEnemy" x="1314" y="1498" width="32" height="32">
    <properties>

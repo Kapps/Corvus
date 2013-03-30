@@ -94,6 +94,15 @@ namespace Corvus.Components
         }
 
         /// <summary>
+        /// Gets or sets the sound to play when this weapon is used.
+        /// </summary>
+        public string AttackSound
+        {
+            get { return CombatProperties.AttackSound; }
+            set { CombatProperties.AttackSound = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the projectile sprite to fire. 
         /// </summary>
         public string ProjectileName
@@ -145,6 +154,15 @@ namespace Corvus.Components
         {
             get { return CombatProperties.ProjectileHorDragCoefficient; }
             set { CombatProperties.ProjectileHorDragCoefficient = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the sound to play when this projectile collides.
+        /// </summary>
+        public string ProjectileOnHitSound
+        {
+            get { return CombatProperties.ProjectileOnHitSound; }
+            set { CombatProperties.ProjectileOnHitSound = value; }
         }
 
         /// <summary>
@@ -201,7 +219,16 @@ namespace Corvus.Components
             get { return CombatProperties.AoEHitableEntities; }
             set { CombatProperties.AoEHitableEntities = value; }
         }
-        
+
+        /// <summary>
+        /// Gets or sets the sound effect to play for this area of effect.
+        /// </summary>
+        public string AoESound
+        {
+            get { return CombatProperties.AoESound; }
+            set { CombatProperties.AoESound = value; }
+        }
+
         /// <summary>
         /// Gets or sets a value indicating the enemy should use a swinging weapon animation.
         /// </summary>

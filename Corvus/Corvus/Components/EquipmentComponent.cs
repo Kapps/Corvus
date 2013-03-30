@@ -118,6 +118,8 @@ namespace Corvus.Components
                 _CurrentWeaponIndex = Weapons.Count() - 1;
             else if (_CurrentWeaponIndex == Weapons.Count())
                 _CurrentWeaponIndex = 0;
+
+            CorvEngine.AudioManager.PlaySoundEffect("WeaponSwitch");
         }
         
         protected override void OnInitialize()

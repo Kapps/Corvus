@@ -40,6 +40,8 @@ namespace Corvus.Components
             {
                 if(CPComponent.IsAoE)
                     AreaOfEffectComponent.CreateAoEEntity(this.Parent);
+                if (!string.IsNullOrEmpty(CPComponent.ProjectileOnHitSound))
+                    AudioManager.PlaySoundEffect(CPComponent.ProjectileOnHitSound);
                 Parent.Dispose();
             }
             base.OnUpdate(Time);
@@ -78,6 +80,9 @@ namespace Corvus.Components
                 AreaOfEffectComponent.CreateAoEEntity(this.Parent);
                 colGood = true;
             }
+
+            if (!string.IsNullOrEmpty(CPComponent.ProjectileOnHitSound))
+                AudioManager.PlaySoundEffect(CPComponent.ProjectileOnHitSound);
 
             return colGood;
         }

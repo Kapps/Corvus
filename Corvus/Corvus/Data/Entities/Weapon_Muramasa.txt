@@ -13,6 +13,7 @@ Properties
 		IsAoE: false
 		HitDelay: 0.65
 		ConsumesMana: false
+		AttackSound: SwordSwing
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
 		Strength: 15

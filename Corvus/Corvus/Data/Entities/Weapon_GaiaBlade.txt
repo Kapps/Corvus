@@ -13,6 +13,7 @@ Properties
 		IsAoE: true
 		HitDelay: 0.65
 		ConsumesMana: true
+		AttackSound: SwordSwing
 		#if this does not have an aoe effect, remove all of these.
 		AoEName: Sprites/Effects/Effect_Sand
 		AoESize: Vector(25, 70)
@@ -20,6 +21,7 @@ Properties
 		AoEDuration: 0.15
 		AoEDamagePercent: 0.25
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy) #can be whatever entity types.
+		AoESound: Earthball
 	AttributesComponent
 		ManaCost: 8		#Only used if it consumes mana. 
 		Strength: 10

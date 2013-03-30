@@ -135,6 +135,34 @@ Content\Sprites\Equipment\Weapon_ShortBow.xnb
 Content\Sprites\Equipment\Weapon_Trident.xnb
 Content\Sprites\Equipment\Weapon_BastardSword.xnb
 Content\Sprites\Equipment\Weapon_Muramasa.xnb
+Content\Audio\SoundEffects\ArrowMiss.xnb
+Content\Audio\SoundEffects\SpearSwing.xnb
+Content\Audio\SoundEffects\SwordSwing.xnb
+Content\Audio\SoundEffects\Fireball.xnb
+Content\Audio\SoundEffects\Windball.xnb
+Content\Audio\SoundEffects\AxeSwing.xnb
+Content\Audio\SoundEffects\Earthball.xnb
+Content\Audio\SoundEffects\Iceball.xnb
+Content\Audio\SoundEffects\Splash.xnb
+Content\Audio\SoundEffects\Spell1.xnb
+Content\Audio\SoundEffects\Explode1.xnb
+Content\Audio\SoundEffects\LavaSplash.xnb
+Content\Audio\SoundEffects\ArrowHit.xnb
+Content\Audio\SoundEffects\CoinDrop.xnb
+Content\Audio\SoundEffects\CoinPickup.xnb
+Content\Audio\SoundEffects\MetalInteraction1.xnb
+Content\Audio\SoundEffects\Bubble1.xnb
+Content\Audio\SoundEffects\Bubble2.xnb
+Content\Audio\SoundEffects\Bubble3.xnb
+Content\Audio\SoundEffects\WeaponSwitch.xnb
+Content\Audio\SoundEffects\WeaponPickup.xnb
+Content\Audio\SoundEffects\Hit1.xnb
+Content\Audio\SoundEffects\Hit2.xnb
+Content\Audio\SoundEffects\Hit3.xnb
+Content\Audio\SoundEffects\Hit4.xnb
+Content\Audio\SoundEffects\Hit5.xnb
+Content\Audio\SoundEffects\Hit6.xnb
+Content\Audio\SoundEffects\Hit7.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

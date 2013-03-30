@@ -19,6 +19,7 @@ namespace Corvus.Components
     {
         private string _DyingSprite = "";
         private float _DyingDuration = 0f;
+        private string _DyingSound = "";
         private int _Level = 1;
         private int _CurrentExperience = 0;
         private int _ExperienceForNextLevel = 0;
@@ -54,6 +55,15 @@ namespace Corvus.Components
         {
             get { return _DyingDuration; }
             set { _DyingDuration = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the sound effect to play when this entity dies.
+        /// </summary>
+        public string DyingSound
+        {
+            get { return _DyingSound; }
+            set { _DyingSound = value; }
         }
 
         /// <summary>
@@ -278,6 +288,7 @@ namespace Corvus.Components
         void AC_Died(AttributesComponent obj)
         {
             EC.RemoveWeapons();
+            AudioManager.PlaySoundEffect(DyingSound);
             DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
             obj.Parent.Dispose();
         }

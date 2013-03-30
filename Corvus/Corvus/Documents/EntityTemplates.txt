@@ -52,6 +52,7 @@ Properties
 		IsAoE: false
 		HitDelay: 0
 		ConsumesMana: false
+		AttackSound: %%%%
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/Projectiles/ %%%%
 		ProjectileSize: Vector(0, 0)
@@ -59,6 +60,7 @@ Properties
 		ProjectileVelocity: Vector(0, 0)
 		ProjectileGravityCoefficient: 0
 		ProjectileHorDragCoefficient: 0
+		ProjectileOnHitSound: %%%%		#Remove if you don't want a sound to play.
 		#if this does not have an aoe effect, remove all of these.
 		AoEName: Sprites/Effects/ %%%%
 		AoESize: Vector(0, 0)
@@ -66,6 +68,7 @@ Properties
 		AoEDuration: 0
 		AoEDamagePercent: 0
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types.
+		AoESound: %%%%
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
 		Strength: 0
@@ -112,12 +115,15 @@ Properties
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/ %%%% )
 		Color: Color(White)
+	DamageComponent
+		OnHitSound: %%%%	#Remove this if you don't want a sound to play.
 	CombatPropertiesComponent
 		IsMelee: true
 		IsRanged: false
 		AppliesEffect: false
 		IsAoE: false
 		HitDelay: 0
+		AttackSound: %%%%
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/ %%%%
 		ProjectileSize: Vector(0, 0)
@@ -125,6 +131,7 @@ Properties
 		ProjectileVelocity: Vector(0, 0)
 		ProjectileGravityCoefficient: 0
 		ProjectileHorDragCoefficient: 0
+		ProjectileOnHitSound: %%%%		#Remove if you don't want a sound to play.
 		#if this does not have an aoe effect, remove all of these.
 		AoEName: Sprites/ %%%%
 		AoESize: Vector(0, 0)
@@ -132,6 +139,7 @@ Properties
 		AoEDuration: 0
 		AoEDamagePercent: 0
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types
+		AoESound: %%%%
 		EnemyUseWeaponAnimation: false
 		EnemyWeaponName: Sprites/ %%%% #Remove if not using a weapon animation.
 		EnemyWeaponOffset: Vector(0, 0)
@@ -166,6 +174,7 @@ Properties
 	DestroyableObjectComponent
 		DyingSprite: Sprites/ %%%%
 		DyingDuration: 0
+		DyingSound: %%%%
 		AwardedExperience: 0
 		DropsItem: false
 		#remove these if it doesn't drop items
@@ -202,7 +211,6 @@ CollisionProperties
 Required
 	PathComponent
 	FloatingTextComponent
-	DamageComponent
 	StatusEffectsComponent
 	EquipmentComponent
 		UseWeaponBonuses: false
@@ -220,6 +228,8 @@ Properties
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/ %%% )
 		Color: Color(White)
+	DamageComponent
+		OnHitSound: %%%%	#Remove this if you don't want a sound to play.
 	MovementComponent
 		WalkSpeed: 500
 		WalkAcceleration: 15000
@@ -230,6 +240,7 @@ Properties
 	PlayerControlComponent
 		DyingSprite: Sprites/ %%%%
 		DyingDuration: 0
+		DyingSound: %%%%
 		Level: 1
 		CurrentExperience: 0
 		ExperienceForNextLevel: 0
@@ -257,7 +268,6 @@ Properties
 
 Required
 	CombatPropertiesComponent
-	DamageComponent
 	ScoreComponent
 	GamepadComponent
 	StatusEffectsComponent

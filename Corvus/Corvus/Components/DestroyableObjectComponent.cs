@@ -18,6 +18,7 @@ namespace Corvus.Components
         private AttributesComponent AC;
         private string _DyingSprite = "";
         private float _DyingDuration = 0f;
+        private string _DyingSound = "";
         private int _AwardedExperience = 0;
         private bool _DropsItem = false;
         private List<string> _DroppableItems = new List<string>();
@@ -41,6 +42,15 @@ namespace Corvus.Components
         {
             get { return _DyingDuration; }
             set { _DyingDuration = Math.Max(value, 0f); }
+        }
+
+        /// <summary>
+        /// Gets or sets the sound effect to play when this entity dies.
+        /// </summary>
+        public string DyingSound
+        {
+            get { return _DyingSound; }
+            set { _DyingSound = value; }
         }
 
         /// <summary>
@@ -146,7 +156,7 @@ namespace Corvus.Components
                 GenerateCoinEntity("Coin_Silver", 1.5f - ((float)i) / 10);
             for (int i = 0; i < bronze; i++)
                 GenerateCoinEntity("Coin_Bronze", 1f - ((float)i) / 10);
-
+            AudioManager.PlaySoundEffect("CoinDrop");
             //Give exp.
             //CorvBase.Instance.Players
             foreach (var p in CorvBase.Instance.Players)
@@ -154,6 +164,9 @@ namespace Corvus.Components
                 var pcp = p.Character.GetComponent<PlayerControlComponent>();
                 pcp.CurrentExperience += AwardedExperience;
             }
+
+            //play sound
+            AudioManager.PlaySoundEffect(DyingSound);
             
             DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
             obj.Parent.Dispose();

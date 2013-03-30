@@ -13,6 +13,7 @@ Properties
 		IsAoE: false
 		HitDelay: 0.65
 		ConsumesMana: false
+		AttackSound: ArrowMiss
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/Projectiles/Projectile_Arrow
 		ProjectileSize: Vector(12, 12)
@@ -20,6 +21,7 @@ Properties
 		ProjectileVelocity: Vector(700, 50)
 		ProjectileGravityCoefficient: 0.05
 		ProjectileHorDragCoefficient: 0
+		ProjectileOnHitSound: ArrowHit
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
 		Strength: 15

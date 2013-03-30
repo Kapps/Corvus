@@ -13,6 +13,7 @@ Properties
 		IsAoE: false
 		HitDelay: 0.9
 		ConsumesMana: true
+		AttackSound: Iceball
 		#If not ranged, remove all projectile properties.
 		ProjectileName: Sprites/Projectiles/Projectile_IceBall
 		ProjectileSize: Vector(16, 16)

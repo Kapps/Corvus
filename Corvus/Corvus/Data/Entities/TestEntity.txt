@@ -9,6 +9,8 @@ PlayerSprite : BlueSprite
 		Sprite: Sprite(Sprites/TestPlayer)
 
 Properties
+	DamageComponent
+		OnHitSound: Hit4
 	MovementComponent
 		WalkSpeed: 400
 		WalkAcceleration: 13000
@@ -19,6 +21,7 @@ Properties
 	PlayerControlComponent
 		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 2
+		DyingSound: Explode1
 		Level: 1
 		CurrentExperience: 0
 		ExperienceForNextLevel: 20
@@ -44,7 +47,6 @@ Properties
 		
 Damager
 	FloatingTextComponent
-	DamageComponent
 
 StatusEffecter
 	StatusEffectsComponent

@@ -8,6 +8,7 @@ using CorvEngine.Components;
 using CorvEngine;
 using CorvEngine.Input;
 using Corvus.Components.Gameplay;
+using Corvus.Components.Gameplay.Equipment;
 
 namespace Corvus.Components {
     /// <summary>
@@ -215,6 +216,7 @@ namespace Corvus.Components {
 
         private void AttackMelee()
         {
+            AudioManager.PlaySoundEffect(CombatPropertiesComponent.AttackSound);
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
             foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()).Reverse())
             {
@@ -250,6 +252,8 @@ namespace Corvus.Components {
             if (!CombatPropertiesComponent.IsRanged)
                 return;
             ProjectileComponent.CreateProjectileEntity(this.Parent, _AttackStartedDirection);
+            //Play soundeffect
+            AudioManager.PlaySoundEffect(CombatPropertiesComponent.AttackSound);
         }
 
         private void EnemyAttackMelee()

@@ -13,13 +13,15 @@ Properties
 		IsAoE: true
 		HitDelay: 0.5
 		ConsumesMana: true
+		AttackSound: SpearSwing
 		#if this does not have an aoe effect, remove all of these.
 		AoEName: Sprites/Effects/Effect_IcePillar
 		AoESize: Vector(25, 70)
-		AoEOffset: Vector(40, -5)
+		AoEOffset: Vector(50, -5)
 		AoEDuration: 0.15
 		AoEDamagePercent: 0.45
 		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy) #can be whatever entity types.
+		AoESound: Splash
 	AttributesComponent
 		ManaCost: 5		#Only used if it consumes mana. 
 		Strength: 5

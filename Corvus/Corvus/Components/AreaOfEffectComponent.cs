@@ -108,6 +108,8 @@ namespace Corvus.Components
             ac.Attributes = AttributesComponent.Attributes;
             var aoec = aoe.GetComponent<AreaOfEffectComponent>();
             aoec.Classification = CPComponent.AoEHitableEntities;
+
+            AudioManager.PlaySoundEffect(CPComponent.AoESound);
         }
 
     }

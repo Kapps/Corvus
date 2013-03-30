@@ -29,7 +29,7 @@ namespace Corvus.Components.Gameplay.Equipment
             get { return _WeaponType; }
             set { _WeaponType = value; }
         }
-        
+
         /// <summary>
         /// Gets the animation name.
         /// </summary>
@@ -52,6 +52,5 @@ namespace Corvus.Components.Gameplay.Equipment
 
         private string _Name = "";
         private WeaponTypes _WeaponType;
-
     }
 }

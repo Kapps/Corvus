@@ -13,10 +13,20 @@ namespace Corvus.Components{
     /// Handles the damage events for this entity.
     /// </summary>
     public class DamageComponent : Component{
+        private string _OnHitSound = "";
         private AttributesComponent AttributesComponent;
         private CombatComponent CombatComponent;
         private MovementComponent MovementComponent;
         private FloatingTextComponent FloatingTextComponent;
+
+        /// <summary>
+        /// Gets or sets the sound to play when this entity is hit.
+        /// </summary>
+        public string OnHitSound
+        {
+            get { return _OnHitSound; }
+            set { _OnHitSound = value; }
+        }
 
         /// <summary>
         /// Applies static damage with only normal rule.
@@ -30,6 +40,7 @@ namespace Corvus.Components{
             FloatingTextComponent.Add(overallDamage, Color.White);
             
             GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
+            PlayHitSound();
         }
 
         /// <summary>
@@ -53,6 +64,7 @@ namespace Corvus.Components{
                 FloatingTextComponent.Add(overallDamage, Color.White);
             //vibrate!
             GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
+            PlayHitSound();
         }
 
         private float NormalDamageFormula(float myDefense, float incomingDamage){
@@ -114,6 +126,12 @@ namespace Corvus.Components{
                 multiplier -= (myInt / (4f * (myInt + attackerInt)));
             }
             return multiplier;
+        }
+
+        private void PlayHitSound()
+        {
+            if (!string.IsNullOrEmpty(OnHitSound))
+                CorvEngine.AudioManager.PlaySoundEffect(OnHitSound);
         }
 
         protected override void OnInitialize(){
