@@ -11,11 +11,13 @@ PlayerSprite : BlueSprite
 Properties
 	DamageComponent
 		OnHitSound: Hit4
+		BlockSound: MetalInteraction1
 	MovementComponent
 		WalkSpeed: 400
 		WalkAcceleration: 13000
 		JumpSpeed: 850
 	PhysicsComponent
+		MakesJumpingSounds: true
 		GravityCoefficient: 0.6
 		HorizontalDragCoefficient: 1
 	PlayerControlComponent

@@ -28,6 +28,8 @@ namespace Corvus.Components
         {
             var constructor = Helper.GetObjectConstructor<StatusEffect>(string.Format("Corvus.Components.Gameplay.StatusEffects.{0}", attributes.EffectType), new Type[] { typeof(Entity), typeof(StatusEffectProperties) });
             var statusEffect = constructor(this.Parent, attributes);
+            if (!_StatusEffects.Contains(statusEffect.Name))
+                CorvEngine.AudioManager.PlaySoundEffect((statusEffect.IsPositive) ? "StatusEffectGood" : "Curse2");
             _StatusEffects.Add(statusEffect);
         }
         

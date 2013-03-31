@@ -116,7 +116,9 @@ Properties
 		Sprite: Sprite(Sprites/ %%%% )
 		Color: Color(White)
 	DamageComponent
-		OnHitSound: %%%%	#Remove this if you don't want a sound to play.
+		#Remove this if you don't want a sound to play.
+		OnHitSound: %%%%	
+		BlockSound: %%%%
 	CombatPropertiesComponent
 		IsMelee: true
 		IsRanged: false
@@ -230,11 +232,13 @@ Properties
 		Color: Color(White)
 	DamageComponent
 		OnHitSound: %%%%	#Remove this if you don't want a sound to play.
+		BlockSound: %%%%
 	MovementComponent
 		WalkSpeed: 500
 		WalkAcceleration: 15000
 		JumpSpeed: 950
 	PhysicsComponent
+		MakesJumpingSounds: true
 		GravityCoefficient: 1
 		HorizontalDragCoefficient: 1
 	PlayerControlComponent

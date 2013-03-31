@@ -55,7 +55,17 @@ namespace CorvEngine.Components {
 		/// </summary>
 		public bool IsGrounded {
 			get { return _IsGrounded; }
-			set { _IsGrounded = value; }
+            set {
+                if (MakesJumpingSounds)
+                {
+                    //jump started
+                    if (_IsGrounded && !value)
+                        AudioManager.PlaySoundEffect("Jump");
+                    if (!_IsGrounded && value)
+                        AudioManager.PlaySoundEffect("Landing");
+                }
+                _IsGrounded = value; 
+            }
 		}
 
 		/// <summary>
@@ -100,6 +110,15 @@ namespace CorvEngine.Components {
 			set { _HorizontalDragCoefficient = value; }
 		}
 
+        /// <summary>
+        /// Gets or sets a value that indicates this entity makes jumping sounds.
+        /// </summary>
+        public bool MakesJumpingSounds
+        {
+            get { return _MakesJumpingSounds; }
+            set { _MakesJumpingSounds = value; }
+        }
+
 		/// <summary>
 		/// Notifies this PhysicsComponent that a collision occurred with the other component.
 		/// </summary>
@@ -114,5 +133,6 @@ namespace CorvEngine.Components {
 		private bool _IsGrounded = false;
 		private bool _PerformStaticCollision = true;
 		private bool _PerformDynamicCollision = true;
+        private bool _MakesJumpingSounds = false;
 	}
 }

@@ -14,6 +14,7 @@ namespace Corvus.Components{
     /// </summary>
     public class DamageComponent : Component{
         private string _OnHitSound = "";
+        private string _BlockSound = ""; 
         private AttributesComponent AttributesComponent;
         private CombatComponent CombatComponent;
         private MovementComponent MovementComponent;
@@ -29,6 +30,15 @@ namespace Corvus.Components{
         }
 
         /// <summary>
+        /// Gets or sets the block sound.
+        /// </summary>
+        public string BlockSound
+        {
+            get { return _BlockSound; }
+            set { _BlockSound = value; }
+        }
+
+        /// <summary>
         /// Applies static damage with only normal rule.
         /// </summary>
         public void TakeDamage(Entity attacker, float incomingDamage, float modifier = 1f){
@@ -40,7 +50,7 @@ namespace Corvus.Components{
             FloatingTextComponent.Add(overallDamage, Color.White);
             
             GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
-            PlayHitSound();
+            PlayHitSound(blockMultipler);
         }
 
         /// <summary>
@@ -64,7 +74,7 @@ namespace Corvus.Components{
                 FloatingTextComponent.Add(overallDamage, Color.White);
             //vibrate!
             GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
-            PlayHitSound();
+            PlayHitSound(blockMultipler);
         }
 
         private float NormalDamageFormula(float myDefense, float incomingDamage){
@@ -128,10 +138,13 @@ namespace Corvus.Components{
             return multiplier;
         }
 
-        private void PlayHitSound()
+        private void PlayHitSound(float blockMod)
         {
-            if (!string.IsNullOrEmpty(OnHitSound))
+            if(blockMod != 1)
+                CorvEngine.AudioManager.PlaySoundEffect(BlockSound);
+            else 
                 CorvEngine.AudioManager.PlaySoundEffect(OnHitSound);
+            
         }
 
         protected override void OnInitialize(){

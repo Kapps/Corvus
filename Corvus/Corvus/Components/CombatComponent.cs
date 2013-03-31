@@ -258,6 +258,7 @@ namespace Corvus.Components {
 
         private void EnemyAttackMelee()
         {
+            AudioManager.PlaySoundEffect(CombatPropertiesComponent.AttackSound);
             //Enumerate over each entity that intersected with our attack rectangle, and if they're not us, make them take damage.
             foreach (var attackedEntity in PhysicsSystem.GetEntitiesAtLocation(CreateHitBox()).Reverse())
             {

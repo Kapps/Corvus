@@ -163,6 +163,8 @@ namespace CorvEngine {
         /// </summary>
         public static void PlaySoundEffect(string cueName)
         {
+            if (string.IsNullOrEmpty(cueName))
+                return;
             //might want to add some sort of sound manager
             CorvSoundEffectCue cue = new CorvSoundEffectCue(_Instance.SoundBank.GetCue(cueName));
             cue.Play();

@@ -264,7 +264,6 @@ namespace Corvus.Components
             SC = this.GetDependency<SpriteComponent>();
             EC = this.GetDependency<EquipmentComponent>();
 
-            //TODO: Don't forget to uncomment this 
             if (!AC.IsDiedRegistered)
                 AC.Died += AC_Died;
         }
@@ -295,8 +294,8 @@ namespace Corvus.Components
         
         private void LevelUp()
         {
+            AudioManager.PlaySoundEffect("Cheer");
             var fc = this.GetDependency<FloatingTextComponent>();
-
             Level += 1;
             fc.Add("Level " + Level.ToString() + "!", Color.Gold);
             ExperienceForNextLevel = (int)(ExperienceForNextLevel * RequiredExperienceCurve);

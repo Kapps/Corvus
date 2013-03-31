@@ -39,7 +39,7 @@ namespace Corvus.Components.Gameplay
         private bool _EnemyUseWeaponAnimation = false;
         private string _EnemyWeaponName = "";
         private Vector2 _EnemyWeaponOffset = new Vector2();
-        
+
         /// <summary>
         /// Gets or sets whether this entity can attack with melee.
         /// Enemy Only.

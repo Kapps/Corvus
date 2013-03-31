@@ -45,6 +45,11 @@ namespace Corvus.Components.Gameplay.StatusEffects
         public bool IsFinished { get; private set; }
 
         /// <summary>
+        /// Gets whether this effect is positive or negative.
+        /// </summary>
+        public bool IsPositive { get { return IsGood; } }
+
+        /// <summary>
         /// Gets the entity being affected.
         /// </summary>
         public Entity Entity { get { return _Entity; } }

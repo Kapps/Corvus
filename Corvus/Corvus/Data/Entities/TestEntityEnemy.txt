@@ -9,6 +9,7 @@ EnemySprite : RedSprite
 Attributes
 	DamageComponent
 		OnHitSound: Hit1
+		BlockSound: MetalInteraction1
 	AttributesComponent
 		MaxHealth: Random(250, 300)
 		Strength: 75
@@ -45,6 +46,7 @@ Combatpropertieser
 		IsAoE: false
 		HitDelay: 0.5
 		ConsumesMana: false
+		AttackSound: SwordSwing
 		ProjectileName: TestProjectile
 		ProjectileVelocity: Vector(600, 50)
 		AoEName: Sprites/Effects/Explosions
