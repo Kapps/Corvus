@@ -29,6 +29,9 @@ namespace CorvEngine.Components {
 		private bool _ReverseOnCompletion = true;
         private bool _PathingEnabled = true;
 
+        private PhysicsSystem PhysicsSystem;
+        private MovementComponent MovementComponent;
+
 		/// <summary>
 		/// Gets the nodes that this entity paths to.
 		/// This is in world coordinates.
@@ -118,42 +121,79 @@ namespace CorvEngine.Components {
 		/// </summary>
 		/// <param name="Time"></param>
 		protected override void OnUpdate(GameTime Time) {
-			if(Nodes != null && PathingEnabled) {
-				var entity = this.Parent;
-				var mc = entity.GetComponent<MovementComponent>();
-				var pc = entity.GetComponent<PhysicsComponent>();
-				var ps = Scene.GetSystem<PhysicsSystem>();
-				//Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
-                if(entity.Location.Contains((int)CurrentNode.X, (int)CurrentNode.Y)) {
-                    if(!pc.IsGrounded)
-                        return; // Do nothing, just wait for us to fall on our location.
-                    AdvanceNode();
-                } else {
-                    bool MissingHorizontally = CurrentNode.X > entity.Location.Right || CurrentNode.X < entity.Location.Left;
-                    if(entity.Location.Top > CurrentNode.Y && /*(DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay &&*/ !MissingHorizontally) {
-                        mc.Jump(AllowMultiJump);
-                        _LastJump = DateTime.Now;
-                    }
-                    if (MissingHorizontally)
+            if (PathingEnabled)
+            {
+                if (Nodes.Count != 0)
+                {
+                    var entity = this.Parent;
+                    var mc = entity.GetComponent<MovementComponent>();
+                    var pc = entity.GetComponent<PhysicsComponent>();
+                    var ps = Scene.GetSystem<PhysicsSystem>();
+                    //Formerly Vector2.Distance(entity.Position, CurrentNode) for Y stuff, but not needed.
+                    if (entity.Location.Contains((int)CurrentNode.X, (int)CurrentNode.Y))
                     {
-                        if (entity.Location.Left > CurrentNode.X)
-                        {
-                            mc.BeginWalking(Direction.Left);
-                            // Check if we'll need to jump this frame.
-                            if (!ps.IsLocationSolid(new Vector2(entity.Location.Left - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
-                                mc.Jump(AllowMultiJump);
-                        }
-                        else if (entity.Location.Right < CurrentNode.X)
-                        {
-                            mc.BeginWalking(Direction.Right);
-                            if (!ps.IsLocationSolid(new Vector2(entity.Location.Right + pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
-                                mc.Jump(AllowMultiJump);
-                        }
+                        if (!pc.IsGrounded)
+                            return; // Do nothing, just wait for us to fall on our location.
+                        AdvanceNode();
                     }
                     else
-                        mc.StopWalking(); 
+                    {
+                        bool MissingHorizontally = CurrentNode.X > entity.Location.Right || CurrentNode.X < entity.Location.Left;
+                        if (entity.Location.Top > CurrentNode.Y && /*(DateTime.Now - _LastJump).TotalMilliseconds > JumpDelay &&*/ !MissingHorizontally)
+                        {
+                            mc.Jump(AllowMultiJump);
+                            _LastJump = DateTime.Now;
+                        }
+                        if (MissingHorizontally)
+                        {
+                            if (entity.Location.Left > CurrentNode.X)
+                            {
+                                mc.BeginWalking(Direction.Left);
+                                // Check if we'll need to jump this frame.
+                                if (!ps.IsLocationSolid(new Vector2(entity.Location.Left - pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
+                                    mc.Jump(AllowMultiJump);
+                            }
+                            else if (entity.Location.Right < CurrentNode.X)
+                            {
+                                mc.BeginWalking(Direction.Right);
+                                if (!ps.IsLocationSolid(new Vector2(entity.Location.Right + pc.VelocityX * Time.GetTimeScalar(), entity.Location.Bottom + 5)))
+                                    mc.Jump(AllowMultiJump);
+                            }
+                        }
+                        else
+                            mc.StopWalking();
+                    }
                 }
-			}
+                else
+                {
+                    int checkDistance = 50;
+
+                    //Run back and forth on platform.
+                    //This is fairly close to fleeing AI.
+                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Center.X - checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Center.X + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 leftWallVector = new Vector2(Parent.Location.Center.X - checkDistance, Parent.Location.Center.Y);
+                    Vector2 rightWallVector = new Vector2(Parent.Location.Center.X + checkDistance, Parent.Location.Center.Y);
+                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector);// && !PhysicsSystem.IsLocationSolid(leftWallVector);
+                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector);// && !PhysicsSystem.IsLocationSolid(rightWallVector);
+
+                    //Set a location if one hasn't been set, which is likely when we have no path.
+                    if (MovementComponent.CurrentDirection == Direction.Down)
+                        MovementComponent.CurrentDirection = Direction.Left;
+
+                    if (MovementComponent.CurrentDirection == Direction.Left)
+                        if (leftPossible)
+                            MovementComponent.BeginWalking(Direction.Left);
+                        else
+                            MovementComponent.BeginWalking(Direction.Right);
+                    else if (MovementComponent.CurrentDirection == Direction.Right)
+                        if (rightPossible)
+                            MovementComponent.BeginWalking(Direction.Right);
+                        else
+                            MovementComponent.BeginWalking(Direction.Left);
+                }
+            }
+
 			base.OnUpdate(Time);
 		}
 
@@ -173,6 +213,13 @@ namespace CorvEngine.Components {
             var mc = this.Parent.GetComponent<MovementComponent>();
             mc.StopWalking();
             PathingEnabled = false;
+        }
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            MovementComponent = this.GetDependency<MovementComponent>();
+            PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
         }
 	}
 }

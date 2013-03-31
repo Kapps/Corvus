@@ -213,6 +213,10 @@ namespace Corvus.Components
                 }
                 else if (DeathStarted) //DYING AI
                 {
+                    //Stop blocking if we were doing so at the moment death occured.
+                    if (CombatComponent.IsBlocking)
+                        CombatComponent.EndBlock();
+
                     Direction walkDirection = MovementComponent.WalkDirection == Direction.Left ? Direction.Right : Direction.Left;
                     double walkTime = 200;
 
@@ -224,6 +228,10 @@ namespace Corvus.Components
                 }
                 else if (FleeingStarted) //FLEEING AI
                 {
+                    //Stop blocking if we were doing so at the moment fleeing occured.
+                    if (CombatComponent.IsBlocking)
+                        CombatComponent.EndBlock();
+
                     Vector2 leftPlatformVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Bottom + 1);
                     Vector2 rightPlatformVector = new Vector2(Parent.Location.Center.X + 50, Parent.Location.Bottom + 1);
                     Vector2 leftWallVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Center.Y);

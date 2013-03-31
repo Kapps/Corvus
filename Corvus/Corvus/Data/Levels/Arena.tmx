@@ -22,11 +22,17 @@
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <layer name="Background" width="40" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3DAQkAAAwEocvy/UOux1Bw1VRVVVVVVR89Si6mKwAZAAA=
   </data>
  </layer>
  <layer name="Foreground" width="40" height="40">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3SuwqAMAxG4Xod1Pd/XjN0KKUWSqtJ8Bz4IWOGLwQiIiJ6apLNcYvyL6VW2Ra3K/9C40rd5bPgMHWXD4d+q7mz4LDmDod+a3Gn4bDFHQ791OPuC4c97nBot5Hu3nA40h0Oif7VITtll9H7BqT/yVQAGQAA
   </data>
