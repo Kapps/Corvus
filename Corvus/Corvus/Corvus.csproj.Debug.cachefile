@@ -203,6 +203,7 @@ Content\Audio\SoundEffects\Cheer.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
+Data\Entities\Misc_SpawnPoint.txt
 Data\Entities\Misc_AreaOfEffect.txt
 Data\Entities\Coin_Bronze.txt
 Data\Entities\Coin_Gold.txt

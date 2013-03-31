@@ -113,6 +113,24 @@ namespace Corvus.GameStates {
 				}
 			}
 
+            //Set spawn point.
+            //This is kinda weird, since we should have this all in once place.
+            //We've basically got a spawn point handler in CorvusGame and SceneManager.
+                //One is for creating a new player, and the other for changing the player's scene.
+            var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
+            if (Scene.Engine.Players.Count() != 0)
+            {
+                foreach (var player in Scene.Engine.Players)
+                {
+                    var playerEntity = player.Character;
+
+                    if (spawnPoint != null)
+                    {
+                        playerEntity.Position = spawnPoint.Position;
+                    }
+                }
+            }
+
 			return _ActiveScene;
 		}
 

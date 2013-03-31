@@ -1,0 +1,4 @@
+﻿SpawnPoint
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
+

@@ -61,5 +61,6 @@
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
    </properties>
   </object>
+  <object name="Spawn Point" type="SpawnPoint" x="51" y="662" width="32" height="32"/>
  </objectgroup>
 </map>

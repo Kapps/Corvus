@@ -80,8 +80,22 @@ namespace Corvus {
 			// TODO: Allow support for different 'classes' by just using different blueprints.
 			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
 			var PlayerEntity = Blueprint.CreateEntity();
-			PlayerEntity.Size = new Vector2(48, 32);
-            PlayerEntity.Position = new Vector2(1790, 1376);
+            PlayerEntity.Size = new Vector2(48, 32);
+
+            //Set spawn point, if any.
+            //This is kinda weird, since we should have this all in once place.
+            //We've basically got a spawn point handler in CorvusGame and SceneManager.
+                //One is for creating a new player, and the other for changing the player's scene.
+            var spawnPoint = SceneManager.ActiveScene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
+            if (spawnPoint != null)
+            {
+                PlayerEntity.Position = spawnPoint.Position;
+            }
+            else
+            {
+                PlayerEntity.Position = new Vector2(1790, 1376);
+            }
+
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
 			CorvusBinds.CreateBinds(Player); 
