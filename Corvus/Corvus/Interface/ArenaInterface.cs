@@ -30,13 +30,16 @@ namespace Corvus.Interface
         protected override void OnDraw(Microsoft.Xna.Framework.GameTime Time)
         {
             var player = CorvBase.Instance.Players.First();
-            
-            var arenaSystem = player.Character.Scene.GetSystem<ArenaSystem>();
 
-            if (arenaSystem != null)
+            if (player.Character.Scene != null)
             {
-                string waveString = "Wave: " + arenaSystem.Wave;
-                CorvBase.Instance.SpriteBatch.DrawString(_font, waveString, new Vector2(10, 120), Color.White);
+                var arenaSystem = player.Character.Scene.GetSystem<ArenaSystem>();
+
+                if (arenaSystem != null)
+                {
+                    string waveString = "Wave: " + arenaSystem.Wave;
+                    CorvBase.Instance.SpriteBatch.DrawString(_font, waveString, new Vector2(10, 120), Color.White);
+                }
             }
         }
     }
