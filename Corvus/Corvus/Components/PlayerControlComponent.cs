@@ -38,6 +38,7 @@ namespace Corvus.Components
         private PhysicsComponent PC;
         private SpriteComponent SC;
         private EquipmentComponent EC;
+        private ScoreComponent ScoreComponent;
 
         /// <summary>
         /// Gets or sets the dying sprite.
@@ -263,6 +264,7 @@ namespace Corvus.Components
             PC = this.GetDependency<PhysicsComponent>();
             SC = this.GetDependency<SpriteComponent>();
             EC = this.GetDependency<EquipmentComponent>();
+            ScoreComponent = this.GetDependency<ScoreComponent>();
 
             if (!AC.IsDiedRegistered)
                 AC.Died += AC_Died;
@@ -287,9 +289,17 @@ namespace Corvus.Components
         void AC_Died(AttributesComponent obj)
         {
             EC.RemoveWeapons();
+            ScoreComponent.Coins = 0;
+
             AudioManager.PlaySoundEffect(DyingSound);
             DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
-            obj.Parent.Dispose();
+
+            //Remove this if we ever have multiplayer, or just edit it to check for other players.
+            //Lazy for now, since I doubt it'll happen.
+            CorvusGame.Instance.SceneManager.ReloadScenes();
+
+            //If we dispose, the scene is gone apparently. Maybe? Doesn't really matter though.
+            //obj.Parent.Dispose();
         }
         
         private void LevelUp()
