@@ -47,11 +47,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Player.png">
-      <Name>Player</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Backgrounds\" />
@@ -71,8 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\TestPlayer.xml">
-      <Name>TestPlayer</Name>
+    <Compile Include="Sprites\Players\Player_Medieval.xml">
+      <Name>Player_Medieval</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
       <SubType>Designer</SubType>
@@ -151,8 +146,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\male_sprites.png">
-      <Name>male_sprites</Name>
+    <Compile Include="Sprites\Players\PlayerMedieval.png">
+      <Name>PlayerMedieval</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

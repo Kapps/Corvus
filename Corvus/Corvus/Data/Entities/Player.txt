@@ -6,7 +6,7 @@ BlueSprite
 # Inherits BlueSprite, simply adding the Sprite itself.
 PlayerSprite : BlueSprite
 	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/TestPlayer)
+		Sprite: Sprite(Sprites/Players/Player_Medieval)
 
 Properties
 	DamageComponent
@@ -62,7 +62,7 @@ Fighter
 		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
 
 # Show off multiple inheritance / composition.
-TestEntity : PlayerSprite, Properties, Damager, StatusEffecter, Fighter, Score
+Player : PlayerSprite, Properties, Damager, StatusEffecter, Fighter, Score
 	GamepadComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

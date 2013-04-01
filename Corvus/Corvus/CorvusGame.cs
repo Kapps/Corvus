@@ -82,7 +82,7 @@ namespace Corvus {
 		private void CreateNewPlayer() {
 			// TODO: Allow new players to join by pressing a button. Should be simple enough.
 			// TODO: Allow support for different 'classes' by just using different blueprints.
-			var Blueprint = EntityBlueprint.GetBlueprint("TestEntity");
+			var Blueprint = EntityBlueprint.GetBlueprint("Player");
 			var PlayerEntity = Blueprint.CreateEntity();
             PlayerEntity.Size = new Vector2(48, 32);
 
