@@ -135,7 +135,6 @@ namespace Corvus.Components {
 
         public void BeginBlock()
         {
-            _ShieldAnimation.ShowEffect = true;
             if ((DateTime.Now - _LastBlock).TotalMilliseconds > AttributesComponent.BlockSpeed)
             {
                 _LastBlock = DateTime.Now;
@@ -155,7 +154,6 @@ namespace Corvus.Components {
 
         public void EndBlock()
         {
-            _ShieldAnimation.ShowEffect = false;
             IsBlocking = false;
             ResumeAnimation();
         }
@@ -208,8 +206,13 @@ namespace Corvus.Components {
             }
 
             //Basically, if the player is walking and blocking, do blocking, which stops walking.
-            if (IsBlocking)
+            if (!IsBlocking)
+                _ShieldAnimation.ShowEffect = false;
+            else
+            {
                 BeginBlock();
+                _ShieldAnimation.ShowEffect = true;
+            }
 
         }
 
