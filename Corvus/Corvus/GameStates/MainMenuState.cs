@@ -41,13 +41,13 @@ namespace Corvus.GameStates
             : base()
         {
             _ControlManager = new ControlManagerComponent(this);
-            SpriteFont font = LoadContent<SpriteFont>("Fonts/MainMenuFont");
-            
-            Image bgImg = new Image(LoadContent<Texture2D>("Interface/TitleScreenBackground"));
+            SpriteFont font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/MainMenuFont");
+
+            Image bgImg = new Image(CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/TitleScreenBackground"));
             bgImg.Size = new Vector2(UIHelper.Viewport.Width, UIHelper.Viewport.Height);
             ControlManager.AddControl(bgImg);
 
-            Image titleImg = new Image(LoadContent<Texture2D>("Interface/TitleText"));
+            Image titleImg = new Image(CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/TitleText"));
             titleImg.Position = UIHelper.AlignControl(titleImg.Size, HorizontalAlignment.Center, VerticalAlignment.Top) + new Vector2(0, (UIHelper.Viewport.Height/2) * 0.1f);;
             ControlManager.AddControl(titleImg);
 
@@ -75,6 +75,13 @@ namespace Corvus.GameStates
             arenaModeBtn.Selected += arenaModeBtn_Selected;
             ControlManager.AddControl(arenaModeBtn);
 
+            LinkButton tutorialBtn = new LinkButton(font);
+            tutorialBtn.Text = "Tutorial";
+            tutorialBtn.Color = Color.Black;
+            tutorialBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
+            tutorialBtn.Selected += tutorialBtn_Selected;
+            ControlManager.AddControl(tutorialBtn);
+
             ControlManager.SetFocus();
             this.AddComponent(_ControlManager);
         }
@@ -96,9 +103,10 @@ namespace Corvus.GameStates
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
-        private T LoadContent<T>(string name)
+        void tutorialBtn_Selected(object sender, EventArgs e)
         {
-            return CorvusGame.Instance.GlobalContent.Load<T>(name);
+            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial");
+            CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
     }
 

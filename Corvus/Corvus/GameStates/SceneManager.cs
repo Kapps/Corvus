@@ -98,17 +98,21 @@ namespace Corvus.GameStates {
 			}
 
             //Plays the song. Not sure if it should be here.
+			 //Plays the song. Not sure if it should be here.
 			if(Scene.Properties.Any()) {
 				foreach(LevelProperty p in Scene.Properties) {
 					if(p.Name.Equals("Audio", StringComparison.InvariantCultureIgnoreCase)) {
 						var songProperties = p.Value.Split(',');
-						if(songProperties.Length >= 1 && string.IsNullOrEmpty(songProperties[0]))
-							continue; //Empty, don't play anything.
-						else if(songProperties.Length != 2)
-							throw new ArgumentException("Expected two arguments for Audio, being the song name and the fade duration. Ex:(SongName1, 2)");
+						if(songProperties.Length >= 1 && string.IsNullOrEmpty(songProperties[0])) {
+                            CorvEngine.AudioManager.StopMusic(); //Stops the song 
+							continue; 
+						}else if(songProperties.Length != 3)
+							throw new ArgumentException("Expected three arguments for Audio, being the song name, fade duration, and volume. Ex:(SongName1, 2, 0.5)");
 						string songName = songProperties[0];
 						float fadeDuration = float.Parse(songProperties[1]);
+                        float volume = float.Parse(songProperties[2]);
 						CorvEngine.AudioManager.PlayMusic(songName, fadeDuration);
+                        CorvEngine.AudioManager.SetMusicVolume(volume);
 					}
 				}
 			}

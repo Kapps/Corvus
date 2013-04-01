@@ -166,6 +166,7 @@
     <Compile Include="Components\DebugComponent.cs" />
     <Compile Include="GameStates\CorvusScene.cs" />
     <Compile Include="GameStates\MainMenuState.cs" />
+    <Compile Include="GameStates\PausedState.cs" />
     <Compile Include="GameStates\SceneManager.cs" />
     <Compile Include="Interface\ArenaInterface.cs" />
     <Compile Include="Interface\ControlManagerComponent.cs" />
