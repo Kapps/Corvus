@@ -41,11 +41,11 @@ Properties
 		GravityCoefficient: 1
 		HorizontalDragCoefficient: 1
 	AttributesComponent
-		MaxHealth: 100
-		Strength: 0
-		Dexterity: 0
-		Intelligence: 0
-		BlockDamageReduction: 1
+		MaxHealth: Random(250, 300)
+		Strength: 75
+		Dexterity: 5
+		Intelligence: 4
+		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(35, 35)
 		AttackSpeed: 900
 		BlockSpeed: 500

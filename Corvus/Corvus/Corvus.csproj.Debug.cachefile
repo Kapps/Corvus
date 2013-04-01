@@ -171,7 +171,7 @@ Data\Entities\Powerup_Might.txt
 Data\Entities\Powerup_Recover.txt
 Data\Entities\Powerup_Vigor.txt
 Data\Entities\Misc_Projectile.txt
-Data\Entities\Player.txt
+Data\Entities\Players.txt
 Data\Entities\Test_Enemy.txt
 Data\Entities\Weapon_ArcticLance.txt
 Data\Entities\Weapon_BastardSword.txt
