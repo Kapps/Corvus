@@ -135,6 +135,7 @@
     <Compile Include="Components\Gameplay\Equipment\WeaponTypes.cs" />
     <Compile Include="Components\Gameplay\FloatingText.cs" />
     <Compile Include="Components\Gameplay\FloatingTextList.cs" />
+    <Compile Include="Components\Gameplay\ShieldAnimation.cs" />
     <Compile Include="Components\Gameplay\Helper.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Fleet.cs" />
     <Compile Include="Components\Gameplay\StatusEffects\Healing.cs" />

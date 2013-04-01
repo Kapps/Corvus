@@ -52,7 +52,7 @@ namespace Corvus.Components {
         private bool _StartedAttackFromGround = false;
         private Direction _AttackStartedDirection = Direction.None;
         private WeaponSwingAnimation _WeaponSwingAnimation = new WeaponSwingAnimation();
-
+        private ShieldAnimation _ShieldAnimation;
         /// <summary>
         /// For Player only: Attack depending on whether the current weapon is melee or ranged.
         /// </summary>
@@ -135,6 +135,7 @@ namespace Corvus.Components {
 
         public void BeginBlock()
         {
+            _ShieldAnimation.ShowEffect = true;
             if ((DateTime.Now - _LastBlock).TotalMilliseconds > AttributesComponent.BlockSpeed)
             {
                 _LastBlock = DateTime.Now;
@@ -152,6 +153,7 @@ namespace Corvus.Components {
 
         public void EndBlock()
         {
+            _ShieldAnimation.ShowEffect = false;
             IsBlocking = false;
             ResumeAnimation();
         }
@@ -166,6 +168,7 @@ namespace Corvus.Components {
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
             PhysicsComponent = Parent.GetComponent<PhysicsComponent>();
             CombatPropertiesComponent = this.GetDependency<CombatPropertiesComponent>();
+            _ShieldAnimation = new ShieldAnimation(this.Parent, "Sprites/Misc/Misc_BlockSprite");
         }
 
         protected override void OnUpdate(GameTime Time)
@@ -212,6 +215,7 @@ namespace Corvus.Components {
         {
             base.OnDraw();
             _WeaponSwingAnimation.Draw();
+            _ShieldAnimation.Draw();
         }
 
         private void AttackMelee()

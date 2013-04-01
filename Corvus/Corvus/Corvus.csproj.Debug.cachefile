@@ -75,6 +75,7 @@ Content\Sprites\Equipment\ShortBow.xnb
 Content\Sprites\Equipment\Trident.xnb
 Content\Sprites\Equipment\BastardSword.xnb
 Content\Sprites\Equipment\Muramasa.xnb
+Content\Interface\PausedBackground.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
@@ -135,7 +136,7 @@ Content\Sprites\Equipment\Weapon_ShortBow.xnb
 Content\Sprites\Equipment\Weapon_Trident.xnb
 Content\Sprites\Equipment\Weapon_BastardSword.xnb
 Content\Sprites\Equipment\Weapon_Muramasa.xnb
-Content\Interface\PausedBackground.xnb
+Content\Sprites\Misc\Misc_BlockSprite.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
