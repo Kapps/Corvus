@@ -24,7 +24,6 @@ namespace Corvus.Components
             set { _TotalEntitiesSpawned = value; }
         }
 
-        //Best to put this somewhere else?
         public int TotalEntitiesToSpawn
         {
             get { return _TotalEntitiesToSpawn; }
@@ -49,17 +48,24 @@ namespace Corvus.Components
             set { _BlueprintName = value; }
         }
 
+        public float SpawnDelay
+        {
+            get { return _SpawnDelay; }
+            set { _SpawnDelay = value; }
+        }
+
         private bool _SpawnerEnabled = true;
         private DateTime _LastSpawn;
         private List<Entity> _EntitiesSpawned = new List<Entity>();
         private int _TotalEntitiesSpawned;
-        private int _TotalEntitiesToSpawn = 1;
+        private int _TotalEntitiesToSpawn;
         private ArenaSystem ArenaSystem;
         private string _BlueprintName;
+        private float _SpawnDelay;
 
         protected override void OnUpdate(GameTime Time)
         {
-            if ((DateTime.Now - LastSpawn).TotalSeconds > 2 && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
+            if ((DateTime.Now - LastSpawn).TotalMilliseconds > SpawnDelay && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
             {
                 //Set up the basic entity.
                 Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(BlueprintName).CreateEntity();

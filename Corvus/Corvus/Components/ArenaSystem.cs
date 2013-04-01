@@ -19,13 +19,21 @@ namespace CorvEngine.Components
             set { _Wave = value; }
         }
 
-        private int _Wave = 1;
-        private int _TotalEntitiesSpawned;
-        private int _TotalEntitiesSpawnedWave;
+        public int TotalEntitiesKilled
+        {
+            get { return _TotalEntitiesKilled; }
+            set { _TotalEntitiesKilled = value; }
+        }
 
-        //Unsure about these being here, but fine for now.
-        private int _TotalEntitiesKilled;
-        private int _TotalEntitiesKilledWave;
+        public int TotalEntitiesKilledWave
+        {
+            get { return _TotalEntitiesKilledWave; }
+            set { _TotalEntitiesKilledWave = value; }
+        }
+
+        private int _Wave = 1;
+        private int _TotalEntitiesKilled = 0;
+        private int _TotalEntitiesKilledWave = 0;
 
         private List<Entity> SpawnerEntities;
         private List<SpawnerComponent> SpawnerComponents = new List<SpawnerComponent>();
@@ -46,7 +54,9 @@ namespace CorvEngine.Components
                 foreach (Entity entity in spawnerComponent.EntitiesSpawned)
                 {
                     if (entity.IsDisposed == false)
+                    {
                         allEntitiesDisposed = false;
+                    }
                 }
             }
 
@@ -57,6 +67,7 @@ namespace CorvEngine.Components
                     spawnerComponent.Reset();
                 }
 
+                TotalEntitiesKilledWave = 0;
                 Wave++;
             }
         }

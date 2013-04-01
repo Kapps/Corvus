@@ -16,6 +16,7 @@ namespace Corvus.Components
     public class DestroyableObjectComponent : Component
     {
         private AttributesComponent AC;
+        private ArenaSystem ArenaSystem;
         private string _DyingSprite = "";
         private float _DyingDuration = 0f;
         private string _DyingSound = "";
@@ -113,6 +114,7 @@ namespace Corvus.Components
             AC = this.GetDependency<AttributesComponent>();
             if(!AC.IsDiedRegistered)
                 AC.Died += AC_Died;
+            ArenaSystem = Scene.GetSystem<ArenaSystem>();
         }
         
         void AC_Died(AttributesComponent obj)
@@ -170,6 +172,14 @@ namespace Corvus.Components
             
             DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
             obj.Parent.Dispose();
+
+            //Maybe not the best place for this, but definitely the easiest for now.
+            //Adding it to ArenaSystem would require further tracking of entities tabulated.
+            if (ArenaSystem != null)
+            {
+                ArenaSystem.TotalEntitiesKilled++;
+                ArenaSystem.TotalEntitiesKilledWave++;
+            }
         }
 
         private void GenerateCoinEntity(string coinName, float xmod)
