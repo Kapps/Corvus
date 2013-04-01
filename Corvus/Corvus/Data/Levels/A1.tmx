@@ -27,6 +27,9 @@
  <tileset firstgid="798" name="coin_bronze 32x32" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/coin_bronze 32x32.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="799" name="block 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/block 32x32.png" width="96" height="96"/>
+ </tileset>
  <layer name="Background" width="200" height="25">
   <properties>
    <property name="Solid" value="false"/>
@@ -40,7 +43,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DsQkAAAgDsKL4/8te4OaYQBIAAAAAAAAAAAAAAAAAAAAAAOBbtXod9by0KRLlIE4AAA==
+   H4sIAAAAAAAAC+3b2w6CMBBFUaBgTIx3/f9fdXwwEmhpp1xKYa9kHjQQNWGY01CLAgAAAFtXmqKopIxJ/U2A9amlLxqpA/0B9BzNv3yYNdgbTX8wazCnkPvv75iqdezJU7ZzQmn6A5hTyP23MfqqO68193f6A3Ab2x9nOe8idaW/kKmh/DW2P25y3l3qQX8gU0P5a2x/POW8l9Sb/sAGTZmvyFpYs5jnE1PmK7IW1izm+YSmP2zzoZ2vyFrYM9t8cOUrshZSSbXPwzYfXPmKrIVUltzn4ZsJrnylyVrMGuTKNxNC8pXv+mfWIMYa9sv6ZkJIvvJd/6zrESPVflnNHAjJV7brn7U8crXEmpu1PHI1xZo79jOwX+09glS/NOus0nH8933f/2VS/07KXjH/7dhTadZZteP47l5MKp/6AEBRQ4IgTgAA
   </data>
  </layer>
  <layer name="Objects" width="200" height="25" visible="0">
@@ -53,5 +56,13 @@
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
- <objectgroup name="Enemies" width="200" height="25"/>
+ <objectgroup name="Enemies" width="200" height="25">
+  <object name="Spawn Point" type="SpawnPoint" x="192" y="660" width="32" height="32"/>
+  <object name="Tutorial" type="LevelChanger" x="50" y="661" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
