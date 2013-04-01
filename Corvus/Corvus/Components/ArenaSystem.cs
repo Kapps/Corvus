@@ -91,6 +91,7 @@ namespace CorvEngine.Components
                     _PhaseTimer -= Time.ElapsedGameTime;
                     if (_PhaseTimer <= TimeSpan.Zero)
                     {
+                        AudioManager.PlaySoundEffect("ArenaStart");
                         InitBattlePhase();
                         _BattleTimer = TimeSpan.Zero;
                         _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
@@ -102,6 +103,7 @@ namespace CorvEngine.Components
                     _BattleTimer += Time.ElapsedGameTime;
                     if (RemainingEntities.Count == 0)
                     {
+                        AudioManager.PlaySoundEffect("ArenaEnd");
                         InitEndPhase();
                         _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
                         _CurrentPhase = ArenaPhases.End;
@@ -123,6 +125,8 @@ namespace CorvEngine.Components
         protected override void OnDraw()
         {
             base.OnDraw();
+           
+
             if (_CurrentPhase == ArenaPhases.Start)
                 CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Battle starts in {0}...", _PhaseTimer.Seconds.ToString()), new Vector2(0f, 200f), Color.Yellow);
             else if (_CurrentPhase == ArenaPhases.Battle)
