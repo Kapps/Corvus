@@ -10,25 +10,31 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Corvus.Components;
 using Corvus;
+using Corvus.Interface;
 
 namespace CorvEngine.Components
 {
     public enum ArenaPhases
     {
-        Start, Battle, End
+        Start, Battle, End, GameOver
     }
 
     public class ArenaSystem : SceneSystem
     {
-        private const float PHASE_DURATION = 5;
+        private const float PHASE_DURATION = 5f;
+        private const float GAMEOVER_PHASE_DURATION = 10f;
 
+        //stats
         private int _Wave = 1;
         private int _TotalEntitiesRemaining = 0;
         private int _TotalEntitiesKilled = 0;
+        private TimeSpan _TotalTime = TimeSpan.Zero;
         private float _DifficultyModifier = 1f;
+
         private ArenaPhases _CurrentPhase = ArenaPhases.Start;
         private TimeSpan _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
         private TimeSpan _BattleTimer = TimeSpan.Zero;
+
         private SpriteFont _Font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/ArenaFont");
         private Random Rand = new Random();
 
@@ -37,25 +43,22 @@ namespace CorvEngine.Components
         private List<Entity> ItemSpawners;
 
         private List<Entity> RemainingEntities;
-
-        public int Wave
-        {
-            get { return _Wave; }
-            set { _Wave = value; }
-        }
-
-        public int TotalEntitiesKilled
-        {
-            get { return _TotalEntitiesKilled; }
-            set { _TotalEntitiesKilled = value; }
-        }
-
+        
         public void Reset()
         {
-            Wave = 1;
+            _Wave = 1;
+            _TotalTime = TimeSpan.Zero;
+            _TotalEntitiesKilled = 0;
             _DifficultyModifier = 1f;
             _CurrentPhase = ArenaPhases.Start;
+
+            if (RemainingEntities != null)
+            {
+                foreach (var s in RemainingEntities)
+                    s.Dispose();
+            }
             RemainingEntities = new List<Entity>();
+
             _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
             foreach (var s in EnemySpawners)
                 s.GetComponent<SpawnerComponent>().Reset();
@@ -84,6 +87,7 @@ namespace CorvEngine.Components
             if (Time.TotalGameTime == TimeSpan.Zero)
                 return;
 
+            DeterminePlayerState();
             switch (_CurrentPhase)
             {
                 case ArenaPhases.Start:
@@ -119,32 +123,83 @@ namespace CorvEngine.Components
                         _CurrentPhase = ArenaPhases.Start;
                     }
                     break;
+                case ArenaPhases.GameOver:
+                    _PhaseTimer -= Time.ElapsedGameTime;
+                    if (_PhaseTimer <= TimeSpan.Zero)
+                    {
+                        Reset();
+                        _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
+                        _CurrentPhase = ArenaPhases.Start;
+                        //TODO: Actually respawn the player.
+                        foreach (var p in CorvusGame.Instance.Players)
+                        {
+                        }
+                    }
+                    break;
             }
         }
 
         protected override void OnDraw()
         {
             base.OnDraw();
-           
 
-            if (_CurrentPhase == ArenaPhases.Start)
-                CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Battle starts in {0}...", _PhaseTimer.Seconds.ToString()), new Vector2(0f, 200f), Color.Yellow);
-            else if (_CurrentPhase == ArenaPhases.Battle)
+            if (_CurrentPhase != ArenaPhases.GameOver)
             {
-                CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Enemies Remaining: {0}", _TotalEntitiesRemaining.ToString()), new Vector2(0f, 200f), Color.Yellow);
-                string battleTime = string.Format("{0}.{1}s", _BattleTimer.Seconds.ToString(), _BattleTimer.Milliseconds.ToString());
-                CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Time: {0}", battleTime), new Vector2(0f, 240f), Color.Yellow);
+                CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Wave: {0}", _Wave.ToString()), new Vector2(5f, 125f), Color.Black);
+                CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Kills: {0}", _TotalEntitiesKilled), new Vector2(5f, 150f), Color.Black);
             }
-            else
+            string battleTime = string.Format("{0}.{1}s", _BattleTimer.Seconds.ToString(), _BattleTimer.Milliseconds.ToString());
+            switch (_CurrentPhase)
             {
-                string battleTime = string.Format("{0}.{1}s", _BattleTimer.Seconds.ToString(), _BattleTimer.Milliseconds.ToString());
-                CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Cleared Wave {0} in {1}!", Wave.ToString(), battleTime), new Vector2(0f, 200f), Color.Yellow);
+                case ArenaPhases.Start:
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Battle starts in {0}...", (_PhaseTimer.Seconds + 1).ToString()), new Vector2(5f, 175f), Color.Yellow);
+                    break;
+                case ArenaPhases.Battle:
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Enemies Remaining: {0}", _TotalEntitiesRemaining.ToString()), new Vector2(5f, 175f), Color.Yellow);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Time: {0}", battleTime), new Vector2(5f, 200f), Color.Yellow);
+                    break;
+                case ArenaPhases.End:    
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Cleared Wave {0} in {1}!", _Wave.ToString(), battleTime), new Vector2(5f, 175f), Color.Yellow);
+                    break;
+                case ArenaPhases.GameOver:
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, "You Have Died", new Vector2(5f, 125f), Color.Yellow);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, "Stats", new Vector2(5f, 150f), Color.Black);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Waves Cleared: {0}", (_Wave - 1).ToString()), new Vector2(15f, 175f), Color.Black);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Total Kills: {0}", _TotalEntitiesKilled), new Vector2(15f, 200f), Color.Black);
+                    string totalTime = string.Format("{0}.{1}s", _TotalTime.Seconds.ToString(), _TotalTime.Milliseconds.ToString());
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Total Time: {0}", totalTime), new Vector2(15f, 225f), Color.Black);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Difficulty Modifier: {0}", _DifficultyModifier.ToString("0.00")), new Vector2(15f, 250f), Color.Black);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Restarting in {0}...", (_PhaseTimer.Seconds + 1).ToString()), new Vector2(5f, 275f), Color.Yellow);
+                    break;
             }
         }
 
         void sc_OnEnemySpawn(object sender, EnemySpawnedEvent e)
         {
             RemainingEntities.Add(e.Entity);
+        }
+
+        private void DeterminePlayerState()
+        {
+            if (_CurrentPhase == ArenaPhases.GameOver)
+                return;
+
+            bool allplayersDisposed = true;
+            foreach (var p in CorvusGame.Instance.Players)
+            {
+                if (!p.Character.IsDisposed)
+                {
+                    allplayersDisposed = false;
+                    break;
+                }
+            }
+            if (allplayersDisposed)
+            {
+                _TotalTime += _BattleTimer;
+                _CurrentPhase = ArenaPhases.GameOver;
+                _PhaseTimer = TimeSpan.FromSeconds(GAMEOVER_PHASE_DURATION);
+            }
+
         }
 
         private void StartPhaseUpdate()
@@ -163,11 +218,12 @@ namespace CorvEngine.Components
                 e.Dispose();
             RemainingEntities = new List<Entity>();
 
-            _TotalEntitiesRemaining = Wave * EnemySpawners.Count + Rand.Next(Wave / 4, Wave / 2);
+            _TotalEntitiesRemaining = _Wave * EnemySpawners.Count + Rand.Next(_Wave / 4, _Wave / 2);
             foreach (var s in EnemySpawners)
             {
                 var sc = s.GetComponent<SpawnerComponent>();
                 sc.TotalEntitiesToSpawn = _TotalEntitiesRemaining / EnemySpawners.Count;
+                sc.SpawnDelay = MathHelper.Clamp(3f - _DifficultyModifier , 1f, 2f);
                 sc.SpawnerEnabled = true;
             }
         }
@@ -194,15 +250,13 @@ namespace CorvEngine.Components
         {
             if (_PhaseTimer < TimeSpan.FromSeconds(PHASE_DURATION))
                 return;
-
-            Wave++;
-
+            _TotalTime += _BattleTimer;
             //create healing items.
             foreach (var s in ItemSpawners)
                 s.GetComponent<SpawnerComponent>().Spawn();
 
             //Set difficulty based on how long it took the player.
-            _DifficultyModifier += 0.05f + (MathHelper.Clamp(1f / (float)_BattleTimer.TotalSeconds, 0f, 0.1f));
+            _DifficultyModifier += 0.025f + (MathHelper.Clamp(1f / (float)_BattleTimer.TotalSeconds, 0f, 0.1f));
             foreach (var s in EnemySpawners)
             {
                 var sc = s.GetComponent<SpawnerComponent>();
@@ -214,6 +268,7 @@ namespace CorvEngine.Components
 
         private void InitStartPhase()
         {
+            _Wave++;
             //remove all existing items.
             foreach (var e in RemainingEntities)
             {
