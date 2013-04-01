@@ -63,12 +63,13 @@ namespace Corvus {
 		protected override void Initialize() {
 			// TODO: Add your initialization logic here
 			this.RegisterGlobalComponent(new AudioManager(this.Game, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
+            AudioManager.SetMusicVolume(0f); //temp: just here cuz it's really annoying to debug and listen to the music.
             _SceneManager = new SceneManager();
             _SceneManager.ChangeScene("BasicLevel");
             // Start off in game.
             StateManager.PushState(_SceneManager);
             _MainMenuState = new MainMenuState();
-            //StateManager.PushState(_MainMenuState); //TODO: Move this probably
+           // StateManager.PushState(_MainMenuState); //TODO: Move this probably
             //AudioManager.PlayMusic("Title1");
             //AudioManager.SetMusicVolume(0.5f);
             _PausedState = new PausedState();

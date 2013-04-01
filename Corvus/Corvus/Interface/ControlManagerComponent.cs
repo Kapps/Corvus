@@ -52,6 +52,7 @@ namespace Corvus.Interface
             if (_Controls.Count == 0 || state == BindState.Released) //TODO: Get rid of this when i figure out how to do menu binds.
                 return;
 
+            AudioManager.PlaySoundEffect("Select");
             _Controls[_CurrentIndex].OnSelected();
         }
 
@@ -63,6 +64,7 @@ namespace Corvus.Interface
             if (_Controls.Count == 0 || state == BindState.Released) //TODO: Get rid of this when i figure out how to do menu binds.
                 return;
 
+            AudioManager.PlaySoundEffect("ButtonChange");
             int currentIndex = _CurrentIndex;
             _Controls[_CurrentIndex].HasFocus = false;
 
@@ -88,6 +90,7 @@ namespace Corvus.Interface
             if (_Controls.Count == 0 || state == BindState.Released) //TODO: Get rid of this when i figure out how to do menu binds.
                 return;
 
+            AudioManager.PlaySoundEffect("ButtonChange");
             int currentIndex = _CurrentIndex;
             _Controls[_CurrentIndex].HasFocus = false;
 
