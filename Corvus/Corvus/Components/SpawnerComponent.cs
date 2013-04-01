@@ -124,7 +124,7 @@ namespace Corvus.Components
 
         protected override void OnUpdate(GameTime Time)
         {
-            if ((DateTime.Now - LastSpawn).TotalMilliseconds > SpawnDelay && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
+            if ((DateTime.Now - LastSpawn).TotalSeconds > SpawnDelay && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
             {
                 LastSpawn = DateTime.Now;
                 Entity entity = Spawn();
@@ -134,6 +134,9 @@ namespace Corvus.Components
                 ac.MaxHealth *= DifficultyModifier;
                 ac.StrModifier *= DifficultyModifier;
                 ac.AttackSpeedModifier /= DifficultyModifier;
+
+                var sc = entity.GetComponent<SpriteComponent>();
+                sc.Color = Color.Lerp(Color.White, Color.Red, MathHelper.Clamp(DifficultyModifier/10f, 0f, 1f));
             }
 
             base.OnUpdate(Time);

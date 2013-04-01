@@ -169,7 +169,6 @@
     <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="GameStates\PausedState.cs" />
     <Compile Include="GameStates\SceneManager.cs" />
-    <Compile Include="Interface\ArenaInterface.cs" />
     <Compile Include="Interface\ControlManagerComponent.cs" />
     <Compile Include="Interface\Controls\BaseControl.cs" />
     <Compile Include="Interface\Controls\Image.cs" />

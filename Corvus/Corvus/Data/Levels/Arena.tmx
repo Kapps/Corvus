@@ -80,7 +80,7 @@
    </object>
   <object name="Spawner" type="Spawner" x="620" y="677" width="32" height="32">
    <properties>
-     <property name="SpawnerComponent.SpawnDelay" value="2000"/>
+     <property name="SpawnerComponent.SpawnDelay" value="2"/>
      <property name="SpawnerComponent.SpawnID" value="Enemy"/>
      <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
      <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
@@ -88,7 +88,7 @@
   </object>
   <object name="Spawner" type="Spawner" x="620" y="804" width="32" height="32">
    <properties>
-    <property name="SpawnerComponent.SpawnDelay" value="2000"/>
+    <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
      <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
      <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
@@ -96,7 +96,7 @@
   </object>
   <object name="Spawner" type="Spawner" x="622" y="931" width="32" height="32">
    <properties>
-    <property name="SpawnerComponent.SpawnDelay" value="2000"/>
+    <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
      <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
      <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>

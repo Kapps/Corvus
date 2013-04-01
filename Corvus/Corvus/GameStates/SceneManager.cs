@@ -65,10 +65,8 @@ namespace Corvus.GameStates {
 
                 //This is likely a shitty idea for obvious reasons, but still works.
                 if (Scene.Name.Contains("Arena"))
-                {
                     Scene.AddSystem(new ArenaSystem());
-                    this.AddComponent(new ArenaInterface(Scene.GameState));
-                }
+                
 
 				TiledPlatformerGeometry Geometry = new TiledPlatformerGeometry(Scene);
                 Scene.Initialize(Geometry);

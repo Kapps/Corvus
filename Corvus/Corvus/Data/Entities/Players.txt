@@ -37,7 +37,7 @@ Properties
 		MaxHealth: Random(45000, 50000)
 		MaxMana: 100
 		ManaRegen: 0.005
-		Strength: 25
+		Strength: 2500
 		Dexterity: 20
 		Intelligence: 10
 		CritChance: 0

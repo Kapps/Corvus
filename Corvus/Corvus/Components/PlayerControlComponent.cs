@@ -296,10 +296,10 @@ namespace Corvus.Components
 
             //Remove this if we ever have multiplayer, or just edit it to check for other players.
             //Lazy for now, since I doubt it'll happen.
-            CorvusGame.Instance.SceneManager.ReloadScenes();
+            //CorvusGame.Instance.SceneManager.ReloadScenes();
 
             //If we dispose, the scene is gone apparently. Maybe? Doesn't really matter though.
-            //obj.Parent.Dispose();
+            obj.Parent.Dispose();
         }
         
         private void LevelUp()
