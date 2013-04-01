@@ -251,7 +251,7 @@
     <Content Include="Data\Entities\Player.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Entities\TestEntityEnemy.txt">
+    <Content Include="Data\Entities\Test_Enemy.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\Weapon_ArcticLance.txt">

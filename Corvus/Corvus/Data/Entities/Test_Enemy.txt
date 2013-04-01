@@ -4,7 +4,7 @@
 
 EnemySprite : RedSprite
 	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/TestEnemy)
+		Sprite: Sprite(Sprites/Test_Enemy)
 
 Attributes
 	DamageComponent

@@ -1,6 +1,5 @@
 Content\TestTexture.xnb
 Content\Interface\HealthBar.xnb
-Content\Sprites\Enemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
 Content\Interface\HealthMeter.xnb
 Content\Sprites\Effects\Explosion1.xnb
@@ -79,7 +78,6 @@ Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
 Content\Fonts\PlayerAttributeFont.xnb
-Content\Sprites\TestEnemy.xnb
 Content\Sprites\StatusEffects\Effect_Might.xnb
 Content\Sprites\StatusEffects\Effect_Healing.xnb
 Content\Sprites\StatusEffects\Effect_ManaHeal.xnb
@@ -146,6 +144,8 @@ Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
 Content\Sprites\Players\PlayerMedieval.xnb
 Content\Sprites\Players\Player_Medieval.xnb
+Content\Sprites\TestEnemy.xnb
+Content\Sprites\Test_Enemy.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
@@ -172,7 +172,7 @@ Data\Entities\Powerup_Recover.txt
 Data\Entities\Powerup_Vigor.txt
 Data\Entities\Misc_Projectile.txt
 Data\Entities\Player.txt
-Data\Entities\TestEntityEnemy.txt
+Data\Entities\Test_Enemy.txt
 Data\Entities\Weapon_ArcticLance.txt
 Data\Entities\Weapon_BastardSword.txt
 Data\Entities\Weapon_EarthBall.txt

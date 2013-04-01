@@ -124,16 +124,16 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Enemy.png">
-      <Name>Enemy</Name>
+    <Compile Include="Sprites\TestEnemy.png">
+      <Name>TestEnemy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\TestEnemy.xml">
+    <Compile Include="Sprites\Test_Enemy.xml">
       <SubType>Designer</SubType>
-      <Name>TestEnemy</Name>
+      <Name>Test_Enemy</Name>
       <Importer>XmlImporter</Importer>
       <Processor>SpriteProcessor</Processor>
     </Compile>
