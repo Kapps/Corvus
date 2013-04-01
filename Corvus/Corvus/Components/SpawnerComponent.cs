@@ -95,7 +95,6 @@ namespace Corvus.Components
         private string _SpawnID = "";
         private List<string> _EntitiesToSpawn = new List<string>();
         private Vector2 _EntitySize = new Vector2();
-        private Random Rand = new Random();
         private float _DifficultyModifier = 1f;
         private bool _SpawnerEnabled = true;
         private DateTime _LastSpawn;
@@ -112,7 +111,7 @@ namespace Corvus.Components
 
         public Entity Spawn()
         {
-            int index = Rand.Next(0, EntitiesToSpawn.Count() - 1);
+            int index = RandomNumber(0, EntitiesToSpawn.Count());
             Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(EntitiesToSpawn[index]).CreateEntity();
             entity.Position = this.Parent.Position;
             entity.Size = EntitySize;
@@ -138,6 +137,18 @@ namespace Corvus.Components
             }
 
             base.OnUpdate(Time);
+        }
+
+        //Function to get random number
+        //Apparently the max range is exclusive, meaning not included in the returned set.
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
         }
     }
 }
