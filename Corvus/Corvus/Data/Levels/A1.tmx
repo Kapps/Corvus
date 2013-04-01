@@ -40,7 +40,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2a627DIAxGk9BN0abufqm6vf9zztWKyljTJkDB0HOkT0L5kSCw8YeVrgMAAAAAAAAAaJvedN2wlzGlZwO14sZRS/F0Y/4KIAQ/jognAABonZ03vN+rBU8I9dIrjEE8IWihthhste8AkAL6DgAA+il5N9F4LwJwKeld7LfJEYD/jOZXJXNkMMfHU/+4DAVrrd+ziOldpH7ftbGWNXoQPV5wrWx+2ByZ2q+5CtlXt3b642O9gdK1NlXvIvX7ro0nWaNn0Uum/BjP7Ndccfa1h8Za9yrffRO9VxRvc7xaLT2BWuaZAy21zvVUMf4qhzebYjyzZjX4hz5i7zWeta3geqoYf5XDm2lg6m4fc4e3uWE951K0nLUt4nqqGH9VozcL4dTdPgQ/N0LyoxSuZ4jts1xCc2rnqdrbukqxZI5+btSUH65nSNFnSa1bc/hf/M6Tfb5SMM9S+hB9ijaZx0vm6OfGTlvRl+hb+dj1DD8+/f3RIE4AAA==
+   H4sIAAAAAAAAC+3DsQkAAAgDsKL4/8te4OaYQBIAAAAAAAAAAAAAAAAAAAAAAOBbtXod9by0KRLlIE4AAA==
   </data>
  </layer>
  <layer name="Objects" width="200" height="25" visible="0">
@@ -53,26 +53,5 @@
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
- <objectgroup name="Enemies" width="200" height="25">
-  <object name="DeadlyArea" type="DeadlyArea" x="1210" y="754" width="266" height="48"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="2626" y="283" width="59" height="46"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
-  <object name="Bronze" type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="751" y="525" width="32" height="32"/>
-  <object name="Gold" type="Coin_Gold" x="831" y="528" width="32" height="32"/>
-  <object name="BasicLevel" type="LevelChanger" x="40" y="648" width="32" height="32">
-   <properties>
-    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
-    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
-   </properties>
-  </object>
-  <object name="Spawn Point" type="SpawnPoint" x="246" y="646" width="32" height="32"/>
-  <object name="A1" type="LevelChanger" x="460" y="646" width="32" height="32">
-   <properties>
-    <property name="LevelChangeComponent.NextLevel" value="A1"/>
-    <property name="LevelChangeComponent.PrevLevel" value="A1"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Enemies" width="200" height="25"/>
 </map>
