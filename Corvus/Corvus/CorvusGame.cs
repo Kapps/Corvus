@@ -65,7 +65,7 @@ namespace Corvus {
 			this.RegisterGlobalComponent(new AudioManager(this.Game, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
             AudioManager.SetMusicVolume(0f); //temp: just here cuz it's really annoying to debug and listen to the music.
             _SceneManager = new SceneManager();
-            _SceneManager.ChangeScene("BasicLevel");
+            _SceneManager.ChangeScene("Arena");//"BasicLevel");
             // Start off in game.
             StateManager.PushState(_SceneManager);
             _MainMenuState = new MainMenuState();

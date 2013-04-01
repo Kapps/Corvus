@@ -10,8 +10,54 @@ using CorvEngine;
 
 namespace Corvus.Components
 {
+    public class EnemySpawnedEvent : EventArgs
+    {
+        public Entity Entity { get; set; }
+        public EnemySpawnedEvent(Entity entity)
+            : base()
+        {
+            Entity = entity;
+        }
+    }
+
     public class SpawnerComponent : Component
     {
+        /// <summary>
+        /// Gets or sets an id. Used to determine what should be spawned from this spawner.
+        /// </summary>
+        public string SpawnID
+        {
+            get { return _SpawnID; }
+            set { _SpawnID = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the list of entities this spawner should spawn.
+        /// </summary>
+        public List<string> EntitiesToSpawn
+        {
+            get { return _EntitiesToSpawn; }
+            set { _EntitiesToSpawn = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the size of the entity when it spawns.
+        /// </summary>
+        public Vector2 EntitySize
+        {
+            get { return _EntitySize; }
+            set { _EntitySize = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the difficulty modifier.
+        /// </summary>
+        public float DifficultyModifier
+        {
+            get { return _DifficultyModifier; }
+            set { _DifficultyModifier = Math.Max(value, 1f); }
+        }
+
         public DateTime LastSpawn
         {
             get { return _LastSpawn; }
@@ -35,78 +81,63 @@ namespace Corvus.Components
             get { return _SpawnerEnabled; }
             set { _SpawnerEnabled = value; }
         }
-
-        public List<Entity> EntitiesSpawned
-        {
-            get { return _EntitiesSpawned; }
-            set { _EntitiesSpawned = value; }
-        }
-
-        public string BlueprintName
-        {
-            get { return _BlueprintName; }
-            set { _BlueprintName = value; }
-        }
-
+        
         public float SpawnDelay
         {
             get { return _SpawnDelay; }
             set { _SpawnDelay = value; }
         }
 
+        public bool IsOnEnemySpawnRegistered { get { return OnEnemySpawn != null; } }
+
+        public event EventHandler<EnemySpawnedEvent> OnEnemySpawn;
+
+        private string _SpawnID = "";
+        private List<string> _EntitiesToSpawn = new List<string>();
+        private Vector2 _EntitySize = new Vector2();
+        private Random Rand = new Random();
+        private float _DifficultyModifier = 1f;
         private bool _SpawnerEnabled = true;
         private DateTime _LastSpawn;
-        private List<Entity> _EntitiesSpawned = new List<Entity>();
         private int _TotalEntitiesSpawned;
         private int _TotalEntitiesToSpawn;
-        private ArenaSystem ArenaSystem;
-        private string _BlueprintName;
         private float _SpawnDelay;
+
+        public void Reset()
+        {
+            _DifficultyModifier = 1f;
+            _TotalEntitiesSpawned = 0;
+            SpawnerEnabled = false;
+        }
+
+        public Entity Spawn()
+        {
+            int index = Rand.Next(0, EntitiesToSpawn.Count() - 1);
+            Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(EntitiesToSpawn[index]).CreateEntity();
+            entity.Position = this.Parent.Position;
+            entity.Size = EntitySize;
+            Scene.AddEntity(entity);
+
+            if (OnEnemySpawn != null)
+                OnEnemySpawn(this, new EnemySpawnedEvent(entity));
+            return entity;
+        }
 
         protected override void OnUpdate(GameTime Time)
         {
             if ((DateTime.Now - LastSpawn).TotalMilliseconds > SpawnDelay && TotalEntitiesSpawned != TotalEntitiesToSpawn && SpawnerEnabled)
             {
-                //Set up the basic entity.
-                Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(BlueprintName).CreateEntity();
-                entity.Position = this.Parent.Position;
-                entity.Size = new Vector2(32, 32);
-
-                //Modify the entity's difficulty, based on the wave.
-                //Was debating setting the modifiers, but this just seems to make sense, as they're a completely new entity.
-                var ac = entity.GetComponent<AttributesComponent>();
-                var difficulty = GetDifficulty();
-                ac.Strength = ac.Strength * difficulty;
-                ac.MaxHealth = ac.MaxHealth * difficulty;
-
-                //Add the entity to the game.
-                Scene.AddEntity(entity);
-                TotalEntitiesSpawned++;
-                EntitiesSpawned.Add(entity);
                 LastSpawn = DateTime.Now;
+                Entity entity = Spawn();
+                TotalEntitiesSpawned++;
+
+                var ac = entity.GetComponent<AttributesComponent>();
+                ac.MaxHealth *= DifficultyModifier;
+                ac.StrModifier *= DifficultyModifier;
+                ac.AttackSpeedModifier /= DifficultyModifier;
             }
 
             base.OnUpdate(Time);
-        }
-
-        //Make this a property if we have more complicated spawners eventually, as we'll probably set it in tiled.
-        private float GetDifficulty()
-        {
-            if (ArenaSystem == null)
-                return 1;
-            else
-                return ArenaSystem.Wave / 10f;
-        }
-
-        protected override void OnInitialize()
-        {
-            ArenaSystem = Scene.GetSystem<ArenaSystem>();
-        }
-
-        public void Reset()
-        {
-            EntitiesSpawned = new List<Entity>();
-            _TotalEntitiesSpawned = 0;
         }
     }
 }

@@ -111,6 +111,11 @@
       <Name>Wave Bank</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Fonts\ArenaFont.spritefont">
+      <Name>ArenaFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Levels\testLevel.tmx">
       <Name>testLevel</Name>
       <Importer>XmlImporter</Importer>

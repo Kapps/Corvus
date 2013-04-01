@@ -4,7 +4,7 @@
 	CollisionDamageComponent
 		Damage: 999999999
 		DisposeOnCollision: false
-		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Trigger)
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Enemy)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
 

@@ -41,8 +41,8 @@ namespace Corvus.Interface
                     CorvBase.Instance.SpriteBatch.DrawString(_font, wave, new Vector2(10, 120), Color.White);
                     string totalKills = "Kills: " + arenaSystem.TotalEntitiesKilled;
                     CorvBase.Instance.SpriteBatch.DrawString(_font, totalKills, new Vector2(10, 140), Color.White);
-                    string totalKillsWave = "Kills (Wave): " + arenaSystem.TotalEntitiesKilledWave;
-                    CorvBase.Instance.SpriteBatch.DrawString(_font, totalKillsWave, new Vector2(10, 160), Color.White);
+                    //string totalKillsWave = "Kills (Wave): " + arenaSystem.TotalEntitiesKilledWave;
+                    //CorvBase.Instance.SpriteBatch.DrawString(_font, totalKillsWave, new Vector2(10, 160), Color.White);
                 }
             }
         }
