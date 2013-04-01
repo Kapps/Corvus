@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="80" height="50" tilewidth="32" tileheight="32">
  <properties>
-  <property name="Audio" value=""/>
+  <property name="Audio" value="Grass2, 2, 0.33"/>
  </properties>
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
