@@ -1,0 +1,129 @@
+﻿***************************************************************************************
+*	File that contains all of our enemies.	*******************************************
+*	In one file on purpose, just to avoid having to solve issues with load order. *****
+***************************************************************************************
+
+#editable
+Properties
+	DamageComponent
+		#Remove this if you don't want a sound to play.
+		OnHitSound: Hit1
+		BlockSound: MetalInteraction1
+	CombatPropertiesComponent
+		IsMelee: true
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0.5
+		AttackSound: SwordSwing
+		#If not ranged, remove all projectile properties.
+		ProjectileName: TestProjectile
+		ProjectileSize: Vector(0, 0)
+		ProjectileOffset: Vector(0, 0)
+		ProjectileVelocity: Vector(0, 0)
+		ProjectileGravityCoefficient: 0
+		ProjectileHorDragCoefficient: 0
+		#if this does not have an aoe effect, remove all of these.
+		AoEName: Sprites/Effects/Explosions
+		AoESize: Vector(0, 0)
+		AoEOffset: Vector(0, 0)
+		AoEDuration: 0
+		AoEDamagePercent: 0
+		AoEHitableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy, Player) #can be whatever entity types
+		EnemyUseWeaponAnimation: true
+		EnemyWeaponName: Sprites/Equipment/IronSword
+		EnemyWeaponOffset: Vector(0,-4)
+	MovementComponent
+		WalkSpeed: 500
+		WalkAcceleration: 15000
+		JumpSpeed: 950
+	PhysicsComponent
+		GravityCoefficient: 1
+		HorizontalDragCoefficient: 1
+	AttributesComponent
+		MaxHealth: 100
+		Strength: 0
+		Dexterity: 0
+		Intelligence: 0
+		BlockDamageReduction: 1
+		MeleeAttackRange: Vector(35, 35)
+		AttackSpeed: 900
+		BlockSpeed: 500
+		BlockChance: 0.7
+		Knockback: 0
+		CritChance: 0
+		CritDamage: 1
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+	StatusEffectPropertiesComponent
+		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
+		EffectType: Pierce
+		BaseValue: 0
+		Intensity: 1
+		Duration: 0
+	DestroyableObjectComponent
+		DyingSprite: Sprites/Effects/Effect_Explosion1
+		DyingDuration: 0.5
+		DyingSound: Explode1
+		AwardedExperience: 0
+		DropsItem: false
+		#remove these if it doesn't drop items
+		DroppableItems: Collection(HealMid, HealLow, Might, Vigor)
+		DropRate: 0
+		DropCoefficient: 2
+		CoinsValue: 0
+	AIComponent
+		ReactionRange: Vector(500, 50)
+		Offset: Vector(0, 0)
+		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
+	CombatComponent
+		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Player)
+
+CollisionProperties
+	#remove the ones you don't want
+	CollisionKnockbackComponent
+		UseAttributes: false
+		Knockback: 0
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	CollisionDamageComponent
+		UseAttributes: false
+		Damage: 0
+		UseAttributes: false 
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	CollisionStatusEffectComponent
+		#Need to set these StatueEffectPropertiesComponent.
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+#Do not edit
+Required
+	PathComponent
+	FloatingTextComponent
+	StatusEffectsComponent
+	EquipmentComponent
+		UseWeaponBonuses: false
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
+	HealthBarComponent
+
+DarkKnight: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_DarkKnight)
+
+CecilHarvey: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_CecilHarvey)
+
+Golbez: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_Golbez)
+
+Zemus: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_Zemus)
+
+KainHighwind: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_KainHighwind)

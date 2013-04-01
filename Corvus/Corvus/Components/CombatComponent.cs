@@ -124,7 +124,7 @@ namespace Corvus.Components {
 
             //TODO: A property to determine an attack animation for enemies. Could just have 'MeleeAttack' and every enemy needs that animation.
             float attackSpeed = AttributesComponent.AttackSpeed;
-            SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
+            //SpriteComponent.Sprite.PlayAnimation("SpearAttack" + MovementComponent.CurrentDirection.ToString(), TimeSpan.FromMilliseconds(attackSpeed));
             if(cpc.EnemyUseWeaponAnimation)
                 _WeaponSwingAnimation.Start(this.Parent, cpc.EnemyWeaponName, attackSpeed, cpc.EnemyWeaponOffset);
 
@@ -144,10 +144,12 @@ namespace Corvus.Components {
                 MovementComponent.CombatWalkSpeedModifier = 0f;
                 IsBlocking = true;
 
+                /*
                 //TODO: Get a proper animation.
                 var Animation = SpriteComponent.Sprite.Animations["Block" + MovementComponent.CurrentDirection.ToString()];
                 if (SpriteComponent.Sprite.ActiveAnimation != Animation)
                     SpriteComponent.Sprite.PlayAnimation(Animation.Name);
+               */
             } 
         }
 
