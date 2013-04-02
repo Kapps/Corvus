@@ -106,6 +106,12 @@ namespace Corvus.Components
             set { _DeathEnabled = value; }
         }
 
+        public bool CanJumpToChase
+        {
+            get { return _CanJumpToChase; }
+            set { _CanJumpToChase = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
@@ -118,6 +124,7 @@ namespace Corvus.Components
         private bool _Aggressive = true;
         private bool _FleeingEnabled = true;
         private bool _DeathEnabled = true;
+        private bool _CanJumpToChase = false;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -343,7 +350,8 @@ namespace Corvus.Components
                 bool MissingHorizontally = e.Location.Center.X - attackRange > entity.Location.Right || e.Location.Center.X + attackRange < entity.Location.Left;
                 if (entity.Location.Bottom > e.Location.Bottom && !MissingHorizontally)
                 {
-                    MovementComponent.Jump(AllowMultiJump);
+                    if (CanJumpToChase)
+                        MovementComponent.Jump(AllowMultiJump);
                 }
                 if (MissingHorizontally)
                 {
