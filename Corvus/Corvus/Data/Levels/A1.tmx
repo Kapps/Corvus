@@ -43,25 +43,55 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3byw7CIBCFYVpaN8a7vv+rOi5MSAvhohQm/b9kFhqsmpTOIaXGAAAAAAAA/GawxoxS1rb+JUB/JpkXs9SB+YEKUq6/3zGjM/YYKd9nAG1Srr+zza9p8ZrrO9CHk8zFs9SFOQmlauavqxzrJnVnfkCpmvnrIcd6Sr2YH8CKm6/IWuhZi/sTbr4ia6Fnte9P+PqDm6/IWtgzX38I5SuyFlpptc/D1x9C+YqshVa23OcR6wmhfJWTteg10CrWE1LyVez8p9egRA/7ZWM9ISVfxc5/1vUo0Wq/bE4fSMlXvvOftTy02mLNzVoeWv1jzV36Hdgvd48gta6cddYQGP95P/a8TOv/Sfmr5NmOPVXOOmsKjF/uxaT01BvlWti8IE4AAA==
+   H4sIAAAAAAAAC+2b3YqEMAyFdZxd5mb/Z9//VbcXWyglatOm6UnNB4ERHG2OJDmKLovjOI7jOI7jOI7jOE4b67YstxDbNte5EIn5HwVHmxI9r655K/eg20uIVwX9NM+FSMz/KDjalOg5WnOqPldim9sjav7jOGhQ9XnPts96BhV5r5m155Z4Dot9AtnXIK/NAm9Bt/cQH4qeqzSs9InRvuYI5LVJ0dN/fYZjfYX4nlg/Z256+q+fcKxniF/w+kDxCSjraEHTM1gn1QpZNxSfgLKOFqx6hhG9KdXKqm4ODyueIad3b6LmQ6qVNd1695MZvFRkzycgewZtqPlgWbfe/aTX8ZF8AqJnGNWXqPlgSbdZGHEPs+cTED2Dpj5nM0FCN6RZs1auASkHKUq8gTXPIM3ZTJDQDWXWrP99pwaUHCQp8QYjPQPC/d3ZTJDQDWFGx9p4VK4BIQdpSrzBSK816lk5Zw7U6oY0l9Pa4NQHUg5StHiqGfWg0JifKPfyeW1w6gMlB0laPNWMelBozE+EZyBUbXDqAyEHaVo8VasenHezrxjc7+Go/dPnT7eT33ldxNDKQYM9naj9Rl3TeO6abzuuFNzv4aj9S9+B36uNh0AeSJSuqed1LT33H2womXEgTgAA
   </data>
  </layer>
- <layer name="Objects" width="200" height="25" visible="0">
+ <layer name="Objects" width="200" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
+   H4sIAAAAAAAAC+3bqwoAIBAEQMFoV///SzWaxOQDZ2Bh45aLFwIAAAAAAD9JcR4AAAAAAAAAAAAAAAB4yfgXM+vAfrnfXump8Xxf3XSDBlf66F0gTgAA
   </data>
  </layer>
- <layer name="Solid Objects" width="200" height="25" visible="0">
+ <layer name="Solid Objects" width="200" height="25">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
  <objectgroup name="Enemies" width="200" height="25">
-  <object name="Spawn Point" type="SpawnPoint" x="142" y="675" width="32" height="32"/>
-  <object name="Tutorial" type="LevelChanger" x="14" y="679" width="32" height="32">
+  <object name="Spawn Point" type="SpawnPoint" x="28" y="678" width="32" height="32"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="446" y="228" width="261" height="31"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="2876" y="740" width="262" height="31"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="3165" y="739" width="36" height="31"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="3900" y="767" width="1126" height="35"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="5087" y="769" width="258" height="34"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="6076" y="789" width="262" height="15"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="2334" y="786" width="517" height="21"/>
+  <object name="CH1" type="CecilHarvey" x="25" y="173" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
-    <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="CH1" type="Path" x="45" y="215">
+   <polyline points="0,0 148,-21 322,1"/>
+  </object>
+  <object name="CH2" type="CecilHarvey" x="2848" y="676" width="32" height="32">
+   <properties>
+    <property name="AIComponent.AIEnabled" value="false"/>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="CH2" type="Path" x="2861" y="713">
+   <polyline points="0,0 98,-1 194,-2 290,-2"/>
+  </object>
+  <object name="BasicLevel" type="LevelChanger" x="6351" y="688" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
+    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
    </properties>
   </object>
  </objectgroup>

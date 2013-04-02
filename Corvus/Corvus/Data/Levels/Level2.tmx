@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="85" height="80" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="ground 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/ground 32x32.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="778" name="spikes 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/spikes 32x32.png" width="96" height="48"/>
+ </tileset>
+ <tileset firstgid="781" name="crate 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/crate 32x32.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="790" name="lava 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/lava 32x32.png" width="96" height="62"/>
+ </tileset>
+ <tileset firstgid="793" name="coin 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/coin 32x32.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="794" name="water 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/water 32x32.png" width="96" height="62"/>
+ </tileset>
+ <tileset firstgid="797" name="coin_silver 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/coin_silver 32x32.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="798" name="coin_bronze 32x32" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/coin_bronze 32x32.png" width="32" height="32"/>
+ </tileset>
+ <layer name="Background" width="85" height="80">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1bW5LiRhCkdxyh4Rg7fLCcZFYnAQ4yR9mT2PPlU/hxEKNYMiZJsqq7gTVmrQhnIITUXZWVld3SrNdlsVgfsD1gd8C+A2MF2wvHrQHjvv4gaMxviw98C8DX6Fgt6OEoi7tljk2C1nivwZvhjPF+BPPr8pg0NlRwi3hbalPrhfHI79rAaa4nrrHUNarcTsD8ypmL0cV8CWpjrDs4R+6X9EJLrZnLdwPl+H3h82zl69KYa2O0zlnTX+QfyyOezTHfH/W34/adro3y6K1nC1AvN0bP3Dwvc9XiEyNd/yU4BrTfIy7BNzh1eWrsquFePV+jd/a2Glpri+u/BseA+mQNuP5H8tEK7dFL+RqOQB9PNYf+vpRzjUfH7KW8Prn1Kuv9W/HRgx69Zb2iGBLUeg45OS5rPgBO1WMu5eESRHq7tncy/lp6TvegkSbfhEtcox5zK89qwS18wyHjr6XnIk26/anbp6rH1DBSfPD1W33q8SgaW5bvvfKJ8HTASznVZo0/5LsUTGNPvltb46O+x32RT/PcyrvGtqvku5Pxo089Zh8YjmN+PsS8Ivx6wG+Lc0+8xO9RU3gi6rsvsY++CZ8TMj8HlD/3Wcu3Ngfvud3v6+Mcvx/G++OIPw/464C/F+fa5Nr0+Jqr767kz07fhGPn4xkij6rlm43p+HPzvpTTHuCeUC57PQ1a1nUDGn43/EUe4DjKEHlULd9szNa6Rb4IjfNedGOON+a8+jhrm72deePcPpVzDUccReDnmleaV4/1ezZma90wt3KHz5Y1L+Iw8/aJtxcD6GfickXcRuuS66Gsv1qvw7qT8Y1roxpFny1rnp5vqd/E3+rI34a4BPA7OOW1teZ76ySGVh321CWqUbZv0LmXJd6P1PjkuoI33L8inpnTp0r+twLG/uUCr1FkY7h3XNl+pKVO+OReZ26fzDn142tz/q8h24/0jMGc6jqsnLZ4EHz9mtyueddyDbL9CK9ZnO9QTvfMLzJOxCk0m/VrxO0jwq1TDOQ6cbkuH+8JodFV8Xplfwavrfp6dCzL+d9JJt5UPzg34avw6DxV/eCpsY6IQbEhRHtrxHkthnLek7W5N+aeJZ0Dn8ypnsv6Xn0FOgVvrflkQNzcc7tym71Dxm20rx+D+DFWjU/Wk+t71S9+23bk06MlRs1fWuC4Rb6ZP7n4MRZzx3PxesrrVKRT/e25I59e7h2/rfXRsTUW1WpP/Mpd5H1j+fCYMeFUfSF6dmZOerWU6dvVgrnRvCOoVvWTofc6XT9Trvw7+JzeNymHkU71mdlpKqozz+9id/zht6G0vcdGXLoWaS3cOyldw/R9VdRDTsP6NyqA368g/qw3I83wfO69Gj6dvnbERfbcCJ3wXLwWoS7qAXyN5pblqvnqM1D0dyjdvz6Z8Wt6dLFpPpwX+H2Wa7GWRs+N6GOem/PEWGsTT8RZxGGWL3QavYN2e9VMk7wPdmCONkHu7CnM56bkz41RHwMY77WDs4xDzRkx7ik+9/5kVU6fsVYVLrN4lCPuNact1TSvtXw9OFO9M3icbSdnEYc8Jse4k7pH3PKzlBs/i8HpDfWM9LIt57re02/aa+Dbrc86fwtfiBP1gIZdTpuSr52sS313AmiPR/WNuAQHtT5Tbe9pLucZ2rsag+pqW3wNRuJJ+XQaHUu+dvL6rroFIj535ZxHxyX3bw3KqeoJuo78xfUnPAX3qvcor5qjcgr/jNZO56Wq202Sg/LouGRdMR8at677mrvO6XicgHXLccl71YhX5wtaq2ztdO+llOcxyMXxqFy6/o68bCjn6xRftyl+XV8GY3AN1Q+xtjlenTbdXPAA9+4E3Ll3f3gvpflkPHIu2brQoie+fjS5KZfrkvsD4ta1VvfvyqnqiLnk/bwD6xPHyEfRq0fuu0hPykHk20NlDOdT4BMxb+nerNdx75JyVy65//U5lDWr708Vjj+nR80/0hPu0/UA36P7a2Mon1sZB/exx7h7Ec++eG06nqN9ldOA8qhadPkjPrenU692mnQcup6I+Ix0rTmM5l7ody/Xvgj0GdTplf/GF+kQ/VzztWxPp17Nz5yOxygW7fkopqGc6pPH2BfvFctyrmmtndOLapafo3hOp8fI13B/tqdTr+ZnzqwvtO8dnxoTzvFYrv/BJ59TLWGuTC/ML7Ss3t3ja9on0Z5OvZq9OOJSe1djG8p5TJmetP+1z0fD+5LGqT0DMKctHCqX7hlwW057jzWl90X8RD2QxcdjZ3pyfHKMXOt9OV+bIr249yktHCon0Xncp9wqnpP61XSr8fG7gkxPzBf4nMaEt6tWdF1i73R7ff5+Cw71d+VWMST1c1quxdfiPxwzemo6hrdzrruEz+w7zrkYdX3IeFc9DYZbxToZw+nazeO06sbh9ZbndTrHusLnM/7wXbWq+4tMFxqzak/PuftrXDs4PjWeZYKN3OfqxBxEeybVruoTvc/zqi5q+mEgf6drHaOXa+Y8GrMGvk/rhHGyNY79VflUP1VeuF8y7SgibTtdv5o8nW87zlWzjIxTjkfHYU5reyblUZ//V4YXxPBc2rTDXGa9o7xDK5ybPhswXJ2cjiO42mm9szVOOdR9Afe+8qL1rmmH48t657XUtZKhRc+1mru1DDlrfFxjx2HkpW7d13pn/cRYl7x3lD+N//BfF9y9PfXn+xyfEcrCa5WhtdR6Z/3EeDW10+dT14e9XP4IKJ9RfJm3gduW2mb95OqR9ajrw3vz2YPM2y6pYW8/1cZ6VE4jb7t3bI+KzNvuHduMy5D5+b1je1Tcys9nnHL6b/v5z94b9/DzW/fGpwOeFt//v+F783kvzHud22Pe68y4N2Zvmzl9FMyc3hazTmfMmDFjxowZ/ye4f29w75geHY5T8Pqz8/sPtkT9LkBqAAA=
+  </data>
+ </layer>
+ <layer name="Foreground" width="85" height="80">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3bO1LDMBSFYauHncA2eAazBmh4GNgDBNLwaHlWMRuCRUANK+C486RwEnMlWfb/zZwik0xGc+fKUSw5ywAAAAAAAAAAAAAAsWwom8qWsq3sKLvKKOageuBIOVZOlFOliDucQciV/diDQK8duCw7dLbfOeS+rX5/LlXPK2WsXCs3ysS4xvBjyL0byormwirzwdSa6rlOTU2NVM89JaeuJgrV8Uw5Vy6oaStTpay9vlUd75R75cE1fxZAd1VrT+5d2bO6d8X1FE3q65tFwhpovvr6ZpHMroHaYq4jlA/ls+F9enF5P8pv7EEAM+bNdSyPuf4/9KQ9etI/+tYefRsGe0p+UV+/qK8/OXvOSBR7WH5w/ro97p8ilvpZYM4FA0CzR+VJeVZelFflLeqIAHQN14l0FayFzVVn5aZKqbwnXsuU5vaX8h17EOi8lHp6aLhHCEs842yPZ5xtVXvMKT7jPHb9T+j/Q6Xrf0L/J/oDqeqshUBqAAA=
+  </data>
+ </layer>
+ <layer name="Objects" width="85" height="80">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3cy03DQBCA4fWJZxm8Qe6BCKgEuCJaIAcagaQTqIQ+GMuxNNqs7Tgee/34P2kOCZfVZjz78uIcAAAAAAAAAAAAhuIsce5c4iKJ3ZLpeJC+fJR4ok9N3Eg8S1++SLzSp6391fz9kz7uzIfEMnYjBmQlsVafm45HOpfJ29yPxK/6bDEezTlv/XqZjUepazcezTlv+x5/5py7XQjlLn2MMUljN2Ci5jaWWVgkeWRCY6Pu02uXzz8Aa8cSJxKnsRsyIdmzeitxp767lLiK05xB0Gv82PvPU/kt9Bqf/Wcbes/Z338uxuF08zl1zCl3Ubf2L/NmkMvMndCXpaveD1lQmxvRdcOiFgBWGFfa8c8Aedbb888A0Y7Oya9orZiHlGfeDLW0P5x/2ipyt6i39K+tsv7152PYj+5f5mO2mI/1T+91s+ZFl+rOBev2V7Gt6lyQetrM+6YP9blg9h1r1+Z2PRNk/bot9vsTU8T7E/b8Ool2qmpmVZ2kXtijXtijXtioqhPW8/zsdyrepxz7/sCBxKHEkRv+e9Fj2a/1c8N/L3pIxrBf2+ezjXKMT3Ysc5o7qcC20Bowxp2cfe8CxF7DhuaEoTXgmO7kxG5faE6o14D3mzuyVXdyuhDK0V3HIf5nFcbqW3J21UOsJf4BWmvcJEBqAAA=
+  </data>
+ </layer>
+ <layer name="Solid Objects" width="85" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQsvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeBqNFrbkQGoAAA==
+  </data>
+ </layer>
+ <objectgroup name="Enemies" width="85" height="80">
+  <object name="Spawn Point" type="SpawnPoint" x="575" y="2458" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1124" y="2205" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1060" y="2207" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1312" y="2106" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1095" y="2011" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1873" y="1763" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="867" y="1216" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1009" y="1470" width="32" height="32"/>
+  <object name="Tutorial" type="LevelChanger" x="748" y="793" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
+   </properties>
+  </object>
+  <object name="Jumper" type="TestEntityEnemy" x="1078" y="1211" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="Jumper" type="TestEntityEnemy" x="1264" y="1883" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="Jumper" type="TestEntityEnemy" x="1524" y="2266" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="Jumper" type="TestEntityEnemy" x="1717" y="887" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="Bronze" type="Coin_Bronze" x="1425" y="793" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1293" y="730" width="32" height="32"/>
+  <object name="Sit1" type="GaiaBlade" x="818" y="1223" width="22" height="22"/>
+  <object name="Silver" type="Coin_Silver" x="2178" y="2141" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2246" y="2142" width="32" height="32"/>
+  <object name="Sit4" type="IceBall" x="2455" y="2213" width="22" height="22"/>
+  <object name="Silver" type="Coin_Silver" x="1777" y="1243" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1913" y="1150" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1913" y="1019" width="32" height="32"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="1894" y="2542" width="821" height="17"/>
+ </objectgroup>
+</map>

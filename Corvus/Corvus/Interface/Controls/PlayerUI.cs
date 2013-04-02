@@ -110,7 +110,7 @@ namespace Corvus.Interface.Controls
 
         private void DrawLevelArea()
         {
-            string currentLevel = PCC.Level.ToString();
+            string currentLevel =  "Level: \n" + PCC.Level.ToString();
             float offset = (currentLevel.Count() == 1) ? 0f : currentLevel.Count();
             this.SpriteBatch.DrawString(PlayerNameFont, currentLevel, GetRelativePosition(9f - offset, 11f), Color.White);
         }

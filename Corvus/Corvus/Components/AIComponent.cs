@@ -94,6 +94,24 @@ namespace Corvus.Components
             set { _Aggressive = value; }
         }
 
+        public bool FleeingEnabled
+        {
+            get { return _FleeingEnabled; }
+            set { _FleeingEnabled = value; }
+        }
+
+        public bool DeathEnabled
+        {
+            get { return _DeathEnabled; }
+            set { _DeathEnabled = value; }
+        }
+
+        public bool CanJumpToChase
+        {
+            get { return _CanJumpToChase; }
+            set { _CanJumpToChase = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
@@ -104,6 +122,9 @@ namespace Corvus.Components
         private bool _DeathStarted;
         private bool _FleeingStarted;
         private bool _Aggressive = true;
+        private bool _FleeingEnabled = true;
+        private bool _DeathEnabled = true;
+        private bool _CanJumpToChase = false;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -121,7 +142,25 @@ namespace Corvus.Components
 
             if (AIEnabled)
             {
-                if (!DeathStarted && !FleeingStarted) //NORMAL AI
+                //Begin process of death if entity has run out of health.
+                if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 10)
+                {
+                    if (!DeathStarted)
+                        DeathTime = DateTime.Now;
+
+                    DeathStarted = true;
+                }
+
+                //Begin process of fleeing if entity's health is <25%.
+                if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 25)
+                {
+                    FleeingStarted = true;
+                }
+
+                bool shouldFlee = FleeingStarted && FleeingEnabled;
+                bool shouldDie = DeathStarted && DeathEnabled;
+
+                if (!shouldFlee && !shouldDie) //NORMAL AI
                 {
                     bool foundEntity = false;
                     bool projectileFlyingToMe = false;
@@ -147,13 +186,8 @@ namespace Corvus.Components
                             if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
                                 entityAttackingMe = true;
 
-                            if (!MovementComponent.IsWalking)
+                            if (!MovementComponent.IsWalking && EntityWithinAttackRange(e))
                                 entityAttackable = true;
-
-                            if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 25)
-                            {
-                                FleeingStarted = true;
-                            }
                         }
                         else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                         {
@@ -211,7 +245,7 @@ namespace Corvus.Components
                             PathComponent.StartFollowing();
                     }
                 }
-                else if (DeathStarted) //DYING AI
+                else if (shouldDie) //DYING AI
                 {
                     //Stop blocking if we were doing so at the moment death occured.
                     if (CombatComponent.IsBlocking)
@@ -226,37 +260,39 @@ namespace Corvus.Components
                         DeathTime = DateTime.Now;
                     } 
                 }
-                else if (FleeingStarted) //FLEEING AI
+                else if (shouldFlee) //FLEEING AI
                 {
                     //Stop blocking if we were doing so at the moment fleeing occured.
                     if (CombatComponent.IsBlocking)
                         CombatComponent.EndBlock();
 
-                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Bottom + 1);
-                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Center.X + 50, Parent.Location.Bottom + 1);
-                    Vector2 leftWallVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Center.Y);
-                    Vector2 rightWallVector = new Vector2(Parent.Location.Center.X + 50, Parent.Location.Center.Y);
-                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector);// && !PhysicsSystem.IsLocationSolid(leftWallVector);
-                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector);// && !PhysicsSystem.IsLocationSolid(rightWallVector);
+                    float checkDistance = PhysicsComponent.VelocityX * Time.GetTimeScalar();
+
+                    //Run back and forth on platform.
+                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 leftWallVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Center.Y);
+                    Vector2 rightWallVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Center.Y);
+                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector) && !PhysicsSystem.IsLocationSolid(leftWallVector);
+                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector) && !PhysicsSystem.IsLocationSolid(rightWallVector);
+
+                    //Set a location if one hasn't been set (default is Direction.Down). Very unlikely to happen here, but can't say impossible.
+                    if (MovementComponent.CurrentDirection == Direction.Down)
+                        MovementComponent.CurrentDirection = Direction.Left;
 
                     if (MovementComponent.CurrentDirection == Direction.Left)
+                    {
                         if (leftPossible)
                             MovementComponent.BeginWalking(Direction.Left);
-                        else
+                        else if (rightPossible)
                             MovementComponent.BeginWalking(Direction.Right);
+                    }
                     else if (MovementComponent.CurrentDirection == Direction.Right)
+                    {
                         if (rightPossible)
                             MovementComponent.BeginWalking(Direction.Right);
-                        else
+                        else if (leftPossible)
                             MovementComponent.BeginWalking(Direction.Left);
-
-                    //Begin process of death if entity has run out of health.
-                    if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 10)
-                    {
-                        if (!DeathStarted)
-                            DeathTime = DateTime.Now;
-
-                        DeathStarted = true;
                     }
                 }
             }
@@ -314,17 +350,35 @@ namespace Corvus.Components
                 bool MissingHorizontally = e.Location.Center.X - attackRange > entity.Location.Right || e.Location.Center.X + attackRange < entity.Location.Left;
                 if (entity.Location.Bottom > e.Location.Bottom && !MissingHorizontally)
                 {
-                    MovementComponent.Jump(AllowMultiJump);
+                    if (CanJumpToChase)
+                        MovementComponent.Jump(AllowMultiJump);
                 }
                 if (MissingHorizontally)
                 {
+                    //Most of this code prevents the AI from jumping off their current platform to chase player.
+                    //Often results in death.
+                    float checkDistance = PhysicsComponent.VelocityX * Time.GetTimeScalar();
+
+                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 leftWallVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Center.Y);
+                    Vector2 rightWallVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Center.Y);
+                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector) && !PhysicsSystem.IsLocationSolid(leftWallVector);
+                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector) && !PhysicsSystem.IsLocationSolid(rightWallVector);
+
                     if (entity.Location.Center.X > e.Location.Center.X + attackRange)
                     {
-                        MovementComponent.BeginWalking(Direction.Left);
+                        if (leftPossible)
+                            MovementComponent.BeginWalking(Direction.Left);
+                        else
+                            MovementComponent.StopWalking();
                     }
                     else if (entity.Location.Center.X < e.Location.Center.X - attackRange)
                     {
-                        MovementComponent.BeginWalking(Direction.Right);
+                        if (rightPossible)
+                            MovementComponent.BeginWalking(Direction.Right);
+                        else
+                            MovementComponent.StopWalking();
                     }
                 }
                 else

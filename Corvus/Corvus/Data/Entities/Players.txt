@@ -34,10 +34,10 @@ Properties
 		DexGrowth: 3
 		IntGrowth: 2
 	AttributesComponent
-		MaxHealth: Random(45000, 50000)
+		MaxHealth: 2500
 		MaxMana: 100
-		ManaRegen: 0.005
-		Strength: 2500
+		ManaRegen: 0.05
+		Strength: 200
 		Dexterity: 20
 		Intelligence: 10
 		CritChance: 0

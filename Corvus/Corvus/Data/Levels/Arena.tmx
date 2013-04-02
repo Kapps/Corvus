@@ -34,7 +34,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SuwqAMAxG4Xod1Pd/XjN0KKUWSqtJ8Bz4IWOGLwQiIiJ6apLNcYvyL6VW2Ra3K/9C40rd5bPgMHWXD4d+q7mz4LDmDod+a3Gn4bDFHQ791OPuC4c97nBot5Hu3nA40h0Oif7VITtll9H7BqT/yVQAGQAA
+   H4sIAAAAAAAAC+3SMQrAIBBEUTWJ9z+yFhYiRhA32V34H6af4oVAREREb8W61HYpf5l11z1tWfkLydW7G2fBYe9uHA79tnJnweHKHQ79tuNOw+GOOxz66cTdHw5P3OHQbpLuvnAo6Q6HRGSpAml0ASsAGQAA
   </data>
  </layer>
  <objectgroup name="Enemies" width="40" height="40">
@@ -46,61 +46,77 @@
    </properties>
   </object>
   <object name="Spawn Point" type="SpawnPoint" x="622" y="558" width="32" height="32"/>
-   <object name="Spawner" type="Spawner" x="620" y="900" width="32" height="32">
-     <properties>
-       <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
-       <property name="SpawnerComponent.SpawnID" value="Weapon"/>
-       <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronSword, ArcticLance, EarthBall, FireBall, BastardSword, GaiaBlade, IceBall)"/>
-       <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
-     </properties>
-   </object>
-   <object name="Spawner" type="Spawner" x="450" y="677" width="32" height="32">
-     <properties>
-       <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
-       <property name="SpawnerComponent.SpawnID" value="Weapon"/>
-       <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronBow, IronLance, LongBow, Muramasa, PoisonBomb, ShortBow, Trident, WindBall)"/>
-       <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
-     </properties>
-   </object>
-   <object name="ItemSpawner1" type="Spawner" x="450" y="677" width="32" height="32">
-     <properties>
-       <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
-       <property name="SpawnerComponent.SpawnID" value="Item"/>
-       <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
-       <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
-     </properties>
-   </object>
-   <object name="ItemSpawner2" type="Spawner" x="700" y="900" width="32" height="32">
-     <properties>
-       <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
-       <property name="SpawnerComponent.SpawnID" value="Item"/>
-       <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
-       <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
-     </properties>
-   </object>
+  <object name="Spawner" type="Spawner" x="620" y="900" width="32" height="32">
+   <properties>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronSword, ArcticLance, EarthBall, FireBall, BastardSword, GaiaBlade, IceBall)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
+    <property name="SpawnerComponent.SpawnID" value="Weapon"/>
+    <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
+   </properties>
+  </object>
+  <object name="Spawner" type="Spawner" x="450" y="677" width="32" height="32">
+   <properties>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronBow, IronLance, LongBow, Muramasa, PoisonBomb, ShortBow, Trident, WindBall)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
+    <property name="SpawnerComponent.SpawnID" value="Weapon"/>
+    <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
+   </properties>
+  </object>
+  <object name="ItemSpawner1" type="Spawner" x="450" y="677" width="32" height="32">
+   <properties>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
+    <property name="SpawnerComponent.SpawnID" value="Item"/>
+    <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
+   </properties>
+  </object>
+  <object name="ItemSpawner2" type="Spawner" x="700" y="900" width="32" height="32">
+   <properties>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
+    <property name="SpawnerComponent.SpawnID" value="Item"/>
+    <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
+   </properties>
+  </object>
   <object name="Spawner" type="Spawner" x="620" y="677" width="32" height="32">
    <properties>
-     <property name="SpawnerComponent.SpawnDelay" value="2"/>
-     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
-     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
-     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
+    <property name="SpawnerComponent.SpawnDelay" value="2"/>
+    <property name="SpawnerComponent.SpawnID" value="Enemy"/>
    </properties>
   </object>
   <object name="Spawner" type="Spawner" x="620" y="804" width="32" height="32">
    <properties>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
     <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
-     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
-     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
    </properties>
   </object>
   <object name="Spawner" type="Spawner" x="622" y="931" width="32" height="32">
    <properties>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
+    <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
     <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
-     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey)"/>
-     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
    </properties>
   </object>
  </objectgroup>
+ <layer name="Objects" width="40" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3GsQkAAAjAMGf1/3v1BTeHBAqNAAAAAAAAuMmttn76A4aYO34AGQAA
+  </data>
+ </layer>
+ <layer name="Solid Objects" width="40" height="40">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAwJcBSxPzAQAZAAA=
+  </data>
+ </layer>
 </map>

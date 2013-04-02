@@ -34,20 +34,20 @@ Properties
 		EnemyWeaponName: Sprites/Equipment/IronSword
 		EnemyWeaponOffset: Vector(0,-4)
 	MovementComponent
-		WalkSpeed: 500
-		WalkAcceleration: 15000
-		JumpSpeed: 950
+		WalkSpeed: 300
+		WalkAcceleration: 13000
+		JumpSpeed: 850
 	PhysicsComponent
 		GravityCoefficient: 1
 		HorizontalDragCoefficient: 1
 	AttributesComponent
-		MaxHealth: Random(250, 300)
-		Strength: 75
+		MaxHealth: 1000
+		Strength: 50
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(35, 35)
-		AttackSpeed: 900
+		AttackSpeed: 500
 		BlockSpeed: 500
 		BlockChance: 0.7
 		Knockback: 0
@@ -73,7 +73,7 @@ Properties
 		DropCoefficient: 2
 		CoinsValue: 0
 	AIComponent
-		ReactionRange: Vector(500, 50)
+		ReactionRange: Vector(250, 25)
 		Offset: Vector(0, 0)
 		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
 	CombatComponent
@@ -108,17 +108,39 @@ Required
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
 	HealthBarComponent
 
-DarkKnight: Properties, CollisionProperties, Required
-	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/Enemies/Enemy_DarkKnight)
-
-CecilHarvey: Properties, CollisionProperties, Required
-	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/Enemies/Enemy_CecilHarvey)
-
+#Normal, since we started with this guy (nothing changes).
 Golbez: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_Golbez)
+
+#Slow, but powerful and tanky. Also doesn't run from player.
+DarkKnight: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_DarkKnight)
+	MovementComponent
+		WalkSpeed: 200
+		JumpSpeed: 400
+	AttributesComponent
+		MaxHealth: 2000
+		AttackSpeed: 1000
+		Knockback: 1
+		Strength: 100
+	AIComponent
+		FleeingEnabled: false
+
+#Fast, doesn't flee.
+CecilHarvey: Properties, CollisionProperties, Required
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Enemies/Enemy_CecilHarvey)
+	MovementComponent
+		WalkSpeed: 600
+	AttributesComponent
+		MaxHealth: 500
+		AttackSpeed: 250
+		Strength: 25
+	AIComponent
+		FleeingEnabled: false
+
 
 Zemus: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
