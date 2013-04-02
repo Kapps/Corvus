@@ -81,12 +81,14 @@ Content\Sprites\Enemies\EnemyCecilHarvey.xnb
 Content\Sprites\Enemies\EnemyGolbez.xnb
 Content\Sprites\Enemies\EnemyKainHighwind.xnb
 Content\Sprites\Enemies\EnemyZemus.xnb
+Content\Tiles\block 32x32.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
 Content\Fonts\PlayerAttributeFont.xnb
+Content\Fonts\ArenaFont.xnb
 Content\Sprites\Players\Player_Medieval.xnb
 Content\Sprites\Test_Enemy.xnb
 Content\Sprites\StatusEffects\Effect_Might.xnb
@@ -146,8 +148,6 @@ Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
-Content\Fonts\ArenaFont.xnb
-Content\Tiles\block 32x32.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
