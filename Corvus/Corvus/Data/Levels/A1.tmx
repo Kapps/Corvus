@@ -73,6 +73,7 @@
   <object name="DeadlyArea" type="DeadlyArea" x="2334" y="786" width="517" height="21"/>
   <object name="CH1" type="CecilHarvey" x="25" y="173" width="32" height="32">
    <properties>
+    <property name="AIComponent.AIEnabled" value="false"/>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
@@ -85,14 +86,57 @@
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="CH2" type="Path" x="2861" y="713">
-   <polyline points="0,0 98,-1 194,-2 290,-2"/>
-  </object>
   <object name="BasicLevel" type="LevelChanger" x="6351" y="688" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
    </properties>
   </object>
+  <object name="Gold" type="Coin_Gold" x="180" y="130" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1568" y="63" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="414" y="528" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="603" y="423" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="796" y="328" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1027" y="241" width="32" height="32"/>
+  <object name="DK" type="DarkKnight" x="768" y="147" width="32" height="32"/>
+  <object name="Muramasa" type="Muramasa" x="29" y="95" width="32" height="32"/>
+  <object name="Windball" type="Windball" x="2427" y="89" width="32" height="32"/>
+  <object name="Zemus" type="Zemus" x="1726" y="685" width="32" height="32"/>
+  <object name="Zemus" type="Zemus" x="2012" y="685" width="32" height="32"/>
+  <object name="CH2" type="Path" x="2865" y="720">
+   <polyline points="0,0 97,0 193,0 289,-1"/>
+  </object>
+  <object name="Golbez" type="Golbez" x="2659" y="144" width="32" height="32"/>
+  <object name="Golbez" type="Golbez" x="2864" y="146" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2756" y="141" width="32" height="32"/>
+  <object name="CH" type="CecilHarvey" x="3616" y="629" width="32" height="32">
+   <properties>
+    <property name="AIComponent.AIEnabled" value="false"/>
+   </properties>
+  </object>
+  <object name="CH" type="CecilHarvey" x="3488" y="629" width="32" height="32">
+   <properties>
+    <property name="AIComponent.AIEnabled" value="false"/>
+   </properties>
+  </object>
+  <object name="Gold" type="Coin_Gold" x="4702" y="389" width="32" height="32"/>
+  <object name="DK" type="DarkKnight" x="4603" y="93" width="32" height="32"/>
+  <object name="Golbez" type="Golbez" x="4160" y="257" width="32" height="32"/>
+  <object name="DK" type="DarkKnight" x="5722" y="258" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="5116" y="87" width="32" height="32"/>
+  <object name="Zemus" type="Zemus" x="5403" y="98" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1721" y="185" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1824" y="293" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2016" y="494" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1924" y="391" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3070" y="270" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3243" y="372" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="4003" y="366" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="4158" y="229" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="4319" y="161" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="4590" y="97" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="5823" y="359" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="5624" y="347" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="5725" y="235" width="32" height="32"/>
  </objectgroup>
 </map>
