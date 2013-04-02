@@ -232,23 +232,35 @@ namespace Corvus.Components
                     if (CombatComponent.IsBlocking)
                         CombatComponent.EndBlock();
 
-                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Bottom + 1);
-                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Center.X + 50, Parent.Location.Bottom + 1);
-                    Vector2 leftWallVector = new Vector2(Parent.Location.Center.X - 50, Parent.Location.Center.Y);
-                    Vector2 rightWallVector = new Vector2(Parent.Location.Center.X + 50, Parent.Location.Center.Y);
+                    float checkDistance = PhysicsComponent.VelocityX * Time.GetTimeScalar();
+
+                    //Run back and forth on platform.
+                    //This is fairly close to fleeing AI.
+                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 leftWallVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Center.Y);
+                    Vector2 rightWallVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Center.Y);
                     bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector);// && !PhysicsSystem.IsLocationSolid(leftWallVector);
                     bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector);// && !PhysicsSystem.IsLocationSolid(rightWallVector);
 
+                    //Set a location if one hasn't been set (default is Direction.Down), which is likely when we have no path.
+                    if (MovementComponent.CurrentDirection == Direction.Down)
+                        MovementComponent.CurrentDirection = Direction.Left;
+
                     if (MovementComponent.CurrentDirection == Direction.Left)
+                    {
                         if (leftPossible)
                             MovementComponent.BeginWalking(Direction.Left);
-                        else
+                        else if (rightPossible)
                             MovementComponent.BeginWalking(Direction.Right);
+                    }
                     else if (MovementComponent.CurrentDirection == Direction.Right)
+                    {
                         if (rightPossible)
                             MovementComponent.BeginWalking(Direction.Right);
-                        else
+                        else if (leftPossible)
                             MovementComponent.BeginWalking(Direction.Left);
+                    }
 
                     //Begin process of death if entity has run out of health.
                     if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 10)
