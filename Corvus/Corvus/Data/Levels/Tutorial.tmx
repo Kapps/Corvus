@@ -35,12 +35,17 @@
    H4sIAAAAAAAAC+3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqqqqqqrvD45e8VMgTgAA
   </data>
  </layer>
+ <layer name="Background2" width="200" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
+  </data>
+ </layer>
  <layer name="Foreground" width="200" height="25">
   <properties>
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2a627DIAxGk9BN0abufqm6vf9zztWKyljTJkDB0HOkT0L5kSCw8YeVrgMAAAAAAAAAaJvedN2wlzGlZwO14sZRS/F0Y/4KIAQ/jognAABonZ03vN+rBU8I9dIrjEE8IWihthhste8AkAL6DgAA+il5N9F4LwJwKeld7LfJEYD/jOZXJXNkMMfHU/+4DAVrrd+ziOldpH7ftbGWNXoQPV5wrWx+2ByZ2q+5CtlXt3b642O9gdK1NlXvIvX7ro0nWaNn0Uum/BjP7Ndccfa1h8Za9yrffRO9VxRvc7xaLT2BWuaZAy21zvVUMf4qhzebYjyzZjX4hz5i7zWeta3geqoYf5XDm2lg6m4fc4e3uWE951K0nLUt4nqqGH9VozcL4dTdPgQ/N0LyoxSuZ4jts1xCc2rnqdrbukqxZI5+btSUH65nSNFnSa1bc/hf/M6Tfb5SMM9S+hB9ijaZx0vm6OfGTlvRl+hb+dj1DD8+/f3RIE4AAA==
+   H4sIAAAAAAAAC+2ai2rEIBBFk7gtoaXvJ23//zvr0pWd2s1LrY7uOXBBdiERnXGuQ7oOAAAAAAAAAKBtetN1w0HGlJ4N1IqMo5bi6cL8FkAIfhwRTwAA0Dp7b3h9UAueEOqlVxiDeELQQm0x2GrfASAF9B0AAPRT8m6i8V4EICnpXdy7yRGAv4zmRyVzZDCnx1PfuAwFa63fs4jpXaR+3rlxY9fo1uruH9fK5YfLkan9WquQfZW10x+f6g2UrrWpehepn3du3Ns1erB6zJQf48J+rRVnX3torHVP9r3PVi8Vxdsar1ZLT6CWeeZAS62TnirGX+XwZlOMC2tWg3/oI/Ze41kby87MKxfSU8X4qxzeTANTd/uYO7zLDec5t6LlrE2JlvyQnirGX9XozUKYu9uH4OdGSH6UQnqG2D6Lr6X8SNW7mau9rasUW+bo50ZN+SE9Q4o+i9Qu8D+pS3P8XvzKk/t97bNa1KvVm9V75vGWOfq5sdeH1afVl/Kx9Azf1mvs0iBOAAA=
   </data>
  </layer>
  <layer name="Objects" width="200" height="25" visible="0">
@@ -48,7 +53,7 @@
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
- <layer name="Solid Objects" width="200" height="25" visible="0">
+ <layer name="Solid Objects" width="200" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
@@ -61,7 +66,7 @@
   <object name="Bronze" type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="751" y="525" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="831" y="528" width="32" height="32"/>
-  <object name="BasicLevel" type="LevelChanger" x="40" y="648" width="32" height="32">
+  <object name="BasicLevel" type="LevelChanger" x="6337" y="649" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>

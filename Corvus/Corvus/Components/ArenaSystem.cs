@@ -58,7 +58,7 @@ namespace CorvEngine.Components
                     s.Dispose();
             }
             RemainingEntities = new List<Entity>();
-
+            _BattleTimer = TimeSpan.Zero;
             _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
             foreach (var s in EnemySpawners)
                 s.GetComponent<SpawnerComponent>().Reset();
