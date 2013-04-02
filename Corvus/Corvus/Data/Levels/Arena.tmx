@@ -39,12 +39,6 @@
  </layer>
  <objectgroup name="Enemies" width="40" height="40">
   <object type="DeadlyArea" x="-5" y="1232" width="1290" height="41"/>
-  <object name="BasicLevel" type="LevelChanger" x="628" y="285" width="32" height="32">
-   <properties>
-    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
-    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
-   </properties>
-  </object>
   <object name="Spawn Point" type="SpawnPoint" x="622" y="558" width="32" height="32"/>
   <object name="Spawner" type="Spawner" x="620" y="900" width="32" height="32">
    <properties>
