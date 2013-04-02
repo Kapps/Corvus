@@ -4,6 +4,10 @@ Content\Tiles\generic_platformer_tiles.xnb
 Content\Interface\HealthMeter.xnb
 Content\Sprites\Effects\Explosion1.xnb
 Content\Sprites\Effects\Explosion2.xnb
+Content\Fonts\testfont.xnb
+Content\Fonts\DamageFont.xnb
+Content\Sprites\TestEnemy.xnb
+Content\Sprites\Players\PlayerMedieval.xnb
 Content\Interface\Outline.xnb
 Content\Tiles\crate 32x32.xnb
 Content\Tiles\ground 32x32.xnb
@@ -73,12 +77,20 @@ Content\Sprites\Equipment\Trident.xnb
 Content\Sprites\Equipment\BastardSword.xnb
 Content\Sprites\Equipment\Muramasa.xnb
 Content\Interface\PausedBackground.xnb
-Content\Fonts\testfont.xnb
-Content\Fonts\DamageFont.xnb
+Content\Sprites\Misc\Misc_BlockSprite.xnb
+Content\Sprites\Enemies\EnemyDarkKnight.xnb
+Content\Sprites\Enemies\EnemyCecilHarvey.xnb
+Content\Sprites\Enemies\EnemyGolbez.xnb
+Content\Sprites\Enemies\EnemyKainHighwind.xnb
+Content\Sprites\Enemies\EnemyZemus.xnb
+Content\Tiles\block 32x32.xnb
 Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
 Content\Fonts\PlayerAttributeFont.xnb
+Content\Fonts\ArenaFont.xnb
+Content\Sprites\Players\Player_Medieval.xnb
+Content\Sprites\Test_Enemy.xnb
 Content\Sprites\StatusEffects\Effect_Might.xnb
 Content\Sprites\StatusEffects\Effect_Healing.xnb
 Content\Sprites\StatusEffects\Effect_ManaHeal.xnb
@@ -131,22 +143,11 @@ Content\Sprites\Equipment\Weapon_ShortBow.xnb
 Content\Sprites\Equipment\Weapon_Trident.xnb
 Content\Sprites\Equipment\Weapon_BastardSword.xnb
 Content\Sprites\Equipment\Weapon_Muramasa.xnb
-Content\Sprites\Misc\Misc_BlockSprite.xnb
-Content\Sprites\TestEnemy.xnb
-Content\Sprites\Players\PlayerMedieval.xnb
-Content\Sprites\Enemies\EnemyDarkKnight.xnb
-Content\Sprites\Enemies\EnemyCecilHarvey.xnb
-Content\Sprites\Enemies\EnemyGolbez.xnb
-Content\Sprites\Enemies\EnemyKainHighwind.xnb
-Content\Sprites\Enemies\EnemyZemus.xnb
-Content\Sprites\Players\Player_Medieval.xnb
-Content\Sprites\Test_Enemy.xnb
 Content\Sprites\Enemies\Enemy_DarkKnight.xnb
 Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
-Content\Fonts\ArenaFont.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
@@ -192,6 +193,8 @@ Data\Entities\Weapon_WindBall.txt
 Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx
 Data\Levels\Dickoleanders.tmx
+Data\Levels\A1.tmx
+Data\Levels\Level1.tmx
 Data\Levels\Arena.tmx
 Data\Levels\SmallLevel.tmx
 Data\Levels\Tutorial.tmx
