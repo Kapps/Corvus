@@ -37,6 +37,7 @@ namespace Corvus.Components
         {
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
+            _StatusEffects = new StatusEffectCollection();
         } 
 
         protected override void OnUpdate(GameTime Time)
@@ -60,6 +61,17 @@ namespace Corvus.Components
                 se.Draw(position);
                 position.X += 17f;
             }
+        }
+
+        protected override void OnDispose()
+        {
+            foreach (var se in _StatusEffects.Reverse<StatusEffect>())
+            {
+                se.ForceFinish();
+                _StatusEffects.Remove(se);
+            }
+
+            base.OnDispose();
         }
 
     }

@@ -392,15 +392,17 @@ namespace Corvus.Components {
         {
             base.OnInitialize();
             EquipmentComponent = Parent.GetComponent<EquipmentComponent>();
+
+            _IsDead = false;
+            CurrentHealth = MaxHealth;
+            CurrentMana = MaxMana;
         }
 
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
             if (!_IsDead && ManaRegen != 0)
-            {
-                CurrentMana += (MaxMana * ManaRegen) * (float)Time.ElapsedGameTime.Milliseconds / 1000f;
-            }
+                CurrentMana += (MaxMana * ManaRegen) * (float)Time.ElapsedGameTime.TotalSeconds;
         }
 	}
 }

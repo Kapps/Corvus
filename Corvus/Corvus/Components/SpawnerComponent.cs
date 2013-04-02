@@ -96,7 +96,7 @@ namespace Corvus.Components
         private List<string> _EntitiesToSpawn = new List<string>();
         private Vector2 _EntitySize = new Vector2();
         private float _DifficultyModifier = 1f;
-        private bool _SpawnerEnabled = true;
+        private bool _SpawnerEnabled = false;
         private DateTime _LastSpawn;
         private int _TotalEntitiesSpawned;
         private int _TotalEntitiesToSpawn;

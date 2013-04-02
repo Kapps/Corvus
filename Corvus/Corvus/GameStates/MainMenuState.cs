@@ -75,12 +75,12 @@ namespace Corvus.GameStates
             arenaModeBtn.Selected += arenaModeBtn_Selected;
             ControlManager.AddControl(arenaModeBtn);
 
-            LinkButton tutorialBtn = new LinkButton(font);
-            tutorialBtn.Text = "Tutorial";
-            tutorialBtn.Color = Color.Black;
-            tutorialBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
-            tutorialBtn.Selected += tutorialBtn_Selected;
-            ControlManager.AddControl(tutorialBtn);
+            //LinkButton tutorialBtn = new LinkButton(font);
+            //tutorialBtn.Text = "Tutorial";
+            //tutorialBtn.Color = Color.Black;
+            //tutorialBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
+            //tutorialBtn.Selected += tutorialBtn_Selected;
+            //ControlManager.AddControl(tutorialBtn);
 
             ControlManager.SetFocus();
             this.AddComponent(_ControlManager);
@@ -93,7 +93,7 @@ namespace Corvus.GameStates
 
         void newGameBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel");
+            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial");
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
@@ -103,6 +103,7 @@ namespace Corvus.GameStates
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
+        //unused
         void tutorialBtn_Selected(object sender, EventArgs e)
         {
             CorvusGame.Instance.SceneManager.ChangeScene("Tutorial");

@@ -24,6 +24,8 @@ namespace Corvus.Interface
             this.Enabled = true;
             this.Visible = true;
             this.DrawOrder = 700;
+            foreach (var p in CorvusGame.Instance.Players)
+                AddUi(p);
             CorvusGame.Instance.PlayerAdded += Instance_PlayerAdded;
             CorvusGame.Instance.PlayerRemoved += Instance_PlayerRemoved;
         }
@@ -39,11 +41,16 @@ namespace Corvus.Interface
                 p.Draw(Time);
         }
 
-        void Instance_PlayerAdded(Player obj)
+        private void AddUi(Player obj)
         {
             PlayerUI ui = new PlayerUI(obj);
             ui.Position = new Vector2(_PlayerUIs.Count() * (255f) + 5f, 5f);
             _PlayerUIs.Add(ui);
+        }
+
+        void Instance_PlayerAdded(Player obj)
+        {
+            AddUi(obj);
         }
         
         void Instance_PlayerRemoved(Player obj)

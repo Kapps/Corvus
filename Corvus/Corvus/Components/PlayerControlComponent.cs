@@ -289,17 +289,29 @@ namespace Corvus.Components
         void AC_Died(AttributesComponent obj)
         {
             EC.RemoveWeapons();
-            ScoreComponent.Coins = 0;
 
             AudioManager.PlaySoundEffect(DyingSound);
-            DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
+            var deaded = DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
+            if(!CorvusGame.Instance.SceneManager.ActiveScene.Name.Contains("Arena")) //TODO: Better remember to change this if we need to.
+                deaded.GetComponent<DyingComponent>().OnDyingAnimationFinished += PlayerControlComponent_OnDyingAnimationFinished;
 
-            //Remove this if we ever have multiplayer, or just edit it to check for other players.
-            //Lazy for now, since I doubt it'll happen.
-            //CorvusGame.Instance.SceneManager.ReloadScenes();
-
-            //If we dispose, the scene is gone apparently. Maybe? Doesn't really matter though.
             obj.Parent.Dispose();
+        }
+
+        //This really shouldnt be here. SHould be done by the scene or something.
+        void PlayerControlComponent_OnDyingAnimationFinished(object sender, EventArgs e)
+        {
+            bool allPlayersDead = true;
+            foreach(var p in CorvusGame.Instance.Players)
+            {
+                if (!p.Character.IsDisposed)
+                {
+                    allPlayersDead = false;
+                    break;
+                }
+            }
+            if(allPlayersDead)
+                CorvusGame.Instance.SceneManager.ReloadScenes();
         }
         
         private void LevelUp()

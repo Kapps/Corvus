@@ -31,7 +31,17 @@ namespace Corvus {
 		public SceneManager SceneManager {
 			get { return _SceneManager; }
 		}
-		
+
+        /// <summary>
+        /// Gets the Main menu state.
+        /// </summary>
+        public MainMenuState MainMenuState { get { return _MainMenuState; } }
+
+        /// <summary>
+        /// Gets the paused state used in game.
+        /// </summary>
+        public PausedState PausedState { get { return _PausedState; } }
+
 		/// <summary>
 		/// Creates a new instance of CorvusGame without yet initializing it.
 		/// </summary>
@@ -60,19 +70,20 @@ namespace Corvus {
 				Size = new Vector2(1600, 900);
 			obj.Camera.Size = Size;*/
 		}
+
 		protected override void Initialize() {
 			// TODO: Add your initialization logic here
 			this.RegisterGlobalComponent(new AudioManager(this.Game, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
             AudioManager.SetMusicVolume(0f); //temp: just here cuz it's really annoying to debug and listen to the music.
             _SceneManager = new SceneManager();
-            _SceneManager.ChangeScene("Arena");//"BasicLevel");
-            // Start off in game.
-            StateManager.PushState(_SceneManager);
             _MainMenuState = new MainMenuState();
-           // StateManager.PushState(_MainMenuState); //TODO: Move this probably
+            _PausedState = new PausedState();
+            // Start off in game.
+            _SceneManager.ChangeScene("BasicLevel");
+            StateManager.PushState(_SceneManager);
+            //StateManager.PushState(_MainMenuState); //TODO: Move this probably
             //AudioManager.PlayMusic("Title1");
             //AudioManager.SetMusicVolume(0.5f);
-            _PausedState = new PausedState();
             CreateNewPlayer();
             MenuBinds(); //TODO: Not sure how to do Menu Binds, temp for now.
             RegisterGlobalComponent(new DebugComponent());
@@ -85,6 +96,9 @@ namespace Corvus {
 			var Blueprint = EntityBlueprint.GetBlueprint("Player");
 			var PlayerEntity = Blueprint.CreateEntity();
             PlayerEntity.Size = new Vector2(48, 32);
+
+            //We can actually remove this section because the player isn't actually starting in the game. During main menu to new game, 
+            //it will detect the spawn point and set it accordingly.
 
             //Set spawn point, if any.
             //This is kinda weird, since we should have this all in once place.
@@ -99,7 +113,7 @@ namespace Corvus {
             {
                 PlayerEntity.Position = new Vector2(1790, 1376);
             }
-
+            
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
 			CorvusBinds.CreateBinds(Player); 

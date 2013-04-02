@@ -190,12 +190,9 @@ Data\Entities\Weapon_PoisonBomb.txt
 Data\Entities\Weapon_ShortBow.txt
 Data\Entities\Weapon_Trident.txt
 Data\Entities\Weapon_WindBall.txt
-Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx
-Data\Levels\Dickoleanders.tmx
 Data\Levels\A1.tmx
 Data\Levels\Level1.tmx
 Data\Levels\Level2.tmx
 Data\Levels\Arena.tmx
-Data\Levels\SmallLevel.tmx
 Data\Levels\Tutorial.tmx
