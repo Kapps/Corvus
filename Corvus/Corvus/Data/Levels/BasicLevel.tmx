@@ -92,7 +92,7 @@
     <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
    </properties>
   </object>
-<<<<<<< HEAD
+  <<<<<<< HEAD
   <object name="Tutorial" type="LevelChanger" x="2460" y="1501" width="32" height="32">
 =======
   <object name="Arena" type="LevelChanger" x="2497" y="1509" width="32" height="32">
