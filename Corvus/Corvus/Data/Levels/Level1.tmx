@@ -40,23 +40,23 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2YW0rDQBSGk3fdiW7Da3UZ3oruwQ0IaqnXFxW8K9j6YOsWVNBF6LOuwD/QAyHMJJl09Ezb/4OPkoZOJ5efc2aiiBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIUW8ww/tSQwpp/BMexKkL77hj/YkRoiqmZmC03AGzsI5R2v9TpwQBcrmZQkuwxW4CtccrHuf9fBS1E+x39KHfZkeRf2URr+1HUfRTsZd2IAbsft4Scaz44nMPhk0HvDetnq24WPKrQr5SDLeis1yrUXS+Oin2HPpE1LPtQcPDB5mPNaaoAM++infPZf0U9rY9oTmI/39njHcn/EA7lGWJAdd7UlUxEct8DFG3rOVbDQCWVeY9oRC2O+ZwDVN/lM+THXAVh860eDmw0ct8DGG7dlKNmSN4coorStquKYFuOhwnz7hV86xieS97zg6qPkIBXm2aSQbrT7yoUUdc13v7aVtBmpZktqergmu2RCza40iTfXIVJ9Ma5Z9eGS5njL/rYW887IXa+p75JzkIp2Pc3iR+ryEV/Aa3hR8bzuXPXYd1/T9LbyD9/AkUMuS1PaqmfhrbXXpCT5bznVLqIXsy8r7bup72rF973bPYjPnnM/f5I3VTI35Al/hG/wFHeAT7SBOAAA=
+   H4sIAAAAAAAAC+2YW0rDQBSGk3fdiW7Da3UZ3oruwQ0IasHri/qqgqkPtm5BBV2EPusK/Ad6IISZJpOMnkn7f/A9lMD05PJzzkySEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghpIx3+KFdxIRyDW+0iyCN+IY/2kVMEXUzswAX4RJchiuedpoWTogCVfOyATfhFtyGOx52g1c9uZTNU5y39OFcpkfZPKUxbx2mSXJU8Bj24F7qv57JeHE9kdknbeMB3202sg8fcx7UyIfJeJba5V6L5AkxT3Hm0iemmesEnlk8L3ipVaAHIeap0DOXzFPauM6EVhP9854ZPJ/ZCJ5REZODoXYRNQnRC0KsMe7dSjZ6kewrbGdCMZz3zOGe5v8pH7Y+4OoPg6S9+QjRC0Ks4Xq3kg3ZY/gyTfuKDu5pDa57PKdP+DXmtw3z3Q88bWs+YkHebR7JRtYgH1p0Uevu6CxtP1KrYnp7vif4ZkMs7jXKtPUjW3+y7VlO4YXjfqr8txbyzctZrG3ukWuSizbm4xa13sF7eBWpVTG9vW4m/lpXX3qCz45rwwpqIeey8r3b5p5+6j67bQsvqPUVvsFfc7aoHyBOAAA=
   </data>
  </layer>
- <layer name="Objects" width="200" height="25" visible="0">
+ <layer name="Objects" width="200" height="25">
   <properties>
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2a0U3DMBCGk+cipgBKA+oOlYAX1qC8s0KYADaoVDXPZQfaZRiCi4LFcTixk9iJU/+fdLKpncQ4vrvfbpMEAAAAAAAAAAAAAAAAAAAAAAAAACAu3sjexx4EAIGyJ/sYexAnSk726vkZO7LC8zNiZZb+1s/T+n6gPRtW37J6V5/J2bXKVvTODlQexed1BoCOC1pHl2RXI8cAnc/Y+MvG0G7L1twlekzv45psMdBYOD51wh35xT3ZQ2A50nWOAf0w6akx9ZbSCXnyV0t0YZ5Ufl6WGdkT/S9rsmeyl8B8ROIqV3QhlDw7NWZkZ57ubbMe2ugC1/eLiVDzrE9s4nBmaL8hu3UzHCfwOBdLzBtKc60t53HBSr5+yvqX2yF5Q6eX+PcdNnqKx+NQzrh4nOsb87gW45osJOr2KT4w+Udb/RdSrl5a9DF932GzP5//WBe4/u8yd+X1fD/B621wqcNc5zBbf3D53DLm87ks14C0MfdGfbHJBS7256Z80vRu5fyeyr7Cp25fNtxTPldqsCHPjtvg4zcbU/8dyJRjTxOPLIet0v9tOmQ/2Ve2S79XfXm8l3HJlIOyxN070Z0JNu1BlIbh55TLpNmf684d1TW6e4agk5XWahrLlH1jKmPf0fop0qqUdf7ZFOD+3EaP1CHnQTdHhQcD4XCg93FMq/KT1dXfqj1GDqne5BwdDWbqI9tj5BteMKWZIE4AAA==
+   H4sIAAAAAAAAC+2aXVKDMBDH4bmOp1Br0ekdOqO+eA3ru1fAE+gNOtMpz/UOwmU8hMtgxnUNJEACofx/MztJm0CWkP1I2igCAAAAAAAAAAAAAAAAAAAAAAAAAJgXbyTvYysBQKAcST7GVuJESUlePY9xIMk8jzFXFvFv/Tyu7wfas2P1Pat3tZmUXatkQ+8sp7IQ39cJADouaB1dklyN7AN0NmNjLztDuy17c5fZY3of1ySrgXTh+MwT7sgu7kkeAouRrmMM6Icpnxoz31J5Qhr9zSW6sIwqOy/LhOSJnmVL8kzyEpiNSFzFii6EEmenxoLkzNO9bdZDm7zA9f3mRKhx1ic2fjgxtN+Q3LpRxwncz83F5w2Vc20t53HFSr5+yvqXW5W8ocuX+O8dNvkU98ehnHFxP9fX5/FcjOdkIVG3T/GByT7a5n8hxeq1RR/T7x02+/Plj3SB5/9d5q68nu8neL0NLvMw1zHM1h5cjlv6fD6X5RqQMubeqC82scDF/twUT5rerZzfU9lX+Mzb1w33lOPKHGzIs+M2+PjPxtT/BzJl39PEI4thm/h/mw7ZT/aV7dLuVV/u76VfMsWgJHL3TnRngk17EJXD8HPKddRsz3Xnjuoa3T1DyJNVrtWky5RtYyq6H2j9ZHFVyjr/bgpwe26Tj9Qh50E3R5kH6Yutbj6fYYjnHIKc9CziqvxkdfVZtc+RPNaLnKPCIKY+st2V3qaxeb+uuvcRzjcsQU6OIE4AAA==
   </data>
  </layer>
- <layer name="Solid Objects" width="200" height="25" visible="0">
+ <layer name="Solid Objects" width="200" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
- <objectgroup name="Enemies" width="200" height="25" visible="0">
+ <objectgroup name="Enemies" width="200" height="25">
   <object name="DeadlyArea" type="DeadlyArea" x="1217" y="750" width="315" height="46"/>
   <object name="DeadlyArea" type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
   <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
