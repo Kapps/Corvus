@@ -42,7 +42,7 @@ Properties
 		HorizontalDragCoefficient: 1
 	AttributesComponent
 		MaxHealth: 1000
-		Strength: 50
+		Strength: 100
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
@@ -124,7 +124,7 @@ DarkKnight: Properties, CollisionProperties, Required
 		MaxHealth: 2000
 		AttackSpeed: 750
 		Knockback: 1
-		Strength: 100
+		Strength: 150
 	AIComponent
 		FleeingEnabled: false
 
@@ -137,7 +137,7 @@ CecilHarvey: Properties, CollisionProperties, Required
 	AttributesComponent
 		MaxHealth: 500
 		AttackSpeed: 250
-		Strength: 25
+		Strength: 50
 	AIComponent
 		FleeingEnabled: false
 

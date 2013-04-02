@@ -183,7 +183,7 @@ namespace Corvus.Components
                             entityFollowable = true;
                             entityToFollow = e;
 
-                            if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
+                            if (coc.IsAttacking && WithinEntitysAttackRange(e) && EntityFacingMe(e))
                                 entityAttackingMe = true;
 
                             if (!MovementComponent.IsWalking && EntityWithinAttackRange(e))
@@ -427,12 +427,20 @@ namespace Corvus.Components
                 return false;
         }
 
+        //For the two functions below, why the +25?
+        //Some day I'll figure it out.
+
         private bool EntityWithinAttackRange(Entity e)
         {
-            var atc = e.GetComponent<AttributesComponent>();
+            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) <= AttributesComponent.MeleeAttackRange.X + 25)
+                return true;
+            else
+                return false;
+        }
 
-            //TODO: Figure out why the attackrange isn't quite correct... I mean, this'll (+10) likely fix it in almost every situation, so not priority, but still.
-            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) <= atc.MeleeAttackRange.X + 10)
+        private bool WithinEntitysAttackRange(Entity e)
+        {
+            if (Math.Abs(e.Location.Center.X - Parent.Location.Center.X) <= AttributesComponent.MeleeAttackRange.X + 25)
                 return true;
             else
                 return false;
