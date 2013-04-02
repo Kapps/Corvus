@@ -353,6 +353,7 @@
     </Content>
     <None Include="Data\Levels\Arena.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="Data\Levels\A1.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
