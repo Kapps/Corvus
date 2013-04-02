@@ -34,20 +34,20 @@ Properties
 		EnemyWeaponName: Sprites/Equipment/IronSword
 		EnemyWeaponOffset: Vector(0,-4)
 	MovementComponent
-		WalkSpeed: 350
-		WalkAcceleration: 15000
-		JumpSpeed: 950
+		WalkSpeed: 400
+		WalkAcceleration: 13000
+		JumpSpeed: 850
 	PhysicsComponent
 		GravityCoefficient: 1
 		HorizontalDragCoefficient: 1
 	AttributesComponent
-		MaxHealth: 5000
-		Strength: 2500
+		MaxHealth: 1000
+		Strength: 25
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(35, 35)
-		AttackSpeed: 900
+		AttackSpeed: 500
 		BlockSpeed: 500
 		BlockChance: 0.7
 		Knockback: 0
@@ -116,7 +116,7 @@ DarkKnight: Properties, CollisionProperties, Required
 		WalkSpeed: 200
 		JumpSpeed: 400
 	AttributesComponent
-		MaxHealth: 20000
+		MaxHealth: 2000
 		AttackSpeed: 1000
 		Knockback: 1
 	AIComponent
