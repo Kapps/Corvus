@@ -86,27 +86,29 @@
     <property name="Sprite Component.Color" value="Color(128, 125, 128, 255)"/>
    </properties>
   </object>
-  <object name="Tutorial" type="LevelChanger" x="2370" y="1506" width="32" height="32">
+  <object name="Tutorial" type="LevelChanger" x="2260" y="1511" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
     <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
    </properties>
   </object>
-  <<<<<<< HEAD
-  <object name="Tutorial" type="LevelChanger" x="2460" y="1501" width="32" height="32">
-=======
-  <object name="Arena" type="LevelChanger" x="2497" y="1509" width="32" height="32">
->>>>>>> d57bb23e7cafb5d920e84bcaa24b14adee829c06
+  <object name="Arena" type="LevelChanger" x="2165" y="1508" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Arena"/>
     <property name="LevelChangeComponent.PrevLevel" value="Arena"/>
    </properties>
   </object>
   <object name="Spawn Point" type="SpawnPoint" x="2255" y="1123" width="32" height="32"/>
-  <object name="Tutorial" type="LevelChanger" x="2192" y="1502" width="32" height="32">
+  <object name="L1" type="LevelChanger" x="2362" y="1512" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Level1"/>
     <property name="LevelChangeComponent.PrevLevel" value="Level1"/>
+   </properties>
+  </object>
+  <object name="L2" type="LevelChanger" x="2463" y="1515" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Level2"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Level2"/>
    </properties>
   </object>
  </objectgroup>
