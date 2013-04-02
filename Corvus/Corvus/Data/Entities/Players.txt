@@ -36,7 +36,7 @@ Properties
 	AttributesComponent
 		MaxHealth: 2500
 		MaxMana: 100
-		ManaRegen: 0.005
+		ManaRegen: 0.2
 		Strength: 200
 		Dexterity: 20
 		Intelligence: 10
