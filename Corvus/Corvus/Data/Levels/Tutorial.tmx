@@ -61,25 +61,51 @@
  </layer>
  <objectgroup name="Enemies" width="200" height="25">
   <object name="DeadlyArea" type="DeadlyArea" x="1210" y="754" width="266" height="48"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="2626" y="283" width="59" height="46"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
-  <object name="Bronze" type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="751" y="525" width="32" height="32"/>
-  <object name="Gold" type="Coin_Gold" x="831" y="528" width="32" height="32"/>
-  <object name="BasicLevel" type="LevelChanger" x="13" y="685" width="32" height="32">
+  <object name="DeadlyArea" type="DeadlyArea" x="2624" y="290" width="63" height="48"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="3482" y="765" width="974" height="52"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="4954" y="764" width="1354" height="57"/>
+  <object name="Bronze" type="Coin_Bronze" x="677" y="497" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2589" y="213" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="2830" y="111" width="32" height="32"/>
+  <object name="BasicLevel" type="LevelChanger" x="18" y="637" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
    </properties>
   </object>
-  <object name="Spawn Point" type="SpawnPoint" x="299" y="677" width="32" height="32"/>
-  <object name="A1" type="LevelChanger" x="588" y="678" width="32" height="32">
+  <object name="Spawn Point" type="SpawnPoint" x="300" y="646" width="32" height="32"/>
+  <object name="A1" type="LevelChanger" x="581" y="645" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
     <property name="LevelChangeComponent.PrevLevel" value="A1"/>
    </properties>
   </object>
-  <object name="DK" type="DarkKnight" x="1044" y="680" width="32" height="32"/>
+  <object name="DK" type="DarkKnight" x="1060" y="630" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="1211" y="123" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1424" y="247" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1646" y="370" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="756" y="493" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="830" y="495" width="32" height="32"/>
+  <object name="Bow" type="IronBow" x="1124" y="122" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1853" y="455" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2699" y="212" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2843" y="306" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2899" y="305" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2960" y="306" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3946" y="437" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3898" y="437" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="4159" y="611" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1017" y="630" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2017" y="680" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2179" y="679" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2559" y="656" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2754" y="654" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2929" y="649" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3121" y="651" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="5127" y="438" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="5458" y="574" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="5776" y="443" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="6305" y="637" width="32" height="32"/>
+  <object name="CH" type="CecilHarvey" x="1166" y="121" width="32" height="32"/>
  </objectgroup>
 </map>
