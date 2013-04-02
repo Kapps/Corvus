@@ -45,7 +45,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ai2rEIBBFk7gtoaXvJ23//zvr0pWd2s1LrY7uOXBBdiERnXGuQ7oOAAAAAAAAAKBtetN1w0HGlJ4N1IqMo5bi6cL8FkAIfhwRTwAA0Dp7b3h9UAueEOqlVxiDeELQQm0x2GrfASAF9B0AAPRT8m6i8V4EICnpXdy7yRGAv4zmRyVzZDCnx1PfuAwFa63fs4jpXaR+3rlxY9fo1uruH9fK5YfLkan9WquQfZW10x+f6g2UrrWpehepn3du3Ns1erB6zJQf48J+rRVnX3torHVP9r3PVi8Vxdsar1ZLT6CWeeZAS62TnirGX+XwZlOMC2tWg3/oI/Ze41kby87MKxfSU8X4qxzeTANTd/uYO7zLDec5t6LlrE2JlvyQnirGX9XozUKYu9uH4OdGSH6UQnqG2D6Lr6X8SNW7mau9rasUW+bo50ZN+SE9Q4o+i9Qu8D+pS3P8XvzKk/t97bNa1KvVm9V75vGWOfq5sdeH1afVl/Kx9Azf1mvs0iBOAAA=
+   H4sIAAAAAAAAC+2a60rEMBBG20ZlUbxfUd//OZ3FDYxx09ZOzG3PgQ9Cf6QlmUm+GToMAAAAAAAAAAB9M7phmA5yrvTXQKvoOOopns7dTwFsIYwj4gkAAHpn7w2vDurBE0K7jBXGIJ4QaqG1GOy17wCQAvoOAAD1U7I2qbEuAtCU9C7+3eQIwG927lslc2Ryx8exf1ymgndt2LOw9C5Sz3dqXMsa3Yhu/3GtfH74HInt11pt2Vd9d4bjY72B0ndtqt5F6vlOjTtZo3vRQ6b82C3s11px9vVHjXfdo7z3SfTcULyt8Wqt9ARa+c4cnM2chxcZ10h7Kou/yuHNYvgcidGCfxgNPqfGs9ZK6DNC5UJ7Kou/yuHNaiBW21tqeJ8bW/e+x7qilvzQnsrir1r0ZluYq+23EOZGzr23oj2Dtc8Saik/UvVu5u7e3lWKv3xjmBst5Yf2DCn6LFpL+bFmjn2d4v8Xvwzkn8/VOb3rRfQqess8tsbBu+hD9Fn5WHuGLzuTMEUgTgAA
   </data>
  </layer>
  <layer name="Objects" width="200" height="25" visible="0">
@@ -66,14 +66,14 @@
   <object name="Bronze" type="Coin_Bronze" x="672" y="526" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="751" y="525" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="831" y="528" width="32" height="32"/>
-  <object name="BasicLevel" type="LevelChanger" x="6337" y="649" width="32" height="32">
+  <object name="BasicLevel" type="LevelChanger" x="13" y="685" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
     <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
    </properties>
   </object>
-  <object name="Spawn Point" type="SpawnPoint" x="246" y="646" width="32" height="32"/>
-  <object name="A1" type="LevelChanger" x="460" y="646" width="32" height="32">
+  <object name="Spawn Point" type="SpawnPoint" x="299" y="677" width="32" height="32"/>
+  <object name="A1" type="LevelChanger" x="588" y="678" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
     <property name="LevelChangeComponent.PrevLevel" value="A1"/>
