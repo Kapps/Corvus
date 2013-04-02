@@ -109,9 +109,9 @@
   <object name="DK" type="DarkKnight" x="3921" y="379" width="32" height="32"/>
   <object name="DK" type="DarkKnight" x="2860" y="46" width="32" height="32"/>
   <object name="DK" type="DarkKnight" x="4256" y="610" width="32" height="32"/>
-  <object name="Golbez" type="Golbez" x="5128" y="368" width="32" height="32"/>
-  <object name="Golbez" type="Golbez" x="5457" y="516" width="32" height="32"/>
-  <object name="Golbez" type="Golbez" x="5775" y="384" width="32" height="32"/>
+  <object name="Golbez" type="Golbez" x="5205" y="378" width="32" height="32"/>
+  <object name="Golbez" type="Golbez" x="5366" y="526" width="32" height="32"/>
+  <object name="Golbez" type="Golbez" x="5750" y="384" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="2587" y="206" width="32" height="32"/>
   <object name="Trident" type="Trident" x="4157" y="607" width="32" height="32"/>
  </objectgroup>

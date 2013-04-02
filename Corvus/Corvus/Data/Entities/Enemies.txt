@@ -122,7 +122,7 @@ DarkKnight: Properties, CollisionProperties, Required
 		JumpSpeed: 400
 	AttributesComponent
 		MaxHealth: 2000
-		AttackSpeed: 1000
+		AttackSpeed: 750
 		Knockback: 1
 		Strength: 100
 	AIComponent
