@@ -86,10 +86,10 @@
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="BasicLevel" type="LevelChanger" x="6351" y="688" width="32" height="32">
+  <object name="Level1" type="LevelChanger" x="6351" y="688" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
-    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
+    <property name="LevelChangeComponent.NextLevel" value="Level1"/>
+    <property name="LevelChangeComponent.PrevLevel" value="Level1"/>
    </properties>
   </object>
   <object name="Gold" type="Coin_Gold" x="180" y="130" width="32" height="32"/>
