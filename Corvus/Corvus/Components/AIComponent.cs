@@ -221,20 +221,6 @@ namespace Corvus.Components
                         {
                             CombatComponent.AttackAI();
                         }
-
-                        //If a projectile is coming to us, or an entity is attacking us, block.
-                        if (entityAttackingMe || projectileFlyingToMe)
-                        {
-                            if (!CombatComponent.IsBlocking)
-                                CombatComponent.BeginBlock();
-                        }
-
-                        //If there's no projectile coming to us, or no entity attacking us, end the block.
-                        if (!entityAttackingMe && !projectileFlyingToMe)
-                        {
-                            if (CombatComponent.IsBlocking)
-                                CombatComponent.EndBlock();
-                        }
                     }
                     else //If we found nothing.
                     {
@@ -243,6 +229,20 @@ namespace Corvus.Components
                         //Resume following the path.
                         if (!PathComponent.PathingEnabled)
                             PathComponent.StartFollowing();
+                    }
+
+                    //If a projectile is coming to us, or an entity is attacking us, block.
+                    if (entityAttackingMe || projectileFlyingToMe)
+                    {
+                        if (!CombatComponent.IsBlocking)
+                            CombatComponent.BeginBlock();
+                    }
+
+                    //If there's no projectile coming to us, or no entity attacking us, end the block.
+                    if (!entityAttackingMe && !projectileFlyingToMe)
+                    {
+                        if (CombatComponent.IsBlocking)
+                            CombatComponent.EndBlock();
                     }
                 }
                 else if (shouldDie) //DYING AI
