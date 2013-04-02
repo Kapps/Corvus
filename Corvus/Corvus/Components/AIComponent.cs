@@ -186,7 +186,7 @@ namespace Corvus.Components
                             if (coc.IsAttacking && EntityWithinAttackRange(e) && EntityFacingMe(e))
                                 entityAttackingMe = true;
 
-                            if (!MovementComponent.IsWalking)
+                            if (!MovementComponent.IsWalking && EntityWithinAttackRange(e))
                                 entityAttackable = true;
                         }
                         else if (clc.Classification == EntityClassification.Projectile) //If Projectile
@@ -355,13 +355,30 @@ namespace Corvus.Components
                 }
                 if (MissingHorizontally)
                 {
+                    //Most of this code prevents the AI from jumping off their current platform to chase player.
+                    //Often results in death.
+                    float checkDistance = PhysicsComponent.VelocityX * Time.GetTimeScalar();
+
+                    Vector2 leftPlatformVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 rightPlatformVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Bottom + 1);
+                    Vector2 leftWallVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Center.Y);
+                    Vector2 rightWallVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Center.Y);
+                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector) && !PhysicsSystem.IsLocationSolid(leftWallVector);
+                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector) && !PhysicsSystem.IsLocationSolid(rightWallVector);
+
                     if (entity.Location.Center.X > e.Location.Center.X + attackRange)
                     {
-                        MovementComponent.BeginWalking(Direction.Left);
+                        if (leftPossible)
+                            MovementComponent.BeginWalking(Direction.Left);
+                        else
+                            MovementComponent.StopWalking();
                     }
                     else if (entity.Location.Center.X < e.Location.Center.X - attackRange)
                     {
-                        MovementComponent.BeginWalking(Direction.Right);
+                        if (rightPossible)
+                            MovementComponent.BeginWalking(Direction.Right);
+                        else
+                            MovementComponent.StopWalking();
                     }
                 }
                 else

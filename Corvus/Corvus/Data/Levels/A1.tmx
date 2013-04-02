@@ -81,11 +81,18 @@
   </object>
   <object name="CH2" type="CecilHarvey" x="2848" y="676" width="32" height="32">
    <properties>
+    <property name="AIComponent.AIEnabled" value="false"/>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
   <object name="CH2" type="Path" x="2861" y="713">
    <polyline points="0,0 98,-1 194,-2 290,-2"/>
+  </object>
+  <object name="BasicLevel" type="LevelChanger" x="6351" y="688" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
+    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
