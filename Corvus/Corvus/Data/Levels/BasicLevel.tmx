@@ -86,13 +86,13 @@
     <property name="Sprite Component.Color" value="Color(128, 125, 128, 255)"/>
    </properties>
   </object>
-  <object name="Tutorial" type="LevelChanger" x="2260" y="1511" width="32" height="32">
+  <object name="Tutorial" type="LevelChanger" x="2173" y="1512" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
     <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
    </properties>
   </object>
-  <object name="Arena" type="LevelChanger" x="2165" y="1508" width="32" height="32">
+  <object name="Arena" type="LevelChanger" x="2084" y="1511" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Arena"/>
     <property name="LevelChangeComponent.PrevLevel" value="Arena"/>
@@ -109,6 +109,12 @@
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Level2"/>
     <property name="LevelChangeComponent.PrevLevel" value="Level2"/>
+   </properties>
+  </object>
+  <object name="A1" type="LevelChanger" x="2265" y="1512" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A1"/>
+    <property name="LevelChangeComponent.PrevLevel" value="A1"/>
    </properties>
   </object>
  </objectgroup>

@@ -66,14 +66,8 @@
   <object name="DeadlyArea" type="DeadlyArea" x="4954" y="764" width="1354" height="57"/>
   <object name="Bronze" type="Coin_Bronze" x="677" y="497" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="2830" y="111" width="32" height="32"/>
-  <object name="BasicLevel" type="LevelChanger" x="18" y="637" width="32" height="32">
-   <properties>
-    <property name="LevelChangeComponent.NextLevel" value="BasicLevel"/>
-    <property name="LevelChangeComponent.PrevLevel" value="BasicLevel"/>
-   </properties>
-  </object>
   <object name="Spawn Point" type="SpawnPoint" x="300" y="646" width="32" height="32"/>
-  <object name="A1" type="LevelChanger" x="581" y="645" width="32" height="32">
+  <object name="A1" type="LevelChanger" x="6360" y="637" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
     <property name="LevelChangeComponent.PrevLevel" value="A1"/>
