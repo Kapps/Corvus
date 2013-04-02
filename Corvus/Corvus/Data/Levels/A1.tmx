@@ -43,15 +43,21 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2bi2rDMAxFk2YbhbH38/+/dBrUEIISW7ZsXzk6IFpKmli3SLop8TQ5juM4juM4juM4juOUMS/TdKFYlrGuhUjI/ygk2qToeXbNS7kj3e4pHhro1/JaiIT8j0KiTYqevTWX1PC6RzxGgvuO41gjpT5jPYOLba8ZteemeA6LfQLZ1yCvzQJPpNszxUtDz5UaVvpEb19zBPLatKjpv17pXG8U7wPr54xNTf/1Qef6pPgCrw8Un4CyjhJaegbrrLVC1g3FJ6CsowSrnqFHb1prZVU3R4YVz7Cldm/i5sNaK2u61e4nI3ipwJ5PQPYMreHmg2XdaveTEbxUYM8nIHqGXn2Jmw+WdHPy2fMJiJ6hZV+KzQQN3ZBmzZy5BqQctEjxBtY8gzaxmaChG8qsmW99JweUHDRJ8QY9PQPC/V1sJmjohjCjQ21cM9eAkIM2Kd6gp9fqdX8nmQO5uiHN5XVtSOoDKQctSjzViHpwtJifKPfy29qQ1AdKDpqUeKoR9eBoMT8R/gPhakNSHwg5aFPiqUr1kDybfcaQ7ofjjv//PLZf5nJ73dZFiFY5tGBPJ+64Xr9puHbO3o4zhXQ/HHd86jPwe7VxVcjjm+KH4hfgfeqaav6uMcJxfyyx3mUgTgAA
+   H4sIAAAAAAAAC+2bzW6EMAyEYWmrvfR/+/6v2hw2EkIB7MRJxmE+ybfsJh5ke0AwTYQQQgghhBBCCCFlzMs03UIsy1h7IRLzPwqNNhI9r655KS9Bt9cQbw30a7kXIjH/o9BoI9Gzt+aaGtb0iJzfEIKGpD7PekYqtr1m1J4r8Rwe+wSyr0E+mwfeg24fIT4bei5peOkTvX3NEchns6Km//oK//Ud4mdg/cjY1PRfv+G/HiH+wOsDxSegnKOElp7BO2utkHVD8Qko5yjBq2fo0ZvWWnnVjejw4hm21O5Nqfmw1sqbbrX7yQheKrLnE5A9Q2tS88GzbrX7yQheKrLnExA9Q6++lJoPnnQj+ez5BETP0LIvnc0EC92QZs2ceQakHKyQeANvnsGas5lgoRvKrJmffScHlBwskXiDnp4B4f7ubCZY6IYwo2Nt3DPPgJCDNRJv0NNr9bq/08yBXN2Q5vK6NjT1gZSDFSWeakQ9UrSYnyj38tva0NQHSg6WlHiqEfVI0WJ+IjwDSdWGpj4QcrCmxFOV6qF5N/uKof0eLrVe8vzp9lyzrYsYrXJowZ5OqXW9rmncO+fbjiuF9nu41HrpO/B7tXE3yAMJ6ZlqXlfp3v9ozRx3IE4AAA==
   </data>
  </layer>
- <layer name="Objects" width="200" height="25" visible="0">
+ <layer name="Objects" width="200" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
+   H4sIAAAAAAAAC+3bMQoAIAwDQKGju/r/l+oLxK2KdxDomKVjSgEAAAAA4Cc19gEAAAAAAAAAAAAAAICXnOxl7GYgR1u/11dG5N+nnW4wAUYv7YUgTgAA
   </data>
  </layer>
- <layer name="Solid Objects" width="200" height="25" visible="0">
+ <layer name="Solid Objects" width="200" height="25">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>

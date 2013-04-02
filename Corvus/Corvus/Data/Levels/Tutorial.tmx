@@ -35,25 +35,26 @@
    H4sIAAAAAAAAC+3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqqqqqqrvD45e8VMgTgAA
   </data>
  </layer>
- <layer name="Background2" width="200" height="25">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
-  </data>
- </layer>
  <layer name="Foreground" width="200" height="25">
   <properties>
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2a60rEMBBG20ZlUbxfUd//OZ3FDYxx09ZOzG3PgQ9Cf6QlmUm+GToMAAAAAAAAAAB9M7phmA5yrvTXQKvoOOopns7dTwFsIYwj4gkAAHpn7w2vDurBE0K7jBXGIJ4QaqG1GOy17wCQAvoOAAD1U7I2qbEuAtCU9C7+3eQIwG927lslc2Ryx8exf1ymgndt2LOw9C5Sz3dqXMsa3Yhu/3GtfH74HInt11pt2Vd9d4bjY72B0ndtqt5F6vlOjTtZo3vRQ6b82C3s11px9vVHjXfdo7z3SfTcULyt8Wqt9ARa+c4cnM2chxcZ10h7Kou/yuHNYvgcidGCfxgNPqfGs9ZK6DNC5UJ7Kou/yuHNaiBW21tqeJ8bW/e+x7qilvzQnsrir1r0ZluYq+23EOZGzr23oj2Dtc8Saik/UvVu5u7e3lWKv3xjmBst5Yf2DCn6LFpL+bFmjn2d4v8Xvwzkn8/VOb3rRfQqess8tsbBu+hD9Fn5WHuGLzuTMEUgTgAA
+   H4sIAAAAAAAAC+3a227DIAyA4SRsU2+6897/VYfUIXmsJBQzwPT/JEu9SqKAg211WQAAAAAAAOa2umXZfsK53k8Dq+Q+mmk/PbrfAZSI9xH7CQAwu1WcczPUhLBrHbAvoSbEKKztwVnnDkANzB0AYHw9e5MR+yJA6lm7hHuTI8BfJ3eJnjmyueu/U/9x2TqetfHMQjO7qH29e3P27+jZx8s/vquQHyFHUuuVGyXrKs/O+Pe12UDvs7bW7KL29e7Nq39Hbz7eG+XH6WC9coNv33xGPOs+/H0/fXwZ2m85tZqVmYCV52zhYed7+NTwHcmaSlNftajNUkKOpFioH1ZFnTPit1YrrjPiaEXWVJr6qkVtNoJUb6/p4UNulK79jH3FKPkhaypNfWWxNiux19uXiHOj5dpryZpBO2eJ4yg/as1u9s7e2aOXW54xzg1L+SFrhhpzFhlH+ZFzjZw+Za/PmT160e4DK2TN8A1yFQV5IE4AAA==
   </data>
  </layer>
- <layer name="Objects" width="200" height="25" visible="0">
+ <layer name="Objects" width="200" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
+   H4sIAAAAAAAAC+3awQaAUBAF0GF2ta9U//+db0jk7RJJzuFyV8PsbwQAAAAAAAAAd4x5BAAAAAAAAAAAAACAfzn34kMXO/KIqf6fK0u+259a68ZW2fPb/aoBS9UaqyBOAAA=
   </data>
  </layer>
  <layer name="Solid Objects" width="200" height="25">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
