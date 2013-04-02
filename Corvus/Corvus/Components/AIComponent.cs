@@ -239,8 +239,8 @@ namespace Corvus.Components
                     Vector2 rightPlatformVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Bottom + 1);
                     Vector2 leftWallVector = new Vector2(Parent.Location.Left + checkDistance, Parent.Location.Center.Y);
                     Vector2 rightWallVector = new Vector2(Parent.Location.Right + checkDistance, Parent.Location.Center.Y);
-                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector);// && !PhysicsSystem.IsLocationSolid(leftWallVector);
-                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector);// && !PhysicsSystem.IsLocationSolid(rightWallVector);
+                    bool leftPossible = PhysicsSystem.IsLocationSolid(leftPlatformVector) && !PhysicsSystem.IsLocationSolid(leftWallVector);
+                    bool rightPossible = PhysicsSystem.IsLocationSolid(rightPlatformVector) && !PhysicsSystem.IsLocationSolid(rightWallVector);
 
                     //Set a location if one hasn't been set (default is Direction.Down). Very unlikely to happen here, but can't say impossible.
                     if (MovementComponent.CurrentDirection == Direction.Down)

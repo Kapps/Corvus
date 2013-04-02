@@ -108,9 +108,14 @@ Required
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
 	HealthBarComponent
 
+#Slow and powerful/tanky.
 DarkKnight: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_DarkKnight)
+	MovementComponent
+		WalkSpeed: 250
+		WalkAcceleration: 7500
+		JumpSpeed: 475
 
 CecilHarvey: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
