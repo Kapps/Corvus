@@ -80,7 +80,7 @@
     <property name="LevelChangeComponent.PrevLevel" value="A1"/>
    </properties>
   </object>
-  <object name="DK" type="DarkKnight" x="1060" y="630" width="32" height="32"/>
+  <object name="DK" type="DarkKnight" x="1045" y="574" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="1211" y="123" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1424" y="247" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1646" y="370" width="32" height="32"/>
@@ -95,7 +95,7 @@
   <object name="Bronze" type="Coin_Bronze" x="3946" y="437" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="3898" y="437" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="4159" y="611" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="1017" y="630" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1045" y="638" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="2017" y="680" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="2179" y="679" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="2559" y="656" width="32" height="32"/>
@@ -107,5 +107,6 @@
   <object name="Bronze" type="Coin_Bronze" x="5776" y="443" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="6305" y="637" width="32" height="32"/>
   <object name="CH" type="CecilHarvey" x="1166" y="121" width="32" height="32"/>
+  <object name="FB" type="Fireball" x="2895" y="109" width="32" height="32"/>
  </objectgroup>
 </map>
