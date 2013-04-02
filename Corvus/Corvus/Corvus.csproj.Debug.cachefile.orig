@@ -1,12 +1,13 @@
 Content\TestTexture.xnb
-Content\Sprites\Player.xnb
 Content\Interface\HealthBar.xnb
-Content\Sprites\Enemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
-Content\Sprites\male_sprites.xnb
 Content\Interface\HealthMeter.xnb
 Content\Sprites\Effects\Explosion1.xnb
 Content\Sprites\Effects\Explosion2.xnb
+Content\Fonts\testfont.xnb
+Content\Fonts\DamageFont.xnb
+Content\Sprites\TestEnemy.xnb
+Content\Sprites\Players\PlayerMedieval.xnb
 Content\Interface\Outline.xnb
 Content\Tiles\crate 32x32.xnb
 Content\Tiles\ground 32x32.xnb
@@ -75,14 +76,21 @@ Content\Sprites\Equipment\ShortBow.xnb
 Content\Sprites\Equipment\Trident.xnb
 Content\Sprites\Equipment\BastardSword.xnb
 Content\Sprites\Equipment\Muramasa.xnb
-Content\Fonts\testfont.xnb
-Content\Fonts\DamageFont.xnb
+Content\Interface\PausedBackground.xnb
+Content\Sprites\Misc\Misc_BlockSprite.xnb
+Content\Sprites\Enemies\EnemyDarkKnight.xnb
+Content\Sprites\Enemies\EnemyCecilHarvey.xnb
+Content\Sprites\Enemies\EnemyGolbez.xnb
+Content\Sprites\Enemies\EnemyKainHighwind.xnb
+Content\Sprites\Enemies\EnemyZemus.xnb
+Content\Tiles\block 32x32.xnb
 Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
 Content\Fonts\PlayerAttributeFont.xnb
-Content\Sprites\TestPlayer.xnb
-Content\Sprites\TestEnemy.xnb
+Content\Fonts\ArenaFont.xnb
+Content\Sprites\Players\Player_Medieval.xnb
+Content\Sprites\Test_Enemy.xnb
 Content\Sprites\StatusEffects\Effect_Might.xnb
 Content\Sprites\StatusEffects\Effect_Healing.xnb
 Content\Sprites\StatusEffects\Effect_ManaHeal.xnb
@@ -135,79 +143,20 @@ Content\Sprites\Equipment\Weapon_ShortBow.xnb
 Content\Sprites\Equipment\Weapon_Trident.xnb
 Content\Sprites\Equipment\Weapon_BastardSword.xnb
 Content\Sprites\Equipment\Weapon_Muramasa.xnb
-<<<<<<< origin/master
-Content\Audio\SoundEffects\ArrowMiss.xnb
-Content\Audio\SoundEffects\SpearSwing.xnb
-Content\Audio\SoundEffects\SwordSwing.xnb
-Content\Audio\SoundEffects\Fireball.xnb
-Content\Audio\SoundEffects\Windball.xnb
-Content\Audio\SoundEffects\AxeSwing.xnb
-Content\Audio\SoundEffects\Earthball.xnb
-Content\Audio\SoundEffects\Iceball.xnb
-Content\Audio\SoundEffects\Splash.xnb
-Content\Audio\SoundEffects\Spell1.xnb
-Content\Audio\SoundEffects\Explode1.xnb
-Content\Audio\SoundEffects\LavaSplash.xnb
-Content\Audio\SoundEffects\ArrowHit.xnb
-Content\Audio\SoundEffects\CoinDrop.xnb
-Content\Audio\SoundEffects\CoinPickup.xnb
-Content\Audio\SoundEffects\MetalInteraction1.xnb
-Content\Audio\SoundEffects\Bubble1.xnb
-Content\Audio\SoundEffects\Bubble2.xnb
-Content\Audio\SoundEffects\Bubble3.xnb
-Content\Audio\SoundEffects\WeaponSwitch.xnb
-Content\Audio\SoundEffects\WeaponPickup.xnb
-Content\Audio\SoundEffects\Hit1.xnb
-Content\Audio\SoundEffects\Hit2.xnb
-Content\Audio\SoundEffects\Hit3.xnb
-Content\Audio\SoundEffects\Hit4.xnb
-Content\Audio\SoundEffects\Hit5.xnb
-Content\Audio\SoundEffects\Hit6.xnb
-Content\Audio\SoundEffects\Hit7.xnb
-Content\Audio\SoundEffects\Jump.xnb
-Content\Audio\SoundEffects\Landing.xnb
-Content\Audio\SoundEffects\Confusion.xnb
-Content\Audio\SoundEffects\Curse1.xnb
-Content\Audio\SoundEffects\Curse2.xnb
-Content\Audio\SoundEffects\Curse3.xnb
-Content\Audio\SoundEffects\Curse4.xnb
-Content\Audio\SoundEffects\Enchant.xnb
-Content\Audio\SoundEffects\Explode2.xnb
-Content\Audio\SoundEffects\Explode3.xnb
-Content\Audio\SoundEffects\Explode4.xnb
-Content\Audio\SoundEffects\Explode5.xnb
-Content\Audio\SoundEffects\Flamethrower.xnb
-Content\Audio\SoundEffects\ForcePush.xnb
-Content\Audio\SoundEffects\Freeze1.xnb
-Content\Audio\SoundEffects\Freeze2.xnb
-Content\Audio\SoundEffects\Heal1.xnb
-Content\Audio\SoundEffects\LevelUp.xnb
-Content\Audio\SoundEffects\MagicDrop.xnb
-Content\Audio\SoundEffects\Pestilence.xnb
-Content\Audio\SoundEffects\Sand.xnb
-Content\Audio\SoundEffects\Shot1.xnb
-Content\Audio\SoundEffects\Shot2.xnb
-Content\Audio\SoundEffects\Spell2.xnb
-Content\Audio\SoundEffects\Spring.xnb
-Content\Audio\SoundEffects\StatusEffectGood.xnb
-Content\Audio\SoundEffects\Steam.xnb
-Content\Audio\SoundEffects\Teleport.xnb
-Content\Audio\SoundEffects\Warp1.xnb
-Content\Audio\SoundEffects\Warp2.xnb
-Content\Audio\SoundEffects\Warp3.xnb
-Content\Audio\SoundEffects\Water1.xnb
-Content\Audio\SoundEffects\Wind1.xnb
-Content\Audio\SoundEffects\Wind2.xnb
-Content\Audio\SoundEffects\Zap1.xnb
-Content\Audio\SoundEffects\Zap2.xnb
-Content\Audio\SoundEffects\Cheer.xnb
-Content\Audio\RPGAudio.xgs
+Content\Sprites\Enemies\Enemy_DarkKnight.xnb
+Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
+Content\Sprites\Enemies\Enemy_Zemus.xnb
+Content\Sprites\Enemies\Enemy_KainHighwind.xnb
+Content\Sprites\Enemies\Enemy_Golbez.xnb
+<<<<<<< HEAD
 =======
+Content\Fonts\ArenaFont.xnb
+Content\Tiles\block 32x32.xnb
+>>>>>>> 62f3db71e0c6433dea700a0aa1c2077f1cee4723
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
->>>>>>> local
 Content\Audio\Wave Bank.xwb
-Content\Audio\Sound Bank.xsb
+Data\Entities\Enemies.txt
 Data\Entities\Misc_SpawnPoint.txt
 Data\Entities\Misc_AreaOfEffect.txt
 Data\Entities\Coin_Bronze.txt
@@ -229,8 +178,8 @@ Data\Entities\Powerup_Might.txt
 Data\Entities\Powerup_Recover.txt
 Data\Entities\Powerup_Vigor.txt
 Data\Entities\Misc_Projectile.txt
-Data\Entities\TestEntity.txt
-Data\Entities\TestEntityEnemy.txt
+Data\Entities\Players.txt
+Data\Entities\Test_Enemy.txt
 Data\Entities\Weapon_ArcticLance.txt
 Data\Entities\Weapon_BastardSword.txt
 Data\Entities\Weapon_EarthBall.txt
@@ -249,6 +198,11 @@ Data\Entities\Weapon_WindBall.txt
 Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx
 Data\Levels\Dickoleanders.tmx
+Data\Levels\A1.tmx
+<<<<<<< HEAD
+Data\Levels\Level1.tmx
+=======
+>>>>>>> 62f3db71e0c6433dea700a0aa1c2077f1cee4723
 Data\Levels\Arena.tmx
 Data\Levels\SmallLevel.tmx
 Data\Levels\Tutorial.tmx
