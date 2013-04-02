@@ -34,15 +34,15 @@ Properties
 		EnemyWeaponName: Sprites/Equipment/IronSword
 		EnemyWeaponOffset: Vector(0,-4)
 	MovementComponent
-		WalkSpeed: 500
+		WalkSpeed: 350
 		WalkAcceleration: 15000
 		JumpSpeed: 950
 	PhysicsComponent
 		GravityCoefficient: 1
 		HorizontalDragCoefficient: 1
 	AttributesComponent
-		MaxHealth: Random(250, 300)
-		Strength: 75
+		MaxHealth: 5000
+		Strength: 2500
 		Dexterity: 5
 		Intelligence: 4
 		BlockDamageReduction: 0.5
@@ -108,22 +108,29 @@ Required
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
 	HealthBarComponent
 
-#Slow and powerful/tanky.
+#Slow, but powerful and tanky.
 DarkKnight: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_DarkKnight)
 	MovementComponent
-		WalkSpeed: 250
-		WalkAcceleration: 7500
-		JumpSpeed: 475
+		WalkSpeed: 200
+		JumpSpeed: 400
+	AttributesComponent
+		MaxHealth: 20000
+		AttackSpeed: 1000
+		Knockback: 1
+	AIComponent
+		FleeingEnabled: false
 
 CecilHarvey: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_CecilHarvey)
 
+#Normal, since we started with this guy (nothing changes).
 Golbez: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_Golbez)
+
 
 Zemus: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)

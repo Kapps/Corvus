@@ -94,6 +94,18 @@ namespace Corvus.Components
             set { _Aggressive = value; }
         }
 
+        public bool FleeingEnabled
+        {
+            get { return _FleeingEnabled; }
+            set { _FleeingEnabled = value; }
+        }
+
+        public bool DeathEnabled
+        {
+            get { return _DeathEnabled; }
+            set { _DeathEnabled = value; }
+        }
+
         private Vector2 _ReactionRange = new Vector2();
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
@@ -104,6 +116,8 @@ namespace Corvus.Components
         private bool _DeathStarted;
         private bool _FleeingStarted;
         private bool _Aggressive = true;
+        private bool _FleeingEnabled = true;
+        private bool _DeathEnabled = true;
 
         private PhysicsSystem PhysicsSystem;
         private MovementComponent MovementComponent;
@@ -121,7 +135,25 @@ namespace Corvus.Components
 
             if (AIEnabled)
             {
-                if (!DeathStarted && !FleeingStarted) //NORMAL AI
+                //Begin process of death if entity has run out of health.
+                if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 10)
+                {
+                    if (!DeathStarted)
+                        DeathTime = DateTime.Now;
+
+                    DeathStarted = true;
+                }
+
+                //Begin process of fleeing if entity's health is <25%.
+                if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 25)
+                {
+                    FleeingStarted = true;
+                }
+
+                bool shouldFlee = FleeingStarted && FleeingEnabled;
+                bool shouldDie = DeathStarted && DeathEnabled;
+
+                if (!shouldFlee && !shouldDie) //NORMAL AI
                 {
                     bool foundEntity = false;
                     bool projectileFlyingToMe = false;
@@ -149,11 +181,6 @@ namespace Corvus.Components
 
                             if (!MovementComponent.IsWalking)
                                 entityAttackable = true;
-
-                            if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 25)
-                            {
-                                FleeingStarted = true;
-                            }
                         }
                         else if (clc.Classification == EntityClassification.Projectile) //If Projectile
                         {
@@ -211,7 +238,7 @@ namespace Corvus.Components
                             PathComponent.StartFollowing();
                     }
                 }
-                else if (DeathStarted) //DYING AI
+                else if (shouldDie) //DYING AI
                 {
                     //Stop blocking if we were doing so at the moment death occured.
                     if (CombatComponent.IsBlocking)
@@ -226,7 +253,7 @@ namespace Corvus.Components
                         DeathTime = DateTime.Now;
                     } 
                 }
-                else if (FleeingStarted) //FLEEING AI
+                else if (shouldFlee) //FLEEING AI
                 {
                     //Stop blocking if we were doing so at the moment fleeing occured.
                     if (CombatComponent.IsBlocking)
@@ -259,15 +286,6 @@ namespace Corvus.Components
                             MovementComponent.BeginWalking(Direction.Right);
                         else if (leftPossible)
                             MovementComponent.BeginWalking(Direction.Left);
-                    }
-
-                    //Begin process of death if entity has run out of health.
-                    if (((AttributesComponent.CurrentHealth / AttributesComponent.MaxHealth) * 100) < 10)
-                    {
-                        if (!DeathStarted)
-                            DeathTime = DateTime.Now;
-
-                        DeathStarted = true;
                     }
                 }
             }
