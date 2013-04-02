@@ -16,5 +16,6 @@ namespace Corvus.Components
         }
 
         private int _Coins = 0;
+
     }
 }

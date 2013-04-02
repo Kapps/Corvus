@@ -131,5 +131,14 @@ namespace Corvus.Components.Gameplay.StatusEffects
         /// Fires when the effect has finished.
         /// </summary>
         protected abstract void OnFinished();
+
+        /// <summary>
+        /// Forces the statuse effect to set call it's OnFinished function.
+        /// </summary>
+        public void ForceFinish()
+        {
+            OnFinished();
+        }
+
     }
 }

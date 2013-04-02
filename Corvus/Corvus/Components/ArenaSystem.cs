@@ -55,7 +55,10 @@ namespace CorvEngine.Components
             if (RemainingEntities != null)
             {
                 foreach (var s in RemainingEntities)
-                    s.Dispose();
+                {
+                    if(!s.IsDisposed)
+                        s.Dispose();
+                }
             }
             RemainingEntities = new List<Entity>();
             _BattleTimer = TimeSpan.Zero;
@@ -130,10 +133,7 @@ namespace CorvEngine.Components
                         Reset();
                         _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
                         _CurrentPhase = ArenaPhases.Start;
-                        //TODO: Actually respawn the player.
-                        foreach (var p in CorvusGame.Instance.Players)
-                        {
-                        }
+                        CorvusGame.Instance.SceneManager.ReloadScenes();
                     }
                     break;
             }

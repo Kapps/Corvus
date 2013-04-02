@@ -14,6 +14,11 @@ namespace Corvus.Components
     /// </summary>
     public class DyingComponent : Component
     {
+        /// <summary>
+        /// An event that fires once the dying animation is finished playing.
+        /// </summary>
+        public event EventHandler OnDyingAnimationFinished;
+
         private float _Duration = 0f;
         private SpriteComponent SC;
         private TimeSpan _Timer = TimeSpan.Zero;
@@ -39,7 +44,12 @@ namespace Corvus.Components
 
             _Timer += Time.ElapsedGameTime;
             if (_Timer >= TimeSpan.FromSeconds(Duration))
-                Parent.Dispose();
+            {
+                if (OnDyingAnimationFinished != null)
+                    OnDyingAnimationFinished(this, new EventArgs());
+                if(!IsDisposed)
+                    Parent.Dispose();
+            }
         }
 
         /// <summary>
@@ -48,7 +58,7 @@ namespace Corvus.Components
         /// <param name="entity">The entity to replace.</param>
         /// <param name="spriteName">The name of the dying animation.</param>
         /// <param name="duration">How long this animation should last.</param>
-        public static void CreateDyingEntity(Entity entity, string spriteName, float duration)
+        public static Entity CreateDyingEntity(Entity entity, string spriteName, float duration)
         {
             var deaded = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint("DyingEntity").CreateEntity();
             deaded.Size = entity.Size;
@@ -68,6 +78,8 @@ namespace Corvus.Components
                 var deadedFtc = deaded.GetComponent<FloatingTextComponent>();
                 deadedFtc.FloatingTextList = FTC.FloatingTextList;
             }
+
+            return deaded;
         }
 
     }

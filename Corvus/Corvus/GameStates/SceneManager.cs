@@ -161,7 +161,8 @@ namespace Corvus.GameStates {
 			var PlayerChars = CorvusGame.Instance.Players.Select(c => c.Character);
 			string ActiveName = ActiveScene.Name;
 			foreach(var PlayerChar in PlayerChars)
-				PlayerChar.Dispose();
+                if(!PlayerChar.IsDisposed)
+				    PlayerChar.Dispose();
 			string CurrentSceneName = _ActiveScene.Name;
 			foreach(var Scene in ActiveScenes.ToArray()) // Duplicate so can modify.
 				Scene.Dispose();

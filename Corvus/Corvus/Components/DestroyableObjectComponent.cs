@@ -119,6 +119,40 @@ namespace Corvus.Components
         
         void AC_Died(AttributesComponent obj)
         {
+            //Drop coins
+            int c = CoinsValue;
+            int gold = (c < 5) ? 0 : c /= 5;
+            int silver = (c < 3) ? 0 : c /= 3;
+            int bronze = c;
+
+            for (int i = 0; i < gold; i++)
+                GenerateCoinEntity("Coin_Gold", 2f - ((float)i) / 10);
+            for (int i = 0; i < silver; i++)
+                GenerateCoinEntity("Coin_Silver", 1.5f - ((float)i) / 10);
+            for (int i = 0; i < bronze; i++)
+                GenerateCoinEntity("Coin_Bronze", 1f - ((float)i) / 10);
+            AudioManager.PlaySoundEffect("CoinDrop");
+
+            //Give exp.
+            //CorvBase.Instance.Players
+            foreach (var p in CorvBase.Instance.Players)
+            {
+                var pcp = p.Character.GetComponent<PlayerControlComponent>();
+                pcp.CurrentExperience += AwardedExperience;
+            }
+
+            //play sound
+            AudioManager.PlaySoundEffect(DyingSound);
+            
+            var deaded = DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
+            deaded.GetComponent<DyingComponent>().OnDyingAnimationFinished += DestroyableObjectComponent_OnDyingAnimationFinished;
+
+            obj.Parent.Dispose();
+        }
+
+        void DestroyableObjectComponent_OnDyingAnimationFinished(object sender, EventArgs e)
+        {
+            var entity = ((DyingComponent)sender).Parent;
             //Drops item
             if (DropsItem && DroppableItems.Count != 0)
             {
@@ -129,7 +163,7 @@ namespace Corvus.Components
                 string item = "";
                 foreach (string i in DroppableItems)
                 {
-                    if (floor < chance && chance <=(droprate + floor))
+                    if (floor < chance && chance <= (droprate + floor))
                     {
                         item = i;
                         break;
@@ -142,44 +176,9 @@ namespace Corvus.Components
                     var powerup = EntityBlueprint.GetBlueprint(item).CreateEntity();
                     powerup.Size = new Vector2(16, 16);
                     powerup.Position = new Vector2(Parent.Location.Center.X, Parent.Location.Top);
-                    Parent.Scene.AddEntity(powerup);
+                    entity.Scene.AddEntity(powerup);
                 }
             }
-
-            //Drop coins
-            int c = CoinsValue;
-            int gold = (c < 5) ? 0 : c /= 5 ;
-            int silver = (c < 3) ? 0 : c /= 3;
-            int bronze = c;
-
-            for (int i = 0; i < gold; i++)
-                GenerateCoinEntity("Coin_Gold", 2f - ((float)i) / 10);
-            for (int i = 0; i < silver; i++)
-                GenerateCoinEntity("Coin_Silver", 1.5f - ((float)i) / 10);
-            for (int i = 0; i < bronze; i++)
-                GenerateCoinEntity("Coin_Bronze", 1f - ((float)i) / 10);
-            AudioManager.PlaySoundEffect("CoinDrop");
-            //Give exp.
-            //CorvBase.Instance.Players
-            foreach (var p in CorvBase.Instance.Players)
-            {
-                var pcp = p.Character.GetComponent<PlayerControlComponent>();
-                pcp.CurrentExperience += AwardedExperience;
-            }
-
-            //play sound
-            AudioManager.PlaySoundEffect(DyingSound);
-            
-            DyingComponent.CreateDyingEntity(this.Parent, DyingSprite, DyingDuration);
-            obj.Parent.Dispose();
-
-            //Maybe not the best place for this, but definitely the easiest for now.
-            //Adding it to ArenaSystem would require further tracking of entities tabulated.
-            //if (ArenaSystem != null)
-            //{
-            //    ArenaSystem.TotalEntitiesKilled++;
-            //    //ArenaSystem.TotalEntitiesKilledWave++;
-            //}
         }
 
         private void GenerateCoinEntity(string coinName, float xmod)

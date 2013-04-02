@@ -113,5 +113,11 @@ namespace Corvus {
             if (State == BindState.Pressed)
                 PlayerControlComponent.Attack();
         }
+
+        private void Pause(BindState state)
+        {
+            if (state == BindState.Pressed)
+                CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.PausedState);
+        }
 	}
 }
