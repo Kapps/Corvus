@@ -73,7 +73,7 @@ Properties
 		DropCoefficient: 2
 		CoinsValue: 0
 	AIComponent
-		ReactionRange: Vector(500, 50)
+		ReactionRange: Vector(250, 25)
 		Offset: Vector(0, 0)
 		EntitiesToSearchFor: Enum(CorvEngine.Components.EntityClassification, Player, Projectile)
 	CombatComponent

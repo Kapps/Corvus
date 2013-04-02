@@ -43,7 +43,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2bzW6EMAyEYWmrvXT7//6v2hw2UoQCsRPHGQd/kqU9sCQeZHtAsCyO4ziO4ziO4ziO4zhtrNuy3EJs21xrIRLzPwuONhQ9r655Ky9Bt9cQbwr6aa6FSMz/LDjaUPQcrTmnhjk9ouY/joMGpT5LPSMX+14za8+leA6LfQLZ1yDvzQLvQbdHiA9Fz0UNK31itK85A3lvUvT0X5/hXF8hvifWz5mbnv7rJ5zrN8QfeH2g+ASUfbSg6Rmsk2qFrBuKT0DZRwtWPcOI3pRqZVU3h4cVz7Cnd2/KzYdUK2u69e4nM3ipyJFPQPYM2uTmg2XdeveTXudH8gmInmFUX8rNB0u6zcKIe5gjn4DoGTT1Kc0ECd2QZs1auQekHKSgeANrnkGa0kyQ0A1l1qzPvlMDSg6SULzBSM+AcH9XmgkSuiHM6Fgb98o9IOQgDcUbjPRao56Vc+ZArW5IczmtDU59IOUgRYunmlGPHBrzE+Vefl8bnPpAyUGSFk81ox45NOYnwjOQXG1w6gMhB2laPFWrHpx3s68Y3O/hcsenz59uhd/7uoihlYMGRzrljht1TePaNd92XCm438Pljqe+A39UG3eBPJCg7qnndaWu/Q9n1kHXIE4AAA==
+   H4sIAAAAAAAAC+2b3YqEMAyFdZxd5mb/Z9//VbcXWyglatOm6UnNB4ERHG2OJDmKLovjOI7jOI7jOI7jOE4b67YstxDbNte5EIn5HwVHmxI9r655K/eg20uIVwX9NM+FSMz/KDjalOg5WnOqPldim9sjav7jOGhQ9XnPts96BhV5r5m155Z4Dot9AtnXIK/NAm9Bt/cQH4qeqzSs9InRvuYI5LVJ0dN/fYZjfYX4nlg/Z256+q+fcKxniF/w+kDxCSjraEHTM1gn1QpZNxSfgLKOFqx6hhG9KdXKqm4ODyueIad3b6LmQ6qVNd1695MZvFRkzycgewZtqPlgWbfe/aTX8ZF8AqJnGNWXqPlgSbdZGHEPs+cTED2Dpj5nM0FCN6RZs1auASkHKUq8gTXPIM3ZTJDQDWXWrP99pwaUHCQp8QYjPQPC/d3ZTJDQDWFGx9p4VK4BIQdpSrzBSK816lk5Zw7U6oY0l9Pa4NQHUg5StHiqGfWg0JifKPfyeW1w6gMlB0laPNWMelBozE+EZyBUbXDqAyEHaVo8VasenHezrxjc7+Go/dPnT7eT33ldxNDKQYM9naj9Rl3TeO6abzuuFNzv4aj9S9+B36uNh0AeSJSuqed1LT33H2womXEgTgAA
   </data>
  </layer>
  <layer name="Objects" width="200" height="25">
@@ -71,5 +71,21 @@
   <object name="DeadlyArea" type="DeadlyArea" x="5087" y="769" width="258" height="34"/>
   <object name="DeadlyArea" type="DeadlyArea" x="6076" y="789" width="262" height="15"/>
   <object name="DeadlyArea" type="DeadlyArea" x="2334" y="786" width="517" height="21"/>
+  <object name="CH1" type="CecilHarvey" x="25" y="173" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="CH1" type="Path" x="45" y="215">
+   <polyline points="0,0 148,-21 322,1"/>
+  </object>
+  <object name="CH2" type="CecilHarvey" x="2848" y="676" width="32" height="32">
+   <properties>
+    <property name="PathComponent.JumpDelay" value="300"/>
+   </properties>
+  </object>
+  <object name="CH2" type="Path" x="2861" y="713">
+   <polyline points="0,0 98,-1 194,-2 290,-2"/>
+  </object>
  </objectgroup>
 </map>
