@@ -146,6 +146,16 @@ CecilHarvey: Properties, CollisionProperties, Required
 	AIComponent
 		FleeingEnabled: false
 
+PoisonCecilHarvey : CecilHarvey
+	SpriteComponent (Sprite)
+		Color: Color(Purple)
+	StatusEffectPropertiesComponent
+		EffectType: Poison
+		BaseValue: 0
+		Intensity: 0.01
+		Duration: 5
+	CombatPropertiesComponent
+		AppliesEffect: true
 
 Zemus: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
