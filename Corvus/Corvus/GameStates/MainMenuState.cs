@@ -82,6 +82,13 @@ namespace Corvus.GameStates
             testModeBtn.Selected += testModeBtn_Selected;
             ControlManager.AddControl(testModeBtn);
 
+            LinkButton exitBtn = new LinkButton(font);
+            exitBtn.Text = "Exit";
+            exitBtn.Color = Color.Black;
+            exitBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 250f);
+            exitBtn.Selected += exitBtn_Selected;
+            ControlManager.AddControl(exitBtn);
+
             //LinkButton tutorialBtn = new LinkButton(font);
             //tutorialBtn.Text = "Tutorial";
             //tutorialBtn.Color = Color.Black;
@@ -117,6 +124,11 @@ namespace Corvus.GameStates
             CorvusGame.Instance.SceneManager.ReloadScenes(false);
             CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
+        }
+
+        void exitBtn_Selected(object sender, EventArgs e)
+        {
+            CorvusGame.Instance.Exit();
         }
 
         //unused
