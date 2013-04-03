@@ -116,7 +116,7 @@ namespace Corvus.Components
         private Vector2 _OffSet = new Vector2();
         private EntityClassification _EntitiesToSearchFor;
         private bool _IsReacting = false;
-        private bool _AllowMultiJump = true;
+        private bool _AllowMultiJump = false;
         private bool _AIEnabled = true;
         private DateTime _StartOfDeath;
         private bool _DeathStarted;
@@ -336,7 +336,6 @@ namespace Corvus.Components
         private void FollowEntity(Entity e, GameTime Time)
         {
             var entity = this.Parent;
-            var AllowMultiJump = false;
             Random r = new Random();
             float attackRange = AttributesComponent.MeleeAttackRange.X;
 
