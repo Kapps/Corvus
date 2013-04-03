@@ -83,6 +83,7 @@
       <Name>MainMenuFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
     <Compile Include="Fonts\PlayerNameFont.spritefont">
       <Name>PlayerNameFont</Name>

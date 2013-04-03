@@ -94,12 +94,13 @@ namespace CorvEngine.Geometry {
 		/// <summary>
 		/// Creates a new TiledPlatformerGeometry instance for the given Scene.
 		/// </summary>
-		public TiledPlatformerGeometry(Scene Scene) : base(Scene) {
+		public TiledPlatformerGeometry(Scene Scene)
+			: base(Scene) {
 			GenerateTileGeometry();
 		}
 
 		private void GenerateTileGeometry() {
-			// We only care about layers that are solid. Cache which are to save some cycles.
+			// We only care about layers that are solid. Cache which are.
 			Tile[][,] SolidTiles = Scene.Layers.Where(c => c.IsSolid).Select(c => c.Tiles).ToArray();
 			// We'll check if tiles are checked already, as it could get a bit complicated to keep track.
 			// To check if a tile is checked, we'll simply store if it's X and Y coordinate was checked.
@@ -138,7 +139,7 @@ namespace CorvEngine.Geometry {
 			*  . . .   . . .
 			*  . . .   . . .
 			*  . . .   . . .
-			*/ 
+			*/
 			// How would this be handled?
 			// The result would end up being something like:
 			/**
@@ -203,7 +204,7 @@ namespace CorvEngine.Geometry {
 				for(int y = StartY; y < EndY; y++) {
 					int Index = GetIndex(x, y);
 					Debug.Assert(!CheckedTiles.Get(Index), "Expected no overlapping tiles when using the rectangle tile approach.");
-					
+
 					CheckedTiles.Set(Index, true);
 				}
 			}
@@ -231,6 +232,10 @@ namespace CorvEngine.Geometry {
 			return null;
 		}
 
+		protected override IGlobalPath PerformPathCalculation(Entity Entity, ISceneGeometryObject EndPoint) {
+			return null;
+		}
+
 		protected override void RemoveGeometry(ISceneGeometryObject Object) {
 			bool Removed = _Geometry.Remove(Object);
 			if(!Removed)
@@ -247,7 +252,7 @@ namespace CorvEngine.Geometry {
 		/// <summary>
 		/// Indicates whether the given Entity can reach the second object, starting from the first, in one jump.
 		/// </summary>
-		private bool CanEntityReachObject(Entity Entity, TiledPlatformerGeometryObject First, TiledPlatformerGeometryObject Second) {
+		public bool CanEntityReachObject(Entity Entity, TiledPlatformerGeometryObject First, TiledPlatformerGeometryObject Second) {
 			var PhysicsComponent = Entity.GetComponent<PhysicsComponent>();
 			var PhysicsSystem = Scene.GetSystem<PhysicsSystem>();
 			var MovementComponent = Entity.GetComponent<MovementComponent>();
@@ -255,15 +260,39 @@ namespace CorvEngine.Geometry {
 				throw new InvalidOperationException("Unable to calculate a path for an Entity that has no physics component, movement component, or if a physics system is not set.");
 			double Gravity = PhysicsSystem.Gravity * PhysicsComponent.GravityCoefficient;
 			double Drag = PhysicsSystem.HorizontalDrag * PhysicsComponent.HorizontalDragCoefficient;
-			double JumpAccel = MovementComponent.MaxJumpSpeed;
+			double JumpAccel = MovementComponent.JumpSpeed;
 			TimeSpan TimeForTopHeight = TimeSpan.FromSeconds(JumpAccel / Gravity);
-			// The average velocity during this time will be half of the initial acceleration, since we're decelerating at a constant rate.
-			// Thus, the amount we travel will be the time * half of initial acceleration.
 			double JumpHeight = JumpAccel / TimeForTopHeight.TotalSeconds / 2;
-			// Okay, this shall be unpleasant.
-			// Given the X and Y acceleration of an Entity, determine how far it can go on a jump and how high it reaches.
-			// We also need to determine 
-			return false;
+			if(First.Location.Top + JumpHeight < Second.Location.Top)
+				return false;
+			// Another alternative to all this below stuff is to determine the time for the next tile and evaluate it using the Curve class.
+			// Then check if there's a geometry object there.
+			double HeightDifference = Second.Location.Top - First.Location.Top;
+			// Next, we need to determine the amount of time it would take to hit the ground.
+			// This is done in the same way as above, added on to time for top.
+			// This is technically wrong, because it assumes equal height and not ground.
+			// But we'll keep it for now. The alternative is much, much, less pleasant curve calculations.
+			TimeSpan TimeToSecondHeight = TimeSpan.FromSeconds((JumpHeight - HeightDifference) / Gravity) + TimeForTopHeight;
+			/*// Calculate how long it'll take us to reach our max walking speed to determine X distance.
+			TimeSpan TimeToMaxWalkingSpeed = TimeSpan.FromSeconds((MovementComponent.MaxWalkingSpeed - PhysicsComponent.VelocityX) / (MovementComponent.WalkAcceleration - Drag));*/
+			// Turns out we don't need that; instead we'll assume constant speed because we're going to get a running start when jumping off the platform.
+			// Probably.
+			// Thus, our max horizontal distance travelled just our total velocity * time.
+			double HorizDistance = TimeToSecondHeight.TotalSeconds * MovementComponent.MaxWalkingSpeed;
+			if(Second.Location.Left > First.Location.Right - (Scene.TileSize.X / 2) + HorizDistance)
+				return false;
+
+			// So we now know that there is a theoretical possibility that we can reach that object.
+			// The next step is to use a curve and determine if we're going to collide with anything.
+			// One approach would be to determine the amount of time until reaching the next tile vertically and check if object at X location there.
+			// This is a pretty painfully expensive approach however.
+			// But what do we do if we are?
+			// Perhaps if we jumped a few steps early we wouldn't be colliding with anything.
+			// Perhaps we could slightly stop while in the air to prevent it.
+			// Perhaps we'd hit a barrier that we wouldn't if we were going slower.
+			// Much unpleasantness.
+			// For now... close enough, we'll pretend we can reach.
+			return true;
 		}
 
 		private List<ISceneGeometryObject> _Geometry = new List<ISceneGeometryObject>();

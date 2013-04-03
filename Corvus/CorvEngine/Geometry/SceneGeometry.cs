@@ -30,11 +30,44 @@ namespace CorvEngine.Geometry {
 			Scene.EntityAdded += Scene_EntityAdded;
 		}
 
-		void Scene_EntityAdded(Entity obj) {
-			if(obj.IsInitialized)
-				OnEntityInitialized(obj);
-			else
-				obj.Initialized += (scobj) => OnEntityInitialized((Entity)scobj);
+		/// <summary>
+		/// Calculates a global path to take the given entity to the specified EndPoint.
+		/// </summary>
+		public virtual IGlobalPath CalculateGlobalPath(Entity Entity, ISceneGeometryObject EndPoint) {
+			// We can do some stuff like caching here if we want.
+			return CalculateGlobalPath(Entity, EndPoint);
+		}
+
+		/// <summary>
+		/// Override to handle creating the geometry for an Entity.
+		/// This should return null if no geometry should be created for this Entity.
+		/// </summary>
+		protected abstract ISceneGeometryObject CreateGeometryForEntity(Entity Entity);
+
+		/// <summary>
+		/// Called when the specified geometry should be removed from this Scene's geometry.
+		/// </summary>
+		protected abstract void RemoveGeometry(ISceneGeometryObject Object);
+
+		/// <summary>
+		/// Called when the specified geometry should be added to this Scene's geometry.
+		/// </summary>
+		protected abstract void AddGeometry(ISceneGeometryObject Object);
+
+		/// <summary>
+		/// Override to perform handling the actual calculation of a global path.
+		/// </summary>
+		protected abstract IGlobalPath PerformPathCalculation(Entity Entity, ISceneGeometryObject EndPoint);
+
+		/// <summary>
+		/// Returns the GeometryObject that was created for the specified Entity, or null if the Entity had no existing geometry.
+		/// This is handled internally by the SceneGeometry when an Entity is initialized and CreateGeometryForEntity does not return null.
+		/// </summary>
+		protected virtual ISceneGeometryObject GetGeometryForEntity(Entity Entity) {
+			ISceneGeometryObject Result;
+			if(!_EntityGeometries.TryGetValue(Entity, out Result))
+				return null;
+			return Result;
 		}
 
 		/// <summary>
@@ -63,32 +96,12 @@ namespace CorvEngine.Geometry {
 			RemoveGeometry(Geometry);
 		}
 
-		/// <summary>
-		/// Returns the GeometryObject that was created for the specified Entity, or null if the Entity had no existing geometry.
-		/// This is handled internally by the SceneGeometry when an Entity is initialized and CreateGeometryForEntity does not return null.
-		/// </summary>
-		protected virtual ISceneGeometryObject GetGeometryForEntity(Entity Entity) {
-			ISceneGeometryObject Result;
-			if(!_EntityGeometries.TryGetValue(Entity, out Result))
-				return null;
-			return Result;
+		private void Scene_EntityAdded(Entity obj) {
+			if(obj.IsInitialized)
+				OnEntityInitialized(obj);
+			else
+				obj.Initialized += (scobj) => OnEntityInitialized((Entity)scobj);
 		}
-
-		/// <summary>
-		/// Override to handle creating the geometry for an Entity.
-		/// This should return null if no geometry should be created for this Entity.
-		/// </summary>
-		protected abstract ISceneGeometryObject CreateGeometryForEntity(Entity Entity);
-
-		/// <summary>
-		/// Called when the specified geometry should be removed from this Scene's geometry.
-		/// </summary>
-		protected abstract void RemoveGeometry(ISceneGeometryObject Object);
-
-		/// <summary>
-		/// Called when the specified geometry should be added to this Scene's geometry.
-		/// </summary>
-		protected abstract void AddGeometry(ISceneGeometryObject Object);
 
 		private Dictionary<Entity, ISceneGeometryObject> _EntityGeometries = new Dictionary<Entity, ISceneGeometryObject>();
 	}

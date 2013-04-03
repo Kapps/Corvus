@@ -128,10 +128,12 @@
     <Compile Include="Components\SpriteComponent.cs" />
     <Compile Include="Components\Blueprints\Generators\VectorValueGenerator.cs" />
     <Compile Include="FrameInvoker.cs" />
+    <Compile Include="Geometry\IGlobalPath.cs" />
     <Compile Include="Geometry\SceneGeometry.cs" />
     <Compile Include="Geometry\ISceneGeometryObject.cs" />
     <Compile Include="Geometry\TiledPlatformerGeometry.cs" />
     <Compile Include="Geometry\TiledPlatformerGeometryObject.cs" />
+    <Compile Include="Geometry\TiledPlatformerGlobalPath.cs" />
     <Compile Include="Graphics\SpriteAnimationData.cs" />
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Sprite.cs" />
