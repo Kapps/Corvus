@@ -13,6 +13,11 @@ namespace CorvEngine {
 	public class Player {
 
 		/// <summary>
+		/// Called when the character for this Player is changed with the new Entity that it was changed to.
+		/// </summary>
+		public event Action<Entity> CharacterChanged;
+
+		/// <summary>
 		/// Gets the InputManager being used for this player.
 		/// </summary>
 		public InputManager InputManager { get; private set; }
@@ -23,10 +28,18 @@ namespace CorvEngine {
 		public Camera Camera { get; private set; }
 
 		/// <summary>
-		/// Gets the character that this player is controlling.
+		/// Gets or sets the character that this player is controlling.
 		/// </summary>
-		public Entity Character { get; private set; }
-
+		public Entity Character {
+			get { return _Character; }
+			set {
+				if(_Character == value)
+					return;
+				_Character = value;
+				if(CharacterChanged != null)
+					CharacterChanged(_Character);
+			}
+		}
 		/// <summary>
 		/// Creates a new Player with an InputManager attached to it.
 		/// </summary>
@@ -35,11 +48,6 @@ namespace CorvEngine {
 			this.Camera = new Camera();
 			this.Character = Character;
 		}
-
-        public void Reset(Entity character)
-        {
-            this.Character = character;
-        }
 
 		/// <summary>
 		/// Gets the index of this player, from 1 to N where N is the number of players in the game.
@@ -54,5 +62,7 @@ namespace CorvEngine {
 				return Result >= 0 ? Result + 1 : -1;
 			}
 		}
+
+		private Entity _Character;
 	}
 }

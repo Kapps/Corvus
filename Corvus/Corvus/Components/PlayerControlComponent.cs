@@ -310,8 +310,11 @@ namespace Corvus.Components
                     break;
                 }
             }
-            if(allPlayersDead)
-                CorvusGame.Instance.SceneManager.ReloadScenes();
+			if(allPlayersDead) {
+				foreach(CorvusPlayer Player in CorvusGame.Instance.Players)
+					Player.Character = CorvusPlayer.LoadPlayerEntity();
+				CorvusGame.Instance.SceneManager.ReloadScenes();
+			}
         }
         
         private void LevelUp()

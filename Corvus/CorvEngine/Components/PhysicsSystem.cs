@@ -153,10 +153,6 @@ namespace CorvEngine.Components {
 		}
 
 		private void PerformDynamicCollision(GameTime Time) {
-//#if DEBUG
-			//var DuplicateCount = GetFilteredComponents<PhysicsComponent>().Select(c => GetFilteredComponents<PhysicsComponent>().Where(d => d == c).Count()).ToArray();
-			//Console.WriteLine(DuplicateCount);
-//#endif
 			// This is safe to multi-thread since we're only marking what collided, not resolving the collision.
 			// Instead of using Tasks and waiting on them though, we're just keeping track of how many objects we've checked collision for.
 			// Since we know ahead of time how many there are to do it for, this provides us an efficient way to keep tarck.

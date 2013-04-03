@@ -205,6 +205,7 @@ namespace CorvEngine {
 
 		private void OnInitialize() {
 			this._GraphicsManager.SynchronizeWithVerticalRetrace = false;
+			/*
 #if !DEBUG
 			
 			//this._GraphicsManager.PreferMultiSampling = true;
@@ -224,6 +225,10 @@ namespace CorvEngine {
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
 			this._GraphicsManager.ApplyChanges();
 #endif
+			 */
+			this._GraphicsManager.PreferredBackBufferWidth = 1024;
+			this._GraphicsManager.PreferredBackBufferHeight = 768;
+			this._GraphicsManager.ApplyChanges();
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
 			this._FrameInvoker = new FrameInvoker();

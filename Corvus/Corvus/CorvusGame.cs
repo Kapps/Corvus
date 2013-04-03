@@ -56,10 +56,16 @@ namespace Corvus {
 		}
 
 		void CorvusGame_PlayerAdded(Player obj) {
+			obj.CharacterChanged += (c) => SetCamera(obj);
+			SetCamera(obj);
+		}
+
+		private void SetCamera(Player Player) {
 			if(SceneManager.ActiveScene != null)
-				SceneManager.ActiveScene.AddEntity(obj.Character);
-			var CameraComponent = new ChaseCameraComponent(obj.Camera);
-			obj.Character.Components.Add(CameraComponent);
+				SceneManager.ActiveScene.AddEntity(Player.Character);
+			var CameraComponent = new ChaseCameraComponent(Player.Camera);
+			Player.Character.Components.Add(CameraComponent);
+
 			/*float AspectRatio = GraphicsDevice.DisplayMode.AspectRatio;
 			Vector2 Size;
 			if(Math.Abs(AspectRatio - (16f / 9f)) < 0.01f)
@@ -93,10 +99,7 @@ namespace Corvus {
 
 		public void CreateNewPlayer() {
 			// TODO: Allow new players to join by pressing a button. Should be simple enough.
-			// TODO: Allow support for different 'classes' by just using different blueprints.
-			var Blueprint = EntityBlueprint.GetBlueprint("Player");
-			var PlayerEntity = Blueprint.CreateEntity();
-            PlayerEntity.Size = new Vector2(36, 24);
+			var PlayerEntity = CorvusPlayer.LoadPlayerEntity();
 
             //We can actually remove this section because the player isn't actually starting in the game. During main menu to new game, 
             //it will detect the spawn point and set it accordingly.
