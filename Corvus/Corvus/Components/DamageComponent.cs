@@ -49,7 +49,7 @@ namespace Corvus.Components{
 
             FloatingTextComponent.Add(overallDamage, Color.White);
             
-            GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
+            GamepadComponent.Vibrate(this.Parent, 0.5f, 0f, 0.5f);
             PlayHitSound(blockMultipler);
         }
 
@@ -73,7 +73,7 @@ namespace Corvus.Components{
             else
                 FloatingTextComponent.Add(overallDamage, Color.White);
             //vibrate!
-            GamepadComponent.Vibrate(this.Parent, 1f, 0f, 0.5f);
+            GamepadComponent.Vibrate(this.Parent, 0.5f, 0f, 0.5f);
             PlayHitSound(blockMultipler);
         }
 
