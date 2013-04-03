@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="85" height="80" tilewidth="32" tileheight="32">
-  <properties>
-    <property name="Audio" value="Jungle1, 0.5, 0.5"/>
-  </properties>
-  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Jungle1, 0.5, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="769" name="ground 32x32" tilewidth="32" tileheight="32">
@@ -61,24 +61,24 @@
  </layer>
  <objectgroup name="Enemies" width="85" height="80">
   <object name="Spawn Point" type="SpawnPoint" x="575" y="2458" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1060" y="2207" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1312" y="2106" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1095" y="2011" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1873" y="1763" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="867" y="1216" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1066" y="2197" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1320" y="2105" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1092" y="2000" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1869" y="1751" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="872" y="1209" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1009" y="1470" width="32" height="32"/>
-  <object name="Tutorial" type="LevelChanger" x="752" y="795" width="32" height="32">
+  <object name="Tutorial" type="LevelChanger" x="751" y="792" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
     <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="1078" y="1211" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="1074" y="1206" width="32" height="32">
    <properties>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="1268" y="1885" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="1266" y="1878" width="32" height="32">
    <properties>
     <property name="PathComponent.JumpDelay" value="300"/>
     <property name="StatusEffectPropertiesComponent.EffectType" value="Slow"/>
@@ -89,20 +89,20 @@
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="1717" y="887" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="1709" y="879" width="32" height="32">
    <properties>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="Bronze" type="Coin_Bronze" x="1425" y="793" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1293" y="730" width="32" height="32"/>
-  <object name="Sit1" type="GaiaBlade" x="818" y="1223" width="22" height="22"/>
-  <object name="Silver" type="Coin_Silver" x="2178" y="2141" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="2246" y="2142" width="32" height="32"/>
-  <object name="Sit4" type="IceBall" x="2455" y="2213" width="22" height="22"/>
-  <object name="Silver" type="Coin_Silver" x="1777" y="1243" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="1913" y="1150" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="1913" y="1019" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1423" y="784" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1296" y="725" width="32" height="32"/>
+  <object name="Sit1" type="GaiaBlade" x="813" y="1214" width="22" height="22"/>
+  <object name="Silver" type="Coin_Silver" x="2177" y="2130" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2252" y="2129" width="32" height="32"/>
+  <object name="Sit4" type="IceBall" x="2455" y="2203" width="22" height="22"/>
+  <object name="Silver" type="Coin_Silver" x="1775" y="1241" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1906" y="1142" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1900" y="1014" width="32" height="32"/>
   <object name="DeadlyArea" type="DeadlyArea" x="1894" y="2542" width="821" height="17"/>
   <object name="DK" type="DarkKnight" x="1141" y="650" width="42" height="43">
    <properties>
