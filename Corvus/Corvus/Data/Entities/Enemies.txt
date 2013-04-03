@@ -126,6 +126,7 @@ DarkKnight: Properties, CollisionProperties, Required
 		AttackSpeed: 750
 		Knockback: 1
 		Strength: 100
+		BlockChance: 0.7
 	AIComponent
 		FleeingEnabled: false
 

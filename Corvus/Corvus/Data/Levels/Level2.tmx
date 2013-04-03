@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="85" height="80" tilewidth="32" tileheight="32">
-  <properties>
-    <property name="Audio" value="Jungle1, 2, 0.5"/>
-  </properties>
-  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Jungle1, 2, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="769" name="ground 32x32" tilewidth="32" tileheight="32">
@@ -61,14 +61,13 @@
  </layer>
  <objectgroup name="Enemies" width="85" height="80">
   <object name="Spawn Point" type="SpawnPoint" x="575" y="2458" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1124" y="2205" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1060" y="2207" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1312" y="2106" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1095" y="2011" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1873" y="1763" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="867" y="1216" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1009" y="1470" width="32" height="32"/>
-  <object name="Tutorial" type="LevelChanger" x="748" y="793" width="32" height="32">
+  <object name="Tutorial" type="LevelChanger" x="752" y="795" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
     <property name="LevelChangeComponent.PrevLevel" value="Tutorial"/>
@@ -79,9 +78,10 @@
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="1264" y="1883" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="1268" y="1885" width="32" height="32">
    <properties>
     <property name="PathComponent.JumpDelay" value="300"/>
+    <property name="StatusEffectPropertiesComponent.EffectType" value="Slow"/>
    </properties>
   </object>
   <object name="Jumper" type="TestEntityEnemy" x="1524" y="2266" width="32" height="32">
@@ -104,5 +104,13 @@
   <object name="Silver" type="Coin_Silver" x="1913" y="1150" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1913" y="1019" width="32" height="32"/>
   <object name="DeadlyArea" type="DeadlyArea" x="1894" y="2542" width="821" height="17"/>
+  <object name="DK" type="DarkKnight" x="1141" y="650" width="42" height="43">
+   <properties>
+    <property name="AttributesComponent.BlockChance" value="0.8"/>
+    <property name="AttributesComponent.Knockback" value="0.5"/>
+    <property name="AttributesComponent.MaxHealth" value="4000"/>
+    <property name="MovementComponent.WalkSpeed" value="350"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
