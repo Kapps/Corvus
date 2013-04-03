@@ -64,21 +64,8 @@ namespace CorvEngine.Components {
 		}
 
 		protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time) {
-			const float FRAME_SKIP_DURATION = 2000;
-			// Do physics in steps, never doing more than a certain amount of time per step.
-			// If it took more than 2 seconds since the last update, just skip this frame.
-			if(Time.ElapsedGameTime.TotalMilliseconds > FRAME_SKIP_DURATION)
-				return;
-			TimeSpan Remaining = Time.ElapsedGameTime;
-			while(Remaining > TimeSpan.Zero) {
-
-				TimeSpan Delta = TimeSpan.FromTicks(Math.Min(MaxStep.Ticks, Remaining.Ticks));
-				GameTime StepTime = new GameTime(Time.TotalGameTime.Subtract(Remaining), Delta);
-				Remaining = Remaining.Subtract(Delta);
-
-				PerformDynamicCollision(StepTime);
-				PerformStaticCollision(StepTime);
-			}
+			PerformDynamicCollision(Time);
+			PerformStaticCollision(Time);
 		}
 
 		private void PerformStaticCollision(GameTime Time) {
@@ -89,12 +76,12 @@ namespace CorvEngine.Components {
 				var Parent = Component.Parent;
 				if(!Component.IsGrounded)
                     Component.VelocityY += Gravity * Time.GetTimeScalar() * Parent.GetComponent<PhysicsComponent>().GravityCoefficient; //Prolly not the best thing to do GetComponent, eventually make something else.
-				if(Component.IsMoving) {
+				//if(Component.IsMoving) {
 					float CurrSign = Math.Sign(Component.VelocityX);
 					Component.VelocityX += -CurrSign * HorizontalDrag * Time.GetTimeScalar() * Parent.GetComponent<PhysicsComponent>().HorizontalDragCoefficient;
 					if(Math.Sign(Component.VelocityX) != CurrSign)
 						Component.VelocityX = 0;
-				}
+				//}
 				Vector2 PositionDelta = Component.Velocity * Time.GetTimeScalar();
 				// First, handle falling. Check for collision a bit below bottom + PositionDelta, and put them back to the top of the tile if hit.
 				if(Component.VelocityY >= 0 && CheckStaticCollision(Parent, new Vector2(0, (Parent.Size.Y / 2) + PositionDelta.Y + 1), (Tile) => new Vector2(Parent.Position.X, Tile.Location.Top - Parent.Size.Y))) {
@@ -205,7 +192,7 @@ namespace CorvEngine.Components {
 
 		private float _Gravity = 4000;
 		private float _HorizontalDrag = 12000;
-		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(50);
+		private TimeSpan _MaxStep = TimeSpan.FromMilliseconds(20);
 		private HashSet<CollisionInfo> PreviousCollisions = new HashSet<CollisionInfo>();
 
 		private struct CollisionInfo {
