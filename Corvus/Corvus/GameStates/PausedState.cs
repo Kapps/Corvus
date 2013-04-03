@@ -44,7 +44,7 @@ namespace Corvus.GameStates
             SpriteFont font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/MainMenuFont");
 
 
-            Image bg = new Image(CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/PausedBackground"));
+            Image bg = new Image(CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/PausedBackgroundalt"));
             bg.Size = new Vector2(UIHelper.Viewport.Width, UIHelper.Viewport.Height);
             _ControlManager.AddControl(bg);
 
