@@ -155,7 +155,7 @@ KainHighwind: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_KainHighwind)
 
-ArenaKainHighwind : KainHighwind
+WorkoutKainHighwind : KainHighwind
 	DestroyableObjectComponent
 		DroppableItems: Collection(Might, Vigor, Fleet, IWorkOut)
 	

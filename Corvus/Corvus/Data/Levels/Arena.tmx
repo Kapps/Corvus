@@ -43,7 +43,7 @@
  <objectgroup name="Enemies" width="40" height="40">
   <object type="DeadlyArea" x="-5" y="1232" width="1290" height="41"/>
   <object name="Spawn Point" type="SpawnPoint" x="622" y="558" width="32" height="32"/>
-  <object name="Spawner" type="Spawner" x="620" y="900" width="32" height="32">
+  <object name="Spawner" type="Spawner" x="737" y="562" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronSword, ArcticLance, EarthBall, FireBall, BastardSword, GaiaBlade, IceBall)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
@@ -51,7 +51,7 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="Spawner" type="Spawner" x="450" y="677" width="32" height="32">
+  <object name="Spawner" type="Spawner" x="513" y="562" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronBow, IronLance, LongBow, Muramasa, PoisonBomb, ShortBow, Trident, WindBall)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
@@ -59,7 +59,7 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="ItemSpawner1" type="Spawner" x="450" y="677" width="32" height="32">
+  <object name="ItemSpawner1" type="Spawner" x="460" y="563" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
@@ -67,7 +67,7 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="ItemSpawner2" type="Spawner" x="700" y="900" width="32" height="32">
+  <object name="ItemSpawner2" type="Spawner" x="786" y="562" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
@@ -93,7 +93,7 @@
   </object>
   <object name="Spawner" type="Spawner" x="622" y="931" width="32" height="32">
    <properties>
-    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(ArenaKainHighwind)"/>
+    <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(KainHighwind, Zemus, CecilHarvey, WorkoutKainHighwind)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
     <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
