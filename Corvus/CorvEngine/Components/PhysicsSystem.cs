@@ -188,11 +188,12 @@ namespace CorvEngine.Components {
 
 			HashSet<CollisionInfo> CurrentCollisions = new HashSet<CollisionInfo>();
 			while(true) {
-				bool FinishedAllTasks = TasksComplete == AllComponents.Length; // Has to be before inner while loop.
+				bool FinishedAllTasks = TasksComplete == AllComponents.Length;
 				CollisionInfo Collision;
 				while(Collisions.TryPop(out Collision)) {
 					if(!PreviousCollisions.Contains(Collision)) {
-						Collision.First.NotifyCollision(Collision.Second);
+						if(!Collision.First.IsDisposed && !Collision.Second.IsDisposed) // A collision can dispose other components after all.
+							Collision.First.NotifyCollision(Collision.Second);
 					}
 					CurrentCollisions.Add(Collision);
 				}

@@ -85,6 +85,10 @@ namespace Corvus {
             AudioManager.SetMusicVolume(0.5f);
             CreateNewPlayer();
 			GraphicsManager.ApplyChanges();
+
+//#if DEBUG
+			_SceneManager.AddComponent(new DebugComponent(_SceneManager));
+//#endif
 		}
 
 		public void CreateNewPlayer() {
@@ -92,7 +96,7 @@ namespace Corvus {
 			// TODO: Allow support for different 'classes' by just using different blueprints.
 			var Blueprint = EntityBlueprint.GetBlueprint("Player");
 			var PlayerEntity = Blueprint.CreateEntity();
-            PlayerEntity.Size = new Vector2(48, 32);
+            PlayerEntity.Size = new Vector2(36, 24);
 
             //We can actually remove this section because the player isn't actually starting in the game. During main menu to new game, 
             //it will detect the spawn point and set it accordingly.

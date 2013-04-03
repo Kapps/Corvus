@@ -12,8 +12,8 @@ namespace CorvEngine.Scenes {
 	/// </summary>
 	public abstract class GameStateComponent : IGameComponent, IDrawable, IUpdateable {
 		private GameState _GameState;
-		private bool _Visible;
-		private bool _Enabled;
+		private bool _Visible = true;
+		private bool _Enabled = true;
 		private int _DrawOrder;
 		private int _UpdateOrder;
 
