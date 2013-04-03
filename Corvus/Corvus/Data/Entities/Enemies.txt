@@ -152,7 +152,7 @@ PoisonCecilHarvey : CecilHarvey
 	StatusEffectPropertiesComponent
 		EffectType: Poison
 		BaseValue: 0
-		Intensity: 0.01
+		Intensity: 0.025
 		Duration: 5
 	CombatPropertiesComponent
 		AppliesEffect: true
