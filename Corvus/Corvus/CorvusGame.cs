@@ -85,7 +85,6 @@ namespace Corvus {
             AudioManager.SetMusicVolume(0.5f);
             CreateNewPlayer();
             //RegisterGlobalComponent(new DebugComponent());
-
 			GraphicsManager.ApplyChanges();
 		}
 
