@@ -109,7 +109,7 @@ namespace Corvus {
             if (CorvusGame.Instance.StateManager.GetCurrentState() != CorvusGame.Instance.SceneManager)
                 return;
 			if(State == BindState.Pressed)
-                PlayerControlComponent.Jump(true);
+                PlayerControlComponent.Jump(false);
 		}
         
         private void BlockPressed(BindState State){

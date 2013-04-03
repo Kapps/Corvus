@@ -31,6 +31,8 @@ namespace CorvEngine {
 		private float _TimeSinceFPSUpdate = 0;
 		private int _CurrentFrames;
 		private int _FPS;
+		private TimeSpan _MaxStepDuration = TimeSpan.FromMilliseconds(25f);
+		private TimeSpan _FrameSkipDuration = TimeSpan.FromMilliseconds(1000);
 		//private bool _Paused;
 
 		/// <summary>
@@ -115,6 +117,25 @@ namespace CorvEngine {
 		/// </summary>
 		public FrameInvoker FrameInvoker {
 			get { return _FrameInvoker; }
+		}
+
+		/// <summary>
+		/// Gets or sets the maximum amount of time that should pass in a single update.
+		/// If a greater amount than this value, but less than FrameSkipDuration occurs since the last frame, it is split into multiple steps.
+		/// This property only applies for Update. Draw is still called only once.
+		/// </summary>
+		public TimeSpan MaxStepDuration {
+			get { return _MaxStepDuration; }
+			set { _MaxStepDuration = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the maximum amount of time that a frame should simulate without being discarded.
+		/// If greater than this value passes since the last frame, this frame call is discarded (both Update and Draw).
+		/// </summary>
+		public TimeSpan FrameSkipDuration {
+			get { return _FrameSkipDuration; }
+			set { _FrameSkipDuration = value; }
 		}
 
 		/// <summary>
@@ -257,7 +278,18 @@ namespace CorvEngine {
 
 			protected override void Update(GameTime gameTime) {
 				//try {
-					base.Update(gameTime);
+				if(gameTime.ElapsedGameTime >= _Engine.FrameSkipDuration) {
+					Thread.Sleep(5); // Sleep 5ms so we don't have a near-instant tick.
+					return;
+				}
+				TimeSpan Remaining = gameTime.ElapsedGameTime;
+				while(Remaining > TimeSpan.Zero) {
+					TimeSpan Delta = TimeSpan.FromTicks(Math.Min(_Engine.MaxStepDuration.Ticks, Remaining.Ticks));
+					GameTime StepTime = new GameTime(gameTime.TotalGameTime.Subtract(Remaining), Delta);
+					Remaining = Remaining.Subtract(Delta);
+					base.Update(StepTime);
+				}
+				
 				/*} catch(Exception ex) {
 					// TODO: Do something here.
 					// Like, display a UI mbox asking if they wish to continue.
@@ -270,6 +302,8 @@ namespace CorvEngine {
 			}
 
 			protected override void Draw(GameTime gameTime) {
+				if(gameTime.ElapsedGameTime >= _Engine.FrameSkipDuration)
+					return;
 				var Instance = CorvBase._Instance;
 				Instance._TimeSinceFPSUpdate += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 				Instance._CurrentFrames++;
