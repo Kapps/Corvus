@@ -86,7 +86,6 @@ namespace CorvEngine.Components {
 			// But each iteration is so cheap that the overhead of threading outweighs performance benefits.
 			List<Task> Tasks = new List<Task>();
 			foreach(var Component in GetFilteredComponents<PhysicsComponent>()) {
-				bool AnySolidHit = false;
 				var Parent = Component.Parent;
 				if(!Component.IsGrounded)
                     Component.VelocityY += Gravity * Time.GetTimeScalar() * Parent.GetComponent<PhysicsComponent>().GravityCoefficient; //Prolly not the best thing to do GetComponent, eventually make something else.
@@ -97,25 +96,27 @@ namespace CorvEngine.Components {
 						Component.VelocityX = 0;
 				}
 				Vector2 PositionDelta = Component.Velocity * Time.GetTimeScalar();
-				foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
-					Tile Tile = Layer.GetTileAtPosition(Parent.Position + new Vector2((Parent.Size / 2).X, Parent.Size.Y));
-					if(Tile != null && Layer.IsSolid && Math.Abs(Parent.Location.Bottom - Tile.Location.Top) < Math.Abs(PositionDelta.Y) + 1.1f) {
-						var TileAbove = Layer.GetTile((int)Tile.TileCoordinates.X, (int)Tile.TileCoordinates.Y - 1);
-						if(TileAbove != null)
-							continue; // Don't detect this as being hitting the floor because we're inside a spot that's solid wall.
-						if(Component.VelocityY < 0) // Don't 'fall' on to the tile if we're still going up.
-							continue;
-						Parent.Y = Tile.Location.Top - Parent.Size.Y;
-						AnySolidHit = true;
-					}
-				}
-
-				if(AnySolidHit) { //If hitting any solid object OR not hitting any tile, ground us.
+				// First, handle falling. Check for collision a bit below bottom + PositionDelta, and put them back to the top of the tile if hit.
+				if(Component.VelocityY >= 0 && CheckStaticCollision(Parent, new Vector2(0, (Parent.Size.Y / 2) + PositionDelta.Y + 1), (Tile) => new Vector2(Parent.Position.X, Tile.Location.Top - Parent.Size.Y))) {
+					// We're going to hit a tile while falling, so stop falling.
 					Component.IsGrounded = true;
 					Component.VelocityY = 0;
 					PositionDelta.Y = 0;
-				} else { //We're not yet on ground.
+				} else {
+					// Otherwise, we're not grounded, and check for collision above.
 					Component.IsGrounded = false;
+					if(Component.VelocityY < 0 && CheckStaticCollision(Parent, new Vector2(0, (-Parent.Size.Y / 2) + PositionDelta.Y - 1), (Tile) => new Vector2(Parent.Position.X, Tile.Location.Bottom))) {
+						Component.VelocityY = 0;
+						PositionDelta.Y = 0;
+					}
+				}
+				// Now, check horizontal collision.
+				if(CheckStaticCollision(Parent, new Vector2(Parent.Size.X / 2 + PositionDelta.X + 1, 0), (Tile) => new Vector2(Tile.Location.Left - Parent.Size.X, Parent.Position.Y))) {
+					PositionDelta.X = 0;
+					Component.VelocityX = 0;
+				} else if(CheckStaticCollision(Parent, new Vector2(-Parent.Size.X / 2 + PositionDelta.X - 1, 0), (Tile) => new Vector2(Tile.Location.Right, Parent.Position.Y))) {
+					PositionDelta.X = 0;
+					Component.VelocityX = 0;
 				}
 
 				Parent.Position += PositionDelta;
@@ -129,6 +130,26 @@ namespace CorvEngine.Components {
 					Component.IsGrounded = true;
 				}
 			}
+		}
+
+		private Tile GetSolidTile(Entity Entity, Vector2 Offset) {
+			Vector2 OffsetLocation = Entity.Position + (Entity.Size / 2) + Offset;
+			foreach(var Layer in Scene.Layers.Where(c => c.IsSolid)) {
+				Tile Tile = Layer.GetTileAtPosition(OffsetLocation);
+				if(Tile != null)
+					return Tile;
+			}
+			return null;
+		}
+
+		private bool CheckStaticCollision(Entity Entity, Vector2 Offset, Func<Tile, Vector2> LocationAdjuster) {
+			var Tile = GetSolidTile(Entity, Offset);
+			if(Tile != null) {
+				var AdjustedPosition = LocationAdjuster(Tile);
+				Entity.Position = AdjustedPosition;
+				return true;
+			}
+			return false;
 		}
 
 		private void PerformDynamicCollision(GameTime Time) {

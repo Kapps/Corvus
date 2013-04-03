@@ -45,7 +45,8 @@ namespace Corvus.GameStates {
 		/// <summary>
 		/// Creates a new instance of the SceneManager, loading all entitiy blueprints in preparation for Scene changes.
 		/// </summary>
-		public SceneManager() : base() {
+		public SceneManager()
+			: base() {
 			ReloadBlueprints();
 		}
 
@@ -58,20 +59,20 @@ namespace Corvus.GameStates {
 			// TODO: Refactor this.
 			var Scene = ActiveScenes.FirstOrDefault(c => c.Name.Equals(LevelName, StringComparison.InvariantCultureIgnoreCase));
 			if(Scene == null) {
-                Scene = CorvusScene.Load(LevelName);
+				Scene = CorvusScene.Load(LevelName);
 				Scene.Disposed += Scene_Disposed;
-                ActiveScenes.Add(Scene);
+				ActiveScenes.Add(Scene);
 				Scene.AddSystem(new PhysicsSystem());
 
-                //This is likely a shitty idea for obvious reasons, but still works.
-                if (Scene.Name.Contains("Arena"))
-                    Scene.AddSystem(new ArenaSystem());
-                
+				//This is likely a shitty idea for obvious reasons, but still works.
+				if(Scene.Name.Contains("Arena"))
+					Scene.AddSystem(new ArenaSystem());
+
 
 				TiledPlatformerGeometry Geometry = new TiledPlatformerGeometry(Scene);
-                Scene.Initialize(Geometry);
-                this.AddComponent(Scene);
-                this.AddComponent(new Corvus.Interface.InGameInterface(Scene.GameState)); //TODO: Possibly the wrong spot?
+				Scene.Initialize(Geometry);
+				this.AddComponent(Scene);
+				this.AddComponent(new Corvus.Interface.InGameInterface(Scene.GameState)); //TODO: Possibly the wrong spot?
 			}
 			var OldScene = _ActiveScene;
 			if(OldScene == Scene)
@@ -95,43 +96,40 @@ namespace Corvus.GameStates {
 				}
 			}
 
-            //Plays the song. Not sure if it should be here.
-			 //Plays the song. Not sure if it should be here.
+			//Plays the song. Not sure if it should be here.
+			//Plays the song. Not sure if it should be here.
 			if(Scene.Properties.Any()) {
 				foreach(LevelProperty p in Scene.Properties) {
 					if(p.Name.Equals("Audio", StringComparison.InvariantCultureIgnoreCase)) {
 						var songProperties = p.Value.Split(',');
 						if(songProperties.Length >= 1 && string.IsNullOrEmpty(songProperties[0])) {
-                            CorvEngine.AudioManager.StopMusic(); //Stops the song 
-							continue; 
-						}else if(songProperties.Length != 3)
+							CorvEngine.AudioManager.StopMusic(); //Stops the song 
+							continue;
+						} else if(songProperties.Length != 3)
 							throw new ArgumentException("Expected three arguments for Audio, being the song name, fade duration, and volume. Ex:(SongName1, 2, 0.5)");
 						string songName = songProperties[0];
 						float fadeDuration = float.Parse(songProperties[1]);
-                        float volume = float.Parse(songProperties[2]);
+						float volume = float.Parse(songProperties[2]);
 						CorvEngine.AudioManager.PlayMusic(songName, fadeDuration);
-                        CorvEngine.AudioManager.SetMusicVolume(volume);
+						CorvEngine.AudioManager.SetMusicVolume(volume);
 					}
 				}
 			}
 
-            //Set spawn point.
-            //This is kinda weird, since we should have this all in once place.
-            //We've basically got a spawn point handler in CorvusGame and SceneManager.
-                //One is for creating a new player, and the other for changing the player's scene.
-            var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
-            if (Scene.Engine.Players.Count() != 0)
-            {
-                foreach (var player in Scene.Engine.Players)
-                {
-                    var playerEntity = player.Character;
+			//Set spawn point.
+			//This is kinda weird, since we should have this all in once place.
+			//We've basically got a spawn point handler in CorvusGame and SceneManager.
+			//One is for creating a new player, and the other for changing the player's scene.
+			var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
+			if(Scene.Engine.Players.Count() != 0) {
+				foreach(var player in Scene.Engine.Players) {
+					var playerEntity = player.Character;
 
-                    if (spawnPoint != null)
-                    {
-                        playerEntity.Position = spawnPoint.Position;
-                    }
-                }
-            }
+					if(spawnPoint != null) {
+						playerEntity.Position = spawnPoint.Position;
+					}
+				}
+			}
 
 			return _ActiveScene;
 		}
@@ -145,9 +143,9 @@ namespace Corvus.GameStates {
 		/// Reloads all EntityBlueprints from files in the Data folder.
 		/// </summary>
 		public void ReloadBlueprints() {
-            var a = Directory.GetFiles("Data/Entities", "*.txt");
+			var a = Directory.GetFiles("Data/Entities", "*.txt");
 			foreach(var BlueprintFile in Directory.GetFiles("Data/Entities", "*.txt"))
-				BlueprintParser.ParseBlueprint(File.ReadAllText(BlueprintFile)); 
+				BlueprintParser.ParseBlueprint(File.ReadAllText(BlueprintFile));
 		}
 
 		/// <summary>
@@ -161,8 +159,8 @@ namespace Corvus.GameStates {
 			var PlayerChars = CorvusGame.Instance.Players.Select(c => c.Character);
 			string ActiveName = ActiveScene.Name;
 			foreach(var PlayerChar in PlayerChars)
-                if(!PlayerChar.IsDisposed)
-				    PlayerChar.Dispose();
+				if(!PlayerChar.IsDisposed)
+					PlayerChar.Dispose();
 			string CurrentSceneName = _ActiveScene.Name;
 			foreach(var Scene in ActiveScenes.ToArray()) // Duplicate so can modify.
 				Scene.Dispose();
