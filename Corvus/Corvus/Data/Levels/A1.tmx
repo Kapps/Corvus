@@ -46,7 +46,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2b3YqEMAyFdZxd5mb/Z9//VbcXWyglatOm6UnNB4ERHG2OJDmKLovjOI7jOI7jOI7jOE4b67YstxDbNte5EIn5HwVHmxI9r655K/eg20uIVwX9NM+FSMz/KDjalOg5WnOqPldim9sjav7jOGhQ9XnPts96BhV5r5m155Z4Dot9AtnXIK/NAm9Bt/cQH4qeqzSs9InRvuYI5LVJ0dN/fYZjfYX4nlg/Z256+q+fcKxniF/w+kDxCSjraEHTM1gn1QpZNxSfgLKOFqx6hhG9KdXKqm4ODyueIad3b6LmQ6qVNd1695MZvFRkzycgewZtqPlgWbfe/aTX8ZF8AqJnGNWXqPlgSbdZGHEPs+cTED2Dpj5nM0FCN6RZs1auASkHKUq8gTXPIM3ZTJDQDWXWrP99pwaUHCQp8QYjPQPC/d3ZTJDQDWFGx9p4VK4BIQdpSrzBSK816lk5Zw7U6oY0l9Pa4NQHUg5StHiqGfWg0JifKPfyeW1w6gMlB0laPNWMelBozE+EZyBUbXDqAyEHaVo8VasenHezrxjc7+Go/dPnT7eT33ldxNDKoSfx3nVPp3y/Udc2PX/Ntx1XCu73cNT+pe/A79XGQyAPBHIdSvfTvrbp+f8AHiLBziBOAAA=
+   H4sIAAAAAAAAC+2b3YrEIAyF2+nsMjf7P/v+r7perCBiNdGoJzYfBKZQWnOGJMfSbpthGIZhGIZhGIZhGEYb+7FtNxfHsda9EPH554KjDUXPq2veyt3p9uLidYB+I++FiM8/FxxtKHrO1jxVn3vimNMnuOcbBiqp+rxHx6WekYq416zacymeQ2OfQPY1yGvTwJvT7d3Fx0DPRQ0tfWK2r8mBvDYp4r4r2Qs+3bW+XHwvrJ+xNj3914+71tPFL3h9oPgElHW0MNIzaCfUClk3FJ+Aso4WtHqGGb0p1EqrbgYPLZ4hZkZvCrXSplvvfrKCl/Kc+QRkz4CAZt1695Ne10fyCYieAakvadJtFZB8AqJnGKlPaSZI6IY0a/bKNSDlIAXFG2jzDNKUZoKEbiizZv/vOzWg5CAJxRvM9AwIPqo0EyR0Q5jRvjYelWtAyEEaijeY6bVmPSvnzIFa3ZDmclgbnPpAykGKFk+1oh4pRsxPlL18XBuc+kDJQZIWT7WiHilGzE+EZyCp2uDUB0IO0rR4qlY9OO9mXzGo+6zcvix8/nQr/I7rwseIHHrjNYq/Lzo7b9Z/G96/5tuOKwV1n5Xbl1HfgT+rjYdAHgjEOlDPG/3fhvf/A/k5YVYgTgAA
   </data>
  </layer>
  <layer name="Objects" width="200" height="25">
@@ -54,7 +54,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3bMQqAMAwF0GJw6q69/0ntUnDKqiXvwYc/JpA1rQEAAAAAUEmPPAAAAAAAAAAAAAAAALCT919M1is4iuzJPq55k/fMiO/6ckY+0588msBtlSBOAAA=
+   H4sIAAAAAAAAC+3bMQqAMAwF0GLo1F29/0ntUnCQrrbkPfjwxwSyphQAAAAAALJp8R0AAAAAAAAAAAAAAADYzfs3ZtYzOJLsyT7OfpNXzx3/9aHGfKaVPGrYkeggTgAA
   </data>
  </layer>
  <layer name="Solid Objects" width="200" height="25">
@@ -67,7 +67,7 @@
  </layer>
  <objectgroup name="Enemies" width="200" height="25">
   <object name="Spawn Point" type="SpawnPoint" x="28" y="678" width="32" height="32"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="446" y="228" width="261" height="31"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="475" y="229" width="200" height="30"/>
   <object name="DeadlyArea" type="DeadlyArea" x="2876" y="742" width="262" height="31"/>
   <object name="DeadlyArea" type="DeadlyArea" x="3165" y="739" width="36" height="31"/>
   <object name="DeadlyArea" type="DeadlyArea" x="3900" y="767" width="1126" height="35"/>

@@ -148,7 +148,7 @@ namespace CorvEngine.Components
                 CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Wave: {0}", _Wave.ToString()), new Vector2(5f, 125f), Color.Black);
                 CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Kills: {0}", _TotalEntitiesKilled), new Vector2(5f, 150f), Color.Black);
             }
-            string battleTime = string.Format("{0}.{1}s", _BattleTimer.Seconds.ToString(), _BattleTimer.Milliseconds.ToString());
+            string battleTime = string.Format("{0}s", _BattleTimer.TotalSeconds.ToString("0.##"));
             switch (_CurrentPhase)
             {
                 case ArenaPhases.Start:
@@ -166,7 +166,7 @@ namespace CorvEngine.Components
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, "Stats", new Vector2(5f, 150f), Color.Black);
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Waves Cleared: {0}", (_Wave - 1).ToString()), new Vector2(15f, 175f), Color.Black);
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Total Kills: {0}", _TotalEntitiesKilled), new Vector2(15f, 200f), Color.Black);
-                    string totalTime = string.Format("{0}.{1}s", _TotalTime.Seconds.ToString(), _TotalTime.Milliseconds.ToString());
+                    string totalTime = string.Format("{0}s", _TotalTime.TotalSeconds.ToString("0.##"));
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Total Time: {0}", totalTime), new Vector2(15f, 225f), Color.Black);
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Difficulty Modifier: {0}", _DifficultyModifier.ToString("0.00")), new Vector2(15f, 250f), Color.Black);
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Restarting in {0}...", (_PhaseTimer.Seconds + 1).ToString()), new Vector2(5f, 275f), Color.Yellow);

@@ -152,7 +152,11 @@ namespace Corvus {
                 return;
             if (state == BindState.Pressed)
                 CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.PausedState);
-                
+
+            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.One, 0, 0);
+            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.Two, 0, 0);
+            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.Three, 0, 0);
+            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.Four, 0, 0);
         }
 
         private void MainMenuNavigation(bool isPrev, BindState state)
