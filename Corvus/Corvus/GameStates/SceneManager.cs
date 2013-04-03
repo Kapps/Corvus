@@ -7,6 +7,7 @@ using CorvEngine.Components;
 using CorvEngine.Components.Blueprints;
 using CorvEngine.Geometry;
 using CorvEngine.Scenes;
+using Corvus.Components;
 using Corvus.Interface;
 
 namespace Corvus.GameStates {

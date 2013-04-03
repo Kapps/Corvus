@@ -8,6 +8,7 @@ using CorvEngine;
 using CorvEngine.Geometry;
 using CorvEngine.Graphics;
 using CorvEngine.Input;
+using CorvEngine.Scenes;
 using Corvus.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,10 +18,10 @@ namespace Corvus.Components {
 	/// <summary>
 	/// A global component used to display debugging information, such as frame rate and position.
 	/// </summary>
-	public class DebugComponent : DrawableGameComponent {
+	public class DebugComponent : GameStateComponent {
 		private SpriteFont Font;
 		const string DATA_FOLDER_PATH = "../../../Data";
-		public DebugComponent() : base(CorvusGame.Instance.Game) {
+		public DebugComponent(GameState State) : base(State) {
 			this.Font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/TestFont");
 			if(Directory.Exists(DATA_FOLDER_PATH)) {
 				FileSystemWatcher fsw = new FileSystemWatcher(DATA_FOLDER_PATH);
@@ -57,7 +58,7 @@ namespace Corvus.Components {
 			//ReloadLevel();
 		}
 
-		public override void Draw(GameTime gameTime) {
+		protected override void OnDraw(GameTime gameTime) {
 			if(DisplayGeometry) {
 				TiledPlatformerGeometry Geometry = (TiledPlatformerGeometry)CorvusGame.Instance.SceneManager.ActiveScene.Geometry;
 				foreach(TiledPlatformerGeometryObject GeometryObj in Geometry.GeometryObjects) {
@@ -69,17 +70,16 @@ namespace Corvus.Components {
 					CorvusGame.Instance.SpriteBatch.Draw(GeometryTexture, Camera.Active.WorldToScreen(Entity.Location), new Color(0, 0, 255, 64));
 				}
 			}
-			CorvusGame.Instance.SpriteBatch.DrawString(Font, "FPS: " + CorvusGame.Instance.FPS, new Vector2(10, GraphicsDevice.Viewport.Height - 30), Color.Yellow);
+			CorvusGame.Instance.SpriteBatch.DrawString(Font, "FPS: " + CorvusGame.Instance.FPS, new Vector2(10, CorvusGame.Instance.GraphicsDevice.Viewport.Height - 30), Color.Yellow);
 			if(CorvusGame.Instance.Players.Any())
-				CorvusGame.Instance.SpriteBatch.DrawString(Font, "Center: " + CorvusGame.Instance.Players.First().Character.Location.Center, new Vector2(10, GraphicsDevice.Viewport.Height - 50), Color.Yellow);
+				CorvusGame.Instance.SpriteBatch.DrawString(Font, "Center: " + CorvusGame.Instance.Players.First().Character.Location.Center, new Vector2(10, CorvusGame.Instance.GraphicsDevice.Viewport.Height - 50), Color.Yellow);
 			string GenText = "Garbage Collections Per Generation - ";
 			for(int i = 0; i <= GC.MaxGeneration; i++)
 				GenText += "{" + i + ", " + GC.CollectionCount(i) + "} ";
-			CorvusGame.Instance.SpriteBatch.DrawString(Font, GenText, new Vector2(10, GraphicsDevice.Viewport.Height - 70), Color.Yellow);
-			base.Draw(gameTime);
+			CorvusGame.Instance.SpriteBatch.DrawString(Font, GenText, new Vector2(10, CorvusGame.Instance.GraphicsDevice.Viewport.Height - 70), Color.Yellow);
 		}
 
-		public override void Update(GameTime gameTime) {
+		protected override void OnUpdate(GameTime gameTime) {
 			MouseState State = Mouse.GetState();
 			if(State.LeftButton == ButtonState.Pressed && OldState.LeftButton != ButtonState.Pressed) {
 				var Entity = SceneManager.ActiveScene.GetEntityAtPosition(new Point(State.X + (int)Player.Camera.Position.X, State.Y + (int)Player.Camera.Position.Y));
@@ -99,7 +99,6 @@ namespace Corvus.Components {
 					}
 				}
 			}
-			base.Update(gameTime);
 		}
 
 		private void ReloadPressed(BindState State) {

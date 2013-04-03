@@ -111,10 +111,10 @@ namespace CorvEngine.Components {
 					}
 				}
 				// Now, check horizontal collision.
-				if(CheckStaticCollision(Parent, new Vector2(Parent.Size.X / 2 + PositionDelta.X + 1, 0), (Tile) => new Vector2(Tile.Location.Left - Parent.Size.X, Parent.Position.Y))) {
+				if(Component.VelocityX >= 0.001f && CheckStaticCollision(Parent, new Vector2(Parent.Size.X / 2 + PositionDelta.X + 1, 0), (Tile) => new Vector2(Tile.Location.Left - Parent.Size.X, Parent.Position.Y))) {
 					PositionDelta.X = 0;
 					Component.VelocityX = 0;
-				} else if(CheckStaticCollision(Parent, new Vector2(-Parent.Size.X / 2 + PositionDelta.X - 1, 0), (Tile) => new Vector2(Tile.Location.Right, Parent.Position.Y))) {
+				} else if(Component.VelocityX <= 0.001f && CheckStaticCollision(Parent, new Vector2(-Parent.Size.X / 2 + PositionDelta.X - 1, 0), (Tile) => new Vector2(Tile.Location.Right, Parent.Position.Y))) {
 					PositionDelta.X = 0;
 					Component.VelocityX = 0;
 				}
