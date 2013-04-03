@@ -65,11 +65,12 @@ Properties
 		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 0.5
 		DyingSound: Explode1
-		AwardedExperience: 0
-		DropsItem: false
+		AwardedExperience: 10
+		DropsItem: true
 		#remove these if it doesn't drop items
-		DroppableItems: Collection(HealMid, HealLow, Might, Vigor)
-		DropRate: 0
+		#I didn't put healing, since arena has that already, and not needed for normal levels, until we can be sure that balance issues can be resolved.
+		DroppableItems: Collection(Might, Vigor, IWorkOut, Fleet)
+		DropRate: 0.5
 		DropCoefficient: 2
 		CoinsValue: 0
 	AIComponent

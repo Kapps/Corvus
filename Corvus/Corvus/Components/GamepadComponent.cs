@@ -90,7 +90,7 @@ namespace Corvus.Components
                 return;
             }
             gc._IsVibrating = true;
-            GamePad.SetVibration(gc.DetermineIndex(gc._Player.Index), MathHelper.Clamp(leftMotor, 0f, 1f), MathHelper.Clamp(rightMotor, 0f, 1f));
+            GamePad.SetVibration(gc.DetermineIndex(gc._Player.Index), MathHelper.Clamp(leftMotor, 0f, 0.5f), MathHelper.Clamp(rightMotor, 0f, 0.5f));
             gc._Duration = duration;
         }
     }
