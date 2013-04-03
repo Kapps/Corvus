@@ -60,7 +60,7 @@ namespace Corvus.GameStates
             continueBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 50f);
             continueBtn.Selected += continueBtn_Selected;
             ControlManager.AddControl(continueBtn);
-
+            
             LinkButton newGameBtn = new LinkButton(font);
             newGameBtn.Text = "New Game";
             newGameBtn.Color = Color.Black;
@@ -100,18 +100,21 @@ namespace Corvus.GameStates
 
         void newGameBtn_Selected(object sender, EventArgs e)
         {
+            CorvusGame.Instance.SceneManager.ReloadScenes();
             CorvusGame.Instance.SceneManager.ChangeScene("Tutorial");
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
         void arenaModeBtn_Selected(object sender, EventArgs e)
         {
+            CorvusGame.Instance.SceneManager.ReloadScenes();
             CorvusGame.Instance.SceneManager.ChangeScene("Arena");
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
         void testModeBtn_Selected(object sender, EventArgs e)
         {
+            CorvusGame.Instance.SceneManager.ReloadScenes();
             CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel");
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }

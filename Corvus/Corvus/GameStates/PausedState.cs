@@ -81,7 +81,9 @@ namespace Corvus.GameStates
 
         void returnToMainMenuBtn_Selected(object sender, EventArgs e)
         {
-            //Hacky method. I assume it would work :p
+            AudioManager.PlayMusic("Title1");
+            AudioManager.SetMusicVolume(0.5f);
+            //Hacky method. 
             CorvusGame.Instance.StateManager.PopState();
             CorvusGame.Instance.StateManager.PopState();
         }

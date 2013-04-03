@@ -74,23 +74,22 @@ namespace Corvus {
 		protected override void Initialize() {
 			// TODO: Add your initialization logic here
 			this.RegisterGlobalComponent(new AudioManager(this.Game, @"Content\Audio\RpgAudio.xgs", @"Content\Audio\Wave Bank.xwb", @"Content\Audio\Sound Bank.xsb"));
-            AudioManager.SetMusicVolume(0f); //temp: just here cuz it's really annoying to debug and listen to the music.
             _SceneManager = new SceneManager();
             _MainMenuState = new MainMenuState();
             _PausedState = new PausedState();
             // Start off in game.
-            _SceneManager.ChangeScene("BasicLevel");
-            StateManager.PushState(_SceneManager);
-            //StateManager.PushState(_MainMenuState); //TODO: Move this probably
-            //AudioManager.PlayMusic("Title1");
-            //AudioManager.SetMusicVolume(0.5f);
+            //_SceneManager.ChangeScene("BasicLevel");
+            //StateManager.PushState(_SceneManager);
+            StateManager.PushState(_MainMenuState); //TODO: Move this probably
+            AudioManager.PlayMusic("Title1");
+            AudioManager.SetMusicVolume(0.5f);
             CreateNewPlayer();
-            MenuBinds(); //TODO: Not sure how to do Menu Binds, temp for now.
-            RegisterGlobalComponent(new DebugComponent());
+            //RegisterGlobalComponent(new DebugComponent());
+
 			GraphicsManager.ApplyChanges();
 		}
 
-		private void CreateNewPlayer() {
+		public void CreateNewPlayer() {
 			// TODO: Allow new players to join by pressing a button. Should be simple enough.
 			// TODO: Allow support for different 'classes' by just using different blueprints.
 			var Blueprint = EntityBlueprint.GetBlueprint("Player");
@@ -99,45 +98,11 @@ namespace Corvus {
 
             //We can actually remove this section because the player isn't actually starting in the game. During main menu to new game, 
             //it will detect the spawn point and set it accordingly.
-
-            //Set spawn point, if any.
-            //This is kinda weird, since we should have this all in once place.
-            //We've basically got a spawn point handler in CorvusGame and SceneManager.
-            //One is for creating a new player, and the other for changing the player's scene.
-            var spawnPoint = SceneManager.ActiveScene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
-            if (spawnPoint != null)
-            {
-                PlayerEntity.Position = spawnPoint.Position;
-            }
-            else
-            {
-                PlayerEntity.Position = new Vector2(1790, 1376);
-            }
-            
+                        
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
 			CorvusBinds.CreateBinds(Player); 
 		}
-
-        //possibly temp
-        private void MenuBinds()
-        {
-            var player = this.Players.First();
-
-            Bind Next = new Bind(player.InputManager, _MainMenuState.ControlManager.NextControl, false, Keys.Down);
-            player.InputManager.RegisterBind(Next);
-            Bind Prev = new Bind(player.InputManager, _MainMenuState.ControlManager.PreviousControl, false, Keys.Up);
-            player.InputManager.RegisterBind(Prev);
-            Bind Select = new Bind(player.InputManager, _MainMenuState.ControlManager.SelectControl, false, Keys.Enter);
-            player.InputManager.RegisterBind(Select);
-            //xbox controller
-            Bind GamePadNext = new Bind(player.InputManager, _MainMenuState.ControlManager.NextControl, false, Buttons.LeftThumbstickDown);
-            player.InputManager.RegisterBind(GamePadNext);
-            Bind GamePadPrev = new Bind(player.InputManager, _MainMenuState.ControlManager.PreviousControl, false, Buttons.LeftThumbstickUp);
-            player.InputManager.RegisterBind(GamePadPrev);
-            Bind GamePadSelect = new Bind(player.InputManager, _MainMenuState.ControlManager.SelectControl, false, Buttons.A);
-            player.InputManager.RegisterBind(GamePadSelect);
-        }
 
         private SceneManager _SceneManager;
         private MainMenuState _MainMenuState;

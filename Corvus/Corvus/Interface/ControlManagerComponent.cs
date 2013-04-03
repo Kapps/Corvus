@@ -47,9 +47,9 @@ namespace Corvus.Interface
         /// Calls the selected event for the focused control.
         /// </summary>
         /// <param name="state"></param>
-        public void SelectControl(BindState state)
+        public void SelectControl()
         {
-            if (_Controls.Count == 0 || state == BindState.Released) //TODO: Get rid of this when i figure out how to do menu binds.
+            if (_Controls.Count == 0)
                 return;
 
             AudioManager.PlaySoundEffect("Select");
@@ -59,9 +59,9 @@ namespace Corvus.Interface
         /// <summary>
         /// Moves to the next focusable element.
         /// </summary>
-        public void NextControl(BindState state)
+        public void NextControl()
         {
-            if (_Controls.Count == 0 || state == BindState.Released) //TODO: Get rid of this when i figure out how to do menu binds.
+            if (_Controls.Count == 0)
                 return;
 
             AudioManager.PlaySoundEffect("ButtonChange");
@@ -85,9 +85,9 @@ namespace Corvus.Interface
         /// <summary>
         /// Moves to the previous focusable element.
         /// </summary>
-        public void PreviousControl(BindState state)
+        public void PreviousControl()
         {
-            if (_Controls.Count == 0 || state == BindState.Released) //TODO: Get rid of this when i figure out how to do menu binds.
+            if (_Controls.Count == 0)
                 return;
 
             AudioManager.PlaySoundEffect("ButtonChange");

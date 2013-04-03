@@ -36,6 +36,11 @@ namespace CorvEngine {
 			this.Character = Character;
 		}
 
+        public void Reset(Entity character)
+        {
+            this.Character = character;
+        }
+
 		/// <summary>
 		/// Gets the index of this player, from 1 to N where N is the number of players in the game.
 		/// If the player is not registered with the game engine, the result is -1.

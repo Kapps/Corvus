@@ -17,5 +17,9 @@ namespace Corvus.Components
 
         private int _Coins = 0;
 
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+        }
     }
 }

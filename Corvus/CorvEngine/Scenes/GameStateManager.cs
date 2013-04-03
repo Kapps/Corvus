@@ -52,6 +52,14 @@ namespace CorvEngine.Scenes {
 			set { _Transition = value; }
 		}
 
+        /// <summary>
+        /// Gets the current state.
+        /// </summary>
+        /// <returns></returns>
+        public GameState GetCurrentState() {
+            return this.States.Last();
+        }
+
 		/// <summary>
 		/// Pushes the specified GameState to the top of the stack.
 		/// </summary>
