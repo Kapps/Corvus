@@ -69,10 +69,10 @@ Properties
 		DropsItem: true
 		#remove these if it doesn't drop items
 		#I didn't put healing, since arena has that already, and not needed for normal levels, until we can be sure that balance issues can be resolved.
-		DroppableItems: Collection(Might, Vigor, IWorkOut, Fleet)
+		DroppableItems: Collection(Might, Vigor)
 		DropRate: 0.5
 		DropCoefficient: 2
-		CoinsValue: 0
+		CoinsValue: 1
 	AIComponent
 		ReactionRange: Vector(250, 25)
 		Offset: Vector(0, 0)
