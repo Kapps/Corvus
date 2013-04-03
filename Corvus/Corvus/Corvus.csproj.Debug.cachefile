@@ -1,11 +1,13 @@
 Content\TestTexture.xnb
 Content\Interface\HealthBar.xnb
-Content\Sprites\TestEnemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
-Content\Sprites\Players\PlayerMedieval.xnb
 Content\Interface\HealthMeter.xnb
 Content\Sprites\Effects\Explosion1.xnb
 Content\Sprites\Effects\Explosion2.xnb
+Content\Fonts\testfont.xnb
+Content\Fonts\DamageFont.xnb
+Content\Sprites\TestEnemy.xnb
+Content\Sprites\Players\PlayerMedieval.xnb
 Content\Interface\Outline.xnb
 Content\Tiles\crate 32x32.xnb
 Content\Tiles\ground 32x32.xnb
@@ -82,8 +84,6 @@ Content\Sprites\Enemies\EnemyGolbez.xnb
 Content\Sprites\Enemies\EnemyKainHighwind.xnb
 Content\Sprites\Enemies\EnemyZemus.xnb
 Content\Tiles\block 32x32.xnb
-Content\Fonts\testfont.xnb
-Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
@@ -148,6 +148,7 @@ Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
+Content\Tiles\TutorialIcons.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
