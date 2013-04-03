@@ -75,6 +75,13 @@ namespace Corvus.GameStates
             arenaModeBtn.Selected += arenaModeBtn_Selected;
             ControlManager.AddControl(arenaModeBtn);
 
+            LinkButton testModeBtn = new LinkButton(font);
+            testModeBtn.Text = "Test Mode";
+            testModeBtn.Color = Color.Black;
+            testModeBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
+            testModeBtn.Selected += testModeBtn_Selected;
+            ControlManager.AddControl(testModeBtn);
+
             //LinkButton tutorialBtn = new LinkButton(font);
             //tutorialBtn.Text = "Tutorial";
             //tutorialBtn.Color = Color.Black;
@@ -100,6 +107,12 @@ namespace Corvus.GameStates
         void arenaModeBtn_Selected(object sender, EventArgs e)
         {
             CorvusGame.Instance.SceneManager.ChangeScene("Arena");
+            CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
+        }
+
+        void testModeBtn_Selected(object sender, EventArgs e)
+        {
+            CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel");
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
