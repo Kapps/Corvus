@@ -62,7 +62,7 @@
   <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
   <object name="Bronze" type="Coin_Bronze" x="1382" y="630" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1074" y="411" width="32" height="32"/>
-  <object name="Spawn Point" type="SpawnPoint" x="43" y="652" width="32" height="32"/>
+  <object name="Spawn Point" type="SpawnPoint" x="54" y="697" width="32" height="32"/>
   <object name="A1" type="LevelChanger" x="6360" y="670" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
@@ -84,20 +84,19 @@
   <object name="Silver" type="Coin_Silver" x="4126" y="445" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="3862" y="594" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="4128" y="606" width="32" height="32"/>
-  <object name="Jumper" type="TestEntityEnemy" x="4387" y="607" width="32" height="32">
-   <properties>
-    <property name="PathComponent.JumpDelay" value="300"/>
-   </properties>
-  </object>
   <object name="Climber1" type="TestEntityEnemy" x="1375" y="404" width="29" height="31">
    <properties>
-    <property name="AttributesComponent.MaxHealth" value="50000"/>
+    <property name="AttributesComponent.MaxHealth" value="500"/>
+    <property name="AttributesComponent.Strength" value="50"/>
+    <property name="DestroyableObjectComponent.AwardedExperience" value="25"/>
     <property name="PathComponent.ReverseOnCompletion" value="true"/>
     <property name="Sprite Component.Color" value="Color(128, 128, 255, 255)"/>
    </properties>
   </object>
   <object name="Climber1(Silver Guard)" type="TestEntityEnemy" x="2424" y="702" width="29" height="31">
    <properties>
+    <property name="AttributesComponent.Strength" value="50"/>
+    <property name="DestroyableObjectComponent.AwardedExperience" value="75"/>
     <property name="PathComponent.ReverseOnCompletion" value="true"/>
     <property name="Sprite Component.Color" value="Color(128, 128, 255, 255)"/>
    </properties>
@@ -105,6 +104,9 @@
   <object name="Jumper" type="TestEntityEnemy" x="3208" y="687" width="32" height="32">
    <properties>
     <property name="PathComponent.JumpDelay" value="300"/>
+    <property name="Sprite Component.Color" value="Color(33, 102, 20, 255)"/>
+    <property name="StatusEffectPropertiesComponent.BaseValue" value="1"/>
+    <property name="StatusEffectPropertiesComponent.EffectType" value="Poison"/>
    </properties>
   </object>
   <object name="Jumper" type="TestEntityEnemy" x="5235" y="475" width="32" height="32">
@@ -113,11 +115,6 @@
    </properties>
   </object>
   <object name="Jumper" type="TestEntityEnemy" x="5766" y="479" width="32" height="32">
-   <properties>
-    <property name="PathComponent.JumpDelay" value="300"/>
-   </properties>
-  </object>
-  <object name="Jumper" type="TestEntityEnemy" x="3722" y="540" width="32" height="32">
    <properties>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
@@ -132,5 +129,7 @@
   </object>
   <object name="Sit1" type="GaiaBlade" x="374" y="384" width="22" height="22"/>
   <object name="Sit3" type="Trident" x="3993" y="358" width="22" height="22"/>
+  <object name="CH" type="CecilHarvey" x="4398" y="602" width="32" height="32"/>
+  <object name="CH" type="CecilHarvey" x="3731" y="539" width="32" height="32"/>
  </objectgroup>
 </map>
