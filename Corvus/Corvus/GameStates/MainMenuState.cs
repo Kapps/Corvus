@@ -100,29 +100,29 @@ namespace Corvus.GameStates
 
         void newGameBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ReloadScenes();
-            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial");
+            CorvusGame.Instance.SceneManager.ReloadScenes(false);
+            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
         void arenaModeBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ReloadScenes();
-            CorvusGame.Instance.SceneManager.ChangeScene("Arena");
+            CorvusGame.Instance.SceneManager.ReloadScenes(false);
+            CorvusGame.Instance.SceneManager.ChangeScene("Arena", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
         void testModeBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ReloadScenes();
-            CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel");
+            CorvusGame.Instance.SceneManager.ReloadScenes(false);
+            CorvusGame.Instance.SceneManager.ChangeScene("BasicLevel", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
         //unused
         void tutorialBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial");
+            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
     }

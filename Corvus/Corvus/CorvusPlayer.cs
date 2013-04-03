@@ -24,5 +24,12 @@ namespace Corvus {
 			PlayerEntity.Size = new Vector2(36, 24);
 			return PlayerEntity;
 		}
+
+		/// <summary>
+		/// Resets this player's character to the default one loaded from LoadPlayerForEntity.
+		/// </summary>
+		public void ResetCharacter() {
+			this.Character = LoadPlayerEntity();
+		}
 	}
 }

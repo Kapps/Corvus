@@ -56,7 +56,7 @@ namespace Corvus.GameStates {
 		/// If the Scene has already been loaded, it will reuse that instance of the scene.
 		/// Otherwise, the Scene will be loaded.
 		/// </summary>
-		public CorvusScene ChangeScene(string LevelName) {
+		public CorvusScene ChangeScene(string LevelName, bool ResetPlayers) {
 			// TODO: Refactor this.
 			var Scene = ActiveScenes.FirstOrDefault(c => c.Name.Equals(LevelName, StringComparison.InvariantCultureIgnoreCase));
 			if(Scene == null) {
@@ -87,9 +87,11 @@ namespace Corvus.GameStates {
 			}
 			ActiveScene.Visible = true;
 			ActiveScene.Enabled = true;
-			foreach(var Player in CorvusGame.Instance.Players) {
+			foreach(CorvusPlayer Player in CorvusGame.Instance.Players) {
 				if(Player.Character != null) {
-					if(!Player.Character.IsDisposed) // Dispose it to transfer to a new Scene.
+					if(ResetPlayers)
+						Player.ResetCharacter();
+					else if(!Player.Character.IsDisposed) // Dispose it to transfer to a new Scene.
 						Player.Character.Dispose();
 					var Position = Player.Character.Position;
 					ActiveScene.AddEntity(Player.Character);
@@ -152,7 +154,7 @@ namespace Corvus.GameStates {
 		/// Reloads all scenes, including the currently active scene.
 		/// If no scene is active (and thus no scenes are loaded), this method returns immediately.
 		/// </summary>
-		public void ReloadScenes() {
+		public void ReloadScenes(bool ResetPlayers) {
 			if(ActiveScenes.Count == 0)
 				return;
 			// First remove all players from the active scene so we don't dispose them.
@@ -165,7 +167,7 @@ namespace Corvus.GameStates {
 			foreach(var Scene in ActiveScenes.ToArray()) // Duplicate so can modify.
 				Scene.Dispose();
 			_ActiveScene = null;
-			ChangeScene(ActiveName);
+			ChangeScene(ActiveName, ResetPlayers);
 		}
 
 		private CorvusScene _ActiveScene;

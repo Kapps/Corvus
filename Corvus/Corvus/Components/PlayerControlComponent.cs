@@ -311,9 +311,9 @@ namespace Corvus.Components
                 }
             }
 			if(allPlayersDead) {
-				foreach(CorvusPlayer Player in CorvusGame.Instance.Players)
-					Player.Character = CorvusPlayer.LoadPlayerEntity();
-				CorvusGame.Instance.SceneManager.ReloadScenes();
+				// Reset their coins if they die.
+				CorvusGame.Instance.Players.Where(c => c.Character != null).Select(c => c.Character.GetComponent<ScoreComponent>()).ToList().ForEach(c => c.Coins = 0);
+				CorvusGame.Instance.SceneManager.ReloadScenes(false);
 			}
         }
         

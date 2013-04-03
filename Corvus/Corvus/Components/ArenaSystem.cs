@@ -133,7 +133,7 @@ namespace CorvEngine.Components
                         Reset();
                         _PhaseTimer = TimeSpan.FromSeconds(PHASE_DURATION);
                         _CurrentPhase = ArenaPhases.Start;
-                        CorvusGame.Instance.SceneManager.ReloadScenes();
+                        CorvusGame.Instance.SceneManager.ReloadScenes(true);
                     }
                     break;
             }
