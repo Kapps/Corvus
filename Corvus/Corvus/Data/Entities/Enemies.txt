@@ -57,10 +57,10 @@ Properties
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
 		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
-		EffectType: Pierce
-		BaseValue: 0
-		Intensity: 1
-		Duration: 0
+		#EffectType: Pierce
+		#BaseValue: 0
+		#Intensity: 1
+		#Duration: 0
 	DestroyableObjectComponent
 		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 0.5
@@ -93,10 +93,10 @@ CollisionProperties
 		UseAttributes: false 
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
-	CollisionStatusEffectComponent
+	#CollisionStatusEffectComponent
 		#Need to set these StatueEffectPropertiesComponent.
-		DisposeOnCollision: false
-		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+		#DisposeOnCollision: false
+		#Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 
 #Do not edit
 Required
