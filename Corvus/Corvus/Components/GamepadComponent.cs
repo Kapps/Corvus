@@ -63,11 +63,24 @@ namespace Corvus.Components
             }
         }
 
+        protected override void OnDispose()
+        {
+            if (_IsVibrating)
+            {
+                GamePad.SetVibration(DetermineIndex(_Player.Index), 0f, 0f);
+                _IsVibrating = false;
+                _Timer = TimeSpan.Zero;
+            }
+            base.OnDispose();
+        }
+
         /// <summary>
         /// Vibrates the controller based on the specified motors and duration. Left is slow vibrations, right is faster vibrations.
         /// </summary>
         public static void Vibrate(Entity player, float leftMotor, float rightMotor, float duration)
         {
+            if (player.IsDisposed)
+                return;
             var gc = player.GetComponent<GamepadComponent>();
             if (gc == null)
                 return;
@@ -77,7 +90,7 @@ namespace Corvus.Components
                 return;
             }
             gc._IsVibrating = true;
-            GamePad.SetVibration(gc.DetermineIndex(gc._Player.Index), MathHelper.Clamp(leftMotor, 0f, 0.5f), MathHelper.Clamp(rightMotor, 0f, 0.5f));
+            GamePad.SetVibration(gc.DetermineIndex(gc._Player.Index), MathHelper.Clamp(leftMotor, 0f, 1f), MathHelper.Clamp(rightMotor, 0f, 1f));
             gc._Duration = duration;
         }
     }

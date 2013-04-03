@@ -57,10 +57,10 @@ Properties
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
 		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
-		EffectType: Pierce
-		BaseValue: 0
-		Intensity: 1
-		Duration: 0
+		#EffectType: Pierce
+		#BaseValue: 0
+		#Intensity: 1
+		#Duration: 0
 	DestroyableObjectComponent
 		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 0.5
@@ -69,10 +69,10 @@ Properties
 		DropsItem: true
 		#remove these if it doesn't drop items
 		#I didn't put healing, since arena has that already, and not needed for normal levels, until we can be sure that balance issues can be resolved.
-		DroppableItems: Collection(Might, Vigor, IWorkOut, Fleet)
+		DroppableItems: Collection(Might, Vigor)
 		DropRate: 0.5
 		DropCoefficient: 2
-		CoinsValue: 0
+		CoinsValue: 1
 	AIComponent
 		ReactionRange: Vector(250, 25)
 		Offset: Vector(0, 0)
@@ -93,10 +93,10 @@ CollisionProperties
 		UseAttributes: false 
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
-	CollisionStatusEffectComponent
+	#CollisionStatusEffectComponent
 		#Need to set these StatueEffectPropertiesComponent.
-		DisposeOnCollision: false
-		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+		#DisposeOnCollision: false
+		#Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 
 #Do not edit
 Required
