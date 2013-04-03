@@ -141,7 +141,7 @@ namespace Corvus.Components {
 
 		private void ReloadLevel() {
 			SceneManager.ReloadBlueprints();
-			SceneManager.ReloadScenes();
+			SceneManager.ReloadScenes(true);
 		}
 
 		private Color GenerateRandomColorForObject(object obj, int alpha) {

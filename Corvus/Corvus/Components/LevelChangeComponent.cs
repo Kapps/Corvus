@@ -30,7 +30,7 @@ namespace Corvus.Components
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
             if (Entity.GetComponent<ClassificationComponent>().Classification == EntityClassification.Player)
-                CorvusGame.Instance.SceneManager.ChangeScene(NextLevel);
+                CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false);
 
             return true;
         }

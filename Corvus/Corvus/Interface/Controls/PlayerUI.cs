@@ -43,11 +43,16 @@ namespace Corvus.Interface.Controls
             :base(null)
         {
             this.Player = player;
-            this.AC = Player.Character.GetComponent<AttributesComponent>();
-            this.EC = Player.Character.GetComponent<EquipmentComponent>();
-            this.PCC = Player.Character.GetComponent<PlayerControlComponent>();
-            this.SC = player.Character.GetComponent<ScoreComponent>();
+			LoadDependencies();
+			Player.CharacterChanged += (c) => LoadDependencies();
         }
+
+		private void LoadDependencies() {
+			this.AC = Player.Character.GetComponent<AttributesComponent>();
+			this.EC = Player.Character.GetComponent<EquipmentComponent>();
+			this.PCC = Player.Character.GetComponent<PlayerControlComponent>();
+			this.SC = Player.Character.GetComponent<ScoreComponent>();
+		}
 
         public override void Update(GameTime gameTime) { }
 
@@ -61,17 +66,27 @@ namespace Corvus.Interface.Controls
             DrawExpBar();//exp
         }
 
-        //TODO: Seriously need to optimize this crap.
+        // TODO: Seriously need to clean this up.
+		// For loops bro...
         private void DrawWeaponArea()
         {
             int weaponNumber = EC.Weapons.Count();
-            int i = EC.CurrentIndex;
-            var name = EC.Weapons[i].WeaponData.SystemName;
-            var texture = CorvusGame.Instance.GlobalContent.Load<Texture2D>("Sprites/Equipment/" + name);
-            var color = DetermineColorByElement(EC.Weapons[i].Attributes.AttackingElements);
-            this.SpriteBatch.Draw(WeaponBG, GetRelativePosition(5f, 50f), new Rectangle(0, 0, 47, 48), color);
-            var pos = GetRelativePosition(18f, 62f);
-            this.SpriteBatch.Draw(texture, new Rectangle((int)pos.X, (int)pos.Y, 24, 24), texture.Bounds, Color.White);
+			string name;
+			Texture2D texture;
+			Color color;
+			Vector2 pos;
+			int i = 0;
+			if(EC.Weapons.Count == 0)
+				this.SpriteBatch.Draw(WeaponBG, GetRelativePosition(5f, 50f), new Rectangle(0, 0, 47, 48), Color.Black);
+			else {
+				i = EC.CurrentIndex;
+				name = EC.Weapons[i].WeaponData.SystemName;
+				texture = CorvusGame.Instance.GlobalContent.Load<Texture2D>("Sprites/Equipment/" + name);
+				color = DetermineColorByElement(EC.Weapons[i].Attributes.AttackingElements);
+				this.SpriteBatch.Draw(WeaponBG, GetRelativePosition(5f, 50f), new Rectangle(0, 0, 47, 48), color);
+				pos = GetRelativePosition(18f, 62f);
+				this.SpriteBatch.Draw(texture, new Rectangle((int)pos.X, (int)pos.Y, 24, 24), texture.Bounds, Color.White);
+			}
 
             weaponNumber--;
             if (weaponNumber <= 0)

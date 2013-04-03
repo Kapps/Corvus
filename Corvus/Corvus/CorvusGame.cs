@@ -61,8 +61,6 @@ namespace Corvus {
 		}
 
 		private void SetCamera(Player Player) {
-			if(SceneManager.ActiveScene != null)
-				SceneManager.ActiveScene.AddEntity(Player.Character);
 			var CameraComponent = new ChaseCameraComponent(Player.Camera);
 			Player.Character.Components.Add(CameraComponent);
 
