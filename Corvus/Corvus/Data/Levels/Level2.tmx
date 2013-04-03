@@ -43,7 +43,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3bS07DMBSFYXsOO4Ft8CxhDTDhEWAPUOgEmPOYUTYEi4AxO+BYFVLoIH1dx3Hyf9IZVK2q6Oo6cezEOQAAAAAAAAAAAABAKlvKtrKj7Cp7yr4ySHlQHXCinCpnyrlSpj2cXiiUw9QHgU478s4de9v/7HPfhuvPtep5owz95DoUMjKuMeLoc+82ZU1jYZ3xYGpD9dykpqYGqueBUlBXE6XqeKFcKlfUdClvyrjy+d5P7stCpu/Jpn8LoL3C3JO1K3tWa1ecT1GnOr+ZJ8yBZgvzmwflcc5YrUsz1tGUD+Wz5nt6cXE/jj0qtM+ssY7FMdZXQ0/aoyfjo2/t0bfNYE8pLuobF/WNp2DPGZliDysOnr9eHuunSCU8D/z3LDDPBQNAvXC9flKelRfl1XH9BvAf54l8lZW58K1y55kLr6ruXYDc5DS2v5Tv1AeB1supp/uGNUJY4h1ne7zjbCvsMef4jvPQdz9h77TJ+6Gx737eG+7xX+5ubhhAagAA
+   H4sIAAAAAAAAC+3bS07DMBSFYXsOO4Ft8CxhDTDhEWAPUGACzHnMKBuCRcCYHXCsgBR1kPRxHePk/6QzqFpV1pUTO7bjHAAAAAAAAAAAAAAglQ1lU9lStpUdZVcZpWxUDxwpx8qJcqqUaZszCIWyn7oR6LUD79yht/3PIffbMP5cqp5XythX41DIrXGNEceQ+25XVnQtrHI9mFpTPdepqamR6rmnFNTVRKk6ninnygU1XcirMql9vvPVc1nI9DPZ9G8B/F9h7snalT2rtSvup2hSn9/MEuZA7cL85l55mDFW69Jc6+jKu/LR8D19cX7fjj2qZYQ+9/Sbr8RtARBP2/iD+TH+xEe/tUe/7QZ7SnFR37iobzwFe87IFHtYcXD+enGsnyKVcB747yww54IBoFkYrx9dtff0rLw4xu/YmCMhZ9wz8lLW5sLXyo1nLryspncBcpXDdf3pOCODdjn05aFi/gtLvONsj3ecbYU95hzfcR77/ifsnXb5PDTx/c9bx338B83+27xAagAA
   </data>
  </layer>
  <layer name="Objects" width="85" height="80">
@@ -51,7 +51,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3cy03DQBCA4fWJZxm8Qe6BCKgEuCJaIAcagaQTqIQ+GMuxNNqs7Tgee/34P2kOCZfVZjz78uIcAAAAAAAAAAAAhuIsce5c4iKJ3ZLpeJC+fJR4ok9N3Eg8S1++SLzSp6391fz9kz7uzIfEMnYjBmQlsVafm45HOpfJ29yPxK/6bDEezTlv/XqZjUepazcezTlv+x5/5py7XQjlLn2MMUljN2Ci5jaWWVgkeWRCY6Pu02uXzz8Aa8cSJxKnsRsyIdmzeitxp767lLiK05xB0Gv82PvPU/kt9Bqf/Wcbes/Z338uxuF08zl1zCl3Ubf2L/NmkMvMndCXpaveD1lQmxvRdcOiFgBWGFfa8c8Aedbb888A0Y7Oya9orZiHlGfeDLW0P5x/2ipyt6i39K+tsv7152PYj+5f5mO2mI/1T+91s+ZFl+rOBev2V7Gt6lyQetrM+6YP9blg9h1r1+Z2PRNk/bot9vsTU8T7E/b8Ool2qmpmVZ2kXtijXtijXtioqhPW8/zsdyrepxz7/sCBxKHEkRv+e9Fj2a/1c8N/L3pIxrBf2+ezjXKMT3Ysc5o7qcC20Bowxp2cfe8CxF7DhuaEoTXgmO7kxG5faE6o14D3mzuyVXdyuhDK0V3HIf5nFcbqW3J21UOsJf4BWmvcJEBqAAA=
+   H4sIAAAAAAAAC+3cS07DMBCAYXfF8xi8QbkDFXASYIu4Al1wkdLeBE7CPZgojTS4bh7NJM7j/6RZtGws1xnbYwfnAAAAAAAAAAAA0BdnM+fOJS5msVsyHg/Sl48ST/SpiRuJZ+nLF4lX+rSx35K/f9LHrfmQWMRuRI+sJNbqc935SI9lxm3mW+JHfbaYj6Y8bv18mc5HiWs2H0153HY9/0x57LYhNHbpYwxJErsBIzW1uczCfJZFKjQ36j69dtn6A7B2LHEicRq7ISOSPqu3Enfqu0uJqzjN6QW9x49dfx7Lb6H3+NSfbeias19/zufhZPM5cawpqyjb++/yZjCWWTuhKwtXXA+Zk5tr0XnDIhdMEfnP1r5zGf7zzwDRnH8GiGb0s76M1oppSJjfzbBu6g7nn7bysZvnW/rX1q7+ZT1mQ/cv6zFbrMe6p2vd1BLQprJzwbL6KrYVnQuST+t53/ShPhdMv2PvWl/VOir7122x70+MEfcn7Pl5Es0U5cyqeZLcYY/cYY/cYaMoZ1is+dPfJr9POZb6wIHEocSR6+/96KHVa/0x4t+P7oMh1Wvbfq5RjDnJjuVY5p1UYFto3xfjnZx970/G3reG1oKhfd+Q3smJ3b7QWlDv++4378gWvZPThtAYrToP8T+rMFRfMmZXHcRa4g/P54vFQGoAAA==
   </data>
  </layer>
  <layer name="Solid Objects" width="85" height="80">
@@ -61,12 +61,12 @@
  </layer>
  <objectgroup name="Enemies" width="85" height="80">
   <object name="Spawn Point" type="SpawnPoint" x="575" y="2458" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1066" y="2197" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1320" y="2105" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1199" y="2180" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1480" y="2079" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1092" y="2000" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1869" y="1751" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="872" y="1209" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="1009" y="1470" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1007" y="1459" width="32" height="32"/>
   <object name="Tutorial" type="LevelChanger" x="751" y="792" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
