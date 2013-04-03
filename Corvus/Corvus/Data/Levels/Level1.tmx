@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="200" height="25" tilewidth="32" tileheight="32">
-  <properties>
-    <property name="Audio" value="Grass1, 0.5, 0.5"/>
-  </properties>
-  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Grass1, 0.5, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="769" name="ground 32x32" tilewidth="32" tileheight="32">
@@ -64,29 +64,23 @@
   <object name="DeadlyArea" type="DeadlyArea" x="3478" y="756" width="974" height="52"/>
   <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
   <object name="Bronze" type="Coin_Bronze" x="1382" y="630" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="1074" y="411" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="1055" y="404" width="32" height="32"/>
   <object name="Spawn Point" type="SpawnPoint" x="54" y="697" width="32" height="32"/>
-  <object name="A1" type="LevelChanger" x="6360" y="670" width="32" height="32">
-   <properties>
-    <property name="LevelChangeComponent.NextLevel" value="A1"/>
-    <property name="LevelChangeComponent.PrevLevel" value="A1"/>
-   </properties>
-  </object>
   <object name="Silver" type="Coin_Silver" x="1177" y="407" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1265" y="409" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1262" y="628" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="2244" y="573" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="2379" y="573" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="2150" y="703" width="32" height="31"/>
+  <object name="Bronze" type="Coin_Bronze" x="2233" y="565" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2376" y="566" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="2148" y="695" width="32" height="31"/>
   <object name="Silver" type="Coin_Silver" x="2244" y="696" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="2324" y="695" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="3563" y="600" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="3980" y="544" width="32" height="32"/>
-  <object name="Bronze" type="Coin_Bronze" x="4285" y="546" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="3852" y="445" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="4126" y="445" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="3862" y="594" width="32" height="32"/>
-  <object name="Silver" type="Coin_Silver" x="4128" y="606" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3566" y="599" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="3983" y="531" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="4272" y="532" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="3856" y="432" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="4114" y="437" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="3858" y="595" width="32" height="32"/>
+  <object name="Silver" type="Coin_Silver" x="4115" y="595" width="32" height="32"/>
   <object name="Climber1" type="TestEntityEnemy" x="1375" y="404" width="29" height="31">
    <properties>
     <property name="AttributesComponent.MaxHealth" value="500"/>
@@ -96,7 +90,7 @@
     <property name="Sprite Component.Color" value="Color(128, 128, 255, 255)"/>
    </properties>
   </object>
-  <object name="Climber1(Silver Guard)" type="TestEntityEnemy" x="2424" y="702" width="29" height="31">
+  <object name="Climber1(Silver Guard)" type="TestEntityEnemy" x="2422" y="696" width="29" height="31">
    <properties>
     <property name="AttributesComponent.Strength" value="50"/>
     <property name="DestroyableObjectComponent.AwardedExperience" value="75"/>
@@ -114,7 +108,7 @@
     <property name="StatusEffectPropertiesComponent.Intensity" value="0.1"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="5235" y="475" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="5232" y="467" width="32" height="32">
    <properties>
     <property name="AttributesComponent.AttackSpeed" value="450"/>
     <property name="AttributesComponent.MaxHealth" value="1000"/>
@@ -122,7 +116,7 @@
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="5766" y="479" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="5774" y="467" width="32" height="32">
    <properties>
     <property name="AttributesComponent.AttackSpeed" value="450"/>
     <property name="AttributesComponent.MaxHealth" value="1000"/>
@@ -132,7 +126,7 @@
   </object>
   <object name="DeadlyArea" type="DeadlyArea" x="2851" y="792" width="118" height="5"/>
   <object name="DeadlyArea" type="DeadlyArea" x="3039" y="792" width="158" height="5"/>
-  <object name="Level2" type="LevelChanger" x="6209" y="573" width="32" height="32">
+  <object name="Level2" type="LevelChanger" x="6356" y="660" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Level2"/>
     <property name="LevelChangeComponent.PrevLevel" value="Level2"/>
@@ -140,7 +134,7 @@
   </object>
   <object name="Sit1" type="GaiaBlade" x="374" y="384" width="22" height="22"/>
   <object name="Sit3" type="Trident" x="3993" y="358" width="22" height="22"/>
-  <object name="CH" type="CecilHarvey" x="4398" y="602" width="32" height="32"/>
-  <object name="CH" type="CecilHarvey" x="3731" y="539" width="32" height="32"/>
+  <object name="CH" type="CecilHarvey" x="4397" y="598" width="32" height="32"/>
+  <object name="CH" type="CecilHarvey" x="3729" y="529" width="32" height="32"/>
  </objectgroup>
 </map>
