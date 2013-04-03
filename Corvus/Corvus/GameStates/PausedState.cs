@@ -43,6 +43,7 @@ namespace Corvus.GameStates
             _ControlManager = new ControlManagerComponent(this);
             SpriteFont font = CorvusGame.Instance.GlobalContent.Load<SpriteFont>("Fonts/MainMenuFont");
 
+
             Image bg = new Image(CorvusGame.Instance.GlobalContent.Load<Texture2D>("Interface/PausedBackground"));
             bg.Size = new Vector2(UIHelper.Viewport.Width, UIHelper.Viewport.Height);
             _ControlManager.AddControl(bg);
@@ -78,6 +79,7 @@ namespace Corvus.GameStates
         {
             CorvusGame.Instance.StateManager.PopState();
         }
+
 
         void returnToMainMenuBtn_Selected(object sender, EventArgs e)
         {

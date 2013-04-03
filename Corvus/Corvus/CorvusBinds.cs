@@ -152,6 +152,7 @@ namespace Corvus {
                 return;
             if (state == BindState.Pressed)
                 CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.PausedState);
+                
         }
 
         private void MainMenuNavigation(bool isPrev, BindState state)
