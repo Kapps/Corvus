@@ -132,6 +132,9 @@ DarkKnight: Properties, CollisionProperties, Required
 CecilHarvey: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_CecilHarvey)
+	DamageComponent
+		#Remove this if you don't want a sound to play.
+		OnHitSound: Hit2
 	MovementComponent
 		WalkSpeed: 600
 	AttributesComponent

@@ -101,21 +101,29 @@
     <property name="Sprite Component.Color" value="Color(128, 128, 255, 255)"/>
    </properties>
   </object>
-  <object name="Jumper" type="TestEntityEnemy" x="3208" y="687" width="32" height="32">
+  <object name="Jumper" type="TestEntityEnemy" x="3209" y="680" width="32" height="32">
    <properties>
+    <property name="DestroyableObjectComponent.DropsItem" value="True"/>
     <property name="PathComponent.JumpDelay" value="300"/>
     <property name="Sprite Component.Color" value="Color(33, 102, 20, 255)"/>
-    <property name="StatusEffectPropertiesComponent.BaseValue" value="1"/>
+    <property name="StatusEffectPropertiesComponent.Duration" value="1"/>
     <property name="StatusEffectPropertiesComponent.EffectType" value="Poison"/>
+    <property name="StatusEffectPropertiesComponent.Intensity" value="0.1"/>
    </properties>
   </object>
   <object name="Jumper" type="TestEntityEnemy" x="5235" y="475" width="32" height="32">
    <properties>
+    <property name="AttributesComponent.AttackSpeed" value="450"/>
+    <property name="AttributesComponent.MaxHealth" value="1000"/>
+    <property name="DestroyableObjectComponent.AwardedExperience" value="40"/>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
   <object name="Jumper" type="TestEntityEnemy" x="5766" y="479" width="32" height="32">
    <properties>
+    <property name="AttributesComponent.AttackSpeed" value="450"/>
+    <property name="AttributesComponent.MaxHealth" value="1000"/>
+    <property name="DestroyableObjectComponent.AwardedExperience" value="40"/>
     <property name="PathComponent.JumpDelay" value="300"/>
    </properties>
   </object>
