@@ -58,13 +58,15 @@ namespace Corvus {
                     Assign((c) => MainMenuNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
                     Assign(MainMenuSelect, false, new InputButton(Buttons.A));
                     //ingame
-                    Assign(JumpPressed, false, new InputButton(Buttons.B));
+                    Assign(JumpPressed, false, new InputButton(Buttons.A));
                     Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Buttons.LeftThumbstickLeft));
                     Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Buttons.LeftThumbstickRight));
-                    Assign(BlockPressed, false, new InputButton(Buttons.X));
+                    Assign(BlockPressed, false, new InputButton(Buttons.RightTrigger));
                     Assign((c) => SwitchWeapon(true, c), false, new InputButton(Buttons.RightShoulder));
                     Assign((c) => SwitchWeapon(false, c), false, new InputButton(Buttons.LeftShoulder));
-                    Assign(Attack, false, new InputButton(Buttons.A));
+                    Assign((c) => SwitchWeapon(true, c), false, new InputButton(Buttons.X));
+                    Assign((c) => SwitchWeapon(false, c), false, new InputButton(Buttons.Y));
+                    Assign(Attack, false, new InputButton(Buttons.B));
                     Assign(Pause, false, new InputButton(Buttons.Start));
                     //paused
                     Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));

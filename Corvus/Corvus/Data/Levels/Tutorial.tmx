@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="200" height="25" tilewidth="32" tileheight="32">
  <properties>
-  <property name="Audio" value="Grass2, 2, 0.5"/>
+  <property name="Audio" value="Grass2, 0.25, 0.5"/>
  </properties>
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
@@ -46,7 +46,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="Foreground" width="200" height="25">
@@ -116,8 +116,7 @@
   <object name="Fireball" type="Fireball" x="3720" y="451" width="32" height="32"/>
   <object name="Golbez" type="Golbez" x="3178" y="499" width="32" height="32"/>
   <object name="Golbez" type="Golbez" x="2891" y="251" width="32" height="32"/>
-  <object name="CH" type="CecilHarvey" x="2883" y="473" width="32" height="32"/>
-  <object name="CH" type="CecilHarvey" x="3083" y="468" width="32" height="32"/>
+  <object name="CH" type="CecilHarvey" x="2903" y="490" width="32" height="32"/>
   <object name="DK" type="DarkKnight" x="3789" y="450" width="32" height="32"/>
   <object name="DK" type="DarkKnight" x="2860" y="58" width="32" height="32"/>
   <object name="DK" type="DarkKnight" x="4245" y="613" width="32" height="32"/>
