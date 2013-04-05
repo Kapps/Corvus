@@ -165,6 +165,7 @@
     <Compile Include="CorvusGame.cs" />
     <Compile Include="CorvusPlayer.cs" />
     <Compile Include="Components\DebugComponent.cs" />
+    <Compile Include="GameStates\OptionsState.cs" />
     <Compile Include="GameStates\CorvusScene.cs" />
     <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="GameStates\PausedState.cs" />

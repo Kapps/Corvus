@@ -17,6 +17,8 @@ namespace Corvus.Components
         private float _Knockback;
         private bool _UseAttributes = false;
         private DateTime _LastKnockback;
+        private float _KnockbackTimeout = 750; //Default should be fine.
+
         /// <summary>
         /// Distance to knockback the entity.
         /// </summary>
@@ -35,13 +37,19 @@ namespace Corvus.Components
             set { _UseAttributes = value; }
         }
 
+        public float KnockbackTimeout
+        {
+            get { return _KnockbackTimeout; }
+            set { _KnockbackTimeout = value; }
+        }
+
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
             var mc = Entity.GetComponent<MovementComponent>();
             if (mc == null)
                 return false;
 
-            if ((DateTime.Now - _LastKnockback).TotalMilliseconds > 750)
+            if ((DateTime.Now - _LastKnockback).TotalMilliseconds > KnockbackTimeout)
             {
                 _LastKnockback = DateTime.Now;
                 float myx = Entity.Position.X - Parent.Position.X;

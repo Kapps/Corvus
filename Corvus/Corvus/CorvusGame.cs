@@ -42,6 +42,11 @@ namespace Corvus {
         /// </summary>
         public PausedState PausedState { get { return _PausedState; } }
 
+        /// <summary>
+        /// Gets the options state used in game.
+        /// </summary>
+        public OptionsState OptionsState { get { return _OptionsState; } }
+
 		/// <summary>
 		/// Creates a new instance of CorvusGame without yet initializing it.
 		/// </summary>
@@ -81,6 +86,7 @@ namespace Corvus {
             _SceneManager = new SceneManager();
             _MainMenuState = new MainMenuState();
             _PausedState = new PausedState();
+            _OptionsState = new OptionsState();
 #if DEBUG
             AudioManager.Instance.MusicEnabled = false;
 #endif
@@ -109,6 +115,7 @@ namespace Corvus {
         private SceneManager _SceneManager;
         private MainMenuState _MainMenuState;
         private PausedState _PausedState;
+        private OptionsState _OptionsState;
 
 	}
 }
