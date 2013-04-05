@@ -23,6 +23,7 @@ namespace CorvEngine.Components {
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
         private bool _IsWalking = false;
+        private DateTime _LastKnockback;
 
         /// <summary>
         /// Gets or sets the maximum speed that this Entity can walk at multiplied by the walk speed modifier.
@@ -158,11 +159,15 @@ namespace CorvEngine.Components {
         /// </summary>
         public void Knockback(float distance, int direction)
         {
-            //TODO: find an actually formula for this.
-            float t = 0.100f;//s
-            float vel = distance / t;
-           /// PhysicsComponent.VelocityY += -500;
-            PhysicsComponent.VelocityX += direction * vel;// direction* vel; //new Vector2(direction * vel, -1 * 2000);
+            if ((DateTime.Now - _LastKnockback).TotalMilliseconds > 500)
+            {
+                _LastKnockback = DateTime.Now;
+                //TODO: find an actually formula for this.
+                float t = 0.100f;//s
+                float vel = distance / t;
+                /// PhysicsComponent.VelocityY += -500;
+                PhysicsComponent.VelocityX += direction * vel;// direction* vel; //new Vector2(direction * vel, -1 * 2000);
+            }
         }
 
         protected override void OnInitialize()
