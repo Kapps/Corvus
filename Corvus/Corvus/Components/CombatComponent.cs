@@ -168,7 +168,7 @@ namespace Corvus.Components {
             PhysicsSystem = Parent.Scene.GetSystem<PhysicsSystem>();
             PhysicsComponent = Parent.GetComponent<PhysicsComponent>();
             CombatPropertiesComponent = this.GetDependency<CombatPropertiesComponent>();
-            _ShieldAnimation = new ShieldAnimation(this.Parent, "Sprites/Misc/Shield_Yellow");
+            _ShieldAnimation = new ShieldAnimation(this.Parent, "Sprites/Misc/Shield_Yellow2");
         }
 
         protected override void OnUpdate(GameTime Time)
