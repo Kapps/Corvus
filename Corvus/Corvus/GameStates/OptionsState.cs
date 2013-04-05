@@ -15,7 +15,7 @@ using CorvEngine.Input;
 namespace Corvus.GameStates
 {
     /// <summary>
-    /// A game state for the in game pause screen.
+    /// A game state for the in game options screen.
     /// </summary>
     public class OptionsState : GameState
     {
@@ -23,6 +23,7 @@ namespace Corvus.GameStates
 
         static bool audio = true;
         static bool rumble = true;
+        static bool fullScreen = true;
 
         /// <summary>
         /// Gets the control manager.
@@ -50,23 +51,28 @@ namespace Corvus.GameStates
             bg.Size = new Vector2(UIHelper.Viewport.Width, UIHelper.Viewport.Height);
             _ControlManager.AddControl(bg);
 
-            LinkButton audioBtn = new LinkButton(font);
-            audioBtn.Text = "Audio : " + (audio ? "on" : "off");
-            audioBtn.Selected += audioBtn_Selected;
-            audioBtn.Position = UIHelper.AlignControl(audioBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 50f);
-            _ControlManager.AddControl(audioBtn);
+            LinkButton fullScreenBtn = new LinkButton(font);
+            fullScreenBtn.Text = "Fullscreen: " + (audio ? "on" : "off");
+            fullScreenBtn.Selected += fullScreenBtn_Selected;
+            fullScreenBtn.Position = UIHelper.AlignControl(fullScreenBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 50f);
+            _ControlManager.AddControl(fullScreenBtn);
 
+            LinkButton audioBtn = new LinkButton(font);
+            audioBtn.Text = "Audio: " + (audio ? "on" : "off");
+            audioBtn.Selected += audioBtn_Selected;
+            audioBtn.Position = UIHelper.AlignControl(audioBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 100f);
+            _ControlManager.AddControl(audioBtn);
 
             LinkButton rumbleBtn = new LinkButton(font);
             rumbleBtn.Text = "Rumble: " + (rumble ? "on" : "off");
             rumbleBtn.Selected += rumbleBtn_Selected;
-            rumbleBtn.Position = UIHelper.AlignControl(rumbleBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 100f);
+            rumbleBtn.Position = UIHelper.AlignControl(rumbleBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 150f);
             _ControlManager.AddControl(rumbleBtn);
 
             LinkButton backBtn = new LinkButton(font);
             backBtn.Text = "Back";
             backBtn.Selected += backBtn_Selected;
-            backBtn.Position = UIHelper.AlignControl(backBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 150f);
+            backBtn.Position = UIHelper.AlignControl(backBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 200f);
             _ControlManager.AddControl(backBtn);
 
             _ControlManager.SetFocus();
@@ -82,6 +88,12 @@ namespace Corvus.GameStates
             //rumbleBtn.Text = "Rumble: " + (rumble ? "on" : "off");
         }
 
+        void fullScreenBtn_Selected(object sender, EventArgs e)
+        {
+            fullScreen = !fullScreen;
+            SetMenuEntryText();
+
+        }
 
         void audioBtn_Selected(object sender, EventArgs e)
         {
@@ -99,7 +111,7 @@ namespace Corvus.GameStates
 
         void backBtn_Selected(object sender, EventArgs e)
         {
-          
+            
         }
 
     }
