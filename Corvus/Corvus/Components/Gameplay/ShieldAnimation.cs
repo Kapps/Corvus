@@ -47,9 +47,9 @@ namespace Corvus.Components.Gameplay
             Rectangle rect =  new Rectangle((int)toscreen.X, (int)toscreen.Y, 16, (int)_Entity.Size.Y); //Old thing.
 
             if (MC.CurrentDirection == Direction.Right)
-                rect = new Rectangle(_Entity.Location.Right, (int)toscreen.Y, 16, (int)_Entity.Size.Y);
+                rect = new Rectangle((int)toscreen.X, (int)toscreen.Y, 16, (int)_Entity.Size.Y);
             else
-                rect = new Rectangle(_Entity.Location.Left - ((int)_Entity.Size.X/2), (int)toscreen.Y, 16, (int)_Entity.Size.Y);
+                rect = new Rectangle((int)toscreen.X - ((int)_Entity.Size.X / 2), (int)toscreen.Y, 16, (int)_Entity.Size.Y);
 
             if (MC.CurrentDirection == Direction.Right)
                 CorvusGame.Instance.SpriteBatch.Draw(_Effect, rect, _Effect.Bounds, Color.White);
