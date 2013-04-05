@@ -120,6 +120,8 @@ namespace Corvus.GameStates {
 
 			//Set SpawnPoint.
             var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == spawnId);
+            if (spawnPoint == null)
+                throw new ArgumentException("A spawn point with the ID '" + spawnId + "' does not exist.");
 			if(Scene.Engine.Players.Count() != 0) {
 				foreach(var player in Scene.Engine.Players) {
 					var playerEntity = player.Character;

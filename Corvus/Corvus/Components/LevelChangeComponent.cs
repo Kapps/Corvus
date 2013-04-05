@@ -29,7 +29,10 @@ namespace Corvus.Components
 
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
-            CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false);
+            if (string.IsNullOrEmpty(SpawnID))
+                CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false);
+            else
+                CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false, SpawnID);
             
             return true;
         }
