@@ -43,8 +43,18 @@ namespace Corvus.Components.Gameplay
             float xpos = (MC.CurrentDirection == Direction.Left) ? _Entity.Location.Left -1 : _Entity.Location.Right + 1;
             var pos = new Vector2(xpos , _Entity.Location.Top);
             var toscreen = Camera.Active.WorldToScreen(pos);
-            var rect = new Rectangle((int)toscreen.X, (int)toscreen.Y, 3, (int)_Entity.Size.Y);
-            CorvusGame.Instance.SpriteBatch.Draw(_Effect, rect, _Effect.Bounds, Color.Gray);
+
+            Rectangle rect =  new Rectangle((int)toscreen.X, (int)toscreen.Y, 16, (int)_Entity.Size.Y); //Old thing.
+
+            if (MC.CurrentDirection == Direction.Right)
+                rect = new Rectangle(_Entity.Location.Right, (int)toscreen.Y, 16, (int)_Entity.Size.Y);
+            else
+                rect = new Rectangle(_Entity.Location.Left - ((int)_Entity.Size.X/2), (int)toscreen.Y, 16, (int)_Entity.Size.Y);
+
+            if (MC.CurrentDirection == Direction.Right)
+                CorvusGame.Instance.SpriteBatch.Draw(_Effect, rect, _Effect.Bounds, Color.White);
+            else
+                CorvusGame.Instance.SpriteBatch.Draw(_Effect, rect, _Effect.Bounds, Color.White, (float)Math.PI, new Vector2(_Effect.Width, _Effect.Height), SpriteEffects.None, 0);
         }
 
 
