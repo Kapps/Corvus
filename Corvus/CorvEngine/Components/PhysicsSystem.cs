@@ -187,6 +187,7 @@ namespace CorvEngine.Components {
 		}
 
 		protected override void OnDraw() {
+            AudioManager.SetMusicVolume(0f);
 		}
 
 		private float _Gravity = 4000;

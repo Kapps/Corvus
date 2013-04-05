@@ -74,14 +74,6 @@
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
   </data>
  </layer>
- <layer name="Solid Objects" width="200" height="25">
-  <properties>
-   <property name="Solid" value="true"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
-  </data>
- </layer>
  <objectgroup name="Enemies" width="200" height="25">
   <object name="DeadlyArea" type="DeadlyArea" x="3482" y="765" width="970" height="36"/>
   <object name="DeadlyArea" type="DeadlyArea" x="4954" y="764" width="1444" height="35"/>
