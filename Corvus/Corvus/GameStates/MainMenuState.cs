@@ -79,7 +79,7 @@ namespace Corvus.GameStates
             LinkButton exitBtn = new LinkButton(font);
             exitBtn.Text = "Exit";
             exitBtn.Color = Color.Black;
-            exitBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
+            exitBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 250f);
             exitBtn.Selected += exitBtn_Selected;
             ControlManager.AddControl(exitBtn);
 
@@ -88,7 +88,7 @@ namespace Corvus.GameStates
             testModeBtn.Text = "Test Mode";
             testModeBtn.Color = Color.Black;
             testModeBtn.IsEnabled = true;
-            testModeBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 250f);
+            testModeBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 300f);
             testModeBtn.Selected += testModeBtn_Selected;
             ControlManager.AddControl(testModeBtn);
 #endif
