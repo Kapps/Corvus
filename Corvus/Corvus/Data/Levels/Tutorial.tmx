@@ -13,10 +13,10 @@
   <image source="../../../CorvusContent/Tiles/crate 32x32.png" width="96" height="96"/>
  </tileset>
  <tileset firstgid="1378" name="tree-variations" tilewidth="32" tileheight="32">
-  <image source="../../../../../../../../Desktop/tree-variations.png" width="512" height="289"/>
+  <image source="../../../CorvusContent/Tiles/tree-variations.png" width="512" height="289"/>
  </tileset>
  <tileset firstgid="1522" name="mountain_landscape_23" tilewidth="32" tileheight="32">
-  <image source="../../../../../../../../Desktop/mountain_landscape_23.png" width="512" height="512"/>
+  <image source="../../../CorvusContent/Tiles/mountain_landscape_23.png" width="512" height="512"/>
  </tileset>
  <layer name="Background" width="200" height="25">
   <properties>
