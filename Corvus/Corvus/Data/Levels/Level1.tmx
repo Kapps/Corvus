@@ -65,7 +65,7 @@
   <object name="DeadlyArea" type="DeadlyArea" x="4953" y="750" width="1354" height="57"/>
   <object name="Bronze" type="Coin_Bronze" x="1382" y="630" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1055" y="404" width="32" height="32"/>
-  <object name="Spawn Point" type="SpawnPoint" x="54" y="697" width="32" height="32"/>
+  <object name="StartPoint" type="SpawnPoint" x="54" y="697" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1177" y="407" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1265" y="409" width="32" height="32"/>
   <object name="Bronze" type="Coin_Bronze" x="1262" y="628" width="32" height="32"/>
@@ -129,7 +129,6 @@
   <object name="Level2" type="LevelChanger" x="6356" y="660" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Level2"/>
-    <property name="LevelChangeComponent.PrevLevel" value="Level2"/>
    </properties>
   </object>
   <object name="Sit1" type="GaiaBlade" x="374" y="384" width="22" height="22"/>

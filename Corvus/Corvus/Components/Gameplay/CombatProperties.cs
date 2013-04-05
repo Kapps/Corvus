@@ -133,7 +133,7 @@ namespace Corvus.Components.Gameplay
         }
 
         /// <summary>
-        /// Gets or sets how much to offset the projectile spawn point with respect to the center of the sprite.
+        /// Gets or sets how much to offset the projectile SpawnPoint with respect to the center of the sprite.
         /// </summary>
         public Vector2 ProjectileOffset
         {

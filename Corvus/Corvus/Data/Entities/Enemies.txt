@@ -106,6 +106,8 @@ Required
 Golbez: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_Golbez)
+	AIComponent
+		AIEnabled: false
 	DestroyableObjectComponent
 		AwardedExperience: 8
 		DropsItem: true

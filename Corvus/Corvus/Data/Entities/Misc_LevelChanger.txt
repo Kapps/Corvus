@@ -3,5 +3,6 @@
 		Sprite: Sprite(Sprites/Items/Key_Gold)
 	PhysicsComponent
 	LevelChangeComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Trigger)

@@ -10,28 +10,27 @@ using CorvEngine;
 
 namespace Corvus.Components
 {
-    class LevelChangeComponent : CollisionEventComponent
+    public class LevelChangeComponent : CollisionEventComponent
     {
-        public string PrevLevel
-        {
-            get { return _PrevLevel; }
-            set { _PrevLevel = value; }
-        }
-
         public string NextLevel
         {
             get { return _NextLevel; }
             set { _NextLevel = value; }
         }
 
-        private string _PrevLevel;
+        public string SpawnID
+        {
+            get { return _SpawnID; }
+            set { _SpawnID = value; }
+        }
+
         private string _NextLevel;
+        private string _SpawnID = "";
 
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
-            if (Entity.GetComponent<ClassificationComponent>().Classification == EntityClassification.Player)
-                CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false);
-
+            CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false);
+            
             return true;
         }
     }

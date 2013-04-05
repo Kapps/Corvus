@@ -56,7 +56,7 @@ namespace Corvus.GameStates {
 		/// If the Scene has already been loaded, it will reuse that instance of the scene.
 		/// Otherwise, the Scene will be loaded.
 		/// </summary>
-		public CorvusScene ChangeScene(string LevelName, bool ResetPlayers) {
+		public CorvusScene ChangeScene(string LevelName, bool ResetPlayers, string spawnId = "StartPoint") {
 			// TODO: Refactor this.
 			var Scene = ActiveScenes.FirstOrDefault(c => c.Name.Equals(LevelName, StringComparison.InvariantCultureIgnoreCase));
 			if(Scene == null) {
@@ -118,8 +118,8 @@ namespace Corvus.GameStates {
 				}
 			}
 
-			//Set spawn point.
-			var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
+			//Set SpawnPoint.
+            var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == spawnId);
 			if(Scene.Engine.Players.Count() != 0) {
 				foreach(var player in Scene.Engine.Players) {
 					var playerEntity = player.Character;

@@ -80,7 +80,6 @@
   <object name="A1" type="LevelChanger" x="6360" y="637" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
-    <property name="LevelChangeComponent.PrevLevel" value="A1"/>
    </properties>
   </object>
   <object name="DK" type="GoombaGolbez" x="2042" y="624" width="32" height="32"/>
@@ -114,7 +113,7 @@
   <object name="Bronze" type="Coin_Bronze" x="1509" y="479" width="16" height="16"/>
   <object name="Bronze" type="Coin_Bronze" x="1636" y="386" width="16" height="16"/>
   <object name="Bronze" type="Coin_Bronze" x="1670" y="387" width="16" height="16"/>
-  <object name="Spawn Point" type="SpawnPoint" x="169" y="644" width="32" height="32"/>
+  <object name="StartPoint" type="SpawnPoint" x="169" y="644" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1745" y="612" width="16" height="16"/>
   <object name="Silver" type="Coin_Silver" x="1780" y="607" width="16" height="16"/>
   <object name="Silver" type="Coin_Silver" x="1837" y="523" width="16" height="16"/>

@@ -66,7 +66,7 @@
   </data>
  </layer>
  <objectgroup name="Enemies" width="200" height="25">
-  <object name="Spawn Point" type="SpawnPoint" x="28" y="678" width="32" height="32"/>
+  <object name="StartPoint" type="SpawnPoint" x="28" y="678" width="32" height="32"/>
   <object name="DeadlyArea" type="DeadlyArea" x="475" y="229" width="200" height="30"/>
   <object name="DeadlyArea" type="DeadlyArea" x="2876" y="742" width="262" height="31"/>
   <object name="DeadlyArea" type="DeadlyArea" x="3165" y="739" width="36" height="31"/>
@@ -87,7 +87,6 @@
   <object name="Level1" type="LevelChanger" x="6351" y="688" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="Level1"/>
-    <property name="LevelChangeComponent.PrevLevel" value="Level1"/>
    </properties>
   </object>
   <object name="Gold" type="Coin_Gold" x="180" y="130" width="32" height="32"/>

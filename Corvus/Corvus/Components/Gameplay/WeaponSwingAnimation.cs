@@ -34,7 +34,7 @@ namespace Corvus.Components.Gameplay
             _StartAnimation = true;
             _Entity = src;
             _Weapon = CorvusGame.Instance.GlobalContent.Load<Texture2D>(weapon);
-            _Duration = duration/2; //Just to speed it up a bit.
+            _Duration = duration;//2; //Just to speed it up a bit.
             _StartTime = DateTime.Now;
             _RotationAngle = -0.5f; //This looks proper facing right, which is the common direction.
 
