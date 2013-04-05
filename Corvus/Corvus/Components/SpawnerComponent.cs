@@ -58,6 +58,24 @@ namespace Corvus.Components
             set { _DifficultyModifier = Math.Max(value, 1f); }
         }
 
+        /// <summary>
+        /// Gets or sets the min range of enemies to sawpn.
+        /// </summary>
+        public int SpawnRangeMin
+        {
+            get { return _SpawnRangeMin; }
+            set { _SpawnRangeMin = (int)MathHelper.Clamp(value, 0, EntitiesToSpawn.Count - 1); }
+        }
+
+        /// <summary>
+        /// Gets or sets the max range of entities to spawn.
+        /// </summary>
+        public int SpawnRangeMax
+        {
+            get { return _SpawnRangeMax; }
+            set { _SpawnRangeMax = (int)MathHelper.Clamp(value, 0, EntitiesToSpawn.Count - 1); }
+        }
+
         public DateTime LastSpawn
         {
             get { return _LastSpawn; }
@@ -101,9 +119,13 @@ namespace Corvus.Components
         private int _TotalEntitiesSpawned;
         private int _TotalEntitiesToSpawn;
         private float _SpawnDelay;
+        private int _SpawnRangeMin = 0;
+        private int _SpawnRangeMax = 0;
 
         public void Reset()
         {
+            _SpawnRangeMin = 0;
+            _SpawnRangeMax = 0;
             _DifficultyModifier = 1f;
             _TotalEntitiesSpawned = 0;
             SpawnerEnabled = false;
@@ -111,7 +133,7 @@ namespace Corvus.Components
 
         public Entity Spawn()
         {
-            int index = RandomNumber(0, EntitiesToSpawn.Count());
+            int index = RandomNumber(SpawnRangeMin, SpawnRangeMax + 1);//EntitiesToSpawn.Count());
             Entity entity = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(EntitiesToSpawn[index]).CreateEntity();
             entity.Position = this.Parent.Position;
             entity.Size = EntitySize;
@@ -134,9 +156,7 @@ namespace Corvus.Components
                 ac.MaxHealth *= DifficultyModifier;
                 ac.StrModifier *= DifficultyModifier;
                 ac.AttackSpeedModifier /= DifficultyModifier;
-
-                var sc = entity.GetComponent<SpriteComponent>();
-                sc.Color = Color.Lerp(Color.White, Color.Red, MathHelper.Clamp(DifficultyModifier/10f, 0f, 1f));
+                ac.KnockbackModifier = 0f; //Disabled Knockback. Totally a cheap kill in this mode.
             }
 
             base.OnUpdate(Time);

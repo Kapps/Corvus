@@ -16,13 +16,6 @@ Properties
 		IsAoE: false
 		HitDelay: 0.5
 		AttackSound: SwordSwing
-		#If not ranged, remove all projectile properties.
-		ProjectileName: TestProjectile
-		ProjectileSize: Vector(0, 0)
-		ProjectileOffset: Vector(0, 0)
-		ProjectileVelocity: Vector(0, 0)
-		ProjectileGravityCoefficient: 0
-		ProjectileHorDragCoefficient: 0
 		#if this does not have an aoe effect, remove all of these.
 		AoEName: Sprites/Effects/Explosions
 		AoESize: Vector(0, 0)
@@ -34,33 +27,28 @@ Properties
 		EnemyWeaponName: Sprites/Equipment/IronSword
 		EnemyWeaponOffset: Vector(0,-4)
 	MovementComponent
-		WalkSpeed: 300
-		WalkAcceleration: 13000
-		JumpSpeed: 850
+		WalkSpeed: 100
+		WalkAcceleration: 9000
+		JumpSpeed: 500
 	PhysicsComponent
-		GravityCoefficient: 1
-		HorizontalDragCoefficient: 1
+		GravityCoefficient: 0.4
+		HorizontalDragCoefficient: 0.5
 	AttributesComponent
-		MaxHealth: 1000
-		Strength: 50
+		MaxHealth: 50
+		Strength: 20
 		Dexterity: 5
-		Intelligence: 4
+		Intelligence: 10
 		BlockDamageReduction: 0.5
 		MeleeAttackRange: Vector(35, 35)
 		AttackSpeed: 500
 		BlockSpeed: 500
 		BlockChance: 0.7
-		Knockback: 0
+		Knockback: 50
 		CritChance: 0
 		CritDamage: 1
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	StatusEffectPropertiesComponent
-		#if this does not apply a status effect, remove these. (Or at least put a legit EffectType, even if it's not being used.) 
-		#EffectType: Pierce
-		#BaseValue: 0
-		#Intensity: 1
-		#Duration: 0
 	DestroyableObjectComponent
 		DyingSprite: Sprites/Effects/Effect_Explosion1
 		DyingDuration: 0.5
@@ -68,11 +56,10 @@ Properties
 		AwardedExperience: 10
 		DropsItem: true
 		#remove these if it doesn't drop items
-		#I didn't put healing, since arena has that already, and not needed for normal levels, until we can be sure that balance issues can be resolved.
 		DroppableItems: Collection(Might, Vigor)
-		DropRate: 0.5
+		DropRate: 0.15
 		DropCoefficient: 2
-		CoinsValue: 1
+		CoinsValue: 2
 	AIComponent
 		ReactionRange: Vector(250, 25)
 		Offset: Vector(0, 0)
@@ -84,13 +71,12 @@ CollisionProperties
 	#remove the ones you don't want
 	CollisionKnockbackComponent
 		UseAttributes: false
-		Knockback: 0
+		Knockback: 120
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	CollisionDamageComponent
 		UseAttributes: false
-		Damage: 0
-		UseAttributes: false 
+		Damage: 20
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	#CollisionStatusEffectComponent
@@ -109,42 +95,118 @@ Required
 		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)
 	HealthBarComponent
 
+
+#######################################
+########### Enemies	###################
+#######################################
+
+## GolBezs	##
+
 #Normal, since we started with this guy (nothing changes).
 Golbez: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_Golbez)
+	DestroyableObjectComponent
+		AwardedExperience: 8
+		DropsItem: true
+		DroppableItems: Collection(Might, Vigor)
+		DropRate: 0.5
+		DropCoefficient: 1
+		CoinsValue: 3
 
-#Slow, but powerful and tanky. Also doesn't run from player.
+#Basically your Goomba of our game
+GoombaGolbez: Golbez
+	SpriteComponent (Sprite)
+		Color: Color(Brown)
+	AIComponent
+		ReactionRange: Vector(0, 0)
+		FleeingEnabled: false
+	AttributesComponent
+		MaxHealth: 20
+		MeleeAttackRange: Vector(0, 0)
+	CombatPropertiesComponent
+		EnemyWeaponName: Sprites/Equipment/IronSword
+		EnemyWeaponOffset: Vector(0, 0)
+	DestroyableObjectComponent
+		AwardedExperience: 5
+		DropsItem: false
+		CoinsValue: 1
+	CollisionDamageComponent
+		UseAttributes: true
+
+
+## DarkKnights	##
+
+#Slow, but powerful, tanky, and resistance to physical. Also doesn't run from player.
 DarkKnight: Properties, CollisionProperties, Required
+	DamageComponent
+		OnHitSound: Hit4
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_DarkKnight)
 	MovementComponent
-		WalkSpeed: 200
+		WalkSpeed: 150
 		JumpSpeed: 400
 	AttributesComponent
-		MaxHealth: 2000
+		MaxHealth: 75
 		AttackSpeed: 750
-		Knockback: 1
-		Strength: 100
+		Knockback: 100
+		Strength: 40
+		Intelligence: 5
 		BlockChance: 0.7
+		MeleeAttackRange: Vector(50, 35)
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	AIComponent
+		ReactionRange: Vector(300, 25)
 		FleeingEnabled: false
+	CombatPropertiesComponent
+		EnemyWeaponName: Sprites/Equipment/IronLance
+	DestroyableObjectComponent
+		AwardedExperience: 15
+		DropsItem: true
+		DroppableItems: Collection(Might, Vigor, HealLow)
+		DropRate: 0.5
+		DropCoefficient: 2
+		CoinsValue: 6
+	CollisionDamageComponent
+		Damage: 30
+
+
+## Cecil Harveys ##
 
 #Fast, doesn't flee.
 CecilHarvey: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_CecilHarvey)
 	DamageComponent
-		#Remove this if you don't want a sound to play.
 		OnHitSound: Hit2
 	MovementComponent
-		WalkSpeed: 600
+		WalkSpeed: 290
 	AttributesComponent
-		MaxHealth: 500
-		AttackSpeed: 250
+		MaxHealth: 50
+		AttackSpeed: 350
 		Strength: 25
+		Intelligence: 2
+		BlockChance: 0.2
+		CritChance: 0.2
+		CritDamage: 1.5
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 	AIComponent
+		ReactionRange: Vector(250, 25)
+		Offset: Vector(10, 0)
 		FleeingEnabled: false
+	CombatPropertiesComponent
+		HitDelay: 0.55
+		EnemyWeaponName: Sprites/Equipment/Muramasa
+	DestroyableObjectComponent
+		AwardedExperience: 11
+		DropsItem: true
+		DroppableItems: Collection(Might, Vigor, HealLow)
+		DropRate: 0.5
+		DropCoefficient: 2.5
+		CoinsValue: 3
+	CollisionDamageComponent
+		Damage: 25
 
 PoisonCecilHarvey : CecilHarvey
 	SpriteComponent (Sprite)
@@ -156,16 +218,96 @@ PoisonCecilHarvey : CecilHarvey
 		Duration: 5
 	CombatPropertiesComponent
 		AppliesEffect: true
+	CollisionStatusEffectComponent
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+#he's that dude that jumps around
+NinjaCecilHarvey : CecilHarvey
+	AttributesComponent
+		MaxHealth: 25
+	AIComponent
+		AIEnabled: false
+	CollisionDamageComponent
+		UseAttributes: true
+	PathComponent
+		JumpDelay: 300
+
+##	Zemus ##
 
 Zemus: Properties, CollisionProperties, Required
+	DamageComponent
+		OnHitSound: Hit5
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_Zemus)
+	MovementComponent
+		WalkSpeed: 200
+	AttributesComponent
+		MaxHealth: 60
+		AttackSpeed: 800
+		Knockback: 25
+		Strength: 30
+		Intelligence: 20
+		BlockChance: 0.5
+		MeleeAttackRange: Vector(60, 35)
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+	AIComponent
+		FleeingEnabled: false
+	CombatPropertiesComponent
+		HitDelay: 0.8
+		EnemyWeaponName: Sprites/Equipment/PoisonBomb
+		EnemyWeaponOffset: Vector(15, -4)
+	DestroyableObjectComponent
+		AwardedExperience: 16
+		DropsItem: true
+		#remove these if it doesn't drop items
+		DroppableItems: Collection(Might, Vigor, ManaLow, HealMid)
+		DropRate: 0.5
+		DropCoefficient: 1.5
+		CoinsValue: 8
+	CollisionDamageComponent
+		Damage: 30
+
+## Kain Highwinds ##
 
 KainHighwind: Properties, CollisionProperties, Required
+	DamageComponent
+		OnHitSound: Hit6
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_KainHighwind)
+	MovementComponent
+		WalkSpeed: 185
+	AttributesComponent
+		MaxHealth: 100
+		AttackSpeed: 400
+		Knockback: 70
+		Strength: 55
+		Intelligence: 20
+		BlockChance: 0.6
+		MeleeAttackRange: Vector(45, 35)
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
+	AIComponent
+		ReactionRange: Vector(400, 25)
+		FleeingEnabled: false
+	CombatPropertiesComponent
+		EnemyWeaponName: Sprites/Equipment/BastardSword
+		EnemyWeaponOffset: Vector(0, -4)
+	DestroyableObjectComponent
+		AwardedExperience: 22
+		DropsItem: true
+		DroppableItems: Collection(Fleet, Might, Vigor, HealHigh)
+		DropRate: 0.33
+		DropCoefficient: 1.5
+		CoinsValue: 10
+	CollisionDamageComponent
+		Damage: 40
 
 WorkoutKainHighwind : KainHighwind
+	AttributesComponent
+		Knockback: 130
 	DestroyableObjectComponent
-		DroppableItems: Collection(Might, Vigor, Fleet, IWorkOut)
+		DroppableItems: Collection(IWorkOut)
+		DropRate: 1
 	

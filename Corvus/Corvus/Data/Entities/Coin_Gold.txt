@@ -2,6 +2,8 @@
 	SpriteComponent
 		Sprite: Sprite(Sprites/Items/Coin_Gold)
 	PhysicsComponent
+		GravityCoefficient: 0
+		HorizontalDragCoefficient: 0
 	CollisionCoinComponent
 		Value: 5
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

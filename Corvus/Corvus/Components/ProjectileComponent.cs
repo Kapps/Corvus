@@ -33,10 +33,7 @@ namespace Corvus.Components
 
         protected override void OnUpdate(GameTime Time)
         {
-            var clc = Parent.GetComponent<ClassificationComponent>();
-            var pc = Parent.GetComponent<PhysicsComponent>();
-
-            if (clc.Classification == EntityClassification.Projectile && pc.IsGrounded)
+            if (PC.IsGrounded || PC.VelocityX == 0f)
             {
                 if(CPComponent.IsAoE)
                     AreaOfEffectComponent.CreateAoEEntity(this.Parent);

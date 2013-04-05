@@ -11,7 +11,7 @@ Properties
 		IsRanged: false
 		AppliesEffect: false
 		IsAoE: true
-		HitDelay: 0.5
+		HitDelay: 0.55
 		ConsumesMana: true
 		AttackSound: SpearSwing
 		#if this does not have an aoe effect, remove all of these.
@@ -27,12 +27,11 @@ Properties
 		Strength: 5
 		StrModifier: 1.20
 		Dexterity: 10
-		DexModifier: 1.4
 		Intelligence: 8
 		IntModifier: 1.2
 		CritChance: 0.03
 		CritDamage: 0.20
-		MeleeAttackRange: Vector(60, 40)
+		MeleeAttackRange: Vector(60, 20)
 		AttackSpeed: 400
 		BlockDamageReduction: 0.5
 		Knockback: 110

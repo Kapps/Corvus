@@ -27,12 +27,13 @@ namespace CorvEngine.Components.Blueprints.Generators {
 				ElementType = GenericArgs.First();
 			} else
 				ElementType = typeof(object);
-			if(Collection == null) {
+            //Commented this because i wanted the collection to be reassigned instead of added to.
+		//	if(Collection == null) {
 				Type TypeToInstantiate = Property.PropertyType;
 				if(TypeToInstantiate.IsAbstract || TypeToInstantiate.IsInterface)
 					TypeToInstantiate = typeof(List<>).MakeGenericType(ElementType);
 				Collection = Activator.CreateInstance(TypeToInstantiate, true);
-			}
+			//}
 
 			MethodInfo AddMethod = Collection.GetType().GetMethod("Add", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
 			foreach(var Argument in Arguments) {

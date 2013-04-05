@@ -99,8 +99,7 @@ namespace Corvus.GameStates {
 				}
 			}
 
-			//Plays the song. Not sure if it should be here.
-			//Plays the song. Not sure if it should be here.
+			//Plays the song. 
 			if(Scene.Properties.Any()) {
 				foreach(LevelProperty p in Scene.Properties) {
 					if(p.Name.Equals("Audio", StringComparison.InvariantCultureIgnoreCase)) {
@@ -120,9 +119,6 @@ namespace Corvus.GameStates {
 			}
 
 			//Set spawn point.
-			//This is kinda weird, since we should have this all in once place.
-			//We've basically got a spawn point handler in CorvusGame and SceneManager.
-			//One is for creating a new player, and the other for changing the player's scene.
 			var spawnPoint = Scene.Entities.FirstOrDefault(c => c.Name == "Spawn Point");
 			if(Scene.Engine.Players.Count() != 0) {
 				foreach(var player in Scene.Engine.Players) {

@@ -84,6 +84,7 @@ Content\Sprites\Enemies\EnemyZemus.xnb
 Content\Tiles\block 32x32.xnb
 Content\Tiles\TutorialIcons.xnb
 Content\Interface\PausedBackgroundalt.xnb
+Content\Tiles\NightBG.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
@@ -150,6 +151,9 @@ Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
+Content\Tiles\sky3.xnb
+Content\Tiles\tree-variations.xnb
+Content\Tiles\mountain_landscape_23.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb

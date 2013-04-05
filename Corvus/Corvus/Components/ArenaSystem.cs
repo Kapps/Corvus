@@ -23,6 +23,9 @@ namespace CorvEngine.Components
     {
         private const float PHASE_DURATION = 5f;
         private const float GAMEOVER_PHASE_DURATION = 10f;
+        private List<string> EnemyCollection = new List<string>() { 
+            "GoombaGolbez", "Golbez", "DarkKnight", "Zemus", "CecilHarvey", "PoisonCecilHarvey", "KainHighwind", "WorkoutKainHighwind"
+        };
 
         //stats
         private int _Wave = 1;
@@ -77,10 +80,16 @@ namespace CorvEngine.Components
             {
                 var sc = s.GetComponent<SpawnerComponent>();
                 sc.SpawnerEnabled = false;
-                if(!sc.IsOnEnemySpawnRegistered) //Becareful with this. Not sure how often OnInitialized is called.
+                if(!sc.IsOnEnemySpawnRegistered) 
                     sc.OnEnemySpawn += sc_OnEnemySpawn;
+                if (sc.SpawnID == "Enemy")
+                    sc.EntitiesToSpawn = EnemyCollection;
+                else {
+                    sc.SpawnRangeMin = 0;
+                    sc.SpawnRangeMax = sc.EntitiesToSpawn.Count;
+                }
             }
-
+            
             Reset();
         }
 
@@ -169,7 +178,8 @@ namespace CorvEngine.Components
                     string totalTime = string.Format("{0}s", _TotalTime.TotalSeconds.ToString("0.##"));
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Total Time: {0}", totalTime), new Vector2(15f, 225f), Color.Black);
                     CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Difficulty Modifier: {0}", _DifficultyModifier.ToString("0.00")), new Vector2(15f, 250f), Color.Black);
-                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Restarting in {0}...", (_PhaseTimer.Seconds + 1).ToString()), new Vector2(5f, 275f), Color.Yellow);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Score: {0}", ((_Wave - 1) * _TotalEntitiesKilled * _DifficultyModifier).ToString("0")), new Vector2(15f, 275f), Color.Gold);
+                    CorvusGame.Instance.SpriteBatch.DrawString(_Font, string.Format("Restarting in {0}...", (_PhaseTimer.Seconds + 1).ToString()), new Vector2(5f, 300f), Color.Yellow);
                     break;
             }
         }
@@ -253,7 +263,12 @@ namespace CorvEngine.Components
             _TotalTime += _BattleTimer;
             //create healing items.
             foreach (var s in ItemSpawners)
-                s.GetComponent<SpawnerComponent>().Spawn();
+                s.GetComponent<SpawnerComponent>().Spawn();            
+        }
+
+        private void InitStartPhase()
+        {
+            _Wave++;
 
             //Set difficulty based on how long it took the player.
             _DifficultyModifier += 0.025f + (MathHelper.Clamp(1f / (float)_BattleTimer.TotalSeconds, 0f, 0.1f));
@@ -262,13 +277,10 @@ namespace CorvEngine.Components
                 var sc = s.GetComponent<SpawnerComponent>();
                 sc.Reset();
                 sc.DifficultyModifier = _DifficultyModifier;
+                sc.SpawnRangeMin = _Wave / 4;
+                sc.SpawnRangeMax = _Wave / 2;
             }
-            
-        }
 
-        private void InitStartPhase()
-        {
-            _Wave++;
             //remove all existing items.
             foreach (var e in RemainingEntities)
             {

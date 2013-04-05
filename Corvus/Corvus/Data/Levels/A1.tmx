@@ -74,12 +74,7 @@
   <object name="DeadlyArea" type="DeadlyArea" x="5087" y="769" width="258" height="34"/>
   <object name="DeadlyArea" type="DeadlyArea" x="6076" y="789" width="262" height="15"/>
   <object name="DeadlyArea" type="DeadlyArea" x="2334" y="786" width="517" height="21"/>
-  <object name="CH1" type="CecilHarvey" x="25" y="173" width="32" height="32">
-   <properties>
-    <property name="AIComponent.AIEnabled" value="false"/>
-    <property name="PathComponent.JumpDelay" value="300"/>
-   </properties>
-  </object>
+  <object name="CH1" type="NinjaCecilHarvey" x="25" y="173" width="32" height="32"/>
   <object name="CH1" type="Path" x="45" y="215">
    <polyline points="0,0 148,-21 322,1"/>
   </object>

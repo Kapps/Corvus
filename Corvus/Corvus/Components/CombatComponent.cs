@@ -92,7 +92,7 @@ namespace Corvus.Components {
             float attackSpeed = AttributesComponent.AttackSpeed;
             SpriteComponent.Sprite.PlayAnimation(EquipmentComponent.CurrentWeapon.WeaponData.AnimationName + (MovementComponent.CurrentDirection == Direction.None ? "Down" : MovementComponent.CurrentDirection.ToString()), TimeSpan.FromMilliseconds(attackSpeed));
             if(EquipmentComponent.CurrentWeapon.WeaponData.IsMelee)
-                _WeaponSwingAnimation.Start(this.Parent, "Sprites/Equipment/"+ EquipmentComponent.CurrentWeapon.WeaponData.SystemName, attackSpeed, new Vector2(-4f));
+                _WeaponSwingAnimation.Start(this.Parent, "Sprites/Equipment/"+ EquipmentComponent.CurrentWeapon.WeaponData.SystemName, attackSpeed, new Vector2(0f,-4f));
 
             //determine what type of attack to do.
             if (CombatPropertiesComponent.IsRanged)

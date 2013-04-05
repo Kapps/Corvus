@@ -82,7 +82,7 @@ namespace Corvus {
             _MainMenuState = new MainMenuState();
             _PausedState = new PausedState();
             // Start off in game.
-            //_SceneManager.ChangeScene("BasicLevel");
+            //_SceneManager.ChangeScene("BasicLevel", false);
             //StateManager.PushState(_SceneManager);
             StateManager.PushState(_MainMenuState); //TODO: Move this probably
             AudioManager.PlayMusic("Title1");
@@ -98,10 +98,6 @@ namespace Corvus {
 		public void CreateNewPlayer() {
 			// TODO: Allow new players to join by pressing a button. Should be simple enough.
 			var PlayerEntity = CorvusPlayer.LoadPlayerEntity();
-
-            //We can actually remove this section because the player isn't actually starting in the game. During main menu to new game, 
-            //it will detect the spawn point and set it accordingly.
-                        
 			CorvusPlayer Player = new CorvusPlayer(PlayerEntity);
 			AddPlayer(Player);
 			CorvusBinds.CreateBinds(Player); 

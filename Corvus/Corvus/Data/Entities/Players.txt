@@ -1,43 +1,37 @@
-﻿# A basic component, just to show-case that we can make a Sprite.
-BlueSprite
-	SpriteComponent (Sprite)
-		Color: Color(White) # Note that this can use RGBA, RGB, NamedColor + A, or just NamedColor.
-
-# Inherits BlueSprite, simply adding the Sprite itself.
-PlayerSprite : BlueSprite
+﻿
+Properties
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Players/Player_Medieval)
-
-Properties
+		Color: Color(White)
 	DamageComponent
 		OnHitSound: Hit4
 		BlockSound: MetalInteraction1
 	MovementComponent
-		WalkSpeed: 400
-		WalkAcceleration: 13000
-		JumpSpeed: 850
+		WalkSpeed: 280
+		WalkAcceleration: 9000
+		JumpSpeed: 725
 	PhysicsComponent
 		MakesJumpingSounds: true
-		GravityCoefficient: 0.6
-		HorizontalDragCoefficient: 1
+		GravityCoefficient: 0.4
+		HorizontalDragCoefficient: 0.5
 	PlayerControlComponent
 		DyingSprite: Sprites/Effects/Effect_Explosion1
-		DyingDuration: 2
+		DyingDuration: 3
 		DyingSound: Explode1
 		Level: 1
 		CurrentExperience: 0
 		ExperienceForNextLevel: 20
-		RequiredExperienceCurve: 2.5
-		HealthGrowth: 25
+		RequiredExperienceCurve: 2.1
+		HealthGrowth: 20
 		ManaGrowth: 5
 		StrGrowth: 4
 		DexGrowth: 3
 		IntGrowth: 2
 	AttributesComponent
-		MaxHealth: 2500
-		MaxMana: 100
-		ManaRegen: 0.05
-		Strength: 200
+		MaxHealth: 150
+		MaxMana: 50
+		ManaRegen: 0.025
+		Strength: 25
 		Dexterity: 20
 		Intelligence: 10
 		CritChance: 0
@@ -46,23 +40,16 @@ Properties
 		UseWeaponBonuses: true 
 		DefaultWeaponName: IronSword
 		Capacity: 3
-		
-Damager
-	FloatingTextComponent
-
-StatusEffecter
-	StatusEffectsComponent
-
-Score
-	ScoreComponent
-
-Fighter
-	CombatPropertiesComponent
 	CombatComponent
 		AttackableEntities: Enum(CorvEngine.Components.EntityClassification, Enemy)
 
-# Show off multiple inheritance / composition.
-Player : PlayerSprite, Properties, Damager, StatusEffecter, Fighter, Score
+Required
+	CombatPropertiesComponent
+	ScoreComponent
 	GamepadComponent
+	StatusEffectsComponent
+	FloatingTextComponent
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+		
+Player: Properties, Required

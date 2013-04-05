@@ -40,7 +40,7 @@ namespace Corvus {
                     Assign((c) => MainMenuNavigation(false, c), false, new InputButton(Keys.Down));
                     Assign(MainMenuSelect, false, new InputButton(Keys.Enter));
                     //ingame
-					Assign(JumpPressed, false, new InputButton(Keys.Space));
+					Assign(c => JumpPressed(false, c), false, new InputButton(Keys.Space));
 					Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Keys.Left));
 					Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Keys.Right));
                     Assign(BlockPressed, false, new InputButton(Keys.X));
@@ -58,7 +58,7 @@ namespace Corvus {
                     Assign((c) => MainMenuNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
                     Assign(MainMenuSelect, false, new InputButton(Buttons.A));
                     //ingame
-                    Assign(JumpPressed, false, new InputButton(Buttons.A));
+                    Assign(c => JumpPressed(false, c), false, new InputButton(Buttons.A));
                     Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Buttons.LeftThumbstickLeft));
                     Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Buttons.LeftThumbstickRight));
                     Assign(BlockPressed, false, new InputButton(Buttons.RightTrigger));
@@ -107,11 +107,11 @@ namespace Corvus {
 			}
 		}
 
-		private void JumpPressed(BindState State) {
+		private void JumpPressed(bool isMultijump, BindState State) {
             if (CorvusGame.Instance.StateManager.GetCurrentState() != CorvusGame.Instance.SceneManager)
                 return;
 			if(State == BindState.Pressed)
-                PlayerControlComponent.Jump(false);
+                PlayerControlComponent.Jump(isMultijump);
 		}
         
         private void BlockPressed(BindState State){
@@ -144,7 +144,9 @@ namespace Corvus {
             if (CorvusGame.Instance.StateManager.GetCurrentState() != CorvusGame.Instance.SceneManager)
                 return;
             if (State == BindState.Pressed)
-                PlayerControlComponent.Attack();
+                PlayerControlComponent.StartAttack();
+            else if (State == BindState.Released)
+                PlayerControlComponent.EndAttack();
         }
 
         private void Pause(BindState state)
@@ -155,10 +157,7 @@ namespace Corvus {
             if (state == BindState.Pressed)
                 CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.PausedState);
 
-            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.One, 0, 0);
-            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.Two, 0, 0);
-            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.Three, 0, 0);
-            GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex.Four, 0, 0);
+            GamepadComponent.StopVibrations();
         }
 
         private void MainMenuNavigation(bool isPrev, BindState state)

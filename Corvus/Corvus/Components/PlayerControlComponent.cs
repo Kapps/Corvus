@@ -32,6 +32,7 @@ namespace Corvus.Components
         private bool _WantsToBlock = false;
         private bool _WantsToSwitchWeapon = false;
         private bool _IsPrev = false;
+        private bool _IsAttacking = false;
         private AttributesComponent AC;
         private MovementComponent MC;
         private CombatComponent CC;
@@ -214,9 +215,15 @@ namespace Corvus.Components
         /// <summary>
         /// Forces the player to attack.
         /// </summary>
-        public void Attack()
+        public void StartAttack()
         {
+            _IsAttacking = true;
             CC.Attack();
+        }
+
+        public void EndAttack()
+        {
+            _IsAttacking = false;
         }
 
         /// <summary>
@@ -265,7 +272,7 @@ namespace Corvus.Components
             SC = this.GetDependency<SpriteComponent>();
             EC = this.GetDependency<EquipmentComponent>();
             ScoreComponent = this.GetDependency<ScoreComponent>();
-
+            _IsAttacking = false;
             if (!AC.IsDiedRegistered)
                 AC.Died += AC_Died;
         }
@@ -273,7 +280,9 @@ namespace Corvus.Components
         protected override void OnUpdate(Microsoft.Xna.Framework.GameTime Time)
         {
             base.OnUpdate(Time);
-            
+
+            if (_IsAttacking && PC.IsGrounded)
+                StartAttack();
             if (_WantsToBlock && (!CC.IsAttacking && PC.IsGrounded))
             {
                 BeginBlock();
@@ -284,6 +293,7 @@ namespace Corvus.Components
                 SwitchWeapon(_IsPrev);
                 _WantsToSwitchWeapon = false;
             }
+
         }
 
         void AC_Died(AttributesComponent obj)

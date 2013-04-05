@@ -93,5 +93,19 @@ namespace Corvus.Components
             GamePad.SetVibration(gc.DetermineIndex(gc._Player.Index), MathHelper.Clamp(leftMotor, 0f, 1f), MathHelper.Clamp(rightMotor, 0f, 1f));
             gc._Duration = duration;
         }
+
+        /// <summary>
+        /// Stops all vibrations for all players.
+        /// </summary>
+        public static void StopVibrations()
+        {
+            foreach (var p in CorvusGame.Instance.Players)
+            {
+                var gc = p.Character.GetComponent<GamepadComponent>();
+                gc._IsVibrating = false;
+                gc._Timer = TimeSpan.Zero;
+                GamePad.SetVibration(gc.DetermineIndex(p.Index), 0f, 0f);
+            }
+        }
     }
 }

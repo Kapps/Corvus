@@ -187,7 +187,6 @@ namespace CorvEngine.Components {
 		}
 
 		protected override void OnDraw() {
-			
 		}
 
 		private float _Gravity = 4000;

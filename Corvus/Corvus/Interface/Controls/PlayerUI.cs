@@ -150,10 +150,7 @@ namespace Corvus.Interface.Controls
         private void DrawCoinsArea()
         {
             this.SpriteBatch.Draw(CoinImage, GetRelativePosition(155f, 65f), CoinImage.Bounds, Color.White);
-            string coins = SC.Coins.ToString();
-            string display = "00000";
-            display = display.Substring(coins.Count());
-            this.SpriteBatch.DrawString(PlayerCoinFont, display + coins, GetRelativePosition(180f, 63f), Color.White);
+            this.SpriteBatch.DrawString(PlayerCoinFont, SC.Coins.ToString("00000"), GetRelativePosition(180f, 63f), Color.White);
         }
 
         private void DrawExpBar()

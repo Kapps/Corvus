@@ -52,6 +52,7 @@ namespace Corvus.GameStates
             ControlManager.AddControl(titleImg);
 
             var hackSize = new Vector2(175f, 50f); // a hack to align things.
+            
             LinkButton continueBtn = new LinkButton(font);
             continueBtn.Text = "Continue";
             continueBtn.Color = Color.Black;
@@ -75,26 +76,22 @@ namespace Corvus.GameStates
             arenaModeBtn.Selected += arenaModeBtn_Selected;
             ControlManager.AddControl(arenaModeBtn);
 
-            LinkButton testModeBtn = new LinkButton(font);
-            testModeBtn.Text = "Test Mode";
-            testModeBtn.Color = Color.Black;
-            testModeBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
-            testModeBtn.Selected += testModeBtn_Selected;
-            ControlManager.AddControl(testModeBtn);
-
             LinkButton exitBtn = new LinkButton(font);
             exitBtn.Text = "Exit";
             exitBtn.Color = Color.Black;
-            exitBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 250f);
+            exitBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
             exitBtn.Selected += exitBtn_Selected;
             ControlManager.AddControl(exitBtn);
 
-            //LinkButton tutorialBtn = new LinkButton(font);
-            //tutorialBtn.Text = "Tutorial";
-            //tutorialBtn.Color = Color.Black;
-            //tutorialBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 200f);
-            //tutorialBtn.Selected += tutorialBtn_Selected;
-            //ControlManager.AddControl(tutorialBtn);
+#if DEBUG
+            LinkButton testModeBtn = new LinkButton(font);
+            testModeBtn.Text = "Test Mode";
+            testModeBtn.Color = Color.Black;
+            testModeBtn.IsEnabled = true;
+            testModeBtn.Position = UIHelper.AlignControl(hackSize, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0, 250f);
+            testModeBtn.Selected += testModeBtn_Selected;
+            ControlManager.AddControl(testModeBtn);
+#endif
 
             ControlManager.SetFocus();
             this.AddComponent(_ControlManager);
@@ -119,6 +116,11 @@ namespace Corvus.GameStates
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
+        void exitBtn_Selected(object sender, EventArgs e)
+        {
+            CorvusGame.Instance.Exit();
+        }
+
         void testModeBtn_Selected(object sender, EventArgs e)
         {
             CorvusGame.Instance.SceneManager.ReloadScenes(false);
@@ -126,17 +128,6 @@ namespace Corvus.GameStates
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
-        void exitBtn_Selected(object sender, EventArgs e)
-        {
-            CorvusGame.Instance.Exit();
-        }
-
-        //unused
-        void tutorialBtn_Selected(object sender, EventArgs e)
-        {
-            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial", true);
-            CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
-        }
     }
 
 }
