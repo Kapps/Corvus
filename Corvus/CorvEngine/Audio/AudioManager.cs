@@ -40,6 +40,7 @@ namespace CorvEngine {
     public class AudioManager : GameComponent
     {
         private static AudioManager _Instance = null;
+        private bool _MusicEnabled = true;
         private AudioEngine _AudioEngine;
         private WaveBank _WaveBank;
         private SoundBank _SoundBank;
@@ -51,6 +52,15 @@ namespace CorvEngine {
         /// Get the singleton instance of AudioManager.
         /// </summary>
         public static AudioManager Instance { get { return _Instance; } }
+
+        /// <summary>
+        /// Gets or sets whether music is on or off.
+        /// </summary>
+        public bool MusicEnabled
+        {
+            get { return _MusicEnabled; }
+            set { _MusicEnabled = value; }
+        }
 
         /// <summary>
         /// Gets the AudioEngine.
@@ -184,6 +194,8 @@ namespace CorvEngine {
         /// </summary>
         public static void PlayMusic(string musicName, float fadeDuration = 0, AudioTransitionStates transition = AudioTransitionStates.CrossFade)
         {
+            if (!_Instance.MusicEnabled)
+                return;
             if ((_Instance.MusicCue1 != null) && (_Instance.MusicCue1.Name == musicName) ||
                 (_Instance.MusicCue2 != null) && (_Instance.MusicCue2.Name == musicName))
                 return;

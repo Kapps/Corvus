@@ -81,6 +81,9 @@ namespace Corvus {
             _SceneManager = new SceneManager();
             _MainMenuState = new MainMenuState();
             _PausedState = new PausedState();
+#if DEBUG
+            AudioManager.Instance.MusicEnabled = false;
+#endif
             // Start off in game.
             //_SceneManager.ChangeScene("BasicLevel", false);
             //StateManager.PushState(_SceneManager);
@@ -93,7 +96,7 @@ namespace Corvus {
 //#if DEBUG
 			_SceneManager.AddComponent(new DebugComponent(_SceneManager));
 //#endif
-		}
+        }
 
 		public void CreateNewPlayer() {
 			// TODO: Allow new players to join by pressing a button. Should be simple enough.
