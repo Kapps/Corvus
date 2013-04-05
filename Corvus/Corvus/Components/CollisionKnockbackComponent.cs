@@ -16,6 +16,7 @@ namespace Corvus.Components
     {
         private float _Knockback;
         private bool _UseAttributes = false;
+        private DateTime _LastKnockback;
         /// <summary>
         /// Distance to knockback the entity.
         /// </summary>
@@ -39,10 +40,19 @@ namespace Corvus.Components
             var mc = Entity.GetComponent<MovementComponent>();
             if (mc == null)
                 return false;
-            float myx = Entity.Position.X - Parent.Position.X;
-            float kb = (!UseAttributes) ? Knockback : this.GetDependency<AttributesComponent>().TotalKnockback;
-            mc.Knockback(kb, (myx > 0) ? 1 : -1);
-            return true;
+
+            if ((DateTime.Now - _LastKnockback).TotalMilliseconds > 750)
+            {
+                _LastKnockback = DateTime.Now;
+                float myx = Entity.Position.X - Parent.Position.X;
+                float kb = (!UseAttributes) ? Knockback : this.GetDependency<AttributesComponent>().TotalKnockback;
+                mc.Knockback(kb, (myx > 0) ? 1 : -1);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
