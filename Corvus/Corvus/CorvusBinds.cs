@@ -160,7 +160,8 @@ namespace Corvus {
         private void Pause(BindState state)
         {
             if (CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.MainMenuState ||
-                CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.PausedState)
+                CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.PausedState ||
+                CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.OptionsState)
                 return;
             if (state == BindState.Pressed)
                 CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.PausedState);
