@@ -13,8 +13,12 @@ namespace Corvus.Components{
     /// Handles the damage events for this entity.
     /// </summary>
     public class DamageComponent : Component{
+        private const float DAMAGE_DELAY_TIME = 0.1f;
+
         private string _OnHitSound = "";
-        private string _BlockSound = ""; 
+        private string _BlockSound = "";
+        private bool _IsHit = false;
+        private DateTime _LastHit;
         private AttributesComponent AttributesComponent;
         private CombatComponent CombatComponent;
         private MovementComponent MovementComponent;
@@ -42,6 +46,11 @@ namespace Corvus.Components{
         /// Applies static damage with only normal rule.
         /// </summary>
         public void TakeDamage(Entity attacker, float incomingDamage, float modifier = 1f){
+            if (_IsHit)
+                return;
+            _IsHit = true;
+            _LastHit = DateTime.Now;
+
             float blockMultipler = BlockDamageReduction(attacker);
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, incomingDamage);
             float overallDamage = damageTaken * blockMultipler * modifier;
@@ -57,6 +66,11 @@ namespace Corvus.Components{
         /// Applies damage, with the normal rules, based on the attacker's attributes.
         /// </summary>
         public void TakeDamage(AttributesComponent attacker, float modifier = 1f){
+            if (_IsHit)
+                return;
+            _IsHit = true;
+            _LastHit = DateTime.Now;
+
             float blockMultipler = BlockDamageReduction(attacker.Parent);
             float damageTaken = NormalDamageFormula(AttributesComponent.Defense, attacker.Attack);
             float criticalMultiplier = CriticalDamageChance(attacker.CriticalChance, attacker.CriticalDamage);
@@ -159,6 +173,9 @@ namespace Corvus.Components{
         {
             base.OnUpdate(Time);
             FloatingTextComponent.Update(Time);
+
+            if ((DateTime.Now - _LastHit).TotalSeconds > DAMAGE_DELAY_TIME)
+                _IsHit = false;
         }
     }
 
