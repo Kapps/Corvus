@@ -249,6 +249,11 @@ namespace CorvEngine {
 			 */
 			this._GraphicsManager.PreferredBackBufferWidth = 1024;
 			this._GraphicsManager.PreferredBackBufferHeight = 768;
+
+#if !DEBUG
+            this._GraphicsManager.IsFullScreen = true;
+#endif
+
 			this._GraphicsManager.ApplyChanges();
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);

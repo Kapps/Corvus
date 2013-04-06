@@ -52,6 +52,10 @@ namespace Corvus {
                     Assign((c) => PausedNavigation(true, c), false, new InputButton(Keys.Up));
                     Assign((c) => PausedNavigation(false, c), false, new InputButton(Keys.Down));
                     Assign(PausedSelect, false, new InputButton(Keys.Enter));
+                    //options
+                    Assign((c) => OptionsNavigation(true, c), false, new InputButton(Keys.Up));
+                    Assign((c) => OptionsNavigation(false, c), false, new InputButton(Keys.Down));
+                    Assign(OptionsSelect, false, new InputButton(Keys.Enter));
                     //xbox controller
                     //menu
                     Assign((c) => MainMenuNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
@@ -69,6 +73,10 @@ namespace Corvus {
                     Assign(Attack, false, new InputButton(Buttons.B));
                     Assign(Pause, false, new InputButton(Buttons.Start));
                     //paused
+                    Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
+                    Assign((c) => PausedNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
+                    Assign(PausedSelect, false, new InputButton(Buttons.A));
+                    //options
                     Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
                     Assign((c) => PausedNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
                     Assign(PausedSelect, false, new InputButton(Buttons.A));
@@ -152,7 +160,8 @@ namespace Corvus {
         private void Pause(BindState state)
         {
             if (CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.MainMenuState ||
-                CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.PausedState)
+                CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.PausedState ||
+                CorvusGame.Instance.StateManager.GetCurrentState() == CorvusGame.Instance.OptionsState)
                 return;
             if (state == BindState.Pressed)
                 CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.PausedState);
@@ -194,6 +203,19 @@ namespace Corvus {
             }
         }
 
+        private void OptionsNavigation(bool isPrev, BindState state)
+        {
+            if (CorvusGame.Instance.StateManager.GetCurrentState() != CorvusGame.Instance.OptionsState)
+                return;
+            if (state == BindState.Pressed)
+            {
+                if (isPrev)
+                    CorvusGame.Instance.OptionsState.ControlManager.PreviousControl();
+                else
+                    CorvusGame.Instance.OptionsState.ControlManager.NextControl();
+            }
+        }
+
         private void PausedSelect(BindState state)
         {
             if (CorvusGame.Instance.StateManager.GetCurrentState() != CorvusGame.Instance.PausedState)
@@ -201,6 +223,15 @@ namespace Corvus {
             if (state == BindState.Pressed)
                 CorvusGame.Instance.PausedState.ControlManager.SelectControl();
         }
+
+        private void OptionsSelect(BindState state)
+        {
+            if (CorvusGame.Instance.StateManager.GetCurrentState() != CorvusGame.Instance.OptionsState)
+                return;
+            if (state == BindState.Pressed)
+                CorvusGame.Instance.OptionsState.ControlManager.SelectControl();
+        }
+
 	}
 }
 
