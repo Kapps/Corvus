@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="200" height="25" tilewidth="32" tileheight="32">
  <properties>
-  <property name="Audio" value="Grass2, 0.25, 0.5"/>
+  <property name="Audio" value="Grass2, 0, 0.5"/>
  </properties>
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
@@ -39,7 +39,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="Main" width="200" height="25">
@@ -66,17 +66,9 @@
    H4sIAAAAAAAAC+3bQa7CIBCAYTRpj+DO++lFql5APYF6Qte2MSQVEVoKZaj/l7B5C503nSkDiUoBAAAAAJZgs84dASDTxvK37exRAACW5rl6LwCf+rMXMxfmZpv9NeoRkEHPUP3FnRbAHgZZOO8CdrnPu/QmYJe7NwGT1Pe1tLiaWqlDu4517kj8QnMnLee5SXlfm3HY4rLdX6V4lq67AJOUnP0yJr7Yn4f0xtSqC88VJUqxf52M+Ud/R+jnN4LmKWnzT+q9PLaS98iU872rR3w9ehbSH1Lqr+QaM5nvUsm6Ory062qJOef/cQv47l2l1L6KF4PujZC6W1I9l2bo+WBI/rs6vLfrUVBPm3z5CKnDKb3xD3yzXaz5L+X90Bz3TtLZ9sWOKzdTz0745sqlme8Y90O+Z5finar55q7+mUbKbxDH5pzeQCquMw3m9QKi7dDMIE4AAA==
   </data>
  </layer>
- <layer name="Objects" width="200" height="25">
-  <properties>
-   <property name="Solid" value="false"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAB4MAJTL5cgTgAA
-  </data>
- </layer>
  <objectgroup name="Enemies" width="200" height="25">
   <object name="DeadlyArea" type="DeadlyArea" x="3482" y="765" width="970" height="36"/>
-  <object name="DeadlyArea" type="DeadlyArea" x="4954" y="764" width="1444" height="35"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="4954" y="764" width="214" height="35"/>
   <object name="A1" type="LevelChanger" x="6360" y="637" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
@@ -87,7 +79,6 @@
   <object name="Fireball" type="Fireball" x="3720" y="451" width="32" height="32"/>
   <object name="Golbez" type="GoombaGolbez" x="3041" y="492" width="32" height="32"/>
   <object name="Golbez" type="GoombaGolbez" x="2853" y="303" width="32" height="32"/>
-  <object name="Trident" type="Trident" x="4161" y="607" width="32" height="32"/>
   <object name="Powerup" type="Recover" x="4658" y="693" width="22" height="22"/>
   <object name="DeadlyArea" type="DeadlyArea" x="1377" y="766" width="92" height="33"/>
   <object name="DK" type="GoombaGolbez" x="2110" y="623" width="32" height="32"/>
@@ -113,7 +104,6 @@
   <object name="Bronze" type="Coin_Bronze" x="1509" y="479" width="16" height="16"/>
   <object name="Bronze" type="Coin_Bronze" x="1636" y="386" width="16" height="16"/>
   <object name="Bronze" type="Coin_Bronze" x="1670" y="387" width="16" height="16"/>
-  <object name="StartPoint" type="SpawnPoint" x="169" y="644" width="32" height="32"/>
   <object name="Silver" type="Coin_Silver" x="1745" y="612" width="16" height="16"/>
   <object name="Silver" type="Coin_Silver" x="1780" y="607" width="16" height="16"/>
   <object name="Silver" type="Coin_Silver" x="1837" y="523" width="16" height="16"/>
@@ -153,8 +143,23 @@
   <object name="Silver" type="Coin_Silver" x="6110" y="533" width="16" height="16"/>
   <object name="Bronze" type="Coin_Bronze" x="6069" y="531" width="16" height="16"/>
   <object name="Golbez" type="Golbez" x="5196" y="436" width="32" height="32"/>
-  <object name="Golbez" type="Golbez" x="5471" y="559" width="32" height="32"/>
+  <object name="Golbez" type="Golbez" x="5454" y="556" width="32" height="32"/>
   <object name="Golbez" type="Golbez" x="5769" y="455" width="32" height="32"/>
   <object name="Golbez" type="Golbez" x="6104" y="557" width="32" height="32"/>
+  <object name="DeadlyArea" type="DeadlyArea" x="5712" y="760" width="675" height="42"/>
+  <object name="Launcher" type="Launcher" x="5593" y="781" width="100" height="35">
+   <properties>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(100, -1000)"/>
+   </properties>
+  </object>
+  <object name="S1" type="SpawnPoint" x="5623" y="740" width="32" height="32"/>
+  <object name="Tutorial_S1" type="SpritelessLevelChanger" x="5192" y="763" width="241" height="39">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Tutorial_S1"/>
+   </properties>
+  </object>
+  <object name="DeadlyArea" type="DeadlyArea" x="5453" y="761" width="125" height="39"/>
+  <object name="Gold" type="Coin_Gold" x="5251" y="719" width="16" height="16"/>
+  <object name="StartPoint" type="SpawnPoint" x="97" y="690" width="32" height="32"/>
  </objectgroup>
 </map>

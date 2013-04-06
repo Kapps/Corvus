@@ -204,12 +204,12 @@ namespace CorvEngine.Scenes {
 				var StartTile = Camera.Active.Position / TileSize;
 				var EndTile = (Camera.Active.Position + Camera.Active.Size) / TileSize;
 				var SpriteBatch = CorvBase.Instance.SpriteBatch;
-                int asd = 0;
+               
 				int StartX = Math.Max((int)StartTile.X, 0);
 				int StartY = Math.Max((int)StartTile.Y, 0);
 				int EndX = Math.Min((int)(EndTile.X + 0.5f), (int)TilesInMap.X - 1);
 				int EndY = Math.Min((int)(EndTile.Y + 0.5f), (int)TilesInMap.Y - 1);
-				foreach(var Layer in _Layers) {asd++;
+				foreach(var Layer in _Layers) {
 					for(int y = StartY; y <= EndY; y++) {
 						for(int x = StartX; x <= EndX; x++) {
 							Tile Tile = Layer.GetTile(x, y);

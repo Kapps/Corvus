@@ -6,3 +6,13 @@
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Trigger)
+
+SpritelessLevelChanger
+	PhysicsComponent
+		GravityCoefficient: 0
+		HorizontalDragCoefficient: 0
+	LevelChangeComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Trigger)
+	

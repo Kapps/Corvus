@@ -104,14 +104,14 @@ namespace Corvus.GameStates
 
         void newGameBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ReloadScenes(false);
+            CorvusGame.Instance.SceneManager.ReloadScenes(true);
             CorvusGame.Instance.SceneManager.ChangeScene("Tutorial", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
         void arenaModeBtn_Selected(object sender, EventArgs e)
         {
-            CorvusGame.Instance.SceneManager.ReloadScenes(false);
+            CorvusGame.Instance.SceneManager.ReloadScenes(true);
             CorvusGame.Instance.SceneManager.ChangeScene("Arena", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }

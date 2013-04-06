@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="50" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Grass2, 0.25, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="805" name="trees_1" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/trees_1.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Background2" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsCX42IF/kdjgaJN2kqqqqvrqqqqq+u4B80Zte1gbAAA=
+  </data>
+ </layer>
+ <layer name="Background1a" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VQQrCMABE0UnpGUqXtnpGqz1IrR5FexL1HoK6cBYuWiiILhop/8FACAkZCCESAAAAPlknUuVsnK1TJ/G6ND5757TO3jlE7AL8G94qMB3e27xxvwAQzzFIJ6cLsZtIZ3e4ONeJuyxTaZUO5+7u8HCevS75+09YeG3hlL09tzA+/lb2+1bM1AsLubdmWBsAAA==
+  </data>
+ </layer>
+ <layer name="Background1" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3St07GMBRAYYeIR6Hu1Jm+U3fqTt2pO/VJgAHeipnDgAQ/CbGdWyKBpaMske6na4fw85R9PlWdv2x5LUJ4Kbph6a/ZibXlYyczHbA0OawsMQ4ry29vxNISuxNtS4pD2xJ7N9qW1J1oWXIcGpZch4Yl9Y1oWVJ28sh/T/T85f8u3I2kRcIhZWnzRiQtUjtpa5F0tLVI3U1bi/ROci0ajhyLliPHIv1Gci2aO0mxaDtSLJp3k2Kx2EmMxcrRZLF0NFks3kiMxXondRYPR5XFy1FlsX4jvZbPr+dOei2eDs0zUIYwSEM0TCM0WvpYxpg7ThM0SVM07WSZZe4czdMCLdKSk2WZuSu0Smu0ThtOlk3mbtE27dAu7TlZ9pl7QId0RMd0Imx5K75Xd06Ze0bndEGXdOW0l2vm3tAt3dE9PThZ/k/eeQe+I2BNWBsAAA==
+  </data>
+ </layer>
+ <layer name="Main" width="35" height="50">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XsQ2AMAwAQa/BKIRdWIXVQ4o0EVDGkThL359cWHKJiDJ0RM6MDhYWFhYWllUs5921iCVrNywsLCwsLCwsLCwsLL2MH+nNkrEbFhaW/1javdsm9mXZJ8fyXAXJrMWSWBsAAA==
+  </data>
+ </layer>
+ <layer name="Foreground1" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DsQ0AAAgDoPr/v86OPuBkICEBAAAAAAD4oWvDtQGVYOekWBsAAA==
+  </data>
+ </layer>
+ <layer name="Foreground2" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BgQAAAADDoPlTH+ECVQEAAAAAAADPAONT2v5YGwAA
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="35" height="50">
+  <object name="Level1" type="LevelChanger" x="1046" y="1422" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Level1"/>
+   </properties>
+  </object>
+  <object name="StartPoint" type="SpawnPoint" x="441" y="26" width="60" height="46"/>
+ </objectgroup>
+</map>

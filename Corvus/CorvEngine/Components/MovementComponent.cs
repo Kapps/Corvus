@@ -149,7 +149,7 @@ namespace CorvEngine.Components {
 		/// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
 		/// </summary>
 		public void Jump(bool allowMulti) {
-			if(PhysicsComponent.IsGrounded || allowMulti)
+			if(PhysicsComponent.IsGrounded || (allowMulti))
 				PhysicsComponent.VelocityY = -MaxJumpSpeed;
 		}
 

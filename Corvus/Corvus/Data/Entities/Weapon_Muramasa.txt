@@ -24,7 +24,7 @@ Properties
 		IntModifier: 1
 		CritChance: 0.5
 		CritDamage: 0.25
-		MeleeAttackRange: Vector(50, 20)
+		MeleeAttackRange: Vector(40, 20)
 		AttackSpeed: 200
 		BlockDamageReduction: 0.4
 		Knockback: 45

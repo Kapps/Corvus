@@ -97,16 +97,20 @@ namespace CorvEngine.Scenes {
 			}
 
 			foreach(var Path in Paths) {
-				var Entity = Entities.Single(c => c.Name.Equals(Path.EntityName, StringComparison.InvariantCultureIgnoreCase));
-				var PathComponent = Entity.GetComponent<PathComponent>();
-				if(PathComponent == null) {
-					PathComponent = new PathComponent();
-					Entity.Components.Add(PathComponent);
-				}
-				if(PathComponent.Nodes != null)
-					PathComponent.Nodes.Clear();
-				foreach(var Node in Path.Nodes)
-					PathComponent.AddNode(Node);
+				var Entity = Entities.Where(c => c.Name.Equals(Path.EntityName, StringComparison.InvariantCultureIgnoreCase));
+                foreach (var e in Entity)
+                {
+                    var PathComponent = e.GetComponent<PathComponent>();
+                    if (PathComponent == null)
+                    {
+                        PathComponent = new PathComponent();
+                        e.Components.Add(PathComponent);
+                    }
+                    if (PathComponent.Nodes != null)
+                        PathComponent.Nodes.Clear();
+                    foreach (var Node in Path.Nodes)
+                        PathComponent.AddNode(Node);
+                }
 			}
 			return Entities;
 		}

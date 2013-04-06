@@ -71,7 +71,7 @@ CollisionProperties
 	#remove the ones you don't want
 	CollisionKnockbackComponent
 		UseAttributes: false
-		Knockback: 120
+		Knockback: 100
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	CollisionDamageComponent
@@ -112,7 +112,7 @@ Golbez: Properties, CollisionProperties, Required
 		AwardedExperience: 8
 		DropsItem: true
 		DroppableItems: Collection(Might, Vigor)
-		DropRate: 0.5
+		DropRate: 0.2
 		DropCoefficient: 1
 		CoinsValue: 3
 
@@ -158,20 +158,36 @@ DarkKnight: Properties, CollisionProperties, Required
 		MeleeAttackRange: Vector(50, 35)
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	AIComponent
-		ReactionRange: Vector(300, 25)
+		ReactionRange: Vector(450, 25)
 		FleeingEnabled: false
 	CombatPropertiesComponent
 		EnemyWeaponName: Sprites/Equipment/IronLance
+		HitDelay: 0.75
 	DestroyableObjectComponent
 		AwardedExperience: 15
 		DropsItem: true
 		DroppableItems: Collection(Might, Vigor, HealLow)
-		DropRate: 0.5
+		DropRate: 0.2
 		DropCoefficient: 2
 		CoinsValue: 6
 	CollisionDamageComponent
 		Damage: 30
 
+JumboDarkKnight : DarkKnight
+	SpriteComponent (Sprite)
+		Color: Color(Red)
+	MovementComponent
+		WalkSpeed: 175
+		JumpSpeed: 400
+	AttributesComponent
+		MaxHealth: 140
+		Strength: 55
+		MeleeAttackRange: Vector(50, 35)
+	AIComponent
+		ReactionRange: Vector(600, 25)
+	DestroyableObjectComponent
+		AwardedExperience: 45
+		CoinsValue: 25
 
 ## Cecil Harveys ##
 
@@ -183,6 +199,7 @@ CecilHarvey: Properties, CollisionProperties, Required
 		OnHitSound: Hit2
 	MovementComponent
 		WalkSpeed: 290
+		JumpSpeed: 500
 	AttributesComponent
 		MaxHealth: 50
 		AttackSpeed: 350
@@ -204,7 +221,7 @@ CecilHarvey: Properties, CollisionProperties, Required
 		AwardedExperience: 11
 		DropsItem: true
 		DroppableItems: Collection(Might, Vigor, HealLow)
-		DropRate: 0.5
+		DropRate: 0.2
 		DropCoefficient: 2.5
 		CoinsValue: 3
 	CollisionDamageComponent
@@ -265,7 +282,7 @@ Zemus: Properties, CollisionProperties, Required
 		DropsItem: true
 		#remove these if it doesn't drop items
 		DroppableItems: Collection(Might, Vigor, ManaLow, HealMid)
-		DropRate: 0.5
+		DropRate: 0.2
 		DropCoefficient: 1.5
 		CoinsValue: 8
 	CollisionDamageComponent

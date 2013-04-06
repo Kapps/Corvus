@@ -1,0 +1,8 @@
+﻿Launcher
+	PhysicsComponent
+		GravityCoefficient: 0
+		HorizontalDragCoefficient: 0
+	LauncherComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Enemy)
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Trigger)

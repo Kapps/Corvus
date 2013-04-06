@@ -303,7 +303,7 @@ namespace Corvus.Components {
         {
             //For each entity that is contained within our attack rectangle, and that isn't us, apply damage.
             //The attack rectange is calculated using our centre, range, and half our height.
-            int MeleeAttackRange = (int)AttributesComponent.MeleeAttackRange.X; //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
+            int MeleeAttackRange = (int)(AttributesComponent.MeleeAttackRange.X + Parent.Size.X/2); //This is the number we use to calculate our attack rectangle's start x position and width. So basically, it's horizontal range.
             int attackHeight = (int)AttributesComponent.MeleeAttackRange.Y; //This is the number we use to calculate our attack rectangle's start y position and height. So basically, it's vertical range.
 
             Rectangle attackRectangle;

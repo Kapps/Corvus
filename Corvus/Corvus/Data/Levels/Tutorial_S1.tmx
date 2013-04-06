@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Grass2, 0, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="805" name="MonsterBoy" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/MonsterBoy.png" width="960" height="896"/>
+ </tileset>
+ <tileset firstgid="1645" name="TutorialIcons" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/TutorialIcons.png" width="384" height="1600"/>
+ </tileset>
+ <layer name="Background2" width="35" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAwDoM6/gNqtjR2Q0EuqqqrqqwPL7FhyrA0AAA==
+  </data>
+ </layer>
+ <layer name="Background1" width="35" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgoC2YxkhjC4gEg8UdMDDY3DNYAChcxFkH2hWI+DEdBG4p4mBgKOYYaFdAQB3QHfU0dssUZuLVDkQ+wpY+Byo/I6fPqSSE2ygYBaNgFIyCUTAKhgYAAOoLPoSsDQAA
+  </data>
+ </layer>
+ <layer name="Main" width="35" height="25">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC72XUQ7DIAhA/bAX2Jb0GrNJr7CT7CQ7s+57MSsZoSBg7Uj4KuIDAW0IP7lMIVyJ3qawE87uyJq0qWbP+b0PZFkYWw8L8KSDLJLvHO1+LTmysHhyYmHh1nJ7UBtvTqwscF7JEavkt1XjFhZNuFg5v9guIR3JYq1b6RteX+JX3/F/LPPUXg9cXqYeltXA4jm3vOXT6oPGXBrrJVtJvbNZ25PW8ij1smB77Q7i+KmOYgEeKU/SrHuhOqc1SPvAw/IgecJcVHLczwKtnyws0OtPZk/MmIW6BT9SbwKrhWUVGECAUTrDem41Hu3+tfZua77NDCtwLSgejcXTs4WpAUveqrTeArTePT3LsfXOPemN0erZM9R6l/TkSVM6+6SccKL9e5y170iW3vfXB7LJiRGsDQAA
+  </data>
+ </layer>
+ <layer name="Foreground1" width="35" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAUjEYiwDoy9KSwDY+9gAOIEwtydjnFiSsCu1AFIH64DlCaxgWQcboHFIaG4pCVYAM1DsDgkFJejYBSMglEwCkbBKBi6AAAch5l/rA0AAA==
+  </data>
+ </layer>
+ <layer name="Foreground2" width="35" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAHgzh1CN06wNAAA=
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="35" height="25">
+  <object name="StartPoint" type="SpawnPoint" x="328" y="29" width="32" height="32"/>
+  <object name="Launcher" type="Launcher" x="741" y="5" width="58" height="313">
+   <properties>
+    <property name="LauncherComponent.LaunchSound" value="Explode4"/>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(0, -1100)"/>
+   </properties>
+  </object>
+  <object name="Tutorial" type="SpritelessLevelChanger" x="701" y="1" width="133" height="38">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="Tutorial"/>
+    <property name="LevelChangeComponent.SpawnID" value="S1"/>
+   </properties>
+  </object>
+  <object name="Gold" type="Coin_Gold" x="478" y="231" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="515" y="232" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="560" y="230" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="599" y="229" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="635" y="231" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="666" y="231" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="699" y="229" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="480" y="261" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="517" y="262" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="563" y="262" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="603" y="261" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="635" y="259" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="670" y="260" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="700" y="258" width="16" height="16"/>
+  <object name="Trident" type="Trident" x="579" y="311" width="32" height="32"/>
+ </objectgroup>
+</map>

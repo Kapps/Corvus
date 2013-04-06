@@ -153,6 +153,7 @@
     <Compile Include="Components\Gameplay\StatusEffects\Weakness.cs" />
     <Compile Include="Components\Gameplay\WeaponSwingAnimation.cs" />
     <Compile Include="Components\HealthBarComponent.cs" />
+    <Compile Include="Components\LauncherComponent.cs" />
     <Compile Include="Components\LevelChangeComponent.cs" />
     <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Components\ProjectileComponent.cs" />
@@ -183,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Entities\Enemies.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Entities\Misc_Launcher.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Entities\Misc_SpawnPoint.txt">
@@ -344,6 +348,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Data\Levels\A1_S1.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\A1_S2.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Levels\Arena.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -359,6 +369,10 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Data\Levels\Tutorial.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\Levels\Tutorial_S1.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

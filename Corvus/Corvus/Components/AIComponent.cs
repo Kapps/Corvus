@@ -139,7 +139,8 @@ namespace Corvus.Components
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
-
+            if (this.Parent.Name == "JDK")
+            { }
             if (AIEnabled)
             {
                 //Begin process of death if entity has run out of health.
@@ -427,11 +428,11 @@ namespace Corvus.Components
         }
 
         //For the two functions below, why the +25?
-        //Some day I'll figure it out.
+        //Because we didn't specify where the attack range was measure from. 
 
         private bool EntityWithinAttackRange(Entity e)
         {
-            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) <= AttributesComponent.MeleeAttackRange.X + 25)
+            if (Math.Abs(Parent.Location.Center.X - e.Location.Center.X) <= AttributesComponent.MeleeAttackRange.X + Parent.Size.X / 2)
                 return true;
             else
                 return false;
@@ -439,7 +440,7 @@ namespace Corvus.Components
 
         private bool WithinEntitysAttackRange(Entity e)
         {
-            if (Math.Abs(e.Location.Center.X - Parent.Location.Center.X) <= AttributesComponent.MeleeAttackRange.X + 25)
+            if (Math.Abs(e.Location.Center.X - Parent.Location.Center.X) <= AttributesComponent.MeleeAttackRange.X + Parent.Size.X / 2)
                 return true;
             else
                 return false;

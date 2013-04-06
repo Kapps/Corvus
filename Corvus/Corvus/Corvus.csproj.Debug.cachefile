@@ -84,7 +84,20 @@ Content\Sprites\Enemies\EnemyZemus.xnb
 Content\Tiles\block 32x32.xnb
 Content\Tiles\TutorialIcons.xnb
 Content\Interface\PausedBackgroundalt.xnb
-Content\Tiles\NightBG.xnb
+Content\Tiles\sky3.xnb
+Content\Tiles\tree-variations.xnb
+Content\Tiles\mountain_landscape_23.xnb
+Content\Tiles\wood_tileset_3.xnb
+Content\Sprites\Misc\Shield_Yellow.xnb
+Content\Sprites\Misc\Shield_Yellow2.xnb
+Content\Tiles\BGColors.xnb
+Content\Tiles\MonsterBoy.xnb
+Content\Tiles\object- layer_1.xnb
+Content\Tiles\Some_Plants.xnb
+Content\Tiles\town_0.xnb
+Content\Tiles\trees_1.xnb
+Content\Tiles\trees_plants_0.xnb
+Content\Tiles\trees_plants_rocks_0.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
@@ -151,16 +164,11 @@ Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
-Content\Tiles\sky3.xnb
-Content\Tiles\tree-variations.xnb
-Content\Tiles\mountain_landscape_23.xnb
-Content\Tiles\wood_tileset_3.xnb
-Content\Sprites\Misc\Shield_Yellow.xnb
-Content\Sprites\Misc\Shield_Yellow2.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
 Data\Entities\Enemies.txt
+Data\Entities\Misc_Launcher.txt
 Data\Entities\Misc_SpawnPoint.txt
 Data\Entities\Misc_AreaOfEffect.txt
 Data\Entities\Coin_Bronze.txt
@@ -203,5 +211,8 @@ Data\Levels\BasicLevel.tmx
 Data\Levels\A1.tmx
 Data\Levels\Level1.tmx
 Data\Levels\Level2.tmx
+Data\Levels\A1_S1.tmx
+Data\Levels\A1_S2.tmx
 Data\Levels\Arena.tmx
 Data\Levels\Tutorial.tmx
+Data\Levels\Tutorial_S1.tmx
