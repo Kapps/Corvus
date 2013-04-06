@@ -115,27 +115,51 @@ Golbez: Properties, CollisionProperties, Required
 		DropRate: 0.2
 		DropCoefficient: 1
 		CoinsValue: 3
+	CollisionDamageComponent
+		Damage: 20
 
 #Basically your Goomba of our game
 GoombaGolbez: Golbez
 	SpriteComponent (Sprite)
 		Color: Color(Brown)
 	AIComponent
-		ReactionRange: Vector(0, 0)
 		FleeingEnabled: false
 	AttributesComponent
-		MaxHealth: 20
-		MeleeAttackRange: Vector(0, 0)
+		MaxHealth: 30
 	CombatPropertiesComponent
 		EnemyWeaponName: Sprites/Equipment/IronSword
-		EnemyWeaponOffset: Vector(0, 0)
 	DestroyableObjectComponent
 		AwardedExperience: 5
 		DropsItem: false
 		CoinsValue: 1
 	CollisionDamageComponent
-		UseAttributes: true
+		Damage: 15
 
+JumboGolbez: Golbez
+	SpriteComponent (Sprite)
+		Color: Color(Orange)
+	AIComponent
+		FleeingEnabled: false
+	AttributesComponent
+		MaxHealth: 30
+	AttributesComponent
+		MaxHealth: 100
+		Strength: 30
+		Knockback: 50
+		CritChance: 0
+		CritDamage: 1
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+	DestroyableObjectComponent
+		AwardedExperience: 12
+		DropsItem: true
+		DroppableItems: Collection(Might, Vigor, Fleet)
+		DropRate: 0.2
+		DropCoefficient: 1
+		CoinsValue: 7
+	CollisionDamageComponent
+		Damage: 20
+	MovementComponent
+		IsKnockbackResistant: true
 
 ## DarkKnights	##
 
@@ -149,8 +173,8 @@ DarkKnight: Properties, CollisionProperties, Required
 		WalkSpeed: 150
 		JumpSpeed: 400
 	AttributesComponent
-		MaxHealth: 75
-		AttackSpeed: 750
+		MaxHealth: 80
+		AttackSpeed: 700
 		Knockback: 100
 		Strength: 40
 		Intelligence: 5
@@ -159,6 +183,7 @@ DarkKnight: Properties, CollisionProperties, Required
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
 	AIComponent
 		ReactionRange: Vector(450, 25)
+		DeathEnabled: false
 		FleeingEnabled: false
 	CombatPropertiesComponent
 		EnemyWeaponName: Sprites/Equipment/IronLance
@@ -179,15 +204,19 @@ JumboDarkKnight : DarkKnight
 	MovementComponent
 		WalkSpeed: 175
 		JumpSpeed: 400
+		IsKnockbackResistant: true
 	AttributesComponent
-		MaxHealth: 140
+		MaxHealth: 150
 		Strength: 55
 		MeleeAttackRange: Vector(50, 35)
 	AIComponent
 		ReactionRange: Vector(600, 25)
+		FleeingEnabled: false
 	DestroyableObjectComponent
 		AwardedExperience: 45
 		CoinsValue: 25
+	CollisionDamageComponent
+		Damage: 30
 
 ## Cecil Harveys ##
 

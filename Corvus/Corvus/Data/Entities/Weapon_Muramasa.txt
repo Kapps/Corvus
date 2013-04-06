@@ -16,13 +16,13 @@ Properties
 		AttackSound: SwordSwing
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
-		Strength: 15
+		Strength: 5
 		StrModifier: 1
 		Dexterity: 0
 		DexModifier: 1
 		Intelligence: 0
 		IntModifier: 1
-		CritChance: 0.5
+		CritChance: 0.33
 		CritDamage: 0.25
 		MeleeAttackRange: Vector(40, 20)
 		AttackSpeed: 200

@@ -20,22 +20,22 @@ Properties
 		DyingSound: Explode1
 		Level: 1
 		CurrentExperience: 0
-		ExperienceForNextLevel: 20
-		RequiredExperienceCurve: 2.1
+		ExperienceForNextLevel: 30
+		RequiredExperienceCurve: 2.5
 		HealthGrowth: 20
 		ManaGrowth: 5
 		StrGrowth: 4
-		DexGrowth: 3
+		DexGrowth: 1
 		IntGrowth: 2
 	AttributesComponent
-		MaxHealth: 150
+		MaxHealth: 200
 		MaxMana: 50
 		ManaRegen: 0.025
 		Strength: 25
-		Dexterity: 20
+		Dexterity: 10
 		Intelligence: 10
 		CritChance: 0
-		CritDamage: 1.5
+		CritDamage: 1.25
 	EquipmentComponent
 		UseWeaponBonuses: true 
 		DefaultWeaponName: IronSword

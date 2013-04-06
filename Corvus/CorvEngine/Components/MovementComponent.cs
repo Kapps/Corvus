@@ -23,6 +23,16 @@ namespace CorvEngine.Components {
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
         private bool _IsWalking = false;
+        private bool _IsKnockbackResistant = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this entity is immune to knockback.
+        /// </summary>
+        public bool IsKnockbackResistant
+        {
+            get { return _IsKnockbackResistant; }
+            set { _IsKnockbackResistant = value; }
+        }
 
         /// <summary>
         /// Gets or sets the maximum speed that this Entity can walk at multiplied by the walk speed modifier.
@@ -158,6 +168,9 @@ namespace CorvEngine.Components {
         /// </summary>
         public void Knockback(float distance, int direction)
         {
+            if (IsKnockbackResistant)
+                return;
+
             //TODO: find an actually formula for this.
             float t = 0.100f;//s
             float vel = distance / t;

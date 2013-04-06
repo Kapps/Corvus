@@ -93,7 +93,6 @@
  </layer>
  <objectgroup name="Objects" width="200" height="40">
   <object name="NCH1" type="NinjaCecilHarvey" x="924" y="822" width="32" height="32"/>
-  <object name="Windball" type="Windball" x="2171" y="786" width="32" height="32"/>
   <object name="CH1" type="CecilHarvey" x="1695" y="533" width="32" height="32"/>
   <object name="Golbez" type="Golbez" x="2508" y="652" width="32" height="32"/>
   <object name="Golbez" type="Golbez" x="2578" y="657" width="32" height="32"/>
@@ -151,19 +150,16 @@
   <object name="Bronze" type="Coin_Bronze" x="3466" y="972" width="16" height="16"/>
   <object name="Bronze" type="Coin_Bronze" x="3333" y="922" width="16" height="16"/>
   <object name="DK" type="Golbez" x="2710" y="1011" width="32" height="32"/>
-  <object name="NCH3" type="NinjaCecilHarvey" x="3007" y="600" width="32" height="32">
+  <object name="NCH3" type="NinjaCecilHarvey" x="2841" y="600" width="32" height="32">
    <properties>
     <property name="MovementComponent.JumpSpeed" value="700"/>
    </properties>
-  </object>
-  <object name="NCH3" type="Path" x="2837" y="613">
-   <polyline points="0,0 31,0 444,-92 611,-89"/>
   </object>
   <object name="NCH2" type="Path" x="3053" y="998">
    <polyline points="0,0 -170,-5 -333,26 -447,29 -624,76 -722,74"/>
   </object>
   <object name="DK" type="Golbez" x="3231" y="1005" width="32" height="32"/>
-  <object name="DK" type="DarkKnight" x="3883" y="379" width="32" height="32"/>
+  <object name="DK4" type="DarkKnight" x="3883" y="379" width="32" height="32"/>
   <object name="DK" type="DarkKnight" x="3630" y="983" width="32" height="32"/>
   <object name="Launcher" type="Launcher" x="3675" y="1172" width="132" height="46">
    <properties>
@@ -322,6 +318,10 @@
     <property name="LauncherComponent.LaunchVelocity" value="Vector(0, -1500)"/>
    </properties>
   </object>
-  <object name="StartPoint" type="SpawnPoint" x="244" y="1035" width="32" height="32"/>
+  <object name="NCH3" type="Path" x="3444" y="524">
+   <polyline points="0,0 -594,97"/>
+  </object>
+  <object name="StartPoint" type="SpawnPoint" x="221" y="1042" width="32" height="32"/>
+  <object name="Windball" type="Windball" x="1945" y="1047" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -139,8 +139,6 @@ namespace Corvus.Components
         protected override void OnUpdate(GameTime Time)
         {
             base.OnUpdate(Time);
-            if (this.Parent.Name == "JDK")
-            { }
             if (AIEnabled)
             {
                 //Begin process of death if entity has run out of health.

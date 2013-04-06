@@ -6,7 +6,7 @@ Properties
 	StatusEffectPropertiesComponent
 		EffectType: Fleet
 		BaseValue: 0
-		Intensity: 0.2
+		Intensity: 0.6
 		Duration: 30
 
 #do not modify

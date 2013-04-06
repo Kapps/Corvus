@@ -243,7 +243,8 @@ namespace Corvus.Components {
 
                     //Apply knockback.
                     var mc = attackedEntity.GetComponent<MovementComponent>();
-                    mc.Knockback(AttributesComponent.TotalKnockback, CorvusExtensions.GetSign(MovementComponent.CurrentDirection));
+                    float myx = attackedEntity.Position.X - Parent.Position.X;
+                    mc.Knockback(AttributesComponent.TotalKnockback, (myx > 0) ? 1 : -1);
                     
                     //Applies a status effect to the attacked enemy, if they can be affected.
                     var enemySEC = attackedEntity.GetComponent<StatusEffectsComponent>();

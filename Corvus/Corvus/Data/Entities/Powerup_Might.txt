@@ -6,7 +6,7 @@ Properties
 	StatusEffectPropertiesComponent
 		EffectType: Might
 		BaseValue: 0
-		Intensity: 0.5
+		Intensity: 0.25
 		Duration: 30
 
 #do not modify

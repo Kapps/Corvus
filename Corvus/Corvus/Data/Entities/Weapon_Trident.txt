@@ -24,7 +24,7 @@ Properties
 		CritChance: 0.15
 		CritDamage: 0.2
 		MeleeAttackRange: Vector(50, 20)
-		AttackSpeed: 400
+		AttackSpeed: 450
 		BlockDamageReduction: 0.45
 		Knockback: 100
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)

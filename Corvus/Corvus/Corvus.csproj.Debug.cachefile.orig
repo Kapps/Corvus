@@ -84,6 +84,27 @@ Content\Sprites\Enemies\EnemyGolbez.xnb
 Content\Sprites\Enemies\EnemyKainHighwind.xnb
 Content\Sprites\Enemies\EnemyZemus.xnb
 Content\Tiles\block 32x32.xnb
+<<<<<<< HEAD
+Content\Tiles\TutorialIcons.xnb
+Content\Interface\PausedBackgroundalt.xnb
+Content\Tiles\sky3.xnb
+Content\Tiles\tree-variations.xnb
+Content\Tiles\mountain_landscape_23.xnb
+Content\Tiles\wood_tileset_3.xnb
+Content\Sprites\Misc\Shield_Yellow.xnb
+Content\Sprites\Misc\Shield_Yellow2.xnb
+Content\Tiles\BGColors.xnb
+Content\Tiles\MonsterBoy.xnb
+Content\Tiles\object- layer_1.xnb
+Content\Tiles\Some_Plants.xnb
+Content\Tiles\town_0.xnb
+Content\Tiles\trees_1.xnb
+Content\Tiles\trees_plants_0.xnb
+Content\Tiles\trees_plants_rocks_0.xnb
+Content\Fonts\testfont.xnb
+Content\Fonts\DamageFont.xnb
+=======
+>>>>>>> 73987870c97f0273ae1a11dba313f44e5619d05f
 Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
@@ -150,13 +171,21 @@ Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
 <<<<<<< HEAD
 =======
-Content\Fonts\ArenaFont.xnb
-Content\Tiles\block 32x32.xnb
->>>>>>> 62f3db71e0c6433dea700a0aa1c2077f1cee4723
+Content\Tiles\TutorialIcons.xnb
+Content\Interface\PausedBackgroundalt.xnb
+Content\Tiles\NightBG.xnb
+Content\Tiles\sky3.xnb
+Content\Tiles\tree-variations.xnb
+Content\Tiles\mountain_landscape_23.xnb
+Content\Tiles\wood_tileset_3.xnb
+Content\Sprites\Misc\Shield_Yellow.xnb
+Content\Sprites\Misc\Shield_Yellow2.xnb
+>>>>>>> 73987870c97f0273ae1a11dba313f44e5619d05f
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
 Data\Entities\Enemies.txt
+Data\Entities\Misc_Launcher.txt
 Data\Entities\Misc_SpawnPoint.txt
 Data\Entities\Misc_AreaOfEffect.txt
 Data\Entities\Coin_Bronze.txt
@@ -195,14 +224,12 @@ Data\Entities\Weapon_PoisonBomb.txt
 Data\Entities\Weapon_ShortBow.txt
 Data\Entities\Weapon_Trident.txt
 Data\Entities\Weapon_WindBall.txt
-Data\Levels\TestLevel.tmx
 Data\Levels\BasicLevel.tmx
-Data\Levels\Dickoleanders.tmx
 Data\Levels\A1.tmx
-<<<<<<< HEAD
 Data\Levels\Level1.tmx
-=======
->>>>>>> 62f3db71e0c6433dea700a0aa1c2077f1cee4723
+Data\Levels\Level2.tmx
+Data\Levels\A1_S1.tmx
+Data\Levels\A1_S2.tmx
 Data\Levels\Arena.tmx
-Data\Levels\SmallLevel.tmx
 Data\Levels\Tutorial.tmx
+Data\Levels\Tutorial_S1.tmx
