@@ -83,6 +83,6 @@
   <object name="Gold" type="Coin_Gold" x="635" y="259" width="16" height="16"/>
   <object name="Gold" type="Coin_Gold" x="670" y="260" width="16" height="16"/>
   <object name="Gold" type="Coin_Gold" x="700" y="258" width="16" height="16"/>
-  <object name="Trident" type="Trident" x="579" y="311" width="32" height="32"/>
+  <object name="ArcticLance" type="ArcticLance" x="579" y="311" width="32" height="32"/>
  </objectgroup>
 </map>

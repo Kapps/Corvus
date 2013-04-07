@@ -25,8 +25,8 @@ Properties
 	AttributesComponent
 		ManaCost: 5		#Only used if it consumes mana. 
 		Strength: 5
-		StrModifier: 1.20
-		Dexterity: 10
+		StrModifier: 1.1
+		Dexterity: 7
 		Intelligence: 8
 		IntModifier: 1.2
 		CritChance: 0.03

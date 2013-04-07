@@ -21,7 +21,7 @@ Properties
 		Level: 1
 		CurrentExperience: 0
 		ExperienceForNextLevel: 30
-		RequiredExperienceCurve: 2.5
+		RequiredExperienceCurve: 1.75
 		HealthGrowth: 20
 		ManaGrowth: 5
 		StrGrowth: 4

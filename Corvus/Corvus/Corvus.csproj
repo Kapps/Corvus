@@ -361,10 +361,10 @@
     <Content Include="Data\Levels\A1.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Levels\Level1.tmx">
+    <Content Include="Data\Levels\A2_Bottom.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Levels\Level2.tmx">
+    <Content Include="Data\Levels\A3.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

@@ -128,7 +128,7 @@
   <object name="DeadlyArea" type="DeadlyArea" x="3039" y="792" width="158" height="5"/>
   <object name="Level2" type="LevelChanger" x="6356" y="660" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="Level2"/>
+    <property name="LevelChangeComponent.NextLevel" value="A3"/>
    </properties>
   </object>
   <object name="Sit1" type="GaiaBlade" x="374" y="384" width="22" height="22"/>

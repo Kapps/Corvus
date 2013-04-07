@@ -209,8 +209,8 @@ Data\Entities\Weapon_Trident.txt
 Data\Entities\Weapon_WindBall.txt
 Data\Levels\BasicLevel.tmx
 Data\Levels\A1.tmx
-Data\Levels\Level1.tmx
-Data\Levels\Level2.tmx
+Data\Levels\A2_Bottom.tmx
+Data\Levels\A3.tmx
 Data\Levels\A1_S1.tmx
 Data\Levels\A1_S2.tmx
 Data\Levels\Arena.tmx

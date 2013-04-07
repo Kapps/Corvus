@@ -100,12 +100,12 @@
   <object name="StartPoint" type="SpawnPoint" x="2250" y="1000" width="32" height="32"/>
   <object name="L1" type="LevelChanger" x="2362" y="1512" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="Level1"/>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Bottom"/>
    </properties>
   </object>
   <object name="L2" type="LevelChanger" x="2463" y="1515" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="Level2"/>
+    <property name="LevelChangeComponent.NextLevel" value="A3"/>
    </properties>
   </object>
   <object name="A1" type="LevelChanger" x="2265" y="1512" width="32" height="32">

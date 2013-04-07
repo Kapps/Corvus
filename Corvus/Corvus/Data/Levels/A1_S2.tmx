@@ -63,7 +63,7 @@
  <objectgroup name="Objects" width="35" height="50">
   <object name="Level1" type="LevelChanger" x="1046" y="1422" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="Level1"/>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Bottom"/>
    </properties>
   </object>
   <object name="StartPoint" type="SpawnPoint" x="441" y="26" width="60" height="46"/>

@@ -71,7 +71,7 @@ CollisionProperties
 	#remove the ones you don't want
 	CollisionKnockbackComponent
 		UseAttributes: false
-		Knockback: 100
+		Knockback: 60
 		DisposeOnCollision: false
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 	CollisionDamageComponent
@@ -217,6 +217,11 @@ JumboDarkKnight : DarkKnight
 		CoinsValue: 25
 	CollisionDamageComponent
 		Damage: 30
+	CollisionKnockbackComponent
+		UseAttributes: false
+		Knockback: 100
+		DisposeOnCollision: false
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 
 ## Cecil Harveys ##
 
@@ -227,7 +232,7 @@ CecilHarvey: Properties, CollisionProperties, Required
 	DamageComponent
 		OnHitSound: Hit2
 	MovementComponent
-		WalkSpeed: 290
+		WalkSpeed: 270
 		JumpSpeed: 500
 	AttributesComponent
 		MaxHealth: 50
