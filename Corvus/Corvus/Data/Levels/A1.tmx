@@ -327,6 +327,6 @@
     <property name="LevelChangeComponent.NextLevel" value="A1_S2"/>
    </properties>
   </object>
-  <object name="StartPoint" type="SpawnPoint" x="6201" y="1050" width="32" height="32"/>
+  <object name="StartPoint" type="SpawnPoint" x="236" y="1031" width="32" height="32"/>
  </objectgroup>
 </map>
