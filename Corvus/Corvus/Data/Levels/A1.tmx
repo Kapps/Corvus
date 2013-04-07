@@ -321,7 +321,12 @@
   <object name="NCH3" type="Path" x="3444" y="524">
    <polyline points="0,0 -594,97"/>
   </object>
-  <object name="StartPoint" type="SpawnPoint" x="221" y="1042" width="32" height="32"/>
   <object name="Windball" type="Windball" x="1945" y="1047" width="32" height="32"/>
+  <object name="Level1" type="SpritelessLevelChanger" x="6228" y="1182" width="152" height="56">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A1_S2"/>
+   </properties>
+  </object>
+  <object name="StartPoint" type="SpawnPoint" x="6201" y="1050" width="32" height="32"/>
  </objectgroup>
 </map>
