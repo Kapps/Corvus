@@ -39,7 +39,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZR07DUBgA4QihXIArABeAYwFr4CIcgV4vQO+99957rysGBUteZJGINOIZ6dtESvQU/7aT51jMLPc1xfO9AjOzRM1ejyxLlZfmewVWjFU7V2ZmZkXZz/+SFrSiDe3oQCe60I0e9KLP/zBmlsf6uQYNYBBDGMYIRjGGcUxgElNeryzFppmVGcwmmZklXlvGClax5lxZFjos0LkK9hdrWF8t6jK0zvA5N4d5LGAx7jkXhYL9xXqObQMaM3SM1/mcDWxiC9vYwS72sI+DeOJ8O4rwXJW5v5tWx8zKCU5xhnNc4BJXuMYNbnEX4bmy9LpnVh7wiCc84wWveMM7PvCJL+cqaeFnoH99Hlr1+/5Sr4//pmzdy8LPQAvpeWgFa6ksoPWYWfTyHplewR5KMVfiTOSk8Pcc7KGkmr8fzMzMLGp9AyJflXeYOgAA
+   H4sIAAAAAAAAC+3ZSU4CQRhAYWIIF/AK6gXwWOpavYhHEOfhAorgrBvneYiznsCdz2glvdAEIj3Y/b7kbUggFfJ3NVSXSlLyxippr0CSvoy7HykmPeW0V6A86neuJEnKpc//JTWaoEmaommaoVmao3laoEX/w0hK0RJ70DLVaYUa1KRVWqN12qBN2nK/Uou2mZUd2v1hZvZ4bZ8O6JCOnCvF4DajcxXOFwdY3yANdWid4ZpTMYXzxWFmYIRGOzQLx3zOCZ3SGZ3TBV3SFV3TTSW711tSuj3fbcsd83JPD/RIT/RML/RKbwWfJ8Xr3fn6VfQZ6F+fh1a/3192f/w34rqXRZ+BZul5aC9r6cvQeiQVj/fI9oQzlDzrciYSEf2ewxlKq/z9IEmSiuYDtdDsrJg6AAA=
   </data>
  </layer>
  <layer name="Main" width="150" height="25">
@@ -70,6 +70,7 @@
   <object name="Level1" type="LevelChanger" x="4472" y="613" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
+    <property name="LevelChangeComponent.ReloadScene" value="true"/>
    </properties>
   </object>
   <object name="Boss" type="JumboKainHighwind" x="815" y="553" width="128" height="128"/>
