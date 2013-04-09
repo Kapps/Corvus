@@ -255,6 +255,7 @@ namespace CorvEngine {
 #endif
 
 			this._GraphicsManager.ApplyChanges();
+			this.Game.InactiveSleepTime = TimeSpan.FromMilliseconds(1);
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
 			this._FrameInvoker = new FrameInvoker();

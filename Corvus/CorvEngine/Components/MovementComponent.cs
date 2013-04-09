@@ -15,67 +15,69 @@ namespace CorvEngine.Components {
 		private PhysicsComponent PhysicsComponent;
 		private SpriteComponent SpriteComponent;
 		private float _WalkSpeed = 500;
-        private float _WalkSpeedModifier = 1f;
-        private float _CombatWalkSpeedModifier = 1f;
+		private float _WalkSpeedModifier = 1f;
+		private float _CombatWalkSpeedModifier = 1f;
 		private float _JumpSpeed = 950;
-        private float _JumpSpeedModifier = 1f;
+		private float _JumpSpeedModifier = 1f;
 		private float _WalkAcceleration = 15000;
 		private Direction _CurrentDirection = Direction.Down;
 		private Direction _WalkDirection = Direction.None;
-        private bool _IsWalking = false;
-        private bool _IsKnockbackResistant = false;
+		private bool _IsWalking = false;
+		private bool _IsKnockbackResistant = false;
+		private DateTime _LastUngrounded;
+		private bool _WasGrounded = true;
+		private bool _JumpedSinceUngrounded = false;
+		private bool _JumpedThisFrame = false;
+		// The amount of time that can pass from when you leave the ground to when you can't jump.
+		private TimeSpan _UngroundedJumpDelay = TimeSpan.FromMilliseconds(100); 
 
-        /// <summary>
-        /// Gets or sets a value indicating whether this entity is immune to knockback.
-        /// </summary>
-        public bool IsKnockbackResistant
-        {
-            get { return _IsKnockbackResistant; }
-            set { _IsKnockbackResistant = value; }
-        }
+		/// <summary>
+		/// Gets or sets a value indicating whether this entity is immune to knockback.
+		/// </summary>
+		public bool IsKnockbackResistant {
+			get { return _IsKnockbackResistant; }
+			set { _IsKnockbackResistant = value; }
+		}
 
-        /// <summary>
-        /// Gets or sets the maximum speed that this Entity can walk at multiplied by the walk speed modifier.
-        /// </summary>
+		/// <summary>
+		/// Gets or sets the maximum speed that this Entity can walk at multiplied by the walk speed modifier.
+		/// </summary>
 		public float MaxWalkingSpeed {
 			get { return WalkSpeed * WalkSpeedModifier * CombatWalkSpeedModifier; }
 		}
 
-        /// <summary>
-        /// Gets or sets how fast this Entity jumps multiplied by the jump speed modifier.
-        /// Note that this does not take into consideration gravity.
-        /// </summary>
-        public float MaxJumpSpeed {
-            get { return JumpSpeed * JumpSpeedModifier; }
-        }
+		/// <summary>
+		/// Gets or sets how fast this Entity jumps multiplied by the jump speed modifier.
+		/// Note that this does not take into consideration gravity.
+		/// </summary>
+		public float MaxJumpSpeed {
+			get { return JumpSpeed * JumpSpeedModifier; }
+		}
 
-        /// <summary>
-        /// Gets or sets the walking speed that this Entity can walk at, in units per second.
-        /// </summary>
-        public float WalkSpeed
-        {
-            get { return _WalkSpeed; }
-            set { _WalkSpeed = value; }
-        }
+		/// <summary>
+		/// Gets or sets the walking speed that this Entity can walk at, in units per second.
+		/// </summary>
+		public float WalkSpeed {
+			get { return _WalkSpeed; }
+			set { _WalkSpeed = value; }
+		}
 
-        /// <summary>
-        /// Gets or sets the walk speed modifier.
-        /// </summary>
-        public float WalkSpeedModifier
-        {
-            get { return _WalkSpeedModifier; }
-            set { _WalkSpeedModifier = value; }
-        }
+		/// <summary>
+		/// Gets or sets the walk speed modifier.
+		/// </summary>
+		public float WalkSpeedModifier {
+			get { return _WalkSpeedModifier; }
+			set { _WalkSpeedModifier = value; }
+		}
 
-        /// <summary>
-        /// Gets or sets a combat walks speed modifier. 
-        /// Basically a hack so I use speed modifier status effects without screwing up how attacking works.
-        /// </summary>
-        public float CombatWalkSpeedModifier
-        {
-            get { return _CombatWalkSpeedModifier; }
-            set { _CombatWalkSpeedModifier = value; }
-        }
+		/// <summary>
+		/// Gets or sets a combat walks speed modifier. 
+		/// Basically a hack so I use speed modifier status effects without screwing up how attacking works.
+		/// </summary>
+		public float CombatWalkSpeedModifier {
+			get { return _CombatWalkSpeedModifier; }
+			set { _CombatWalkSpeedModifier = value; }
+		}
 
 		/// <summary>
 		/// Gets or sets the speed to increase velocity by each frame when walking, up to MaxWalkingSpeed.
@@ -95,14 +97,13 @@ namespace CorvEngine.Components {
 			set { _JumpSpeed = value; }
 		}
 
-        /// <summary>
-        /// Gets or sets how much to modifier the jump speed.
-        /// </summary>
-        public float JumpSpeedModifier
-        {
-            get { return _JumpSpeedModifier; }
-            set { _JumpSpeedModifier = value; }
-        }
+		/// <summary>
+		/// Gets or sets how much to modifier the jump speed.
+		/// </summary>
+		public float JumpSpeedModifier {
+			get { return _JumpSpeedModifier; }
+			set { _JumpSpeedModifier = value; }
+		}
 
 		/// <summary>
 		/// Gets or sets the direction that this Entity is facing.
@@ -112,22 +113,21 @@ namespace CorvEngine.Components {
 			set { _CurrentDirection = value; }
 		}
 
-        /// <summary>
-        /// Gets or sets a value  that indicates whether this entity is walking.
-        /// </summary>
-        public bool IsWalking {
-            get { return _IsWalking; }
-            set { _IsWalking = value; }
-        }
+		/// <summary>
+		/// Gets or sets a value  that indicates whether this entity is walking.
+		/// </summary>
+		public bool IsWalking {
+			get { return _IsWalking; }
+			set { _IsWalking = value; }
+		}
 
-        /// <summary>
-        /// Gets or sets the walk direction.
-        /// </summary>
-        public Direction WalkDirection
-        {
-            get { return _WalkDirection; }
-            set { _WalkDirection = value; }
-        }
+		/// <summary>
+		/// Gets or sets the walk direction.
+		/// </summary>
+		public Direction WalkDirection {
+			get { return _WalkDirection; }
+			set { _WalkDirection = value; }
+		}
 
 		/// <summary>
 		/// Causes this Entity to being walking in the given direction, either Left or Right.
@@ -139,7 +139,7 @@ namespace CorvEngine.Components {
 
 			_WalkDirection = dir;
 			CurrentDirection = _WalkDirection;
-            IsWalking = true;
+			IsWalking = true;
 			var Animation = SpriteComponent.Sprite.Animations["Walk" + CurrentDirection.ToString()];
 			if(SpriteComponent.Sprite.ActiveAnimation != Animation)
 				SpriteComponent.Sprite.PlayAnimation(Animation.Name);
@@ -150,8 +150,8 @@ namespace CorvEngine.Components {
 		/// If the Entity is not walking, this method does nothing.
 		/// </summary>
 		public void StopWalking() {
-            _WalkDirection = Direction.None; 
-            IsWalking = false;
+			_WalkDirection = Direction.None;
+			IsWalking = false;
 			SpriteComponent.Sprite.PlayAnimation("Idle" + CurrentDirection.ToString());
 		}
 
@@ -159,39 +159,52 @@ namespace CorvEngine.Components {
 		/// Start a jump. Sets necessary flags and adjusts Y velocity for a jump.
 		/// </summary>
 		public void Jump(bool allowMulti) {
-			if(PhysicsComponent.IsGrounded || (allowMulti))
+			// HACK: People find jumping difficult. So, we'll let them jump for a bit after they leave the ground.
+			if(CanJump(allowMulti)) {
 				PhysicsComponent.VelocityY = -MaxJumpSpeed;
+				_JumpedSinceUngrounded = true;
+				_JumpedThisFrame = true;
+			}
 		}
 
-        /// <summary>
-        /// Knocksback this entity by an approx. distance.  
-        /// </summary>
-        public void Knockback(float distance, int direction)
-        {
-            if (IsKnockbackResistant)
-                return;
+		private bool CanJump(bool allowMultiJump) {
+			if(_JumpedSinceUngrounded && !allowMultiJump)
+				return false;
+			return (PhysicsComponent.IsGrounded || (DateTime.Now - _LastUngrounded) <= _UngroundedJumpDelay) || allowMultiJump;
+		}
 
-            //TODO: find an actually formula for this.
-            float t = 0.100f;//s
-            float vel = distance / t;
-            /// PhysicsComponent.VelocityY += -500;
-            PhysicsComponent.VelocityX += direction * vel;// direction* vel; //new Vector2(direction * vel, -1 * 2000);
-        }
+		/// <summary>
+		/// Knocksback this entity by an approx. distance.  
+		/// </summary>
+		public void Knockback(float distance, int direction) {
+			if(IsKnockbackResistant)
+				return;
 
-        protected override void OnInitialize()
-        {
-            base.OnInitialize();
-            PhysicsComponent = GetDependency<PhysicsComponent>();
-            SpriteComponent = GetDependency<SpriteComponent>();
-        }
+			//TODO: find an actually formula for this.
+			float t = 0.100f;//s
+			float vel = distance / t;
+			/// PhysicsComponent.VelocityY += -500;
+			PhysicsComponent.VelocityX += direction * vel;// direction* vel; //new Vector2(direction * vel, -1 * 2000);
+		}
+
+		protected override void OnInitialize() {
+			base.OnInitialize();
+			PhysicsComponent = GetDependency<PhysicsComponent>();
+			SpriteComponent = GetDependency<SpriteComponent>();
+		}
 
 		protected override void OnUpdate(GameTime Time) {
-            base.OnUpdate(Time);
-            if (_WalkDirection == Direction.Left)
-                PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-            else if (_WalkDirection == Direction.Right)
-                PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
-           
-        }
+			base.OnUpdate(Time);
+			if(_WalkDirection == Direction.Left)
+				PhysicsComponent.VelocityX -= Math.Max(0, Math.Min(MaxWalkingSpeed + PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
+			else if(_WalkDirection == Direction.Right)
+				PhysicsComponent.VelocityX += Math.Max(0, Math.Min(MaxWalkingSpeed - PhysicsComponent.VelocityX, WalkAcceleration * Time.GetTimeScalar()));
+			if(!PhysicsComponent.IsGrounded && _WasGrounded)
+				_LastUngrounded = DateTime.Now;
+			_WasGrounded = PhysicsComponent.IsGrounded;
+			if(PhysicsComponent.IsGrounded && !_JumpedThisFrame) // This may be called after the Jump, before PhysicsSystem updates position.
+				_JumpedSinceUngrounded = false;
+			_JumpedThisFrame = false;
+		}
 	}
 }
