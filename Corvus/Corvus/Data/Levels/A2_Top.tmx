@@ -202,7 +202,7 @@
   <object name="CH4" type="CecilHarvey" x="4108" y="555" width="32" height="32">
    <properties>
     <property name="MovementComponent.JumpSpeed" value="900"/>
-    <property name="MovementComponent.WalkSpeed" value="290"/>
+    <property name="MovementComponent.WalkSpeed" value="310"/>
    </properties>
   </object>
   <object name="CH4" type="Path" x="4112" y="596">
@@ -211,10 +211,10 @@
   <object name="CH4" type="CecilHarvey" x="4292" y="217" width="32" height="32">
    <properties>
     <property name="MovementComponent.JumpSpeed" value="900"/>
-    <property name="MovementComponent.WalkSpeed" value="290"/>
+    <property name="MovementComponent.WalkSpeed" value="310"/>
    </properties>
   </object>
-  <object name="Powerup" type="HealHigh" x="3051" y="658" width="32" height="32"/>
+  <object name="Powerup" type="HealLow" x="3051" y="658" width="32" height="32"/>
   <object name="Weapon" type="Mjolnir" x="5523" y="530" width="32" height="32"/>
   <object name="Launcher" type="Launcher" x="5617" y="527" width="49" height="44">
    <properties>

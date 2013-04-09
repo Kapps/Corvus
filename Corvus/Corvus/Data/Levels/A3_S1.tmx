@@ -98,8 +98,18 @@
   <object name="PZemusP3" type="Path" x="1556" y="460">
    <polyline points="0,0 -2,0"/>
   </object>
-  <object name="JDK" type="JumboDarkKnight" x="2252" y="602" width="64" height="64"/>
-  <object name="JDK" type="JumboDarkKnight" x="1600" y="409" width="64" height="64"/>
+  <object name="JDK" type="JumboDarkKnight" x="2252" y="602" width="64" height="64">
+   <properties>
+    <property name="DestroyableObjectComponent.DropRate" value="1"/>
+    <property name="DestroyableObjectComponent.DroppableItems" value="Collection(HealLow)"/>
+   </properties>
+  </object>
+  <object name="JDK" type="JumboDarkKnight" x="1600" y="409" width="64" height="64">
+   <properties>
+    <property name="DestroyableObjectComponent.DropRate" value="1"/>
+    <property name="DestroyableObjectComponent.DroppableItems" value="Collection(HealLow)"/>
+   </properties>
+  </object>
   <object name="JDK" type="JumboDarkKnight" x="845" y="622" width="64" height="64"/>
   <object name="JDK" type="JumboDarkKnight" x="3116" y="498" width="64" height="64"/>
   <object name="Kain" type="KainHighwind" x="2571" y="498" width="32" height="32"/>
@@ -107,7 +117,6 @@
   <object name="Kain" type="KainHighwind" x="2503" y="493" width="32" height="32"/>
   <object name="Weapon" type="SuperSword" x="1904" y="536" width="32" height="32"/>
   <object name="Powerup" type="HealHigh" x="1963" y="534" width="32" height="32"/>
-  <object name="Kain" type="KainHighwind" x="1170" y="535" width="32" height="32"/>
   <object name="Gold" type="Coin_Gold" x="4215" y="594" width="64" height="64">
    <properties>
     <property name="CollisionCoinComponent.Value" value="500"/>

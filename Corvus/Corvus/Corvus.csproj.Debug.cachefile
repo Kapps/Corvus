@@ -101,6 +101,9 @@ Content\Tiles\trees_plants_rocks_0.xnb
 Content\Sprites\Equipment\HeavyAxe.xnb
 Content\Sprites\Equipment\Mjolnir.xnb
 Content\Tiles\StarAndMoon.xnb
+Content\Sprites\Equipment\SuperSword.xnb
+Content\Tiles\EndText.xnb
+Content\Tiles\CokeVsPepsi.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
@@ -169,9 +172,7 @@ Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
 Content\Sprites\Equipment\Weapon_HeavyAxe.xnb
 Content\Sprites\Equipment\Weapon_Mjolnir.xnb
-Content\Sprites\Equipment\SuperSword.xnb
 Content\Sprites\Equipment\Weapon_SuperSword.xnb
-Content\Tiles\EndText.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb

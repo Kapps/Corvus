@@ -127,12 +127,12 @@ namespace Corvus.Components
             base.OnInitialize();
             AttributesComponent = this.GetDependency<AttributesComponent>();
             //_Weapons = new WeaponCollection();
-            _CurrentWeaponIndex = 0;
 
             if(string.IsNullOrEmpty(DefaultWeaponName))
                 return;
             if (Weapons.Count != 0)
                 return;
+            _CurrentWeaponIndex = 0;
             //Creates the weapon from a blueprint.
             var weapon = CorvEngine.Components.Blueprints.EntityBlueprint.GetBlueprint(DefaultWeaponName).CreateEntity();
             var attri = weapon.GetComponent<AttributesComponent>();

@@ -59,22 +59,22 @@ namespace Corvus.GameStates
             continueBtn.Position = UIHelper.AlignControl(continueBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center);
             _ControlManager.AddControl(continueBtn);
 
-            LinkButton optionsBtn = new LinkButton(font);
-            optionsBtn.Text = "Options";
-            optionsBtn.Selected += optionsBtn_Selected;
-            optionsBtn.Position = UIHelper.AlignControl(optionsBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 50f); ;
-            _ControlManager.AddControl(optionsBtn);
+            //LinkButton optionsBtn = new LinkButton(font);
+            //optionsBtn.Text = "Options";
+            //optionsBtn.Selected += optionsBtn_Selected;
+            //optionsBtn.Position = UIHelper.AlignControl(optionsBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 50f); ;
+            //_ControlManager.AddControl(optionsBtn);
 
             LinkButton returnToMainMenuBtn = new LinkButton(font);
             returnToMainMenuBtn.Text = "Return to Main Menu";
             returnToMainMenuBtn.Selected += returnToMainMenuBtn_Selected;
-            returnToMainMenuBtn.Position = UIHelper.AlignControl(returnToMainMenuBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 100f);
+            returnToMainMenuBtn.Position = UIHelper.AlignControl(returnToMainMenuBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 50f);
             _ControlManager.AddControl(returnToMainMenuBtn);
 
             LinkButton exitGameBtn = new LinkButton(font);
             exitGameBtn.Text = "Exit Game";
             exitGameBtn.Selected += exitGameBtn_Selected;
-            exitGameBtn.Position = UIHelper.AlignControl(exitGameBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 150f);
+            exitGameBtn.Position = UIHelper.AlignControl(exitGameBtn.Size, HorizontalAlignment.Center, VerticalAlignment.Center) + new Vector2(0f, 100f);
             _ControlManager.AddControl(exitGameBtn);
 
             _ControlManager.SetFocus();

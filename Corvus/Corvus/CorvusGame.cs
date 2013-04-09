@@ -87,13 +87,13 @@ namespace Corvus {
             _MainMenuState = new MainMenuState();
             _PausedState = new PausedState();
             _OptionsState = new OptionsState();
-#if DEBUG
-            AudioManager.Instance.MusicEnabled = false;
-#endif
+//#if DEBUG
+//            AudioManager.Instance.MusicEnabled = false;
+//#endif
             // Start off in game.
             //_SceneManager.ChangeScene("BasicLevel", false);
             //StateManager.PushState(_SceneManager);
-            StateManager.PushState(_MainMenuState); //TODO: Move this probably
+            StateManager.PushState(_MainMenuState); 
             AudioManager.PlayMusic("Title1");
             AudioManager.SetMusicVolume(0.5f);
             CreateNewPlayer();

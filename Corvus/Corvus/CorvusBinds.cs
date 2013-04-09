@@ -58,13 +58,13 @@ namespace Corvus {
                     Assign(OptionsSelect, false, new InputButton(Keys.Enter));
                     //xbox controller
                     //menu
-                    Assign((c) => MainMenuNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
-                    Assign((c) => MainMenuNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
+                    Assign((c) => MainMenuNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp), new InputButton(Buttons.DPadUp));
+                    Assign((c) => MainMenuNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown), new InputButton(Buttons.DPadDown));
                     Assign(MainMenuSelect, false, new InputButton(Buttons.A));
                     //ingame
                     Assign(c => JumpPressed(false, c), false, new InputButton(Buttons.A));
-                    Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Buttons.LeftThumbstickLeft));
-                    Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Buttons.LeftThumbstickRight));
+                    Assign((c) => MovePressed(Direction.Left, c), false, new InputButton(Buttons.LeftThumbstickLeft), new InputButton(Buttons.DPadLeft));
+                    Assign((c) => MovePressed(Direction.Right, c), false, new InputButton(Buttons.LeftThumbstickRight), new InputButton(Buttons.DPadRight));
                     Assign(BlockPressed, false, new InputButton(Buttons.RightTrigger));
                     Assign((c) => SwitchWeapon(true, c), false, new InputButton(Buttons.RightShoulder));
                     Assign((c) => SwitchWeapon(false, c), false, new InputButton(Buttons.LeftShoulder));
@@ -73,13 +73,13 @@ namespace Corvus {
                     Assign(Attack, false, new InputButton(Buttons.B));
                     Assign(Pause, false, new InputButton(Buttons.Start));
                     //paused
-                    Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
-                    Assign((c) => PausedNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
+                    Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp), new InputButton(Buttons.DPadUp));
+                    Assign((c) => PausedNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown), new InputButton(Buttons.DPadDown));
                     Assign(PausedSelect, false, new InputButton(Buttons.A));
                     //options
-                    Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
-                    Assign((c) => PausedNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
-                    Assign(PausedSelect, false, new InputButton(Buttons.A));
+                    //Assign((c) => PausedNavigation(true, c), false, new InputButton(Buttons.LeftThumbstickUp));
+                    //Assign((c) => PausedNavigation(false, c), false, new InputButton(Buttons.LeftThumbstickDown));
+                    //Assign(PausedSelect, false, new InputButton(Buttons.A));
 					break;
 			}
 		}

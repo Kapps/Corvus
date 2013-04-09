@@ -295,7 +295,7 @@ BetterCecilHarvey: CecilHarvey
 		Damage: 30
 	AttributesComponent
 		MaxHealth: 75
-		AttackSpeed: 350
+		AttackSpeed: 325
 		Strength: 25
 	AIComponent
 		ReactionRange: Vector(325, 50)
@@ -329,18 +329,20 @@ Zemus: Properties, CollisionProperties, Required
 		AwardedExperience: 16
 		DropsItem: true
 		#remove these if it doesn't drop items
-		DroppableItems: Collection(Might, Vigor, ManaLow, HealMid)
+		DroppableItems: Collection(Might, Vigor, HealMid)
 		DropRate: 0.2
 		DropCoefficient: 1.5
 		CoinsValue: 8
 	CollisionDamageComponent
-		Damage: 20
+		Damage: 25
 
 PatientZemus: Zemus
 	SpriteComponent (Sprite)
 		Color: Color(Green)
 	MovementComponent
 		WalkSpeed: 200
+	AIComponent
+		ReactionRange: Vector(500, 40)
 	AttributesComponent
 		MaxHealth: 100
 		AttackSpeed: 500
@@ -348,6 +350,10 @@ PatientZemus: Zemus
 		Strength: 45
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
 		MeleeAttackRange: Vector(40, 35)
+	CollisionDamageComponent
+		Damage: 30
+	CombatPropertiesComponent
+		EnemyWeaponOffset: Vector(4, -4)
 	DestroyableObjectComponent
 		AwardedExperience: 24
 		CoinsValue: 15
@@ -417,7 +423,7 @@ JumboKainHighwind : KainHighwind
 		IsKnockbackResistant: true
 	AttributesComponent
 		MaxHealth: 2200
-		AttackSpeed: 800
+		AttackSpeed: 650
 		Knockback: 70
 		Strength: 100
 		Intelligence: 20

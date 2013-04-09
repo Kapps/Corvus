@@ -7,13 +7,16 @@
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="200"/>
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="295"/>
  </tileset>
- <tileset firstgid="805" name="MonsterBoy" tilewidth="32" tileheight="32">
+ <tileset firstgid="823" name="MonsterBoy" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/MonsterBoy.png" width="960" height="896"/>
  </tileset>
- <tileset firstgid="1645" name="TutorialIcons" tilewidth="32" tileheight="32">
+ <tileset firstgid="1663" name="TutorialIcons" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/TutorialIcons.png" width="384" height="1600"/>
+ </tileset>
+ <tileset firstgid="2263" name="CokeVsPepsi" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/CokeVsPepsi.png" width="66" height="48"/>
  </tileset>
  <layer name="Background2" width="35" height="25">
   <properties>
@@ -28,7 +31,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoC2YxkhjC4gEg8UdMDDY3DNYAChcxFkH2hWI+DEdBG4p4mBgKOYYaFdAQB3QHfU0dssUZuLVDkQ+wpY+Byo/I6fPqSSE2ygYBaNgFIyCUTAKhgYAAOoLPoSsDQAA
+   H4sIAAAAAAAAC2NgoC2YxkhjC4gEg8UdMDDY3DNYAChcNFkH2hWI+HEfBG5p4WBgaOUYaFdAwASgOybS2C3LmIlXOxD5CFv6HKj8jJw+l5MQbqNgFIyCUTAKRsEoGBoAALNuExmsDQAA
   </data>
  </layer>
  <layer name="Main" width="35" height="25">
@@ -36,7 +39,7 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC72XUQ7DIAhA/bAX2Jb0GrNJr7CT7CQ7s+57MSsZoSBg7Uj4KuIDAW0IP7lMIVyJ3qawE87uyJq0qWbP+b0PZFkYWw8L8KSDLJLvHO1+LTmysHhyYmHh1nJ7UBtvTqwscF7JEavkt1XjFhZNuFg5v9guIR3JYq1b6RteX+JX3/F/LPPUXg9cXqYeltXA4jm3vOXT6oPGXBrrJVtJvbNZ25PW8ij1smB77Q7i+KmOYgEeKU/SrHuhOqc1SPvAw/IgecJcVHLczwKtnyws0OtPZk/MmIW6BT9SbwKrhWUVGECAUTrDem41Hu3+tfZua77NDCtwLSgejcXTs4WpAUveqrTeArTePT3LsfXOPemN0erZM9R6l/TkSVM6+6SccKL9e5y170iW3vfXB7LJiRGsDQAA
+   H4sIAAAAAAAAC7WXXQrDMAiA87A2O8g66DWWQq+wk+wkO/AIRCpO409TQRjU6KfRJEvpkMeU0kL0OaU/4ezOrClNNXvO72sgy8bYeliAp5xkkXzPDr+WGllYPDWxsHBruRjUxlsTKwvsV3HkKvnt9biFRRMuV84vtitIR7JY+1b6htfnpvcgV4RlnfrrlyBThGU3sHj2bW7sVh8059xZL9lK6j2btZi0l0eplwXba3cQx091FAvwSHWSzrrv7fhNe5DOgYflTeqEuahA3+J42jxZWGDWP0xMzIjjc36k2QRWC8suMIAAo7SHdd9qPtr9a53d3vm2Mt+Aa0P5aCyemc0Cm1a3Kr23AO13z8xybNFzT3pj9Gb2CrXeJZE6aUrPPqkmnGj/Pa6KO5Il+v76AbHDeeqsDQAA
   </data>
  </layer>
  <layer name="Foreground1" width="35" height="25">
@@ -44,7 +47,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAUjEYiwDoy9KSwDY+9gAOIEwtydjnFiSsCu1AFIH64DlCaxgWQcboHFIaG4pCVYAM1DsDgkFJejYBSMglEwCkbBKBi6AAAch5l/rA0AAA==
+   H4sIAAAAAAAAC2NgGAUjEaixDoy9ZSwDY+9gAJoEwjySjnHiTsCu8gFIH+EDlCaxgVIcboHFIaG4pCXYBM1DsDgkFJejYBSMglEwCkbBKBi6AABV1GR4rA0AAA==
   </data>
  </layer>
  <layer name="Foreground2" width="35" height="25">
@@ -52,7 +55,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAHgzh1CN06wNAAA=
+   H4sIAAAAAAAAC+3OMQEAMAgDsJ74Nzfk4IJxJAqSwL5XSdfvBQAA3DXvJD4+rA0AAA==
   </data>
  </layer>
  <objectgroup name="Objects" width="35" height="25">
