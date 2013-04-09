@@ -141,25 +141,26 @@ JumboGolbez: Golbez
 	AIComponent
 		FleeingEnabled: false
 	AttributesComponent
-		MaxHealth: 30
-	AttributesComponent
 		MaxHealth: 100
-		Strength: 30
+		Strength: 35
 		Knockback: 50
 		CritChance: 0
 		CritDamage: 1
-		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
 	DestroyableObjectComponent
 		AwardedExperience: 12
 		DropsItem: true
-		DroppableItems: Collection(Might, Vigor, Fleet)
+		DroppableItems: Collection(Might, Vigor)
 		DropRate: 0.2
 		DropCoefficient: 1
 		CoinsValue: 7
 	CollisionDamageComponent
-		Damage: 20
+		Damage: 25
 	MovementComponent
+		WalkSpeed: 70
 		IsKnockbackResistant: true
+	CollisionKnockbackComponent
+		Knockback: 100
 
 ## DarkKnights	##
 
@@ -202,7 +203,7 @@ JumboDarkKnight : DarkKnight
 	SpriteComponent (Sprite)
 		Color: Color(Red)
 	MovementComponent
-		WalkSpeed: 175
+		WalkSpeed: 160
 		JumpSpeed: 400
 		IsKnockbackResistant: true
 	AttributesComponent
@@ -210,7 +211,7 @@ JumboDarkKnight : DarkKnight
 		Strength: 55
 		MeleeAttackRange: Vector(50, 35)
 	AIComponent
-		ReactionRange: Vector(600, 25)
+		ReactionRange: Vector(600, 100)
 		FleeingEnabled: false
 	DestroyableObjectComponent
 		AwardedExperience: 45
@@ -248,6 +249,7 @@ CecilHarvey: Properties, CollisionProperties, Required
 		ReactionRange: Vector(250, 25)
 		Offset: Vector(10, 0)
 		FleeingEnabled: false
+		DeathEnabled: false
 	CombatPropertiesComponent
 		HitDelay: 0.55
 		EnemyWeaponName: Sprites/Equipment/Muramasa
@@ -259,7 +261,7 @@ CecilHarvey: Properties, CollisionProperties, Required
 		DropCoefficient: 2.5
 		CoinsValue: 3
 	CollisionDamageComponent
-		Damage: 25
+		Damage: 20
 
 PoisonCecilHarvey : CecilHarvey
 	SpriteComponent (Sprite)
@@ -286,6 +288,18 @@ NinjaCecilHarvey : CecilHarvey
 	PathComponent
 		JumpDelay: 300
 
+BetterCecilHarvey: CecilHarvey
+	SpriteComponent (Sprite)
+		Color: Color(Yellow)
+	CollisionDamageComponent
+		Damage: 30
+	AttributesComponent
+		MaxHealth: 75
+		AttackSpeed: 350
+		Strength: 25
+	AIComponent
+		ReactionRange: Vector(325, 50)
+
 ##	Zemus ##
 
 Zemus: Properties, CollisionProperties, Required
@@ -294,10 +308,10 @@ Zemus: Properties, CollisionProperties, Required
 	SpriteComponent (Sprite)
 		Sprite: Sprite(Sprites/Enemies/Enemy_Zemus)
 	MovementComponent
-		WalkSpeed: 200
+		WalkSpeed: 170
 	AttributesComponent
 		MaxHealth: 60
-		AttackSpeed: 800
+		AttackSpeed: 900
 		Knockback: 25
 		Strength: 30
 		Intelligence: 20
@@ -320,7 +334,23 @@ Zemus: Properties, CollisionProperties, Required
 		DropCoefficient: 1.5
 		CoinsValue: 8
 	CollisionDamageComponent
-		Damage: 30
+		Damage: 20
+
+PatientZemus: Zemus
+	SpriteComponent (Sprite)
+		Color: Color(Green)
+	MovementComponent
+		WalkSpeed: 200
+	AttributesComponent
+		MaxHealth: 100
+		AttackSpeed: 500
+		Knockback: 85
+		Strength: 45
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
+		MeleeAttackRange: Vector(40, 35)
+	DestroyableObjectComponent
+		AwardedExperience: 24
+		CoinsValue: 15
 
 ## Kain Highwinds ##
 
@@ -333,34 +363,73 @@ KainHighwind: Properties, CollisionProperties, Required
 		WalkSpeed: 185
 	AttributesComponent
 		MaxHealth: 100
-		AttackSpeed: 400
+		AttackSpeed: 375
 		Knockback: 70
 		Strength: 55
 		Intelligence: 20
-		BlockChance: 0.6
-		MeleeAttackRange: Vector(45, 35)
+		BlockChance: 0.7
+		MeleeAttackRange: Vector(50, 35)
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
 		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
 	AIComponent
-		ReactionRange: Vector(400, 25)
+		ReactionRange: Vector(400, 70)
+		Offset: Vector(0, -10)
 		FleeingEnabled: false
+		DeathEnabled: false
 	CombatPropertiesComponent
+		HitDelay: 0.5
 		EnemyWeaponName: Sprites/Equipment/BastardSword
 		EnemyWeaponOffset: Vector(0, -4)
 	DestroyableObjectComponent
 		AwardedExperience: 22
 		DropsItem: true
-		DroppableItems: Collection(Fleet, Might, Vigor, HealHigh)
-		DropRate: 0.33
+		DroppableItems: Collection(HealLow, Vigor, HealHigh, Fleet)
+		DropRate: 0.2
 		DropCoefficient: 1.5
 		CoinsValue: 10
 	CollisionDamageComponent
-		Damage: 40
+		Damage: 30
 
 WorkoutKainHighwind : KainHighwind
+	SpriteComponent (Sprite)
+		Color: Color(Yellow)
+	MovementComponent
+		IsKnockbackResistant: true
 	AttributesComponent
-		Knockback: 130
+		MaxHealth: 125
+		AttackSpeed: 750
+		Knockback: 200
+		Strength: 55
+		Intelligence: 20
+		BlockChance: 0.7
 	DestroyableObjectComponent
 		DroppableItems: Collection(IWorkOut)
 		DropRate: 1
-	
+		AwardedExperience: 30
+		CoinsValue: 15
+
+JumboKainHighwind : KainHighwind
+	SpriteComponent (Sprite)
+		Color: Color(Goldenrod)
+	MovementComponent
+		WalkSpeed: 500
+		JumpSpeed: 750
+		IsKnockbackResistant: true
+	AttributesComponent
+		MaxHealth: 2200
+		AttackSpeed: 800
+		Knockback: 70
+		Strength: 100
+		Intelligence: 20
+		BlockChance: 0.7
+		MeleeAttackRange: Vector(30, 35)
+	DestroyableObjectComponent
+		DropsItem: false
+		AwardedExperience: 500
+		CoinsValue: 100
+	AIComponent
+		ReactionRange: Vector(200, 200)
+	CollisionDamageComponent
+		Damage: 50
+	CollisionKnockbackComponent
+		Knockback: 150

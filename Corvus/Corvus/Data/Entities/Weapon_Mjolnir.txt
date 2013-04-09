@@ -2,33 +2,33 @@
 #editable
 Properties
 	WeaponPropertiesComponent 
-		WeaponName: Bastard Sword
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Sword)
+		WeaponName: Mjolnir
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Axe)
 	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/Equipment/Weapon_BastardSword) #fill in
+		Sprite: Sprite(Sprites/Equipment/Weapon_Mjolnir) #fill in
 		Color: Color(White)
 	CombatPropertiesComponent
 		IsRanged: false
 		AppliesEffect: false
 		IsAoE: false
-		HitDelay: 0.45
-		ConsumesMana: false
-		AttackSound: SwordSwing
+		HitDelay: 0.33
+		ConsumesMana: true
+		AttackSound: AxeSwing
 	AttributesComponent
-		ManaCost: 0		#Only used if it consumes mana. 
-		Strength: 25
-		StrModifier: 1.15
+		ManaCost: 7		#Only used if it consumes mana. 
+		Strength: 10
+		StrModifier: 1.5
 		Dexterity: 5
-		Intelligence: 0
-		IntModifier: 1
+		Intelligence: 5
+		IntModifier: 1.1
 		CritChance: 0.1
 		CritDamage: 0.3
 		MeleeAttackRange: Vector(40, 20)
-		AttackSpeed: 275
-		BlockDamageReduction: 0.5
-		Knockback: 80
-		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
-		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+		AttackSpeed: 600
+		BlockDamageReduction: 0.3
+		Knockback: 140
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Wind)
 	StatusEffectPropertiesComponent
 
 #Do not edit
@@ -42,4 +42,4 @@ Required
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 
-BastardSword: Properties, Required
+Mjolnir: Properties, Required

@@ -16,7 +16,7 @@ namespace Corvus.Components
     public class LauncherComponent : CollisionEventComponent
     {
         private Vector2 _LaunchVelocity = new Vector2();
-        private string _LaunchSound = "";
+        private string _LaunchSound = "Explode4";
 
         /// <summary>
         /// Gets or sets the launch velocity.

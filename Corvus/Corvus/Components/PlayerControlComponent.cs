@@ -322,7 +322,7 @@ namespace Corvus.Components
             }
 			if(allPlayersDead) {
 				// Reset their coins if they die.
-				CorvusGame.Instance.Players.Where(c => c.Character != null).Select(c => c.Character.GetComponent<ScoreComponent>()).ToList().ForEach(c => c.Coins = 0);
+				CorvusGame.Instance.Players.Where(c => c.Character != null).Select(c => c.Character.GetComponent<ScoreComponent>()).ToList().ForEach(c => c.Coins /= 2);
 				CorvusGame.Instance.SceneManager.ReloadScenes(false);
 			}
         }

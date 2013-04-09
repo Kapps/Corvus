@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="40" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Grass1, 0, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="805" name="TutorialIcons" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/TutorialIcons.png" width="384" height="1600"/>
+ </tileset>
+ <tileset firstgid="1405" name="StarAndMoon" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/StarAndMoon.png" width="624" height="624"/>
+ </tileset>
+ <tileset firstgid="1766" name="mountain_landscape_23" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/mountain_landscape_23.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Background2" width="50" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3PsQkAIAwAwYBzmML9h3SIgAl4xfd/uSJySLtQ9zsHBwcHBwcHBwcHBwcHB0f/O8d/jtfOiuMMiqP/nYODg4ODg4ODY6bjAomU21pAHwAA
+  </data>
+ </layer>
+ <layer name="Background1" width="50" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VUQqAIBAFQDG6dCcrT9dCHSBBzWIG9u/B7sMPU4LLlt++AIDZ5PgblnvWD/8TesxFj7mM7rHHjiOmNN7lPcZ5cmOrTE961Gd60qM+05Me9RkAAOA/TldRJSlAHwAA
+  </data>
+ </layer>
+ <layer name="Background1a" width="50" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2WuRHCMBBFnTB0QEbEkXKkHClHSYBLoQhaoAWgAhrhO2DGYyRL6Nb4v5mfSLa0Wq12tyhIVyh7sS0gKaEbD77jhnHphkdfbyx13gKbRWMpx82gZW4YzIp2UvZfDvzrPxt/y/4tFe/7iflXpBxQfwM2MW+6DuP7F5f1IGZt+daDm4ENzbgQ1RafuKoNIWuM67d0z6wv8elrG9/KcqOqLrjer84I5xlDE2iacQ6ewfY5tICWhudQ5cjq7k37dt38u8Iea2gDbRXnOGHNM3RprK2TI3X7dpNvKnawfQ8doKPkHG3vNBWusQ0gJHHYu5sR2m+8J0IIIV3kA+isUNZAHwAA
+  </data>
+ </layer>
+ <layer name="Main" width="50" height="40">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2Vyw3CMBBEnSpAQCEgGuHTAC2kEi70Qi3hVwezQnvhEO1uVo4P86R3dbwzjl0KIYQQQjIZulIe8Alf8A0/3dy7IqQeQ9KZz1qHkBbIehv4xtTjCu9/3mbd0Y/adyPvYtIyC7iEq8Zcw41zli3cNebeOYNwgMcG9q6e4DkwhxDpRL53GTGaTaQLxduJJbM+MMuULhRPJ9bMvD1P6UKxduLJzNNJRheKJT9vZtZOMrpQpJOxf1f0ZtYb1oysSwghpA5fTdWMY0AfAAA=
+  </data>
+ </layer>
+ <layer name="Foreground1" width="50" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAABhk6EtKQB8AAA==
+  </data>
+ </layer>
+ <layer name="Foreground2" width="50" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3USwqAMAyE4dBNb+yjeg5ft/JGztqFQhBa4v/BLAOTQGsGAAAAAP9QstmkzLl2k7i4MRCf950/zZ38GWhUl8x6ZVBGpaTajXwW9V6VTdmV47aHd8/W7vO259dzAAAgpgsWz1J0QB8AAA==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="50" height="40">
+  <object name="Level1" type="SpritelessLevelChanger" x="1315" y="1003" width="266" height="50">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Top"/>
+    <property name="LevelChangeComponent.SpawnID" value="S1"/>
+   </properties>
+  </object>
+  <object name="Launcher" type="Launcher" x="6" y="901" width="216" height="39">
+   <properties>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(0, -1000)"/>
+   </properties>
+  </object>
+  <object name="DeadlyArea" type="DeadlyArea" x="2" y="1102" width="1600" height="64"/>
+  <object name="StartPoint" type="SpawnPoint" x="54" y="844" width="60" height="46"/>
+  <object name="Weapon" type="BastardSword" x="753" y="247" width="32" height="32"/>
+  <object name="JGol" type="JumboGolbez" x="556" y="684" width="64" height="64"/>
+  <object name="JGol" type="JumboGolbez" x="969" y="683" width="64" height="64"/>
+  <object name="JGol" type="JumboGolbez" x="747" y="689" width="64" height="64"/>
+  <object name="Zemus" type="Zemus" x="467" y="497" width="32" height="32"/>
+  <object name="Zemus" type="Zemus" x="1043" y="500" width="32" height="32"/>
+  <object name="Zemus" type="Zemus" x="755" y="571" width="32" height="32"/>
+ </objectgroup>
+</map>

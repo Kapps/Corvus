@@ -7,7 +7,7 @@ Properties
 		EffectType: Fleet
 		BaseValue: 0
 		Intensity: 0.6
-		Duration: 30
+		Duration: 15
 
 #do not modify
 Required

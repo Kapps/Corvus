@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="230" height="35" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Grass1, 0, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="mountain_landscape_23" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/mountain_landscape_23.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1025" name="trees_plants_0" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/trees_plants_0.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1281" name="trees_plants_rocks_0" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1537" name="town_0" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/town_0.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1793" name="StarAndMoon" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/StarAndMoon.png" width="624" height="624"/>
+ </tileset>
+ <tileset firstgid="2154" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="295"/>
+ </tileset>
+ <tileset firstgid="2208" name="TutorialIcons" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/TutorialIcons.png" width="384" height="1600"/>
+ </tileset>
+ <layer name="Background2" width="230" height="35">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DsQ0AAAwCIMde7t3+0UBCL6mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrqowO0XE+uyH0AAA==
+  </data>
+ </layer>
+ <layer name="Background1" width="230" height="35">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YTYrCUBCF0WfUjfizSVdm98C1+cBMhMKZ1m37HKhZCEnxPgIZAwBIdlm6nwAAAACg17KMsZ2zm7P3rwQi6BLy6PLhMN/9thnjuO7j1ZzWa8//eF+8ly6fvepTj3yKLmtL0aX98Cm6rOmSTrqs6ZJOuqzpkk66rOmSTu/s8jrv9zPn9w+eZ13Syfeypks66bKmSzrpsqZLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLyKNLvtUdcI0dosh9AAA=
+  </data>
+ </layer>
+ <layer name="Background1a" width="230" height="35">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2bu24UMRSGvbszCWzHRUsaSjqoeAQkxGtweQEu4pJAB0KCmiwkNfRQwUukQaSBLZKCCgIVFAjEH2W5yPJ4xjse22f8f9KvyVyUmdjn+Bz7OEqR9aFSU+gp9AzaGMb+IkLIIgyW3Z6/CV+/Bd2G7kCrLXzf9d2EEDOMySQUphiwRnvzwvOxUi/Gsb+CSMQUAzZ74pcXS6UuQZehK2X497+ET76iXybNfdjFgwi20TUpz5Ouor2vQdehGw3a/jSeOdOij1bm49n3weK/IyV8zqd94uO7JpZ7J7XzvZFSs9HBMQc+Lv37+VGh1OPCfK8KW9t2xZ8+c3233tc6KfpAqvPpJt+1Hy/OeoqDv+CPn0cHxxz49p/vbcAnNwvzvRzw7QNPYEPr0DQTWzJxrqVfVo29dWOsJHzEtj61hy9M8wi9rXNsN5O9ScxZYvG2qH8mdwYY94fQCCoErVFIs/Mu8/amdY+U12uaIP37XTgCXzwKHYOOC/JLFzuP2Z8PA8SGkHUP1j7DsEhORuo5jDFuDE17lrPVjQG0nbSQlld2RQ7rOUROTp1q3UMyUvreNynkyqda5DmMUUQiKzV2Gmq+bKv3takFho5RrJG0J8Z+lRjU/Z0xbWfRPsjF3kPsPXs3Vmo7k33Ekwbj8szQ5lvzaz899Ueu+XdfqNp7tqVd/+RoL1/w/FdPNva6VOrNvH60iuMadBe6Z6gp2WrB73H+AZoJqkXtY4oRJzT/v9DBmrOpvtQ21+hTvGu75851z9BEu66f23BdC7XNz3PJN10IkZuen/ujpPqSLSfrIl/r+3wy1zXkFNY7dSTX0Xfgd7sVvme715TY67ux398nbHO8Pv9fdGhKzEuWoGXoUFl9rQlVcTB2/Ij9/ip+CJsTku7gWm5a7NE3/8K8hpD06CKv2Ra0zkMIIYQQQgghhBBCCCGEEEIIIYQQQgghRD6/AYmRGoTIfQAA
+  </data>
+ </layer>
+ <layer name="Main" width="230" height="35">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2aWW7CMBRFzQdraBkWQttVdPjo8NGddBsdJdbU7qDjOvoiYdWOEtcODrw450j3A8gDJ/jIzwRjAAAAAACgFE6nxpxJziUX032PBgAAAGB4vE+M+ZB8Sr4k35Kfyb5HVQb3kgfJY895lrzUPvtAcjv5P8vezh4AYHy8SmZO3vY7nF5w+4aU0F+kY9fyMa/Vtpdq6nViWUmONjmWnOQZGgBsAV4C6AMvIYT7G9OYe9NdU4KX1dxZb8LcAc3YveeTCe8/S/ASoDTwEkAfeAm54B7J9tj7lnembC/t3vNQMpcsjJ59aPUdzBNS4r1l8HHXyZK9tNjz1XR+Td9BKJrGDv2Qw8t1LdWatGh4vi0xx+da13J6Wf+PVGzq6x1eNhPqh6vXloHHMe+b475P9V62B+uStjni9q+51stVYn3q8Rb3mszMX38aus45vUz1qc2roXs59v3kpeTKdJsLKRmKl7Y2Zc7GeumuhW37ObwEyy7cHJKX7vW4ltxEfFaKv6FjS/dy7OtgKn27OSQvbX3sfC3NS/c/TjHBsX7pOifwsiwvQRd46dfjJWgAL/16vAQN4KVfj5egAbz06/ESNICXfj1eggbw0q/HS9AAXvr1eAkawEu/Hi9BA3jp1+MlaAAv/Xq8BA3gpV+Pl6ABTV7+Ag57j53IfQAA
+  </data>
+ </layer>
+ <layer name="Foreground1" width="230" height="35">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TWYoCQQBEQT2Z13a5iDp30SkFIRGUcU+cCEj6oynopniTCQAAAAAAAP/RemwzthhbvuC5Hft529/A97jU5n5s98fNppqEZztv89amHj1Pn/nY6tMfwfEeTl3dcx+PnqeLLjvokqTLDrok6bKDLknXujy8c8/voUuSLjvokqTLDrok6bKDLkm67KBLki476JKkyw66JOmygy5JuuygS5IuO+iSpMsOuiTpsoMuSbrsoEuSLjvokqTLDrok6bKDLkm67KBLki476JKkyw66JOmygy5JuuygS9Inu/wFleLsjMh9AAA=
+  </data>
+ </layer>
+ <layer name="Foreground2" width="230" height="35">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3bS04CQRAA0BYc9RJex6O4cu33HArqBfRKGj2ARuMKF36LhMQPI3EGmBmG95IKC6ZDL7q6inRPSgAAALB8djsp7UXsRxxEHEYcdeqeFSy3k8jBXkQ/4jTiLOJ8xnmZZSmtZV+f6xEb2Wx/g+WVV1uAagxWxmMor7a0xe9aprYxS9ZTs1x2//9sXj9yUWA8UM7DhL2yzf0IAO3wMqnnX6tsGgAAACwodyVYFJt1T6BCziagnONu5E9Er+Fn7EXudGyNvt/+47lbd0IoSQ84P4/ykpGi/WvRHnB4Rvga8VZizb3HmI/huJrOEptQs2/k6lLbWa17Bik9NbxnLWPavJp0h4/2eW5AHo5p4pymNG1elekzaKZBzvr2v3A++i2s8VSn6rOBIu8qVbm2r2LPuq65Ltsj4ae7yMn7mvPS+SkAAAAAAAAAAADffQLGBLZ4yH0AAA==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="230" height="35">
+  <object name="Level1" type="SpritelessLevelChanger" x="7043" y="738" width="316" height="59">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A2_End"/>
+    <property name="LevelChangeComponent.SpawnID" value="FromTop"/>
+   </properties>
+  </object>
+  <object name="Powerup" type="Fleet" x="3122" y="662" width="32" height="32"/>
+  <object name="Level1" type="SpritelessLevelChanger" x="3232" y="0" width="131" height="33">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Top_S1"/>
+   </properties>
+  </object>
+  <object name="JGol" type="JumboGolbez" x="753" y="504" width="64" height="64"/>
+  <object name="Silver" type="Coin_Silver" x="1020" y="500" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="1113" y="502" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="1081" y="248" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="1593" y="344" width="16" height="16"/>
+  <object name="ToBottom1" type="SpritelessLevelChanger" x="562" y="836" width="1438" height="31">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Bottom"/>
+    <property name="LevelChangeComponent.SpawnID" value="FromTop1"/>
+   </properties>
+  </object>
+  <object name="JGol" type="JumboGolbez" x="1410" y="187" width="64" height="64"/>
+  <object name="CH1" type="CecilHarvey" x="1739" y="216" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="800"/>
+   </properties>
+  </object>
+  <object name="CH1" type="Path" x="1842" y="230">
+   <polyline points="0,0 -736,140 -517,254 -329,251 -75,382"/>
+  </object>
+  <object name="CH1" type="CecilHarvey" x="1802" y="217" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="800"/>
+   </properties>
+  </object>
+  <object name="DeadlyArea" type="DeadlyArea" x="485" y="1019" width="2147" height="38"/>
+  <object name="CH1" type="CecilHarvey" x="1450" y="208" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="800"/>
+   </properties>
+  </object>
+  <object name="CH1" type="CecilHarvey" x="1507" y="218" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="800"/>
+   </properties>
+  </object>
+  <object name="Gol" type="Golbez" x="994" y="555" width="32" height="32"/>
+  <object name="Gol" type="Golbez" x="1478" y="462" width="32" height="32"/>
+  <object name="JGol" type="JumboGolbez" x="2349" y="497" width="64" height="64"/>
+  <object name="JGol" type="JumboGolbez" x="2591" y="439" width="64" height="64"/>
+  <object name="Zemus" type="Zemus" x="2152" y="139" width="32" height="32"/>
+  <object name="Gol" type="Golbez" x="2262" y="538" width="32" height="32"/>
+  <object name="Gol" type="Golbez" x="2201" y="532" width="32" height="32"/>
+  <object name="Gol" type="Golbez" x="2837" y="467" width="32" height="32"/>
+  <object name="Gol" type="Golbez" x="2763" y="474" width="32" height="32"/>
+  <object name="Zemus" type="Zemus" x="2696" y="145" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="1593" y="374" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="1592" y="408" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="1499" y="152" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="1592" y="153" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="1693" y="156" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="2276" y="413" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="2134" y="411" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="2199" y="413" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="2713" y="353" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="2648" y="351" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="2790" y="353" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="2331" y="80" width="16" height="16"/>
+  <object name="Gol" type="Golbez" x="2281" y="60" width="32" height="32"/>
+  <object name="Bronze" type="Coin_Bronze" x="2386" y="184" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="2209" y="167" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3031" y="156" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3075" y="151" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3123" y="153" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3232" y="672" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3264" y="672" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3296" y="672" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3328" y="672" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3392" y="672" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3360" y="672" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3793" y="643" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3835" y="643" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="4124" y="577" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="4156" y="583" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="4248" y="456" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="4273" y="452" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3915" y="320" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="3947" y="320" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="4302" y="223" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="4416" y="141" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="4612" y="148" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="4721" y="337" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="4840" y="495" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="5050" y="498" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="5180" y="501" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="5498" y="498" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="5534" y="500" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="5561" y="495" width="16" height="16"/>
+  <object name="CH2" type="CecilHarvey" x="2802" y="147" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="700"/>
+   </properties>
+  </object>
+  <object name="CH2" type="PoisonCecilHarvey" x="3159" y="143" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="700"/>
+   </properties>
+  </object>
+  <object name="CH2" type="Path" x="3145" y="166">
+   <polyline points="0,0 -1085,0"/>
+  </object>
+  <object name="CH3" type="CecilHarvey" x="5167" y="535" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="700"/>
+   </properties>
+  </object>
+  <object name="CH3" type="Path" x="5187" y="562">
+   <polyline points="0,0 -136,-4"/>
+  </object>
+  <object name="DeadlyArea" type="DeadlyArea" x="2976" y="1027" width="3266" height="33"/>
+  <object name="Gol" type="Golbez" x="3877" y="309" width="32" height="32"/>
+  <object name="CH4" type="CecilHarvey" x="4108" y="555" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="900"/>
+    <property name="MovementComponent.WalkSpeed" value="290"/>
+   </properties>
+  </object>
+  <object name="CH4" type="Path" x="4112" y="596">
+   <polyline points="0,0 126,-137 -189,-267 207,-360"/>
+  </object>
+  <object name="CH4" type="CecilHarvey" x="4292" y="217" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="900"/>
+    <property name="MovementComponent.WalkSpeed" value="290"/>
+   </properties>
+  </object>
+  <object name="Powerup" type="HealHigh" x="3051" y="658" width="32" height="32"/>
+  <object name="Weapon" type="Mjolnir" x="5523" y="530" width="32" height="32"/>
+  <object name="Launcher" type="Launcher" x="5617" y="527" width="49" height="44">
+   <properties>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(3000, -250)"/>
+   </properties>
+  </object>
+  <object name="CH5" type="CecilHarvey" x="6995" y="176" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="800"/>
+   </properties>
+  </object>
+  <object name="CH5" type="Path" x="7003" y="211">
+   <polyline points="0,0 -318,-68 -637,26 -429,152 -152,252"/>
+  </object>
+  <object name="JGol" type="JumboGolbez" x="6938" y="154" width="64" height="64"/>
+  <object name="CH5" type="CecilHarvey" x="6655" y="111" width="32" height="32">
+   <properties>
+    <property name="MovementComponent.JumpSpeed" value="800"/>
+   </properties>
+  </object>
+  <object name="Gol" type="Golbez" x="6618" y="343" width="32" height="32"/>
+  <object name="Gol" type="Golbez" x="6683" y="103" width="32" height="32"/>
+  <object name="ToBottom2" type="SpritelessLevelChanger" x="2457" y="842" width="106" height="35">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Bottom"/>
+    <property name="LevelChangeComponent.SpawnID" value="FromTop2"/>
+   </properties>
+  </object>
+  <object name="FromBottom1" type="SpawnPoint" x="2495" y="738" width="32" height="32"/>
+  <object name="ToBottom3" type="SpritelessLevelChanger" x="2977" y="836" width="3264" height="36">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Bottom"/>
+    <property name="LevelChangeComponent.SpawnID" value="FromTop3"/>
+   </properties>
+  </object>
+  <object name="Launcher" type="Launcher" x="3234" y="146" width="125" height="46">
+   <properties>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(0, -1000)"/>
+   </properties>
+  </object>
+  <object name="S1" type="SpawnPoint" x="6204" y="18" width="32" height="32"/>
+  <object name="Weapon" type="IceBall" x="599" y="516" width="32" height="32"/>
+  <object name="StartPoint" type="SpawnPoint" x="160" y="515" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="6208" y="65" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="6211" y="93" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="6214" y="124" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="6818" y="457" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="6842" y="460" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="6623" y="76" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="6679" y="76" width="16" height="16"/>
+  <object name="Silver" type="Coin_Silver" x="6726" y="79" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7149" y="235" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7157" y="277" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7165" y="332" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7180" y="384" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7182" y="416" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7196" y="466" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7200" y="503" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7207" y="545" width="16" height="16"/>
+  <object name="Bronze" type="Coin_Bronze" x="7213" y="585" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="7228" y="621" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="7227" y="663" width="16" height="16"/>
+  <object name="Gold" type="Coin_Gold" x="7241" y="701" width="16" height="16"/>
+ </objectgroup>
+</map>

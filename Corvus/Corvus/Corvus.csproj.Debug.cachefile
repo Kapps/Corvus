@@ -98,6 +98,9 @@ Content\Tiles\town_0.xnb
 Content\Tiles\trees_1.xnb
 Content\Tiles\trees_plants_0.xnb
 Content\Tiles\trees_plants_rocks_0.xnb
+Content\Sprites\Equipment\HeavyAxe.xnb
+Content\Sprites\Equipment\Mjolnir.xnb
+Content\Tiles\StarAndMoon.xnb
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
 Content\Fonts\MainMenuFont.xnb
@@ -164,6 +167,11 @@ Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
+Content\Sprites\Equipment\Weapon_HeavyAxe.xnb
+Content\Sprites\Equipment\Weapon_Mjolnir.xnb
+Content\Sprites\Equipment\SuperSword.xnb
+Content\Sprites\Equipment\Weapon_SuperSword.xnb
+Content\Tiles\EndText.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
@@ -197,14 +205,17 @@ Data\Entities\Weapon_BastardSword.txt
 Data\Entities\Weapon_EarthBall.txt
 Data\Entities\Weapon_Fireball.txt
 Data\Entities\Weapon_GaiaBlade.txt
+Data\Entities\Weapon_HeavyAxe.txt
 Data\Entities\Weapon_IceBall.txt
 Data\Entities\Weapon_IronBow.txt
 Data\Entities\Weapon_IronLance.txt
 Data\Entities\Weapon_IronSword.txt
 Data\Entities\Weapon_LongBow.txt
+Data\Entities\Weapon_Mjolnir.txt
 Data\Entities\Weapon_Muramasa.txt
 Data\Entities\Weapon_PoisonBomb.txt
 Data\Entities\Weapon_ShortBow.txt
+Data\Entities\Weapon_SuperSword.txt
 Data\Entities\Weapon_Trident.txt
 Data\Entities\Weapon_WindBall.txt
 Data\Levels\BasicLevel.tmx
@@ -213,6 +224,10 @@ Data\Levels\A2_Bottom.tmx
 Data\Levels\A3.tmx
 Data\Levels\A1_S1.tmx
 Data\Levels\A1_S2.tmx
+Data\Levels\A2_End.tmx
+Data\Levels\A2_Top.tmx
+Data\Levels\A2_Top_S1.tmx
+Data\Levels\A3_S1.tmx
 Data\Levels\Arena.tmx
 Data\Levels\Tutorial.tmx
 Data\Levels\Tutorial_S1.tmx

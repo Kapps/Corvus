@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="35" height="25" tilewidth="32" tileheight="32">
  <properties>
-  <property name="Audio" value="Grass2, 0.25, 0.5"/>
+  <property name="Audio" value="Grass2, 0, 0.5"/>
  </properties>
  <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
- <tileset firstgid="769" name="sky3" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/sky3.jpg" width="512" height="512"/>
+ <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="295"/>
+ </tileset>
+ <tileset firstgid="823" name="StarAndMoon" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/StarAndMoon.png" width="624" height="624"/>
  </tileset>
  <layer name="Background2" width="35" height="25">
   <properties>
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WxYIQVABA0RkYSUE6BJSS7kZUWunu7pCQUlREQlRSpEMalO7uDqVL0gClBUWkQTgf8RYsZnGWd38jY0ZExCAmUbxELGITh7jEIz4vk4CEvEIiIgP2iUlCUpKRnBSkJBWpeZU0pCUdr/E66QP3GchIJjLzBlnISjayk4Oc5CI3echLvsB9fgpQkEIUpghFKUZx3qQEb/E271CSUoH70pShLOUoz7u8RwUqUonKVKEq1ahOjcB9TWpRmzrUpR71aUBDGtGYJjSlGc1pEbhvSSta04a2tKM9HejI+3SiM13oygd0C9x3pwc96cWHfERvPuYTPqUPn9GXz+lH/8D9AAbyBYP4kq/4msEMYSjDGM4IvmEk3wbuRzGaMYxlHOOZwEQmMZnvmMJUpjGdGYH7mcxiNnP4nh+Yyzzms4CFLGIxS1jKssD9clawklWsZg1rWcd6NrCRTWxmC1vZFrjfzg52sovd7GEv+/iRn9jPAQ5yiMMcCdwf5RjHOcFJfuYUpznDWc5xnl/4ld/4PXB/gYv8wZ9c4jJXuMo1rnODv7jJLf7mn8D9bf7lDv9xl3vc5wEPecRjnvCU/3lGRFTYPuR/RP9L9L9E/0v0v7yo//IcgqG2YqwNAAA=
+   H4sIAAAAAAAAC+3DMQkAAAwDsMJ01L/N2tiRQHpJVVVVfXVxt4AnrA0AAA==
   </data>
  </layer>
  <layer name="Background1" width="35" height="25">
@@ -22,7 +25,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2U2QnAIBAFF4s2MYXkqiSmOqcEFY1g3sD87gFv10yMxjuzBVcMuLlxs+z0PvDEC++KWb7Yx2fWbLFPTg8hapnt/kV7SrLRO08l2eidp4d6EV/l9Nfoh4rZSXq7e46sDQAA
+   H4sIAAAAAAAAC2NgGF7AnHmgXUA6KGNiYCgH4gogrgTiKqaBc8s0oN3TgXgGEM8E4llQt5ASrvTwTxmRZuLyDzXBtAGML0JgKOaHkQaGQv4nBoymNdoBUtIGrdMTKWmD1uXvDqB5O4F41yAug0cB7cFwKUNHwSjABQAnhQM0rA0AAA==
   </data>
  </layer>
  <layer name="Background1a" width="35" height="25">
@@ -60,7 +63,7 @@
  <objectgroup name="Objects" width="35" height="25">
   <object name="Level1" type="LevelChanger" x="1040" y="530" width="32" height="32">
    <properties>
-    <property name="LevelChangeComponent.NextLevel" value="A2_Bottom"/>
+    <property name="LevelChangeComponent.NextLevel" value="A2_Top"/>
    </properties>
   </object>
   <object name="DeadlyArea" type="DeadlyArea" x="365" y="741" width="743" height="47"/>
