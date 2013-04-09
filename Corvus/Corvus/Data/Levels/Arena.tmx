@@ -3,33 +3,29 @@
  <properties>
   <property name="Audio" value="Battle1, 0, 0.4"/>
  </properties>
- <tileset firstgid="1" name="ground 32x32" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/ground 32x32.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="10" name="lava 32x32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="lava 32x32" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/lava 32x32.png" width="96" height="62"/>
  </tileset>
- <tileset firstgid="13" name="spikes 32x32" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/spikes 32x32.png" width="96" height="48"/>
- </tileset>
- <tileset firstgid="16" name="water 32x32" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/water 32x32.png" width="96" height="62"/>
- </tileset>
- <tileset firstgid="19" name="crate 32x32" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/crate 32x32.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="28" name="fence 32x32" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/fence 32x32.png" width="96" height="84"/>
- </tileset>
- <tileset firstgid="34" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+ <tileset firstgid="4" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="772" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="295"/>
  </tileset>
  <layer name="Background" width="40" height="40">
   <properties>
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DAQkAAAwEocvy/UOux1Bw1VRVVVVVVR89Si6mKwAZAAA=
+   H4sIAAAAAAAAC+3DAQkAAAwDoMFzrH/N9TgK9pKqqqqqqqo+OrARMD0AGQAA
+  </data>
+ </layer>
+ <layer name="Background1" width="40" height="40">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TSwrAIAyE4eCtbfUgfd3V6daNlQYp9v9gdkEJTMwAYLwYzBZlVZKSg+/8W5ve35VDOZWr8d/T+dF79OrdG/iyme9t5t3wP/QZHugRbvQAAADUCjKnsbEAGQAA
   </data>
  </layer>
  <layer name="Foreground" width="40" height="40">
@@ -37,13 +33,13 @@
    <property name="Solid" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SMQrAIBBEUTWJ9z+yFhYiRhA32V34H6af4oVAREREb8W61HYpf5l11z1tWfkLydW7G2fBYe9uHA79tnJnweHKHQ79tuNOw+GOOxz66cTdHw5P3OHQbpLuvnAo6Q6HRGSpAml0ASsAGQAA
+   H4sIAAAAAAAAC+2UyQmAQBAEZ9NQ1EAUH6bhEYJH/h9HUFA8EBlZhSqofz+KFgEAAAAAANjSOpFO7dXB+V6zp1SL2cbzFrBhaS6SY323uG7uTFr8D+uPO2vuyrd7vNMbPf6LQA3lWW9XxmpitHHqrlIzI2ux7zA13Jcbb2Mf+9j3zX0jL66mLwAZAAA=
   </data>
  </layer>
  <objectgroup name="Enemies" width="40" height="40">
-  <object type="DeadlyArea" x="-5" y="1232" width="1290" height="41"/>
-  <object name="StartPoint" type="SpawnPoint" x="622" y="558" width="32" height="32"/>
-  <object name="Spawner" type="Spawner" x="737" y="562" width="32" height="32">
+  <object name="DeadlyArea" type="DeadlyArea" x="2" y="1176" width="1290" height="41"/>
+  <object name="StartPoint" type="SpawnPoint" x="626" y="565" width="32" height="32"/>
+  <object name="Spawner" type="Spawner" x="681" y="567" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronSword, ArcticLance, EarthBall, FireBall, BastardSword, GaiaBlade, IceBall)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
@@ -51,7 +47,7 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="Spawner" type="Spawner" x="513" y="562" width="32" height="32">
+  <object name="Spawner" type="Spawner" x="574" y="566" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(IronBow, IronLance, LongBow, Muramasa, PoisonBomb, ShortBow, Trident, WindBall)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(22,22)"/>
@@ -59,7 +55,7 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="ItemSpawner1" type="Spawner" x="460" y="563" width="32" height="32">
+  <object name="ItemSpawner1" type="Spawner" x="380" y="812" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
@@ -67,7 +63,7 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="ItemSpawner2" type="Spawner" x="786" y="562" width="32" height="32">
+  <object name="ItemSpawner2" type="Spawner" x="860" y="821" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitiesToSpawn" value="Collection(Recover)"/>
     <property name="SpawnerComponent.EntitySize" value="Vector(16,16)"/>
@@ -75,25 +71,32 @@
     <property name="SpawnerComponent.TotalEntitiesToSpawn" value="1"/>
    </properties>
   </object>
-  <object name="Spawner" type="Spawner" x="620" y="677" width="32" height="32">
+  <object name="Spawner" type="Spawner" x="626" y="686" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
     <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
    </properties>
   </object>
-  <object name="Spawner" type="Spawner" x="620" y="804" width="32" height="32">
+  <object name="Spawner" type="Spawner" x="625" y="814" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
     <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
    </properties>
   </object>
-  <object name="Spawner" type="Spawner" x="622" y="931" width="32" height="32">
+  <object name="Spawner" type="Spawner" x="622" y="940" width="32" height="32">
    <properties>
     <property name="SpawnerComponent.EntitySize" value="Vector(32,32)"/>
     <property name="SpawnerComponent.SpawnDelay" value="2"/>
     <property name="SpawnerComponent.SpawnID" value="Enemy"/>
+   </properties>
+  </object>
+  <object name="PlayerOnlyDeadlyArea" type="PlayerOnlyDeadlyArea" x="3" y="1094" width="1290" height="41"/>
+  <object name="Launcher" type="PlayerLauncher" x="6" y="1107" width="1269" height="49">
+   <properties>
+    <property name="LauncherComponent.LaunchSound" value="Explode4"/>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(0, -1000)"/>
    </properties>
   </object>
  </objectgroup>
@@ -102,7 +105,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3GsQkAAAjAMGf1/3v1BTeHBAqNAAAAAAAAuMmttn76A4aYO34AGQAA
+   H4sIAAAAAAAAC+3GuQkAAAgAMZ/9d9YV7CwSOLgIAAAAAACAm9xq66c/g+xHCQAZAAA=
   </data>
  </layer>
  <layer name="Solid Objects" width="40" height="40">

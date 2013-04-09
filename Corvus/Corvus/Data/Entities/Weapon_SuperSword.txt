@@ -1,35 +1,39 @@
-
+﻿
 #editable
 Properties
 	WeaponPropertiesComponent 
-		WeaponName: Trident
-		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Spear)
+		WeaponName: Super Sword
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Sword)
 	SpriteComponent (Sprite)
-		Sprite: Sprite(Sprites/Equipment/Weapon_Trident) #fill in
+		Sprite: Sprite(Sprites/Equipment/Weapon_SuperSword) #fill in
 		Color: Color(White)
 	CombatPropertiesComponent
 		IsRanged: false
-		AppliesEffect: false
+		AppliesEffect: true
 		IsAoE: false
-		HitDelay: 0.55
+		HitDelay: 0.45
 		ConsumesMana: false
-		AttackSound: SpearSwing
+		AttackSound: SwordSwing
 	AttributesComponent
 		ManaCost: 0		#Only used if it consumes mana. 
-		Strength: 25
+		Strength: 100
 		StrModifier: 1.3
-		Dexterity: 10
+		Dexterity: 15
 		Intelligence: 0
 		IntModifier: 1
-		CritChance: 0.15
-		CritDamage: 0.2
-		MeleeAttackRange: Vector(50, 20)
-		AttackSpeed: 450
-		BlockDamageReduction: 0.45
+		CritChance: 0.1
+		CritDamage: 0.3
+		MeleeAttackRange: Vector(45, 20)
+		AttackSpeed: 240
+		BlockDamageReduction: 0.4
 		Knockback: 100
 		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, None)
-		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Physical)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Earth)
 	StatusEffectPropertiesComponent
+		EffectType: Slow
+		BaseValue: 0
+		Intensity: 0.25
+		Duration: 3
 
 #Do not edit
 Required
@@ -42,4 +46,4 @@ Required
 		DisposeOnCollision: true
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
 
-Trident: Properties, Required
+SuperSword: Properties, Required

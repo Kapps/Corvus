@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="50" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Grass1, 0, 0.5"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="805" name="StarAndMoon" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/StarAndMoon.png" width="624" height="624"/>
+ </tileset>
+ <tileset firstgid="1166" name="trees_1" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/trees_1.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1422" name="trees_plants_0" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/trees_plants_0.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1678" name="trees_plants_rocks_0" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Background2" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsCX42IF/kdjgaJN2kqqqqvrqqqqq+u4B80Zte1gbAAA=
+  </data>
+ </layer>
+ <layer name="Background1" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VsQ0AIAwDwYixmYwwHZmCpLiT3Lv7CKbZq/sBAMx2qpVZu5oJAAAAwEcPZ1ESXVgbAAA=
+  </data>
+ </layer>
+ <layer name="Background1a" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Vx0oDURiG4WOaoO71BkRvRC/JdhFpghpLmitbmitbmitbmgt7mkvBulNR34BCkMxIwpiY8XzwLDKZc75/hkMihIxMY+k36rPrP0e+58aj13en1+eSkZFpbkYMQoxiDOOYMLSua4rP05iBC7O/OEszu2TUo9UZ1GIfrc5FO52vZv4G/JR2em8yMjIyMn87VpMQNtjhgBOTptr3usz852AO81gwazuLm14PvPDBj0WFWZboXsYKVrGm8SwBeoMIIYwI1hVm2aB7E1vYxo7Gs0TpjSGOBJLYVZhlj+59HOAQRzVmsXLNBjsccNYxb4reNDLIIodjhVkqOWfvC1ziqkaPm2seeOGDv45Z8vQWUEQJZVyrzFLJjcr+Ab4LIoQwIlX39lqE6LMor72l9w73eMAjnj5nOWHdKc4w1CnEMJ7Z+wWv3+b5+j7K9RjiSCBZdd8A+wyqzPJG73ulmzUdMMCo8txd7NWNHoU9U6xNI4Mschqf73qSp7uAIkoot3AWveQD/jlGdFgbAAA=
+  </data>
+ </layer>
+ <layer name="Main" width="35" height="50">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAgDsNcwiv2LWePgBksAAAAAAAB+mqJr/QPDxRVJWBsAAA==
+  </data>
+ </layer>
+ <layer name="Foreground1" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BgQAAAADDoPlTH+ECVQEAAAAAAADPAONT2v5YGwAA
+  </data>
+ </layer>
+ <layer name="Foreground2" width="35" height="50">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TOQqAMBRF0UeKLNlpGc66Wp+dIBiQGJt74DYh4af5EgAAAHBXBal2jWtdF/6bM/tscavb3P7RX0rNAa5SO1BqF0+pHWBHAAAAkFMfpcGNbor57799Azw5ACWdINNYGwAA
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="35" height="50">
+  <object name="Level1" type="LevelChanger" x="1029" y="1411" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A3"/>
+   </properties>
+  </object>
+  <object name="StartPoint" type="SpawnPoint" x="69" y="1403" width="60" height="46"/>
+  <object name="FromTop" type="SpawnPoint" x="309" y="111" width="60" height="46"/>
+ </objectgroup>
+</map>

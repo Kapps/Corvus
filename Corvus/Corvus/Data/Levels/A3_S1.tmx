@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="Audio" value="Battle1, 0, 0.4"/>
+ </properties>
+ <tileset firstgid="1" name="generic_platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/generic_platformer_tiles.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="BGColors" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/BGColors.png" width="200" height="295"/>
+ </tileset>
+ <tileset firstgid="823" name="mountain_landscape_23" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/mountain_landscape_23.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1079" name="TutorialIcons" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/TutorialIcons.png" width="384" height="1600"/>
+ </tileset>
+ <tileset firstgid="1679" name="EndText" tilewidth="32" tileheight="32">
+  <image source="../../../CorvusContent/Tiles/EndText.png" width="400" height="300"/>
+ </tileset>
+ <layer name="Background2" width="150" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwDoMHzrH+9RXgBBXtJVVVVVVVVVVVVVVVVVVX1OXZW6duYOgAA
+  </data>
+ </layer>
+ <layer name="Background1" width="150" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aQQqAIBAAQPER3fpoL6teV5cgggor3IoZ8CTCsi6uiCkBcKbL0REAANTRRgcAAAAAALxaczDnffE5R3nekvd4fU5pmMfobwGE0Ju+Z2/P7u5XSf+sSY0C0ZxDrP21Ht52DyiNZ8n91XUAEGECBa78jJg6AAA=
+  </data>
+ </layer>
+ <layer name="Background1a" width="150" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZR07DUBgA4QihXIArABeAYwFr4CIcgV4vQO+99957rysGBUteZJGINOIZ6dtESvQU/7aT51jMLPc1xfO9AjOzRM1ejyxLlZfmewVWjFU7V2ZmZkXZz/+SFrSiDe3oQCe60I0e9KLP/zBmlsf6uQYNYBBDGMYIRjGGcUxgElNeryzFppmVGcwmmZklXlvGClax5lxZFjos0LkK9hdrWF8t6jK0zvA5N4d5LGAx7jkXhYL9xXqObQMaM3SM1/mcDWxiC9vYwS72sI+DeOJ8O4rwXJW5v5tWx8zKCU5xhnNc4BJXuMYNbnEX4bmy9LpnVh7wiCc84wWveMM7PvCJL+cqaeFnoH99Hlr1+/5Sr4//pmzdy8LPQAvpeWgFa6ksoPWYWfTyHplewR5KMVfiTOSk8Pcc7KGkmr8fzMzMLGp9AyJflXeYOgAA
+  </data>
+ </layer>
+ <layer name="Main" width="150" height="25">
+  <properties>
+   <property name="Solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2Y0QnCMBCG7Rg6ieIiggv4oG6ioJu4ihOZgg/1GtpLuEsT+T74H0qbkN59JKWr1TzbkJ3IXjEOYAq8Ag/wCjzAK/AAr8ADvIJU1iLXbvwMXkEqt+43MV/wClLBK/AAr8ADvAIP8Ao80Hh1CDmJHEsuEppD4xVAKnhVL4/Qj7NI7P9ijbTkVV/nyzey3q3VXUPL37UtefXqxnWWueNVFeBVGiXPJryyYXjObcL1W9zP9crSBctez60Lr2yQ3si15HoVG5e7r1n2em4uvLLhX7zS7o94VYalvdL4oOm11odSXsXeyzvSq2G9+/U8FZG1zx23tFdWztTmVWwe70x5peljrEdW4/AKr4bgFV59AMygQqiYOgAA
+  </data>
+ </layer>
+ <layer name="Foreground1" width="150" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QsQkAIAwEQJ3aTXRdB1BsNChyB9+k+ISkBAAAAAAAAAAAAAAAAMBrSpaf8oqWx9TJLCIn90TcvNMZ+cNV9w0dl04fhJg6AAA=
+  </data>
+ </layer>
+ <layer name="Foreground2" width="150" height="25">
+  <properties>
+   <property name="Solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BgQAAAADDoPlTH+ECVQEAAAAAAAAAAAAAAAAAwDe+/XrRmDoAAA==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="150" height="25">
+  <object name="Level1" type="LevelChanger" x="4472" y="613" width="32" height="32">
+   <properties>
+    <property name="LevelChangeComponent.NextLevel" value="A1"/>
+   </properties>
+  </object>
+  <object name="Boss" type="JumboKainHighwind" x="815" y="553" width="128" height="128"/>
+  <object name="PZemusP2" type="Path" x="2820" y="626">
+   <polyline points="0,0 -2,0"/>
+  </object>
+  <object name="PZemusP2" type="PatientZemus" x="2788" y="603" width="32" height="32"/>
+  <object name="Boss" type="Path" x="272" y="690">
+   <polyline points="0,0 694,2 932,-126 1276,-218 1644,-122 1966,-28 2256,-156 2542,-64 2864,-122 3114,-256"/>
+  </object>
+  <object name="PLauncher" type="PlayerLauncher" x="3424" y="12" width="56" height="434">
+   <properties>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(2500, -100)"/>
+   </properties>
+  </object>
+  <object name="StartPoint" type="SpawnPoint" x="74" y="141" width="60" height="46"/>
+  <object name="DeadlyArea" type="PlayerOnlyDeadlyArea" x="163" y="742" width="3318" height="27"/>
+  <object name="Launcher" type="Launcher" x="162" y="757" width="3307" height="32">
+   <properties>
+    <property name="LauncherComponent.LaunchVelocity" value="Vector(0, -1000)"/>
+   </properties>
+  </object>
+  <object name="DeadlyArea" type="DeadlyArea" x="3493" y="736" width="371" height="58"/>
+  <object name="PZemusP3" type="PatientZemus" x="1481" y="422" width="32" height="32"/>
+  <object name="PZemusP3" type="Path" x="1556" y="460">
+   <polyline points="0,0 -2,0"/>
+  </object>
+  <object name="JDK" type="JumboDarkKnight" x="2252" y="602" width="64" height="64"/>
+  <object name="JDK" type="JumboDarkKnight" x="1600" y="409" width="64" height="64"/>
+  <object name="JDK" type="JumboDarkKnight" x="845" y="622" width="64" height="64"/>
+  <object name="JDK" type="JumboDarkKnight" x="3116" y="498" width="64" height="64"/>
+  <object name="Kain" type="KainHighwind" x="2571" y="498" width="32" height="32"/>
+  <object name="Kain" type="KainHighwind" x="2825" y="597" width="32" height="32"/>
+  <object name="Kain" type="KainHighwind" x="2503" y="493" width="32" height="32"/>
+  <object name="Weapon" type="SuperSword" x="1904" y="536" width="32" height="32"/>
+  <object name="Powerup" type="HealHigh" x="1963" y="534" width="32" height="32"/>
+  <object name="Kain" type="KainHighwind" x="1170" y="535" width="32" height="32"/>
+  <object name="Gold" type="Coin_Gold" x="4215" y="594" width="64" height="64">
+   <properties>
+    <property name="CollisionCoinComponent.Value" value="500"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

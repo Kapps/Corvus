@@ -8,3 +8,7 @@
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Unknown)
 
+PlayerOnlyDeadlyArea: DeadlyArea
+	CollisionDamageComponent
+		Damage: 100
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)

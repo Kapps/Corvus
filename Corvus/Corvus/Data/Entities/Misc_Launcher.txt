@@ -6,3 +6,11 @@
 		Classification: Enum(CorvEngine.Components.EntityClassification, Player, Enemy)
 	ClassificationComponent
 		Classification: Enum(CorvEngine.Components.EntityClassification, Trigger)
+
+PlayerLauncher : Launcher
+	LauncherComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+EnemyLauncher : Launcher
+	LauncherComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Enemy)

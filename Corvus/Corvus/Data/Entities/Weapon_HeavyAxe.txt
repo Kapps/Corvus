@@ -1,0 +1,45 @@
+﻿
+#editable
+Properties
+	WeaponPropertiesComponent 
+		WeaponName: Heavy Axe
+		WeaponType: Enum(Corvus.Components.Gameplay.Equipment.WeaponTypes, Axe)
+	SpriteComponent (Sprite)
+		Sprite: Sprite(Sprites/Equipment/Weapon_HeavyAxe) #fill in
+		Color: Color(White)
+	CombatPropertiesComponent
+		IsRanged: false
+		AppliesEffect: false
+		IsAoE: false
+		HitDelay: 0.33
+		ConsumesMana: true
+		AttackSound: AxeSwing
+	AttributesComponent
+		ManaCost: 7		#Only used if it consumes mana. 
+		Strength: 10
+		StrModifier: 1.3
+		Dexterity: 0
+		Intelligence: 4
+		IntModifier: 1.1
+		CritChance: 0.05
+		CritDamage: 0.20
+		MeleeAttackRange: Vector(40, 20)
+		AttackSpeed: 550
+		BlockDamageReduction: 0.3
+		Knockback: 125
+		ResistantElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+		AttackingElements: Enum(Corvus.Components.Gameplay.Elements, Fire)
+	StatusEffectPropertiesComponent
+
+#Do not edit
+Required
+	PhysicsComponent
+		GravityCoefficient: 0.2
+		HorizontalDragCoefficient: 0.01
+	ClassificationComponent
+		Classification: Enum(CorvEngine.Components.EntityClassification, Powerup)
+	CollisionEquipmentComponent
+		DisposeOnCollision: true
+		Classification: Enum(CorvEngine.Components.EntityClassification, Player)
+
+HeavyAxe: Properties, Required

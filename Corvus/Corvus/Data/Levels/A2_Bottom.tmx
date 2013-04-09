@@ -135,5 +135,8 @@
   <object name="Sit3" type="Trident" x="3993" y="358" width="22" height="22"/>
   <object name="CH" type="CecilHarvey" x="4397" y="598" width="32" height="32"/>
   <object name="CH" type="CecilHarvey" x="3729" y="529" width="32" height="32"/>
+  <object name="FromTop1" type="SpawnPoint" x="1326" y="8" width="32" height="32"/>
+  <object name="FromTop2" type="SpawnPoint" x="2736" y="26" width="32" height="32"/>
+  <object name="FromTop3" type="SpawnPoint" x="4650" y="28" width="32" height="32"/>
  </objectgroup>
 </map>
