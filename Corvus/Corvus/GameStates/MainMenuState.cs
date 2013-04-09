@@ -105,7 +105,7 @@ namespace Corvus.GameStates
         void newGameBtn_Selected(object sender, EventArgs e)
         {
             CorvusGame.Instance.SceneManager.ReloadScenes(true);
-            CorvusGame.Instance.SceneManager.ChangeScene("A3_S1", true);//"Tutorial", true);
+            CorvusGame.Instance.SceneManager.ChangeScene("Tutorial", true);//"Tutorial", true);
             CorvusGame.Instance.StateManager.PushState(CorvusGame.Instance.SceneManager);
         }
 
