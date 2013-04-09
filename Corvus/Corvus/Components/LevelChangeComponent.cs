@@ -24,11 +24,20 @@ namespace Corvus.Components
             set { _SpawnID = value; }
         }
 
+        public bool ReloadScene
+        {
+            get { return _ReloadScene; }
+            set { _ReloadScene = value; }
+        }
+        
         private string _NextLevel;
         private string _SpawnID = "";
+        private bool _ReloadScene = false;
 
         protected override bool OnCollision(Entity Entity, EntityClassification Classification)
         {
+            if(ReloadScene)
+                CorvusGame.Instance.SceneManager.ReloadScenes(false);
             if (string.IsNullOrEmpty(SpawnID))
                 CorvusGame.Instance.SceneManager.ChangeScene(NextLevel, false);
             else

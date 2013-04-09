@@ -70,6 +70,7 @@
   <object name="Level1" type="LevelChanger" x="4472" y="613" width="32" height="32">
    <properties>
     <property name="LevelChangeComponent.NextLevel" value="A1"/>
+    <property name="LevelChangeComponent.ReloadScene" value="true"/>
    </properties>
   </object>
   <object name="Boss" type="JumboKainHighwind" x="815" y="553" width="128" height="128"/>
