@@ -149,7 +149,7 @@ namespace CorvEngine.Components {
 			var AllComponents = GetFilteredComponents<PhysicsComponent>().ToArray();
 			int TasksComplete = 0;
 			foreach(var First in AllComponents) {
-				ThreadPool.QueueUserWorkItem((unused) => {
+				//ThreadPool.QueueUserWorkItem((unused) => {
 					// Foreach loop variable will change to new instance; store the reference here instead.
 					var Original = First;
 					// TODO: Don't use this O(N^2) approach. Consider using a QuadTree, or just making use of Tiles.
@@ -166,7 +166,7 @@ namespace CorvEngine.Components {
 						}
 					}
 					Interlocked.Increment(ref TasksComplete);
-				});
+				//});
 			}
 
 			HashSet<CollisionInfo> CurrentCollisions = new HashSet<CollisionInfo>();
