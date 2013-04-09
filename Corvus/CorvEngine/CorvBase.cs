@@ -256,10 +256,11 @@ namespace CorvEngine {
 
 			this._GraphicsManager.ApplyChanges();
 			this.Game.InactiveSleepTime = TimeSpan.FromMilliseconds(1);
+			this.Game.IsMouseVisible = false;
 			this._SpriteBatch = new SpriteBatch(GraphicsDevice);
 			this._StateManager = new GameStateManager(_Game);
 			this._FrameInvoker = new FrameInvoker();
-
+			
 			this.RegisterGlobalComponent(this._FrameInvoker);
 			this.RegisterGlobalComponent(this._StateManager);
 			this.Initialize();
