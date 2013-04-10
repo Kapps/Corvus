@@ -157,7 +157,7 @@ JumboGolbez: Golbez
 	CollisionDamageComponent
 		Damage: 25
 	MovementComponent
-		WalkSpeed: 70
+		WalkSpeed: 80
 		IsKnockbackResistant: true
 	CollisionKnockbackComponent
 		Knockback: 100

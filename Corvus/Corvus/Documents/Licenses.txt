@@ -1,6 +1,8 @@
 Art:
+http://untamed.wild-refuge.net/rmxpresources.php?characters
 http://forum.unity3d.com/threads/74619-Cartoon-Style-Xbox-360-Controller-Icons
 http://forums.rpgmakerweb.com/index.php?/topic/5132-shield-sprites/
+http://opengameart.org/content/explosion-animations
 http://www.rpgmakervx.net/index.php?showtopic=23977
 
 Music:

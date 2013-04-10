@@ -15,9 +15,6 @@
  <tileset firstgid="1663" name="TutorialIcons" tilewidth="32" tileheight="32">
   <image source="../../../CorvusContent/Tiles/TutorialIcons.png" width="384" height="1600"/>
  </tileset>
- <tileset firstgid="2263" name="CokeVsPepsi" tilewidth="32" tileheight="32">
-  <image source="../../../CorvusContent/Tiles/CokeVsPepsi.png" width="66" height="48"/>
- </tileset>
  <layer name="Background2" width="35" height="25">
   <properties>
    <property name="Solid" value="false"/>
@@ -55,7 +52,7 @@
    <property name="Solid" value="false"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQEAMAgDsJ74Nzfk4IJxJAqSwL5XSdfvBQAA3DXvJD4+rA0AAA==
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAHgzh1CN06wNAAA=
   </data>
  </layer>
  <objectgroup name="Objects" width="35" height="25">
