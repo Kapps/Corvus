@@ -1,13 +1,11 @@
 Content\TestTexture.xnb
 Content\Interface\HealthBar.xnb
+Content\Sprites\TestEnemy.xnb
 Content\Tiles\generic_platformer_tiles.xnb
+Content\Sprites\Players\PlayerMedieval.xnb
 Content\Interface\HealthMeter.xnb
 Content\Sprites\Effects\Explosion1.xnb
 Content\Sprites\Effects\Explosion2.xnb
-Content\Fonts\testfont.xnb
-Content\Fonts\DamageFont.xnb
-Content\Sprites\TestEnemy.xnb
-Content\Sprites\Players\PlayerMedieval.xnb
 Content\Interface\Outline.xnb
 Content\Tiles\crate 32x32.xnb
 Content\Tiles\ground 32x32.xnb
@@ -84,7 +82,6 @@ Content\Sprites\Enemies\EnemyGolbez.xnb
 Content\Sprites\Enemies\EnemyKainHighwind.xnb
 Content\Sprites\Enemies\EnemyZemus.xnb
 Content\Tiles\block 32x32.xnb
-<<<<<<< HEAD
 Content\Tiles\TutorialIcons.xnb
 Content\Interface\PausedBackgroundalt.xnb
 Content\Tiles\sky3.xnb
@@ -101,10 +98,17 @@ Content\Tiles\town_0.xnb
 Content\Tiles\trees_1.xnb
 Content\Tiles\trees_plants_0.xnb
 Content\Tiles\trees_plants_rocks_0.xnb
+<<<<<<< HEAD
+Content\Sprites\Equipment\HeavyAxe.xnb
+Content\Sprites\Equipment\Mjolnir.xnb
+Content\Tiles\StarAndMoon.xnb
+Content\Sprites\Equipment\SuperSword.xnb
+Content\Tiles\EndText.xnb
+Content\Tiles\CokeVsPepsi.xnb
+=======
+>>>>>>> 4d8863e067869c4c19747704a46ec1918a70c47b
 Content\Fonts\testfont.xnb
 Content\Fonts\DamageFont.xnb
-=======
->>>>>>> 73987870c97f0273ae1a11dba313f44e5619d05f
 Content\Fonts\MainMenuFont.xnb
 Content\Fonts\PlayerNameFont.xnb
 Content\Fonts\PlayerCoinsFont.xnb
@@ -169,18 +173,14 @@ Content\Sprites\Enemies\Enemy_CecilHarvey.xnb
 Content\Sprites\Enemies\Enemy_Zemus.xnb
 Content\Sprites\Enemies\Enemy_KainHighwind.xnb
 Content\Sprites\Enemies\Enemy_Golbez.xnb
-<<<<<<< HEAD
-=======
-Content\Tiles\TutorialIcons.xnb
-Content\Interface\PausedBackgroundalt.xnb
-Content\Tiles\NightBG.xnb
-Content\Tiles\sky3.xnb
-Content\Tiles\tree-variations.xnb
-Content\Tiles\mountain_landscape_23.xnb
-Content\Tiles\wood_tileset_3.xnb
-Content\Sprites\Misc\Shield_Yellow.xnb
-Content\Sprites\Misc\Shield_Yellow2.xnb
->>>>>>> 73987870c97f0273ae1a11dba313f44e5619d05f
+Content\Sprites\Equipment\HeavyAxe.xnb
+Content\Sprites\Equipment\Mjolnir.xnb
+Content\Tiles\StarAndMoon.xnb
+Content\Sprites\Equipment\SuperSword.xnb
+Content\Tiles\EndText.xnb
+Content\Sprites\Equipment\Weapon_HeavyAxe.xnb
+Content\Sprites\Equipment\Weapon_Mjolnir.xnb
+Content\Sprites\Equipment\Weapon_SuperSword.xnb
 Content\Audio\RPGAudio.xgs
 Content\Audio\Sound Bank.xsb
 Content\Audio\Wave Bank.xwb
@@ -214,22 +214,29 @@ Data\Entities\Weapon_BastardSword.txt
 Data\Entities\Weapon_EarthBall.txt
 Data\Entities\Weapon_Fireball.txt
 Data\Entities\Weapon_GaiaBlade.txt
+Data\Entities\Weapon_HeavyAxe.txt
 Data\Entities\Weapon_IceBall.txt
 Data\Entities\Weapon_IronBow.txt
 Data\Entities\Weapon_IronLance.txt
 Data\Entities\Weapon_IronSword.txt
 Data\Entities\Weapon_LongBow.txt
+Data\Entities\Weapon_Mjolnir.txt
 Data\Entities\Weapon_Muramasa.txt
 Data\Entities\Weapon_PoisonBomb.txt
 Data\Entities\Weapon_ShortBow.txt
+Data\Entities\Weapon_SuperSword.txt
 Data\Entities\Weapon_Trident.txt
 Data\Entities\Weapon_WindBall.txt
 Data\Levels\BasicLevel.tmx
 Data\Levels\A1.tmx
-Data\Levels\Level1.tmx
-Data\Levels\Level2.tmx
+Data\Levels\A2_Bottom.tmx
+Data\Levels\A3.tmx
 Data\Levels\A1_S1.tmx
 Data\Levels\A1_S2.tmx
+Data\Levels\A2_End.tmx
+Data\Levels\A2_Top.tmx
+Data\Levels\A2_Top_S1.tmx
+Data\Levels\A3_S1.tmx
 Data\Levels\Arena.tmx
 Data\Levels\Tutorial.tmx
 Data\Levels\Tutorial_S1.tmx

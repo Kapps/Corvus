@@ -316,6 +316,7 @@
     <Content Include="Documents\ColorCodes.txt" />
     <Content Include="Documents\ComponentPropertyDefinition.txt" />
     <Content Include="Documents\EntityTemplates.txt" />
+    <Content Include="Documents\Licenses.txt" />
     <Content Include="Documents\Songs and Sound effects.txt" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
