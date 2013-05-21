@@ -6,10 +6,9 @@ Open source XNA platformer.
 Features:
 - Fully playable platformer consisting of an arena mode and a small campaign mode.
 - Contains many weapons, spells, and other various items.
-- Component entity system that allows parsing of simple files in order to create entities.
+- Component entity system that allows parsing of files in order to create entities.
 - Levels can be created and edited in the Tiled TMX format and loaded by the game.
 - Basic animations for attacks and spells.
-- Various classes, such as entity components, can be created and edited using files.
 
 Assets List:
 http://gamedev.stackexchange.com/questions/20/where-can-i-find-free-sprites-and-images
