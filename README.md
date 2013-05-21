@@ -10,25 +10,5 @@ Features:
 - Levels can be created and edited in the Tiled TMX format and loaded by the game.
 - Basic animations for attacks and spells.
 
-Asset List:
-http://gamedev.stackexchange.com/questions/20/where-can-i-find-free-sprites-and-images
-http://untamed.wild-refuge.net/rmxpresources.php?characters
-http://opengameart.org/content/explosion-animations
-http://www.reddit.com/r/IndieGaming/comments/ifmie/i_made_700_rpg_icons_free_for_use_for_your_game/
-http://www.gamedev.net/files/file/60-royalty-free-music-set/
-http://soundcloud.com/gianmarco-leone/sets/royalty-free-2011-1/
-http://www.gamedev.net/files/file/86-highscore-vol-1-the-video-game-music-pack/
-http://opengameart.org/content/platformer-tiles 
-http://opengameart.org/content/2d-platform-tiles
-http://blog.spiralgraphics.biz/2011/01/mystery-forest-tile-set.html
-http://www.spicypixel.net/2008/01/10/gfxlib-fuzed-a-free-developer-graphic-library/
-http://opengameart.org/content/tileset-and-assets-for-a-scorched-earth-type-game
-http://opengameart.org/content/fireball-spell
-http://opengameart.org/content/magic-sprite-effects-for-ardentryst-by-jordan-trudgett
-http://opengameart.org/content/staff
-http://opengameart.org/content/fire-spell-explosion
-http://opengameart.org/content/flare-effect-blender
-http://www.rpgmakervx.net/index.php?showtopic=23977
-
 
 
