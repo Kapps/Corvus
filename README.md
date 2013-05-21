@@ -10,7 +10,7 @@ Open source XNA platformer.
 - Basic animation system for weapons and spells.
 
 Programmers:
-Aleksandar Ilic
-Ognjen Ivkovic
-Tyler Lemke
-Richard Ly
+- Aleksandar Ilic
+- Ognjen Ivkovic
+- Tyler Lemke
+- Richard Ly
