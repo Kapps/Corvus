@@ -9,7 +9,6 @@ Open source XNA platformer.
 - Levels can be created and edited in the Tiled TMX format and loaded by the game.
 - Basic animation system for weapons and spells.
 
-
 Programmers:
 - Aleksandar Ilic
 - Ognjen Ivkovic
