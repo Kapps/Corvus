@@ -14,5 +14,3 @@ Programmers:
 - Ognjen Ivkovic
 - Tyler Lemke
 - Richard Ly
-
-License: Creative Commons Attribution 3.0
