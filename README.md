@@ -15,4 +15,4 @@ Programmers:
 - Tyler Lemke
 - Richard Ly
 
-License: Creation Commons Attribution 3.0
+License: Creative Commons Attribution 3.0
