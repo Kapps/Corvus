@@ -8,7 +8,7 @@ Features:
 - Contains many weapons, spells, and other various items.
 - Component entity system that allows parsing of files in order to create entities along with their components.
 - Levels can be created and edited in the Tiled TMX format and loaded by the game.
-- Basic animations for attacks and spells.
+- Basic animation system.
 
 
 
