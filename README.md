@@ -10,7 +10,7 @@ Features:
 - Levels can be created and edited in the Tiled TMX format and loaded by the game.
 - Basic animations for attacks and spells.
 
-Assets List:
+Asset List:
 http://gamedev.stackexchange.com/questions/20/where-can-i-find-free-sprites-and-images
 http://untamed.wild-refuge.net/rmxpresources.php?characters
 http://opengameart.org/content/explosion-animations
